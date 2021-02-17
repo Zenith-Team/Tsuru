@@ -1,0 +1,28 @@
+#!gbuild
+primaryTarget=ppc_standalone.tgt
+[Project]
+	-bsp generic
+	-cpu=espresso
+	-object_dir=objs
+	-Ospeed
+	--g++
+	--no_debug
+	--no_rtti
+	-Omemfuncs
+	-Ostrfuncs
+	-DCemu
+	-DREGION_NSMBU_US_Latest_Cemu
+	-DCODE_ADDR=0x2b01360
+	-DDATA_ADDR=0x10607d00
+	-I../files/include
+source/activecollider.cpp
+source/areatask.cpp
+source/ctors.cpp
+source/actorspawner.cpp
+source/flipblock.cpp
+source/magicplatform.cpp
+source/dynamic_libs/os_functions.cpp
+source/dynamic_libs/zlib_functions.cpp
+source/sead/decompressor.cpp
+source/musicplayer.cpp
+source/sfxReverb.cpp
