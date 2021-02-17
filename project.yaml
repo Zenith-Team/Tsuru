@@ -1,0 +1,12 @@
+
+---
+Name: NSMBU Haxx
+Modules:
+#  - aa.yaml
+  - activecollider.yaml
+  - areatask.yaml
+  - ctors.yaml
+  - customactors.yaml
+  - dynamic_libs.yaml
+  - sead.yaml
+  - sound.yaml
