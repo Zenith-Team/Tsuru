@@ -7,7 +7,7 @@
 /*
     Replaces Actor "Giant4WayCannon".
     Notes:
-    * Currently uses the Snake Block model.
+    * Requires "flip_blocks.szs".
     * The flip block does not check if there
       is an actor (other than the player)
       overlapping with it and can change from
@@ -52,7 +52,7 @@ CREATE_STATE(FlipBlock, Flipping);
 
 const ActorInfo FlipBlockActorInfo = { 8, -16, 8, -8, 0x100, 0x100, 0, 0, 0, 0, ActorInfo::FlagUnknown };
 const Profile FlipBlockProfile(&FlipBlock::build, ProfileId::Giant4WayCannon, "FlipBlock", &FlipBlockActorInfo, 0x1002);
-PROFILE_RESOURCES(ProfileId::Giant4WayCannon, "block_snake");
+PROFILE_RESOURCES(ProfileId::Giant4WayCannon, "flip_blocks");
 
 const ActiveCollider::Info FlipBlock::colliderInfo = { Vec2(0.0f, 8.0f), Vec2(8.0f, 8.0f), 0, 0, 0, 0, 0, 0, nullptr };
 
@@ -92,7 +92,7 @@ u32 FlipBlock::onCreate()
 
     registerColliderActiveInfo();
 
-    model = ModelWrapper::create("block_snake", "block_snake", 0, 1);
+    model = ModelWrapper::create("flip_blocks", "flip_blocks", 0, 1);
 
     aCollider.init(this, &colliderInfo, nullptr);
     addActiveColliders();
