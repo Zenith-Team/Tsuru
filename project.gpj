@@ -18,8 +18,9 @@ primaryTarget=ppc_standalone.tgt
 source/activecollider.cpp
 source/areatask.cpp
 source/ctors.cpp
-source/actorspawner.cpp
 source/flipblock.cpp
+source/fakestarcoin.cpp
+source/actorspawner.cpp
 source/magicplatform.cpp
 source/dynamic_libs/os_functions.cpp
 source/dynamic_libs/zlib_functions.cpp

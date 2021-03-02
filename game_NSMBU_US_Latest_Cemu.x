@@ -293,6 +293,7 @@ process__12CollisionMgrFv = 0x218d954;
 
 /* EventMgr */
 instance__8EventMgr = 0x101db06c;
+set__8EventMgrFUiT1bN41 = 0x269cd68;
 
 /* MusicPlayer */
 shouldHurryUp__11MusicPlayerFv = 0x29b83d8;
@@ -307,6 +308,7 @@ get__13ResArchiveMgrFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24f60ec;
 /* ModelWrapper */
 __ct__12ModelWrapperFP5ModelUiN42 = 0x24d4798;
 setup__12ModelWrapperFP10ResArchivePvPQ2_4sead4Heap = 0x24d49a0;
+updateAnimations__12ModelWrapperFv = 0x24d4d20;
 updateModel__12ModelWrapperFv = 0x24d4e84;
 
 /* Mtx34 */
@@ -323,6 +325,9 @@ __ct__15MovementHandlerFv = 0x2849c40;
 link__15MovementHandlerFRC4Vec3UiUc = 0x284b6f4;
 getMaskForMovementType__15MovementHandlerFUi = 0x284a37c;
 execute__15MovementHandlerFv = 0x284b8c4;
+
+/* Effect */
+spawn__6EffectSFiP4Vec3P5Vec3uT2 = 0x22ab080;
 
 /* SoundSystemBase */
 getAudioFx__15SoundSystemBaseFv = 0x29b1aa4;
@@ -359,7 +364,12 @@ cbCallback5__14TwoWayPlatformSFP5Actor = 0x283fbe0;
 cbCallback6__14TwoWayPlatformSFP5ActorUiT2 = 0x283fc14;
 twoWayPlatformCbCallback2__14TwoWayPlatformFP12ColliderBaseP4Vec2 = 0x284184c;
 
+/* BasicSoundActor */
+GlobalBasicSoundActorA = 0x101c63d0;
+playSound__15BasicSoundActorFPCcP4Vec2Ui = 0x29bed48;
+
 /* Misc */
+mapPositionToScreen__FR4Vec2RC4Vec2 = 0x2029368;
 BLOSDynLoad_Acquire = 0x2a9ef58;
 BOSDynLoad_FindExport = 0x2a9f418;
 PlayerJumpArc = 0x1016a800;

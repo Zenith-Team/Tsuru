@@ -117,3 +117,13 @@ public:
     u32 destZone;               // 20
     u32 destEntranceType;       // 24
 };
+
+class LevelTimer
+{
+public:
+    void setTime(s32 time);
+    void addTime(s32 time);
+    
+    static LevelTimer* instance;
+};
+

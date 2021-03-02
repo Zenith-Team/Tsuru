@@ -2,10 +2,6 @@
 #include "actormgr.h"
 #include "eventmgr.h"
 
-/*
-    Replaces Actor "Small4WayCannon".
-*/
-
 class ActorSpawner : public Actor
 {
 public:
@@ -19,8 +15,8 @@ public:
     bool spawned;
 };
 
-const Profile actorSpawnerProfile(&ActorSpawner::build, ProfileId::Small4WayCannon, "ActorSpawner", nullptr, 0);
-PROFILE_RESOURCES(ProfileId::Small4WayCannon);
+const Profile actorSpawnerProfile(&ActorSpawner::build, ProfileId::Sprite436, "ActorSpawner", nullptr, 0);
+PROFILE_RESOURCES(ProfileId::Sprite436);
 
 
 ActorSpawner::ActorSpawner(const ActorBuildInfo* buildInfo) : Actor(buildInfo) { }

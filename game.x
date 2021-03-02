@@ -293,6 +293,7 @@ SECTIONS {
 
 	/* EventMgr */
 	instance__8EventMgr = 0x106dd26c;
+	set__8EventMgrFUiT1bN41 = 0xF25CD68;
 
 	/* MusicPlayer */
 	shouldHurryUp__11MusicPlayerFv = 0xF5783D8;
@@ -307,6 +308,7 @@ SECTIONS {
 	/* ModelWrapper */
 	__ct__12ModelWrapperFP5ModelUiN42 = 0xf094798;
 	setup__12ModelWrapperFP10ResArchivePvPQ2_4sead4Heap = 0xf0949a0;
+	updateAnimations__12ModelWrapperFv = 0xf094d20;
 	updateModel__12ModelWrapperFv = 0xf094e84;
 
 	/* Mtx34 */
@@ -323,6 +325,9 @@ SECTIONS {
 	link__15MovementHandlerFRC4Vec3UiUc = 0xF40B6F4;
 	getMaskForMovementType__15MovementHandlerFUi = 0xF40A37C;
 	execute__15MovementHandlerFv = 0xF40B8C4;
+
+	/* Effect */
+	spawn__6EffectSFiP4Vec3P5Vec3uT2 = 0xee6b080;
 
 	/* SoundSystemBase */
 	getAudioFx__15SoundSystemBaseFv = 0xF571AA4;
@@ -359,7 +364,12 @@ SECTIONS {
 	cbCallback6__14TwoWayPlatformSFP5ActorUiT2 = 0xF3FFC14;
 	twoWayPlatformCbCallback2__14TwoWayPlatformFP12ColliderBaseP4Vec2 = 0xF40184C;
 
+	/* BasicSoundActor */
+	GlobalBasicSoundActorA = 0x106c85d0;
+	playSound__15BasicSoundActorFPCcP4Vec2Ui = 0xf57ed48;
+
 	/* Misc */
+	mapPositionToScreen__FR4Vec2RC4Vec2 = 0xebe9368;
 	BLOSDynLoad_Acquire = 0xF65EF58;
 	BOSDynLoad_FindExport = 0xF65F418;
 	PlayerJumpArc = 0x1066CA00;

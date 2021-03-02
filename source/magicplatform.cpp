@@ -9,12 +9,6 @@
 #include "math.h"
 #include "tile.h"
 
-/*
-    Replaces Actor "Cookie".
-    TODO:
-    * Add other solidity types.
-*/
-
 class MagicPlatform : public Actor
 {
 public:
@@ -47,10 +41,9 @@ public:
 };
 
 const ActorInfo magicPlatformActorInfo = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ActorInfo::FlagIgnoreSpawnRange | ActorInfo::FlagUnknown };
-const Profile magicPlatformProfile(&MagicPlatform::build, ProfileId::Cookie, "MagicPlatform", &magicPlatformActorInfo, 0);
-PROFILE_RESOURCES(ProfileId::Cookie);
+const Profile magicPlatformProfile(&MagicPlatform::build, ProfileId::Sprite314, "MagicPlatform", &magicPlatformActorInfo, 0);
+PROFILE_RESOURCES(ProfileId::Sprite314);
 
-// Ugh
 // Callback table, useful for squishing the player
 Actor::CallbackTable magicPlatformCallbackTable = {
     nullptr,
@@ -127,7 +120,6 @@ u32 MagicPlatform::onCreate()
         ShapedCollider::Info info = { Vec2(0.0f, 0.0f), 0.0f, 0.0f, Vec2(tileW * -8.0f, tileH * 8.0f), Vec2(tileW * 8.0f, tileH * -8.0f), 0 };
         rectCollider.init(this, info);
 
-        // More Ugh
         // Callback table, useful for squishing the player
         rectCollider.callbackTable = reinterpret_cast<void**>(&this->callbackTable);
         rectCollider._144 = reinterpret_cast<void*>(&TwoWayPlatform::cbCallback4);
