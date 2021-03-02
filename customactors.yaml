@@ -1,7 +1,8 @@
 
 ---
 Files:
-  - source/actorspawner.cpp
   - source/flipblock.cpp
+  - source/fakestarcoin.cpp
+  - source/actorspawner.cpp
   - source/magicplatform.cpp
 Hooks: []

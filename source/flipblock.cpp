@@ -5,14 +5,11 @@
 #include "playermgr.h"
 
 /*
-    Replaces Actor "Giant4WayCannon".
-    Notes:
-    * Requires "flip_blocks.szs".
     * The flip block does not check if there
-      is an actor (other than the player)
-      overlapping with it and can change from
-      the "flipping" state to the "waiting"
-      state while the actor is inside.
+    * is an actor (other than the player)
+    * overlapping with it and can change from
+    * the "flipping" state to the "waiting"
+    * state while the actor is inside.
 */
 
 class FlipBlock : public BlockBase
@@ -51,8 +48,8 @@ public:
 CREATE_STATE(FlipBlock, Flipping);
 
 const ActorInfo FlipBlockActorInfo = { 8, -16, 8, -8, 0x100, 0x100, 0, 0, 0, 0, ActorInfo::FlagUnknown };
-const Profile FlipBlockProfile(&FlipBlock::build, ProfileId::Giant4WayCannon, "FlipBlock", &FlipBlockActorInfo, 0x1002);
-PROFILE_RESOURCES(ProfileId::Giant4WayCannon, "flip_blocks");
+const Profile FlipBlockProfile(&FlipBlock::build, ProfileId::Sprite551, "FlipBlock", &FlipBlockActorInfo, 0x1002);
+PROFILE_RESOURCES(ProfileId::Sprite551, "flip_blocks");
 
 const ActiveCollider::Info FlipBlock::colliderInfo = { Vec2(0.0f, 8.0f), Vec2(8.0f, 8.0f), 0, 0, 0, 0, 0, 0, nullptr };
 
