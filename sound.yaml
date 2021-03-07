@@ -2,7 +2,7 @@
 ---
 Files:
   - source/musicplayer.cpp
-  - source/sfxReverb.cpp
+  - source/reverb.cpp
 Hooks:
   - type: branch
     instr: bl

@@ -5,8 +5,8 @@ Modules:
 # - aa.yaml
   - activecollider.yaml
   - areatask.yaml
-  - ctors.yaml
-  - customactors.yaml
+  - constructors.yaml
+  - custom_actors.yaml
   - dynamic_libs.yaml
   - sead.yaml
   - sound.yaml

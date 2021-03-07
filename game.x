@@ -329,6 +329,10 @@ SECTIONS {
 	/* Effect */
 	spawn__6EffectSFiP4Vec3P5Vec3uT2 = 0xee6b080;
 
+	/* EffectWrapper */
+	__ct__13EffectWrapperFv = 0xee6b868;
+	update__13EffectWrapperFiP4Vec3P5Vec3uT2 = 0xee6b52c;
+
 	/* SoundSystemBase */
 	getAudioFx__15SoundSystemBaseFv = 0xF571AA4;
 

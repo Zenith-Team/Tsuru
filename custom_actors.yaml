@@ -1,8 +1,11 @@
 
 ---
 Files:
-  - source/flipblock.cpp
+# Regular sprites:
   - source/fakestarcoin.cpp
+  - source/flipblock.cpp
+# Utility:
   - source/actorspawner.cpp
+# - source/effectspawner.cpp
   - source/magicplatform.cpp
 Hooks: []

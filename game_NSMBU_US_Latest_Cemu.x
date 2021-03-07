@@ -329,6 +329,10 @@ execute__15MovementHandlerFv = 0x284b8c4;
 /* Effect */
 spawn__6EffectSFiP4Vec3P5Vec3uT2 = 0x22ab080;
 
+/* EffectWrapper */
+__ct__13EffectWrapperFv = 0x22ab868;
+update__13EffectWrapperFiP4Vec3P5Vec3uT2 = 0x22ab52c;
+
 /* SoundSystemBase */
 getAudioFx__15SoundSystemBaseFv = 0x29b1aa4;
 
