@@ -5,8 +5,7 @@
 #include "movementhandler.h"
 #include "sound.h"
 
-class EffectSpawner : public Actor
-{
+class EffectSpawner : public Actor {
 public:
     EffectSpawner(const ActorBuildInfo* buildInfo);
     static Base* build(const ActorBuildInfo* buildInfo);
@@ -38,14 +37,12 @@ const f32 EffectSpawner::effectScales[16] = { 1.0f, 0.1f, 0.25f, 0.5f, 0.75f, 0.
 
 EffectSpawner::EffectSpawner(const ActorBuildInfo* buildInfo) : Actor(buildInfo) { }
 
-Base* EffectSpawner::build(const ActorBuildInfo* buildInfo)
-{
+Base* EffectSpawner::build(const ActorBuildInfo* buildInfo) {
     return new EffectSpawner(buildInfo);
 }
 
 
-u32 EffectSpawner::onCreate()
-{
+u32 EffectSpawner::onCreate() {
     if (!eventId2)
         return 2;
 
@@ -66,15 +63,12 @@ u32 EffectSpawner::onCreate()
     return 1;
 }
 
-u32 EffectSpawner::onExecute()
-{
+u32 EffectSpawner::onExecute() {
     movementHandler.execute();
     position = movementHandler.position;
 
-    if (EventMgr::instance->isActive(eventId2 - 1))
-    {
-        if (!spawned)
-        {
+    if (EventMgr::instance->isActive(eventId2 - 1)) {
+        if (!spawned) {
             effectTimer = 0;
 
             if (spawnEffect && nonUpdatedEffect)
@@ -82,8 +76,7 @@ u32 EffectSpawner::onExecute()
             else
                 effectTimer = 0;
 
-            if (playSoundEffect)
-            {
+            if (playSoundEffect) {
                 ;
                 /*const char* soundLabel = SoundSystem::instance->GetItemLabel(soundId);
                 if (soundLabel)
@@ -93,8 +86,7 @@ u32 EffectSpawner::onExecute()
             spawned = true;
         }
 
-        if (spawnEffect && !nonUpdatedEffect)
-        {
+        if (spawnEffect && !nonUpdatedEffect) {
             if (!effectLength || effectTimer < effectLength)
                 effect.update(effectId, &position, &rotation, &scale);
             else
@@ -104,8 +96,7 @@ u32 EffectSpawner::onExecute()
                 effectTimer++;
         }
     }
-    else
-    {
+    else {
         if (spawnEffect)
             effect.update(-1, &position, &rotation, &scale);
 
