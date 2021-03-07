@@ -2,11 +2,11 @@
 ---
 Name: NSMBU Haxx
 Modules:
-# - aa.yaml
-  - activecollider.yaml
-  - areatask.yaml
-  - constructors.yaml
-  - custom_actors.yaml
-  - dynamic_libs.yaml
-  - sead.yaml
-  - sound.yaml
+# - aa.yaml               # Disables FXAA in-game
+  - activecollider.yaml   # 
+  - areatask.yaml         # Area physics mods
+  - constructors.yaml     # 
+  - custom_actors.yaml    # Custom sprites/actors
+  - dynamic_libs.yaml     # 
+  - sead.yaml             # 
+  - sound.yaml            # Sound effect and music mods

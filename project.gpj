@@ -26,4 +26,4 @@ source/dynamic_libs/os_functions.cpp
 source/dynamic_libs/zlib_functions.cpp
 source/sead/decompressor.cpp
 source/musicplayer.cpp
-source/sfxReverb.cpp
+source/reverb.cpp
