@@ -17,9 +17,9 @@ primaryTarget=ppc_standalone.tgt
 	-I../files/include
 source/activecollider.cpp
 source/areatask.cpp
-source/ctors.cpp
-source/flipblock.cpp
+source/constructors.cpp
 source/fakestarcoin.cpp
+source/flipblock.cpp
 source/actorspawner.cpp
 source/magicplatform.cpp
 source/dynamic_libs/os_functions.cpp
