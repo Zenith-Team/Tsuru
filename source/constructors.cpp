@@ -17,8 +17,7 @@ extern u32 BOSDynLoad_FindExport;
 
 }
 
-void callCtors()
-{
+void callCtors() {
     static bool initialized = false;
     if (initialized)
         return;

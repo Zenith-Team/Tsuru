@@ -1,44 +1,47 @@
 #include "musicplayer.h"
 
-bool MusicPlayer::isValidStrmID(s32 strmID)
-{
+bool MusicPlayer::isValidStrmID(s32 strmID) {
     return strmID < MusicPlayer::NUM_MUSIC_LIST;
 }
 
 
-const char* MusicPlayer::getStrmNameForID(s32 strmID)
-{
+const char* MusicPlayer::getStrmNameForID(s32 strmID) {
     bool valid = MusicPlayer::isValidStrmID(strmID);
-    if (!valid)
+    if (!valid) {
         return 0;
+    }
 
     const char* strName;
 
     bool isHurryUp = MusicPlayer::shouldHurryUp();
-    if (isHurryUp)
+    if (isHurryUp) {
         strName = MusicPlayer::strmListFast[strmID];
+    }
 
-    else
+    else {
         strName = MusicPlayer::strmListNormal[strmID];
+    }
 
     return strName;
 }
 
 
-const char* MusicPlayer::getSeqNameForID(s32 strmID)
-{
+const char* MusicPlayer::getSeqNameForID(s32 strmID) {
     bool valid = MusicPlayer::isValidStrmID(strmID);
-    if (!valid)
+    if (!valid) {
         return 0;
+    }
 
     const char* seqName;
 
     bool isHurryUp = MusicPlayer::shouldHurryUp();
-    if (isHurryUp)
+    if (isHurryUp) {
         seqName = MusicPlayer::seqListFast[strmID];
+    }
 
-    else
+    else {
         seqName = MusicPlayer::seqListNormal[strmID];
+    }
 
     return seqName;
 }

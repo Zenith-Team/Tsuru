@@ -7,8 +7,7 @@
 #include "sound.h"
 #include "eventmgr.h"
 
-class FakeStarCoin : public Actor
-{
+class FakeStarCoin : public Actor {
 public:
     FakeStarCoin(const ActorBuildInfo* buildInfo);
     static Base* build(const ActorBuildInfo* buildInfo);
@@ -37,14 +36,12 @@ const ActiveCollider::Info FakeStarCoin::collisionInfo = { Vec2(0.0f, -3.0f), Ve
 
 FakeStarCoin::FakeStarCoin(const ActorBuildInfo* buildInfo) : Actor(buildInfo) { }
 
-Base* FakeStarCoin::build(const ActorBuildInfo* buildInfo)
-{
+Base* FakeStarCoin::build(const ActorBuildInfo* buildInfo) {
     return new FakeStarCoin(buildInfo);
 }
 
 
-u32 FakeStarCoin::onCreate()
-{
+u32 FakeStarCoin::onCreate() {
     rotationDirection = settings1 & 3;
     model = ModelWrapper::create("star_coin", (settings1 & 0x10) ? "star_coinB" : "star_coinA");
 
@@ -59,8 +56,7 @@ u32 FakeStarCoin::onCreate()
     return 1;
 }
 
-u32 FakeStarCoin::onExecute()
-{
+u32 FakeStarCoin::onExecute() {
     static const u32 rotationSpeed = 0x3FD27D2;
 
     movementHandler.execute();
@@ -79,15 +75,13 @@ u32 FakeStarCoin::onExecute()
     return 1;
 }
 
-u32 FakeStarCoin::onDraw()
-{
+u32 FakeStarCoin::onDraw() {
     DrawMgr::instance->drawModel(model);
     return 1;
 }
 
 
-void FakeStarCoin::updateModel()
-{
+void FakeStarCoin::updateModel() {
     model->updateAnimations();
 
     Mtx34 mtx;
@@ -97,8 +91,7 @@ void FakeStarCoin::updateModel()
     model->updateModel();
 }
 
-void FakeStarCoin::collect()
-{
+void FakeStarCoin::collect() {
     Vec3 effectPos(position.x, position.y - 18.0f, 4500.0f);
 
     Effect::spawn(921, &effectPos, nullptr, nullptr);
@@ -111,7 +104,6 @@ void FakeStarCoin::collect()
 }
 
 
-void FakeStarCoin::collisionCallback(ActiveCollider* acSelf, ActiveCollider* acOther)
-{
+void FakeStarCoin::collisionCallback(ActiveCollider* acSelf, ActiveCollider* acOther) {
     reinterpret_cast<FakeStarCoin*>(acSelf->owner)->collect();
 }

@@ -2,8 +2,7 @@
 #include "actormgr.h"
 #include "eventmgr.h"
 
-class ActorSpawner : public Actor
-{
+class ActorSpawner : public Actor {
 public:
     ActorSpawner(const ActorBuildInfo* buildInfo);
     static Base* build(const ActorBuildInfo* buildInfo);
@@ -21,13 +20,11 @@ PROFILE_RESOURCES(ProfileId::Sprite436);
 
 ActorSpawner::ActorSpawner(const ActorBuildInfo* buildInfo) : Actor(buildInfo) { }
 
-Base* ActorSpawner::build(const ActorBuildInfo* buildInfo)
-{
+Base* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
     return new ActorSpawner(buildInfo);
 }
 
-u32 ActorSpawner::onCreate()
-{
+u32 ActorSpawner::onCreate() {
     if (!eventId2)
         return 2;
 
@@ -43,12 +40,9 @@ u32 ActorSpawner::onCreate()
     return 1;
 }
 
-u32 ActorSpawner::onExecute()
-{
-    if (EventMgr::instance->isActive(eventId2-1))
-    {
-        if (!spawned)
-        {
+u32 ActorSpawner::onExecute() {
+    if (EventMgr::instance->isActive(eventId2-1)) {
+        if (!spawned) {
             ActorBuildInfo buildInfo = { 0 };
             buildInfo.settings1 = settings1;
             buildInfo.settings2 = settings2;

@@ -12,8 +12,7 @@
     * state while the actor is inside.
 */
 
-class FlipBlock : public BlockBase
-{
+class FlipBlock : public BlockBase {
 public:
     FlipBlock(const ActorBuildInfo* buildInfo);
     virtual ~FlipBlock() { }
@@ -60,14 +59,12 @@ FlipBlock::FlipBlock(const ActorBuildInfo* buildInfo)
 {
 }
 
-Base* FlipBlock::build(const ActorBuildInfo* buildInfo)
-{
+Base* FlipBlock::build(const ActorBuildInfo* buildInfo) {
     return new FlipBlock(buildInfo);
 }
 
 
-u32 FlipBlock::onCreate()
-{
+u32 FlipBlock::onCreate() {
     _1CB4 = 0.0f;
     _1CB8 = 0.0f;
     _1AB4 = 0;
@@ -100,8 +97,7 @@ u32 FlipBlock::onCreate()
     return 1;
 }
 
-u32 FlipBlock::onExecute()
-{
+u32 FlipBlock::onExecute() {
     u32 result = BlockBase::onExecute();
     if (result != 1)
         return result;
@@ -110,31 +106,26 @@ u32 FlipBlock::onExecute()
     return 1;
 }
 
-u32 FlipBlock::onDraw()
-{
+u32 FlipBlock::onDraw() {
     DrawMgr::instance->drawModel(model);
     return 1;
 }
 
-void FlipBlock::spawnItemUp()
-{
+void FlipBlock::spawnItemUp() {
     doStateChange(&StateID_Flipping);
 }
 
-void FlipBlock::spawnItemDown()
-{
+void FlipBlock::spawnItemDown() {
     collisionMgr.setSensor(nullptr, 3);
     doStateChange(&StateID_Flipping);
 }
 
-void FlipBlock::beginState_BlockCoinState3()
-{
+void FlipBlock::beginState_BlockCoinState3() {
     // Delay in frames before switching to StateID_Wait
     _1A90 = 15;
 }
 
-void FlipBlock::endState_BlockCoinState3()
-{
+void FlipBlock::endState_BlockCoinState3() {
     _1AAE = 0;
 
     // Undo our "fake" Used state
@@ -148,43 +139,40 @@ void FlipBlock::endState_BlockCoinState3()
     rectCollider.callbackTable = reinterpret_cast<void**>(&this->callbackTable);
 }
 
-bool FlipBlock::isActive()
-{
+bool FlipBlock::isActive() {
     return true;
 }
 
-void FlipBlock::destroy()
-{
+void FlipBlock::destroy() {
     spawnDirection = 3;
     doStateChange(&StateID_Flipping);
 }
 
-void FlipBlock::destroy2()
-{
+void FlipBlock::destroy2() {
     spawnDirection = 3;
     doStateChange(&StateID_Flipping);
 }
 
-void FlipBlock::beginState_Flipping()
-{
+void FlipBlock::beginState_Flipping() {
     flipsRemaining = 7;
     ColliderMgr::instance->remove(&rectCollider);
 }
 
-void FlipBlock::executeState_Flipping()
-{
-    if (spawnDirection == 3) // Down
+void FlipBlock::executeState_Flipping() {
+    if (spawnDirection == 3) {
         rotation.x += 0x8000000;
+    } // Down
 
-    else
+    else {
         rotation.x -= 0x8000000;
+    }
 
-    if (rotation.x == 0 && --flipsRemaining <= 0 && !playerOverlaps())
+    if (rotation.x == 0 && --flipsRemaining <= 0 && !playerOverlaps()) {
         doStateChange(&StateID_Wait);
+    }
 }
 
-void FlipBlock::endState_Flipping()
-{
+void FlipBlock::endState_Flipping() {
     // Add the collider back and literally "reset" the actor
     init(true, true);
 
@@ -192,8 +180,7 @@ void FlipBlock::endState_Flipping()
     rotation.x = 0;
 }
 
-void FlipBlock::updateModel()
-{
+void FlipBlock::updateModel() {
     Vec3 pos(position.x, position.y + 8.0f, position.z);
     Mtx34 mtx;
     mtx.rotateAndTranslate(rotation, pos);
@@ -202,24 +189,24 @@ void FlipBlock::updateModel()
     model->updateModel();
 }
 
-bool FlipBlock::playerOverlaps()
-{
+bool FlipBlock::playerOverlaps() {
     u32 playerActiveMask = 1;
     bool overlaps = false;
 
     Player* player;
 
-    for (s32 i = 0; i < 4; i++)
-    {
-        if (PlayerMgr::instance->playerFlags & playerActiveMask)
-        {
+    for (s32 i = 0; i < 4; i++) {
+        if (PlayerMgr::instance->playerFlags & playerActiveMask) {
             player = PlayerMgr::instance->players[i];
-            if (player != nullptr)
+            if (player != nullptr) {
                 overlaps = ActiveCollider::collidersOverlap(&this->aCollider, &player->aCollider);
+            }
         }
 
         if (overlaps)
+        {
             return true;
+        }
 
         playerActiveMask <<= 1;
     }

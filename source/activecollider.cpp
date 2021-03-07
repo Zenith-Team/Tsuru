@@ -1,8 +1,7 @@
 #include "actor/actor.h"
 #include "activecollider.h"
 
-void ActiveCollider::getRect(Rect& outRect)
-{
+void ActiveCollider::getRect(Rect& outRect) {
     Vec3* ownerPos = &this->owner->position;
 
     outRect.left   = ownerPos->x + this->info.distToCenter.x - this->info.distToEdge.x;
@@ -11,8 +10,7 @@ void ActiveCollider::getRect(Rect& outRect)
     outRect.bottom = ownerPos->y + this->info.distToCenter.y - this->info.distToEdge.y;
 }
 
-bool ActiveCollider::collidersOverlap(ActiveCollider* acSelf, ActiveCollider* acOther)
-{
+bool ActiveCollider::collidersOverlap(ActiveCollider* acSelf, ActiveCollider* acOther) {
     Rect thisRect;
     acSelf->getRect(thisRect);
 

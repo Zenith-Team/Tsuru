@@ -9,8 +9,7 @@
 #include "math.h"
 #include "tile.h"
 
-class MagicPlatform : public Actor
-{
+class MagicPlatform : public Actor {
 public:
     MagicPlatform(const ActorBuildInfo* buildInfo);
     virtual ~MagicPlatform() { }
@@ -70,14 +69,12 @@ MagicPlatform::MagicPlatform(const ActorBuildInfo* buildInfo)
 {
 }
 
-Base* MagicPlatform::build(const ActorBuildInfo* buildInfo)
-{
+Base* MagicPlatform::build(const ActorBuildInfo* buildInfo) {
     return new MagicPlatform(buildInfo);
 }
 
 
-u32 MagicPlatform::onCreate()
-{
+u32 MagicPlatform::onCreate() {
     Level::Area* area = Level::instance->getArea(LevelInfo::instance->area);
     Level::Area::Location* location = area->getLocation(nullptr, settings1 & 0xFF);
 
@@ -94,10 +91,8 @@ u32 MagicPlatform::onCreate()
 
     tileData = new u16[tileW*tileH];
 
-    for (u32 y = 0; y < tileH; y++)
-    {
-        for (u32 x = 0; x < tileW; x++)
-        {
+    for (u32 y = 0; y < tileH; y++) {
+        for (u32 x = 0; x < tileW; x++) {
             u16* tilePtr = TileMgr::getTilePtrCurrentArea(locX + x*16, locY + y*16, 0);
             tileData[x + y*tileW] = tilePtr ? *tilePtr : 0;
         }
@@ -115,8 +110,7 @@ u32 MagicPlatform::onCreate()
     if (colliderSurfaceType > ColliderBase::SurfaceTypeBeanstalkLeaf)
         colliderSurfaceType = ColliderBase::SurfaceTypeRegular;
 
-    if (collisionType == 0)
-    {
+    if (collisionType == 0) {
         ShapedCollider::Info info = { Vec2(0.0f, 0.0f), 0.0f, 0.0f, Vec2(tileW * -8.0f, tileH * 8.0f), Vec2(tileW * 8.0f, tileH * -8.0f), 0 };
         rectCollider.init(this, info);
 
@@ -132,14 +126,14 @@ u32 MagicPlatform::onCreate()
 
         ColliderMgr::instance->add(&rectCollider);
     }
-    else if (collisionType == 1)
-    {
+    else if (collisionType == 1) {
         Vec2 points[2] = { Vec2(tileW * -8.0f, tileH * 8.0f), Vec2(tileW * 8.0f, tileH * 8.0f) };
         SolidOnTopCollider::Info info = { Vec2(0.0f, 0.0f), 0.0f, 0.0f, points, 0 };
         solidOnTopCollider.init(this, info, 2);
         solidOnTopCollider.setType(colliderType);
-        if ((settings1 >> 8) & 1)
+        if ((settings1 >> 8) & 1) {
             solidOnTopCollider.setSurfaceType(colliderSurfaceType);
+        }
 
         ColliderMgr::instance->add(&solidOnTopCollider);
     }
@@ -150,19 +144,16 @@ u32 MagicPlatform::onCreate()
     return onExecute();
 }
 
-u32 MagicPlatform::onExecute()
-{
+u32 MagicPlatform::onExecute() {
     movementHandler.execute();
     position = movementHandler.position;
     rotation.z = movementHandler.rotation;
 
-    if (collisionType == 0)
-    {
+    if (collisionType == 0) {
         rectCollider.rotation = rotation.z;
         rectCollider.execute();
     }
-    else if (collisionType == 1)
-    {
+    else if (collisionType == 1) {
         solidOnTopCollider.rotation = rotation.z;
         solidOnTopCollider.execute();
     }
@@ -170,16 +161,13 @@ u32 MagicPlatform::onExecute()
     return 1;
 }
 
-u32 MagicPlatform::onDraw()
-{
+u32 MagicPlatform::onDraw() {
     f32 angle = (static_cast<f32>(rotation.z) / 0x80000000) * M_PI;
     f32 angleCos = cos(angle);
     f32 angleSin = sin(angle);
 
-    for (s32 y = 0; y < tileH; y++)
-    {
-        for (s32 x = 0; x < tileW; x++)
-        {
+    for (s32 y = 0; y < tileH; y++) {
+        for (s32 x = 0; x < tileW; x++) {
             s32 offsetX = x*16 - tileW*8 + 8;
             s32 offsetY = y*16 - tileH*8 + 8;
 
@@ -195,10 +183,10 @@ u32 MagicPlatform::onDraw()
     return 1;
 }
 
-u32 MagicPlatform::onDelete()
-{
-    if (tileData)
+u32 MagicPlatform::onDelete() {
+    if (tileData) {
         delete[] tileData;
+    }
 
     return 1;
 }
