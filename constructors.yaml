@@ -6,4 +6,3 @@ Hooks:
     instr: b
     addr: F6BA050
     func: callCtors__Fv
-
