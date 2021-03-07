@@ -6,4 +6,3 @@ Hooks:
     instr: bl
     addr: F075D98
     func: readHaxxOptions__8AreaTaskFv
-

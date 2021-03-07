@@ -5,8 +5,9 @@ Modules:
 # - aa.yaml               # Disables FXAA in-game
   - activecollider.yaml   # 
   - areatask.yaml         # Area physics mods
+  - asm.yaml              # ASM hacks
   - constructors.yaml     # 
   - custom_actors.yaml    # Custom sprites/actors
-  - dynamic_libs.yaml     # 
+  - dynamic_libs.yaml     # Dynamic libraries
   - sead.yaml             # 
   - sound.yaml            # Sound effect and music mods

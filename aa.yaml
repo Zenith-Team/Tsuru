@@ -2,7 +2,6 @@
 ---
 Files: []
 Hooks:
-  # Disable AA
   ## Disable call to AreaTask::PrepareAA
   - type: nop
     addr: 0F0764A8
@@ -15,5 +14,3 @@ Hooks:
   ## Disable call to DemoTestScene::applyFilterAA_
   - type: nop
     addr: 0F55FED0
-
-
