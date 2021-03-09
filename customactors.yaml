@@ -4,6 +4,7 @@ Files:
 # Regular sprites:
   - source/fakestarcoin.cpp
   - source/flipblock.cpp
+  - source/timeclock.cpp
 # Utility:
   - source/actorspawner.cpp
 # - source/effectspawner.cpp
