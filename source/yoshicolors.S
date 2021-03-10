@@ -24,3 +24,22 @@ PatchYoshiColors:
     stw r0, 0x18(r12)
 
     blr
+
+.global RandomYoshiColors
+RandomYoshiColors:
+    stwu r1, -0x4(r1)
+    mflr r0
+    stw r0, 0x8(r1)
+
+    lis r3, instance__Q2_4sead12GlobalRandom@ha
+    lwz r3, instance__Q2_4sead12GlobalRandom@l(r3)
+    bl getU32__Q2_4sead6RandomFv
+    li r4, 0x4
+    mulhwu r4, r3, r4
+    #srwi r4, r3, 0x1F
+    mr r3, r29
+
+    lwz r0, 0x8(r1)
+    mtlr r0
+    addi r1, r1, 0x4
+    blr

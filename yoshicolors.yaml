@@ -2,7 +2,13 @@
 ---
 Files: [source/yoshicolors.S]
 Hooks:
+  # Patch array to unlock colors
   - type: branch
     instr: bl
     func: PatchYoshiColors
     addr: F529B38
+  # Randomize nybble 12
+  - type: branch
+    instr: bl
+    func: RandomYoshiColors
+    addr: F51DF50
