@@ -18,10 +18,23 @@ SECTIONS {
 	__pure_virtual_called = 0xF6BA554;
 	__deleted_virtual_called = 0xf6ba5e8;
 	__vec_new = 0xF6BA350;
+	__vec_delete = 0xf6ba490;
+	__record_needed_destruction = 0xf6ba52c;
+	__gh_float_printf = 0xF6BABA8;
+	__ghs_strcmp = 0xF6BA60C;
+
+	/* sead::SafeStringBase<char> */
+	__vtbl__Q2_4sead23SafeStringBase__tm__2_c = 0x105f7548;
 
 	/* sead::IDisposer */
 	__ct__Q2_4sead9IDisposerFv = 0xF5CA2FC;
 	__dt__Q2_4sead9IDisposerFv = 0xf5ca384;
+
+	/* sead::Random */
+	getU32__Q2_4sead6RandomFv = 0xf5d3780;
+
+	/* sead::GlobalRandom */
+	instance__Q2_4sead12GlobalRandom = 0x106ea26c;
 
 	/* sead::HeapMgr */
 	sInstancePtr__Q2_4sead7HeapMgr = 0x106EA240;

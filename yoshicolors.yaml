@@ -1,0 +1,8 @@
+
+---
+Files: [source/yoshicolors.S]
+Hooks:
+  - type: branch
+    instr: bl
+    func: PatchYoshiColors
+    addr: F529B38

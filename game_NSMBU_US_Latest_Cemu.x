@@ -18,10 +18,23 @@ __dla__FPv = 0x29f17d0;
 __pure_virtual_called = 0x2afa554;
 __deleted_virtual_called = 0x2afa5e8;
 __vec_new = 0x2afa350;
+__vec_delete = 0x2afa490;
+__record_needed_destruction = 0x2afa52c;
+__gh_float_printf = 0x2afaba8;
+__ghs_strcmp = 0x2afa60c;
+
+/* sead::SafeStringBase<char> */
+__vtbl__Q2_4sead23SafeStringBase__tm__2_c = 0x100f5348;
 
 /* sead::IDisposer */
 __ct__Q2_4sead9IDisposerFv = 0x2a0a2fc;
 __dt__Q2_4sead9IDisposerFv = 0x2a0a384;
+
+/* sead::Random */
+getU32__Q2_4sead6RandomFv = 0x2a13780;
+
+/* sead::GlobalRandom */
+instance__Q2_4sead12GlobalRandom = 0x101e806c;
 
 /* sead::HeapMgr */
 sInstancePtr__Q2_4sead7HeapMgr = 0x101e8040;
