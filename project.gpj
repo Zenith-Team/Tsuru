@@ -29,3 +29,4 @@ source/nohurryup.S
 source/sead/decompressor.cpp
 source/musicplayer.cpp
 source/reverb.cpp
+source/yoshicolors.S
