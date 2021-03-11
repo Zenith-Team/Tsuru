@@ -36,7 +36,6 @@ RandomYoshiColors:
     bl getU32__Q2_4sead6RandomFv
     li r4, 0x4
     mulhwu r4, r3, r4
-    #srwi r4, r3, 0x1F
     mr r3, r29
 
     lwz r0, 0x8(r1)
