@@ -1,0 +1,9 @@
+
+---
+Files: []
+Hooks:
+  # Disable acorns falling
+  - type: nop
+    addr: F59F464
+  - type: nop
+    addr: F59F4B8
