@@ -96,7 +96,7 @@ void TimeClock::collect() {
     Vec3 effectPos(position.x, position.y - 18.0f, 4500.0f);
 
     Effect::spawn(921, &effectPos, nullptr, nullptr);
-    //LevelTimer::instance->addTime(10);
+    LevelTimer::instance->addTime(10);
     //PlaySound("SE_OBJ_DDOOR_OPEN", position);
 
     if (eventId1)
