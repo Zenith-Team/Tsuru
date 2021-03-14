@@ -3,13 +3,13 @@
 Name: NSMBU Haxx
 Modules:
 # - aa.yaml               # Disables FXAA in-game
-  - activecollider.yaml   # Collision for custom sprites
+  - activecollider.yaml   # Collision
   - areatask.yaml         # Area modifiers
-  - constructors.yaml     # Constructor patches
+  - constructors.yaml     # Constructors
   - customactors.yaml     # Custom sprites/actors
   - dynamiclibs.yaml      # Dynamic libraries
   - nohurryup.yaml        # Disables music rush at 100 secs
-  - sead.yaml             # Standard library patches
+  - sead.yaml             # Standard library
   - sound.yaml            # Sound effect and music mods
   - titlescreen.yaml      # Title screen mods
   - yoshicolors.yaml      # Patches Yoshis to have all colors
