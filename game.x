@@ -359,6 +359,8 @@ SECTIONS {
 	/* Level */
 	instance__5Level = 0x106dd248;
 	getArea__5LevelFUi = 0xf25a2dc;
+	instance__10LevelTimer = 0x106D37F4;
+	addTime__10LevelTimerFi = 0xF0814C0;
 
 	/* Level::Area */
 	getSprite__Q2_5Level4AreaFUiPv = 0xF259C08;

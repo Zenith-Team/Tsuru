@@ -11,4 +11,5 @@ Modules:
   - nohurryup.yaml        # Disables music rush at 100 secs
   - sead.yaml             # Standard library patches
   - sound.yaml            # Sound effect and music mods
+  - titlescreen.yaml      # Title screen mods
   - yoshicolors.yaml      # Patches Yoshis to have all colors
