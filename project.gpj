@@ -27,6 +27,7 @@ source/dynamic_libs/os_functions.cpp
 source/dynamic_libs/zlib_functions.cpp
 source/nohurryup.S
 source/sead/decompressor.cpp
+source/snowparticles.S
 source/musicplayer.cpp
 source/reverb.cpp
 source/yoshicolors.S

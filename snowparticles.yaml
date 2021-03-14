@@ -1,0 +1,38 @@
+
+---
+Files: [source/snowparticles.S]
+Hooks:
+  - type: branch
+    instr: bl
+    func: SnowSave
+    addr: F3FA5A8
+
+  - type: branch
+    instr: bl
+    func: Snow1RaA
+    addr: F0C7578
+
+  - type: branch
+    instr: bl
+    func: Snow1B
+    addr: F0C758C
+
+  - type: branch
+    instr: bl
+    func: Snow1G
+    addr: F0C7594
+
+  - type: branch
+    instr: bl
+    func: Snow2R
+    addr: F0C769C
+
+  - type: branch
+    instr: bl
+    func: Snow2GaB
+    addr: F0C76B4
+
+  - type: branch
+    instr: bl
+    func: Snow2A
+    addr: F0C76D4
