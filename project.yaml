@@ -10,6 +10,7 @@ Modules:
   - dynamiclibs.yaml      # Dynamic libraries
   - nohurryup.yaml        # Disables music rush at 100 secs
   - sead.yaml             # Standard library
+  - snowparticles.yaml    # Custom snow particles
   - sound.yaml            # Sound effect and music mods
   - titlescreen.yaml      # Title screen mods
   - yoshicolors.yaml      # Patches Yoshis to have all colors
