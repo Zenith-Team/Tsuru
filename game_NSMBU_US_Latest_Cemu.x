@@ -359,6 +359,8 @@ getDelayParam__7AudioFxFv = 0x29b2fe0;
 /* Level */
 instance__5Level = 0x101db048;
 getArea__5LevelFUi = 0x269a2dc;
+instance__10LevelTimer = 0x101d15f4;
+addTime__10LevelTimerFi = 0x24c14c0;
 
 /* Level::Area */
 getSprite__Q2_5Level4AreaFUiPv = 0x2699c08;
