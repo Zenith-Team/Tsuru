@@ -17,6 +17,7 @@ New Super Mario Bros. U Custom Code and ASM
 * Disabled FXAA (not enabled by default)
 * Disabled acorns falling on title screen
 * Custom music list (not sure how to use atm)
+* Customizable snow particle colors
 
 # Credits
 * AboodXD - Code from NSMBU-Haxx
