@@ -1,5 +1,5 @@
 # DualHax
-All of my NSMBU custom code and asm
+New Super Mario Bros. U Custom Code and ASM
 
 # Current hacks
 ## Custom Sprites:
