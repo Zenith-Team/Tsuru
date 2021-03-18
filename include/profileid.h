@@ -2,8 +2,7 @@
 
 namespace ProfileId {
 
-enum ProfileIdType
-{
+enum ProfileIdType {
     Sprite0 = 467,
     Sprite1 = 469,
     Sprite2 = 479,

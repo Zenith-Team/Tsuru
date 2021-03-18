@@ -2,8 +2,7 @@
 
 #include "util/vec3.h"
 
-class YoshiEatData
-{
+class YoshiEatData {
 public:
     YoshiEatData(u32& id);
 
@@ -27,8 +26,7 @@ public:
     u32 _1C;
 };
 
-class BabyYoshiEatData
-{
+class BabyYoshiEatData {
 public:
     BabyYoshiEatData(u32& id);
 

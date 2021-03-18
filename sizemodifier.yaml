@@ -1,0 +1,13 @@
+
+---
+Files: [source/sizemodifier.S]
+Hooks:
+  - type: branch
+    instr: b
+    func: ScaleModel
+    addr: EBC0FE4
+  
+  - type: branch
+    instr: bl
+    func: ScaleCollision
+    addr: ED5AF58

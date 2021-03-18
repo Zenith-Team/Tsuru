@@ -25,6 +25,8 @@ public:
 
     static const u32 NUM_PROFILES_ORIGINAL = 913;
 
+    static const s16 prioritiesOriginal[NUM_PROFILES_ORIGINAL];
+
     static u8 hasResourcesOriginal[NUM_PROFILES_ORIGINAL];
     static u8 resourceCountOriginal[NUM_PROFILES_ORIGINAL];
     static const sead::SafeString* resourceListsOriginal[NUM_PROFILES_ORIGINAL];
