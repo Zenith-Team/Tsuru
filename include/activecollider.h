@@ -6,21 +6,18 @@
 
 class Actor;
 
-class ActiveCollider : public sead::IDisposer   // size: 0x128
-{
+class ActiveCollider : public sead::IDisposer { // size: 0x128
 public:
     typedef void (*Callback)(ActiveCollider* acSelf, ActiveCollider* acOther);
 
-    enum Shape
-    {
+    enum Shape {
         ShapeRectangle      = 0,
         ShapeCircle         = 1,
         ShapeTrapezoidVert  = 2,
         ShapeTrapezoidHoriz = 3
     };
 
-    struct Info
-    {
+    struct Info {
         static Info Default;
 
         Vec2 distToCenter;  // 0
@@ -34,11 +31,9 @@ public:
         Callback callback;  // 28
     };
 
-    class List
-    {
+    class List {
     public:
-        struct Node
-        {
+        struct Node {
             ActiveCollider* owner;  // 0
             Node* next;             // 4
             Node* prev;             // 8

@@ -72,6 +72,7 @@ cConvFuncTable__Q2_4sead6Endian = 0x101929a8;
 __ct__7ProfileFPFPC14ActorBuildInfo_P4BaseUiRCQ2_4sead23SafeStringBase__tm__2_cPC9ActorInfoT2 = 0x2019554;
 get__7ProfileSFUi = 0x2019774;
 spriteToProfileList__7Profile = 0x101ecd8c;
+prioritiesOriginal__7Profile = 0x10001940;
 hasResourcesOriginal__7Profile = 0x10002064;
 resourceCountOriginal__7Profile = 0x100023f8;
 resourceListsOriginal__7Profile = 0x101c321c;

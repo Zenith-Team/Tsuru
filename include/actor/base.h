@@ -5,11 +5,9 @@
 #include "sead.h"
 #include "profile.h"
 
-class ActorInfo
-{
+class ActorInfo {
 public:
-    enum Flags
-    {
+    enum Flags {
         FlagIgnoreSpawnRange = 0x002,
         FlagUnknown          = 0x008,
         FlagGrouped          = 0x010,
@@ -30,8 +28,7 @@ public:
     u16 flags;                    // 20
 };
 
-struct ActorBuildInfo
-{
+struct ActorBuildInfo {
     u32 settings1;                // 0
     u32 settings2;                // 4
     u32 parentId;                 // 8
@@ -50,8 +47,7 @@ struct ActorBuildInfo
 };
 
 
-class Base
-{
+class Base {
     SEAD_RTTI_BASE(Base)
 
 public:

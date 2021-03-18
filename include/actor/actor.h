@@ -8,13 +8,11 @@
 class ColliderBase;
 class CollisionMgr;
 
-class Actor : public Base
-{
+class Actor : public Base {
     SEAD_RTTI_OVERRIDE(Actor, Base)
 
 public:
-    struct CallbackTable
-    {
+    struct CallbackTable {
         typedef bool (Actor::*typeAcCallbackB)(ActiveCollider*, Vec2*);
         typedef void (Actor::*typeAcCallbackV)(ActiveCollider*, Vec2*);
         typedef bool (Actor::*typeCbCallbackB)(ColliderBase*, Vec2*);
@@ -42,38 +40,31 @@ public:
     void afterExecute(u32);
     u32 beforeDraw();
 
-    virtual void setPlayerId(s8 id)
-    {
+    virtual void setPlayerId(s8 id) {
         playerId = id;
     }
 
     virtual void removeActiveColliders();
     virtual void addActiveColliders();
 
-    virtual CollisionMgr* getCollisionMgr()
-    {
+    virtual CollisionMgr* getCollisionMgr() {
         return nullptr;
     }
 
-    virtual void vfAC()
-    {
+    virtual void vfAC() {
     }
 
-    virtual bool vfB4()
-    {
+    virtual bool vfB4() {
         return true;
     }
 
-    virtual void vfBC()
-    {
+    virtual void vfBC() {
     }
 
-    virtual void vfC4()
-    {
+    virtual void vfC4() {
     }
 
-    virtual void vfCC()
-    {
+    virtual void vfCC() {
     }
 
     virtual void killAtGoal();
@@ -83,8 +74,7 @@ public:
     virtual void splashPoison(Vec3*);
     virtual bool isOffScreen();
 
-    virtual void damageFromUnder()
-    {
+    virtual void damageFromUnder() {
     }
 
     s32 distanceToPlayer(Vec2& out);

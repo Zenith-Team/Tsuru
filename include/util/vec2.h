@@ -4,15 +4,12 @@
 
 class Vec3;
 
-class Vec2
-{
+class Vec2 {
 public:
-    union
-    {
+    union {
         f32 array[2];
 
-        struct
-        {
+        struct {
             f32 x;
             f32 y;
         };
@@ -76,57 +73,48 @@ private:
     static Vec2& scale(Vec2& out, const Vec2& v, const Vec2& scales);
 };
 
-inline Vec2& Vec2::add(Vec2& out, const Vec2& a, const Vec2& b)
-{
+inline Vec2& Vec2::add(Vec2& out, const Vec2& a, const Vec2& b) {
     out.x = a.x + b.x;
     out.y = a.y + b.y;
     return out;
 }
 
-inline Vec2& Vec2::sub(Vec2& out, const Vec2& a, const Vec2& b)
-{
+inline Vec2& Vec2::sub(Vec2& out, const Vec2& a, const Vec2& b) {
     out.x = a.x - b.x;
     out.y = a.y - b.y;
     return out;
 }
 
-inline Vec2& Vec2::scale(Vec2& out, const Vec2& v, const f32 scale)
-{
+inline Vec2& Vec2::scale(Vec2& out, const Vec2& v, const f32 scale) {
     out.x = v.x * scale;
     out.y = v.y * scale;
     return out;
 }
 
-inline Vec2& Vec2::scale(Vec2& out, const Vec2& v, const Vec2& scales)
-{
+inline Vec2& Vec2::scale(Vec2& out, const Vec2& v, const Vec2& scales) {
     out.x = v.x * scales.x;
     out.y = v.y * scales.y;
     return out;
 }
 
-inline f32 Vec2::dot(const Vec2& a, const Vec2& b)
-{
+inline f32 Vec2::dot(const Vec2& a, const Vec2& b) {
     return a.x*b.x + a.y*b.y;
 }
 
-inline f32 Vec2::dist(const Vec2& a, const Vec2& b)
-{
+inline f32 Vec2::dist(const Vec2& a, const Vec2& b) {
     Vec2 d = a - b;
     return d.mag();
 }
 
-inline f32 Vec2::distSq(const Vec2& a, const Vec2& b)
-{
+inline f32 Vec2::distSq(const Vec2& a, const Vec2& b) {
     Vec2 d = a - b;
     return d.magSq();
 }
 
-inline f32 Vec2::angle(const Vec2& a, const Vec2& b)
-{
+inline f32 Vec2::angle(const Vec2& a, const Vec2& b) {
     return acos(angleCos(a, b));
 }
 
-inline f32 Vec2::angleCos(const Vec2& a, const Vec2& b)
-{
+inline f32 Vec2::angleCos(const Vec2& a, const Vec2& b) {
     return dot(a, b) / (a.mag() * b.mag());
 }
