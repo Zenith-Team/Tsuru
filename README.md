@@ -18,11 +18,13 @@ New Super Mario Bros. U Custom Code and ASM
 * Disabled acorns falling on title screen
 * Custom music list (not sure how to use atm)
 * Customizable snow particle colors
+* Size modifier
 
 # Credits
 * AboodXD - Code from NSMBU-Haxx
 * RicBent - CodeDX and headers
+* STUPID - Customizable snow particle colors
 
 # Special Thanks
-* STUPID for helping so much with creating custom code
+* STUPID for helping so much with teaching me how to make custom code
 * iHarv for helping me with porting CodeDX sprites
