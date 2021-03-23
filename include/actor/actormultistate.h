@@ -11,8 +11,7 @@ public:
     ActorMultiState(const ActorBuildInfo* buildInfo);
     virtual ~ActorMultiState() { }
 
-    virtual void doStateChange(StateBase* state)
-    {
+    virtual void doStateChange(StateBase* state) {
         states.changeState(state);
     }
 

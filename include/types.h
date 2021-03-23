@@ -24,8 +24,7 @@ typedef signed int          ssize_t;
 typedef unsigned int        uintptr_t;
 typedef signed int          intptr_t;
 
-enum Direction
-{
+enum Direction {
     RIGHT = 0,
     LEFT  = 1,
     UP    = 2,

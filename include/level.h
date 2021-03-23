@@ -4,15 +4,12 @@
 #include "sead.h"
 
 
-class Level : public sead::IDisposer
-{
+class Level : public sead::IDisposer {
 public:
 
-    class Area
-    {
+    class Area {
     public:
-        struct Options
-        {
+        struct Options {
             u32 eventBits32;            // 0
             u32 eventBits64;            // 4
             u16 wrapByte;               // 8
@@ -29,8 +26,7 @@ public:
             u16 timelimit3;             // 16
         };
 
-        struct Sprite
-        {
+        struct Sprite {
             u16 type;         // 0
             u16 x;            // 2
             u16 y;            // 4
@@ -44,8 +40,7 @@ public:
             u8 initialState;  // 14
         };
 
-        struct Location
-        {
+        struct Location {
             u16 x;      // 0
             u16 y;      // 2
             u16 w;      // 4
@@ -53,8 +48,7 @@ public:
             u8 id;      // 8
         };
 
-        struct Path
-        {
+        struct Path {
             u8 id;              // 0
             s8 _1;              // 1
             u16 startNodeIdx;   // 2
@@ -63,8 +57,7 @@ public:
             u32 _8;             // 8
         };
 
-        struct PathNode
-        {
+        struct PathNode {
             u16 x;      // 0
             u16 y;      // 2
             f32 speed;  // 4
@@ -99,8 +92,7 @@ public:
 };
 
 
-class LevelInfo : public sead::IDisposer
-{
+class LevelInfo : public sead::IDisposer {
 public:
     static LevelInfo* instance;
 
@@ -118,8 +110,7 @@ public:
     u32 destEntranceType;       // 24
 };
 
-class LevelTimer
-{
+class LevelTimer {
 public:
     void setTime(s32 time);
     void addTime(s32 time);

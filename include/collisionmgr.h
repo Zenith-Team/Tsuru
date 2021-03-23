@@ -3,20 +3,17 @@
 #include "actor/actor.h"
 #include "tilecheck.h"
 
-class CollisionMgr : public TileCheck
-{
+class CollisionMgr : public TileCheck {
     SEAD_RTTI_BASE(CollisionMgr)
 
 public:
-    struct Sensor
-    {
+    struct Sensor {
         f32 p1;
         f32 p2;
         f32 distanceFromCenter;
     };
 
-    enum Flags
-    {
+    enum Flags {
         FlagOnGround        = 1 << 0,
         FlagOnSlope         = 1 << 1,
         FlagOnSemiSold      = 1 << 4,
@@ -48,8 +45,7 @@ public:
     inline bool isCollidedRight() { return output & FlagCollidedRight; }
     inline bool isCollidedLeft()  { return output & FlagCollidedLeft; }
 
-    inline bool isCollided(u32 direction)
-    {
+    inline bool isCollided(u32 direction) {
         if (direction > 1) return false;
         return output & (FlagCollidedRight << direction);
     }
@@ -78,14 +74,12 @@ public:
     bool sensorIsNull[4];       // 91D
     bool _921[4];               // 921
 
-    union
-    {
-        struct
-        {
-            Sensor rightSensor;         // 928
-            Sensor leftSensor;          // 934
-            Sensor aboveSensor;         // 940
-            Sensor belowSensor;         // 94C
+    union {
+        struct {
+            Sensor rightSensor; // 928
+            Sensor leftSensor;  // 934
+            Sensor aboveSensor; // 940
+            Sensor belowSensor; // 94C
         };
 
         Sensor sensors[4];
@@ -95,8 +89,7 @@ public:
 };
 
 
-class ActorCollisionMgr : public CollisionMgr
-{
+class ActorCollisionMgr : public CollisionMgr {
     SEAD_RTTI_OVERRIDE(ActorCollisionMgr, CollisionMgr)
 
 public:

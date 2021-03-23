@@ -4,14 +4,6 @@
 #include "model.h"
 #include "playermgr.h"
 
-/*
-    * The flip block does not check if there
-    * is an actor (other than the player)
-    * overlapping with it and can change from
-    * the "flipping" state to the "waiting"
-    * state while the actor is inside.
-*/
-
 class FlipBlock : public BlockBase {
 public:
     FlipBlock(const ActorBuildInfo* buildInfo);
@@ -53,11 +45,9 @@ PROFILE_RESOURCES(ProfileId::Sprite551, "flip_blocks");
 const ActiveCollider::Info FlipBlock::colliderInfo = { Vec2(0.0f, 8.0f), Vec2(8.0f, 8.0f), 0, 0, 0, 0, 0, 0, nullptr };
 
 
-FlipBlock::FlipBlock(const ActorBuildInfo* buildInfo)
-    : BlockBase(buildInfo)
+FlipBlock::FlipBlock(const ActorBuildInfo* buildInfo) : BlockBase(buildInfo)
     , flipsRemaining(0)
-{
-}
+{ }
 
 Base* FlipBlock::build(const ActorBuildInfo* buildInfo) {
     return new FlipBlock(buildInfo);
@@ -99,8 +89,9 @@ u32 FlipBlock::onCreate() {
 
 u32 FlipBlock::onExecute() {
     u32 result = BlockBase::onExecute();
-    if (result != 1)
+    if (result != 1) {
         return result;
+    }
 
     updateModel();
     return 1;
@@ -121,14 +112,12 @@ void FlipBlock::spawnItemDown() {
 }
 
 void FlipBlock::beginState_BlockCoinState3() {
-    // Delay in frames before switching to StateID_Wait
-    _1A90 = 15;
+    _1A90 = 15; // Delay in frames before switching to StateID_Wait
 }
 
 void FlipBlock::endState_BlockCoinState3() {
     _1AAE = 0;
 
-    // Undo our "fake" Used state
     stateType = StateTypeQuestionBlock;
     rectCollider.setType(ColliderBase::TypeQuestionBlock);
 
@@ -161,7 +150,7 @@ void FlipBlock::beginState_Flipping() {
 void FlipBlock::executeState_Flipping() {
     if (spawnDirection == 3) {
         rotation.x += 0x8000000;
-    } // Down
+    }
 
     else {
         rotation.x -= 0x8000000;
@@ -173,7 +162,6 @@ void FlipBlock::executeState_Flipping() {
 }
 
 void FlipBlock::endState_Flipping() {
-    // Add the collider back and literally "reset" the actor
     init(true, true);
 
     _1AAE = 0;
@@ -203,8 +191,7 @@ bool FlipBlock::playerOverlaps() {
             }
         }
 
-        if (overlaps)
-        {
+        if (overlaps) {
             return true;
         }
 

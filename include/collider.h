@@ -7,16 +7,13 @@
 class Actor;
 class CollisionMgr;
 
-class ColliderBase : public sead::IDisposer     // size: 0x158
-{
+class ColliderBase : public sead::IDisposer {  // size: 0x158
 public:
     typedef void (*Callback)(ColliderBase* cSelf, CollisionMgr* otherMgr, u32 sensorId);
 
-    class List
-    {
+    class List {
     public:
-        struct Node
-        {
+        struct Node {
             ColliderBase* owner;    // 0
             Node* next;             // 4
             Node* prev;             // 8
@@ -34,11 +31,9 @@ public:
     };
 
 
-    class Node
-    {
+    class Node {
     public:
-        class Sensor
-        {
+        class Sensor {
             Sensor();
 
             Vec2 p1;       // 0    Absolute position, Inited to (0, 0)
@@ -60,8 +55,7 @@ public:
         u32 _1C;           // 1C   Inited to 0
     };
 
-    class Node2 : public Node
-    {
+    class Node2 : public Node {
     public:
         ColliderBase* owner;  // 20
         u8 _24[4];            // 24
@@ -71,8 +65,7 @@ public:
         u32 _34;              // 34
     };
 
-    struct OwnerInfo
-    {
+    struct OwnerInfo {
         Vec3* position;  // 0
         Vec3* _4;        // 4
         u8* layer;       // 8
@@ -80,8 +73,7 @@ public:
         s8* playerId;    // 10
     };
 
-    enum Types
-    {
+    enum Types {
         TypeSolid               = 0,
         TypeCoin                = 1,
         TypeGreenCoin           = 2,
@@ -126,8 +118,7 @@ public:
         TypeInvisibleBlock      = 41
     };
 
-    enum SolidityTypes
-    {
+    enum SolidityTypes {
         SolidityTypeNone                = 0,
         SolidityTypeSolid               = 1,
         SolidityTypeSolidOnTop          = 2,
@@ -139,8 +130,7 @@ public:
         SolidityTypeStaircase2          = 34
     };
 
-    enum SurfaceTypes
-    {
+    enum SurfaceTypes {
         SurfaceTypeRegular       = 0,
         SurfaceTypeIce           = 1,
         SurfaceTypeSnow          = 2,
@@ -212,13 +202,11 @@ public:
     u32 _154;                   // 154
 };
 
-class ShapedCollider : public ColliderBase  // size: 0x170
-{
+class ShapedCollider : public ColliderBase {  // size: 0x170
     SEAD_RTTI_OVERRIDE(ShapedCollider, ColliderBase)
 
 public:
-    struct Info
-    {
+    struct Info {
         Vec2 distToCenter;  // 0
         f32 _8;             // 8
         f32 _C;             // C
@@ -256,22 +244,19 @@ public:
 };
 
 
-class RectCollider : public ShapedCollider  // size: 0x290
-{
+class RectCollider : public ShapedCollider {  // size: 0x290
     SEAD_RTTI_OVERRIDE(RectCollider, ShapedCollider)
 
 public:
     forceinline RectCollider()
         : ShapedCollider(4, points, nodes[0], nodes[1])
     {
-        for (u32 i = 0; i < 4; i++)
-        {
+        for (u32 i = 0; i < 4; i++) {
             points[i].x = 0.0f;
             points[i].y = 0.0f;
         }
 
-        for (u32 i = 0; i < 4; i++)
-        {
+        for (u32 i = 0; i < 4; i++) {
             nodes[0][i].flags = flags;
             nodes[0][i]._1C = _134;
             nodes[1][i].flags = flags;
@@ -288,13 +273,11 @@ public:
 };
 
 
-class SolidOnTopCollider : public ColliderBase  // size: 0x178
-{
+class SolidOnTopCollider : public ColliderBase {  // size: 0x178
     SEAD_RTTI_OVERRIDE(SolidOnTopCollider, ColliderBase)
 
 public:
-    struct Info
-    {
+    struct Info {
         Vec2 distToCenter;  // 0
         f32 _8;             // 8
         f32 _C;             // C
@@ -329,8 +312,7 @@ public:
 };
 
 
-class ColliderMgr : public sead::IDisposer    // size: 0x64
-{
+class ColliderMgr : public sead::IDisposer {  // size: 0x64
 public:
     void add(ColliderBase* collider);
     void remove(ColliderBase* collider);

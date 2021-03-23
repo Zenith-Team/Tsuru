@@ -3,11 +3,9 @@
 #include "states.h"
 #include "util/vec3.h"
 
-class MovementHandler
-{
+class MovementHandler {
 public:
-    enum MovementType
-    {
+    enum MovementType {
         MovementNone       = 0,
         MovementRotation   = 1,
         MovementBolt       = 2,

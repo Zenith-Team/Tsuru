@@ -5,19 +5,16 @@
 class Actor;
 class Enemy;
 
-class EnemyFreezeMgr
-{
+class EnemyFreezeMgr {
 public:
-    struct Info
-    {
+    struct Info {
         u32 settings;   // 0    Bits: 0: Horizontally Large, 1: Vertically Large
         Vec3 position;  // 4
         Vec3 scale;     // 10
         u32 _1C;        // 1C
     };
 
-    struct Flags
-    {
+    struct Flags {
         u8 breakTime;           // 0    Stored in _34
         u8 _1;                  // 1    Stored in _35
         u8 _2;                  // 2    Stored in _36

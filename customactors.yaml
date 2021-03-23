@@ -3,6 +3,8 @@
 Files:
 # Regular sprites:
   - source/fakestarcoin.cpp
+  - source/fallingchestnut.cpp
+  - source/firethwomp.cpp
   - source/flipblock.cpp
   - source/timeclock.cpp
 # Utility:

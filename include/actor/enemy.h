@@ -3,8 +3,7 @@
 #include "actormultistate.h"
 #include "enemyfreezemgr.h"
 
-class Enemy : public ActorMultiState
-{
+class Enemy : public ActorMultiState {
     SEAD_RTTI_OVERRIDE(Enemy, ActorMultiState)
 
 public:
@@ -22,24 +21,24 @@ public:
     virtual void vf194();
     virtual bool vf19C();
     virtual void freeze();                                                                      // creates ice actors
-    virtual void vf1AC();                                                                        // called on freeze
-    virtual void vf1B4();                                                                        // called on freeze break
-    virtual void vf1BC();                                                                        // called on freeze break, decides next state
+    virtual void vf1AC();                                                                       // called on freeze
+    virtual void vf1B4();                                                                       // called on freeze break
+    virtual void vf1BC();                                                                       // called on freeze break, decides next state
     virtual void vf1C4();
     virtual void vf1CC();
 
-    virtual bool vf1D4(ActiveCollider* acSelf, ActiveCollider* acOther);                         // pre collision enemy 2
-    virtual bool vf1DC(ActiveCollider* acSelf, ActiveCollider* acOther);                         // pre collision player
-    virtual bool vf1E4(bool& unk, ActiveCollider* acSelf, ActiveCollider* acOther);              // pre collision enemy
-    virtual void vf1EC(ActiveCollider* acSelf, ActiveCollider* acOther);                         // pre collision yoshi related
-    virtual bool vf1F4(ActiveCollider* acSelf, ActiveCollider* acOther);                         // pre collision yoshi
-    virtual bool vf1FC(ActiveCollider* acSelf, ActiveCollider* acOther);                         // pre collision unk
+    virtual bool vf1D4(ActiveCollider* acSelf, ActiveCollider* acOther);                        // pre collision enemy 2
+    virtual bool vf1DC(ActiveCollider* acSelf, ActiveCollider* acOther);                        // pre collision player
+    virtual bool vf1E4(bool& unk, ActiveCollider* acSelf, ActiveCollider* acOther);             // pre collision enemy
+    virtual void vf1EC(ActiveCollider* acSelf, ActiveCollider* acOther);                        // pre collision yoshi related
+    virtual bool vf1F4(ActiveCollider* acSelf, ActiveCollider* acOther);                        // pre collision yoshi
+    virtual bool vf1FC(ActiveCollider* acSelf, ActiveCollider* acOther);                        // pre collision unk
     virtual bool vf204(ActiveCollider* acSelf, ActiveCollider* acOther);                        // pre collision stage actor
 
-    virtual void collisionEnemy(ActiveCollider* acSelf, ActiveCollider* acOther);
-    virtual void collisionPlayer(ActiveCollider* acSelf, ActiveCollider* acOther);
-    virtual void collisionYoshi(ActiveCollider* acSelf, ActiveCollider* acOther);
-    virtual void vf224(ActiveCollider* acSelf, ActiveCollider* acOther);
+    virtual void collisionEnemy(ActiveCollider* acSelf, ActiveCollider* acOther);               //
+    virtual void collisionPlayer(ActiveCollider* acSelf, ActiveCollider* acOther);              //
+    virtual void collisionYoshi(ActiveCollider* acSelf, ActiveCollider* acOther);               //
+    virtual void vf224(ActiveCollider* acSelf, ActiveCollider* acOther);                        //
 
     virtual bool collisionStar(ActiveCollider* acSelf, ActiveCollider* acOther);                // 3
     virtual bool collisionSlide(ActiveCollider* acSelf, ActiveCollider* acOther);               // 5
@@ -60,70 +59,70 @@ public:
     virtual bool vf2AC(ActiveCollider* acSelf, ActiveCollider* acOther);                        // 3
     virtual bool vf2B4(ActiveCollider* acSelf, ActiveCollider* acOther);                        // 27
 
-    virtual void vf2BC();
-    virtual void vf2C4();
-    virtual void vf2CC();
-    virtual bool isOnGround();
-    virtual void vf2DC();
-    virtual void vf2E4();
-    virtual void vf2EC();
-    virtual void vf2F4();
-    virtual void vf2FC();
-    virtual void vf304();
-    virtual void vf30C();
-    virtual void vf314();
-    virtual void vf31C();
-    virtual void vf324();
-    virtual void vf32C();
-    virtual void vf334();
-    virtual void vf33C();
-    virtual void vf344();
-    virtual void vf34C();
-    virtual void vf354();
-    virtual void vf35C();
-    virtual void vf364();
-    virtual void vf36C();
-    virtual void vf374();
+    virtual void vf2BC();                                                                       //
+    virtual void vf2C4();                                                                       //
+    virtual void vf2CC();                                                                       //
+    virtual bool isOnGround();                                                                  //
+    virtual void vf2DC();                                                                       //
+    virtual void vf2E4();                                                                       //
+    virtual void vf2EC();                                                                       //
+    virtual void vf2F4();                                                                       //
+    virtual void vf2FC();                                                                       //
+    virtual void vf304();                                                                       //
+    virtual void vf30C();                                                                       //
+    virtual void vf314();                                                                       //
+    virtual void vf31C();                                                                       //
+    virtual void vf324();                                                                       //
+    virtual void vf32C();                                                                       //
+    virtual void vf334();                                                                       //
+    virtual void vf33C();                                                                       //
+    virtual void vf344();                                                                       //
+    virtual void vf34C();                                                                       //
+    virtual void vf354();                                                                       //
+    virtual void vf35C();                                                                       //
+    virtual void vf364();                                                                       //
+    virtual void vf36C();                                                                       //
+    virtual void vf374();                                                                       //
     
     DECLARE_STATE_VIRTUAL(Enemy, DieFumi)  // 37C 384 38C
     DECLARE_STATE_VIRTUAL(Enemy, DieFall)  // 394 39C 3A4
 
-    virtual void vf3AC();
-    virtual void vf3B4();
-    virtual void vf3BC();
-    virtual void vf3C4();
-    virtual void vf3CC();
-    virtual void vf3D4();
-    virtual void vf3DC();
-    virtual void vf3E4();
-    virtual void vf3EC();
-    virtual void vf3F4();
-    virtual void vf3FC();
-    virtual void vf404();
-    virtual void vf40C();
-    virtual void vf414();
-    virtual void vf41C();
-    virtual void vf424();
-    virtual void vf42C();
-    virtual void vf434();
-    virtual void vf43C();
-    virtual void vf444();
-    virtual void vf44C();
-    virtual void vf454();
-    virtual void vf45C();
-    virtual void vf464();
-    virtual void vf46C();
-    virtual void vf474();
-    virtual void vf47C();
-    virtual void vf484();
-    virtual void vf48C();
-    virtual void vf494();
-    virtual void vf49C();
-    virtual void vf4A4();
-    virtual void vf4AC();
-    virtual void vf4B4();
-    virtual void vf4BC();
-    virtual void vf4C4();
+    virtual void vf3AC();                                                                       //
+    virtual void vf3B4();                                                                       //
+    virtual void vf3BC();                                                                       //
+    virtual void vf3C4();                                                                       //
+    virtual void vf3CC();                                                                       //
+    virtual void vf3D4();                                                                       //
+    virtual void vf3DC();                                                                       //
+    virtual void vf3E4();                                                                       //
+    virtual void vf3EC();                                                                       //
+    virtual void vf3F4();                                                                       //
+    virtual void vf3FC();                                                                       //
+    virtual void vf404();                                                                       //
+    virtual void vf40C();                                                                       //
+    virtual void vf414();                                                                       //
+    virtual void vf41C();                                                                       //
+    virtual void vf424();                                                                       //
+    virtual void vf42C();                                                                       //
+    virtual void vf434();                                                                       //
+    virtual void vf43C();                                                                       //
+    virtual void vf444();                                                                       //
+    virtual void vf44C();                                                                       //
+    virtual void vf454();                                                                       //
+    virtual void vf45C();                                                                       //
+    virtual void vf464();                                                                       //
+    virtual void vf46C();                                                                       //
+    virtual void vf474();                                                                       //
+    virtual void vf47C();                                                                       //
+    virtual void vf484();                                                                       //
+    virtual void vf48C();                                                                       //
+    virtual void vf494();                                                                       //
+    virtual void vf49C();                                                                       //
+    virtual void vf4A4();                                                                       //
+    virtual void vf4AC();                                                                       //
+    virtual void vf4B4();                                                                       //
+    virtual void vf4BC();                                                                       //
+    virtual void vf4C4();                                                                       //
 
     DECLARE_STATE_VIRTUAL(Enemy, Ice)  // 4CC 4D4 4DC 
 

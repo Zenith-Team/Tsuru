@@ -27,6 +27,8 @@ public:
 
     static const s16 prioritiesOriginal[NUM_PROFILES_ORIGINAL];
 
+    static Profile* profilesOriginal[NUM_PROFILES_ORIGINAL];
+
     static u8 hasResourcesOriginal[NUM_PROFILES_ORIGINAL];
     static u8 resourceCountOriginal[NUM_PROFILES_ORIGINAL];
     static const sead::SafeString* resourceListsOriginal[NUM_PROFILES_ORIGINAL];
