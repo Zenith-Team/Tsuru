@@ -2,11 +2,9 @@
 
 #include "util/vec2.h"
 
-class TileCheck
-{
+class TileCheck {
 public:
-    struct Result
-    {
+    struct Result {
         u8 _0;
         f32 _4;
         f32 _8;
@@ -18,8 +16,7 @@ public:
         u32 _20;
     };
 
-    struct Param
-    {
+    struct Param {
         u8 _0;
         u8 _1;
         u8 _2;

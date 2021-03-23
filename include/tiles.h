@@ -2,8 +2,7 @@
 
 namespace TileId {
 
-enum TileIdType
-{
+enum TileIdType {
     Invalid = -1,
     Null = 0,
 

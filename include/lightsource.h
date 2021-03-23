@@ -2,8 +2,7 @@
 
 #include "sead.h"
 
-class LightSource : sead::IDisposer
-{
+class LightSource : sead::IDisposer {
 public:
     LightSource();
     ~LightSource();

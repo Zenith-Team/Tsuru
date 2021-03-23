@@ -2,8 +2,7 @@
 
 #include "sead.h"
 
-class MusicPlayer : public sead::IDisposer
-{
+class MusicPlayer : public sead::IDisposer {
 public:
     MusicPlayer();
     ~MusicPlayer();

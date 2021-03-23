@@ -6,8 +6,7 @@
 #include "util/mtx34.h"
 
 
-class Effect
-{
+class Effect {
 public:
     Effect();
     bool update(Vec3* position, Vec3u* rotation, Vec3* scale);
@@ -22,8 +21,7 @@ public:
 };
 
 
-class EffectWrapper : public sead::IDisposer
-{
+class EffectWrapper : public sead::IDisposer {
 public:
     EffectWrapper();
     bool update(s32 effectId, Vec3* position, Vec3u* rotation, Vec3* scale);

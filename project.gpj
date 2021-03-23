@@ -19,6 +19,8 @@ source/activecollider.cpp
 source/areatask.cpp
 source/constructors.cpp
 source/fakestarcoin.cpp
+source/fallingchestnut.cpp
+source/firethwomp.cpp
 source/flipblock.cpp
 source/timeclock.cpp
 source/actorspawner.cpp

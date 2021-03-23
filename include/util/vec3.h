@@ -2,15 +2,12 @@
 
 #include "vec2.h"
 
-class Vec3
-{
+class Vec3 {
 public:
-    union
-    {
+    union {
         f32 array[3];
 
-        struct
-        {
+        struct {
             f32 x;
             f32 y;
             f32 z;
@@ -86,59 +83,51 @@ private:
     static Vec3& cross(Vec3& out, const Vec3& a, const Vec3& b);
 };
 
-inline Vec3& Vec3::add(Vec3& out, const Vec3& a, const Vec3& b)
-{
+inline Vec3& Vec3::add(Vec3& out, const Vec3& a, const Vec3& b) {
     out.x = a.x + b.x;
     out.y = a.y + b.y;
     out.z = a.z + b.z;
     return out;
 }
 
-inline Vec3& Vec3::sub(Vec3& out, const Vec3& a, const Vec3& b)
-{
+inline Vec3& Vec3::sub(Vec3& out, const Vec3& a, const Vec3& b) {
     out.x = a.x - b.x;
     out.y = a.y - b.y;
     out.z = a.y - b.z;
     return out;
 }
 
-inline Vec3& Vec3::add(Vec3& out, const Vec3& a, const Vec2& b)
-{
+inline Vec3& Vec3::add(Vec3& out, const Vec3& a, const Vec2& b) {
     out.x = a.x + b.x;
     out.y = a.y + b.y;
     return out;
 }
 
-inline Vec3& Vec3::sub(Vec3& out, const Vec3& a, const Vec2& b)
-{
+inline Vec3& Vec3::sub(Vec3& out, const Vec3& a, const Vec2& b) {
     out.x = a.x - b.x;
     out.y = a.y - b.y;
     return out;
 }
 
-inline Vec3& Vec3::scale(Vec3& out, const Vec3& v, const f32 scale)
-{
+inline Vec3& Vec3::scale(Vec3& out, const Vec3& v, const f32 scale) {
     out.x = v.x * scale;
     out.y = v.y * scale;
     out.z = v.z * scale;
     return out;
 }
 
-inline Vec3& Vec3::scale(Vec3& out, const Vec3& v, const Vec3& scales)
-{
+inline Vec3& Vec3::scale(Vec3& out, const Vec3& v, const Vec3& scales) {
     out.x = v.x * scales.x;
     out.y = v.y * scales.y;
     out.z = v.z * scales.z;
     return out;
 }
 
-inline f32 Vec3::dot(const Vec3& a, const Vec3& b)
-{
+inline f32 Vec3::dot(const Vec3& a, const Vec3& b) {
     return a.x*b.x + a.y*b.y + a.z*b.z;
 }
 
-inline Vec3& Vec3::cross(Vec3& out, const Vec3& a, const Vec3& b)
-{
+inline Vec3& Vec3::cross(Vec3& out, const Vec3& a, const Vec3& b) {
     Vec3 tmp;
     tmp.x = a.y*b.z - a.z*b.y;
     tmp.y = a.z*b.x - a.x*b.z;
@@ -148,24 +137,20 @@ inline Vec3& Vec3::cross(Vec3& out, const Vec3& a, const Vec3& b)
     return out;
 }
 
-inline f32 Vec3::dist(const Vec3& a, const Vec3& b)
-{
+inline f32 Vec3::dist(const Vec3& a, const Vec3& b) {
     Vec3 d = a - b;
     return d.mag();
 }
 
-inline f32 Vec3::distSq(const Vec3& a, const Vec3& b)
-{
+inline f32 Vec3::distSq(const Vec3& a, const Vec3& b) {
     Vec3 d = a - b;
     return d.magSq();
 }
 
-inline f32 Vec3::angle(const Vec3& a, const Vec3& b)
-{
+inline f32 Vec3::angle(const Vec3& a, const Vec3& b) {
     return acos(angleCos(a, b));
 }
 
-inline f32 Vec3::angleCos(const Vec3& a, const Vec3& b)
-{
+inline f32 Vec3::angleCos(const Vec3& a, const Vec3& b) {
     return dot(a, b) / (a.mag() * b.mag());
 }

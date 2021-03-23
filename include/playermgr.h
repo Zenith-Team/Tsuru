@@ -4,8 +4,7 @@
 #include "sead.h"
 
 
-class PlayerMgr : public sead::IDisposer
-{
+class PlayerMgr : public sead::IDisposer {
 public:
     static PlayerMgr* instance;
 

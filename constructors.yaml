@@ -6,8 +6,3 @@ Hooks:
     instr: b
     addr: F6BA050
     func: callCtors__Fv
-  
-#  - type: branch
-#    instr: bl
-#    func: names__Fv
-#    addr: EBD9568

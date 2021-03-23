@@ -3,8 +3,7 @@
 #include "actor.h"
 #include "collisionmgr.h"
 
-class StageActor : public Actor
-{
+class StageActor : public Actor {
     SEAD_RTTI_OVERRIDE(StageActor, Actor)
 
 public:
@@ -16,28 +15,21 @@ public:
     void afterExecute(u32) override;
     u32 onDelete() override;
 
-    CollisionMgr* getCollisionMgr() override
-    {
+    CollisionMgr* getCollisionMgr() override {
         return &collisionMgr;
     }
 
-    virtual void vf10C(u8 unk)
-    {
+    virtual void vf10C(u8 unk) {
         _179A = unk;
     }
 
     virtual u8 vf114();                 // deleted
 
-    virtual void vf11C()
-    {
-    }
+    virtual void vf11C() { }
 
-    virtual void vf124(f32)
-    {
-    }
+    virtual void vf124(f32) { }
 
-    virtual u32 vf12C()
-    {
+    virtual u32 vf12C() {
         return 0;
     }
 
@@ -46,59 +38,49 @@ public:
     virtual void vf144(bool);           // nullsub
     virtual void vf14C(Actor*);         // nullsub
 
-    virtual bool vf154()
-    {
+    virtual bool vf154() {
         return false;
     }
 
-    virtual void move(Vec2& dest)
-    {
+    virtual void move(Vec2& dest) {
         position.x = dest.x;
         position.y = dest.y;
     }
 
-    virtual void setYSpeed(f32 ySpeed)
-    {
+    virtual void setYSpeed(f32 ySpeed) {
         speed.y = ySpeed;
     }
 
-    virtual u32 vf16C()
-    {
+    virtual u32 vf16C() {
         return 1;
     }
 
-    virtual u32 vf174()
-    {
+    virtual u32 vf174() {
         return 0;
     }
 
-    virtual void getRect(Rect& rect)
-    {
+    virtual void getRect(Rect& rect) {
         f32 XPos1 = position.x - 16.0f;
         f32 XPos2 = position.x + 16.0f;
         f32 YPos1 = position.y;
         f32 YPos2 = position.y + 32.0f;
 
-        if (XPos1 > XPos2)
-        {
+        if (XPos1 > XPos2) {
             rect.right = XPos1;
             rect.left = XPos2;
         }
 
-        else
-        {
+        else {
             rect.right = XPos2;
             rect.left = XPos1;
         }
 
-        if (YPos1 > YPos2)
-        {
+        if (YPos1 > YPos2) {
             rect.top = YPos1;
             rect.bottom = YPos2;
         }
 
-        else
-        {
+        else {
             rect.top = YPos2;
             rect.bottom = YPos1;
         }
@@ -107,8 +89,7 @@ public:
     void handleGravity();
     void handleSpeed();
 
-    inline bool checkForSuitableGround(f32 xOffset, f32 yOffset)
-    {
+    inline bool checkForSuitableGround(f32 xOffset, f32 yOffset) {
         TileCheck::Param checkParam = { 0 };
         checkParam._2 = layer;
         checkParam._3 = collisionMask;

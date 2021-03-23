@@ -42,22 +42,18 @@
          &BASECLASS::StateID_##NAME);
 
 
-class StateBase
-{
+class StateBase {
 public:
-    inline StateBase()
-    {
+    inline StateBase() {
         this->id = currentId++;
     }
 
     virtual ~StateBase() { }
-    virtual s32 getRootId()
-    {
+    virtual s32 getRootId() {
         return id;
     }
 
-    inline bool isEqual(StateBase* other)
-    {
+    inline bool isEqual(StateBase* other) {
         return this->getRootId() == other->getRootId();
     }
 
@@ -71,8 +67,7 @@ private:
 
 
 template <class TOwner>
-class State : public StateBase
-{
+class State : public StateBase {
 public:
     typedef void (TOwner::*funcPtr)();
 
@@ -87,8 +82,7 @@ protected:
 
 
 template <class TOwner>
-class StateVirtual : public State<TOwner>
-{
+class StateVirtual : public State<TOwner> {
 public:
     typedef void (TOwner::*funcPtr)();
 
@@ -96,8 +90,7 @@ public:
         : State<TOwner>(begin, execute, end), baseState(baseState) { }
     virtual ~StateVirtual() { }
 
-    s32 getRootId() override
-    {
+    s32 getRootId() override {
         if (baseState->id != -1)
             return baseState->getRootId();
 
@@ -110,8 +103,7 @@ private:
 
 
 
-class StateMethodExecuterBase
-{
+class StateMethodExecuterBase {
 public:
     virtual ~StateMethodExecuterBase() { }
     virtual StateBase* getCurrentState() = 0;
@@ -119,8 +111,7 @@ public:
 };
 
 template <class TOwner>
-class StateMethodExecuter : public StateMethodExecuterBase
-{
+class StateMethodExecuter : public StateMethodExecuterBase {
 public:
     StateBase* getCurrentState() override;
     void execute() override;
@@ -130,8 +121,7 @@ public:
 };
 
 
-class StateExecuterBase
-{
+class StateExecuterBase {
 public:
     virtual StateMethodExecuterBase* begin(StateBase* nextState) = 0;
     virtual void end(StateMethodExecuterBase* methodExecuter) = 0;
@@ -141,8 +131,7 @@ public:
 };
 
 template <class TOwner>
-class StateExecuter : public StateExecuterBase
-{
+class StateExecuter : public StateExecuterBase {
 public:
     StateMethodExecuterBase* begin(StateBase* nextState) override;
     void end(StateMethodExecuterBase* methodExecuter) override;
@@ -154,8 +143,7 @@ public:
 };
 
 
-class StateMgr
-{
+class StateMgr {
 public:
     StateMgr(StateExecuterBase* executer, StateBase* firstState = &StateBase::NullState);
 
@@ -171,8 +159,7 @@ public:
 
 
 template <class TOwner>
-class StateWrapper
-{
+class StateWrapper {
 public:
     virtual ~StateWrapper() { }
 

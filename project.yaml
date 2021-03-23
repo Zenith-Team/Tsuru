@@ -5,7 +5,7 @@ Modules:
 # - aa.yaml               # Disables FXAA in-game
   - activecollider.yaml   # Collision
   - areatask.yaml         # Area modifiers
-  - constructors.yaml     # Constructors
+  - constructors.yaml     # Constructor patches
   - customactors.yaml     # Custom sprites/actors
   - dynamiclibs.yaml      # Dynamic libraries
   - nohurryup.yaml        # Disables music rush at 100 secs

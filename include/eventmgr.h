@@ -2,8 +2,7 @@
 
 #include "sead.h"
 
-class EventMgr
-{
+class EventMgr {
 public:
     void set(u32 id, u32 time, bool active, u32 unk1 = 0, u32 unk2 = 0, u32 unk3 = 0, u32 unk4 = 0);
 
