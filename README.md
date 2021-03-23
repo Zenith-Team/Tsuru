@@ -3,22 +3,24 @@ New Super Mario Bros. U Custom Code and ASM
 
 # Current hacks
 ## Custom Sprites:
+* +Time Clock
 * Actor Spawner
-* Effect Spawner (currently not working)
+* Effect Spawner (currently not working)\
+* Falling Chestnut (unfinished)
+* Fire Thwomp (broken and unfinished)
 * Flip Block
 * Fake Starcoin
 * Magic Platform
-* +Time Clock
-## Miscellaneous Patches:
-* Space Physics
-* Fixed sound reverb
-* Yoshi colors (currently only includes unused ones)
-* Disabled music speedup at 100 seconds
-* Disabled FXAA (not enabled by default)
-* Disabled acorns falling on title screen
+## Patches:
 * Custom music list (not sure how to use atm)
 * Customizable snow particle colors
+* Disabled acorns falling on title screen
+* Disabled music speedup at 100 seconds
+* Disabled FXAA (not enabled by default)
+* Fixed sound reverb
 * Size modifier
+* Space Physics
+* Yoshi colors (currently only includes unused ones)
 
 # Credits
 * AboodXD - Code from NSMBU-Haxx
@@ -26,5 +28,5 @@ New Super Mario Bros. U Custom Code and ASM
 * STUPID - Customizable snow particle colors
 
 # Special Thanks
-* STUPID for helping so much with teaching me how to make custom code
 * iHarv for helping me with porting CodeDX sprites
+* STUPID for helping so much with teaching me how to make custom code
