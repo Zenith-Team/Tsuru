@@ -1,0 +1,14 @@
+game_NSMBU_US_Latest.x
+game_NSMBU_US_Latest_Cemu.x
+game_NSMBU_EU_Latest.x
+game_NSMBU_EU_Latest_Cemu.x
+game_NSMBU_JP_Latest.x
+game_NSMBU_JP_Latest_Cemu.x
+project.ld
+project.gpj
+objs/*
+*.o
+*.d
+*.ti
+*.elf
+*.rpx
