@@ -8,4 +8,4 @@ Hooks:
   - type: branch
     instr: b
     func: ReturnFalse
-    addr: shouldHurryUp__11MusicPlayerFv # F5783D8
+    addr: F5783D8  # shouldHurryUp__11MusicPlayerFv

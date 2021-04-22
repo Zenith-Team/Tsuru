@@ -4,7 +4,6 @@
 #include "model.h"
 #include "playermgr.h"
 
-
 class FlipBlock : public BlockBase {
 public:
     FlipBlock(const ActorBuildInfo* buildInfo);
