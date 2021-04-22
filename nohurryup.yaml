@@ -1,8 +1,0 @@
-
----
-Files: [source/nohurryup.S]
-Hooks:
-  - type: branch
-    instr: b
-    func: NoHurryUp
-    addr: F5783D8

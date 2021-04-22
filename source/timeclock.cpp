@@ -11,7 +11,7 @@
 class TimeClock : public Actor {
 public:
     TimeClock(const ActorBuildInfo* buildInfo);
-    static Base* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -37,7 +37,7 @@ const ActiveCollider::Info TimeClock::collisionInfo = { Vec2(0.0f, -3.0f), Vec2(
 
 TimeClock::TimeClock(const ActorBuildInfo* buildInfo) : Actor(buildInfo) { }
 
-Base* TimeClock::build(const ActorBuildInfo* buildInfo) {
+BaseActor* TimeClock::build(const ActorBuildInfo* buildInfo) {
     return new TimeClock(buildInfo);
 }
 
@@ -95,14 +95,14 @@ void TimeClock::updateModel() {
 void TimeClock::collect() {
     Vec3 effectPos(position.x, position.y - 18.0f, 4500.0f);
 
-    Effect::spawn(921, &effectPos, nullptr, nullptr);
+    Effect::spawn(100, &effectPos, nullptr, nullptr);
     LevelTimer::instance->addTime(10);
-    //PlaySound("SE_OBJ_DDOOR_OPEN", position);
+    PlaySound("SE_OBJ_DDOOR_OPEN", position);
 
     if (eventId1)
         EventMgr::instance->set(eventId1 - 1, 0, true);
 
-    isDeleted = true;
+    deleted = true;
 }
 
 

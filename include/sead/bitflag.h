@@ -5,13 +5,11 @@
 namespace sead {
 
 template <typename T>
-class BitFlag
-{
+class BitFlag {
 public:
     BitFlag()
         : mBits(0)
-    {
-    }
+    { }
 
     T mBits;
 };

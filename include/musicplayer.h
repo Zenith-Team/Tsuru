@@ -7,7 +7,7 @@ public:
     MusicPlayer();
     ~MusicPlayer();
 
-    // Incomplete
+    // TODO
     bool shouldHurryUp();
     bool isValidStrmID(s32 strmID);
     const char* getStrmNameForID(s32 strmID);

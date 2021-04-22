@@ -4,22 +4,21 @@
 #include "preprocessor.h"
 #include "profileid.h"
 
-class Base;
+class BaseActor;
 struct ActorInfo;
 struct ActorBuildInfo;
 
-class Profile
-{
+class Profile {
 public:
-    Profile(Base* (*buildFunc)(const ActorBuildInfo*), u32 id, const sead::SafeString& name, const ActorInfo* actorInfo, u32 flags);
+    Profile(BaseActor* (*buildFunc)(const ActorBuildInfo*), u32 id, const sead::SafeString& name, const ActorInfo* actorInfo, u32 flags);
 
     static Profile* get(u32 id);
 
-    Base* (*buildFunc)(const ActorBuildInfo*);  // 0
-    u32 id;                                     // 4
-    const ActorInfo* actorInfo;                 // 8
-    u8 hasResourcesLoaded;                      // C
-    u32 flags;                                  // 10
+    BaseActor* (*buildFunc)(const ActorBuildInfo*);  // 0
+    u32 id;                                          // 4
+    const ActorInfo* actorInfo;                      // 8
+    u8 hasResourcesLoaded;                           // C
+    u32 flags;                                       // 10
 
     static u32 spriteToProfileList[];
 
@@ -35,10 +34,8 @@ public:
 };
 
 
-struct ProfileResources
-{
-    ProfileResources(s32 id, u32 count, const sead::SafeString resources[])
-    {
+struct ProfileResources {
+    ProfileResources(s32 id, u32 count, const sead::SafeString resources[]) {
         if (id >= Profile::NUM_PROFILES_ORIGINAL)
             id = 0;
 

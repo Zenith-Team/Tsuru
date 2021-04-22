@@ -5,8 +5,7 @@
 
 namespace sead {
 
-class Resource : public TListNode<Resource*>
-{
+class Resource : public TListNode<Resource*> {
     SEAD_RTTI_BASE(Resource)
 
 public:
@@ -18,8 +17,7 @@ public:
 
 class Heap;
 
-class DirectResource : public Resource
-{
+class DirectResource : public Resource {
     SEAD_RTTI_OVERRIDE(DirectResource, Resource)
 
 public:

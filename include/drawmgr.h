@@ -2,8 +2,7 @@
 
 #include "model.h"
 
-class DrawMgr
-{
+class DrawMgr {
 public:
     static DrawMgr* instance;
 

@@ -4,18 +4,15 @@
 
 namespace sead {
 
-class INamable
-{
+class INamable {
 public:
     INamable()
         : mINamableName()
-    {
-    }
+    { }
 
     INamable(const char* str)
         : mINamableName(str)
-    {
-    }
+    { }
 
     ~INamable() { }
 

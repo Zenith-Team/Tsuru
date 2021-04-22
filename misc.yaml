@@ -1,0 +1,11 @@
+
+---
+Files:
+  - source/misc.S
+  - source/nullsub.S
+Hooks:
+  # Disable time rush at 100 secs
+  - type: branch
+    instr: b
+    func: ReturnFalse
+    addr: shouldHurryUp__11MusicPlayerFv # F5783D8

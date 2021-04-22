@@ -3,8 +3,7 @@
 #include "stageactor.h"
 #include "states.h"
 
-class ActorMultiState : public StageActor
-{
+class ActorMultiState : public StageActor {  // size: 0x17C8
     SEAD_RTTI_OVERRIDE(ActorMultiState, StageActor)
 
 public:
@@ -15,6 +14,5 @@ public:
         states.changeState(state);
     }
 
-    StateWrapper<ActorMultiState> states;       // 17A0
-    u32 _17C4;                                  // 17C4
+    StateWrapperMulti<ActorMultiState> states;  // 17A0
 };

@@ -67,28 +67,28 @@ public:
     void getRect(Rect& outRect);
     static bool collidersOverlap(ActiveCollider* acSelf, ActiveCollider* acOther);
 
-    List::Node activeNode;  // 10
-    List::Node createNode;  // 1C
-    List::Node list3Node;   // 28
-    List::Node list4Node;   // 34
-    Actor* owner;           // 40
-    u32 _44;
-    u32 _48;
-    Vec2 _4C;
-    Vec2 _54;
-    u32 _5C;
-    u32 _60;
-    u32 _64;
-    u32 _68;
-    u8 collisionMask;
-    u8 layer;
-    u8 flags;
-    void** callbackTable;
+    List::Node activeNode;          // 10
+    List::Node createNode;          // 1C
+    List::Node list3Node;           // 28
+    List::Node list4Node;           // 34
+    Actor* owner;                   // 40
+    u32 _44;                        // 44
+    u32 _48;                        // 48
+    Vec2 _4C;                       // 4C
+    Vec2 _54;                       // 54
+    u32 _5C;                        // 5C
+    u32 _60;                        // 60
+    u32 _64;                        // 64
+    u32 _68;                        // 68
+    u8 collisionMask;               // 6C
+    u8 layer;                       // 6D
+    u8 flags;                       // 6E
+    void** callbackTable;           // 70
     Info info;                      // 74
     f32 trapezoidTopLeft;           // A0
     f32 trapezoidTopRight;          // A4
     f32 trapezoidBottomLeft;        // A8
     f32 trapezoidBottomRight;       // AC
-    f32 _B0[0xF];
-    f32 _EC[0xF];
+    f32 _B0[0xF];                   // B0
+    f32 _EC[0xF];                   // EC
 };

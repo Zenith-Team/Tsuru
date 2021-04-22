@@ -3,6 +3,7 @@
 // Workarounds to match newer standards
 #define nullptr NULL
 #define override
+#define deleted
 #define forceinline __attribute__((always_inline))
 
 typedef unsigned char       u8;

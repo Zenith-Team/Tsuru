@@ -28,8 +28,7 @@ SZSDecompressor::tryDecompFromDevice(
         (src = new(heap, -FileDevice::cBufferMinAlignment) u8[mWorkSize], src != NULL)))
     {
         u32 bytesRead = handle.read(src, mWorkSize);
-        if (bytesRead >= 0x10)
-        {
+        if (bytesRead >= 0x10) {
             u32 decompSize = getDecompSize(src);
             s32 decompAlignment = getDecompAlignment(src);
 
@@ -42,17 +41,14 @@ SZSDecompressor::tryDecompFromDevice(
             bool allocated = false;
             allocSize = decompSize + 0x1F & 0xFFFFFFE0;
 
-            if (dst == NULL)
-            {
+            if (dst == NULL) {
                 DirectResource* directResource = DynamicCast<DirectResource, Resource>(resource);
-                if (directResource != NULL)
-                {
+                if (directResource != NULL) {
                     s32 alignment = loadArg.load_data_alignment;
                     if (alignment != 0)
                         decompAlignment = (alignment < 0x20) ? 0x20 : alignment;
 
-                    else
-                    {
+                    else {
                         if (decompAlignment == 0)
                             decompAlignment = directResource->getLoadDataAlignment();
 
@@ -70,11 +66,9 @@ SZSDecompressor::tryDecompFromDevice(
             }
 
 
-            if (dst != NULL)
-            {
+            if (dst != NULL) {
                 s32 error;
-                if (Endian::readU32(src) == 0x5A6C6962) // Zlib
-                {
+                if (Endian::readU32(src) == 0x5A6C6962) {  // Zlib
                     z_stream strm;
 
                     strm.zalloc = Z_NULL;
@@ -87,13 +81,11 @@ SZSDecompressor::tryDecompFromDevice(
                     if (ret != Z_OK)
                         error = -1;
 
-                    else
-                    {
+                    else {
                         bytesRead -= 0x10;
                         u8* in = src + 0x10;
 
-                        do
-                        {
+                        do {
                             strm.avail_in = bytesRead;
                             strm.next_in = in;
 
@@ -113,18 +105,15 @@ SZSDecompressor::tryDecompFromDevice(
                     }
                 }
 
-                else
-                {
+                else {
                     if (bytesRead < mWorkSize)
                     error = decomp(dst, allocSize, src, mWorkSize);
 
-                    else
-                    {
+                    else {
                         DecompContext context(dst);
                         context.forceDestCount = decompSize;
 
-                        do
-                        {
+                        do {
                             error = streamDecomp(&context, src, bytesRead);
                             if (error <= 0)
                                 break;
@@ -133,8 +122,7 @@ SZSDecompressor::tryDecompFromDevice(
                     }
                 }
 
-                if (!(error < 0))
-                {
+                if (!(error < 0)) {
                     if (mWorkBuffer == NULL)
                         delete[] src;
 

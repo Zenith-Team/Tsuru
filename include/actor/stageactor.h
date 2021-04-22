@@ -3,17 +3,19 @@
 #include "actor.h"
 #include "collisionmgr.h"
 
-class StageActor : public Actor {
+class StageActor : public Actor {  // size: 0x17A0
     SEAD_RTTI_OVERRIDE(StageActor, Actor)
 
 public:
     StageActor(const ActorBuildInfo* buildInfo);
-    virtual ~StageActor() { }
+    virtual ~StageActor();
 
     void afterCreate(u32) override;
     u32 beforeExecute() override;
     void afterExecute(u32) override;
     u32 onDelete() override;
+
+    void setPlayerId(s8 id) override;
 
     CollisionMgr* getCollisionMgr() override {
         return &collisionMgr;
@@ -23,9 +25,9 @@ public:
         _179A = unk;
     }
 
-    virtual u8 vf114();                 // deleted
+    virtual u8 vf114() deleted;                 // deleted
 
-    virtual void vf11C() { }
+    virtual void vf11C() { }            // nullsub
 
     virtual void vf124(f32) { }
 
@@ -33,7 +35,7 @@ public:
         return 0;
     }
 
-    virtual void vf134();               // deleted
+    virtual void vf134() deleted;       // deleted
     virtual u32 vf13C();                // returns 0
     virtual void vf144(bool);           // nullsub
     virtual void vf14C(Actor*);         // nullsub

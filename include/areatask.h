@@ -2,14 +2,13 @@
 
 #include "types.h"
 
-class AreaTask
-{
+class AreaTask {  // size: 0xBE4
 public:
     void readHaxxOptions();
 
-    u8 _0[0x72C];
-    u32 wrapFlag;
-    u8 _730[0x4B4];
+    u8 _0[0x72C];     // 0
+    u32 wrapFlag;     // 72C
+    u8 _730[0x4B4];   // 730
 
     static AreaTask* instance;
 };

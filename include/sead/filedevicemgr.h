@@ -5,8 +5,7 @@
 
 namespace sead {
 
-class FileDeviceMgr
-{
+class FileDeviceMgr {
 public:
     FileDevice* tryOpen(FileHandle* handle, const SafeString& path, FileDevice::FileOpenFlag flag, u32 divSize);
 

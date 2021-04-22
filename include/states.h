@@ -2,45 +2,43 @@
 
 #include "types.h"
 
-
 #define DECLARE_STATE(CLASS, NAME)                      \
-	static State<CLASS> StateID_##NAME;                 \
-	void beginState_##NAME();                           \
-	void executeState_##NAME();                         \
+    static State<CLASS> StateID_##NAME;                 \
+    void beginState_##NAME();                           \
+    void executeState_##NAME();                         \
     void endState_##NAME();
 
 #define DECLARE_STATE_VIRTUAL(CLASS, NAME)              \
-	static StateVirtual<CLASS> StateID_##NAME;          \
-	virtual void beginState_##NAME();                   \
-	virtual void executeState_##NAME();                 \
+    static StateVirtual<CLASS> StateID_##NAME;          \
+    virtual void beginState_##NAME();                   \
+    virtual void executeState_##NAME();                 \
     virtual void endState_##NAME();
 
 #define DECLARE_STATE_OVERRIDE(CLASS, NAME)             \
-	static StateVirtual<CLASS> StateID_##NAME;          \
-	void beginState_##NAME() override;                  \
-	void executeState_##NAME() override;                \
+    static StateVirtual<CLASS> StateID_##NAME;          \
+    void beginState_##NAME() override;                  \
+    void executeState_##NAME() override;                \
     void endState_##NAME() override;
 
 #define CREATE_STATE(CLASS, NAME)                       \
     State<CLASS> CLASS::StateID_##NAME                  \
-		(&CLASS::beginState_##NAME,                     \
+        (&CLASS::beginState_##NAME,                     \
          &CLASS::executeState_##NAME,                   \
          &CLASS::endState_##NAME);
 
 #define CREATE_STATE_VIRTUAL(CLASS, NAME)               \
     StateVirtual<CLASS> CLASS::StateID_##NAME           \
-		(&CLASS::beginState_##NAME,                     \
+        (&CLASS::beginState_##NAME,                     \
          &CLASS::executeState_##NAME,                   \
          &CLASS::endState_##NAME,                       \
          &StateBase::NullState);
 
 #define CREATE_STATE_OVERRIDE(CLASS, BASECLASS, NAME)   \
     StateVirtual<CLASS> CLASS::StateID_##NAME           \
-		(&CLASS::beginState_##NAME,                     \
+        (&CLASS::beginState_##NAME,                     \
          &CLASS::executeState_##NAME,                   \
          &CLASS::endState_##NAME,                       \
          &BASECLASS::StateID_##NAME);
-
 
 class StateBase {
 public:
@@ -49,6 +47,7 @@ public:
     }
 
     virtual ~StateBase() { }
+
     virtual s32 getRootId() {
         return id;
     }
@@ -65,7 +64,6 @@ private:
     static s32 currentId;
 };
 
-
 template <class TOwner>
 class State : public StateBase {
 public:
@@ -80,7 +78,6 @@ protected:
     funcPtr end;
 };
 
-
 template <class TOwner>
 class StateVirtual : public State<TOwner> {
 public:
@@ -88,6 +85,7 @@ public:
 
     StateVirtual(funcPtr begin, funcPtr execute, funcPtr end, StateBase* baseState)
         : State<TOwner>(begin, execute, end), baseState(baseState) { }
+
     virtual ~StateVirtual() { }
 
     s32 getRootId() override {
@@ -100,8 +98,6 @@ public:
 private:
     StateBase* baseState;
 };
-
-
 
 class StateMethodExecuterBase {
 public:
@@ -119,7 +115,6 @@ public:
     TOwner* owner;
     State<TOwner>* currentState;
 };
-
 
 class StateExecuterBase {
 public:
@@ -142,7 +137,6 @@ public:
     StateMethodExecuter<TOwner> methodExecuter;     // 4
 };
 
-
 class StateMgr {
 public:
     StateMgr(StateExecuterBase* executer, StateBase* firstState = &StateBase::NullState);
@@ -157,7 +151,6 @@ public:
     StateBase* lastState;                           // C
 };
 
-
 template <class TOwner>
 class StateWrapper {
 public:
@@ -170,5 +163,21 @@ public:
     inline void execute() { manager.execute(); }
 
     inline StateBase* currentState() { return executer.methodExecuter.currentState; }
-    inline StateBase* lastState() { return manager.lastState; }
+    inline StateBase* lastState()    { return manager.lastState; }
+};
+
+template <class TOwner>
+class StateWrapperMulti {
+public:
+    virtual ~StateWrapperMulti() { }
+
+    StateExecuter<TOwner> executer;
+    StateMgr manager;
+    StateBase* unk;
+
+    inline void changeState(StateBase* nextState) { manager.changeState(nextState); }
+    inline void execute() { manager.execute(); }
+
+    inline StateBase* currentState() { return executer.methodExecuter.currentState; }
+    inline StateBase* lastState()    { return manager.lastState; }
 };

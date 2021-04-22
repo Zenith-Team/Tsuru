@@ -1,15 +1,17 @@
 #pragma once
 
-#include "util/vec3u.h"
-#include "base.h"
+#include "baseactor.h"
 #include "activecollider.h"
 #include "eatdata.h"
+#include "util/vec3u.h"
+
+extern u32 directionToRotationList[];
 
 class ColliderBase;
 class CollisionMgr;
 
-class Actor : public Base {
-    SEAD_RTTI_OVERRIDE(Actor, Base)
+class Actor : public BaseActor {  // size: 0x27C
+    SEAD_RTTI_OVERRIDE(Actor, BaseActor)
 
 public:
     struct CallbackTable {
@@ -35,10 +37,10 @@ public:
     Actor(const ActorBuildInfo* buildInfo);
     virtual ~Actor();
 
-    void afterCreate(u32);
-    u32 beforeExecute();
-    void afterExecute(u32);
-    u32 beforeDraw();
+    void afterCreate(u32) override;
+    u32 beforeExecute() override;
+    void afterExecute(u32) override;
+    u32 beforeDraw() override;
 
     virtual void setPlayerId(s8 id) {
         playerId = id;
@@ -51,21 +53,17 @@ public:
         return nullptr;
     }
 
-    virtual void vfAC() {
-    }
+    virtual void vfAC() { }
 
     virtual bool vfB4() {
         return true;
     }
 
-    virtual void vfBC() {
-    }
+    virtual void vfBC() { }
 
-    virtual void vfC4() {
-    }
+    virtual void vfC4() { }
 
-    virtual void vfCC() {
-    }
+    virtual void vfCC() { }
 
     virtual void killAtGoal();
     virtual void splashWater(Vec3*);
@@ -74,8 +72,7 @@ public:
     virtual void splashPoison(Vec3*);
     virtual bool isOffScreen();
 
-    virtual void damageFromUnder() {
-    }
+    virtual void damageFromUnder() { }
 
     s32 distanceToPlayer(Vec2& out);
     u8 directionToPlayerH(const Vec3& position);
@@ -124,14 +121,14 @@ public:
     f32 destroyBoundDistanceRight;        // 208  Inited to  80.0 + actorInfo->_1E
     u8 zoneId;                            // 20C
     u8 type;                              // 20E  0: Actor, 1: Player, 2: Yoshi, 3: Enemy, 4: Unknown
-    u8 isActive;                          // 20D  Inited to 1
-    u8 isVisible;                         // 20F  Inited to 1
+    bool isActive;                        // 20D  Inited to true
+    bool isVisible;                       // 20F  Inited to true
     bool noRespawn;                       // 210  Inited to false
     u8 _211;                              // 211  Inited to 1
     u8 _212;                              // 212  Inited to 0
     u8 eventId1;                          // 213
     u8 eventId2;                          // 214
-    u16 actorInfoflags;                   // 215  Inited to actorInfo->flags
+    u16 actorInfoFlags;                   // 215  Inited to actorInfo->flags
     u32 bumpDamageTimer;                  // 218  Inited to 0
     u32 _21C;                             // 21C  Inited to 0
     u32 _220;                             // 220  Inited to 0

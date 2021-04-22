@@ -2,7 +2,7 @@
 
 #include "vec2.h"
 
-struct Rect {
+struct Rect {  // size: 0x10
     inline static bool RectsOverlap(Rect& thisRect, Rect& otherRect) {
         // https://stackoverflow.com/a/31035335
         if (thisRect.left < otherRect.right && thisRect.right > otherRect.left &&
@@ -22,8 +22,8 @@ struct Rect {
 
     static Rect zero;
 
-    f32 left;
-    f32 bottom;
-    f32 right;
-    f32 top;
+    f32 left;       // 0
+    f32 bottom;     // 4
+    f32 right;      // 8
+    f32 top;        // C
 };

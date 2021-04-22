@@ -5,8 +5,7 @@
 
 namespace sead {
 
-class CriticalSection : public IDisposer
-{
+class CriticalSection : public IDisposer {
 public:
     CriticalSection();
     virtual ~CriticalSection();

@@ -4,14 +4,12 @@
 
 namespace sead {
 
-class ListNode
-{
+class ListNode {
 public:
     forceinline ListNode()
         : mPrev(NULL)
         , mNext(NULL)
-    {
-    }
+    { }
 
     void insertFront_(ListNode* node);
     void erase_();
@@ -49,8 +47,8 @@ template <typename T>
 class TList : public ListImpl {
 public:
     forceinline TList()
-        : ListImpl() {
-    }
+        : ListImpl()
+    { }
 
     class iterator {
     public:
@@ -118,14 +116,14 @@ public:
     forceinline TListNode()
         : ListNode()
         , mData(NULL)
-        , mList(NULL) {
-    }
+        , mList(NULL)
+    { }
 
     forceinline TListNode(T data)
         : ListNode()
         , mData(data)
-        , mList(NULL) {
-    }
+        , mList(NULL)
+    { }
 
     void erase() {
         TList<T>* list = mList;
@@ -141,8 +139,8 @@ template <typename T>
 class OffsetList : public ListImpl {
 public:
     forceinline OffsetList()
-        : ListImpl(), mOffset(-1) {
-    }
+        : ListImpl(), mOffset(-1)
+    { }
 
     void pushBack(T* item) {
         ListImpl::pushBack(objToListNode(item));
@@ -155,8 +153,8 @@ public:
     class iterator {
     public:
         iterator(T* ptr, s32 offset)
-            : mPtr(ptr), mOffset(offset) {
-        }
+            : mPtr(ptr), mOffset(offset)
+        { }
 
         bool operator==(const iterator& other) const {
             return mPtr == other.mPtr;

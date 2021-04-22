@@ -1,0 +1,8 @@
+
+---
+Files: [source/sarcloader.S]
+Hooks:
+  - type: branch
+    instr: bl
+    addr: F593330
+    func: ResMgr_LoadLevelArchiveWithoutDecomp

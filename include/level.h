@@ -4,12 +4,12 @@
 #include "sead.h"
 
 
-class Level : public sead::IDisposer {
+class Level : public sead::IDisposer {  // size: 0xEF0
 public:
 
-    class Area {
+    class Area {  // size: 0x3B8
     public:
-        struct Options {
+        struct Options {  // size: 0x18
             u32 eventBits32;            // 0
             u32 eventBits64;            // 4
             u16 wrapByte;               // 8
@@ -26,7 +26,7 @@ public:
             u16 timelimit3;             // 16
         };
 
-        struct Sprite {
+        struct Sprite {  // size: 0x18
             u16 type;         // 0
             u16 x;            // 2
             u16 y;            // 4
@@ -40,7 +40,7 @@ public:
             u8 initialState;  // 14
         };
 
-        struct Location {
+        struct Location {  // size: 0xA
             u16 x;      // 0
             u16 y;      // 2
             u16 w;      // 4
@@ -48,7 +48,32 @@ public:
             u8 id;      // 8
         };
 
-        struct Path {
+        struct Zone {  // size: 0x1C
+	        u16 x;              // 0
+	        u16 y;              // 2
+	        u16 w;              // 4
+	        u16 h;              // 6
+	        u16 theme;          // 8
+	        u16 _A;             // A
+	        u8 zoneId;          // C
+	        u8 boundId;         // D
+	        u8 cammode;         // E
+	        u8 camzoom;         // F
+	        u8 _10;             // 10
+	        u8 visibility;      // 11
+	        u8 backgroundId;    // 12
+	        u8 _13;             // 13
+	        u8 _14;             // 14
+	        u8 _15;             // 15
+	        u8 musicId;         // 16
+	        u8 _17;             // 17
+	        u8 _18;             // 18
+	        u8 _19;             // 19
+	        u8 _1A;             // 1A
+	        u8 _1B;             // 1B
+        };
+
+        struct Path {  // size: 0xC
             u8 id;              // 0
             s8 _1;              // 1
             u16 startNodeIdx;   // 2
@@ -57,7 +82,7 @@ public:
             u32 _8;             // 8
         };
 
-        struct PathNode {
+        struct PathNode {  //? size: 0x14 (0x13 without align)
             u16 x;      // 0
             u16 y;      // 2
             f32 speed;  // 4
@@ -91,8 +116,34 @@ public:
     Area areas[4];
 };
 
+class LevelCamera : public sead::IDisposer {  // size:0x
+public:		
+	static LevelCamera *instance;		
+		
+	f32 _10;                // 10
+	f32 _14;                // 14
+	Rect zoneBox;           // 18
+	Rect someRects[4];      // 28
+	f32 cameraWidth;        // 68
+	f32 cameraHeight;       // 6C
+	f32 cameraLeft;         // 70
+	f32 cameraCenterX;      // 74
+	f32 cameraRight;        // 78
+	f32 cameraTop;          // 7C
+	f32 cameraCenterY;      // 80
+	f32 cameraBottom;       // 84
+	// TODO: zoom area, scroll limit, etc.		
+};
 
-class LevelInfo : public sead::IDisposer {
+class LevelTimer {
+public:
+    void setTime(s32 time);
+    void addTime(s32 time);
+    
+    static LevelTimer* instance;
+};
+
+class LevelInfo : public sead::IDisposer {  // size: 0x28
 public:
     static LevelInfo* instance;
 
@@ -109,12 +160,3 @@ public:
     u32 destZone;               // 20
     u32 destEntranceType;       // 24
 };
-
-class LevelTimer {
-public:
-    void setTime(s32 time);
-    void addTime(s32 time);
-    
-    static LevelTimer* instance;
-};
-
