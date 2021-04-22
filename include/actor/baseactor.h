@@ -89,7 +89,7 @@ public:
     bool wasNotDeferred;          // C
     bool isSprite;                // D
     bool isCreated;               // E
-    bool deleted;                 // F
+    bool isDeleted;               // F
     u32 settings1;                // 10
     u32 settings2;                // 14
     u8 movementId;                // 18

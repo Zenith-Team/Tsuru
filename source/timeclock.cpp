@@ -63,8 +63,7 @@ u32 TimeClock::onExecute() {
     movementHandler.execute();
     position = movementHandler.position;
 
-    switch (rotationDirection)
-    {
+    switch (rotationDirection) {
     case 0: rotation.y -= rotationSpeed; break;
     case 1: rotation.y += rotationSpeed; break;
     case 2: rotation.x += rotationSpeed; break;
@@ -102,7 +101,7 @@ void TimeClock::collect() {
     if (eventId1)
         EventMgr::instance->set(eventId1 - 1, 0, true);
 
-    deleted = true;
+    isDeleted = true;
 }
 
 

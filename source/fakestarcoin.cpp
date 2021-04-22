@@ -100,7 +100,7 @@ void FakeStarCoin::collect() {
     if (eventId1)
         EventMgr::instance->set(eventId1 - 1, 0, true);
 
-    deleted = true;
+    isDeleted = true;
 }
 
 

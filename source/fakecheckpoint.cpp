@@ -82,7 +82,7 @@ void FakeCheckpoint::touch() {
     Effect::spawn(921, &effectPos, nullptr, nullptr);
     PlaySound("SE_OBJ_DOOR_OPEN", position);
 
-    deleted = true;
+    isDeleted = true;
 }
 
 void FakeCheckpoint::collisionCallback(ActiveCollider* acSelf, ActiveCollider* acOther) {
