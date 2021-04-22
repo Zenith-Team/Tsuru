@@ -7,11 +7,9 @@ namespace sead {
 
 class FileHandle;
 
-class FileDevice
-{
+class FileDevice {
 public:
-    enum FileOpenFlag
-    {
+    enum FileOpenFlag {
         cFileOpenFlag_ReadOnly = 0,   // r
         cFileOpenFlag_WriteOnly = 1,  // w
         cFileOpenFlag_ReadWrite = 2,  // r+
@@ -25,15 +23,13 @@ public:
     static const s32 cBufferMinAlignment = 0x40;
 };
 
-class HandleBase : public IDisposer
-{
+class HandleBase : public IDisposer {
 public:
     HandleBase()
         : IDisposer()
         , mDevice(NULL)
         , mOriginalDevice(NULL)
-    {
-    }
+    { }
 
     virtual ~HandleBase() { }
 
@@ -42,17 +38,14 @@ public:
     u8 mHandleBuffer[0x20];       // HandleBuffer = SafeArray<u8, 32>
 };
 
-class FileHandle : public HandleBase
-{
+class FileHandle : public HandleBase {
 public:
     FileHandle()
         : HandleBase()
         , mDivSize(0)
-    {
-    }
+    { }
 
-    virtual ~FileHandle()
-    {
+    virtual ~FileHandle() {
         FileDevice* _device = mOriginalDevice;
         if (_device != NULL)
             _device->tryClose(this);

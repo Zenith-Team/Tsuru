@@ -1,18 +1,18 @@
 #include "actor/enemy.h"
 
 #include "movementhandler.h"
-#include "eventmgr.h"
 #include "drawmgr.h"
 #include "effect.h"
 #include "sound.h"
 #include "model.h"
+
 
 class FallingChestnut : public Enemy {
 public:
     FallingChestnut(const ActorBuildInfo* buildInfo);
     virtual ~FallingChestnut() { }
 
-    static Base* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -47,7 +47,7 @@ const CollisionMgr::Sensor FallingChestnut::belowSensor = { 16.0f, 16.0f, -16.0f
 
 FallingChestnut::FallingChestnut(const ActorBuildInfo* buildInfo) : Enemy(buildInfo) { }
 
-Base* FallingChestnut::build(const ActorBuildInfo* buildInfo) {
+BaseActor* FallingChestnut::build(const ActorBuildInfo* buildInfo) {
     return new FallingChestnut(buildInfo);
 }
 
@@ -142,7 +142,7 @@ void FallingChestnut::executeState_OnGround() {
         Vec3 effectPos(position.x, position.y - 18.0f, 4500.0f);
         Effect::spawn(921, &effectPos, nullptr, nullptr);
 
-        isDeleted = true;
+        deleted = true;
     }
 }
 

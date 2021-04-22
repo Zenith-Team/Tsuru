@@ -7,10 +7,11 @@
 #include "sound.h"
 #include "eventmgr.h"
 
+
 class FakeStarCoin : public Actor {
 public:
     FakeStarCoin(const ActorBuildInfo* buildInfo);
-    static Base* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -23,6 +24,7 @@ public:
 
     ModelWrapper* model;
     MovementHandler movementHandler;
+    
     u8 rotationDirection;
 
     static const ActiveCollider::Info collisionInfo;
@@ -33,10 +35,9 @@ PROFILE_RESOURCES(ProfileId::Sprite449, "star_coin");
 
 const ActiveCollider::Info FakeStarCoin::collisionInfo = { Vec2(0.0f, -3.0f), Vec2(12.0f, 15.0f), 0, 5, 0, 0x824F, 0x20208, 0, &FakeStarCoin::collisionCallback };
 
-
 FakeStarCoin::FakeStarCoin(const ActorBuildInfo* buildInfo) : Actor(buildInfo) { }
 
-Base* FakeStarCoin::build(const ActorBuildInfo* buildInfo) {
+BaseActor* FakeStarCoin::build(const ActorBuildInfo* buildInfo) {
     return new FakeStarCoin(buildInfo);
 }
 
@@ -62,12 +63,11 @@ u32 FakeStarCoin::onExecute() {
     movementHandler.execute();
     position = movementHandler.position;
 
-    switch (rotationDirection)
-    {
-    case 0: rotation.y -= rotationSpeed; break;
-    case 1: rotation.y += rotationSpeed; break;
-    case 2: rotation.x += rotationSpeed; break;
-    case 3: rotation.x -= rotationSpeed; break;
+    switch (rotationDirection) {
+        case 0: rotation.y -= rotationSpeed; break;
+        case 1: rotation.y += rotationSpeed; break;
+        case 2: rotation.x += rotationSpeed; break;
+        case 3: rotation.x -= rotationSpeed; break;
     }
 
     updateModel();
@@ -95,12 +95,12 @@ void FakeStarCoin::collect() {
     Vec3 effectPos(position.x, position.y - 18.0f, 4500.0f);
 
     Effect::spawn(921, &effectPos, nullptr, nullptr);
-    //PlaySound("SE_OBJ_DDOOR_OPEN", position);
+    PlaySound("SE_OBJ_DDOOR_OPEN", position);
 
     if (eventId1)
         EventMgr::instance->set(eventId1 - 1, 0, true);
 
-    isDeleted = true;
+    deleted = true;
 }
 
 

@@ -59,7 +59,7 @@ public:
     virtual void vf11C();                        // deleted
     virtual void vf124();                        // deleted
     virtual void vf12C();
-    virtual void vf134();                        // getBounding?
+    virtual void vf134();                        //? getBounding?
     virtual void vf13C();
     virtual void getName(sead::SafeString& name) const;
     virtual void vf14C();

@@ -2,10 +2,11 @@
 #include "actormgr.h"
 #include "eventmgr.h"
 
+
 class ActorSpawner : public Actor {
 public:
     ActorSpawner(const ActorBuildInfo* buildInfo);
-    static Base* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -20,7 +21,7 @@ PROFILE_RESOURCES(ProfileId::Sprite436);
 
 ActorSpawner::ActorSpawner(const ActorBuildInfo* buildInfo) : Actor(buildInfo) { }
 
-Base* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
+BaseActor* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
     return new ActorSpawner(buildInfo);
 }
 
@@ -36,7 +37,7 @@ u32 ActorSpawner::onCreate() {
 
     spawned = false;
 
-    onExecute(); //Call onExecute() to prevent the spawned actor to be missing for one frame if the event is alredy active.
+    onExecute(); // Call onExecute() to prevent the spawned actor to be missing for one frame if the event is alredy active.
     return 1;
 }
 

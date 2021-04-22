@@ -9,5 +9,10 @@ Hooks:
   
   - type: branch
     instr: bl
-    func: ScaleCollision
+    func: ScaleActiveCollider
     addr: ED5AF58
+  
+# - type: branch
+#   instr: temp
+#   func: ScaleCollisionMgr
+#   addr: temp

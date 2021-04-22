@@ -9,8 +9,7 @@ namespace sead {
 
 class Heap;
 
-class HeapMgr
-{
+class HeapMgr {
 public:
     HeapMgr();
     virtual ~HeapMgr();

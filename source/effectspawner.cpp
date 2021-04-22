@@ -1,14 +1,18 @@
-#include "actor/base.h"
 #include "actor/actor.h"
 #include "eventmgr.h"
 #include "effect.h"
 #include "movementhandler.h"
 #include "sound.h"
 
+
 class EffectSpawner : public Actor {
+    SEAD_RTTI_OVERRIDE_IMPL(EffectSpawner, Actor)
+
 public:
     EffectSpawner(const ActorBuildInfo* buildInfo);
-    static Base* build(const ActorBuildInfo* buildInfo);
+    virtual ~EffectSpawner() { }
+
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -30,14 +34,27 @@ public:
     static const f32 effectScales[16];
 };
 
-const Profile effectSpawnerProfile(&EffectSpawner::build, ProfileId::Sprite555, "EffectSpawner", nullptr, 0);
+const Profile EffectSpawnerProfile(&EffectSpawner::build, ProfileId::Sprite134, "EffectSpawner", nullptr, 0);
 
 const f32 EffectSpawner::effectScales[16] = { 1.0f, 0.1f, 0.25f, 0.5f, 0.75f, 0.875f, 1.125f, 1.25f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, 4.0f, 5.0f, 6.0f };
 
 
-EffectSpawner::EffectSpawner(const ActorBuildInfo* buildInfo) : Actor(buildInfo) { }
 
-Base* EffectSpawner::build(const ActorBuildInfo* buildInfo) {
+EffectSpawner::EffectSpawner(const ActorBuildInfo* buildInfo)
+    : Actor(buildInfo)
+    , effect()
+    , effectId(-1)
+    , movementHandler()
+    , spawned(false)
+    , spawnEffect(false)
+    , nonUpdatedEffect(false)
+    , effectLength(0)
+    , effectTimer(0)
+    , playSoundEffect(false)
+    , soundId(0)
+{ }
+
+BaseActor* EffectSpawner::build(const ActorBuildInfo* buildInfo) {
     return new EffectSpawner(buildInfo);
 }
 
@@ -60,7 +77,7 @@ u32 EffectSpawner::onCreate() {
     playSoundEffect = !((settings2 >> 16) & 1);
     soundId = (settings2 >> 20) + 0x01000000;
 
-    return 1;
+    return onExecute();
 }
 
 u32 EffectSpawner::onExecute() {
@@ -77,10 +94,9 @@ u32 EffectSpawner::onExecute() {
                 effectTimer = 0;
 
             if (playSoundEffect) {
-                ;
-                /*const char* soundLabel = SoundSystem::instance->GetItemLabel(soundId);
+                const char* soundLabel = SoundSystem::sInstance->GetItemLabel(soundId);
                 if (soundLabel)
-                    PlaySound(soundLabel, position);*/
+                    PlaySound(soundLabel, position);
             }
 
             spawned = true;

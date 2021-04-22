@@ -6,43 +6,35 @@
 #include "sead.h"
 #include "states.h"
 
-class BlockCoinBase : public ActorMultiState
-{
+class BlockCoinBase : public ActorMultiState {  // size: 0x1B28
     SEAD_RTTI_OVERRIDE(BlockCoinBase, ActorMultiState)
 
 public:
-    enum Content
-    {
-        FireMushroom = 0,
-        MiniMushroom = 1,
-        LifeMushroom = 2,
-        Mushroom = 3,
-        FireFlower = 4,
-        IceMushroom = 5,
-        PenguinMushroom = 6,
+    enum Content {
+        FireMushroom      = 0,
+        MiniMushroom      = 1,
+        LifeMushroom      = 2,
+        Mushroom          = 3,
+        FireFlower        = 4,
+        IceMushroom       = 5,
+        PenguinMushroom   = 6,
         PropellerMushroom = 7,
-        Star = 8,
-        ContinuousStar = 9,
-        SquirrelMushroom = 10,
-        LifeMoon = 11,
-        Coin = 12,
-        MultiCoin = 13,
-        Vine = 15,
-        Yoshi = 16,
-        Spring = 17,
-        MushroomIfSmall = 19,
-        Nothing = 21
+        Star              = 8,
+        ContinuousStar    = 9,
+        SquirrelMushroom  = 10,
+        LifeMoon          = 11,
+        Coin              = 12,
+        MultiCoin         = 13,
+        Vine              = 15,
+        Yoshi             = 16,
+        Spring            = 17,
+        MushroomIfSmall   = 19,
+        Nothing           = 21
     };
 
 public:
-    BlockCoinBase(const ActorBuildInfo*);
+    BlockCoinBase(const ActorBuildInfo* buildInfo);
     virtual ~BlockCoinBase() { }
-
-    void spawnPortableSpring();
-    void spawnYoshiEgg(bool multi);
-    void spawnVine();
-    void spawnPowerup(Vec3* pos, u32, u32, bool spawnAsChild);
-    void spawnMultiPowerup(Vec3* pos, u32, u32, bool spawnAsChild);
 
     virtual void vf18C();
     virtual void vf194();
@@ -65,6 +57,12 @@ public:
     DECLARE_STATE_VIRTUAL(BlockCoinBase, BumpUp2)
     DECLARE_STATE_VIRTUAL(BlockCoinBase, BumpDown2)
     DECLARE_STATE_VIRTUAL(BlockCoinBase, BlockCoinState3)
+
+    void spawnPortableSpring();
+    void spawnYoshiEgg(bool multi);
+    void spawnVine();
+    void spawnPowerup(Vec3* pos, u32, u32, bool spawnAsChild);
+    void spawnMultiPowerup(Vec3* pos, u32, u32, bool spawnAsChild);
 
     CollisionMgr::Sensor _17C8;
     u8 _17D4[4];
@@ -121,12 +119,11 @@ public:
     u32 _1B24;
 };
 
-class MovementBlockCoinBase : public BlockCoinBase
-{
+class MovementBlockCoinBase : public BlockCoinBase {  // size: 0x1CA8
     SEAD_RTTI_OVERRIDE(MovementBlockCoinBase, BlockCoinBase)
 
 public:
-    MovementBlockCoinBase(const ActorBuildInfo*);
+    MovementBlockCoinBase(const ActorBuildInfo* buildInfo);
     virtual ~MovementBlockCoinBase() { }
 
     void spawnItemUp() override;
@@ -158,8 +155,7 @@ public:
     u8 _1CA4[4];
 };
 
-class BlockBase : public MovementBlockCoinBase
-{
+class BlockBase : public MovementBlockCoinBase {  // size: 0x1CD0
     SEAD_RTTI_OVERRIDE(BlockBase, MovementBlockCoinBase)
 
 public:
@@ -172,19 +168,8 @@ public:
     };
 
 public:
-    BlockBase(const ActorBuildInfo*);
+    BlockBase(const ActorBuildInfo* buildInfo);
     virtual ~BlockBase() { }
-
-    static void activeTopCollisionCallback(ColliderBase* cSelf, CollisionMgr* otherMgr, u32 sensorId);
-    static void activeBottomCollisionCallback(ColliderBase* cSelf, CollisionMgr* otherMgr, u32 sensorId);
-    static void activeSideCollisionCallback(ColliderBase* cSelf, CollisionMgr* otherMgr, u32 sensorId);
-
-    static void usedTopCollisionCallback(ColliderBase* cSelf, CollisionMgr* otherMgr, u32 sensorId);
-    static void usedBottomCollisionCallback(ColliderBase* cSelf, CollisionMgr* otherMgr, u32 sensorId);
-    static void usedSideCollisionCallback(ColliderBase* cSelf, CollisionMgr* otherMgr, u32 sensorId);
-
-    bool init(bool registerCollider, bool);
-    void initMover();
 
     u32 onExecute() override;
     u32 onDraw() override;
@@ -212,6 +197,17 @@ public:
 
     DECLARE_STATE_VIRTUAL(BlockBase, Wait)
     DECLARE_STATE_VIRTUAL(BlockBase, Used)
+
+    static void activeTopCollisionCallback(ColliderBase* cSelf, CollisionMgr* otherMgr, u32 sensorId);
+    static void activeBottomCollisionCallback(ColliderBase* cSelf, CollisionMgr* otherMgr, u32 sensorId);
+    static void activeSideCollisionCallback(ColliderBase* cSelf, CollisionMgr* otherMgr, u32 sensorId);
+
+    static void usedTopCollisionCallback(ColliderBase* cSelf, CollisionMgr* otherMgr, u32 sensorId);
+    static void usedBottomCollisionCallback(ColliderBase* cSelf, CollisionMgr* otherMgr, u32 sensorId);
+    static void usedSideCollisionCallback(ColliderBase* cSelf, CollisionMgr* otherMgr, u32 sensorId);
+
+    bool init(bool registerCollider, bool);
+    void initMover();
 
     f32 _1CA8;
     f32 _1CAC;

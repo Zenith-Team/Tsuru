@@ -1,14 +1,15 @@
 
 ---
-Name: NSMBU Haxx
+Name: SuperHacks
 Modules:
 # - aa.yaml               # Disables FXAA in-game
   - activecollider.yaml   # Collision
   - areatask.yaml         # Area modifiers
   - constructors.yaml     # Constructor patches
-  - customactors.yaml     # Custom sprites/actors
+  - customsprites.yaml    # Custom sprites/actors
   - dynamiclibs.yaml      # Dynamic libraries
-  - nohurryup.yaml        # Disables music rush at 100 secs
+  - misc.yaml             # Miscellaneous patches
+  - sarcloader.yaml       # Loads levels as .sarc if .szs isn't found
   - sead.yaml             # Standard library
   - sizemodifier.yaml     # Sprite size modifier
   - snowparticles.yaml    # Custom snow particles

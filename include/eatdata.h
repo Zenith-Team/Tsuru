@@ -2,7 +2,7 @@
 
 #include "util/vec3.h"
 
-class YoshiEatData {
+class YoshiEatData {  // size: 0x20
 public:
     YoshiEatData(u32& id);
 
@@ -18,15 +18,15 @@ public:
     virtual bool vf54(void*);
     virtual void* vf5C(void*);
 
-    u32 ownerId;
-    u32 _4;
-    u32 state;
-    u32 spitType;
-    Vec3 scale;
-    u32 _1C;
+    u32 ownerId;    // 0
+    u32 _4;         // 4
+    u32 state;      // 8
+    u32 spitType;   // C
+    Vec3 scale;     // 10
+    u32 _1C;        // 1C
 };
 
-class BabyYoshiEatData {
+class BabyYoshiEatData {  // size: 0x20
 public:
     BabyYoshiEatData(u32& id);
 
@@ -38,10 +38,10 @@ public:
     virtual bool handleEaten(void*);
     virtual void vf3C();
 
-    u32 ownerId;
-    u32 _4;
-    Vec3 scale;
-    u32 _14;
-    u32 isActive;
-    u32 scoreReward;
+    u32 ownerId;        // 0
+    u32 _4;             // 4
+    Vec3 scale;         // 8
+    u32 _14;            // 14
+    u32 isActive;       // 18
+    u32 scoreReward;    // 1C
 };

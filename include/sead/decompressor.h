@@ -9,8 +9,7 @@ namespace sead {
 
 class Resource;
 
-class Decompressor : public TListNode<Decompressor*>, public IDisposer
-{
+class Decompressor : public TListNode<Decompressor*>, public IDisposer {
 public:
     Decompressor(const SafeString& name);
     virtual ~Decompressor();
@@ -20,18 +19,15 @@ public:
     FixedSafeString<32> mExt;
 };
 
-class SZSDecompressor : public Decompressor
-{
+class SZSDecompressor : public Decompressor {
 public:
-    enum Step
-    {
+    enum Step {
         cStepNormal = 0,
         cStepShort = 1,
         cStepLong = 2,
     };
 
-    struct DecompContext
-    {
+    struct DecompContext {
         DecompContext();
         DecompContext(void* dst);
 

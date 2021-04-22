@@ -1,4 +1,5 @@
 #include "dynamic_libs/os_functions.h"
+#include "dynamic_libs/gx2_functions.h"
 #include "dynamic_libs/zlib_functions.h"
 #include "types.h"
 
@@ -9,16 +10,14 @@ extern "C" InitFunc _ctors[];
 
 OsSpecifics osSpecifics;
 
-extern "C"
-{
+extern "C" {
 
 extern u32 BLOSDynLoad_Acquire;
 extern u32 BOSDynLoad_FindExport;
 
 }
 
-void callCtors()
-{
+void callCtors() {
     static bool initialized = false;
     if (initialized)
         return;
@@ -39,6 +38,7 @@ void callCtors()
 
     // Init the libraries you need here
     InitOSFunctionPointers();
+    InitGX2FunctionPointers();
     InitZlibFunctionPointers();
 
     LOG("OSDynLoad_Acquire address: 0x%08X\n", OS_SPECIFICS->addr_OSDynLoad_Acquire);

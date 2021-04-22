@@ -277,7 +277,7 @@ extern s32 (*OSSetScreenCapturePermissionEx) (s32 tvEnabled, s32 drcEnabled);
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //! Energy Saver functions
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-////Burn-in Reduction
+//Burn-in Reduction
 extern s32 (*IMEnableDim)(void);
 extern s32 (*IMDisableDim)(void);
 extern s32 (*IMIsDimEnabled)(s32 * result);

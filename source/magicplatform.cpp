@@ -7,14 +7,14 @@
 #include "movementhandler.h"
 #include "level.h"
 #include "math.h"
-#include "tile.h"
+#include "tilemgr.h"
 
 class MagicPlatform : public Actor {
 public:
     MagicPlatform(const ActorBuildInfo* buildInfo);
     virtual ~MagicPlatform() { }
 
-    static Base* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -69,7 +69,7 @@ MagicPlatform::MagicPlatform(const ActorBuildInfo* buildInfo)
 {
 }
 
-Base* MagicPlatform::build(const ActorBuildInfo* buildInfo) {
+BaseActor* MagicPlatform::build(const ActorBuildInfo* buildInfo) {
     return new MagicPlatform(buildInfo);
 }
 

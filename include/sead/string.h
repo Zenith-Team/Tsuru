@@ -5,8 +5,7 @@
 namespace sead {
 
 template <typename T>
-class SafeStringBase
-{
+class SafeStringBase {
 public:
     SafeStringBase() : mStringTop(&cNullChar) { }
     SafeStringBase(const T* str) : mStringTop(str) { }
@@ -14,14 +13,12 @@ public:
 
     virtual void assureTerminationImpl_() const { }
 
-    inline const T* cstr() const
-    {
+    inline const T* cstr() const {
         assureTerminationImpl_();
         return mStringTop;
     }
 
-    inline const SafeStringBase<T> getPart(s32 at) const
-    {
+    inline const SafeStringBase<T> getPart(s32 at) const {
         s32 len = calcLength();
         if ( at < 0 || at > len )
             return SafeStringBase<T>::cEmptyString;
@@ -29,8 +26,7 @@ public:
         return SafeStringBase<T>(mStringTop + at);
     }
 
-    inline const T& unsafeAt_(s32 idx) const
-    {
+    inline const T& unsafeAt_(s32 idx) const {
         return mStringTop[idx];
     }
 
@@ -57,8 +53,7 @@ template <>
 extern const SafeStringBase<char> SafeStringBase<char>::cEmptyString;
 
 template <typename T>
-class BufferedSafeStringBase : public SafeStringBase<T>
-{
+class BufferedSafeStringBase : public SafeStringBase<T> {
 public:
     forceinline BufferedSafeStringBase(T* buffer, s32 size)
         : SafeStringBase<T>(buffer)
@@ -69,8 +64,7 @@ public:
 
     virtual ~BufferedSafeStringBase() { }
 
-    virtual void assureTerminationImpl_() const
-    {
+    virtual void assureTerminationImpl_() const {
         BufferedSafeStringBase<T>* mutableSafeString = const_cast<BufferedSafeStringBase<T>*>(this);
         mutableSafeString->getMutableStringTop_()[mBufferSize - 1] = mutableSafeString->cNullChar;
     }
@@ -82,13 +76,11 @@ public:
 
     static s32 formatImpl_(T* s, s32 n, const T* formatStr, va_list args);
 
-    inline T* getMutableStringTop_()
-    {
+    inline T* getMutableStringTop_() {
         return const_cast<T*>(mStringTop);
     }
 
-    inline void clear()
-    {
+    inline void clear() {
         getMutableStringTop_()[0] = this->cNullChar;
     }
 
@@ -100,8 +92,7 @@ public:
 };
 
 template <typename T, s32 L>
-class FixedSafeStringBase : public BufferedSafeStringBase<T>
-{
+class FixedSafeStringBase : public BufferedSafeStringBase<T> {
 public:
     FixedSafeStringBase()
         : BufferedSafeStringBase<T>(mBuffer, L)
@@ -133,23 +124,19 @@ template <>
 s32 BufferedSafeStringBase<char>::appendWithFormatV(const char* formatStr, va_list args);
 
 template <s32 L>
-class FixedSafeString : public FixedSafeStringBase<char, L>
-{
+class FixedSafeString : public FixedSafeStringBase<char, L> {
 public:
     FixedSafeString()
         : FixedSafeStringBase<char, L>()
-    {
-    }
+    { }
 
     explicit FixedSafeString(const SafeString& str)
         : FixedSafeStringBase<char, L>(str)
-    {
-    }
+    { }
 };
 
 template <s32 L>
-class FormatFixedSafeString : public FixedSafeString<L>
-{
+class FormatFixedSafeString : public FixedSafeString<L> {
 public:
     FormatFixedSafeString(const char* str, ...)
         : FixedSafeString<L>()

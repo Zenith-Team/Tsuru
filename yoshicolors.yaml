@@ -1,6 +1,7 @@
 
 ---
-Files: [source/yoshicolors.S]
+Files:
+  - source/yoshicolors.S
 Hooks:
   # Patch array to unlock colors
   - type: branch

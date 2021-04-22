@@ -4,12 +4,13 @@
 #include "model.h"
 #include "playermgr.h"
 
+
 class FlipBlock : public BlockBase {
 public:
     FlipBlock(const ActorBuildInfo* buildInfo);
     virtual ~FlipBlock() { }
 
-    static Base* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -40,16 +41,14 @@ CREATE_STATE(FlipBlock, Flipping);
 
 const ActorInfo FlipBlockActorInfo = { 8, -16, 8, -8, 0x100, 0x100, 0, 0, 0, 0, ActorInfo::FlagUnknown };
 const Profile FlipBlockProfile(&FlipBlock::build, ProfileId::Sprite551, "FlipBlock", &FlipBlockActorInfo, 0x1002);
-PROFILE_RESOURCES(ProfileId::Sprite551, "flip_blocks");
+PROFILE_RESOURCES(ProfileId::Sprite551, "block_snake");
 
 const ActiveCollider::Info FlipBlock::colliderInfo = { Vec2(0.0f, 8.0f), Vec2(8.0f, 8.0f), 0, 0, 0, 0, 0, 0, nullptr };
 
 
-FlipBlock::FlipBlock(const ActorBuildInfo* buildInfo) : BlockBase(buildInfo)
-    , flipsRemaining(0)
-{ }
+FlipBlock::FlipBlock(const ActorBuildInfo* buildInfo) : BlockBase(buildInfo) , flipsRemaining(0) { }
 
-Base* FlipBlock::build(const ActorBuildInfo* buildInfo) {
+BaseActor* FlipBlock::build(const ActorBuildInfo* buildInfo) {
     return new FlipBlock(buildInfo);
 }
 
@@ -76,7 +75,7 @@ u32 FlipBlock::onCreate() {
 
     registerColliderActiveInfo();
 
-    model = ModelWrapper::create("flip_blocks", "flip_blocks", 0, 1);
+    model = ModelWrapper::create("block_snake", "block_snake", 0, 1);
 
     aCollider.init(this, &colliderInfo, nullptr);
     addActiveColliders();
@@ -92,13 +91,15 @@ u32 FlipBlock::onExecute() {
     if (result != 1) {
         return result;
     }
-
+    
     updateModel();
+    
     return 1;
 }
 
 u32 FlipBlock::onDraw() {
     DrawMgr::instance->drawModel(model);
+    
     return 1;
 }
 
@@ -112,12 +113,14 @@ void FlipBlock::spawnItemDown() {
 }
 
 void FlipBlock::beginState_BlockCoinState3() {
-    _1A90 = 15; // Delay in frames before switching to StateID_Wait
+    // Delay in frames before switching to StateID_Wait
+    _1A90 = 15;
 }
 
 void FlipBlock::endState_BlockCoinState3() {
     _1AAE = 0;
 
+    // Undo our "fake" Used state
     stateType = StateTypeQuestionBlock;
     rectCollider.setType(ColliderBase::TypeQuestionBlock);
 
@@ -148,20 +151,18 @@ void FlipBlock::beginState_Flipping() {
 }
 
 void FlipBlock::executeState_Flipping() {
-    if (spawnDirection == 3) {
+    if (spawnDirection == 3) // Down
         rotation.x += 0x8000000;
-    }
 
-    else {
+    else
         rotation.x -= 0x8000000;
-    }
 
-    if (rotation.x == 0 && --flipsRemaining <= 0 && !playerOverlaps()) {
+    if (rotation.x == 0 && --flipsRemaining <= 0 && !playerOverlaps())
         doStateChange(&StateID_Wait);
-    }
 }
 
 void FlipBlock::endState_Flipping() {
+    // Add the collider back and literally "reset" the actor
     init(true, true);
 
     _1AAE = 0;
@@ -183,17 +184,17 @@ bool FlipBlock::playerOverlaps() {
 
     Player* player;
 
-    for (s32 i = 0; i < 4; i++) {
-        if (PlayerMgr::instance->playerFlags & playerActiveMask) {
+    for (s32 i = 0; i < 4; i++)
+    {
+        if (PlayerMgr::instance->playerFlags & playerActiveMask)
+        {
             player = PlayerMgr::instance->players[i];
-            if (player != nullptr) {
+            if (player != nullptr)
                 overlaps = ActiveCollider::collidersOverlap(&this->aCollider, &player->aCollider);
-            }
         }
 
-        if (overlaps) {
+        if (overlaps)
             return true;
-        }
 
         playerActiveMask <<= 1;
     }

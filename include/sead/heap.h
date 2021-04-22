@@ -16,11 +16,9 @@ class Context;
 
 } // namespace sead::hostio
 
-class Heap : public IDisposer, public INamable
-{
+class Heap : public IDisposer, public INamable {
 public:
-    enum HeapDirection
-    {
+    enum HeapDirection {
         cHeapDirection_Forward = 1,
         cHeapDirection_Reverse = -1
     };
@@ -47,20 +45,15 @@ public:
     virtual bool isResizable() const = 0;
     virtual bool isAdjustable() const = 0;
 
-    virtual void dump() const
-    {
-    }
+    virtual void dump() const { }
 
-    virtual void genInformation_(hostio::Context*)
-    {
-    }
+    virtual void genInformation_(hostio::Context*) { }
 
     void appendDisposer_(IDisposer* disposer);
     void removeDisposer_(IDisposer* disposer);
     Heap* findContainHeap_(const void* ptr);
 
-    inline void* alloc(size_t size, s32 alignment)
-    {
+    inline void* alloc(size_t size, s32 alignment) {
         return tryAlloc(size, alignment);
     }
 

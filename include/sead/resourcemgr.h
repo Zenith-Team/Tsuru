@@ -10,11 +10,9 @@ class ResourceFactory;
 class Decompressor;
 
 
-class ResourceMgr
-{
+class ResourceMgr {
 public:
-    struct LoadArg
-    {
+    struct LoadArg {
         LoadArg()
             : path()
             , instance_heap(NULL)
@@ -26,8 +24,7 @@ public:
             , factory(NULL)
             , device(NULL)
             , div_size(0)
-        {
-        }
+        { }
 
         SafeString path;
         Heap* instance_heap;

@@ -63,6 +63,56 @@ typedef volatile double vf64;
 #define OS_THREAD_ATTR_NAME_SENT        0x0080u        // debugger has seen the name
 #define OS_THREAD_ATTR_LAST (OS_THREAD_ATTR_DETACH | OS_THREAD_ATTR_PINNED_AFFINITY | OS_THREAD_ATTR_AFFINITY_NONE)
 
+/*+----------------------------------Newer U Cafe Definitions------------------------------------+*/
+#define FS_CLIENT_BUFFER_SIZE 5888
+#define FS_CMD_BLOCK_SIZE 2688
+#define FS_STAT_ATTRIBUTES_SIZE 48
+
+
+typedef s32 FSStatus;
+typedef s32 FSFileHandle;
+typedef u32 FSSize;
+typedef u64 FSBSize;
+typedef u32 FSCount;
+typedef u32 FSFlag;
+typedef u32 FSRetFlag;
+typedef u32 FSMode;
+typedef u32 FSFilePosition;
+typedef u64 FSTime;
+typedef u32 FSUserId;
+typedef u32 FSGroupId;
+
+typedef struct {
+	FSFlag flag;
+	FSMode permission;
+	FSUserId owner_id;
+	FSGroupId group_id;
+	FSSize size;
+	FSSize alloc_size;
+	FSBSize quota_size;
+	u32 ent_id;
+	FSTime ctime;
+	FSTime mtime;
+	u8 attributes[FS_STAT_ATTRIBUTES_SIZE];
+} FSStat;
+
+
+typedef int (*__os_snprintf_t)(char *buffer, int size, char *fmt, ... );
+
+
+typedef int socklen_t;
+
+typedef int (*SOInit_t)();
+typedef int (*SOSocket_t)(int family, int type, int proto);
+typedef int (*SOSetSockOpt_t)(int s, int level, int optname, void *optval, socklen_t optlen);
+typedef int (*SOConnect_t)(int fd, struct sockaddr *addr, int addrlen);
+typedef int (*SORecv_t)(int fd, void *buffer, int len, int flags);
+typedef int (*SOSend_t)(int fd, const void *buffer, int len, int flags);
+typedef int (*SOClose_t)(int fd);
+typedef int (*SOFinish_t)();
+typedef int (*SOLastError_t)();
+/*+----------------------------------------------------------------------------------------------+*/
+
 typedef struct OSThread_ OSThread;
 
 typedef struct OSThreadLink_ {
@@ -197,8 +247,7 @@ typedef struct _OSCalendarTime {
     int usec;
 } OSCalendarTime;
 
-typedef struct _OSSpinLock
-{
+typedef struct _OSSpinLock {
     u32 owner;
     u32 __unknown0;
     u32 recursion;
@@ -208,14 +257,12 @@ typedef struct _OSSpinLock
 struct _OSMutex;
 typedef struct _OSMutex OSMutex;
 
-typedef struct _OSMutexLink
-{
+typedef struct _OSMutexLink {
     OSMutex* next;
     OSMutex* prev;
 } OSMutexLink;
 
-struct _OSMutex
-{
+struct _OSMutex {
     u32 txtTag;
     char *name;
     u32 reserved;
@@ -237,14 +284,12 @@ typedef struct MCPTitleListType {
     u8 unk0x60;
 } MCPTitleListType;
 
-typedef struct _MEMMemoryLink
-{
+typedef struct _MEMMemoryLink {
     void *prev;
     void *next;
 } MEMMemoryLink;
 
-typedef struct _MEMMemoryList
-{
+typedef struct _MEMMemoryList {
     void *head;
     void *tail;
     u16 count;
@@ -264,15 +309,13 @@ typedef struct _MEMHeapHeader {
 
 typedef MEMHeapHeader *MEMHeapHandle;
 
-typedef enum MEMBaseHeapType
-{
+typedef enum MEMBaseHeapType {
     MEM_BASE_HEAP_MEM1   = 0,
     MEM_BASE_HEAP_MEM2   = 1,
     MEM_BASE_HEAP_FG     = 8,
 } MEMBaseHeapType;
 
-typedef enum MEMFrmHeapFreeMode
-{
+typedef enum MEMFrmHeapFreeMode {
     MEM_FRM_HEAP_FREE_HEAD   = 1 << 0,
     MEM_FRM_HEAP_FREE_TAIL   = 1 << 1,
     MEM_FRM_HEAP_FREE_ALL    = MEM_FRM_HEAP_FREE_HEAD | MEM_FRM_HEAP_FREE_TAIL,
