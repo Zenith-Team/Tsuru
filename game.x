@@ -302,6 +302,10 @@ SECTIONS {
 	__vtbl__5Enemy = 0x1057429C;
 	__ct__5EnemyFPC14ActorBuildInfo = 0xeee8494;
 	collisionCallback__5EnemySFP14ActiveColliderT1 = 0xeee8c50;
+	processCollision__5EnemyFP14ActiveColliderT1Ui = 0xEEE9B88;
+	killPlayerJump__5EnemyFP5ActorRC4Vec2P9StateBase = 0xEEEDA34;
+	killPlayerSpin__5EnemyFP5Actor = 0xEEECC98;
+	killYoshiStomp__5EnemyFP5Actor = 0xEEED31C;
 	__dt__5EnemyFv = 0xeeea868;
 	checkDerivedRuntimeTypeInfo__5EnemyCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0xeeea70c;
     getRuntimeTypeInfo__5EnemyCFv = __deleted_virtual_called;

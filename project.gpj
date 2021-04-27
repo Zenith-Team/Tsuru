@@ -38,6 +38,7 @@ source/dynamic_libs/h264_functions.cpp
 source/dynamic_libs/zlib_functions.cpp
 source/fixes.S
 source/reverb.cpp
+source/misc.cpp
 source/nullsub.S
 source/sarcloader.S
 source/sead/decompressor.cpp
