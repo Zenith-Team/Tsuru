@@ -8,11 +8,11 @@ Modules:
   - constructors.yaml     # Constructor patches
   - customsprites.yaml    # Custom sprites/actors
   - dynamiclibs.yaml      # Dynamic libraries
-  - misc.yaml             # Miscellaneous patches
+  - fixes.yaml            # Miscellaneous bugfixes
+  - misc.yaml             # Miscellaneous small patches
   - sarcloader.yaml       # Loads levels as .sarc if .szs isn't found
   - sead.yaml             # Standard library
   - sizemodifier.yaml     # Sprite size modifier
   - snowparticles.yaml    # Custom snow particles
-  - sound.yaml            # Sound effect and music mods
   - titlescreen.yaml      # Title screen mods
   - yoshicolors.yaml      # Patches Yoshis to have all colors

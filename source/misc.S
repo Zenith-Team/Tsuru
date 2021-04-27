@@ -1,2 +1,2 @@
 .text
-.include "asmsetup.S"
+

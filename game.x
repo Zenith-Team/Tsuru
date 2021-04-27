@@ -712,7 +712,8 @@ SECTIONS {
 
 	/* BasicSoundActor */
 	GlobalBasicSoundActorA = 0x106c85d0;
-	playSound__15BasicSoundActorFPCcP4Vec2Ui = 0xf57ed48;
+	instance__15BasicSoundActor = 0x106C85D0;
+	playSound__15BasicSoundActorFPCcP4Vec2Ui = 0xF57EDEC;
 
 	/* Level */
 	sInstance__5Level = 0x106dd248;
@@ -783,6 +784,7 @@ SECTIONS {
 
 	/* Misc */
 	mapPositionToScreen__FR4Vec2RC4Vec2 = 0xebe9368;
+	mapPosToScreen__FP4Vec2T1 = 0xEBE9368;
 	moveValueTo__FPUiUiT2 = 0xF5A11F0;
 	moveFloatTo__FPffT2 = 0xEBE7984;
 	BLOSDynLoad_Acquire = 0xF65EF58;

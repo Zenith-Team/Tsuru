@@ -39,7 +39,7 @@ public:
     SolidOnTopCollider solidOnTopCollider;
 };
 
-const ActorInfo magicPlatformActorInfo = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ActorInfo::FlagIgnoreSpawnRange | ActorInfo::FlagUnknown };
+const ActorInfo magicPlatformActorInfo = { 0, 0, 0, 0, 0, 0, 0, ActorInfo::FlagIgnoreSpawnRange | ActorInfo::FlagUnknown };
 const Profile magicPlatformProfile(&MagicPlatform::build, ProfileId::Sprite314, "MagicPlatform", &magicPlatformActorInfo, 0);
 PROFILE_RESOURCES(ProfileId::Sprite314);
 

@@ -712,7 +712,8 @@ GetItemLabel__Q3_2nw3snd12SoundArchiveCFUi = 0x2ad6980;
 
 /* BasicSoundActor */
 GlobalBasicSoundActorA = 0x101c63d0;
-playSound__15BasicSoundActorFPCcP4Vec2Ui = 0x29bed48;
+instance__15BasicSoundActor = 0x101c63d0;
+playSound__15BasicSoundActorFPCcP4Vec2Ui = 0x29bedec;
 
 /* Level */
 sInstance__5Level = 0x101db048;
@@ -783,6 +784,7 @@ setTop__10EnvTerrainFf = 0x26f131c;
 
 /* Misc */
 mapPositionToScreen__FR4Vec2RC4Vec2 = 0x2029368;
+mapPosToScreen__FP4Vec2T1 = 0x2029368;
 moveValueTo__FPUiUiT2 = 0x29e11f0;
 moveFloatTo__FPffT2 = 0x2027984;
 BLOSDynLoad_Acquire = 0x2a9ef58;

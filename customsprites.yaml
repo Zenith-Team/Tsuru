@@ -2,24 +2,34 @@
 ---
 Files:
 #* Regular sprites:
-  - source/fakecheckpoint.cpp    #| Sprite: 312, Profile: 93,              Notes: [Mixed SMBU]  Written by Luminyx  | Idea originally from Sakura + Astro   | Checkpoint that disappears on touch
-  - source/fakestarcoin.cpp      #| Sprite: 449, Profile: 808,             Notes: [CodeDX]      Written by RicBent  | Ported by iHarv                       | Star coin that disappears on touch
-  - source/fallingchestnut.cpp   #| Sprite: 692, Profile: 292,             Notes: [Mixed SMBU]  Written by Luminyx  | Luminyx's first ever custom sprite    | Falling chestnut, idea from Newer Wii
-  - source/flipblock.cpp         #| Sprite: 551, Profile: 281,             Notes: [NSMBU Haxx]  Written by AboodXD  | Example sprite from NSMBU Haxx        | Flipblock from SMW
-  - source/timeclock.cpp         #| Sprite: 555, Profile: 380,             Notes: [Mixed SMBU]  Written by iHarv    | iHarv's first ever custom sprite      | Timer clock that adds bonus time
-# - source/tripleblock.cpp       #| Sprite: 102, Profile: 588,  [BROKEN]   Notes: [Newer SMBU]  Written by Kinnay   | Ported by Luminyx                     | Triple ? block, from NSMB2
-# - source/waveplatform.cpp      #| Sprite: 521, Profile: 834   [BROKEN]   Notes: [Newer SMBU]  Written by Kinnay   | Ported by Luminyx                     | Platform that floats on top of Newer U waves
-# - source/windactor.cpp         #| Sprite: 197, Profile: 793,  [BROKEN]   Notes: [Newer SMBU]  Written by Kinnay   | Ported by Luminyx                     | Not sure if this counts as a patch or a sprite because it replaces the broken wind sprite with its own (fixed) implementation
+  - source/fakecheckpoint.cpp    #| Sprite: 312, Profile: 93,              Notes: [Mixed SMBU]          Written by Luminyx  | Idea originally from Sakura + Astro   | Checkpoint that disappears on touch
+  - source/fakestarcoin.cpp      #| Sprite: 449, Profile: 808,             Notes: [CodeDX]              Written by RicBent  | Ported by iHarv                       | Star coin that disappears on touch
+  - source/fallingchestnut.cpp   #| Sprite: 692, Profile: 292,             Notes: [Mixed SMBU]          Written by Luminyx  |                                       | Falling chestnut, idea from Newer Wii
+  - source/flipblock.cpp         #| Sprite: 551, Profile: 281,             Notes: [NSMBU Haxx]          Written by AboodXD  | Example sprite from NSMBU Haxx        | Flipblock from SMW
+  - source/poisonmushroom.cpp    #| Sprite: 306, Profile: ?,               Notes: [SMB2: Lost Levels]   Written by Luminyx  |                                       | Poison mushroom from The Lost Levels, damages player on contact
+  - source/timeclock.cpp         #| Sprite: 555, Profile: 380,             Notes: [Mixed SMBU]          Written by iHarv    |                                       | Timer clock that adds bonus time
+# - source/tripleblock.cpp       #| Sprite: 102, Profile: 588,  [BROKEN]   Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Triple ? block, from NSMB2
+# - source/waveplatform.cpp      #| Sprite: 521, Profile: 834   [BROKEN]   Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Platform that floats on top of Newer U waves
+# - source/windactor.cpp         #| Sprite: 197, Profile: 793,  [BROKEN]   Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Not sure if this counts as a patch or a sprite because it replaces the broken wind sprite with its own (fixed) implementation
 #* Utility
-  - source/actorspawner.cpp      #| Sprite: 436, Profile: 94,              Notes: [CodeDX]      Written by RicBent  | Ported by AboodXD                     | Just a basic actor spawner
-# - source/effectspawner.cpp     #| Sprite: 134, Profile: 790,  [BROKEN]   Notes: [CodeDX]      Written by RicBent  | Ported by Luminyx                     | Effect spawner that can spawn particles and sounds as well
-  - source/magicplatform.cpp     #| Sprite: 314, Profile: 235,             Notes: [CodeDX]      Written by RicBent  | Ported by AboodXD                     | Allows dynamically moving solid tiles
+  - source/actorspawner.cpp      #| Sprite: 436, Profile: 94,              Notes: [CodeDX]              Written by RicBent  | Ported by AboodXD                     | Just a basic actor spawner
+# - source/effectspawner.cpp     #| Sprite: 134, Profile: 790,  [BROKEN]   Notes: [CodeDX]              Written by RicBent  | Ported by Luminyx                     | Effect spawner that can spawn particles and sounds as well
+  - source/magicplatform.cpp     #| Sprite: 314, Profile: 235,             Notes: [CodeDX]              Written by RicBent  | Ported by AboodXD                     | Allows dynamically moving solid tiles
 #* Patches
-  - source/deathfoo.S            #| Nybble 12 on Sprite 229, Profile 785,  Notes: [Newer SMBU]  Written by Kinnay
+  - source/deathfoo.S            #| Nybble 12 on Sprite 229, Profile 785,  Notes: [Newer SMBU]          Written by Kinnay
+  - source/fakeactors.cpp        #| Nybble 14 on Sprite 45, Profile ?,     Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Star coin that disappears on touch
+  - source/fakeactors.S          #| ^
   - source/profileres.cpp        #| Patches profile resources to allow adding models to broken actors
-  - source/waves.cpp             #| Nybbles on Sprite 88, Profile 84,      Notes: [Newer SMBU]  Written by Kinnay   | Ported by Luminyx                     | The one and only, Newer U waves! :)
+  - source/waves.cpp             #| Nybbles on Sprite 88, Profile 84,      Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | The one and only, Newer U waves! :)
   - source/waves.S               #| ^
 Hooks:
+#---------------------
+#$ Fake Actors
+#---------------------
+  - type: branch
+    instr: bl
+    addr: F31362C
+    func: FakeStarCoin
 #---------------------
 #$ Death Foo
 #! Very buggy

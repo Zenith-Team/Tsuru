@@ -1,10 +1,10 @@
 #pragma once
 
-// Workarounds to match newer standards
 #define nullptr NULL
 #define override
 #define deleted
 #define forceinline __attribute__((always_inline))
+#define static_assert(condition, ...) typedef int static_assert_##__LINE__[(condition) ? 1 : -1];
 
 typedef unsigned char       u8;
 typedef unsigned short      u16;

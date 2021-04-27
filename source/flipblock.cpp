@@ -38,7 +38,7 @@ public:
 
 CREATE_STATE(FlipBlock, Flipping);
 
-const ActorInfo FlipBlockActorInfo = { 8, -16, 8, -8, 0x100, 0x100, 0, 0, 0, 0, ActorInfo::FlagUnknown };
+const ActorInfo FlipBlockActorInfo = { Vec2i(8, -16), Vec2i(8, -8), 0x100, 0x100, 0, 0, 0, 0 };
 const Profile FlipBlockProfile(&FlipBlock::build, ProfileId::Sprite551, "FlipBlock", &FlipBlockActorInfo, 0x1002);
 PROFILE_RESOURCES(ProfileId::Sprite551, "block_snake");
 

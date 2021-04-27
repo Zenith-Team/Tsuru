@@ -44,7 +44,6 @@ extern s32 (* SYSLaunchTitle)(u64 titleId);
 extern s32 (* SYSLaunchSettings)(s32 unk);
 extern u64 (*_SYSGetSystemApplicationTitleId)(s32 sysApp);
 
-
 #ifdef __cplusplus
 }
 #endif
