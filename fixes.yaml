@@ -1,0 +1,16 @@
+
+---
+Files:
+  - source/fixes.S
+  - source/reverb.cpp
+Hooks:
+  # Fix background offset settings to work
+  - type: branch
+    instr: bl
+    addr: EE67FD4
+    func: DistantViewMgr_AddBGOffset
+  # Restore SFX reverb values from NSMBW
+  - type: branch
+    instr: b
+    addr: F583B7C
+    func: SetFxReverbHiAndDelay__FPvUi

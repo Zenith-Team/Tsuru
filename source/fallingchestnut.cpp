@@ -1,10 +1,10 @@
 #include "actor/enemy.h"
 
-#include "movementhandler.h"
-#include "drawmgr.h"
-#include "effect.h"
+#include "actormgr.h"
 #include "sound.h"
-#include "model.h"
+#include "effect.h"
+#include "drawmgr.h"
+#include "movementhandler.h"
 
 
 class FallingChestnut : public Enemy {

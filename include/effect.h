@@ -35,7 +35,7 @@ public:
 };
 
 enum Effects {
-	RP_Cmn_Fireball 				 = 0,
+	RP_Cmn_Fireball 				  = 0,
 	RP_Yoshi_Fireball 				  = 1,
 	RP_Pakkun_Fireball 				  = 2,
 	RP_Enm_Fireball 				  = 3,

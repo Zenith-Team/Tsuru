@@ -1,7 +1,6 @@
 
 ---
 Files:
-  - source/misc.S
   - source/nullsub.S
 Hooks:
   # Disable time rush at 100 secs

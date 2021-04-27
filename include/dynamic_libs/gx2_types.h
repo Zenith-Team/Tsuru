@@ -544,8 +544,7 @@ extern "C" {
 #define GX2R_RESOURCE_LOCKED                            1 << 30
 
 
-typedef struct _GX2RBuffer
-{
+typedef struct _GX2RBuffer {
     u32 flags;
     u32 elemSize;
     u32 elemCount;
