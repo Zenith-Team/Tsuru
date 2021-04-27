@@ -2,6 +2,12 @@
 
 #include "types.h"
 
+template <class T>
+struct List {
+    u32 count;
+    T* list;
+};
+
 namespace sead {
 
 class ListNode {
