@@ -7,7 +7,6 @@
 #include "sound.h"
 #include "eventmgr.h"
 
-
 class FakeStarCoin : public Actor {
 public:
     FakeStarCoin(const ActorBuildInfo* buildInfo);
