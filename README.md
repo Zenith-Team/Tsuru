@@ -5,22 +5,26 @@ New Super Mario Bros. U Custom Code and ASM
 ## Custom Sprites:
 * +Time Clock
 * Actor Spawner
-* Effect Spawner (currently not working)\
+* Death Foo (very buggy)
+* Effect Spawner
+* Fake Checkpoint
+* Fake Star Coin
 * Falling Chestnut (unfinished)
-* Fire Thwomp (broken and unfinished)
-* Flip Block
-* Fake Starcoin
+* Flipblock
 * Magic Platform
+* Poison Mushroom (unfinished)
+* Water Waves (broken, crashes)
 ## Patches:
-* Custom music list (not sure how to use atm)
+* Add archive links for some unused actors to allow adding models
 * Customizable snow particle colors
 * Disabled acorns falling on title screen
 * Disabled music speedup at 100 seconds
 * Disabled FXAA (not enabled by default)
+* Fixed collision conditions for some sprites
 * Fixed sound reverb
 * Size modifier
 * Space Physics
-* Yoshi colors (currently only includes unused ones)
+* Yoshi colors
 
 # Credits
 * AboodXD - Code from NSMBU-Haxx
