@@ -1,4 +1,4 @@
-# DualHax
+# SuperHacks
 New Super Mario Bros. U Custom Code and ASM
 
 # Current hacks
