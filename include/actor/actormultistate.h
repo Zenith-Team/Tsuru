@@ -1,10 +1,10 @@
 #pragma once
 
-#include "stageactor.h"
+#include "physicsactor.h"
 #include "states.h"
 
-class ActorMultiState : public StageActor {  // size: 0x17C8
-    SEAD_RTTI_OVERRIDE(ActorMultiState, StageActor)
+class ActorMultiState : public PhysicsActor {  // size: 0x17C8
+    SEAD_RTTI_OVERRIDE(ActorMultiState, PhysicsActor)
 
 public:
     ActorMultiState(const ActorBuildInfo* buildInfo);

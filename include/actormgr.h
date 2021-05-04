@@ -1,18 +1,18 @@
 #pragma once
 
 #include "sead.h"
-#include "actor/baseactor.h"
+#include "actor/actorbase.h"
 
 class ActorList {
 public:
 	u32 maxCount;
-	BaseActor** first;
+	ActorBase** first;
 	u32 usedCount;
-	BaseActor** last;
+	ActorBase** last;
 	u32 actorId;
 	u32 _14;
 
-	BaseActor* findActorById(u32* id);
+	ActorBase* findActorById(u32* id);
 };
 
 class ActorMgr : public sead::IDisposer {
@@ -24,8 +24,8 @@ public:
        1: add to activeActors and drawableActors
        else: don't add to any of the lists
     */
-    BaseActor* create(ActorBuildInfo* buildInfo, u32 addToActive);
-    BaseActor** findActorByType(ProfileId::ProfileIdType actorId, BaseActor**);
+    ActorBase* create(ActorBuildInfo* buildInfo, u32 addToActive);
+    ActorBase** findActorByType(ProfileId::ProfileIdType actorId, ActorBase**);
 
     // TODO
     void* playerUnitHeap;

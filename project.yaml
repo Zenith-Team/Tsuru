@@ -5,14 +5,14 @@ Modules:
 # - aa.yaml               # Disables FXAA in-game
   - activecollider.yaml   # Collision
   - areatask.yaml         # Area modifiers
-  - constructors.yaml     # Constructor patches
   - customsprites.yaml    # Custom sprites/actors
   - dynamiclibs.yaml      # Dynamic libraries
   - fixes.yaml            # Miscellaneous bugfixes
-  - misc.yaml             # Miscellaneous small patches
+  - initializer.yaml      # Initialize static variables and load RPLs
+  - misc.yaml             # Miscellaneous patches
   - sarcloader.yaml       # Loads levels as .sarc if .szs isn't found
-  - sead.yaml             # Standard library
+  - sead.yaml             # SEAD standard library
   - sizemodifier.yaml     # Sprite size modifier
   - snowparticles.yaml    # Custom snow particles
-  - titlescreen.yaml      # Title screen mods
+  - titlescreen.yaml      # Title screen patches
   - yoshicolors.yaml      # Patches Yoshis to have all colors

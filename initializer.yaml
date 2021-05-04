@@ -1,8 +1,8 @@
 
 ---
-Files: [source/constructors.cpp]
+Files: [source/initializer.cpp]
 Hooks:
   - type: branch
     instr: b
     addr: F6BA050
-    func: callCtors__Fv
+    func: initialize__Fv

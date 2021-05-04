@@ -111,8 +111,7 @@ u32 EffectSpawner::onExecute() {
             if (effectLength)
                 effectTimer++;
         }
-    }
-    else {
+    } else {
         if (spawnEffect)
             effect.update(-1, &position, &rotation, &scale);
 

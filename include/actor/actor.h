@@ -1,6 +1,6 @@
 #pragma once
 
-#include "baseactor.h"
+#include "actorbase.h"
 #include "activecollider.h"
 #include "eatdata.h"
 #include "util/vec3u.h"
@@ -10,8 +10,8 @@ extern u32 directionToRotationList[];
 class ColliderBase;
 class CollisionMgr;
 
-class Actor : public BaseActor {  // size: 0x27C
-    SEAD_RTTI_OVERRIDE(Actor, BaseActor)
+class Actor : public ActorBase {  // size: 0x27C
+    SEAD_RTTI_OVERRIDE(Actor, ActorBase)
 
 public:
     struct CallbackTable {

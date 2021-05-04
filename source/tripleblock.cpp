@@ -10,7 +10,7 @@ public:
     TripleBlock(const ActorBuildInfo* buildInfo);
     virtual ~TripleBlock() { }
 
-    static BaseActor* build(const ActorBuildInfo* buildInfo);
+    static ActorBase* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onDraw() override;
@@ -43,7 +43,7 @@ PROFILE_RESOURCES(ProfileId::Sprite102, "switch");  // TODO: check if you can ad
 
 TripleBlock::TripleBlock(const ActorBuildInfo* buildInfo) : BlockBase(buildInfo) { }
 
-BaseActor* TripleBlock::build(const ActorBuildInfo* buildInfo) {
+ActorBase* TripleBlock::build(const ActorBuildInfo* buildInfo) {
     return new TripleBlock(buildInfo);
 }
 

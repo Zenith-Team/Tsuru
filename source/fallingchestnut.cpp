@@ -12,7 +12,7 @@ public:
     FallingChestnut(const ActorBuildInfo* buildInfo);
     virtual ~FallingChestnut() { }
 
-    static BaseActor* build(const ActorBuildInfo* buildInfo);
+    static ActorBase* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -47,7 +47,7 @@ const CollisionMgr::Sensor FallingChestnut::belowSensor = { 16.0f, 16.0f, -16.0f
 
 FallingChestnut::FallingChestnut(const ActorBuildInfo* buildInfo) : Enemy(buildInfo) { }
 
-BaseActor* FallingChestnut::build(const ActorBuildInfo* buildInfo) {
+ActorBase* FallingChestnut::build(const ActorBuildInfo* buildInfo) {
     return new FallingChestnut(buildInfo);
 }
 
@@ -98,6 +98,9 @@ void FallingChestnut::updateModel() {
     model->updateModel();
 }
 
+
+// Idle state
+
 void FallingChestnut::beginState_Evaluate() { }
 
 void FallingChestnut::executeState_Evaluate() {
@@ -113,6 +116,9 @@ void FallingChestnut::executeState_Evaluate() {
 }
 
 void FallingChestnut::endState_Evaluate() { }
+
+
+//* Falling state
 
 void FallingChestnut::beginState_Falling() {
     gravity = -0.1875f;
@@ -132,6 +138,9 @@ void FallingChestnut::executeState_Falling() {
 }
 
 void FallingChestnut::endState_Falling() { }
+
+
+//* OnGround state
 
 void FallingChestnut::beginState_OnGround() { }
 

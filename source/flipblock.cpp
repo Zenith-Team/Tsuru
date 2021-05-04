@@ -9,7 +9,7 @@ public:
     FlipBlock(const ActorBuildInfo* buildInfo);
     virtual ~FlipBlock() { }
 
-    static BaseActor* build(const ActorBuildInfo* buildInfo);
+    static ActorBase* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -47,7 +47,7 @@ const ActiveCollider::Info FlipBlock::colliderInfo = { Vec2(0.0f, 8.0f), Vec2(8.
 
 FlipBlock::FlipBlock(const ActorBuildInfo* buildInfo) : BlockBase(buildInfo) , flipsRemaining(0) { }
 
-BaseActor* FlipBlock::build(const ActorBuildInfo* buildInfo) {
+ActorBase* FlipBlock::build(const ActorBuildInfo* buildInfo) {
     return new FlipBlock(buildInfo);
 }
 

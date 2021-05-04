@@ -43,12 +43,12 @@ struct ActorBuildInfo {
     u8* _28;                      // 28
 };
 
-class BaseActor {  // size: 0x50
-    SEAD_RTTI_BASE(BaseActor)
+class ActorBase {  // size: 0x50
+    SEAD_RTTI_BASE(ActorBase)
 
 public:
-    BaseActor(const ActorBuildInfo* buildInfo);
-    virtual ~BaseActor();
+    ActorBase(const ActorBuildInfo* buildInfo);
+    virtual ~ActorBase();
 
     virtual u32 beforeCreate();
 
@@ -78,10 +78,10 @@ public:
     virtual u32 onDelete();
     virtual void afterDelete(u32);
 
-    void removeChild(BaseActor* child);
+    void removeChild(ActorBase* child);
     ProfileId::ProfileIdType getProfileId();
 
-    typedef sead::OffsetList<BaseActor> ActorList;
+    typedef sead::OffsetList<ActorBase> ActorList;
 
     sead::Heap* heap;             // 0
     u32 id;                       // 4
@@ -97,7 +97,7 @@ public:
     u8 initStateFlag;             // 1A
     ActorList childList;          // 1C
     sead::ListNode childNode;     // 2C
-    BaseActor* parent;            // 34
+    ActorBase* parent;            // 34
     sead::ListNode actorListNode; // 38
     sead::ListNode drawListNode;  // 40
     u32 flags;                    // 48
