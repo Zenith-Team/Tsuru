@@ -2,7 +2,7 @@
 cast_double: .quad 0x4330000080000000
 
 .text
-.include "asmsetup.S"
+.include "registers.S"
 
 .global DistantViewMgr_AddBGOffset
 DistantViewMgr_AddBGOffset:

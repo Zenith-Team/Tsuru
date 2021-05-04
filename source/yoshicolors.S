@@ -4,7 +4,7 @@ YoshiTexLightBlue:  .string "Yoshi_TexLightBlue"
 YoshiTexYellow:     .string "Yoshi_TexYellow"
 
 .text
-.include "asmsetup.S"
+.include "registers.S"
 
 .global PatchYoshiColors
 PatchYoshiColors:

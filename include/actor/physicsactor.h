@@ -25,7 +25,7 @@ public:
         _179A = unk;
     }
 
-    virtual u8 vf114() deleted;                 // deleted
+    virtual u8 vf114() deleted;         // deleted
 
     virtual void vf11C() { }            // nullsub
 

@@ -62,20 +62,20 @@ public:
     virtual void setBoneTransform(u32 idx, Mtx34& transform);
     virtual void getBoneTransform(u32 idx, Mtx34& transform);
     virtual void setBoneVisibility(u32 idx, bool visibility);
-    virtual bool getBoneVisibility(u32 idx) const; // deleted
+    virtual bool getBoneVisibility(u32 idx) const deleted; // deleted
     virtual u32 getMaterialCount() const;
     virtual s32 getMaterialIdx(const sead::SafeString& name) const;
     virtual const char* getMaterialName(u32 idx) const;
     virtual const Material& getMaterial(u32 idx);
     virtual void setMaterialVisibility(u32 idx, bool visibility);
-    virtual bool getMaterialVisibility(u32 idx) const; // deleted
-    virtual void vf124(); // deleted
+    virtual bool getMaterialVisibility(u32 idx) const deleted; // deleted
+    virtual void vf124() deleted; // deleted
     virtual void vf12C(); // gets a flag
     virtual const nw::g3d::Sphere& getBounding();
     virtual void initViewShapesBuffer(void*, void*);
     virtual void getName(sead::SafeString& name) const;
     virtual void setSklAnimRelatedFloat(u32 idx, f32);
-    virtual f32 getSklAnimRelatedFloat(); // deleted
+    virtual f32 getSklAnimRelatedFloat() deleted; // deleted
     virtual void setSklAnim(u32 idx, SkeletalAnimation& anim);
     virtual void setTexAnim(u32 idx, TextureAnimation& anim);
     virtual void setShuAnim(u32 idx, ShaderAnimation& anim);
