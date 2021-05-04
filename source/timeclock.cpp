@@ -11,7 +11,9 @@
 class TimeClock : public Actor {
 public:
     TimeClock(const ActorBuildInfo* buildInfo);
-    static BaseActor* build(const ActorBuildInfo* buildInfo);
+    virtual ~TimeClock() { }
+
+    static ActorBase* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -37,7 +39,7 @@ const ActiveCollider::Info TimeClock::collisionInfo = { Vec2(0.0f, -3.0f), Vec2(
 
 TimeClock::TimeClock(const ActorBuildInfo* buildInfo) : Actor(buildInfo) { }
 
-BaseActor* TimeClock::build(const ActorBuildInfo* buildInfo) {
+ActorBase* TimeClock::build(const ActorBuildInfo* buildInfo) {
     return new TimeClock(buildInfo);
 }
 

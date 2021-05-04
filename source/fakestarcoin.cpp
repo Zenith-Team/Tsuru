@@ -10,7 +10,7 @@
 class FakeStarCoin : public Actor {
 public:
     FakeStarCoin(const ActorBuildInfo* buildInfo);
-    static BaseActor* build(const ActorBuildInfo* buildInfo);
+    static ActorBase* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -36,7 +36,7 @@ const ActiveCollider::Info FakeStarCoin::collisionInfo = { Vec2(0.0f, -3.0f), Ve
 
 FakeStarCoin::FakeStarCoin(const ActorBuildInfo* buildInfo) : Actor(buildInfo) { }
 
-BaseActor* FakeStarCoin::build(const ActorBuildInfo* buildInfo) {
+ActorBase* FakeStarCoin::build(const ActorBuildInfo* buildInfo) {
     return new FakeStarCoin(buildInfo);
 }
 

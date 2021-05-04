@@ -1,8 +1,9 @@
 #pragma once
 
-#include "sead.h"
+#include "nw/g3d.h"
 #include "util/mtx34.h"
 #include "resarchive.h"
+#include "sead.h"
 
 class SkeletalAnimation;
 class TextureAnimation;
@@ -10,8 +11,11 @@ class ShaderAnimation;
 class VisibilityAnimation;
 class ShapeAnimation;
 
-class Model { // this has 2 base classes
+class Model {  // this has 2 base classes
     SEAD_RTTI_BASE(Model)
+
+public:
+    class Material;
 
 public:
     // Calculates the drawing resources for skeleton matrices, shapes and materials
@@ -21,12 +25,16 @@ public:
     virtual void CalcView(s32 viewIndex, const Mtx34& cameraMtx);
 
     virtual void vf2C(s32 bufferIdx, u32, u32, void*); // always a nullsub
-    virtual void vf34(s32 bufferIdx, u32, u32, void*);
-    virtual void vf3C(s32 bufferIdx, u32, u32, void*);
-    virtual void vf44(s32 bufferIdx, u32, u32, void*);
-    virtual void vf4C(s32 bufferIdx, u32, u32, void*);
-    virtual void vf54(s32 bufferIdx, u32, u32, void*);
-    virtual u32 vf5C(); // gets a flag
+
+    // All these draw all shapes depending on certain combinations of flags
+    virtual void drawAllShapesFlag1(s32 bufferIdx, u32, u32, void*);
+    virtual void drawAllShapesFlag2(s32 bufferIdx, u32, u32, void*);
+    virtual void drawAllShapes(s32 bufferIdx, u32, u32, void*);
+    virtual void drawAllShapesFlag3(s32 bufferIdx, u32, u32, void*);
+    virtual void drawAllShapesFlag4(s32 bufferIdx, u32, u32, void*);
+
+    // Gets a flag used as one of the prerequisites for drawAllShapes()
+    virtual bool canDrawAllShapes() const;
 
     virtual ~Model();
 
@@ -34,36 +42,40 @@ public:
     virtual void updateModel();
 
     // Rotation + Translation matrix
-    virtual void setMtx(const Mtx34& mtx);
+    virtual void setMtx(const Mtx34& mtxRT);
     virtual const Mtx34& getMtx() const;
 
     virtual void setScale(const Vec3& scale);
     virtual const Vec3& getScale() const;
 
-    virtual void vf9C();
-    virtual void vfA4();
+    // Determines if shapes drawn using drawAllShapesFlag1() need drawing
+    virtual bool shapesNeedDrawingFlag1() const;
+    // Determines if shapes drawn using drawAllShapesFlag2() need drawing
+    virtual bool shapesNeedDrawingFlag2() const;
+
     virtual s32 getBoneIdx(const sead::SafeString& name) const;
     virtual const char* getBoneName(u32 idx) const;
     virtual u32 getBoneCount() const;
-    virtual void vfC4();
-    virtual void vfCC();
-    virtual void vfD4();
+    virtual void setBoneSRT(u32 idx, const Mtx34& mtxRT, const Vec3& scale);
+    virtual void getBoneSRT(u32 idx, Mtx34& mtxRT, Vec3& scale);
+    // World matrix for bone
+    virtual void setBoneTransform(u32 idx, Mtx34& transform);
     virtual void getBoneTransform(u32 idx, Mtx34& transform);
-    virtual void vfE4();
-    virtual void vfEC();                        // deleted
+    virtual void setBoneVisibility(u32 idx, bool visibility);
+    virtual bool getBoneVisibility(u32 idx) const; // deleted
     virtual u32 getMaterialCount() const;
     virtual s32 getMaterialIdx(const sead::SafeString& name) const;
     virtual const char* getMaterialName(u32 idx) const;
-    virtual void vf10C();
-    virtual void vf114();
-    virtual void vf11C();                        // deleted
-    virtual void vf124();                        // deleted
-    virtual void vf12C();
-    virtual void vf134();                        //? getBounding?
-    virtual void vf13C();
+    virtual const Material& getMaterial(u32 idx);
+    virtual void setMaterialVisibility(u32 idx, bool visibility);
+    virtual bool getMaterialVisibility(u32 idx) const; // deleted
+    virtual void vf124(); // deleted
+    virtual void vf12C(); // gets a flag
+    virtual const nw::g3d::Sphere& getBounding();
+    virtual void initViewShapesBuffer(void*, void*);
     virtual void getName(sead::SafeString& name) const;
-    virtual void vf14C();
-    virtual void vf154();                        // deleted
+    virtual void setSklAnimRelatedFloat(u32 idx, f32);
+    virtual f32 getSklAnimRelatedFloat(); // deleted
     virtual void setSklAnim(u32 idx, SkeletalAnimation& anim);
     virtual void setTexAnim(u32 idx, TextureAnimation& anim);
     virtual void setShuAnim(u32 idx, ShaderAnimation& anim);
@@ -103,7 +115,7 @@ public:
     virtual void calculate() = 0;
 };
 
-class SkeletalAnimation : public ModelAnimation { // size: 0x98 
+class SkeletalAnimation : public ModelAnimation {  // size: 0x98
 public:
     SkeletalAnimation();
     void calculate() override;
@@ -155,8 +167,8 @@ public:
     void updateModel();
     void updateAnimations();
 
-    inline void setMtx(const Mtx34& mtx) {
-        model->setMtx(mtx);
+    inline void setMtx(const Mtx34& mtxRT) {
+        model->setMtx(mtxRT);
     }
 
     inline const Mtx34& getMtx() const {

@@ -10,7 +10,7 @@ class FakeCheckpoint : public Actor {
 public:
     FakeCheckpoint(const ActorBuildInfo* buildInfo);
     
-    static BaseActor* build(const ActorBuildInfo* buildInfo);
+    static ActorBase* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -32,9 +32,10 @@ PROFILE_RESOURCES(ProfileId::Sprite312, "middle_flag");
 
 const ActiveCollider::Info FakeCheckpoint::collisionInfo = { Vec2(0.0f, -3.0f), Vec2(12.0f, 15.0f), 0, 5, 0, 0x824F, 0x20208, 0, &FakeCheckpoint::collisionCallback };
 
-FakeCheckpoint::FakeCheckpoint(const ActorBuildInfo* buildInfo) : Actor(buildInfo) { }
+FakeCheckpoint::FakeCheckpoint(const ActorBuildInfo* buildInfo)
+    : Actor(buildInfo) { }
 
-BaseActor* FakeCheckpoint::build(const ActorBuildInfo* buildInfo) {
+ActorBase* FakeCheckpoint::build(const ActorBuildInfo* buildInfo) {
     return new FakeCheckpoint(buildInfo);
 }
 

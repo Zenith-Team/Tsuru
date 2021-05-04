@@ -97,7 +97,7 @@ SECTIONS {
 	cConvFuncTable__Q2_4sead6Endian = 0x10694BA8;
 
 	/* Profile */
-	__ct__7ProfileFPFPC14ActorBuildInfo_P9BaseActorUiRCQ2_4sead23SafeStringBase__tm__2_cPC9ActorInfoT2 = 0xEBD9554;
+	__ct__7ProfileFPFPC14ActorBuildInfo_P9ActorBaseUiRCQ2_4sead23SafeStringBase__tm__2_cPC9ActorInfoT2 = 0xEBD9554;
 	get__7ProfileSFUi = 0xEBD9774;
 	spriteToProfileList__7Profile = 0x106EEF8C;
 	prioritiesOriginal__7Profile = 0x10503B40;
@@ -113,7 +113,7 @@ SECTIONS {
 	instance__8ActorMgr = 0x106c52c8;
 	create__8ActorMgrFP14ActorBuildInfoUi = 0xebc9a58;
 	createActor__8ActorMgrFP14ActorBuildInfoUi = 0xEBC9A58;
-	findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP9BaseActor = 0xEBC9B6C;
+	findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP9ActorBase = 0xEBC9B6C;
 
 	/* ActorList */
 	findById__9ActorListFPUi = 0xEBCA5C8;
@@ -123,20 +123,20 @@ SECTIONS {
 	sInstance__8ActorMgr = 0x106c52c8;
 	create__8ActorMgrFP14ActorBuildInfoUi = 0xebc9a58;
 
-	/* BaseActor */
-	__vtbl__9BaseActor = 0x105028c0;
-	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__9BaseActorSFv = 0x106EBEC4;
-	typeInfo__L0__getRuntimeTypeInfoStatic__9BaseActorSFv = 0x106EBEC8;
-	removeChild__9BaseActorFP9BaseActor = 0xEBC2C8C;
-	beforeCreate__9BaseActorFv = 0xebc2f7c;
-	onExecute__9BaseActorFv = 0xebc2f8c;
-	finalExecute__9BaseActorFv = 0xebc2f94;
-	onDraw__9BaseActorFv = 0xebc2fa0;
-	afterDraw__9BaseActorFUi = 0xebc2f38;
-	beforeDelete__9BaseActorFv = 0xebc2fa8;
-	onDelete__9BaseActorFv = 0xebc2fb0;
-	afterDelete__9BaseActorFUi = 0xebc2f3c;
-	getProfileId__9BaseActorFv = 0xEBC2C80;
+	/* ActorBase */
+	__vtbl__9ActorBase = 0x105028c0;
+	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__9ActorBaseSFv = 0x106EBEC4;
+	typeInfo__L0__getRuntimeTypeInfoStatic__9ActorBaseSFv = 0x106EBEC8;
+	removeChild__9ActorBaseFP9ActorBase = 0xEBC2C8C;
+	beforeCreate__9ActorBaseFv = 0xebc2f7c;
+	onExecute__9ActorBaseFv = 0xebc2f8c;
+	finalExecute__9ActorBaseFv = 0xebc2f94;
+	onDraw__9ActorBaseFv = 0xebc2fa0;
+	afterDraw__9ActorBaseFUi = 0xebc2f38;
+	beforeDelete__9ActorBaseFv = 0xebc2fa8;
+	onDelete__9ActorBaseFv = 0xebc2fb0;
+	afterDelete__9ActorBaseFUi = 0xebc2f3c;
+	getProfileId__9ActorBaseFv = 0xEBC2C80;
 
 	/* Actor */
 	__vtbl__5Actor = 0x10502468;
@@ -167,23 +167,23 @@ SECTIONS {
 	isOffScreen__5ActorFv = 0xebc1254;
 
 	/* StageActor */
-	__vtbl__10StageActor = 0x10502a4c;
-	__ct__10StageActorFPC14ActorBuildInfo = 0xEBC2FB8;
-	__dt__10StageActorFv = 0xEBC40B0;
-	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x106EBED4;
-	typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x106EBED8;
-	handleGravity__10StageActorFv = 0xEBC39AC;
-	handleSpeed__10StageActorFv = 0xEBC3AE4;
-	afterCreate__10StageActorFUi = 0xebc354c;
-	beforeExecute__10StageActorFv = 0xebc35fc;
-	afterExecute__10StageActorFUi = 0xebc36d8;
-	onDelete__10StageActorFv = 0xebc3724;
-	setPlayerId__10StageActorFSc = 0xEBC3F10;
-	vf114__10StageActorFv = __deleted_virtual_called;
-	vf134__10StageActorFv = __deleted_virtual_called;
-	vf13C__10StageActorFv = 0xebc4008;
-	vf144__10StageActorFb = 0xebc375c;
-	vf14C__10StageActorFP5Actor = 0xebc3760;
+	__vtbl__12PhysicsActor = 0x10502a4c;
+	__ct__12PhysicsActorFPC14ActorBuildInfo = 0xEBC2FB8;
+	__dt__12PhysicsActorFv = 0xEBC40B0;
+	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__12PhysicsActorSFv = 0x106EBED4;
+	typeInfo__L0__getRuntimeTypeInfoStatic__12PhysicsActorSFv = 0x106EBED8;
+	handleGravity__12PhysicsActorFv = 0xEBC39AC;
+	handleSpeed__12PhysicsActorFv = 0xEBC3AE4;
+	afterCreate__12PhysicsActorFUi = 0xebc354c;
+	beforeExecute__12PhysicsActorFv = 0xebc35fc;
+	afterExecute__12PhysicsActorFUi = 0xebc36d8;
+	onDelete__12PhysicsActorFv = 0xebc3724;
+	setPlayerId__12PhysicsActorFSc = 0xEBC3F10;
+	vf114__12PhysicsActorFv = __deleted_virtual_called;
+	vf134__12PhysicsActorFv = __deleted_virtual_called;
+	vf13C__12PhysicsActorFv = 0xebc4008;
+	vf144__12PhysicsActorFb = 0xebc375c;
+	vf14C__12PhysicsActorFP5Actor = 0xebc3760;
 
 	/* ActorMultiState */
 	__vtbl__15ActorMultiState = 0x10503248;
@@ -489,8 +489,8 @@ SECTIONS {
 	vf61C__4BossFv = 0xEBEDDC8;
 	vf624__4BossFv = __deleted_virtual_called;
 	vf62C__4BossFv = 0xEBEDDD0;
-	vf634__4BossFP10StageActor = 0xEBEDDD8;
-	vf63C__4BossFP10StageActor = 0xEBEDDE4;
+	vf634__4BossFP12PhysicsActor = 0xEBEDDD8;
+	vf63C__4BossFP12PhysicsActor = 0xEBEDDE4;
 	vf644__4BossFv = 0xEBED120;
 	vf64C__4BossFUi = 0xEBED214;
 	vf654__4BossFv = 0xEBEDF28;
@@ -772,9 +772,9 @@ SECTIONS {
     /* RDashMgr */
     instance__8RDashMgr = 0x106E9F9C;
 
-	/* TODO: THIS IS WRONG!!!!!!!! Input */
+	/* TODO: THIS CRASHES Input 
 	instance__8InputMgr = 0x106D4FF8;
-	getTilt__10ControllerFPUif = 0xF0CED50;
+	getTilt__10ControllerFPUif = 0xF0CED50; */
 
 	/* TerrainEffects */
 	__CPR79__init__14TerrainEffectsFP4Vec3fbT3Q2_J6J11TerrainTypePQ2_4sead4Heap = 0xF477378;

@@ -3,12 +3,12 @@
 #include "actor.h"
 #include "collisionmgr.h"
 
-class StageActor : public Actor {  // size: 0x17A0
-    SEAD_RTTI_OVERRIDE(StageActor, Actor)
+class PhysicsActor : public Actor {  // size: 0x17A0
+    SEAD_RTTI_OVERRIDE(PhysicsActor, Actor)
 
 public:
-    StageActor(const ActorBuildInfo* buildInfo);
-    virtual ~StageActor();
+    PhysicsActor(const ActorBuildInfo* buildInfo);
+    virtual ~PhysicsActor();
 
     void afterCreate(u32) override;
     u32 beforeExecute() override;

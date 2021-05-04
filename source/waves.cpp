@@ -52,10 +52,12 @@ void EventWaves::update(TerrainEffects* terrain) {
     if (eventId) {
         f32 targetHeight = flatHeight;
         u32 targetSpeed = 0;
+        
         if (EventMgr::instance->events & (1 << (eventId - 1))) {
             targetHeight = waveHeight;
             targetSpeed = waveSpeed;
         }
+
         moveFloatTo(&terrain->waveHeight, targetHeight, 0.4);
         moveValueTo(&terrain->waveSpeed, targetSpeed, 0x20000);
     }
@@ -88,8 +90,7 @@ void initWaterWaves(EnvTerrain* water, Vec3* pos, f32 width, bool noLoc, bool la
         if (type == TerrainEffects::Water) {
             TileMgr::instance->waveType = 2;
             ((CustomWater*)water)->waves.init(&water->terrain, 1.0, 8.0, eventId);
-        }
-        else if (type == TerrainEffects::Poison) {
+        } else if (type == TerrainEffects::Poison) {
             TileMgr::instance->waveType = 3;
             ((CustomPoison*)water)->waves.init(&water->terrain, 0.8, -4.0, eventId);
         }
@@ -102,12 +103,12 @@ void updateWaterWaves(TerrainEffects* effects) {
     }
 }
 
-u32 updateWavePlatforms() {
-    BaseActor** platform = ActorMgr::instance->findActorByType(ProfileId::Sprite521, ActorMgr::instance->actorList.first);
-    while (platform != ActorMgr::instance->actorList.last) {
-        (*platform)->onExecute();
-        platform = ActorMgr::instance->findActorByType(ProfileId::Sprite521, platform + 1);
-    }
-
-    return 1;
-}
+// u32 updateWavePlatforms() {
+//     BaseActor** platform = ActorMgr::instance->findActorByType(ProfileId::Sprite521, ActorMgr::instance->actorList.first);
+//     while (platform != ActorMgr::instance->actorList.last) {
+//         (*platform)->onExecute();
+//         platform = ActorMgr::instance->findActorByType(ProfileId::Sprite521, platform + 1);
+//     }
+// 
+//     return 1;
+// }

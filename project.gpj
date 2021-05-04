@@ -17,7 +17,7 @@ primaryTarget=ppc_standalone.tgt
 	-I../files/include
 source/activecollider.cpp
 source/areatask.cpp
-source/constructors.cpp
+source/angrysun.cpp
 source/fakecheckpoint.cpp
 source/fakestarcoin.cpp
 source/fallingchestnut.cpp
@@ -38,6 +38,7 @@ source/dynamic_libs/h264_functions.cpp
 source/dynamic_libs/zlib_functions.cpp
 source/fixes.S
 source/reverb.cpp
+source/initializer.cpp
 source/misc.cpp
 source/nullsub.S
 source/sarcloader.S

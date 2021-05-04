@@ -8,7 +8,7 @@ public:
     PoisonMushroom(const ActorBuildInfo* buildInfo);
     virtual ~PoisonMushroom() { }
 
-    static BaseActor* build(const ActorBuildInfo* buildInfo);
+    static ActorBase* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -46,7 +46,7 @@ const CollisionMgr::Sensor PoisonMushroom::sideSensor       = { 0.0f,  16.0f,  8
 
 PoisonMushroom::PoisonMushroom(const ActorBuildInfo* buildInfo) : Enemy(buildInfo) { }
 
-BaseActor* PoisonMushroom::build(const ActorBuildInfo* buildInfo) {
+ActorBase* PoisonMushroom::build(const ActorBuildInfo* buildInfo) {
     return new PoisonMushroom(buildInfo);
 }
 

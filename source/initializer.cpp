@@ -18,15 +18,18 @@ extern u32 BOSDynLoad_FindExport;
 
 }
 
-void callCtors() {
+void initialize() {
     static bool initialized = false;
     if (initialized)
         return;
 
     initialized = true;
+
+// Initialize static variables
     for (s32 i = 0; _ctors[i]; i++)
         (*_ctors[i])();
 
+// Load dynamic libraries
     // Set addr_OSDynLoad_Acquire and addr_OSDynLoad_FindExport
     OS_SPECIFICS->addr_OSDynLoad_Acquire    = (u32)(BLOSDynLoad_Acquire   & 0x03FFFFFC);
     OS_SPECIFICS->addr_OSDynLoad_FindExport = (u32)(BOSDynLoad_FindExport & 0x03FFFFFC);

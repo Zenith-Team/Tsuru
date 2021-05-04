@@ -1,7 +1,7 @@
 #pragma once
 
 #include "actor/actormultistate.h"
-#include "activecollider.h"
+#include "collider.h"
 
 // TODO: verify
 
@@ -16,7 +16,7 @@ public:
 	};
     
 
-	void *renderer;
+	void* renderer;
 	u32 _4;			
 	Vec3 position;	
 	u8 _14[12];				
@@ -63,7 +63,7 @@ public:
 	u32 _17CC;
 	Vec3 _17D0;
 	Vec3 _17DC;
-	ActiveCollider collision; //? Not sure if this is actually ActiveCollider, it was labelled "SolidCollider" in Newer U
+	RectCollider collision; //? Not sure if this is actually RectCollider, it was labelled "SolidCollider" in Newer U
 	u8 _1A78[4 * 8];
 	u32 _1A98;
 	Vec2 _1A9C;

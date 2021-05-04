@@ -2,11 +2,12 @@
 ---
 Files:
 #* Regular sprites:
+  - source/angrysun.cpp          #| Sprite: 521, Profile: 834,             Notes: [CodeDx]              Written by RicBent  | Ported by iHarv                       | Angry sun similar to that one from Newer SMBW
   - source/fakecheckpoint.cpp    #| Sprite: 312, Profile: 93,              Notes: [Mixed SMBU]          Written by Luminyx  | Idea originally from Sakura + Astro   | Checkpoint that disappears on touch
   - source/fakestarcoin.cpp      #| Sprite: 449, Profile: 808,             Notes: [CodeDX]              Written by RicBent  | Ported by iHarv                       | Star coin that disappears on touch
   - source/fallingchestnut.cpp   #| Sprite: 692, Profile: 292,             Notes: [Mixed SMBU]          Written by Luminyx  |                                       | Falling chestnut, idea from Newer Wii
   - source/flipblock.cpp         #| Sprite: 551, Profile: 281,             Notes: [NSMBU Haxx]          Written by AboodXD  | Example sprite from NSMBU Haxx        | Flipblock from SMW
-  - source/poisonmushroom.cpp    #| Sprite: 306, Profile: ?,               Notes: [SMB2: Lost Levels]   Written by Luminyx  |                                       | Poison mushroom from The Lost Levels, damages player on contact
+  - source/poisonmushroom.cpp    #| Sprite: 306, Profile: ?,               Notes: [SMB2: Lost Levels]   Written by Luminyx  |                                       | Poison mushroom recreation from The Lost Levels, damages player on contact
   - source/timeclock.cpp         #| Sprite: 555, Profile: 380,             Notes: [Mixed SMBU]          Written by iHarv    |                                       | Timer clock that adds bonus time
 # - source/tripleblock.cpp       #| Sprite: 102, Profile: 588,  [BROKEN]   Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Triple ? block, from NSMB2
 # - source/waveplatform.cpp      #| Sprite: 521, Profile: 834   [BROKEN]   Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Platform that floats on top of Newer U waves
@@ -80,66 +81,66 @@ Hooks:
 #? IP: 0x024f60fc
 #? ResArchiveMgr::get()
 #---------------------
-   # nop
+  # nop, makes it so water is flat/topless 
   - type: patch
     addr: F479158
     data: "60000000"
- 
-  - type: branch
-    instr: b
-    addr: F2B93F4
-    func: updateWavePlatforms__Fv
- 
+#
+# - type: branch
+#   instr: b
+#   addr: F2B93F4
+#   func: updateWavePlatforms__Fv
+#
   - type: branch
     instr: b
     addr: F2B666C
     func: updateWaveEvents__12CustomPoisonFv
- 
-  - type: branch
-    instr: b
-    addr: F2B6668
-    func: updateWavePlatforms__Fv
- 
-  - type: branch
-    instr: b
-    addr: F2B4B70
-    func: updateWavePlatforms__Fv
- 
+#
+# - type: branch
+#   instr: b
+#   addr: F2B6668
+#   func: updateWavePlatforms__Fv
+#
+# - type: branch
+#   instr: b
+#   addr: F2B4B70
+#   func: updateWavePlatforms__Fv
+#
   - type: branch
     instr: bl
     addr: F479060
     func: UpdateWaterWaves
- 
+#
   - type: branch
     instr: bl
     addr: F2B9410
     func: updateWaveEvents__11CustomWaterFv
- 
+#
   - type: branch
     instr: bl
     addr: ED4F150
     func: WaterWaveCollision
- 
+#
   - type: branch
     instr: bl
     addr: F2B92B0
     func: InitWaterWaves
- 
+#
   - type: branch
     instr: bl
     addr: ED4F884
     func: WaterWaveCollision2
- 
+#
   - type: branch
     instr: bl
     addr: F2B7D5C
     func: AllocEventWaves
- 
+#
   - type: branch
     instr: bl
     addr: F2B603C
     func: AllocEventWaves
- 
+#
   - type: branch
     instr: bl
     addr: F2B659C
