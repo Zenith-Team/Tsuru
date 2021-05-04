@@ -58,12 +58,12 @@ public:
 	virtual u32 fireTime();                             //returns 24
 	virtual void vf624() deleted;                       //deleted
 	virtual u32 stompTime();                            //returns 24
-	virtual void vf634(StageActor*);   
-	virtual void vf63C(StageActor*);   
+	virtual void vf634(PhysicsActor*);   
+	virtual void vf63C(PhysicsActor*);   
 	virtual void vf644();                               //Searches actor "Register for Fever -" and deletes it
-	virtual void onStomp(StageActor* player);   
-	virtual void onStompDamage(StageActor* other);      //nullsub
-	virtual void onStompKill(StageActor* killer);   
+	virtual void onStomp(PhysicsActor* player);   
+	virtual void onStompDamage(PhysicsActor* other);      //nullsub
+	virtual void onStompKill(PhysicsActor* killer);   
 	virtual void vf664();                               //nullsub
 	virtual void changeState_State1();  
 	virtual void onGroundPoundDamage();                 //calls vf654

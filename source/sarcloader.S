@@ -3,7 +3,7 @@ CoursePathFormat: .string "course_res_pack/%s.sarc"
 RDashCoursePathFormat: .string "rdash://course_res_pack/%s.sarc"
 
 .text
-.include "asmsetup.S"
+.include "registers.S"
 
 .global ResMgr_LoadLevelArchiveWithoutDecomp
 ResMgr_LoadLevelArchiveWithoutDecomp:

@@ -1,5 +1,5 @@
 .text
-.include "asmsetup.S"
+.include "registers.S"
 
 .global LoadCustomSpriteList_02004578
 LoadCustomSpriteList_02004578:

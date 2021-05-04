@@ -1,5 +1,5 @@
 .text
-.include "asmsetup.S"
+.include "registers.S"
 
 .global FakeStarCoin
 FakeStarCoin:

@@ -4,7 +4,7 @@ DeathCloudColorLight:   .byte 145, 0, 55, 255
 DeathCloudSize:         .float 1.0
 
 .text
-.include "asmsetup.S"
+.include "registers.S"
 
 .global FooCloudType_onCreate
 FooCloudType_onCreate:
