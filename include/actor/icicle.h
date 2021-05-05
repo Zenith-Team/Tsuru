@@ -11,8 +11,6 @@ public:
     Icicle(const ActorBuildInfo* buildInfo);
     virtual ~Icicle();
 
-    bool checkDerivedRuntimeTypeInfo(void*);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
