@@ -11,7 +11,7 @@ class ShaderAnimation;
 class VisibilityAnimation;
 class ShapeAnimation;
 
-class Model {  // this has 2 base classes
+class Model  { // this has 2 base classes
     SEAD_RTTI_BASE(Model)
 
 public:
@@ -24,17 +24,28 @@ public:
     // Calculates the drawing resources for the view
     virtual void CalcView(s32 viewIndex, const Mtx34& cameraMtx);
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Notes:
+    // 1. Shadow-only or reflection-only shapes are always invisible
+    // 2. Shadow casting for a shape is automatically enabled if "shadow_cast" is not present in its material's render info
+
     virtual void vf2C(s32 bufferIdx, u32, u32, void*); // always a nullsub
 
-    // All these draw all shapes depending on certain combinations of flags
-    virtual void drawAllShapesFlag1(s32 bufferIdx, u32, u32, void*);
-    virtual void drawAllShapesFlag2(s32 bufferIdx, u32, u32, void*);
-    virtual void drawAllShapes(s32 bufferIdx, u32, u32, void*);
-    virtual void drawAllShapesFlag3(s32 bufferIdx, u32, u32, void*);
-    virtual void drawAllShapesFlag4(s32 bufferIdx, u32, u32, void*);
+    // These two do not draw shadow-only or reflection-only shapes
+    virtual void drawAllShapes1(s32 bufferIdx, u32, u32, void*);
+    virtual void drawAllShapes2(s32 bufferIdx, u32, u32, void*);
 
-    // Gets a flag used as one of the prerequisites for drawAllShapes()
-    virtual bool canDrawAllShapes() const;
+    // I think this just draws the shadow of shadow-casting shapes
+    virtual void drawShadowCastShapes(s32 bufferIdx, u32, u32, void*);
+
+    // These two do not draw reflection-only shapes
+    virtual void drawReflectionShapes1(s32 bufferIdx, u32, u32, void*);
+    virtual void drawReflectionShapes2(s32 bufferIdx, u32, u32, void*);
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    virtual bool hasShadowCastShapes() const;
 
     virtual ~Model();
 
@@ -48,39 +59,39 @@ public:
     virtual void setScale(const Vec3& scale);
     virtual const Vec3& getScale() const;
 
-    // Determines if shapes drawn using drawAllShapesFlag1() need drawing
-    virtual bool shapesNeedDrawingFlag1() const;
-    // Determines if shapes drawn using drawAllShapesFlag2() need drawing
-    virtual bool shapesNeedDrawingFlag2() const;
+    // Determines if there are any shapes that can be drawn by draw*Shapes1()
+    virtual bool hasShapesFlag1() const;
+    // Determines if there are any shapes that can be drawn by draw*Shapes2()
+    virtual bool hasShapesFlag2() const;
 
     virtual s32 getBoneIdx(const sead::SafeString& name) const;
     virtual const char* getBoneName(u32 idx) const;
     virtual u32 getBoneCount() const;
     virtual void setBoneSRT(u32 idx, const Mtx34& mtxRT, const Vec3& scale);
-    virtual void getBoneSRT(u32 idx, Mtx34& mtxRT, Vec3& scale);
+    virtual void getBoneSRT(u32 idx, Mtx34* mtxRT = NULL, Vec3* scale = NULL);
     // World matrix for bone
-    virtual void setBoneTransform(u32 idx, Mtx34& transform);
+    virtual void setBoneTransform(u32 idx, const Mtx34& transform);
     virtual void getBoneTransform(u32 idx, Mtx34& transform);
     virtual void setBoneVisibility(u32 idx, bool visibility);
-    virtual bool getBoneVisibility(u32 idx) const deleted; // deleted
+    virtual bool getBoneVisibility(u32 idx) const; // deleted
     virtual u32 getMaterialCount() const;
     virtual s32 getMaterialIdx(const sead::SafeString& name) const;
     virtual const char* getMaterialName(u32 idx) const;
-    virtual const Material& getMaterial(u32 idx);
+    virtual Material& getMaterial(u32 idx);
     virtual void setMaterialVisibility(u32 idx, bool visibility);
-    virtual bool getMaterialVisibility(u32 idx) const deleted; // deleted
-    virtual void vf124() deleted; // deleted
+    virtual bool getMaterialVisibility(u32 idx) const; // deleted
+    virtual void vf124(); // deleted
     virtual void vf12C(); // gets a flag
     virtual const nw::g3d::Sphere& getBounding();
     virtual void initViewShapesBuffer(void*, void*);
     virtual void getName(sead::SafeString& name) const;
     virtual void setSklAnimRelatedFloat(u32 idx, f32);
-    virtual f32 getSklAnimRelatedFloat() deleted; // deleted
-    virtual void setSklAnim(u32 idx, SkeletalAnimation& anim);
-    virtual void setTexAnim(u32 idx, TextureAnimation& anim);
-    virtual void setShuAnim(u32 idx, ShaderAnimation& anim);
-    virtual void setVisAnim(u32 idx, VisibilityAnimation& anim);
-    virtual void setShaAnim(u32 idx, ShapeAnimation& anim);
+    virtual f32 getSklAnimRelatedFloat(); // deleted
+    virtual void setSklAnim(u32 idx, const SkeletalAnimation& anim);
+    virtual void setTexAnim(u32 idx, const TextureAnimation& anim);
+    virtual void setShuAnim(u32 idx, const ShaderAnimation& anim);
+    virtual void setVisAnim(u32 idx, const VisibilityAnimation& anim);
+    virtual void setShaAnim(u32 idx, const ShapeAnimation& anim);
     virtual const SkeletalAnimation** getSklAnims() const;
     virtual const TextureAnimation** getTexAnims() const;
     virtual const ShaderAnimation** getShuAnims() const;

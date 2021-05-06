@@ -3,7 +3,8 @@
 Files:
 #* Regular sprites:
   - source/angrysun.cpp          #| Sprite: 521, Profile: 834,             Notes: [CodeDx]              Written by RicBent  | Ported by iHarv                       | Angry sun similar to that one from Newer SMBW
-  - source/fakecheckpoint.cpp    #| Sprite: 312, Profile: 93,              Notes: [Mixed SMBU]          Written by Luminyx  | Idea originally from Sakura + Astro   | Checkpoint that disappears on touch
+#  - source/bombbro.cpp           #| Sprite: 572, Profile: ?,               Notes: [Newer SMBW]          Written by Luminyx  | Idea from Newer Wii                   | "Bro" enemy that throws bob-ombs
+  - source/fakecheckpoint.cpp    #| Sprite: 312, Profile: 93,              Notes: [Mixed SMBU]          Written by Luminyx  | Idea from Sakura + Astro              | Checkpoint that disappears on touch
   - source/fakestarcoin.cpp      #| Sprite: 449, Profile: 808,             Notes: [CodeDX]              Written by RicBent  | Ported by iHarv                       | Star coin that disappears on touch
   - source/fallingchestnut.cpp   #| Sprite: 692, Profile: 292,             Notes: [Mixed SMBU]          Written by Luminyx  |                                       | Falling chestnut, idea from Newer Wii
   - source/flipblock.cpp         #| Sprite: 551, Profile: 281,             Notes: [NSMBU Haxx]          Written by AboodXD  | Example sprite from NSMBU Haxx        | Flipblock from SMW
