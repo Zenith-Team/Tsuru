@@ -16,6 +16,10 @@ Hooks:
   # Try to disable miiverse
 # - type: branch
 #   instr: b
+#   func: Return
+#   addr: EDB95E0
+# - type: branch
+#   instr: b
 #   func: ReturnFalse
 #   addr: F591338
 # - type: branch
@@ -26,10 +30,10 @@ Hooks:
 #   instr: b
 #   func: Return
 #   addr: F18AFA8
-  - type: branch
-    instr: b
-    func: Return
-    addr: EDB95E0
+# - type: branch
+#   instr: b
+#   func: Return
+#   addr: EDB95E0
   #! These crash the game on load when bypassed
  #- type: branch
  #  instr: b

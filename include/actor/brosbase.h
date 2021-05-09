@@ -20,7 +20,6 @@ public:
 
     CollisionMgr* getCollisionMgr() override;
 
-    void vfAC() override; 
     void vfAC() override;
     bool vfB4() override;
     void vfBC() override;
