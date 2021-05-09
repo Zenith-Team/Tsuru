@@ -7,7 +7,7 @@ Modules:
   - areatask.yaml         # Area modifiers
   - customsprites.yaml    # Custom sprites/actors
   - dynamiclibs.yaml      # Dynamic libraries
-  - fixes.yaml            # Miscellaneous bugfixes
+# - fixes.yaml            # Miscellaneous bugfixes
   - initializer.yaml      # Initialize static variables and load RPLs
   - misc.yaml             # Miscellaneous patches
   - sarcloader.yaml       # Loads levels as .sarc if .szs isn't found
