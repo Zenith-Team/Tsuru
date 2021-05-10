@@ -8,5 +8,5 @@ enum MultiSampleType { };
 
 }
 
-#include "nw/agl/texture/texturedata.h"
-#include "nw/agl/texture/texturesampler.h"
+#include "agl/texture/texturedata.h"
+#include "agl/texture/texturesampler.h"

@@ -7,6 +7,7 @@ game_NSMBU_JP_Latest_Cemu.x
 project.ld
 project.gpj
 objs/*
+.vs/*
 *.o
 *.d
 *.ti

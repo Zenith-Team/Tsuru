@@ -2,8 +2,8 @@
 
 #include "sead.h"
 #include "types.h"
-#include "nw/agl/shader.h"
-#include "nw/agl/lyr/display.h"
+#include "agl/shader.h"
+#include "agl/lyr/display.h"
 
 namespace agl {
 
