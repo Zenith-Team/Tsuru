@@ -6,7 +6,7 @@ extern f32 MiniPlayerJumpArc;
 extern f32 PlayerJumpMax;
 extern f32 PlayerDescentRate;
 
-void AreaTask::readHaxxOptions() {
+void AreaTask::readOptions() {
     this->wrapFlag = 0;
 
     Level::Area* area = Level::instance->getArea(LevelInfo::instance->area);

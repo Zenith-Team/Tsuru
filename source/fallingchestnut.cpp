@@ -29,9 +29,9 @@ public:
 
     u32 despawnDelay;
 
-    DECLARE_STATE(FallingChestnut, Evaluate)
-    DECLARE_STATE(FallingChestnut, Falling)
-    DECLARE_STATE(FallingChestnut, OnGround)
+    DECLARE_STATE(FallingChestnut, Evaluate);
+    DECLARE_STATE(FallingChestnut, Falling);
+    DECLARE_STATE(FallingChestnut, OnGround);
 };
 
 CREATE_STATE(FallingChestnut, Evaluate);

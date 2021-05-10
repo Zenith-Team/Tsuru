@@ -4,7 +4,7 @@
 
 class AreaTask {  // size: 0xBE4
 public:
-    void readHaxxOptions();
+    void readOptions();
 
     u8 _0[0x72C];     // 0
     u32 wrapFlag;     // 72C
