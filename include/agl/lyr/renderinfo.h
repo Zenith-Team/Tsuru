@@ -1,8 +1,8 @@
 #pragma once
 
 #include "sead.h"
-#include "nw/agl/lyr/display.h"
-#include "nw/agl/lyr/layer.h"
+#include "agl/lyr/display.h"
+#include "agl/lyr/layer.h"
 
 namespace agl { namespace lyr { class RenderInfo {
 public:

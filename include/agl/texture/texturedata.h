@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "nw/agl/texture.h"
+#include "agl/texture.h"
 #include "dynamic_libs/gx2_types.h"
 
 namespace agl{

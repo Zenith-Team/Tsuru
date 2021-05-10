@@ -2,7 +2,7 @@
 ---
 Files:
 #* Regular sprites:
-  - source/angrysun.cpp          #| Sprite: 521, Profile: 834,             Notes: [CodeDX]              Written by RicBent  | Ported by iHarv                       | Angry sun similar to that one from Newer SMBW
+  - source/angrysun.cpp          #| Sprite: 521, Profile: 834,             Notes: [CodeDX]              Written by RicBent  | Ported by iHarv                       | Angry sun similar to the one from Newer SMBW
   - source/bombbro.cpp           #| Sprite: 572, Profile: 746,             Notes: [Newer SMBW]          Written by Luminyx  | Idea from Newer Wii                   | "Bro" enemy that throws bob-ombs
   - source/fakecheckpoint.cpp    #| Sprite: 312, Profile: 93,              Notes: [Mixed SMBU]          Written by Luminyx  | Idea from Sakura + Astro              | Checkpoint that disappears on touch
   - source/fakestarcoin.cpp      #| Sprite: 449, Profile: 808,             Notes: [CodeDX]              Written by RicBent  | Ported by iHarv                       | Star coin that disappears on touch
@@ -12,7 +12,7 @@ Files:
   - source/poisonmushroom.cpp    #| Sprite: 306, Profile: 354,             Notes: [SMB2: Lost Levels]   Written by Luminyx  |                                       | Poison mushroom recreation from The Lost Levels, damages player on contact
   - source/timeclock.cpp         #| Sprite: 555, Profile: 380,             Notes: [Mixed SMBU]          Written by iHarv    |                                       | Timer clock that adds bonus time
 # - source/tripleblock.cpp       #| Sprite: 102, Profile: 588,  [BROKEN]   Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Triple ? block, from NSMB2
-# - source/waveplatform.cpp      #| Sprite: 521, Profile: 834   [BROKEN]   Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Platform that floats on top of Newer U waves
+# - source/waveplatform.cpp      #| Sprite: 521, Profile: 834   [BROKEN]   Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Platform that floats on top of waves
 # - source/windactor.cpp         #| Sprite: 197, Profile: 793,  [BROKEN]   Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Not sure if this counts as a patch or a sprite because it replaces the broken wind sprite with its own (fixed) implementation
 #* Utility
   - source/actorspawner.cpp      #| Sprite: 436, Profile: 94,              Notes: [CodeDX]              Written by RicBent  | Ported by AboodXD                     | Just a basic actor spawner

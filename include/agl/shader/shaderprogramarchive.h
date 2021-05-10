@@ -2,7 +2,7 @@
 
 #include "sead.h"
 #include "types.h"
-#include "nw/agl/shader.h"
+#include "agl/shader.h"
 
 namespace agl {
 

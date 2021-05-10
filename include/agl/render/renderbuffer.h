@@ -1,8 +1,8 @@
 #pragma once
 
 #include "sead.h"
-#include "nw/agl/render/rendertargetcolor.h"
-#include "nw/agl/render/rendertargetdepth.h"
+#include "agl/render/rendertargetcolor.h"
+#include "agl/render/rendertargetdepth.h"
 
 namespace agl { class RenderBuffer : public sead::IDisposer {
 public:

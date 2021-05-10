@@ -1,7 +1,7 @@
 #pragma once
 
 #include "dynamic_libs/gx2_types.h"
-#include "nw/agl/texture/texturedata.h"
+#include "agl/texture/texturedata.h"
 
 namespace agl { class RenderTargetDepth {
 public:

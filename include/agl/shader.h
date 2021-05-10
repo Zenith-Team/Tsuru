@@ -23,4 +23,4 @@ class GeometryShader : public Shader { s32 getShaderType(); };
 
 }
 
-#include "nw/agl/shader/shaderprogram.h"
+#include "agl/shader/shaderprogram.h"

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "sead.h"
-#include "nw/agl/lyr/debuginfo.h"
+#include "agl/lyr/debuginfo.h"
 
 namespace agl { namespace lyr { class Layer : public sead::IDisposer {
 public:
