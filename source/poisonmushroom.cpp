@@ -27,12 +27,12 @@ public:
 
     static const ActiveCollider::Info collisionInfo;
 
-    DECLARE_STATE(PoisonMushroom, Move)
-    DECLARE_STATE(PoisonMushroom, Turn)
+    DECLARE_STATE(Move)
+    DECLARE_STATE(Turn)
 };
 
-CREATE_STATE(PoisonMushroom, Move)
-CREATE_STATE(PoisonMushroom, Turn)
+CREATE_STATE(Move)
+CREATE_STATE(Turn)
 
 const ActorInfo PoisonMushroomActorInfo = { Vec2i(8, -16), Vec2i(0, 16), Vec2i(8, 16), 0, 0, 0, 0, 0 };
 const Profile PoisonMushroomProfile(&PoisonMushroom::build, ProfileId::Sprite306, "PoisonMushroom", &PoisonMushroomActorInfo, 0);

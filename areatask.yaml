@@ -5,4 +5,4 @@ Hooks:
   - type: branch
     instr: bl
     addr: F075D98
-    func: readHaxxOptions__8AreaTaskFv
+    func: readOptions__8AreaTaskFv
