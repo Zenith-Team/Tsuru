@@ -33,11 +33,11 @@ public:
 
     class Node {
     public:
-        class Sensor {
+        struct Sensor {
             Sensor();
 
-            Vec2 p1;       // 0    Absolute position, Inited to (0, 0)
-            Vec2 p2;       // 8    Absolute position, Inited to (1, 0)
+            Vec2 p1;       // 0    Position relative to parent's center, Inited to (0, 0)
+            Vec2 p2;       // 8    Position relative to parent's center, Inited to (1, 0)
         };
 
     public:
@@ -311,6 +311,43 @@ public:
     u8 _174[0x178-0x174];
 };
 
+class CircularCollider : public ColliderBase {  // size: 0x190
+    SEAD_RTTI_OVERRIDE(CircularCollider, ColliderBase)
+
+public:
+    struct Info {
+        Vec2 distToCenter;  // 0
+        Vec2 _8;            // 8
+        Vec2 _10;           // 10
+        f32 radius;         // 18
+        u32 rotation;       // 1C
+    };
+
+public:
+    CircularCollider();
+    virtual ~CircularCollider();
+
+    void init(Actor* owner, const Info& info);
+
+    bool vf24(u32*, u32) override;
+    u32 vf2C(u32*) override;
+    void vf34() override;
+    void execute() override;
+    bool vf44(Node2*, u8*, Vec2*, Vec2*, u8) override;
+    bool vf4C(Node2*, Vec2*, Vec2*, s32 sensorId, CollisionMgr* collisionMgr) override;
+    bool vf54(u8*, Vec2*) override;
+    bool vf5C(u32*) override;
+    void vf64() override;
+    void vf6C() override;
+    void vf74(u32*) override;
+    bool vf7C(Vec2*, f32) override;
+
+    Vec2 _158;
+    Vec2 _160;
+    Vec2 _168;
+    f32 radius;
+    u8 _174[0x190-0x174];
+};
 
 class ColliderMgr : public sead::IDisposer {  // size: 0x64
 public:

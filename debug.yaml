@@ -1,0 +1,10 @@
+
+---
+Files:
+  - source/debug.cpp
+  - source/debug.S
+Hooks:
+  - type: branch
+    instr: bl
+    addr: 0F0765E0
+    func: CollisionDebugDraw

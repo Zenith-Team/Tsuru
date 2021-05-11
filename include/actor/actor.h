@@ -1,6 +1,6 @@
 #pragma once
 
-#include "actorbase.h"
+#include "actor/actorbase.h"
 #include "activecollider.h"
 #include "eatdata.h"
 #include "util/vec3u.h"

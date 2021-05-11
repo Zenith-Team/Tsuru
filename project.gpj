@@ -24,7 +24,6 @@ source/fakestarcoin.cpp
 source/fallingchestnut.cpp
 source/flipblock.cpp
 source/flybones.cpp
-source/poisonmushroom.cpp
 source/timeclock.cpp
 source/actorspawner.cpp
 source/magicplatform.cpp
@@ -34,6 +33,8 @@ source/fakeactors.S
 source/profileres.cpp
 source/waves.cpp
 source/waves.S
+source/debug.cpp
+source/debug.S
 source/dynamic_libs/os_functions.cpp
 source/dynamic_libs/gx2_functions.cpp
 source/dynamic_libs/h264_functions.cpp
@@ -43,6 +44,7 @@ source/misc.cpp
 source/nullsub.S
 source/sarcloader.S
 source/sead/decompressor.cpp
+source/sead/primitiverenderer.cpp
 source/sizemodifier.S
 source/snowparticles.S
 source/yoshicolors.S
