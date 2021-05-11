@@ -2,7 +2,16 @@
 ---
 Files:
   - source/sead/decompressor.cpp
+  - source/sead/primitiverenderer.cpp
 Hooks:
+  # sead::SZSDecompressor::tryDecompFromDevice hack (ZLib loader)
   - type: funcptr
     addr: 0106A5F7C
     func: tryDecompFromDevice__Q2_4sead15SZSDecompressorFRCQ3_4sead11ResourceMgr7LoadArgPQ2_4sead8ResourcePUiT3Pb
+  # Restoration of sead::PrimitiveRendererCafe's deleted drawCircle16Impl and drawCircle32Impl
+  - type: funcptr
+    addr: 010693184
+    func: drawCircle16Impl__Q2_4sead21PrimitiveRendererCafeFRC5Mtx34RCQ2_4sead7Color4f
+  - type: funcptr
+    addr: 01069318C
+    func: drawCircle32Impl__Q2_4sead21PrimitiveRendererCafeFRC5Mtx34RCQ2_4sead7Color4f

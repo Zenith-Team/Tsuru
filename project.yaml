@@ -6,6 +6,7 @@ Modules:
   - activecollider.yaml   # Collision
   - areatask.yaml         # Area modifiers
   - customsprites.yaml    # Custom sprites/actors
+  - debug.yaml            # Debug tools
   - dynamiclibs.yaml      # Dynamic libraries
 # - fixes.yaml            # Miscellaneous bugfixes
   - initializer.yaml      # Initialize static variables and load RPLs

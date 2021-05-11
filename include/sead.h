@@ -4,6 +4,7 @@
 
 #include "sead/bitflag.h"
 #include "sead/buffer.h"
+#include "sead/camera.h"
 #include "sead/color.h"
 #include "sead/criticalsection.h"
 #include "sead/decompressor.h"
@@ -19,6 +20,7 @@
 #include "sead/list.h"
 #include "sead/methodtree.h"
 #include "sead/new.h"
+#include "sead/primitiverenderer.h"
 #include "sead/projection.h"
 #include "sead/ptrarray.h"
 #include "sead/random.h"

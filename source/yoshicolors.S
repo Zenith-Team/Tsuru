@@ -42,14 +42,3 @@ RandomYoshiColors:
     mtlr     r0
     addi     r1, r1, 0x4
     blr
-
-.data
-CustomYoshiColorArray:
-.long 0, 0
-.long 0, 0
-.long 0, 0
-.long 0, 0
-.long 0, 0
-.long 0, 0
-.long 0, 0
-.long 0, 0

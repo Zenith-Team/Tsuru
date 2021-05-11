@@ -41,6 +41,13 @@ SECTIONS {
 	__ct__Q2_4sead9IDisposerFv = 0xF5CA2FC;
 	__dt__Q2_4sead9IDisposerFv = 0xf5ca384;
 
+	/* sead::PrimitiveRenderer */
+	instance__Q2_4sead17PrimitiveRenderer = 0x106EA210;
+	setCamera__Q2_4sead17PrimitiveRendererFRCQ2_4sead6Camera = 0xF5C83D0;
+	setProjection__Q2_4sead17PrimitiveRendererFRCQ2_4sead10Projection = 0xF5C83E4;
+	begin__Q2_4sead17PrimitiveRendererFv = 0xF5C8408;
+	end__Q2_4sead17PrimitiveRendererFv = 0xF5C841C;
+
 	/* sead::Random */
 	getU32__Q2_4sead6RandomFv = 0xf5d3780;
 
@@ -656,6 +663,9 @@ SECTIONS {
 	__CPR59__init__14ActiveColliderFP5ActorPCQ2_J6J4InfoPPv = 0xed5af1c;
 	Default__Q2_14ActiveCollider4Info = 0x10543DC0;
 
+	/* ActiveColliderMgr */
+	instance__17ActiveColliderMgr = 0x106CB7D8;
+
 	/* ColliderBase */
 	setType__12ColliderBaseFQ2_12ColliderBase5Types = 0xED65A70;
 	__CPR62__setSurfaceType__12ColliderBaseFQ2_J16J12SurfaceTypes = 0xED65AD0;
@@ -684,6 +694,10 @@ SECTIONS {
 	__dt__18SolidOnTopColliderFv = 0xED61F18;
 	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__18SolidOnTopColliderSFv = 0x106EBF48;
 	typeInfo__L0__getRuntimeTypeInfoStatic__18SolidOnTopColliderSFv = 0x106EC1A8;
+
+	/* CircularCollider */
+	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__16CircularColliderSFv = 0x106EC188;
+	typeInfo__L0__getRuntimeTypeInfoStatic__16CircularColliderSFv = 0x106EC598;
 
 	/* ColliderMgr */
 	instance__11ColliderMgr = 0x106CB560;
@@ -733,6 +747,8 @@ SECTIONS {
 
 	/* Mtx34 */
 	rotateAndTranslate__5Mtx34FRC5Vec3uRC4Vec3 = 0xebfc1c8;
+	makeST__5Mtx34SFR5Mtx34RC4Vec3T2 = 0xEDE2A88;
+	makeSRT__5Mtx34SFR5Mtx34RC4Vec3N22 = 0xF0C8424;
 
 	/* Animation */
 	setRepeat__9AnimationFb = 0xF09EED4;
@@ -843,6 +859,13 @@ SECTIONS {
 	/* PlayerMgr */
 	instance__9PlayerMgr = 0x106E8B94;
 
+	/* AreaTask */
+	drawLayer3D__8AreaTaskFRCQ3_3agl3lyr10RenderInfo = 0xF0784A8;
+
+	/* Rect */
+	zero__4Rect = 0x10AEC99C;
+
+
 	/* RDashMgr */
 	sInstance__8RDashMgr = 0x106E9F9C;
 
@@ -883,6 +906,7 @@ SECTIONS {
 	setTop__10EnvTerrainFf = 0xF2B131C;
 
 	/* Misc */
+	ASM_MTXConcat = 0xF6B98A0;
 	mapPositionToScreen__FR4Vec2RC4Vec2 = 0xebe9368;
 	mapPosToScreen__FP4Vec2T1 = 0xEBE9368;
 	moveValueTo__FPUiUiT2 = 0xF5A11F0;

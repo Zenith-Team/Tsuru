@@ -41,6 +41,13 @@ OSBlockSet = 0x2b049b0;
 __ct__Q2_4sead9IDisposerFv = 0x2a0a2fc;
 __dt__Q2_4sead9IDisposerFv = 0x2a0a384;
 
+/* sead::PrimitiveRenderer */
+instance__Q2_4sead17PrimitiveRenderer = 0x101e8010;
+setCamera__Q2_4sead17PrimitiveRendererFRCQ2_4sead6Camera = 0x2a083d0;
+setProjection__Q2_4sead17PrimitiveRendererFRCQ2_4sead10Projection = 0x2a083e4;
+begin__Q2_4sead17PrimitiveRendererFv = 0x2a08408;
+end__Q2_4sead17PrimitiveRendererFv = 0x2a0841c;
+
 /* sead::Random */
 getU32__Q2_4sead6RandomFv = 0x2a13780;
 
@@ -656,6 +663,9 @@ __dt__14ActiveColliderFv = 0x219ab90;
 __CPR59__init__14ActiveColliderFP5ActorPCQ2_J6J4InfoPPv = 0x219af1c;
 Default__Q2_14ActiveCollider4Info = 0x10041bc0;
 
+/* ActiveColliderMgr */
+instance__17ActiveColliderMgr = 0x101c95d8;
+
 /* ColliderBase */
 setType__12ColliderBaseFQ2_12ColliderBase5Types = 0x21a5a70;
 __CPR62__setSurfaceType__12ColliderBaseFQ2_J16J12SurfaceTypes = 0x21a5ad0;
@@ -684,6 +694,10 @@ execute__18SolidOnTopColliderFv = 0x21a2e0c;
 __dt__18SolidOnTopColliderFv = 0x21a1f18;
 __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__18SolidOnTopColliderSFv = 0x101e9d48;
 typeInfo__L0__getRuntimeTypeInfoStatic__18SolidOnTopColliderSFv = 0x101e9fa8;
+
+/* CircularCollider */
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__16CircularColliderSFv = 0x101e9f88;
+typeInfo__L0__getRuntimeTypeInfoStatic__16CircularColliderSFv = 0x101ea398;
 
 /* ColliderMgr */
 instance__11ColliderMgr = 0x101c9360;
@@ -733,6 +747,8 @@ updateAnimations__12ModelWrapperFv = 0x24d4d20;
 
 /* Mtx34 */
 rotateAndTranslate__5Mtx34FRC5Vec3uRC4Vec3 = 0x203c1c8;
+makeST__5Mtx34SFR5Mtx34RC4Vec3T2 = 0x2222a88;
+makeSRT__5Mtx34SFR5Mtx34RC4Vec3N22 = 0x2508424;
 
 /* Animation */
 setRepeat__9AnimationFb = 0x24deed4;
@@ -843,6 +859,13 @@ getTilePtrCurrentArea__7TileMgrSFUsT1UcPUi = 0x2685000;
 /* PlayerMgr */
 instance__9PlayerMgr = 0x101e6994;
 
+/* AreaTask */
+drawLayer3D__8AreaTaskFRCQ3_3agl3lyr10RenderInfo = 0x24b84a8;
+
+/* Rect */
+zero__4Rect = 0x105ea79c;
+
+
 /* RDashMgr */
 sInstance__8RDashMgr = 0x101e7d9c;
 
@@ -883,6 +906,7 @@ onExecute__10EnvTerrainFv = 0x26f0f40;
 setTop__10EnvTerrainFf = 0x26f131c;
 
 /* Misc */
+ASM_MTXConcat = 0x2af98a0;
 mapPositionToScreen__FR4Vec2RC4Vec2 = 0x2029368;
 mapPosToScreen__FP4Vec2T1 = 0x2029368;
 moveValueTo__FPUiUiT2 = 0x29e11f0;
