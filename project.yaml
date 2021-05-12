@@ -2,17 +2,17 @@
 ---
 Name: SuperHacks
 Modules:
-# - aa.yaml               # Disables FXAA in-game
+# - antialiasing.yaml     # Disables FXAA in-game
   - activecollider.yaml   # Collision
   - areatask.yaml         # Area modifiers
   - customsprites.yaml    # Custom sprites/actors
   - debug.yaml            # Debug tools
   - dynamiclibs.yaml      # Dynamic libraries
-# - fixes.yaml            # Miscellaneous bugfixes
+  - fixes.yaml            # Miscellaneous bugfixes
   - initializer.yaml      # Initialize static variables and load RPLs
   - misc.yaml             # Miscellaneous patches
   - sarcloader.yaml       # Loads levels as .sarc if .szs isn't found
-  - sead.yaml             # SEAD standard library
+  - sead.yaml             # Standard library patches
   - sizemodifier.yaml     # Sprite size modifier
   - snowparticles.yaml    # Custom snow particles
   - titlescreen.yaml      # Title screen patches
