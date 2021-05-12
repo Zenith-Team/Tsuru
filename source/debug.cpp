@@ -149,15 +149,12 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
                 const ColliderBase::Node& node = collider->nodes1[i];
                 drawLine(center + node.sensor.p1, center + node.sensor.p2, colorBlue, 1.0f);
             }
-
-#if COLLISION_DRAW_DIAGONAL
             // If it's a rectangle, draw a diagonal line
             if (collider->points.mSize >= 4 && !(collider->points.mSize & 1)) {
                 const ColliderBase::Node& node1 = collider->nodes1[0];
                 const ColliderBase::Node& node2 = collider->nodes1[collider->points.mSize / 2 - 1];
                 drawLine(center + node1.sensor.p1, center + node2.sensor.p2, colorBlue, 1.0f);
             }
-#endif // COLLISION_DRAW_DIAGONAL
         }
 
         else {  // EllipticalCollider and ClimbableCollider
