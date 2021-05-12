@@ -36,12 +36,12 @@ public:
 	virtual void vf56C();                               //nullsub
 	virtual void vf574();       
 	virtual void vf57C();                               //nullsub
-	virtual void vf584() deleted;                       //deleted
+	virtual void vf584();                       		//deleted
 	virtual u8 vf58C();     
 	virtual void vf594();       
-	virtual void vf59C() deleted;                       //deleted
-	virtual bool isNextDamageKill() deleted;            //deleted
-	virtual void vf5AC() deleted;                       //deleted
+	virtual void vf59C();                       		//deleted
+	virtual bool isNextDamageKill();            		//deleted
+	virtual void vf5AC();                       		//deleted
 	virtual bool isDamageHit();     
 	virtual void processHits(u32 amount);       
 	virtual u32 getFireDamage() = 0;        
@@ -56,28 +56,28 @@ public:
 	virtual void timerEnd();                            //nullsub
 	virtual void beforeUpdate();                        //nullsub
 	virtual u32 fireTime();                             //returns 24
-	virtual void vf624() deleted;                       //deleted
+	virtual void vf624();                       		//deleted
 	virtual u32 stompTime();                            //returns 24
 	virtual void vf634(PhysicsActor*);   
 	virtual void vf63C(PhysicsActor*);   
 	virtual void vf644();                               //Searches actor "Register for Fever -" and deletes it
 	virtual void onStomp(PhysicsActor* player);   
-	virtual void onStompDamage(PhysicsActor* other);      //nullsub
+	virtual void onStompDamage(PhysicsActor* other);    //nullsub
 	virtual void onStompKill(PhysicsActor* killer);   
 	virtual void vf664();                               //nullsub
 	virtual void changeState_State1();  
 	virtual void onGroundPoundDamage();                 //calls vf654
 	virtual void onGroundPoundKill();   
-	virtual void vf684() deleted;                       //deleted
-	virtual void vf68C() deleted;                       //deleted
-	virtual void vf694() deleted;                       //deleted
-	virtual void vf69C() deleted;                       //deleted
+	virtual void vf684();                       		//deleted
+	virtual void vf68C();                       		//deleted
+	virtual void vf694();                       		//deleted
+	virtual void vf69C();                       		//deleted
 	virtual void onStompDamageEx();                     //nullsub
 	virtual void onStompKillEx();   
 	virtual void onStompDamage2();                      //nullsub
 	virtual void onStompKill2();    
-	virtual void vf6C4() deleted;                       //deleted
-	virtual void vf6CC() deleted;                       //deleted
+	virtual void vf6C4();                       		//deleted
+	virtual void vf6CC();                       		//deleted
 	virtual u32 vf6D4();    							//returns 1
 	virtual void onDamage();                            //nullsub
 	virtual void onKill();                              //calls vf574
@@ -85,19 +85,19 @@ public:
 	virtual u32 vf6F4();    
 	virtual u32 vf6FC();    
 	virtual bool immuneToFire();    
-	virtual void vf70C() deleted;                       //deleted
-	virtual void vf714() deleted;                       //deleted
-	virtual void vf71C() deleted;                       //deleted
+	virtual void vf70C();                       		//deleted
+	virtual void vf714();                       		//deleted
+	virtual void vf71C();                       		//deleted
 	virtual EffectWrapper* spawnDamageKillEffect();     //nullsub
 	virtual EffectWrapper* spawnDamageNormalEffect();   //nullsub
 	virtual EffectWrapper* spawnDamageEffect();         //nullsub
-	virtual void vf73C() deleted;                       //deleted
+	virtual void vf73C();                       		//deleted
 	virtual u32 vf744();                                //nullsub
 	virtual void playStompSound();
 	virtual void playStompKillSound();
-	virtual void vf75C() deleted;                       //deleted
+	virtual void vf75C();                       		//deleted
 	virtual void playStarKillSound();
-	virtual void vf76C() deleted;                       //deleted
+	virtual void vf76C();                       		//deleted
 	virtual void playDamageKillSound();
 	virtual void playFireDamageSound();
 	virtual void playDamageKillFSound();
@@ -106,8 +106,8 @@ public:
 	virtual void playStarDamageSound();
 	virtual void playDamageKillFSound2();
 	virtual void playLoseSound();                       //nullsub
-	virtual void vf7B4() deleted;                       //deleted
-	virtual void vf7BC() deleted;                       //deleted
+	virtual void vf7B4();                       		//deleted
+	virtual void vf7BC();                       		//deleted
 	virtual void vf7C4();                               //does some position stuff
 	virtual u32 vf7CC();
 	virtual void initActiveCollider();
