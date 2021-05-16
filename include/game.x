@@ -651,6 +651,46 @@ SECTIONS {
 	vf7F4__4BossFv = 0xEBEE2C4;
 	vf7FC__4BossFv = 0xEBEE2C8;
 
+	/* Thwomp */
+	__ct__6ThwompFPC14ActorBuildInfo = 0xeee1f08;
+ 	__dt__6ThwompFv = 0xeee4980;
+ 	checkDerivedRuntimeTypeInfo__6ThwompCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0xeee472c;
+ 	getRuntimeTypeInfo__6ThwompCFv = __deleted_virtual_called;
+	onCreate__6ThwompFv = 0xeee26ac;
+ 	onExecute__6ThwompFv = 0xeee2aac;
+ 	onDraw__6ThwompFv = 0xeee2b28;
+ 	onDelete__6ThwompFv = 0xeee48a8;
+ 	setPlayerId__6ThwompFSc = 0xeee4564;
+ 	getCollisionMgr__6ThwompFv = 0xeee459c;
+ 	vfAC__6ThwompFv = 0xeee456c;
+ 	vfB4__6ThwompFv = 0xeee4570;
+ 	vfBC__6ThwompFv = 0xeee4578;
+ 	vfC4__6ThwompFv = 0xeee457c;
+ 	vfCC__6ThwompFv = 0xeee4580;
+ 	killAtGoal__6ThwompFv = 0xeee2b58;
+ 	damageFromUnder__6ThwompFv = 0xeee497c;
+ 	vf10C__6ThwompFUc = 0xeee4584;
+ 	vf11C__6ThwompFv = 0xeee458c;
+ 	vf124__6ThwompFf = 0xeee4590;
+ 	vf12C__6ThwompFv = 0xeee4594;
+ 	move__6ThwompFR4Vec2 = 0xeee45a4;
+ 	setYSpeed__6ThwompFf = 0xeee45b8;
+ 	vf16C__6ThwompFv = 0xeee45c0;
+ 	vf174__6ThwompFv = 0xeee45c8;
+ 	getRect__6ThwompFR4Rect = 0xeee45d0;
+ 	vf18C__6ThwompFv = 0xeee4724;
+ 	collisionStar__6ThwompFP14ActiveColliderT1 = 0xeee3924;
+ 	collisionPropellerDrill__6ThwompFP14ActiveColliderT1 = 0xeee48d4;
+	collisionGroundPound__6ThwompFP14ActiveColliderT1 = 0xeee48dc;
+ 	collisionPenguinSlide__6ThwompFP14ActiveColliderT1 = 0xeee3930;
+ 	collisionThrowableObject__6ThwompFP14ActiveColliderT1 = 0xeee48e4;
+ 	collisionFireball__6ThwompFP14ActiveColliderT1 = 0xeee48ec;
+ 	collisionIceball__6ThwompFP14ActiveColliderT1 = 0xeee4954;
+ 	vf2BC__6ThwompFv = 0xeee3a08;
+ 	beginState_DieFall__6ThwompFv = 0xeee344c;
+ 	executeState_DieFall__6ThwompFv = 0xeee36b4;
+ 	endState_DieFall__6ThwompFv = 0xeee48d0;
+
 	/* WindGeneratorBase */
 	__vtbl__13WindGenerator = 0x106582A8;
 	__dt__17WindGeneratorBaseFv = 0xF44F044;
