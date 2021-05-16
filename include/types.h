@@ -1,5 +1,6 @@
 #pragma once
 
+#define __DEBUG 1
 #define nullptr NULL
 #define override
 #define deleted

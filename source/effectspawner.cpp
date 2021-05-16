@@ -12,7 +12,7 @@ public:
     EffectSpawner(const ActorBuildInfo* buildInfo);
     virtual ~EffectSpawner() { }
 
-    static BaseActor* build(const ActorBuildInfo* buildInfo);
+    static ActorBase* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -54,7 +54,7 @@ EffectSpawner::EffectSpawner(const ActorBuildInfo* buildInfo)
     , soundId(0)
 { }
 
-BaseActor* EffectSpawner::build(const ActorBuildInfo* buildInfo) {
+ActorBase* EffectSpawner::build(const ActorBuildInfo* buildInfo) {
     return new EffectSpawner(buildInfo);
 }
 

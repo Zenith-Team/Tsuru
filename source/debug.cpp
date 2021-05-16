@@ -1,5 +1,3 @@
-#define COLLISION_DRAW_DIAGONAL 0
-
 #include "log.h"
 #include "math.h"
 #include "areatask.h"
@@ -158,7 +156,9 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
         }
 
         else {  // EllipticalCollider and ClimbableCollider
+        #ifdef __DEBUG
             LOG("Found unknown collider for actor with id: 0x%x, profile id: 0x%x\n", colliderBase->owner->id, colliderBase->owner->profile->id)
+        #endif
         }
 
         node = node->next;

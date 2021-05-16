@@ -27,7 +27,7 @@ public:
 };
 
 const Profile WavePlaftormProfile(&WavePlaftorm::build, ProfileId::Sprite521, "WavePlaftorm", nullptr, 0);
-PROFILE_RESOURCES(ProfileId::Sprite521, "lift_han_wood"); // TODO: figure out if you can add multiple archives here
+PROFILE_RESOURCES(ProfileId::Sprite521, "lift_han_wood"); // TODO: add multiple archives here
 
 WavePlaftorm::WavePlaftorm(const ActorBuildInfo* buildInfo) : Actor(buildInfo) { }
 

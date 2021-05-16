@@ -1,8 +1,8 @@
 
 ---
 Files:
-  - source/debug.cpp
   - source/debug.S
+  - source/debug.cpp
 Hooks:
   - type: branch
     instr: bl
