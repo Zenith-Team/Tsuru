@@ -33,8 +33,8 @@ source/fakeactors.S
 source/profileres.cpp
 source/waves.cpp
 source/waves.S
-source/debug.cpp
 source/debug.S
+source/debug.cpp
 source/dynamic_libs/os_functions.cpp
 source/dynamic_libs/gx2_functions.cpp
 source/dynamic_libs/h264_functions.cpp

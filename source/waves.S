@@ -9,7 +9,7 @@ AllocEventWaves:
 .global InitWaterWaves
 InitWaterWaves:
     mr    r3, r31
-    b     initWaterWaves__FP10EnvTerrainP4Vec3fbT4Q2_14TerrainEffects11TerrainTypePQ2_4sead4Heap # I hope this is right
+    b     initWaterWaves__FP10EnvTerrainP4Vec3fbT4Q2_14TerrainEffects11TerrainTypePQ2_4sead4Heap
 
 .global UpdateWaterWaves
 UpdateWaterWaves:
