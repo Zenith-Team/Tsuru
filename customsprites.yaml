@@ -7,6 +7,7 @@ Files:
   - source/fakecheckpoint.cpp    #| Sprite: 312, Profile: 93,              Notes: [Mixed SMBU]          Written by Luminyx  | Idea from Sakura + Astro              | Checkpoint that disappears on touch
   - source/fakestarcoin.cpp      #| Sprite: 449, Profile: 808,             Notes: [CodeDX]              Written by RicBent  | Ported by iHarv                       | Star coin that disappears on touch
   - source/fallingchestnut.cpp   #| Sprite: 692, Profile: 292,             Notes: [Mixed SMBU]          Written by Luminyx  |                                       | Falling chestnut, idea from Newer Wii
+  - source/firethwomp.cpp        #| Sprite: 405
   - source/flipblock.cpp         #| Sprite: 551, Profile: 281,             Notes: [NSMBU Haxx]          Written by AboodXD  | Example sprite from NSMBU Haxx        | Flipblock from SMW
   - source/flybones.cpp          #| Sprite: 310, Profile: ?,               Notes: [Mixed SMBU]          Written by Luminyx  | Idea from Mixed SMBU, written for SME | Flying dry bones, similar to parakoopas
 # - source/poisonmushroom.cpp    #| Sprite: 306, Profile: 354,             Notes: [SMB2: Lost Levels]   Written by Luminyx  |                                       | Poison mushroom recreation from The Lost Levels, damages player on contact

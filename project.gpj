@@ -22,6 +22,7 @@ source/bombbro.cpp
 source/fakecheckpoint.cpp
 source/fakestarcoin.cpp
 source/fallingchestnut.cpp
+source/firethwomp.cpp
 source/flipblock.cpp
 source/flybones.cpp
 source/timeclock.cpp
