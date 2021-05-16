@@ -1,6 +1,6 @@
 #pragma once
 
-#include "actor/actorbase.h"
+#include "actor/actor.h"
 
 class ActorBuffer {
 public:
@@ -35,4 +35,15 @@ public:
     sead::FixedPtrArray<ActorBase, 520> finalExecuteList;
     ActorBuffer actors;
     // ...
+};
+
+class ActorScaler {  // size: 0x1C
+public:
+    virtual void getScale();
+
+	Vec3 scale;		// 0
+	f32 _C;			// C
+	u32 _10;		// 10
+	u32 _14;		// 14
+	Actor* owner;	// 18
 };
