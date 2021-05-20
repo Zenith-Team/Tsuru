@@ -57,7 +57,7 @@ ActorBase* FlyBones::build(const ActorBuildInfo* buildInfo) {
 
 u32 FlyBones::onCreate() {
     Vec3u rotationOffset(0, 1000, 0);
-    this->rotation.y = directionToRotationList[LEFT];
+    this->rotation.y = directionToRotationList[Direction::Left];
 
     model = ModelWrapper::create("nokonokoB", "nokonokoB", 10);
     model->playSklAnim("flyA", 0);
