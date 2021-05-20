@@ -196,7 +196,7 @@ void AngrySun::executeState_Follow() {
 
     const f32 speedDelta = 0.1f;
 
-    if (direction == RIGHT) {
+    if (direction == Direction::Right) {
         speed.x += speedDelta;
         if (speed.x <  0.0f) speed.x += speedDelta / 2.0f;
         if (speed.x < -6.0f) speed.x += speedDelta; 

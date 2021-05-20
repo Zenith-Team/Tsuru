@@ -26,10 +26,11 @@ typedef signed int          ssize_t;
 typedef unsigned int        uintptr_t;
 typedef signed int          intptr_t;
 
-enum Direction {
-    RIGHT = 0,
-    LEFT  = 1,
-    UP    = 2,
-    DOWN  = 3
+namespace Direction { enum Direction {
+    Right = 0,
+    Left  = 1,
+    Up    = 2,
+    Down  = 3
 };
+}
 
