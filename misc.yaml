@@ -14,11 +14,11 @@ Hooks:
   - type: funcptr
     addr: 105B09FC
     func: Bouncy__collisionYoshi__FP5EnemyP14ActiveColliderT2
-  # Infinite lives
-  - type: branch
-    instr: bl
-    func: InfiniteLives
-    addr: F0753D8
+#  # Infinite lives
+#  - type: branch
+#    instr: bl
+#    func: InfiniteLives
+#    addr: F0753D8
   # Try to disable miiverse
 # - type: branch
 #   instr: b
