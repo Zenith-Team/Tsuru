@@ -43,6 +43,7 @@ source/dynamic_libs/zlib_functions.cpp
 source/fixes.S
 source/reverb.cpp
 source/initializer.cpp
+source/misc.S
 source/misc.cpp
 source/nullsub.S
 source/sarcloader.S
