@@ -10,6 +10,7 @@ Files:
   - source/firethwomp.cpp        #| Sprite: 405
   - source/flipblock.cpp         #| Sprite: 551, Profile: 281,             Notes: [NSMBU Haxx]          Written by AboodXD  | Example sprite from NSMBU Haxx        | Flipblock from SMW
   - source/flybones.cpp          #| Sprite: 310, Profile: ?,               Notes: [Mixed SMBU]          Written by Luminyx  | Idea from Mixed SMBU, written for SME | Flying dry bones, similar to parakoopas
+  - source/modelloader.cpp       #| Sprite: 479, Profile: ?,               Notes: [Newer SMBW]          Written by Luminyx  | Idea from Newer SMBW, written for SME | Loads a model into the scene, model list is hardcoded
 # - source/poisonmushroom.cpp    #| Sprite: 306, Profile: 354,             Notes: [SMB2: Lost Levels]   Written by Luminyx  |                                       | Poison mushroom recreation from The Lost Levels, damages player on contact
   - source/timeclock.cpp         #| Sprite: 555, Profile: 380,             Notes: [Mixed SMBU]          Written by iHarv    |                                       | Timer clock that adds bonus time
 # - source/tripleblock.cpp       #| Sprite: 102, Profile: 588,  [BROKEN]   Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Triple ? block, from NSMB2

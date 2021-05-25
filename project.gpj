@@ -25,12 +25,11 @@ source/fallingchestnut.cpp
 source/firethwomp.cpp
 source/flipblock.cpp
 source/flybones.cpp
+source/modelloader.cpp
 source/timeclock.cpp
 source/actorspawner.cpp
 source/magicplatform.cpp
 source/deathfoo.S
-source/fakeactors.cpp
-source/fakeactors.S
 source/profileres.cpp
 source/waves.cpp
 source/waves.S
