@@ -21,63 +21,53 @@ Files:
   - source/magicplatform.cpp     #| Sprite: 314, Profile: 235,             Notes: [CodeDX]              Written by RicBent  | Ported by AboodXD                     | Allows dynamically moving solid tiles
 #* Patches
   - source/deathfoo.S            #| Nybble 12 on Sprite 229, Profile 785,  Notes: [Newer SMBU]          Written by Kinnay
-  - source/fakeactors.cpp        #| Nybble 14 on Sprite 45, Profile ?,     Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Star coin that disappears on touch
-  - source/fakeactors.S          #| ^
   - source/profileres.cpp        #| Patches profile resources to allow adding models to broken actors
   - source/waves.cpp             #| Nybbles on Sprite 88, Profile 84,      Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | The one and only, Newer U waves! :)
   - source/waves.S               #| ^
 Hooks:
 #---------------------
-#$ Fake Actors
-#---------------------
-# - type: branch
-#   instr: bl
-#   addr: F31362C
-#   func: FakeStarCoin
-#---------------------
-#$ Death Foo
+  #$ Death Foo
 #! Very buggy
 #---------------------
-  - type: branch
-    instr: bl
-    addr: EEC011C
-    func: FooCloudUpdate
-
-  - type: branch
-    instr: bl
-    addr: EEBAD38
-    func: FooCloudColorDark
-
-  - type: branch
-    instr: bl
-    addr: EF74F4C
-    func: FooCloudType_onCreate
-
-  - type: branch
-    instr: bl
-    addr: EEBAE50
-    func: FooCloudColorDark
-
-  - type: branch
-    instr: bl
-    addr: EEBBBD8
-    func: FooCloudColorLight
-
-  - type: branch
-    instr: bl
-    addr: EEBBA68
-    func: DeathFooCollision
-
-  - type: branch
-    instr: bl
-    addr: EEBA520
-    func: FooCloudTexture
-
-  - type: branch
-    instr: bl
-    addr: EF75B5C
-    func: FooCloudType_breathIn
-
+#  - type: branch
+#    instr: bl
+#    addr: EEC011C
+#    func: FooCloudUpdate
+#
+#  - type: branch
+#    instr: bl
+#    addr: EEBAD38
+#    func: FooCloudColorDark
+#
+#  - type: branch
+#    instr: bl
+#    addr: EF74F4C
+#    func: FooCloudType_onCreate
+#
+#  - type: branch
+#    instr: bl
+#    addr: EEBAE50
+#    func: FooCloudColorDark
+#
+#  - type: branch
+#    instr: bl
+#    addr: EEBBBD8
+#    func: FooCloudColorLight
+#
+#  - type: branch
+#    instr: bl
+#    addr: EEBBA68
+#    func: DeathFooCollision
+#
+#  - type: branch
+#    instr: bl
+#    addr: EEBA520
+#    func: FooCloudTexture
+#
+#  - type: branch
+#    instr: bl
+#    addr: EF75B5C
+#    func: FooCloudType_breathIn
 #---------------------
 #$ Water Waves
 #! CRASHES:
@@ -132,7 +122,7 @@ Hooks:
     instr: bl
     addr: ED4F884
     func: WaterWaveCollision2
-#
+# This is what causes the crash, but when disabled it messes stuff up because things are dependent on this
   - type: branch
     instr: bl
     addr: F2B7D5C

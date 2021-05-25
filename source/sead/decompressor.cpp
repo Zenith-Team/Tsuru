@@ -5,11 +5,7 @@
 namespace sead {
 
 u8*
-SZSDecompressor::tryDecompFromDevice(
-    const ResourceMgr::LoadArg& loadArg, Resource* resource,
-    u32* outSize, u32* outAllocSize, bool* outAllocated
-)
-{
+SZSDecompressor::tryDecompFromDevice(const ResourceMgr::LoadArg& loadArg, Resource* resource, u32* outSize, u32* outAllocSize, bool* outAllocated) {
     Heap* heap = loadArg.load_data_heap;
     if (heap == NULL)
         heap = HeapMgr::sInstancePtr->getCurrentHeap();
@@ -23,10 +19,7 @@ SZSDecompressor::tryDecompFromDevice(
     else
         device = FileDeviceMgr::sInstance->tryOpen(&handle, loadArg.path, FileDevice::cFileOpenFlag_ReadOnly, loadArg.div_size);
 
-    if (device != NULL &&
-       ((src = mWorkBuffer, src != NULL) ||
-        (src = new(heap, -FileDevice::cBufferMinAlignment) u8[mWorkSize], src != NULL)))
-    {
+    if (device != NULL && ((src = mWorkBuffer, src != NULL) || (src = new(heap, -FileDevice::cBufferMinAlignment) u8[mWorkSize], src != NULL))) {
         u32 bytesRead = handle.read(src, mWorkSize);
         if (bytesRead >= 0x10) {
             u32 decompSize = getDecompSize(src);
