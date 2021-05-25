@@ -14,38 +14,8 @@ Hooks:
   - type: funcptr
     addr: 105B09FC
     func: Bouncy__collisionYoshi__FP5EnemyP14ActiveColliderT2
-#  # Infinite lives
-#  - type: branch
-#    instr: bl
-#    func: InfiniteLives
-#    addr: F0753D8
   # Try to disable miiverse
-# - type: branch
-#   instr: b
-#   func: Return
-#   addr: EDB95E0
-# - type: branch
-#   instr: b
-#   func: ReturnFalse
-#   addr: F591338
-# - type: branch
-#   instr: b
-#   func: Return
-#   addr: F15810C
-# - type: branch
-#   instr: b
-#   func: Return
-#   addr: F18AFA8
-# - type: branch
-#   instr: b
-#   func: Return
-#   addr: EDB95E0
-  #! These crash the game on load when bypassed
- #- type: branch
- #  instr: b
- #  func: Return
- #  addr: F586B94
- #- type: branch
- #  instr: b
- #  func: Return
- #  addr: F587100
+  - type: branch
+    instr: b
+    addr: F229728
+    func: Return
