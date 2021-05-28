@@ -4,8 +4,7 @@
 
 namespace sead {
 
-u8*
-SZSDecompressor::tryDecompFromDevice(const ResourceMgr::LoadArg& loadArg, Resource* resource, u32* outSize, u32* outAllocSize, bool* outAllocated) {
+u8* SZSDecompressor::tryDecompFromDevice(const ResourceMgr::LoadArg& loadArg, Resource* resource, u32* outSize, u32* outAllocSize, bool* outAllocated) {
     Heap* heap = loadArg.load_data_heap;
     if (heap == NULL)
         heap = HeapMgr::sInstancePtr->getCurrentHeap();

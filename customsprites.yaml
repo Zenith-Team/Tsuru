@@ -27,48 +27,48 @@ Files:
   - source/waves.S               #| ^
 Hooks:
 #---------------------
-  #$ Death Foo
+#$ Death Foo
 #! Very buggy
 #---------------------
-#  - type: branch
-#    instr: bl
-#    addr: EEC011C
-#    func: FooCloudUpdate
-#
-#  - type: branch
-#    instr: bl
-#    addr: EEBAD38
-#    func: FooCloudColorDark
-#
-#  - type: branch
-#    instr: bl
-#    addr: EF74F4C
-#    func: FooCloudType_onCreate
-#
-#  - type: branch
-#    instr: bl
-#    addr: EEBAE50
-#    func: FooCloudColorDark
-#
-#  - type: branch
-#    instr: bl
-#    addr: EEBBBD8
-#    func: FooCloudColorLight
-#
-#  - type: branch
-#    instr: bl
-#    addr: EEBBA68
-#    func: DeathFooCollision
-#
-#  - type: branch
-#    instr: bl
-#    addr: EEBA520
-#    func: FooCloudTexture
-#
-#  - type: branch
-#    instr: bl
-#    addr: EF75B5C
-#    func: FooCloudType_breathIn
+  - type: branch
+    instr: bl
+    addr: EEC011C
+    func: FooCloudUpdate
+
+  - type: branch
+    instr: bl
+    addr: EEBAD38
+    func: FooCloudColorDark
+
+  - type: branch
+    instr: bl
+    addr: EF74F4C
+    func: FooCloudType_onCreate
+
+  - type: branch
+    instr: bl
+    addr: EEBAE50
+    func: FooCloudColorDark
+
+  - type: branch
+    instr: bl
+    addr: EEBBBD8
+    func: FooCloudColorLight
+
+  - type: branch
+    instr: bl
+    addr: EEBBA68
+    func: DeathFooCollision
+
+  - type: branch
+    instr: bl
+    addr: EEBA520
+    func: FooCloudTexture
+
+  - type: branch
+    instr: bl
+    addr: EF75B5C
+    func: FooCloudType_breathIn
 #---------------------
 #$ Water Waves
 #! CRASHES:
