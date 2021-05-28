@@ -14,8 +14,11 @@ Hooks:
   - type: funcptr
     addr: 105B09FC
     func: Bouncy__collisionYoshi__FP5EnemyP14ActiveColliderT2
-  # Try to disable miiverse
+#---------------------
+#$ Try to disable miiverse
+#---------------------
+  # Prevent state change to show initial popup
   - type: branch
     instr: b
-    addr: F229728
     func: Return
+    addr: F229D68

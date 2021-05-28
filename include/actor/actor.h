@@ -120,8 +120,8 @@ public:
     f32 destroyBoundDistanceLeft;         // 204  Inited to  80.0 + actorInfo->_1C
     f32 destroyBoundDistanceRight;        // 208  Inited to  80.0 + actorInfo->_1E
     u8 zoneId;                            // 20C
-    u8 type;                              // 20E  0: Actor, 1: Player, 2: Yoshi, 3: Enemy, 4: Unknown
-    bool isActive;                        // 20D  Inited to true
+    u8 type;                              // 20D  0: Actor, 1: Player, 2: Yoshi, 3: Enemy, 4: Unknown
+    bool isActive;                        // 20E  Inited to true
     bool isVisible;                       // 20F  Inited to true
     bool noRespawn;                       // 210  Inited to false
     u8 _211;                              // 211  Inited to 1
