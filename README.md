@@ -74,4 +74,4 @@ All custom sprites which were not written by me have credits in customsprites.ya
 * JHMaster for helping create tools to assist in reverse engineering
 * Joey for helping me set up NSMBU-Haxx when I first started
 * STUPID for basically teaching me everything I know about custom code hacks
-* Toms for giving me early access to the Newer U code
+* Toms and Kinnay for giving me early access to the Newer U code
