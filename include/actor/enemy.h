@@ -1,10 +1,10 @@
 #pragma once
 
-#include "actormultistate.h"
+#include "multistateactor.h"
 #include "enemyfreezemgr.h"
 
-class Enemy : public ActorMultiState {  // size: 0x1880
-    SEAD_RTTI_OVERRIDE(Enemy, ActorMultiState)
+class Enemy : public MultiStateActor {  // size: 0x1880
+    SEAD_RTTI_OVERRIDE(Enemy, MultiStateActor)
 
 public:
     Enemy(const ActorBuildInfo* buildInfo);

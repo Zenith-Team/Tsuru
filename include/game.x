@@ -173,7 +173,7 @@ SECTIONS {
 	splashPoison__5ActorFP4Vec3 = 0xebc2ae4;
 	isOffScreen__5ActorFv = 0xebc1254;
 
-	/* StageActor */
+	/* PhysicsActor */
 	__vtbl__12PhysicsActor = 0x10502a4c;
 	__ct__12PhysicsActorFPC14ActorBuildInfo = 0xEBC2FB8;
 	__dt__12PhysicsActorFv = 0xEBC40B0;
@@ -192,12 +192,12 @@ SECTIONS {
 	vf144__12PhysicsActorFb = 0xebc375c;
 	vf14C__12PhysicsActorFP5Actor = 0xebc3760;
 
-	/* ActorMultiState */
-	__vtbl__15ActorMultiState = 0x10503248;
-	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__15ActorMultiStateSFv = 0x106EBEE4;
-	typeInfo__L0__getRuntimeTypeInfoStatic__15ActorMultiStateSFv = 0x106EBEE8;
-	__ct__15ActorMultiStateFPC14ActorBuildInfo = 0xebcaa8c;
-	checkDerivedRuntimeTypeInfo__15ActorMultiStateCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0xebcaf94;
+	/* MultiStateActor */
+	__vtbl__15MultiStateActor = 0x10503248;
+	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__15MultiStateActorSFv = 0x106EBEE4;
+	typeInfo__L0__getRuntimeTypeInfoStatic__15MultiStateActorSFv = 0x106EBEE8;
+	__ct__15MultiStateActorFPC14ActorBuildInfo = 0xebcaa8c;
+	checkDerivedRuntimeTypeInfo__15MultiStateActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0xebcaf94;
 
 	/* BlockCoinBase */
 	__vtbl__13BlockCoinBase = 0x10603c80;
