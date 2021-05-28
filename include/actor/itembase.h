@@ -1,9 +1,9 @@
 #pragma once
 
-#include "actormultistate.h"
+#include "multistateactor.h"
 
-class ItemBase : public ActorMultiState {
-    SEAD_RTTI_OVERRIDE(ItemBase, ActorMultiState);
+class ItemBase : public MultiStateActor {
+    SEAD_RTTI_OVERRIDE(ItemBase, MultiStateActor);
 
 public:
     ItemBase(const ActorBuildInfo* buildInfo);

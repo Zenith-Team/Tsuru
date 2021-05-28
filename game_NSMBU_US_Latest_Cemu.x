@@ -173,7 +173,7 @@ splashLavaWave__5ActorFP4Vec3 = 0x2000960;
 splashPoison__5ActorFP4Vec3 = 0x2002ae4;
 isOffScreen__5ActorFv = 0x2001254;
 
-/* StageActor */
+/* PhysicsActor */
 __vtbl__12PhysicsActor = 0x1000084c;
 __ct__12PhysicsActorFPC14ActorBuildInfo = 0x2002fb8;
 __dt__12PhysicsActorFv = 0x20040b0;
@@ -192,12 +192,12 @@ vf13C__12PhysicsActorFv = 0x2004008;
 vf144__12PhysicsActorFb = 0x200375c;
 vf14C__12PhysicsActorFP5Actor = 0x2003760;
 
-/* ActorMultiState */
-__vtbl__15ActorMultiState = 0x10001048;
-__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__15ActorMultiStateSFv = 0x101e9ce4;
-typeInfo__L0__getRuntimeTypeInfoStatic__15ActorMultiStateSFv = 0x101e9ce8;
-__ct__15ActorMultiStateFPC14ActorBuildInfo = 0x200aa8c;
-checkDerivedRuntimeTypeInfo__15ActorMultiStateCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x200af94;
+/* MultiStateActor */
+__vtbl__15MultiStateActor = 0x10001048;
+__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__15MultiStateActorSFv = 0x101e9ce4;
+typeInfo__L0__getRuntimeTypeInfoStatic__15MultiStateActorSFv = 0x101e9ce8;
+__ct__15MultiStateActorFPC14ActorBuildInfo = 0x200aa8c;
+checkDerivedRuntimeTypeInfo__15MultiStateActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x200af94;
 
 /* BlockCoinBase */
 __vtbl__13BlockCoinBase = 0x10101a80;

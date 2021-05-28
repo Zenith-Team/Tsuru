@@ -1,10 +1,10 @@
 #pragma once
 
-#include "actor/actormultistate.h"
+#include "actor/multistateactor.h"
 
 // TODO: verify
 
-class SpinningStar : public ActorMultiState {  // size: 0x1DC4
+class SpinningStar : public MultiStateActor {  // size: 0x1DC4
 public:
     SpinningStar(const ActorBuildInfo* buildInfo);
     virtual ~SpinningStar();

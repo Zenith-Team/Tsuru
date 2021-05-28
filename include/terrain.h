@@ -1,6 +1,6 @@
 #pragma once
 
-#include "actor/actormultistate.h"
+#include "actor/multistateactor.h"
 #include "collider.h"
 
 // TODO: verify
@@ -57,7 +57,7 @@ public:
 	void updateWaveCollisions();
 };
 
-class EnvTerrain : public ActorMultiState {
+class EnvTerrain : public MultiStateActor {
 public:
 	u32 _17C8;
 	u32 _17CC;

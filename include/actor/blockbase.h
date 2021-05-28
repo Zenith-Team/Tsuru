@@ -1,13 +1,13 @@
 #pragma once
 
-#include "actormultistate.h"
+#include "multistateactor.h"
 #include "collider.h"
 #include "movementhandler.h"
 #include "sead.h"
 #include "states.h"
 
-class BlockCoinBase : public ActorMultiState {  // size: 0x1B28
-    SEAD_RTTI_OVERRIDE(BlockCoinBase, ActorMultiState)
+class BlockCoinBase : public MultiStateActor {  // size: 0x1B28
+    SEAD_RTTI_OVERRIDE(BlockCoinBase, MultiStateActor)
 
 public:
     enum Content {
