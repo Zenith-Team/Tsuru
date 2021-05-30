@@ -1,7 +1,7 @@
 # SuperHacks
 New Super Mario Bros. U Custom Code and ASM
 
-# Current hacks
+# What's here
 ## Headers:
 There are much too many headers to keep track of, so here is a list of extra actor and actor base headers that are included here, plus some other special ones.
 ### Actors
@@ -24,6 +24,7 @@ There are much too many headers to keep track of, so here is a list of extra act
 ### Special
 * dynamic_libs/h264_functions.h
 * dynamic_libs/h264_types.h
+* terrain.h (unfinished)
 * taskmgr.h
 ## Custom Sprites:
 * Actor Spawner
@@ -41,7 +42,9 @@ There are much too many headers to keep track of, so here is a list of extra act
 * Model loader
 * Poison Mushroom (unfinished)
 * Time Clock
+* Triple Block (unfinished, broken)
 * Water Waves (broken, crashes)
+* Water Waves Platform (unfinished, broken)
 * Wind generator (unfinished)
 ## Patches:
 * Add archive links for some unused actors to allow adding models
@@ -52,9 +55,9 @@ There are much too many headers to keep track of, so here is a list of extra act
 * Disabled music speedup at 100 seconds
 * Disabled FXAA in-game
 * Fixed collision conditions for some sprites
-* Fixed sound reverb
-* Restored background offset settings
+* Restored background offset settings functionality
 * Restored drawCircle16Impl and drawCircle32Impl in sead::PrimitiveRendererCafe
+* Restored sound effect reverb settings
 * RPL library loader
 * Sarc level loader
 * Size modifier
@@ -64,13 +67,14 @@ There are much too many headers to keep track of, so here is a list of extra act
 
 # Credits
 All custom sprites which were not written by me have credits in customsprites.yaml
-* AboodXD - NSMBU-Haxx code and headers
-* Newer Team - Newer U code and headers
-* RicBent - CodeDX code and headers
-* STUPID - General code and headers
+* [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code and headers
+* [Newer Team](https://github.com/Newer-Team) - [Newer U](https://github.com/Newer-Team/NewerSMBU) code and headers
+* [RicBent](https://github.com/RicBent) - [CodeDX](https://github.com/RicBent/codedx) code and headers
+* [STUPID](https://github.com/stupidestmodder) - General code and headers
+* Modified dynamic_libs based on original implementation by dimok and [Maschell fork](https://github.com/Maschell/dynamic_libs)
+* shiftjis.h from [Apollo PS3](https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h)
 
 # Special Thanks
-* iHarv for teaching me how to port CodeDX sprites
 * JHMaster for helping create tools to assist in reverse engineering
 * Joey for helping me set up NSMBU-Haxx when I first started
 * STUPID for basically teaching me everything I know about custom code hacks
