@@ -65,7 +65,7 @@ private:
 };
 
 template <class TOwner>
-class State : public StateBase {
+class State : public StateBase {  // size: 0x20
 public:
     typedef void (TOwner::*funcPtr)();
 
@@ -73,9 +73,9 @@ public:
         : begin(begin), execute(execute), end(end) { }
 
 protected:
-    funcPtr begin;
-    funcPtr execute;
-    funcPtr end;
+    funcPtr begin;      // 8
+    funcPtr execute;    // 10
+    funcPtr end;        // 18
 };
 
 template <class TOwner>
@@ -99,7 +99,7 @@ private:
     StateBase* baseState;
 };
 
-class StateMethodExecuterBase {
+class StateMethodExecuterBase {  // size: 0x0
 public:
     virtual ~StateMethodExecuterBase() { }
     virtual StateBase* getCurrentState() = 0;
@@ -107,16 +107,16 @@ public:
 };
 
 template <class TOwner>
-class StateMethodExecuter : public StateMethodExecuterBase {
+class StateMethodExecuter : public StateMethodExecuterBase {  // size: 0xC
 public:
     StateBase* getCurrentState() override;
     void execute() override;
 
-    TOwner* owner;
-    State<TOwner>* currentState;
+    TOwner* owner;                  // 4
+    State<TOwner>* currentState;    // 8
 };
 
-class StateExecuterBase {
+class StateExecuterBase {  // size: 0x0
 public:
     virtual StateMethodExecuterBase* begin(StateBase* nextState) = 0;
     virtual void end(StateMethodExecuterBase* methodExecuter) = 0;
@@ -126,7 +126,7 @@ public:
 };
 
 template <class TOwner>
-class StateExecuter : public StateExecuterBase {
+class StateExecuter : public StateExecuterBase {  // size: 0x10
 public:
     StateMethodExecuterBase* begin(StateBase* nextState) override;
     void end(StateMethodExecuterBase* methodExecuter) override;
@@ -137,7 +137,7 @@ public:
     StateMethodExecuter<TOwner> methodExecuter;     // 4
 };
 
-class StateMgr {
+class StateMgr {  // size: 0x10
 public:
     StateMgr(StateExecuterBase* executer, StateBase* firstState = &StateBase::NullState);
 
@@ -152,12 +152,12 @@ public:
 };
 
 template <class TOwner>
-class StateWrapper {
+class StateWrapper {  // size: 0x20
 public:
     virtual ~StateWrapper() { }
 
-    StateExecuter<TOwner> executer;
-    StateMgr manager;
+    StateExecuter<TOwner> executer; // 0
+    StateMgr manager;               // 10
 
     inline void changeState(StateBase* nextState) { manager.changeState(nextState); }
     inline void execute() { manager.execute(); }
@@ -167,13 +167,13 @@ public:
 };
 
 template <class TOwner>
-class StateWrapperMulti {
+class StateWrapperMulti {  // size: 0x24
 public:
     virtual ~StateWrapperMulti() { }
 
-    StateExecuter<TOwner> executer;
-    StateMgr manager;
-    StateBase* unk;
+    StateExecuter<TOwner> executer; // 0
+    StateMgr manager;               // 10
+    StateBase* unk;                 // 20
 
     inline void changeState(StateBase* nextState) { manager.changeState(nextState); }
     inline void execute() { manager.execute(); }
