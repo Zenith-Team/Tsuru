@@ -1,9 +1,11 @@
 # SuperHacks
-New Super Mario Bros. U Custom Code and ASM
+#### New Super Mario Bros. U Custom Code and ASM
+So basically this is just a massive compilation of code hacks for NSMBU, inspired by NewerSMBW, made with extensibility in mind. A lot of stuff here was made by me as I learned how to write hacks, and some of it may not be fully up-to-par, but I tried my test to clean everything up as much as possible. Make sure to also grab the assets pack form the releases page when installing the hacks.
+Project started on March 9 2021.
 
 # What's here
 ## Headers:
-There are much too many headers to keep track of, so here is a list of extra actor and actor base headers that are included here, plus some other special ones.
+I have included as many headers as I could, to minimize the amount of reverse-engineering required for modifying the game, and for completeness. There are much too many headers to keep track of, so here is a list of extra actor and actor base headers that are included here, plus some other special ones.
 ### Actors
 * bobomb.h (unfinished)
 * boss.h (unfinished)
@@ -27,6 +29,7 @@ There are much too many headers to keep track of, so here is a list of extra act
 * terrain.h (unfinished)
 * taskmgr.h
 ## Custom Sprites:
+All custom sprites which were not written by me have credits in customsprites.yaml
 * Actor Spawner
 * Angry Sun (unfinished)
 * Bomb Bro (unfinished)
@@ -47,6 +50,7 @@ There are much too many headers to keep track of, so here is a list of extra act
 * Water Waves Platform (unfinished, broken)
 * Wind generator (unfinished)
 ## Patches:
+Miscellaneous hacks/patches are listed here
 * Add archive links for some unused actors to allow adding models
 * Customizable snow particle colors
 * Debug collision viewer
@@ -66,7 +70,6 @@ There are much too many headers to keep track of, so here is a list of extra act
 * ZLib loader
 
 # Credits
-All custom sprites which were not written by me have credits in customsprites.yaml
 * [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code and headers
 * [Newer Team](https://github.com/Newer-Team) - [Newer U](https://github.com/Newer-Team/NewerSMBU) code and headers
 * [RicBent](https://github.com/RicBent) - [CodeDX](https://github.com/RicBent/codedx) code and headers
@@ -77,5 +80,5 @@ All custom sprites which were not written by me have credits in customsprites.ya
 # Special Thanks
 * JHMaster for helping create tools to assist in reverse engineering
 * Joey for helping me set up NSMBU-Haxx when I first started
-* STUPID for basically teaching me everything I know about custom code hacks
+* STUPID for basically teaching me everything I know about custom code hacks, thank you! <3
 * Toms and Kinnay for giving me early access to the Newer U code
