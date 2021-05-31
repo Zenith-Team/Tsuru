@@ -1,6 +1,6 @@
 #pragma once
 
-#include "enemy.h"
+#include "actor/enemy.h"
 
 // TODO: methods, members, verify
 

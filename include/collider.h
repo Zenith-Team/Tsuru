@@ -4,7 +4,7 @@
 #include "util/rect.h"
 #include "util/vec2.h"
 
-class Actor;
+class StageActor;
 class CollisionMgr;
 
 class ColliderBase : public sead::IDisposer {  // size: 0x158
@@ -174,7 +174,7 @@ public:
     Vec2 _80;                   // 80
     u32 _88;                    // 88
     u32 _8C;                    // 8C
-    Actor* owner;               // 90
+    StageActor* owner;          // 90
     u32 _94;                    // 94
     OwnerInfo ownerInfo;        // 98
     Vec2 distToCenter;          // AC
@@ -221,7 +221,7 @@ public:
     ShapedCollider(s32 numPoints, Vec2* points, Node* nodes1, Node* nodes2);
     virtual ~ShapedCollider();
 
-    void init(Actor* owner, const Info& info);
+    void init(StageActor* owner, const Info& info);
 
     void vf34() override;
     void execute() override;
@@ -290,8 +290,8 @@ public:
     SolidOnTopCollider(s32 numPoints, Vec2* points, Node* nodes1, Node* nodes2);
     virtual ~SolidOnTopCollider();
 
-    void init(Actor* owner, const Info& info);
-    void init(Actor* owner, const Info& info, s32 numPoints, sead::Heap* heap = nullptr);
+    void init(StageActor* owner, const Info& info);
+    void init(StageActor* owner, const Info& info, s32 numPoints, sead::Heap* heap = nullptr);
 
     void vf34() override;
     void execute() override;
@@ -327,7 +327,7 @@ public:
     CircularCollider();
     virtual ~CircularCollider();
 
-    void init(Actor* owner, const Info& info);
+    void init(StageActor* owner, const Info& info);
 
     bool vf24(u32*, u32) override;
     u32 vf2C(u32*) override;

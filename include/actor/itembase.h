@@ -1,6 +1,6 @@
 #pragma once
 
-#include "multistateactor.h"
+#include "actor/multistateactor.h"
 
 class ItemBase : public MultiStateActor {
     SEAD_RTTI_OVERRIDE(ItemBase, MultiStateActor);

@@ -1,4 +1,4 @@
-#include "actor/actor.h"
+#include "actor/stageactor.h"
 
 #include "movementhandler.h"
 #include "model.h"
@@ -7,10 +7,10 @@
 #include "sound.h"
 #include "eventmgr.h"
 
-class FakeStarCoin : public Actor {
+class FakeStarCoin : public StageActor {
 public:
     FakeStarCoin(const ActorBuildInfo* buildInfo);
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -19,24 +19,24 @@ public:
     void updateModel();
     void collect();
 
-    static void collisionCallback(ActiveCollider* acSelf, ActiveCollider* acOther);
+    static void collisionCallback(HitboxCollider* acSelf, HitboxCollider* acOther);
 
     ModelWrapper* model;
     MovementHandler movementHandler;
     
     u8 rotationDirection;
 
-    static const ActiveCollider::Info collisionInfo;
+    static const HitboxCollider::Info collisionInfo;
 };
 
 const Profile fakeStarCoinProfile(&FakeStarCoin::build, ProfileId::Sprite449, "FakeStarCoin", nullptr, 0);
 PROFILE_RESOURCES(ProfileId::Sprite449, "star_coin");
 
-const ActiveCollider::Info FakeStarCoin::collisionInfo = { Vec2(0.0f, -3.0f), Vec2(12.0f, 15.0f), 0, 5, 0, 0x824F, 0x20208, 0, &FakeStarCoin::collisionCallback };
+const HitboxCollider::Info FakeStarCoin::collisionInfo = { Vec2(0.0f, -3.0f), Vec2(12.0f, 15.0f), 0, 5, 0, 0x824F, 0x20208, 0, &FakeStarCoin::collisionCallback };
 
-FakeStarCoin::FakeStarCoin(const ActorBuildInfo* buildInfo) : Actor(buildInfo) { }
+FakeStarCoin::FakeStarCoin(const ActorBuildInfo* buildInfo) : StageActor(buildInfo) { }
 
-ActorBase* FakeStarCoin::build(const ActorBuildInfo* buildInfo) {
+BaseActor* FakeStarCoin::build(const ActorBuildInfo* buildInfo) {
     return new FakeStarCoin(buildInfo);
 }
 
@@ -46,7 +46,7 @@ u32 FakeStarCoin::onCreate() {
     model = ModelWrapper::create("star_coin", (settings1 & 0x10) ? "star_coinB" : "star_coinA");
 
     aCollider.init(this, &FakeStarCoin::collisionInfo, 0);
-    addActiveColliders();
+    addHitboxColliders();
 
     u32 movementMask = movementHandler.getMaskForMovementType(settings2 & 0xFF);
     movementHandler.link(position, movementMask, movementId);
@@ -103,6 +103,6 @@ void FakeStarCoin::collect() {
 }
 
 
-void FakeStarCoin::collisionCallback(ActiveCollider* acSelf, ActiveCollider* acOther) {
+void FakeStarCoin::collisionCallback(HitboxCollider* acSelf, HitboxCollider* acOther) {
     reinterpret_cast<FakeStarCoin*>(acSelf->owner)->collect();
 }

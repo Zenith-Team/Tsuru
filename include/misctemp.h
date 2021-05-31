@@ -13,5 +13,5 @@ public:
 };
 
 void mapPosToScreen(Vec2* , Vec2* );
-bool moveValueTo(u32 *, u32 target, u32 amount);	
-bool moveFloatTo(float *, float target, float amount);
+bool moveValueTo(u32*, u32 target, u32 amount);	
+bool moveFloatTo(f32*, f32 target, f32 amount);

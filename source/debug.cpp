@@ -41,16 +41,16 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
     static const sead::Color4f colorBlack(0.0f, 0.0f, 0.0f, 1.0f);
     static const sead::Color4f colorWhite(1.0f, 1.0f, 1.0f, 1.0f);
 
-    ActiveCollider::List::Node* aColliderNode;
-    aColliderNode = ActiveColliderMgr::instance->activeList.first;
+    HitboxCollider::List::Node* aColliderNode;
+    aColliderNode = HitboxColliderMgr::instance->activeList.first;
 
     while (aColliderNode != nullptr) {
-        ActiveCollider* aCollider = aColliderNode->owner;
+        HitboxCollider* aCollider = aColliderNode->owner;
         if ((aCollider->info._1C & 0x800) == 0) {
             Rect rect;
             aCollider->getRect(rect);
 
-            if (aCollider->info.shape == ActiveCollider::ShapeRectangle) {
+            if (aCollider->info.shape == HitboxCollider::ShapeRectangle) {
                 Vec2 point1(rect.left, rect.top);
                 Vec2 point2(rect.right, rect.top);
                 Vec2 point3(rect.right, rect.bottom);
@@ -63,7 +63,7 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
                 drawLine(point1, point3, colorRed, 1.0f); // Diagonal line
             }
 
-            else if (aCollider->info.shape == ActiveCollider::ShapeCircle) {
+            else if (aCollider->info.shape == HitboxCollider::ShapeCircle) {
                 f32 radius = (rect.right - rect.left) / 2.0f;
 
                 sead::PrimitiveRenderer::instance->drawCircle32(
@@ -76,15 +76,15 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
         aColliderNode = aColliderNode->next;
     }
 
-    aColliderNode = ActiveColliderMgr::instance->list4.first;
+    aColliderNode = HitboxColliderMgr::instance->list4.first;
 
     while (aColliderNode != nullptr) {
-        ActiveCollider* aCollider = aColliderNode->owner;
+        HitboxCollider* aCollider = aColliderNode->owner;
 
         Rect rect;
         aCollider->getRect(rect);
 
-        if (aCollider->info.shape == ActiveCollider::ShapeRectangle) {
+        if (aCollider->info.shape == HitboxCollider::ShapeRectangle) {
             Vec2 point1(rect.left, rect.top);
             Vec2 point2(rect.right, rect.top);
             Vec2 point3(rect.right, rect.bottom);
@@ -97,7 +97,7 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
             drawLine(point1, point3, colorRed, 1.0f); // Diagonal line
         }
 
-        else if (aCollider->info.shape == ActiveCollider::ShapeCircle) {
+        else if (aCollider->info.shape == HitboxCollider::ShapeCircle) {
             f32 radius = (rect.right - rect.left) / 2.0f;
 
             sead::PrimitiveRenderer::instance->drawCircle32(
@@ -166,7 +166,7 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
 
     ActorBuffer* actors = &ActorMgr::instance->actors;
     for (int i = 0; i < actors->buffer.mSize; i++) {
-        Actor* actor = sead::DynamicCast<Actor, ActorBase>(actors->buffer[i]);
+        StageActor* actor = sead::DynamicCast<StageActor, BaseActor>(actors->buffer[i]);
         if (actor == NULL || !actor->isVisible || actor->isDeleted)
             continue;
 

@@ -6,7 +6,7 @@
 
 class Controller {
 	public:
-	s32 getTilt(u32 *, float multiplier);
+	s32 getTilt(u32*, float multiplier);
 };
 
 class InputMgr : public sead::IDisposer {

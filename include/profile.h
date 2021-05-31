@@ -4,17 +4,17 @@
 #include "preprocessor.h"
 #include "profileid.h"
 
-class ActorBase;
+class BaseActor;
 struct ActorInfo;
 struct ActorBuildInfo;
 
 class Profile {
 public:
-    Profile(ActorBase* (*buildFunc)(const ActorBuildInfo*), u32 id, const sead::SafeString& name, const ActorInfo* actorInfo, u32 flags);
+    Profile(BaseActor* (*buildFunc)(const ActorBuildInfo*), u32 id, const sead::SafeString& name, const ActorInfo* actorInfo, u32 flags);
 
     static Profile* get(u32 id);
 
-    ActorBase* (*buildFunc)(const ActorBuildInfo*);  // 0
+    BaseActor* (*buildFunc)(const ActorBuildInfo*);  // 0
     u32 id;                                          // 4
     const ActorInfo* actorInfo;                      // 8
     u8 hasResourcesLoaded;                           // C

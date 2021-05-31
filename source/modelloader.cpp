@@ -1,13 +1,13 @@
-#include "actor/actor.h"
+#include "actor/stageactor.h"
 
 #include "drawmgr.h"
 
-class ModelLoader : public Actor {
+class ModelLoader : public StageActor {
 public:
     ModelLoader(const ActorBuildInfo* buildInfo);
     virtual ~ModelLoader() { }
 
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -21,9 +21,9 @@ public:
 const Profile ModelLoaderProfile(&ModelLoader::build, ProfileId::Sprite308, "ModelLoader", nullptr, 0);
 PROFILE_RESOURCES(ProfileId::Sprite308, "modelpack");
 
-ModelLoader::ModelLoader(const ActorBuildInfo* buildInfo) : Actor(buildInfo) { }
+ModelLoader::ModelLoader(const ActorBuildInfo* buildInfo) : StageActor(buildInfo) { }
 
-ActorBase* ModelLoader::build(const ActorBuildInfo* buildInfo) {
+BaseActor* ModelLoader::build(const ActorBuildInfo* buildInfo) {
     return new ModelLoader(buildInfo);
 }
 

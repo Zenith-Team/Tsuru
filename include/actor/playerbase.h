@@ -1,9 +1,9 @@
 #pragma once
 
-#include "actor.h"
+#include "stageactor.h"
 
 // TODO
 
-class PlayerBase : public Actor {
+class PlayerBase : public StageActor {
 public:
 };

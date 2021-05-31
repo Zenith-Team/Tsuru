@@ -8,7 +8,7 @@ public:
     BombBro(const ActorBuildInfo* buildInfo);
     virtual ~BombBro() { }
 
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     void throwProjectile() override;
 
@@ -21,7 +21,7 @@ PROFILE_RESOURCES(ProfileId::Sprite572, "star_coin");
 
 BombBro::BombBro(const ActorBuildInfo* buildInfo) : BrosBase(buildInfo) { }
 
-ActorBase* BombBro::build(const ActorBuildInfo* buildInfo) {
+BaseActor* BombBro::build(const ActorBuildInfo* buildInfo) {
     return new BombBro(buildInfo);
 }
 

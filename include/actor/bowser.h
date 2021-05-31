@@ -22,8 +22,8 @@ public:
 
     void setPlayerId(s8 id) override;
 
-    void removeActiveColliders() override;
-    void addActiveColliders() override;
+    void removeHitboxColliders() override;
+    void addHitboxColliders() override;
 
     CollisionMgr* getCollisionMgr() override;
 
@@ -50,16 +50,16 @@ public:
 
     void vf1C4() override;
 
-    void collisionPlayer(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    bool collisionSlide(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    bool vf244(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool vf244(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    bool collisionPenguinSlide(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    bool collisionFireball(ActiveCollider* acSelf, ActiveCollider* acOther) override;
-    bool collisionIceball(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
     void vf2C4() override;
 
@@ -136,7 +136,7 @@ public:
 
     void vf7C4() override;
     u32 vf7CC() override;
-    void initActiveCollider() override;
+    void initHitboxCollider() override;
     void initModels() override;
     void updateModel() override;
     void initHitsToDeath() override;

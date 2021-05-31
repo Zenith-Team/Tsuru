@@ -1,7 +1,7 @@
-#include "actor/actor.h"
-#include "activecollider.h"
+#include "actor/stageactor.h"
+#include "hitboxcollider.h"
 
-void ActiveCollider::getRect(Rect& outRect) {
+void HitboxCollider::getRect(Rect& outRect) {
     Vec3* ownerPos = &this->owner->position;
 
     outRect.left   = ownerPos->x + this->info.distToCenter.x - this->info.distToEdge.x;
@@ -10,12 +10,12 @@ void ActiveCollider::getRect(Rect& outRect) {
     outRect.bottom = ownerPos->y + this->info.distToCenter.y - this->info.distToEdge.y;
 }
 
-bool ActiveCollider::collidersOverlap(ActiveCollider* acSelf, ActiveCollider* acOther) {
+bool HitboxCollider::collidersOverlap(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     Rect thisRect;
-    acSelf->getRect(thisRect);
+    hcSelf->getRect(thisRect);
 
     Rect otherRect;
-    acOther->getRect(otherRect);
+    hcOther->getRect(otherRect);
 
     return Rect::RectsOverlap(thisRect, otherRect);
 }

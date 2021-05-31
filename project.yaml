@@ -3,12 +3,12 @@
 Name: SuperHacks
 Modules:
 # - antialiasing.yaml     # Disables FXAA in-game
-  - activecollider.yaml   # Collision
   - areatask.yaml         # Area modifiers
   - customsprites.yaml    # Custom sprites/actors
   - debug.yaml            # Debug tools
   - dynamiclibs.yaml      # Dynamic libraries
   - fixes.yaml            # Miscellaneous bugfixes
+  - hitboxcollider.yaml   # HitboxCollider patches
   - initializer.yaml      # Initialize static variables and load RPLs
   - misc.yaml             # Miscellaneous patches
   - sarcloader.yaml       # Loads levels as .sarc if .szs isn't found

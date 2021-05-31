@@ -9,7 +9,7 @@ public:
     FlipBlock(const ActorBuildInfo* buildInfo);
     virtual ~FlipBlock() { }
 
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -31,7 +31,7 @@ public:
     ModelWrapper* model;
     int flipsRemaining;
 
-    static const ActiveCollider::Info colliderInfo;
+    static const HitboxCollider::Info colliderInfo;
 
     DECLARE_STATE(FlipBlock, Flipping)
 };
@@ -42,12 +42,12 @@ const ActorInfo FlipBlockActorInfo = { Vec2i(8, -16), Vec2i(8, -8), 0x100, 0x100
 const Profile FlipBlockProfile(&FlipBlock::build, ProfileId::Sprite551, "FlipBlock", &FlipBlockActorInfo, 0x1002);
 PROFILE_RESOURCES(ProfileId::Sprite551, "block_snake");
 
-const ActiveCollider::Info FlipBlock::colliderInfo = { Vec2(0.0f, 8.0f), Vec2(8.0f, 8.0f), 0, 0, 0, 0, 0, 0, nullptr };
+const HitboxCollider::Info FlipBlock::colliderInfo = { Vec2(0.0f, 8.0f), Vec2(8.0f, 8.0f), 0, 0, 0, 0, 0, 0, nullptr };
 
 
 FlipBlock::FlipBlock(const ActorBuildInfo* buildInfo) : BlockBase(buildInfo) , flipsRemaining(0) { }
 
-ActorBase* FlipBlock::build(const ActorBuildInfo* buildInfo) {
+BaseActor* FlipBlock::build(const ActorBuildInfo* buildInfo) {
     return new FlipBlock(buildInfo);
 }
 
@@ -77,7 +77,7 @@ u32 FlipBlock::onCreate() {
     model = ModelWrapper::create("block_snake", "block_snake", 0, 1);
 
     aCollider.init(this, &colliderInfo, nullptr);
-    addActiveColliders();
+    addHitboxColliders();
 
     doStateChange(&StateID_Wait);
     updateModel();
@@ -189,7 +189,7 @@ bool FlipBlock::playerOverlaps() {
         {
             player = PlayerMgr::instance->players[i];
             if (player != nullptr)
-                overlaps = ActiveCollider::collidersOverlap(&this->aCollider, &player->aCollider);
+                overlaps = HitboxCollider::collidersOverlap(&this->aCollider, &player->aCollider);
         }
 
         if (overlaps)

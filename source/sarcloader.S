@@ -1,3 +1,5 @@
+# From Abood's discord server, dunno where to credit him but here
+
 .rodata
 CoursePathFormat: .string "course_res_pack/%s.sarc"
 RDashCoursePathFormat: .string "rdash://course_res_pack/%s.sarc"

@@ -1,14 +1,14 @@
 #pragma once
 
-#include "actor/actor.h"
+#include "actor/stageactor.h"
 
 class ActorBuffer {
 public:
-    ActorBase* findActorWithId(u32* id);
+    BaseActor* findActorWithId(u32* id);
 
-    sead::Buffer<ActorBase*> buffer;
+    sead::Buffer<BaseActor*> buffer;
     u32 usedCount;
-    ActorBase** last;
+    BaseActor** last;
     u32 _10;
     u8 _14;
 };
@@ -19,7 +19,7 @@ public:
        0: add to actorsToCreate
        1: add to activeActors and drawableActors
        else: don't add to any of the lists */
-    ActorBase* create(ActorBuildInfo* buildInfo, u32 addToActive);
+    BaseActor* create(ActorBuildInfo* buildInfo, u32 addToActive);
 
     static ActorMgr* instance;
 
@@ -27,12 +27,12 @@ public:
     sead::UnitHeap* playerUnitHeap;
     sead::UnitHeap* actorUnitHeap;
     u8 deferredActorCreations[0x5970]; // sead::FixedRingBuffer<ActorBuildInfo, 520>
-    ActorBase::ActorList actorsToCreate;
-    ActorBase::ActorList actorsToDelete;
-    ActorBase::ActorList activeActors;
-    ActorBase::ActorList drawableActors;
+    BaseActor::ActorList actorsToCreate;
+    BaseActor::ActorList actorsToDelete;
+    BaseActor::ActorList activeActors;
+    BaseActor::ActorList drawableActors;
     sead::FixedPtrArray<sead::Heap, 520> deletedActorHeaps;
-    sead::FixedPtrArray<ActorBase, 520> finalExecuteList;
+    sead::FixedPtrArray<BaseActor, 520> finalExecuteList;
     ActorBuffer actors;
     // ...
 };
@@ -45,5 +45,5 @@ public:
 	f32 _C;			// C
 	u32 _10;		// 10
 	u32 _14;		// 14
-	Actor* owner;	// 18
+	StageActor* owner;	// 18
 };

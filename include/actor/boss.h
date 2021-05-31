@@ -1,7 +1,8 @@
 #pragma once
 
+#include "actor/enemy.h"
+
 #include "sound.h"
-#include "enemy.h"
 #include "effect.h"
 #include "misctemp.h"
 
@@ -21,8 +22,8 @@ public:
 	
 	bool checkDerivedRuntimeTypeInfo(void*);  // override?
 	
-	void removeActiveColliders() override;
-	void addActiveColliders() override;
+	void removeHitboxColliders() override;
+	void addHitboxColliders() override;
 	bool vf154() override;
 	
 	DECLARE_STATE_VIRTUAL(Boss, BossState1)
@@ -110,7 +111,7 @@ public:
 	virtual void vf7BC();                       		//deleted
 	virtual void vf7C4();                               //does some position stuff
 	virtual u32 vf7CC();
-	virtual void initActiveCollider();
+	virtual void initHitboxCollider();
 	virtual void initModels();
 	virtual void updateModel();
 	virtual void initHitsToDeath();
@@ -120,17 +121,17 @@ public:
     bool freezeActor();
 	void vf1BC();
 	void vf1C4(); //Calls vf7E4
-	void playerCollision(ActiveCollider* acSelf, ActiveCollider* acOther);
-	void yoshiCollision(ActiveCollider* acSelf, ActiveCollider* acOther);
-	void vf22C(ActiveCollider* acSelf, ActiveCollider* acOther);
-	bool hitJump(ActiveCollider* acSelf, ActiveCollider* acOther);
-	bool collidesSomething(ActiveCollider* acSelf, ActiveCollider* acOther);
-	bool hitEnemyDown(ActiveCollider* acSelf, ActiveCollider* acOther);
-	bool hitGroundPound(ActiveCollider* acSelf, ActiveCollider* acOther);
-	bool hitEnemyKame2(ActiveCollider* acSelf, ActiveCollider* acOther);
-	bool hitEnemyKameDown(ActiveCollider* acSelf, ActiveCollider* acOther);
-	bool fireballCollision(ActiveCollider* acSelf, ActiveCollider* acOther);
-	bool vf284(ActiveCollider* acSelf, ActiveCollider* acOther);
+	void playerCollision(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+	void yoshiCollision(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+	void vf22C(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+	bool hitJump(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+	bool collidesSomething(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+	bool hitEnemyDown(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+	bool hitGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+	bool hitEnemyKame2(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+	bool hitEnemyKameDown(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+	bool fireballCollision(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+	bool vf284(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 	void hitEx();
 	void vf2C4();
 	bool isGrounded();
@@ -151,7 +152,7 @@ public:
 	u16   _19BE;
 	PlayerLookTarget lookTarget;
 	ActorScaler scaler;
-	ActiveCollider bossActiveCollider;
+	HitboxCollider bossHitboxCollider;
 	void* _1B34; //? some kind of vtable
 	Vec3  _1B38;
 	Vec3  _1B44;
