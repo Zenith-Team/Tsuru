@@ -13,7 +13,7 @@ Hooks:
   # Make yoshi bounce on urchins
   - type: funcptr
     addr: 105B09FC
-    func: Bouncy__collisionYoshi__FP5EnemyP14ActiveColliderT2
+    func: Bouncy__collisionYoshi__FP5EnemyP14HitboxColliderT2
 #---------------------
 #$ Try to disable miiverse
 #---------------------

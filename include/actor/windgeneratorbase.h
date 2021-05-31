@@ -1,8 +1,8 @@
 #pragma once
 
-#include "actor/actor.h"
+#include "actor/stageactor.h"
 
-class WindGeneratorBase : public Actor {  // size: 0x 
+class WindGeneratorBase : public StageActor {  // size: 0x 
 public:
 	f32 finalWindStrength;
 	f32 windStrengthValue;
@@ -14,7 +14,7 @@ public:
 	u32 windState;
 	u32 timer;
 	
-	inline WindGeneratorBase(const ActorBuildInfo* buildInfo) : Actor(buildInfo) { }
+	inline WindGeneratorBase(const ActorBuildInfo* buildInfo) : StageActor(buildInfo) { }
 	
 	~WindGeneratorBase();
 	u32 onCreate();

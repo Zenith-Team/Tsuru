@@ -44,7 +44,7 @@ public:
     void getRect(Rect& rect) override;
 
     void vf18C() override;
-    void damagePlayer(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    void damagePlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
     void freeze() override;
     void vf1AC() override;
@@ -52,19 +52,19 @@ public:
     void vf1BC() override;
     void vf1C4() override;
 
-    void collisionPlayer(ActiveCollider* acSelf, ActiveCollider* acOther) override;
-    void collisionYoshi(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    void collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    bool collisionStar(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    bool collisionPropellerDrill(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    bool collisionGroundPound(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    bool collisionIceball(ActiveCollider* acSelf, ActiveCollider* acOther) override;
-    bool collisionHammer(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionHammer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    bool vf2A4(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool vf2A4(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
     DECLARE_STATE_OVERRIDE(BrosBase, DieFumi)
     DECLARE_STATE_OVERRIDE(BrosBase, DieFall)
@@ -138,7 +138,7 @@ public:
     u8 _2F38;                           // 2F38
     u8 _2F39;                           // 2F39
     u16 _unk4;                          // 2F3A    // unknown values 4
-    ActiveCollider activeCollider;      // 2F3C
+    HitboxCollider HitboxCollider;      // 2F3C
     void* _3064;                        // 3064
     Vec3 _3068;                         // 3068
     f32 _3074;                          // 3074

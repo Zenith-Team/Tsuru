@@ -1,6 +1,6 @@
 #pragma once
 
-#include "multistateactor.h"
+#include "actor/multistateactor.h"
 #include "collider.h"
 #include "movementhandler.h"
 #include "sead.h"

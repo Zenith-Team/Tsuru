@@ -13,7 +13,7 @@ public:
     AngrySun(const ActorBuildInfo* buildInfo);
     virtual ~AngrySun() { }
 
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -48,7 +48,7 @@ public:
 
     Vec2 spinCenter;
 
-    static const ActiveCollider::Info colliderInfo;
+    static const HitboxCollider::Info colliderInfo;
 
     DECLARE_STATE(AngrySun, Stationary)
     DECLARE_STATE(AngrySun, Follow)
@@ -66,11 +66,11 @@ CREATE_STATE(AngrySun, Spit);
 const Profile AngrySunProfile(&AngrySun::build, ProfileId::Sprite521, "AngrySun", nullptr, 0);
 PROFILE_RESOURCES(ProfileId::Sprite521, "star_coin");
 
-const ActiveCollider::Info AngrySun::colliderInfo = { Vec2(0.0f, 0.0f), Vec2(16.0f, 16.0f), 1, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback };
+const HitboxCollider::Info AngrySun::colliderInfo = { Vec2(0.0f, 0.0f), Vec2(16.0f, 16.0f), 1, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback };
 
 AngrySun::AngrySun(const ActorBuildInfo* buildInfo) : Enemy(buildInfo) { }
 
-ActorBase* AngrySun::build(const ActorBuildInfo* buildInfo) {
+BaseActor* AngrySun::build(const ActorBuildInfo* buildInfo) {
     return new AngrySun(buildInfo);
 }
 
@@ -102,7 +102,7 @@ u32 AngrySun::onCreate() {
     baseline = position.y;
 
     aCollider.init(this, &colliderInfo, 0);
-    addActiveColliders();
+    addHitboxColliders();
 
     if (settings1 & 0x10) {
         doStateChange(&StateID_Stationary);
@@ -158,7 +158,7 @@ void AngrySun::updateModel() {
 
     if (glowModel) {
         Vec3u glowRotation = rotation;
-        glowRotation.z = fix_deg(cos(glowTimer*M_PI/60.0f) * 15.0f);
+        glowRotation.z = fix_deg(cos(glowTimer*M_PI / 60.0f) * 15.0f);
 
         mtx.rotateAndTranslate(glowRotation, position);
 
@@ -291,9 +291,9 @@ void AngrySun::beginState_AttackSpin() {
 }
 
 void AngrySun::executeState_AttackSpin() {
-    f32 dist = (cos((timer*M_PI)/40.0f + M_PI) + 1.0f) * 7.0f;
+    f32 dist = (cos((timer * M_PI) / 40.0f + M_PI) + 1.0f) * 7.0f;
 
-    f32 theta = (timer/6.0f) * (direction ? 1.0f : -1.0f);
+    f32 theta = (timer / 6.0f) * (direction ? 1.0f : -1.0f);
     position.x = spinCenter.x + dist*cos(theta);
     position.y = spinCenter.y + dist*sin(theta);
 
@@ -314,7 +314,7 @@ void AngrySun::beginState_Spit() {
 
 void AngrySun::executeState_Spit() {
     if (timer <= 32)
-        position.x = wiggleX + sin(timer*M_PI) * 1.5f;
+        position.x = wiggleX + sin(timer * M_PI) * 1.5f;
 
     if (timer == 32) {
         ActorBuildInfo buildInfo = { 0 };
@@ -322,7 +322,7 @@ void AngrySun::executeState_Spit() {
         buildInfo.position = position;
         buildInfo.parentId = id;
 
-        Actor* fireball;
+        StageActor* fireball;
 
         Vec2 target;
         distanceToPlayer(target);
@@ -333,24 +333,24 @@ void AngrySun::executeState_Spit() {
             const f32 shootSpeedSingle = 3.0f;
 
             buildInfo.rotation = fix_rad(angle);
-            fireball = reinterpret_cast<Actor*>(ActorMgr::instance->create(&buildInfo, 0));
+            fireball = reinterpret_cast<StageActor*>(ActorMgr::instance->create(&buildInfo, 0));
             fireball->speed.x = cos(angle) * shootSpeedSingle;
             fireball->speed.y = sin(angle) * shootSpeedSingle;
         } else {
             const f32 shootSpeedTriple = 2.5;
 
             buildInfo.rotation = fix_rad(angle);
-            fireball = reinterpret_cast<Actor*>(ActorMgr::instance->create(&buildInfo, 0));
+            fireball = reinterpret_cast<StageActor*>(ActorMgr::instance->create(&buildInfo, 0));
             fireball->speed.x = cos(angle) * shootSpeedTriple;
             fireball->speed.y = sin(angle) * shootSpeedTriple;
 
             buildInfo.rotation = fix_rad(angle + 0.4f);
-            fireball = reinterpret_cast<Actor*>(ActorMgr::instance->create(&buildInfo, 0));
+            fireball = reinterpret_cast<StageActor*>(ActorMgr::instance->create(&buildInfo, 0));
             fireball->speed.x = cos(angle + 0.4f) * shootSpeedTriple;
             fireball->speed.y = sin(angle + 0.4f) * shootSpeedTriple;
 
             buildInfo.rotation = fix_rad(angle - 0.4f);
-            fireball = reinterpret_cast<Actor*>(ActorMgr::instance->create(&buildInfo, 0));
+            fireball = reinterpret_cast<StageActor*>(ActorMgr::instance->create(&buildInfo, 0));
             fireball->speed.x = cos(angle - 0.4f) * shootSpeedTriple;
             fireball->speed.y = sin(angle - 0.4f) * shootSpeedTriple;
         }

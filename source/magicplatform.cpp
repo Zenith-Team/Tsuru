@@ -1,4 +1,4 @@
-#include "actor/actor.h"
+#include "actor/stageactor.h"
 #include "actor/twowayplatform.h"
 
 #include "model.h"
@@ -9,21 +9,21 @@
 #include "math.h"
 #include "tilemgr.h"
 
-class MagicPlatform : public Actor {
+class MagicPlatform : public StageActor {
 public:
     MagicPlatform(const ActorBuildInfo* buildInfo);
     virtual ~MagicPlatform() { }
 
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
     u32 onDelete() override;
 
-    bool magicPlatformAcCallback1(ActiveCollider*, Vec2*) { return false; }
-    void magicPlatformAcCallback3(ActiveCollider*, Vec2*) { }
-    void magicPlatformAcCallback4(ActiveCollider*, Vec2*) { }
+    bool magicPlatformAcCallback1(HitboxCollider*, Vec2*) { return false; }
+    void magicPlatformAcCallback3(HitboxCollider*, Vec2*) { }
+    void magicPlatformAcCallback4(HitboxCollider*, Vec2*) { }
     bool magicPlatformCbCallback1(ColliderBase*, Vec2*)   { return true; }
     void magicPlatformCbCallback3(ColliderBase*, Vec2*)   { }
     void magicPlatformCbCallback4(ColliderBase*, Vec2*)   { }
@@ -44,23 +44,23 @@ const Profile magicPlatformProfile(&MagicPlatform::build, ProfileId::Sprite314, 
 PROFILE_RESOURCES(ProfileId::Sprite314);
 
 // Callback table, useful for squishing the player
-Actor::CallbackTable magicPlatformCallbackTable = {
+StageActor::CallbackTable magicPlatformCallbackTable = {
     nullptr,
-    static_cast<Actor::CallbackTable::typeAcCallbackB>(&Actor::actorAcCallback0),
-    static_cast<Actor::CallbackTable::typeAcCallbackB>(&MagicPlatform::magicPlatformAcCallback1),
-    static_cast<Actor::CallbackTable::typeAcCallbackB>(&Actor::actorAcCallback2),
-    static_cast<Actor::CallbackTable::typeAcCallbackV>(&MagicPlatform::magicPlatformAcCallback3),
-    static_cast<Actor::CallbackTable::typeAcCallbackV>(&MagicPlatform::magicPlatformAcCallback4),
-    static_cast<Actor::CallbackTable::typeCbCallbackB>(&Actor::actorCbCallback0),
-    static_cast<Actor::CallbackTable::typeCbCallbackB>(&MagicPlatform::magicPlatformCbCallback1),
-    static_cast<Actor::CallbackTable::typeCbCallbackB>(&TwoWayPlatform::twoWayPlatformCbCallback2),
-    static_cast<Actor::CallbackTable::typeCbCallbackV>(&MagicPlatform::magicPlatformCbCallback3),
-    static_cast<Actor::CallbackTable::typeCbCallbackV>(&MagicPlatform::magicPlatformCbCallback4),
+    static_cast<StageActor::CallbackTable::typeAcCallbackB>(&StageActor::actorAcCallback0),
+    static_cast<StageActor::CallbackTable::typeAcCallbackB>(&MagicPlatform::magicPlatformAcCallback1),
+    static_cast<StageActor::CallbackTable::typeAcCallbackB>(&StageActor::actorAcCallback2),
+    static_cast<StageActor::CallbackTable::typeAcCallbackV>(&MagicPlatform::magicPlatformAcCallback3),
+    static_cast<StageActor::CallbackTable::typeAcCallbackV>(&MagicPlatform::magicPlatformAcCallback4),
+    static_cast<StageActor::CallbackTable::typeCbCallbackB>(&StageActor::actorCbCallback0),
+    static_cast<StageActor::CallbackTable::typeCbCallbackB>(&MagicPlatform::magicPlatformCbCallback1),
+    static_cast<StageActor::CallbackTable::typeCbCallbackB>(&TwoWayPlatform::twoWayPlatformCbCallback2),
+    static_cast<StageActor::CallbackTable::typeCbCallbackV>(&MagicPlatform::magicPlatformCbCallback3),
+    static_cast<StageActor::CallbackTable::typeCbCallbackV>(&MagicPlatform::magicPlatformCbCallback4),
 };
 
 
 MagicPlatform::MagicPlatform(const ActorBuildInfo* buildInfo)
-    : Actor(buildInfo)
+    : StageActor(buildInfo)
     , tileData(nullptr)
     , movementHandler()
     , rectCollider()
@@ -69,7 +69,7 @@ MagicPlatform::MagicPlatform(const ActorBuildInfo* buildInfo)
 {
 }
 
-ActorBase* MagicPlatform::build(const ActorBuildInfo* buildInfo) {
+BaseActor* MagicPlatform::build(const ActorBuildInfo* buildInfo) {
     return new MagicPlatform(buildInfo);
 }
 

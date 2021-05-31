@@ -15,7 +15,6 @@ primaryTarget=ppc_standalone.tgt
 	-DCODE_ADDR=0x2b01360
 	-DDATA_ADDR=0x10607d00
 	-I../files/include
-source/activecollider.cpp
 source/areatask.cpp
 source/angrysun.cpp
 source/bombbro.cpp
@@ -41,6 +40,7 @@ source/dynamic_libs/h264_functions.cpp
 source/dynamic_libs/zlib_functions.cpp
 source/fixes.S
 source/reverb.cpp
+source/hitboxcollider.cpp
 source/initializer.cpp
 source/misc.S
 source/misc.cpp

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "actor.h"
+#include "actor/stageactor.h"
 
-class TwoWayPlatform : public Actor {
+class TwoWayPlatform : public StageActor {
 public:
-    static bool cbCallback4(Actor*);
-    static bool cbCallback5(Actor*);
-    static bool cbCallback6(Actor*, u32, u32);
+    static bool cbCallback4(StageActor*);
+    static bool cbCallback5(StageActor*);
+    static bool cbCallback6(StageActor*, u32, u32);
 
     bool twoWayPlatformCbCallback2(ColliderBase*, Vec2*);
 };

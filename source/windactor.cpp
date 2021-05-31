@@ -13,7 +13,7 @@ public:
     inline WindGenerator(const ActorBuildInfo* buildInfo);
     virtual ~WindGenerator() { }
 
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     EffectWrapper windEffect;
 
@@ -28,7 +28,7 @@ PROFILE_RESOURCES(ProfileId::Sprite197, "env_snow");
 
 inline WindGenerator::WindGenerator(const ActorBuildInfo* buildInfo) : WindGeneratorBase(buildInfo) { }
 
-ActorBase* WindGenerator::build(const ActorBuildInfo* buildInfo) {
+BaseActor* WindGenerator::build(const ActorBuildInfo* buildInfo) {
     return new WindGenerator(buildInfo);
 }
 
@@ -74,12 +74,12 @@ u32 WindGenerator::onExecute() {
 
         Actor** current = ActorMgr::instance->actorList.first;
         while (current < ActorMgr::instance->actorList.last) {
-            ActorBase* ActorBase = *current;
-            if (ActorBase) {
-                ProfileId::ProfileIdType profileId = ActorBase->getProfileId();
+            BaseActor* BaseActor = *current;
+            if (BaseActor) {
+                ProfileId::ProfileIdType profileId = BaseActor->getProfileId();
                 for (u32 i = 0; i < 13; i++) {
                     if (WindGenerators[i] == profileId) {
-                        ((Actor*)ActorBase)->position.x += finalWindStrength * 2.5;
+                        ((Actor*)BaseActor)->position.x += finalWindStrength * 2.5;
                         break;
                     }
                 }

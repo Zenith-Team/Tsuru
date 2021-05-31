@@ -1,10 +1,10 @@
 #pragma once
 
-#include "actor.h"
+#include "actor/stageactor.h"
 #include "collisionmgr.h"
 
-class PhysicsActor : public Actor {  // size: 0x17A0
-    SEAD_RTTI_OVERRIDE(PhysicsActor, Actor)
+class PhysicsActor : public StageActor {  // size: 0x17A0
+    SEAD_RTTI_OVERRIDE(PhysicsActor, StageActor)
 
 public:
     PhysicsActor(const ActorBuildInfo* buildInfo);
@@ -38,7 +38,7 @@ public:
     virtual void vf134() deleted;       // deleted
     virtual u32 vf13C();                // returns 0
     virtual void vf144(bool);           // nullsub
-    virtual void vf14C(Actor*);         // nullsub
+    virtual void vf14C(StageActor*);         // nullsub
 
     virtual bool vf154() {
         return false;

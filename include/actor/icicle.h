@@ -36,13 +36,13 @@ public:
 
     void vf18C() override;
     
-    void collisionPlayer(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     
-    bool collisionStar(ActiveCollider* acSelf, ActiveCollider* acOther) override;
-    bool collisionSlide(ActiveCollider* acSelf, ActiveCollider* acOther) override;
-    bool collisionGroundPound(ActiveCollider* acSelf, ActiveCollider* acOther) override;
-    bool collisionGroundPoundYoshi(ActiveCollider* acSelf, ActiveCollider* acOther) override;
-    bool collisionThrowableObject(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
     //? Two unknown extra functions here
     

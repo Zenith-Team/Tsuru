@@ -1,7 +1,7 @@
 #pragma once
 
-#include "actor/actorbase.h"
-#include "activecollider.h"
+#include "actor/baseactor.h"
+#include "hitboxcollider.h"
 #include "eatdata.h"
 #include "util/vec3u.h"
 
@@ -10,17 +10,17 @@ extern u32 directionToRotationList[];
 class ColliderBase;
 class CollisionMgr;
 
-class Actor : public ActorBase {  // size: 0x27C
-    SEAD_RTTI_OVERRIDE(Actor, ActorBase)
+class StageActor : public BaseActor {  // size: 0x27C
+    SEAD_RTTI_OVERRIDE(StageActor, BaseActor)
 
 public:
     struct CallbackTable {
-        typedef bool (Actor::*typeAcCallbackB)(ActiveCollider*, Vec2*);
-        typedef void (Actor::*typeAcCallbackV)(ActiveCollider*, Vec2*);
-        typedef bool (Actor::*typeCbCallbackB)(ColliderBase*, Vec2*);
-        typedef void (Actor::*typeCbCallbackV)(ColliderBase*, Vec2*);
+        typedef bool (StageActor::*typeAcCallbackB)(HitboxCollider*, Vec2*);
+        typedef void (StageActor::*typeAcCallbackV)(HitboxCollider*, Vec2*);
+        typedef bool (StageActor::*typeCbCallbackB)(ColliderBase*, Vec2*);
+        typedef void (StageActor::*typeCbCallbackV)(ColliderBase*, Vec2*);
 
-        void (Actor::*root)();                               // nullptr
+        void (StageActor::*root)();                               // nullptr
         typeAcCallbackB acCallback0;
         typeAcCallbackB acCallback1;
         typeAcCallbackB acCallback2;
@@ -34,8 +34,8 @@ public:
     };
 
 public:
-    Actor(const ActorBuildInfo* buildInfo);
-    virtual ~Actor();
+    StageActor(const ActorBuildInfo* buildInfo);
+    virtual ~StageActor();
 
     void afterCreate(u32) override;
     u32 beforeExecute() override;
@@ -46,8 +46,8 @@ public:
         playerId = id;
     }
 
-    virtual void removeActiveColliders();
-    virtual void addActiveColliders();
+    virtual void removeHitboxColliders();
+    virtual void addHitboxColliders();
 
     virtual CollisionMgr* getCollisionMgr() {
         return nullptr;
@@ -77,15 +77,15 @@ public:
     s32 distanceToPlayer(Vec2& out);
     u8 directionToPlayerH(const Vec3& position);
     u8 directionToPlayerV(const Vec3& position);
-    u8 directionToActorH(const Actor& other);
+    u8 directionToActorH(const StageActor& other);
     void cullCheck(u32 unkMask = 0);
     bool deleteActorWhenOutOfView(u32);
 
-    bool actorAcCallback0(ActiveCollider*, Vec2*);
-    bool actorAcCallback1(ActiveCollider*, Vec2*);
-    bool actorAcCallback2(ActiveCollider*, Vec2*);
-    void actorAcCallback3(ActiveCollider*, Vec2*);
-    void actorAcCallback4(ActiveCollider*, Vec2*);
+    bool actorAcCallback0(HitboxCollider*, Vec2*);
+    bool actorAcCallback1(HitboxCollider*, Vec2*);
+    bool actorAcCallback2(HitboxCollider*, Vec2*);
+    void actorAcCallback3(HitboxCollider*, Vec2*);
+    void actorAcCallback4(HitboxCollider*, Vec2*);
     bool actorCbCallback0(ColliderBase*, Vec2*);
     bool actorCbCallback1(ColliderBase*, Vec2*);
     bool actorCbCallback2(ColliderBase*, Vec2*);
@@ -111,7 +111,7 @@ public:
     u32 _AC;                              // AC   Inited to 0
     u32 rotDelta;                         // B0   Inited to 0
     Vec2 posDelta;                        // B4   Inited to 0
-    ActiveCollider aCollider;             // BC
+    HitboxCollider aCollider;             // BC
     Vec2 visibleAreaOffset;               // 1E4  Inited to actorInfo->spawnRangeOffset
     Vec2 visibleAreaSize;                 // 1EC  Inited to actorInfo->spawnRangeSize
     Vec2 size;                            // 1F4

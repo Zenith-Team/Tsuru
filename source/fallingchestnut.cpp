@@ -12,7 +12,7 @@ public:
     FallingChestnut(const ActorBuildInfo* buildInfo);
     virtual ~FallingChestnut() { }
 
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -23,7 +23,7 @@ public:
     ModelWrapper* model;
     MovementHandler movementHandler;
 
-    static const ActiveCollider::Info collisionInfo;
+    static const HitboxCollider::Info collisionInfo;
 
     static const CollisionMgr::Sensor belowSensor;
 
@@ -41,13 +41,13 @@ CREATE_STATE(FallingChestnut, OnGround);
 const Profile FallingChestnutProfile(&FallingChestnut::build, ProfileId::Sprite692, "FallingChestnut", nullptr, 0);
 PROFILE_RESOURCES(ProfileId::Sprite692, "iga_kuribo");
 
-const ActiveCollider::Info FallingChestnut::collisionInfo = { Vec2(0.0f, -3.0f), Vec2(12.0f, 15.0f), 0, 5, 0, 0x824F, 0x20208, 0, &FallingChestnut::collisionCallback };
+const HitboxCollider::Info FallingChestnut::collisionInfo = { Vec2(0.0f, -3.0f), Vec2(12.0f, 15.0f), 0, 5, 0, 0x824F, 0x20208, 0, &FallingChestnut::collisionCallback };
 
 const CollisionMgr::Sensor FallingChestnut::belowSensor = { 16.0f, 16.0f, -16.0f };
 
 FallingChestnut::FallingChestnut(const ActorBuildInfo* buildInfo) : Enemy(buildInfo) { }
 
-ActorBase* FallingChestnut::build(const ActorBuildInfo* buildInfo) {
+BaseActor* FallingChestnut::build(const ActorBuildInfo* buildInfo) {
     return new FallingChestnut(buildInfo);
 }
 
@@ -55,7 +55,7 @@ u32 FallingChestnut::onCreate() {
     model = ModelWrapper::create("iga_kuribo", "iga_kuribo", 0, 0);
 
     aCollider.init(this, &FallingChestnut::collisionInfo, 0);
-    addActiveColliders();
+    addHitboxColliders();
 
     collisionMgr.init(this, &FallingChestnut::belowSensor, nullptr, nullptr);
 

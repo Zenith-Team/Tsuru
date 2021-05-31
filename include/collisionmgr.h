@@ -1,6 +1,6 @@
 #pragma once
 
-#include "actor/actor.h"
+#include "actor/stageactor.h"
 #include "tilecheck.h"
 
 class CollisionMgr : public TileCheck {
@@ -36,7 +36,7 @@ public:
     virtual void vf64();
     virtual void vf6C();
 
-    void init(Actor* owner, const Sensor* belowSensor, const Sensor* aboveSensor, const Sensor* adjacentSensor);
+    void init(StageActor* owner, const Sensor* belowSensor, const Sensor* aboveSensor, const Sensor* adjacentSensor);
     void setSensor(const Sensor* sensor, u32 sensorId);
     const Sensor* getSensor(u32 sensorId) const;
     bool doExplosionAt(const Vec2& topLeft, const Vec2& bottomRight);
@@ -54,7 +54,7 @@ public:
 
     u8 _unk4C[0x890-0x4C];      // 4C
 
-    Actor* owner;               // 890
+    StageActor* owner;               // 890
     u32 _894;                   // 894
     Vec3* position;             // 898  &owner->position
     Vec3* _89C;                 // 89C  &owner->_240, lastPosition?

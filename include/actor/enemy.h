@@ -1,6 +1,6 @@
 #pragma once
 
-#include "multistateactor.h"
+#include "actor/multistateactor.h"
 #include "enemyfreezemgr.h"
 
 class Enemy : public MultiStateActor {  // size: 0x1880
@@ -12,14 +12,14 @@ public:
 
     u32 beforeExecute() override;
     void damageFromUnder() override;
-    void vf14C(Actor*) override;
+    void vf14C(StageActor*) override;
     bool vf154() override;
     void doStateChange(StateBase* state) override;
 
     // TODO
 
     virtual void vf18C();
-    virtual void damagePlayer(ActiveCollider* acSelf, ActiveCollider* acOther);
+    virtual void damagePlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     virtual bool vf19C();
     virtual void freeze();                                                                       // creates ice actors
     virtual void vf1AC();                                                                        // called on freeze
@@ -28,37 +28,37 @@ public:
     virtual void vf1C4();
     virtual void vf1CC();
 
-    virtual bool vf1D4(ActiveCollider* acSelf, ActiveCollider* acOther);                         // pre collision enemy 2
-    virtual bool vf1DC(ActiveCollider* acSelf, ActiveCollider* acOther);                         // pre collision player
-    virtual bool vf1E4(bool& unk, ActiveCollider* acSelf, ActiveCollider* acOther);              // pre collision enemy
-    virtual void vf1EC(ActiveCollider* acSelf, ActiveCollider* acOther);                         // pre collision yoshi related
-    virtual bool vf1F4(ActiveCollider* acSelf, ActiveCollider* acOther);                         // pre collision yoshi
-    virtual bool vf1FC(ActiveCollider* acSelf, ActiveCollider* acOther);                         // pre collision unk
-    virtual bool vf204(ActiveCollider* acSelf, ActiveCollider* acOther);                         // pre collision actor
+    virtual bool vf1D4(HitboxCollider* hcSelf, HitboxCollider* hcOther);                         // pre collision enemy 2
+    virtual bool vf1DC(HitboxCollider* hcSelf, HitboxCollider* hcOther);                         // pre collision player
+    virtual bool vf1E4(bool& unk, HitboxCollider* hcSelf, HitboxCollider* hcOther);              // pre collision enemy
+    virtual void vf1EC(HitboxCollider* hcSelf, HitboxCollider* hcOther);                         // pre collision yoshi related
+    virtual bool vf1F4(HitboxCollider* hcSelf, HitboxCollider* hcOther);                         // pre collision yoshi
+    virtual bool vf1FC(HitboxCollider* hcSelf, HitboxCollider* hcOther);                         // pre collision unk
+    virtual bool vf204(HitboxCollider* hcSelf, HitboxCollider* hcOther);                         // pre collision actor
 
-    virtual void collisionEnemy(ActiveCollider* acSelf, ActiveCollider* acOther);
-    virtual void collisionPlayer(ActiveCollider* acSelf, ActiveCollider* acOther);
-    virtual void collisionYoshi(ActiveCollider* acSelf, ActiveCollider* acOther);
-    virtual void vf224(ActiveCollider* acSelf, ActiveCollider* acOther);
+    virtual void collisionEnemy(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+    virtual void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+    virtual void collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+    virtual void vf224(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 
-    virtual bool collisionStar(ActiveCollider* acSelf, ActiveCollider* acOther);                // 3
-    virtual bool collisionSlide(ActiveCollider* acSelf, ActiveCollider* acOther);               // 5
-    virtual bool collisionPropellerDrill(ActiveCollider* acSelf, ActiveCollider* acOther);      // 13
-    virtual bool vf244(ActiveCollider* acSelf, ActiveCollider* acOther);                        // 8
-    virtual bool collisionGroundPound(ActiveCollider* acSelf, ActiveCollider* acOther);         // 7
-    virtual bool collisionGroundPoundYoshi(ActiveCollider* acSelf, ActiveCollider* acOther);    // 7
-    virtual bool collisionPenguinSlide(ActiveCollider* acSelf, ActiveCollider* acOther);        // 10
-    virtual bool collisionPipeCannon(ActiveCollider* acSelf, ActiveCollider* acOther);          // 17
-    virtual bool vf26C(ActiveCollider* acSelf, ActiveCollider* acOther);                        // 25
-    virtual bool collisionThrowableObject(ActiveCollider* acSelf, ActiveCollider* acOther);     // 9
-    virtual bool collisionFireball(ActiveCollider* acSelf, ActiveCollider* acOther);            // 1 14
-    virtual bool collisionIceball(ActiveCollider* acSelf, ActiveCollider* acOther);             // 2 21
-    virtual bool collisionHammer(ActiveCollider* acSelf, ActiveCollider* acOther);              // 19
-    virtual bool collisionFireballYoshi(ActiveCollider* acSelf, ActiveCollider* acOther);       // 20
-    virtual bool vf29C(ActiveCollider* acSelf, ActiveCollider* acOther);                        // 24
-    virtual bool vf2A4(ActiveCollider* acSelf, ActiveCollider* acOther);                        // 26
-    virtual bool vf2AC(ActiveCollider* acSelf, ActiveCollider* acOther);                        // 3
-    virtual bool vf2B4(ActiveCollider* acSelf, ActiveCollider* acOther);                        // 27
+    virtual bool collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther);                // 3
+    virtual bool collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther);               // 5
+    virtual bool collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* hcOther);      // 13
+    virtual bool vf244(HitboxCollider* hcSelf, HitboxCollider* hcOther);                        // 8
+    virtual bool collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther);         // 7
+    virtual bool collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther);    // 7
+    virtual bool collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther);        // 10
+    virtual bool collisionPipeCannon(HitboxCollider* hcSelf, HitboxCollider* hcOther);          // 17
+    virtual bool vf26C(HitboxCollider* hcSelf, HitboxCollider* hcOther);                        // 25
+    virtual bool collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther);     // 9
+    virtual bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther);            // 1 14
+    virtual bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther);             // 2 21
+    virtual bool collisionHammer(HitboxCollider* hcSelf, HitboxCollider* hcOther);              // 19
+    virtual bool collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther);       // 20
+    virtual bool vf29C(HitboxCollider* hcSelf, HitboxCollider* hcOther);                        // 24
+    virtual bool vf2A4(HitboxCollider* hcSelf, HitboxCollider* hcOther);                        // 26
+    virtual bool vf2AC(HitboxCollider* hcSelf, HitboxCollider* hcOther);                        // 3
+    virtual bool vf2B4(HitboxCollider* hcSelf, HitboxCollider* hcOther);                        // 27
 
     virtual void vf2BC();
     virtual void vf2C4();
@@ -127,13 +127,13 @@ public:
 
     DECLARE_STATE_VIRTUAL(Enemy, Ice)  // 4CC 4D4 4DC 
 
-    static void collisionCallback(ActiveCollider* acSelf, ActiveCollider* acOther);
+    static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 
-    u32 processCollision(ActiveCollider* acSelf, ActiveCollider* acOther, u32 unk);
+    u32 processCollision(HitboxCollider* hcSelf, HitboxCollider* hcOther, u32 unk);
 
-    void killPlayerJump(Actor* player, const Vec2& speed, StateBase* state);
-    void killPlayerSpin(Actor* player);
-    void killYoshiStomp(Actor* player);
+    void killPlayerJump(StageActor* player, const Vec2& speed, StateBase* state);
+    void killPlayerSpin(StageActor* player);
+    void killYoshiStomp(StageActor* player);
 
     u32 _17C8;
     u32 _17CC;

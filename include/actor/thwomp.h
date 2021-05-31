@@ -47,18 +47,18 @@ public:
 
     void vf18C() override;
 
-    bool collisionStar(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    bool collisionPropellerDrill(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    bool collisionGroundPound(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    bool collisionPenguinSlide(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    bool collisionThrowableObject(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     
-    bool collisionFireball(ActiveCollider* acSelf, ActiveCollider* acOther) override;
-    bool collisionIceball(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
     void vf2BC() override;
 
@@ -77,7 +77,7 @@ public:
     f32 _18AC;                          // 18AC
     f32 _18B0;                          // 18B0
     EffectWrapper effectWrapper;        // 18B4
-    ActiveCollider activeCollider;      // 191C
+    HitboxCollider hitboxCollider;      // 191C
     void* _1A44;                        // 1A44
     f32 _1A48;                          // 1A48
     f32 _1A4C;                          // 1A4C

@@ -8,13 +8,13 @@ public:
     FlyBones(const ActorBuildInfo* buildInfo);
     virtual ~FlyBones() { }
 
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
 
-    void collisionPlayer(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    void collisionPlayer(HitboxCollider* acSelf, HitboxCollider* acOther) override;
 
     void updateModel();
 
@@ -28,7 +28,7 @@ public:
     u16 flyDistance;
     u16 idleTime;
 
-    static const ActiveCollider::Info collisionInfo;
+    static const HitboxCollider::Info collisionInfo;
 
     DECLARE_STATE(FlyBones, Lowering)
     DECLARE_STATE(FlyBones, IdleLowered)
@@ -47,11 +47,11 @@ const ActorInfo FlyBonesActorInfo = { Vec2i(8, -16), Vec2i(0, 16), Vec2i(8, 16),
 const Profile FlyBonesProfile(&FlyBones::build, ProfileId::Sprite310, "FlyBones", &FlyBonesActorInfo, 0);
 PROFILE_RESOURCES(ProfileId::Sprite310, "nokonokoB");
 
-const ActiveCollider::Info FlyBones::collisionInfo = { Vec2(0.0f, 0.0f), Vec2(16.0f, 16.0f), 1, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback };
+const HitboxCollider::Info FlyBones::collisionInfo = { Vec2(0.0f, 0.0f), Vec2(16.0f, 16.0f), 1, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback };
 
 FlyBones::FlyBones(const ActorBuildInfo* buildInfo) : Enemy(buildInfo) { }
 
-ActorBase* FlyBones::build(const ActorBuildInfo* buildInfo) {
+BaseActor* FlyBones::build(const ActorBuildInfo* buildInfo) {
     return new FlyBones(buildInfo);
 }
 
@@ -63,7 +63,7 @@ u32 FlyBones::onCreate() {
     model->playSklAnim("flyA", 0);
 
     aCollider.init(this, &FlyBones::collisionInfo, nullptr);
-    addActiveColliders();
+    addHitboxColliders();
 
     flyDistance = 200;
     idleTime = 150;
@@ -108,7 +108,7 @@ void FlyBones::updateModel() {
     model->updateAnimations();
 }
 
-void FlyBones::collisionPlayer(ActiveCollider* acSelf, ActiveCollider* acOther) {
+void FlyBones::collisionPlayer(HitboxCollider* acSelf, HitboxCollider* acOther) {
     u32 hitType = processCollision(acSelf, acOther, 0);
 
     if (hitType == 0)
@@ -193,7 +193,7 @@ void FlyBones::endState_IdleRaised() { }
 //* Die state
 
 void FlyBones::beginState_Die() {
-    removeActiveColliders();
+    removeHitboxColliders();
 }
 
 void FlyBones::executeState_Die() {

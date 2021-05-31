@@ -1,15 +1,15 @@
-#include "actor/actor.h"
+#include "actor/stageactor.h"
 #include "actormgr.h"
 #include "eventmgr.h"
 
-class ActorSpawner : public Actor {
-    SEAD_RTTI_OVERRIDE_IMPL(ActorSpawner, Actor)
+class ActorSpawner : public StageActor {
+    SEAD_RTTI_OVERRIDE_IMPL(ActorSpawner, StageActor)
 
 public:
     ActorSpawner(const ActorBuildInfo* buildInfo);
     virtual ~ActorSpawner() { }
 
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -24,12 +24,12 @@ PROFILE_RESOURCES(ProfileId::Sprite436);
 
 
 ActorSpawner::ActorSpawner(const ActorBuildInfo* buildInfo)
-    : Actor(buildInfo)
+    : StageActor(buildInfo)
     , spawnProfileId(0)
     , spawned(false)
 { }
 
-ActorBase* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
+BaseActor* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
     return new ActorSpawner(buildInfo);
 }
 
@@ -48,16 +48,16 @@ u32 ActorSpawner::onCreate() {
 }
 
 u32 ActorSpawner::onExecute() {
-    ActorBase* child = (childList.begin() != childList.end()) ? childList.begin().mPtr : nullptr;
+    BaseActor* child = (childList.begin() != childList.end()) ? childList.begin().mPtr : nullptr;
 
     if (EventMgr::instance->isActive(eventId2-1)) {
         if (initStateFlag == 2 && child) {
-            Actor* actor = sead::DynamicCast<Actor, ActorBase>(child);
+            StageActor* actor = sead::DynamicCast<StageActor, BaseActor>(child);
 
             if (actor) {
                 actor->isActive = true;
                 actor->isVisible = true;
-                actor->addActiveColliders();
+                actor->addHitboxColliders();
             }
 
             return 1;
@@ -84,12 +84,12 @@ u32 ActorSpawner::onExecute() {
             child->isDeleted = true;
         }
         else if (initStateFlag == 2 && child) {
-            Actor* actor = sead::DynamicCast<Actor, ActorBase>(child);
+            StageActor* actor = sead::DynamicCast<StageActor, BaseActor>(child);
 
             if (actor) {
                 actor->isActive = false;
                 actor->isVisible = false;
-                actor->removeActiveColliders();
+                actor->removeHitboxColliders();
             }
         }
 

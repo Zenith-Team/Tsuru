@@ -4,11 +4,11 @@
 #include "util/vec2.h"
 #include "sead.h"
 
-class Actor;
+class StageActor;
 
-class ActiveCollider : public sead::IDisposer { // size: 0x128
+class HitboxCollider : public sead::IDisposer { // size: 0x128
 public:
-    typedef void (*Callback)(ActiveCollider* acSelf, ActiveCollider* acOther);
+    typedef void (*Callback)(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 
     enum Shape {
         ShapeRectangle      = 0,
@@ -34,7 +34,7 @@ public:
     class List {
     public:
         struct Node {
-            ActiveCollider* owner;  // 0
+            HitboxCollider* owner;  // 0
             Node* next;             // 4
             Node* prev;             // 8
         };
@@ -50,11 +50,11 @@ public:
         Node* last;                 // 4
     };
 
-    ActiveCollider();
-    virtual ~ActiveCollider();
+    HitboxCollider();
+    virtual ~HitboxCollider();
 
-    void init(Actor* owner, const Info*, void** callbackTable);
-    void init(Actor* owner, const Info*, u8* collisionMask, void** callbackTable);
+    void init(StageActor* owner, const Info*, void** callbackTable);
+    void init(StageActor* owner, const Info*, u8* collisionMask, void** callbackTable);
 
     f32 getTop();
     f32 getBottom();
@@ -65,13 +65,13 @@ public:
 
 
     void getRect(Rect& outRect);
-    static bool collidersOverlap(ActiveCollider* acSelf, ActiveCollider* acOther);
+    static bool collidersOverlap(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 
     List::Node activeNode;          // 10
     List::Node createNode;          // 1C
     List::Node list3Node;           // 28
     List::Node list4Node;           // 34
-    Actor* owner;                   // 40
+    StageActor* owner;                   // 40
     u32 _44;                        // 44
     u32 _48;                        // 48
     Vec2 _4C;                       // 4C
@@ -93,32 +93,32 @@ public:
     f32 _EC[0xF];                   // EC
 };
 
-class ActiveColliderMgr : public sead::IDisposer {  // size: 0x40
+class HitboxColliderMgr : public sead::IDisposer {  // size: 0x40
 public:
-    bool isInActiveList(ActiveCollider* aCollider);
-    void removeFromActiveList(ActiveCollider* aCollider);
+    bool isInActiveList(HitboxCollider* aCollider);
+    void removeFromActiveList(HitboxCollider* aCollider);
 
-    bool isInCreateList(ActiveCollider* aCollider);
-    void addToCreateList(ActiveCollider* aCollider);
-    void removeFromCreateList(ActiveCollider* aCollider);
+    bool isInCreateList(HitboxCollider* aCollider);
+    void addToCreateList(HitboxCollider* aCollider);
+    void removeFromCreateList(HitboxCollider* aCollider);
 
-    void removeFromList3(ActiveCollider* aCollider);
+    void removeFromList3(HitboxCollider* aCollider);
 
-    inline void add(ActiveCollider* aCollider) {
+    inline void add(HitboxCollider* aCollider) {
         if (!isInActiveList(aCollider) && !isInCreateList(aCollider))
             addToCreateList(aCollider);
     }
 
-    inline void remove(ActiveCollider* aCollider) {
+    inline void remove(HitboxCollider* aCollider) {
         removeFromActiveList(aCollider);
         removeFromCreateList(aCollider);
         removeFromList3(aCollider);
     }
 
-    static ActiveColliderMgr* instance;
+    static HitboxColliderMgr* instance;
 
-    ActiveCollider::List activeList;    // 10
-    ActiveCollider::List createList;    // 1C
-    ActiveCollider::List list3;         // 28
-    ActiveCollider::List list4;         // 34
+    HitboxCollider::List activeList;    // 10
+    HitboxCollider::List createList;    // 1C
+    HitboxCollider::List list3;         // 28
+    HitboxCollider::List list4;         // 34
 };

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "playerbase.h"
+#include "actor/playerbase.h"
 
 // TODO: methods, members, verify
 
 class Player : public PlayerBase {
 public:
-    bool vf8CC(Actor*, u32);
-    bool setDamageState(Actor*, u32); // 8D4
+    bool vf8CC(StageActor*, u32);
+    bool setDamageState(StageActor*, u32); // 8D4
 };

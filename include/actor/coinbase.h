@@ -1,6 +1,6 @@
 #pragma once
 
-#include "blockbase.h"
+#include "actor/blockbase.h"
 
 class CoinBase : public MovementBlockCoinBase {
     SEAD_RTTI_OVERRIDE(CoinBase, MovementBlockCoinBase)

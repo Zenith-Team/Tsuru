@@ -1,4 +1,4 @@
-#include "actor/actor.h"
+#include "actor/stageactor.h"
 
 #include "model.h"
 #include "drawmgr.h"
@@ -6,11 +6,11 @@
 #include "sound.h"
 
 
-class FakeCheckpoint : public Actor {
+class FakeCheckpoint : public StageActor {
 public:
     FakeCheckpoint(const ActorBuildInfo* buildInfo);
     
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -20,22 +20,21 @@ public:
 
     void updateModel();
 
-    static void collisionCallback(ActiveCollider* acSelf, ActiveCollider* acOther);
+    static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 
     ModelWrapper* model;
 
-    static const ActiveCollider::Info collisionInfo;
+    static const HitboxCollider::Info collisionInfo;
 };
 
 const Profile FakeCheckpointProfile(&FakeCheckpoint::build, ProfileId::Sprite312, "FakeCheckpoint", nullptr, 0);
 PROFILE_RESOURCES(ProfileId::Sprite312, "middle_flag");
 
-const ActiveCollider::Info FakeCheckpoint::collisionInfo = { Vec2(0.0f, -3.0f), Vec2(12.0f, 15.0f), 0, 5, 0, 0x824F, 0x20208, 0, &FakeCheckpoint::collisionCallback };
+const HitboxCollider::Info FakeCheckpoint::collisionInfo = { Vec2(0.0f, -3.0f), Vec2(12.0f, 15.0f), 0, 5, 0, 0x824F, 0x20208, 0, &FakeCheckpoint::collisionCallback };
 
-FakeCheckpoint::FakeCheckpoint(const ActorBuildInfo* buildInfo)
-    : Actor(buildInfo) { }
+FakeCheckpoint::FakeCheckpoint(const ActorBuildInfo* buildInfo) : StageActor(buildInfo) { }
 
-ActorBase* FakeCheckpoint::build(const ActorBuildInfo* buildInfo) {
+BaseActor* FakeCheckpoint::build(const ActorBuildInfo* buildInfo) {
     return new FakeCheckpoint(buildInfo);
 }
 
@@ -44,7 +43,7 @@ u32 FakeCheckpoint::onCreate() {
     model->playSklAnim("wait", 0);
 
     aCollider.init(this, &FakeCheckpoint::collisionInfo, 0);
-    addActiveColliders();
+    addHitboxColliders();
 
     for (u32 i = 0; i <= 64; i += 1) {
         rotation.y += 0x1000000;
@@ -86,6 +85,6 @@ void FakeCheckpoint::touch() {
     isDeleted = true;
 }
 
-void FakeCheckpoint::collisionCallback(ActiveCollider* acSelf, ActiveCollider* acOther) {
-    reinterpret_cast<FakeCheckpoint*>(acSelf->owner)->touch();
+void FakeCheckpoint::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    reinterpret_cast<FakeCheckpoint*>(hcSelf->owner)->touch();
 }
