@@ -5,7 +5,7 @@ Project started on March 9 2021.
 
 # What's here
 ## Headers:
-I have included as many headers as I could, to minimize the amount of reverse-engineering required for modifying the game, and for completeness. There are much too many headers to keep track of, so here is a list of extra actor and actor base headers that are included here, plus some other special ones.
+I have included as many headers as I could, to minimize the amount of reverse-engineering required for modifying the game for others, and for completeness. There are much too many headers to keep track of, so here is a list of extra actor and actor base headers that are included here, plus some other special ones.
 ### Actors
 * bobomb.h (unfinished)
 * boss.h (unfinished)
@@ -29,7 +29,7 @@ I have included as many headers as I could, to minimize the amount of reverse-en
 * terrain.h (unfinished)
 * taskmgr.h
 ## Custom Sprites:
-All custom sprites which were not written by me have credits in customsprites.yaml
+All custom sprites which were not written by me have credits in customsprites.yaml. Also listed there are the sprite/profile IDs of each custom sprite.
 * Actor Spawner
 * Angry Sun (unfinished)
 * Bomb Bro (unfinished)
