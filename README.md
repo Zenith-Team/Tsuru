@@ -53,6 +53,7 @@ All custom sprites which were not written by me have credits in customsprites.ya
 Miscellaneous hacks/patches are listed here
 * Add archive links for some unused actors to allow adding models
 * Customizable snow particle colors
+* Customizable world map scripts
 * Debug collision viewer
 * Disabled acorns falling on title screen
 * Disabled Miiverse related popups/menus (unfinished)
@@ -73,6 +74,7 @@ Miscellaneous hacks/patches are listed here
 * [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code and headers
 * [Newer Team](https://github.com/Newer-Team) - [Newer U](https://github.com/Newer-Team/NewerSMBU) code and headers
 * [RicBent](https://github.com/RicBent) - [CodeDX](https://github.com/RicBent/codedx) code and headers
+* [RoadrunnerWMC](https://github.com/RoadrunnerWMC) - Customizable world map scripts
 * [STUPID](https://github.com/stupidestmodder) - General code and headers
 * Modified dynamic_libs based on original implementation by dimok and [Maschell fork](https://github.com/Maschell/dynamic_libs)
 * shiftjis.h from [Apollo PS3](https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h)
