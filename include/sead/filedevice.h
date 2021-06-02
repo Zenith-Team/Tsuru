@@ -10,10 +10,10 @@ class FileHandle;
 class FileDevice {
 public:
     enum FileOpenFlag {
-        cFileOpenFlag_ReadOnly = 0,   // r
+        cFileOpenFlag_ReadOnly  = 0,  // r
         cFileOpenFlag_WriteOnly = 1,  // w
         cFileOpenFlag_ReadWrite = 2,  // r+
-        cFileOpenFlag_Create = 3      // w+
+        cFileOpenFlag_Create    = 3   // w+
     };
 
 public:

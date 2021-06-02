@@ -71,7 +71,7 @@ public:
     List::Node createNode;          // 1C
     List::Node list3Node;           // 28
     List::Node list4Node;           // 34
-    StageActor* owner;                   // 40
+    StageActor* owner;              // 40
     u32 _44;                        // 44
     u32 _48;                        // 48
     Vec2 _4C;                       // 4C

@@ -1,0 +1,15 @@
+
+---
+Files:
+  - source/worldmapscripts.cpp
+  - source/worldmapscripts.S
+Hooks:
+  - type: branch
+    instr: bl
+    addr: EDA4368
+    func: WorldMapScriptsHook1
+  
+  - type: branch
+    instr: b
+    addr: EDA4B54
+    func: WorldMapScriptsHook2
