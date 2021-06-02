@@ -2,15 +2,15 @@
 
 #include "vec2.h"
 
-class Vec3 {
+class Vec3 {  // size: 0xC
 public:
     union {
         f32 array[3];
 
         struct {
-            f32 x;
-            f32 y;
-            f32 z;
+            f32 x;  // 0
+            f32 y;  // 4
+            f32 z;  // 8
         };
     };
 

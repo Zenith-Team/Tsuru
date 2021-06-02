@@ -4,14 +4,14 @@
 
 class Vec3;
 
-class Vec2 {
+class Vec2 {  // size: 0x8
 public:
     union {
         f32 array[2];
 
         struct {
-            f32 x;
-            f32 y;
+            f32 x;  // 0
+            f32 y;  // 4
         };
     };
 

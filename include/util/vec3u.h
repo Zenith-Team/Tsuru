@@ -3,15 +3,15 @@
 #include "types.h"
 #include "vec3.h"
 
-class Vec3u {
+class Vec3u {  // size: 0xC
 public:
     union {
         u32 array[3];
 
         struct {
-            u32 x;
-            u32 y;
-            u32 z;
+            u32 x;  // 0
+            u32 y;  // 4
+            u32 z;  // 8
         };
     };
 
