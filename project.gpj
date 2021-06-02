@@ -50,4 +50,6 @@ source/sead/decompressor.cpp
 source/sead/primitiverenderer.cpp
 source/sizemodifier.S
 source/snowparticles.S
+source/worldmapscripts.cpp
+source/worldmapscripts.S
 source/yoshicolors.S

@@ -27,9 +27,9 @@ PatchYoshiColors:
 
 .global RandomYoshiColors
 RandomYoshiColors:
-    stwu     r1, -0x4(r1)
+    stwu     sp, -0x4(sp)
     mflr     r0
-    stw      r0, 0x8(r1)
+    stw      r0, 0x8(sp)
 
     lis      r3, instance__Q2_4sead12GlobalRandom@ha
     lwz      r3, instance__Q2_4sead12GlobalRandom@l(r3)
@@ -38,7 +38,7 @@ RandomYoshiColors:
     mulhwu   r4, r3, r4
     mr       r3, r29
 
-    lwz      r0, 0x8(r1)
+    lwz      r0, 0x8(sp)
     mtlr     r0
-    addi     r1, r1, 0x4
+    addi     sp, sp, 0x4
     blr
