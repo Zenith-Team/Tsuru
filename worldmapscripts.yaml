@@ -13,3 +13,8 @@ Hooks:
     instr: b
     addr: EDA4B54
     func: WorldMapScriptsHook2
+  
+  - type: branch
+    instr: bl
+    addr: EDA4724
+    func: PrintMapScriptName

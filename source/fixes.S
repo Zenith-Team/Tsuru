@@ -7,19 +7,19 @@ cast_double: .quad 0x4330000080000000
 .global DistantViewMgr_AddBGOffset
 DistantViewMgr_AddBGOffset:
     # Allocate 0x18 bytes from stack
-    stwu  r1, -0x18(r1)
+    stwu  sp, -0x18(sp)
 
     # Stuff needed for casting integral type to floating-point type
     lis   r9, cast_double@ha
     lfd   f0, cast_double@l(r9)
     lis   r0, 0x4330
-    stw   r0, 0x8(r1)
+    stw   r0, 0x8(sp)
 
     # Load s16 from r24+0x2 (xOffs) into r9 and cast it to f32 into f8
     lha   r9, 0x2(r24)
     xoris r9, r9, 0x8000
-    stw   r9, 0xC(r1)
-    lfd   f8, 0x8(r1)
+    stw   r9, 0xC(sp)
+    lfd   f8, 0x8(sp)
     fsub  f8, f8, f0
     frsp  f8, f8
 
@@ -31,8 +31,8 @@ DistantViewMgr_AddBGOffset:
     # Load s16 from r24+0x4 (yOffs) into r9 and cast it to f32 into f8
     lha   r9, 0x4(r24)
     xoris r9, r9, 0x8000
-    stw   r9, 0xC(r1)
-    lfd   f8, 0x8(r1)
+    stw   r9, 0xC(sp)
+    lfd   f8, 0x8(sp)
     fsub  f8, f8, f0
     frsp  f8, f8
 
@@ -44,8 +44,8 @@ DistantViewMgr_AddBGOffset:
     # Load s16 from r24+0x6 (zOffs) into r9 and cast it to f32 into f8
     lha   r9, 0x6(r24)
     xoris r9, r9, 0x8000
-    stw   r9, 0xC(r1)
-    lfd   f8, 0x8(r1)
+    stw   r9, 0xC(sp)
+    lfd   f8, 0x8(sp)
     fsub  f8, f8, f0
     frsp  f8, f8
 
@@ -55,7 +55,7 @@ DistantViewMgr_AddBGOffset:
     stfs  f9, 0x23C(r29)
 
     # Restore stack pointer
-    addi  r1, r1, 0x18
+    addi  sp, sp, 0x18
 
     # Restore replaced instruction and return
     addi  r9, r24, 0x8

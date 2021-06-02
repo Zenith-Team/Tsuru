@@ -16,4 +16,5 @@ Modules:
   - sizemodifier.yaml     # Sprite size modifier
   - snowparticles.yaml    # Custom snow particles
   - titlescreen.yaml      # Title screen patches
+  - worldmapscripts.yaml  #
   - yoshicolors.yaml      # Patches Yoshis to have all colors

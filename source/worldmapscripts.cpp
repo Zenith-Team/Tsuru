@@ -1,4 +1,10 @@
+#include "log.h"
 #include "types.h"
+#include "dynamic_libs/os_functions.h"
+
+extern "C" void LogWorldMapScript(void* _this, u32* scriptInfo) {
+    LOG("Launching script %d\n", *scriptInfo);
+}
 
 typedef struct ScriptCommand {
     u32 type;
@@ -116,7 +122,7 @@ ScriptCommand script_011[] = {
     {344, 0},
 };
 
-ScriptCommand script_012[] = {
+ScriptCommand script_012[] = {  // castle related?
     {49, 0},
     {36, 9},
     {13, 0},
@@ -133,7 +139,7 @@ ScriptCommand script_013[] = {
     {344, 0},
 };
 
-ScriptCommand script_014[] = {
+ScriptCommand script_014[] = {  // castle related?
     {91, 0},
     {36, 8},
     {13, 0},
@@ -146,7 +152,7 @@ ScriptCommand script_014[] = {
     {344, 0},
 };
 
-ScriptCommand script_015[] = {
+ScriptCommand script_015[] = {  // castle related?
     {91, 0},
     {36, 8},
     {13, 0},
@@ -158,7 +164,7 @@ ScriptCommand script_015[] = {
     {344, 0},
 };
 
-ScriptCommand script_016[] = {
+ScriptCommand script_016[] = {  // castle related?
     {49, 0},
     {7, 30},
     {90, 0},
@@ -169,7 +175,7 @@ ScriptCommand script_016[] = {
     {344, 0},
 };
 
-ScriptCommand script_017[] = {
+ScriptCommand script_017[] = {  // tower related?
     {49, 0},
     {7, 10},
     {2, 0},
@@ -179,7 +185,7 @@ ScriptCommand script_017[] = {
     {344, 0},
 };
 
-ScriptCommand script_018[] = {
+ScriptCommand script_018[] = {  // tower related?
     {49, 0},
     {7, 10},
     {2, 0},
@@ -188,7 +194,7 @@ ScriptCommand script_018[] = {
     {344, 0},
 };
 
-ScriptCommand script_019[] = {
+ScriptCommand script_019[] = {  // tower related?
     {161, 0},
     {12, 0},
     {321, 0},
@@ -197,7 +203,7 @@ ScriptCommand script_019[] = {
     {344, 0},
 };
 
-ScriptCommand script_020[] = {
+ScriptCommand script_020[] = {  // tower related?
     {161, 0},
     {12, 0},
     {321, 0},
@@ -215,7 +221,7 @@ ScriptCommand script_021[] = {
     {344, 0},
 };
 
-ScriptCommand script_022[] = {
+ScriptCommand script_022[] = {  // castle related?
     {49, 2},
     {36, 9},
     {13, 0},
@@ -1296,7 +1302,7 @@ ScriptCommand script_110[] = {
     {344, 0},
 };
 
-ScriptCommand script_111[] = {
+ScriptCommand script_111[] = {  // inital world load
     {228, 0},
     {344, 0},
 };
