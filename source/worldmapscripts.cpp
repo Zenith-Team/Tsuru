@@ -1,6 +1,5 @@
 #include "log.h"
 #include "types.h"
-#include "dynamic_libs/os_functions.h"
 
 extern "C" void LogWorldMapScript(void* _this, u32* scriptInfo) {
     LOG("Launching script %d\n", *scriptInfo);
@@ -22,7 +21,7 @@ ScriptCommand script_000[] = {
     {344, 0},
 };
 
-ScriptCommand script_001[] = {
+ScriptCommand script_001[] = {  // triggered on level enter
     {5, 0},
     {7, 30},
     {6, 0},
@@ -47,7 +46,7 @@ ScriptCommand script_003[] = {
     {344, 0},
 };
 
-ScriptCommand script_004[] = {
+ScriptCommand script_004[] = {  // "Save?" request popup
     {7, 60},
     {10, 0},
     {344, 0},
@@ -72,7 +71,7 @@ ScriptCommand script_006[] = {
     {344, 0},
 };
 
-ScriptCommand script_007[] = {
+ScriptCommand script_007[] = {  // triggered on tower level enter (1-T)
     {48, 0},
     {2, 0},
     {42, 0},
@@ -82,7 +81,7 @@ ScriptCommand script_007[] = {
     {344, 0},
 };
 
-ScriptCommand script_008[] = {
+ScriptCommand script_008[] = {  // triggered on castle level enter (1-C)
     {48, 0},
     {2, 0},
     {42, 0},
@@ -139,7 +138,7 @@ ScriptCommand script_013[] = {
     {344, 0},
 };
 
-ScriptCommand script_014[] = {  // castle related?
+ScriptCommand script_014[] = {  // triggered on castle exit by win (1-C)
     {91, 0},
     {36, 8},
     {13, 0},
@@ -203,7 +202,7 @@ ScriptCommand script_019[] = {  // tower related?
     {344, 0},
 };
 
-ScriptCommand script_020[] = {  // tower related?
+ScriptCommand script_020[] = {  // tower related
     {161, 0},
     {12, 0},
     {321, 0},
@@ -287,7 +286,7 @@ ScriptCommand script_028[] = {
     {344, 0},
 };
 
-ScriptCommand script_029[] = {
+ScriptCommand script_029[] = {  // triggered on level exit by clear/win
     {161, 0},
     {12, 0},
     {247, 0},
@@ -301,7 +300,7 @@ ScriptCommand script_029[] = {
     {344, 0},
 };
 
-ScriptCommand script_030[] = {
+ScriptCommand script_030[] = {  // triggered on level exit by death
     {161, 0},
     {7, 30},
     {248, 0},
@@ -357,7 +356,7 @@ ScriptCommand script_035[] = {
     {344, 0},
 };
 
-ScriptCommand script_036[] = {
+ScriptCommand script_036[] = {  // toad house related (toad house disappear script?)
     {7, 30},
     {82, 0},
     {344, 0},
@@ -376,7 +375,7 @@ ScriptCommand script_038[] = {
     {344, 0},
 };
 
-ScriptCommand script_039[] = {
+ScriptCommand script_039[] = {  // triggered on toad house win (adds powerups to inventory?)
     {58, 0},
     {51, 60},
     {52, 0},
@@ -483,7 +482,7 @@ ScriptCommand script_051[] = {
     {344, 0},
 };
 
-ScriptCommand script_052[] = {
+ScriptCommand script_052[] = {  // peach's castle takeover cutscene 1
     {7, 10},
     {134, 0},
     {123, 0},
@@ -975,7 +974,7 @@ ScriptCommand script_092[] = {
     {344, 0},
 };
 
-ScriptCommand script_093[] = {
+ScriptCommand script_093[] = {  // triggered on first time in world (world tour cutscene) (W2)
     {58, 0},
     {235, 0},
     {144, 1},
@@ -1020,7 +1019,7 @@ ScriptCommand script_094[] = {
     {344, 0},
 };
 
-ScriptCommand script_095[] = {
+ScriptCommand script_095[] = {  // triggered on 2-1 or 5-1 clear (Nabbit cutscene / blast pipes tutorial)
     {233, 0},
     {7, 30},
     {258, 0},
@@ -1302,7 +1301,7 @@ ScriptCommand script_110[] = {
     {344, 0},
 };
 
-ScriptCommand script_111[] = {  // inital world load
+ScriptCommand script_111[] = {  // triggered on world load, after all other scripts
     {228, 0},
     {344, 0},
 };
@@ -1320,7 +1319,7 @@ ScriptCommand script_113[] = {
     {344, 0},
 };
 
-ScriptCommand script_114[] = {
+ScriptCommand script_114[] = {  // initial miiverse setup tutorial popup (triggered after clearing 1-T or 1-S)
     {89, 0},
     {311, 0},
     {344, 0},
@@ -1345,7 +1344,7 @@ ScriptCommand script_116[] = {
     {344, 0},
 };
 
-ScriptCommand script_117[] = {
+ScriptCommand script_117[] = {  // triggered on initial baby yoshi meet
     {58, 0},
     {47, 0},
     {58, 0},
