@@ -5,6 +5,7 @@
 #include "sound.h"
 #include "effect.h"
 #include "misctemp.h"
+#include "actormgr.h"
 
 // TODO: verify, finish if incomplete
 
