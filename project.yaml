@@ -2,19 +2,19 @@
 ---
 Name: SuperHacks
 Modules:
-# - antialiasing.yaml     # Disables FXAA in-game
-  - areatask.yaml         # Area modifiers
-  - customsprites.yaml    # Custom sprites/actors
-  - debug.yaml            # Debug tools
-  - dynamiclibs.yaml      # Dynamic libraries
-  - fixes.yaml            # Miscellaneous bugfixes
-  - hitboxcollider.yaml   # HitboxCollider patches
-  - initializer.yaml      # Initialize static variables and load RPLs
-  - misc.yaml             # Miscellaneous patches
-  - sarcloader.yaml       # Loads levels as .sarc if .szs isn't found
-  - sead.yaml             # Standard library patches
-  - sizemodifier.yaml     # Sprite size modifier
-  - snowparticles.yaml    # Custom snow particles
-  - titlescreen.yaml      # Title screen patches
-  - worldmapscripts.yaml  # Custom world map scripts/sequences
-  - yoshicolors.yaml      # Patches Yoshis to have all colors
+# - hooks/antialiasing.yaml     # Disables FXAA in-game
+  - hooks/areatask.yaml         # Area modifiers
+  - hooks/customsprites.yaml    # Custom sprites/actors
+  - hooks/debug.yaml            # Debug tools
+  - hooks/dynamiclibs.yaml      # Dynamic libraries
+  - hooks/fixes.yaml            # Miscellaneous bugfixes
+  - hooks/hitboxcollider.yaml   # HitboxCollider patches
+  - hooks/initializer.yaml      # Initialize static variables and load RPLs
+  - hooks/misc.yaml             # Miscellaneous patches
+  - hooks/sarcloader.yaml       # Loads levels as .sarc if .szs isn't found
+  - hooks/sead.yaml             # Standard library patches
+  - hooks/sizemodifier.yaml     # Sprite size modifier
+  - hooks/snowparticles.yaml    # Custom snow particles
+  - hooks/titlescreen.yaml      # Title screen patches
+  - hooks/worldmapscripts.yaml  # Custom world map scripts/sequences
+  - hooks/yoshicolors.yaml      # Patches Yoshis to have all colors
