@@ -4,13 +4,13 @@ Files: [source/sizemodifier.S]
 Hooks:
   - type: branch
     instr: b
+    addr: "2000FE4"
     func: ScaleModel
-    addr: EBC0FE4
   
   - type: branch
     instr: bl
+    addr: "219AF58"
     func: ScaleActiveCollider
-    addr: ED5AF58
   
 # - type: branch
 #   instr: temp

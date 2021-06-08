@@ -6,5 +6,5 @@ Files:
 Hooks:
   - type: branch
     instr: bl
-    addr: 0F0765E0
+    addr: "24B65E0"
     func: CollisionDebugDraw

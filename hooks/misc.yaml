@@ -8,9 +8,9 @@ Hooks:
   # Disable time rush at 100 secs
   - type: branch
     instr: b
+    addr: "29B83D8"   # shouldHurryUp__11MusicPlayerFv
     func: ReturnFalse
-    addr: F5783D8     # shouldHurryUp__11MusicPlayerFv
   # Make yoshi bounce on urchins
   - type: funcptr
-    addr: 105B09FC
+    addr: "100AE7FC"
     func: Bouncy__collisionYoshi__FP5EnemyP14HitboxColliderT2

@@ -32,42 +32,42 @@ Hooks:
 #---------------------
   - type: branch
     instr: bl
-    addr: EEC011C
+    addr: "230011C"
     func: FooCloudUpdate
 
   - type: branch
     instr: bl
-    addr: EEBAD38
+    addr: "22FAD38"
     func: FooCloudColorDark
 
   - type: branch
     instr: bl
-    addr: EF74F4C
+    addr: "23B4F4C"
     func: FooCloudType_onCreate
 
   - type: branch
     instr: bl
-    addr: EEBAE50
+    addr: "22FAE50"
     func: FooCloudColorDark
 
   - type: branch
     instr: bl
-    addr: EEBBBD8
+    addr: "22FBBD8"
     func: FooCloudColorLight
 
   - type: branch
     instr: bl
-    addr: EEBBA68
+    addr: "22FBA68"
     func: DeathFooCollision
 
   - type: branch
     instr: bl
-    addr: EEBA520
+    addr: "22FA520"
     func: FooCloudTexture
 
   - type: branch
     instr: bl
-    addr: EF75B5C
+    addr: "23B5B5C"
     func: FooCloudType_breathIn
 #---------------------
 #$ Water Waves

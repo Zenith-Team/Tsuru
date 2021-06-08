@@ -4,13 +4,13 @@ Files: []
 Hooks:
   # Disable call to AreaTask::PrepareAA
   - type: nop
-    addr: 0F0764A8
+    addr: "24B64A8"
   # Disable call to AreaTask::ApplyAA
   - type: nop
-    addr: 0F0766A4
+    addr: "24B66A4"
   # Disable call to DemoTestScene::prepareFilterAA_
   - type: nop
-    addr: 0F55FE68
+    addr: "299FE68"
   # Disable call to DemoTestScene::applyFilterAA_
   - type: nop
-    addr: 0F55FED0
+    addr: "299FED0"

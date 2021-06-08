@@ -2,14 +2,15 @@
 ---
 Files:
   - source/yoshicolors.S
+  - source/yoshicolors.cpp
 Hooks:
   # Patch array to unlock colors
   - type: branch
     instr: bl
+    addr: "2969B38"
     func: PatchYoshiColors
-    addr: F529B38
   # Randomize nybble 12
   - type: branch
     instr: bl
+    addr: "295DF50"
     func: RandomYoshiColors
-    addr: F51DF50

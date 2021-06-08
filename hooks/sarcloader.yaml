@@ -4,5 +4,5 @@ Files: [source/sarcloader.S]
 Hooks:
   - type: branch
     instr: bl
-    addr: F593330
+    addr: "29D3330"
     func: ResMgr_LoadLevelArchiveWithoutDecomp
