@@ -4,5 +4,5 @@ Files: [source/areatask.cpp]
 Hooks:
   - type: branch
     instr: bl
-    addr: F075D98
+    addr: "24B5D98"
     func: readOptions__8AreaTaskFv

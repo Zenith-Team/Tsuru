@@ -53,3 +53,4 @@ source/snowparticles.S
 source/worldmapscripts.cpp
 source/worldmapscripts.S
 source/yoshicolors.S
+source/yoshicolors.cpp

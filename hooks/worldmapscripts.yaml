@@ -6,15 +6,15 @@ Files:
 Hooks:
   - type: branch
     instr: bl
-    addr: EDA4368
+    addr: "21E4368"
     func: WorldMapScriptsHook1
   
   - type: branch
     instr: b
-    addr: EDA4B54
+    addr: "21E4B54"
     func: WorldMapScriptsHook2
   
   - type: branch
     instr: bl
-    addr: EDA4724
+    addr: "21E4724"
     func: PrintMapScriptName

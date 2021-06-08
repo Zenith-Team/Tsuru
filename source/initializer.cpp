@@ -45,8 +45,6 @@ void initialize() {
     InitH264FunctionPointers();
     InitZlibFunctionPointers();
 
-#ifdef __DEBUG
     LOG("OSDynLoad_Acquire address: 0x%08X\n", OS_SPECIFICS->addr_OSDynLoad_Acquire);
     LOG("OSDynLoad_FindExport address: 0x%08X\n", OS_SPECIFICS->addr_OSDynLoad_FindExport);
-#endif
 }

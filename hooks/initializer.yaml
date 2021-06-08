@@ -4,5 +4,5 @@ Files: [source/initializer.cpp]
 Hooks:
   - type: branch
     instr: b
-    addr: F6BA050
+    addr: "2AFA050"
     func: initialize__Fv
