@@ -2,7 +2,7 @@
 
 #include "util/vec2.h"
 
-class TileCheck {
+class TileChecker {
 public:
     struct Result {
         u8 _0;
@@ -26,7 +26,7 @@ public:
     };
 
 public:
-    TileCheck(const Param& parm);
+    TileChecker(const Param& param);
     bool check(Result* result, const Vec2& pos1, const Vec2& pos2, u32 unk);
 
     u8 _0;
