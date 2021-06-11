@@ -92,16 +92,16 @@ public:
     void handleSpeed();
 
     inline bool checkForSuitableGround(f32 xOffset, f32 yOffset) {
-        TileCheck::Param checkParam = { 0 };
+        TileChecker::Param checkParam = { 0 };
         checkParam._2 = layer;
         checkParam._3 = collisionMask;
 
-        TileCheck tileCheck(checkParam);
+        TileChecker tileChecker(checkParam);
 
         Vec2 a(position.x, position.y);
         Vec2 b(position.x + xOffset, position.y + yOffset);
 
-        return tileCheck.check(nullptr, a, b, 8);
+        return tileChecker.check(nullptr, a, b, 8);
     }
 
     u32 _27C;                           // 27C

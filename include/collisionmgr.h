@@ -1,9 +1,9 @@
 #pragma once
 
 #include "actor/stageactor.h"
-#include "tilecheck.h"
+#include "tilechecker.h"
 
-class CollisionMgr : public TileCheck {
+class CollisionMgr : public TileChecker {
     SEAD_RTTI_BASE(CollisionMgr)
 
 public:
