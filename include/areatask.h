@@ -4,9 +4,11 @@
 
 class AreaTask {  // size: 0xBE4
 public:
-    void readOptions();
     void drawLayer3D(const agl::lyr::RenderInfo& renderInfo);
     void debugDraw(const agl::lyr::RenderInfo& renderInfo);
+
+    // Custom functions
+    void readOptions();
 
     static AreaTask* instance;
 
