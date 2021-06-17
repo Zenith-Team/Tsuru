@@ -944,7 +944,6 @@ SECTIONS {
 	/* Misc */
 	ASM_MTXConcat = 0x2af98a0;
 	mapPositionToScreen__FR4Vec2RC4Vec2 = 0x2029368;
-	mapPosToScreen__FP4Vec2T1 = 0x2029368;
 	moveValueTo__FPUiUiT2 = 0x29e11f0;
 	moveFloatTo__FPffT2 = 0x2027984;
 	BLOSDynLoad_Acquire = 0x2a9ef58;

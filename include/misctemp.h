@@ -12,6 +12,6 @@ public:
 	u32 _28;		// 28
 };
 
-void mapPosToScreen(Vec2* , Vec2* );
+void mapPositionToScreen(Vec2& out, const Vec2& position);
 bool moveValueTo(u32*, u32 target, u32 amount);	
 bool moveFloatTo(f32*, f32 target, f32 amount);

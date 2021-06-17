@@ -3,6 +3,7 @@
 #include "nw/snd.h"
 #include "sead.h"
 #include "util/vec2.h"
+#include "misctemp.h"
 
 
 class AudioFx {
@@ -66,8 +67,6 @@ public:
 };
 
 // Convenience
-
-void mapPositionToScreen(Vec2& out, const Vec2& position);
 
 inline void PlaySound(const char* label, const Vec2& position) {
     Vec2 screenPos;
