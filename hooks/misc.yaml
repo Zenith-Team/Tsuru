@@ -14,3 +14,8 @@ Hooks:
   - type: funcptr
     addr: "100AE7FC"
     func: Bouncy__collisionYoshi__FP5EnemyP14HitboxColliderT2
+  # Add nybble to make pokey stationary
+  - type: branch
+    instr: bl
+    addr: "02430E1C"
+    func: StationaryPokey__FP5Enemy
