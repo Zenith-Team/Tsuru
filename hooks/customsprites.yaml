@@ -72,3 +72,7 @@ Hooks:
 #---------------------
 #$ Water Waves
 #---------------------
+  - type: branch
+    instr: bl
+    addr: "026F8FE8"
+    func: InitTerrainEffects

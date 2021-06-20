@@ -932,10 +932,10 @@ SECTIONS {
 	instance__8RDashMgr = 0x101e7d9c;
 
 	/* TerrainEffects */
-	__CPR79__init__14TerrainEffectsFP4Vec3fbT3Q2_J6J11TerrainTypePQ2_4sead4Heap = 0x28b7378;
-	setWaveValues__14TerrainEffectsFUiN51 = 0x28b7598;
-	checkMarioWaveHit__14TerrainEffectsFv = 0x28b8c98;
-	updateWaveCollisions__14TerrainEffectsFv = 0x28b8e00;
+	__CPR79__init__14TerrainEffectsFP4Vec3fbT3Q2_J6J11TerrainTypePQ2_4sead4Heap = 0x28b72d4;
+	setWaveValues__14TerrainEffectsFUiN51 = 0x28b74f4;
+	checkMarioWaveHit__14TerrainEffectsFv = 0x28b8bf4;
+	updateWaveCollisions__14TerrainEffectsFv = 0x28b8d5c;
 
 	/* EnvTerrain */
 	onExecute__10EnvTerrainFv = 0x26f0f40;
