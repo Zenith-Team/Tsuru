@@ -74,5 +74,10 @@ Hooks:
 #---------------------
   - type: branch
     instr: bl
-    addr: "026F8FE8"
-    func: InitTerrainEffects
+    addr: "26F8FE8"
+    func: Waves_onCreate
+  
+  - type: branch
+    instr: bl
+    addr: "26f9374"
+    func: Waves_onExecute

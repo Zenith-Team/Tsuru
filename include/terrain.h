@@ -35,7 +35,7 @@ public:
 	u32 _BC;				// BC
 	u32 _C0;				// C0
 	u32 _C4;				// C4		//? Newer U: waveSpeed
-	u32 _C8;				// C8		//? Newer U waveAnimSpeed
+	u32 _C8;				// C8		//? Newer U: waveAnimSpeed
 	u32 _CC;				// CC
 	u32 _D0;				// D0
 	u32 _D4;				// D4		//? Newer U: waveWidth
@@ -51,6 +51,8 @@ public:
 
 	void init(Vec3* pos, float width, bool noLoc, bool layer0, TerrainType type, sead::Heap* heap);
 	void setWaveValues(u32 height, u32 effectHeight, u32 speed, u32 animSpeed, u32 width, u32 effect);
+	void updateWaveCollisions();
+	void someUpdateFunctionMaybe();
 };
 
 class EnvTerrain : public MultiStateActor {  // size: 0x11A78
@@ -103,4 +105,8 @@ public:
 	u8 _11A72;						// 11A72
 	u8 _11A73;						// 11A73
 	u8 unk7[4];						// 11A74
+
+	u32 onExecute() override;
+
+	void setTop(f32 top);
 };
