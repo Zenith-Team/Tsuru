@@ -938,8 +938,8 @@ SECTIONS {
 	updateWaveCollisions__14TerrainEffectsFv = 0x28b8d5c;
 
 	/* EnvTerrain */
-	onExecute__10EnvTerrainFv = 0x26f0f40;
-	setTop__10EnvTerrainFf = 0x26f131c;
+	onExecute__10EnvTerrainFv = 0x026f0e9c;
+	setTop__10EnvTerrainFf = 0x26f1278;
 
 	/* Misc */
 	ASM_MTXConcat = 0x2af98a0;
