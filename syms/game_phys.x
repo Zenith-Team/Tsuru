@@ -936,6 +936,7 @@ SECTIONS {
 	setWaveValues__14TerrainEffectsFUiN51 = 0xF4774F4;
 	checkMarioWaveHit__14TerrainEffectsFv = 0xF478BF4;
 	updateWaveCollisions__14TerrainEffectsFv = 0xF478D5C;
+	someUpdateFunctionMaybe__14TerrainEffectsFv = 0xF478E64;
 
 	/* EnvTerrain */
 	onExecute__10EnvTerrainFv = 0xF2B0E9C;

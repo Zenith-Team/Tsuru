@@ -72,8 +72,11 @@ Waves_onExecute:
     mflr r0
     stw  r0,  0x3C(sp)
 
+    # Set r3 to be TerrainEffects*
+    addi r3, r30, 0x1AE4
+
     # Branch to C++ function
-    bl Waves_onExecute__FP10EnvTerrain
+    bl Waves_onExecute__FP14TerrainEffects
 
     # Restore registers
     lwz  r0,  0x34(sp)

@@ -79,5 +79,5 @@ Hooks:
   
   - type: branch
     instr: bl
-    addr: "26f9374"
+    addr: "26F9444"
     func: Waves_onExecute
