@@ -34,14 +34,14 @@ public:
 	u32 _B8;				// B8
 	u32 _BC;				// BC
 	u32 _C0;				// C0
-	u32 _C4;				// C4		//? Newer U: waveSpeed
-	u32 _C8;				// C8		//? Newer U: waveAnimSpeed
+	u32 _C4;				// C4		//? Newer U: waveSpeed				// Suggested name: rippleSpeed
+	u32 _C8;				// C8		//? Newer U: waveAnimSpeed			// Suggested name: horizontalSpeed
 	u32 _CC;				// CC
 	u32 _D0;				// D0
-	u32 _D4;				// D4		//? Newer U: waveWidth
+	u32 _D4;				// D4		//? Newer U: waveWidth				// Suggested name: rippleRelated
 	u32 _D8;				// D8		//? Newer U: waveType
 	f32 _DC;				// DC		//? Newer U: waveHeight
-	f32 _E0;				// E0		//? Newer U: waveAnimHeight
+	f32 _E0;				// E0		//? Newer U: waveAnimHeight			// Suggested name: peakHeight
 	u8 _E4;					// E4		//? Newer U: type
 	u8 _E5;					// E5		//? Newer U: noLocation
 	u8 unk4[65114];			// E6		//? Newer U: data
@@ -52,6 +52,7 @@ public:
 	void init(Vec3* pos, float width, bool noLoc, bool layer0, TerrainType type, sead::Heap* heap);
 	void setWaveValues(u32 height, u32 effectHeight, u32 speed, u32 animSpeed, u32 width, u32 effect);
 	void updateWaveCollisions();
+	void checkMarioWaveHit();
 	void someUpdateFunctionMaybe();
 };
 
