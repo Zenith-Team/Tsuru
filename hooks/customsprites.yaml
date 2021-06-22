@@ -23,7 +23,7 @@ Files:
 #* Patches
   - source/deathfoo.S            #| Nybble 12 on Sprite 229, Profile 785,  Notes: [Newer SMBU]          Written by Kinnay
   - source/profileres.cpp        #| Patches profile resources to allow adding models to broken actors
-  - source/waves.cpp             #| Nybbles on Sprite 88, Profile 84,      Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | The one and only, Newer U waves! :)
+  - source/waves.cpp             #| Nybbles on Sprite 88, Profile 84,      Notes: [Newer SMBU]          Written by Luminyx  | Original implementation by Kinnay     | The one and only, Newer U waves! :)
   - source/waves.S               #| ^
 Hooks:
 #---------------------
