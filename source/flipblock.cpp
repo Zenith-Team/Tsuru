@@ -33,7 +33,7 @@ public:
 
     static const HitboxCollider::Info colliderInfo;
 
-    DECLARE_STATE(FlipBlock, Flipping)
+    DECLARE_STATE(FlipBlock, Flipping);
 };
 
 CREATE_STATE(FlipBlock, Flipping);

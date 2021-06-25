@@ -50,11 +50,11 @@ public:
 
     static const HitboxCollider::Info colliderInfo;
 
-    DECLARE_STATE(AngrySun, Stationary)
-    DECLARE_STATE(AngrySun, Follow)
-    DECLARE_STATE(AngrySun, Swoop)
-    DECLARE_STATE(AngrySun, AttackSpin)
-    DECLARE_STATE(AngrySun, Spit)
+    DECLARE_STATE(AngrySun, Stationary);
+    DECLARE_STATE(AngrySun, Follow);
+    DECLARE_STATE(AngrySun, Swoop);
+    DECLARE_STATE(AngrySun, AttackSpin);
+    DECLARE_STATE(AngrySun, Spit);
 };
 
 CREATE_STATE(AngrySun, Stationary);

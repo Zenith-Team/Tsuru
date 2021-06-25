@@ -26,6 +26,7 @@ source/flipblock.cpp
 source/flybones.cpp
 source/modelloader.cpp
 source/timeclock.cpp
+source/waveplatform.cpp
 source/actorspawner.cpp
 source/magicplatform.cpp
 source/deathfoo.S

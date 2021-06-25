@@ -46,7 +46,7 @@ All custom sprites which were not written by me have credits in customsprites.ya
 * Poison Mushroom (unfinished)
 * Time Clock
 * Triple Block (unfinished, broken)
-* Water Waves (broken, crashes)
+* Water Waves (unfinished)
 * Water Waves Platform (unfinished, broken)
 * Wind generator (unfinished)
 ## Patches:

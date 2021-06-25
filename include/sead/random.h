@@ -45,7 +45,7 @@ inline f32 randF32(f32 max) {
 }
 
 inline f32 randF32(f32 min, f32 max) {
-    f32 range = max - min;
+//  f32 range = max - min;
     f32 rand = static_cast<f32>(sead::GlobalRandom::instance->getU32()) * 0.00000000023283064f;
     return min + rand;
 }

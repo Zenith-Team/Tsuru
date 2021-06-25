@@ -30,11 +30,11 @@ public:
 
     static const HitboxCollider::Info collisionInfo;
 
-    DECLARE_STATE(FlyBones, Lowering)
-    DECLARE_STATE(FlyBones, IdleLowered)
-    DECLARE_STATE(FlyBones, Rising)
-    DECLARE_STATE(FlyBones, IdleRaised)
-    DECLARE_STATE(FlyBones, Die)
+    DECLARE_STATE(FlyBones, Lowering);
+    DECLARE_STATE(FlyBones, IdleLowered);
+    DECLARE_STATE(FlyBones, Rising);
+    DECLARE_STATE(FlyBones, IdleRaised);
+    DECLARE_STATE(FlyBones, Die);
 };
 
 CREATE_STATE(FlyBones, Lowering);

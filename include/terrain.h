@@ -38,10 +38,10 @@ public:
 	u32 _C8;				// C8		//? Newer U: waveAnimSpeed			// Suggested name: horizontalSpeed
 	u32 _CC;				// CC
 	u32 _D0;				// D0
-	u32 _D4;				// D4		//? Newer U: waveWidth				// Suggested name: rippleRelated
-	u32 _D8;				// D8		//? Newer U: waveType
+	u32 _D4;				// D4		//? Newer U: waveWidth				// Suggested name: rippleCount or rippleWidth (Suggested range unknown)
+	u32 _D8;				// D8		//? Newer U: waveType				// Suggested name: waveFrequency/waveWidth (Suggested range unknown)
 	f32 _DC;				// DC		//? Newer U: waveHeight
-	f32 _E0;				// E0		//? Newer U: waveAnimHeight			// Suggested name: peakHeight
+	f32 _E0;				// E0		//? Newer U: waveAnimHeight			// Suggested name: peakHeight or rippleHeight
 	u8 _E4;					// E4		//? Newer U: type
 	u8 _E5;					// E5		//? Newer U: noLocation
 	u8 unk4[65114];			// E6		//? Newer U: data
@@ -50,7 +50,7 @@ public:
 	void* effectsVtable;	// FF48
 
 	void init(Vec3* pos, float width, bool noLoc, bool layer0, TerrainType type, sead::Heap* heap);
-	void setWaveValues(u32 height, u32 effectHeight, u32 speed, u32 animSpeed, u32 width, u32 effect);
+	void setWaveValues(u32, u32, u32, u32, u32, u32);	//? Newer U param names were weird so I removed them for now
 	void updateWaveCollisions();
 	void checkMarioWaveHit();
 	void someUpdateFunctionMaybe();
@@ -73,24 +73,24 @@ public:
 	f32 _1AAC;						// 1AAC
 	f32 _1AB0;						// 1AB0
 	f32 _1AB4;						// 1AB4 	//? Newer U: riseTop
-	f32 _1Ab8;						// 1AB8
+	f32 _1AB8;						// 1AB8
 	f32 _1ABC;						// 1ABC
 	f32 _1AC0;						// 1AC0
 	f32 _1AC4;						// 1AC4 	//? Newer U: risingSpeed
-	f32 _1AC8;						// 1AC8
-	f32 _1ACC;						// 1ACC 	//? Newer U: currentHeight
+	f32 _1AC8;						// 1AC8		//? Suggested name: currentHeightNegative
+	f32 _1ACC;						// 1ACC 	//? Newer U: currentHeight    Suggested name: currentHeightPositive
 	u32 _1AD0;						// 1AD0
 	u32 _1AD4;						// 1AD4
 	u16 _1AD8;						// 1AD8
 	u16 _1ADA;						// 1ADA 	//? Newer U: loweringDelay
-	bool _1ADC;						// 1ADC 	//? Newer U: onlyRenderWaves
+	bool onlyRenderWaves;			// 1ADC
 	u8 _1ADD;						// 1ADD
 	u8 _1ADE;						// 1ADE
 	u8 _1ADF;						// 1ADF
 	u32 _1AE0;						// 1AE0
 	TerrainEffects effects;			// 1AE4
 	sead::IDisposer disposer;		// 11A30
-	sead::Heap* _11A40;				// 11A40	//? Newer U: sead::Heap* additionalHeap 	//! Observed as u32, temporarily changed to sead::Heap*
+	u32 _11A40;						// 11A40	//? Newer U: sead::Heap* additionalHeap
 	u8 unk6[4];						// 11A44
 	u32 _11A48;						// 11A48	//? Newer U: u64 eventMask
 	u32 _11A4C;						// 11A4C

@@ -13,5 +13,5 @@ public:
 };
 
 void mapPositionToScreen(Vec2& out, const Vec2& position);
-bool moveValueTo(u32*, u32 target, u32 amount);	
-bool moveFloatTo(f32*, f32 target, f32 amount);
+bool moveValueTo(u32* value, u32 target, u32 amount);	
+bool moveFloatTo(f32* value, f32 target, f32 amount);

@@ -3,7 +3,7 @@
 #include "nw/snd.h"
 #include "sead.h"
 #include "util/vec2.h"
-#include "misctemp.h"
+#include "misc.h"
 
 
 class AudioFx {
