@@ -25,6 +25,7 @@ source/firethwomp.cpp
 source/flipblock.cpp
 source/flybones.cpp
 source/modelloader.cpp
+source/poisonmushroom.cpp
 source/timeclock.cpp
 source/waveplatform.cpp
 source/actorspawner.cpp

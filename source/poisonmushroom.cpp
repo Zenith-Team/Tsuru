@@ -15,7 +15,7 @@ public:
     u32 onDraw() override;
 
     // Collision Conditions
-    bool collisionGroundPound(ActiveCollider* acSelf, ActiveCollider* acOther) override;
+    bool collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
     void updateModel();
 
@@ -25,20 +25,20 @@ public:
     static const CollisionMgr::Sensor PoisonMushroom::topSensor;
     static const CollisionMgr::Sensor PoisonMushroom::sideSensor;
 
-    static const ActiveCollider::Info collisionInfo;
+    static const HitboxCollider::Info collisionInfo;
 
-    DECLARE_STATE(PoisonMushroom, Move)
-    DECLARE_STATE(PoisonMushroom, Turn)
+    DECLARE_STATE(PoisonMushroom, Move);
+    DECLARE_STATE(PoisonMushroom, Turn);
 };
 
-CREATE_STATE(PoisonMushroom, Move)
-CREATE_STATE(PoisonMushroom, Turn)
+CREATE_STATE(PoisonMushroom, Move);
+CREATE_STATE(PoisonMushroom, Turn);
 
 const ActorInfo PoisonMushroomActorInfo = { Vec2i(8, -16), Vec2i(0, 16), Vec2i(8, 16), 0, 0, 0, 0, 0 };
 const Profile PoisonMushroomProfile(&PoisonMushroom::build, ProfileId::Sprite306, "PoisonMushroom", &PoisonMushroomActorInfo, 0);
 PROFILE_RESOURCES(ProfileId::Sprite306, "I_kinoko");
 
-const ActiveCollider::Info PoisonMushroom::collisionInfo = { Vec2(0.0f, 8.0f), Vec2(8.0f, 8.0f), 1, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback };
+const HitboxCollider::Info PoisonMushroom::collisionInfo = { Vec2(0.0f, 8.0f), Vec2(8.0f, 8.0f), 1, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback };
 
 const CollisionMgr::Sensor PoisonMushroom::bottomSensor     = { 8.0f,  8.0f,   0.0f };
 const CollisionMgr::Sensor PoisonMushroom::topSensor        = { 0.0f,  0.0f,   0.0f };
@@ -57,7 +57,7 @@ u32 PoisonMushroom::onCreate() {
     direction = directionToPlayerH(position);
 
     aCollider.init(this, &PoisonMushroom::collisionInfo, nullptr);
-    addActiveColliders();
+    addHitboxColliders();
 
     gravity = -0.1875f;
     maxSpeed.y = -4.0f;
@@ -104,8 +104,8 @@ void PoisonMushroom::updateModel() {
     model->updateAnimations();
 }
 
-bool PoisonMushroom::collisionGroundPound(ActiveCollider* acSelf, ActiveCollider* acOther) {
-    damagePlayer(acSelf, acOther);
+bool PoisonMushroom::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    damagePlayer(hcSelf, hcOther);
 
     return 1;
 }

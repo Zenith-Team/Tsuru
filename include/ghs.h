@@ -7,8 +7,4 @@ extern "C" {
 
 	int __ghs_strlen(const char *);
 	void __gh_memclr32(void *, int);
-
-	float sinf(float);
-	float cosf(float);
-	float atan2f(float, float);
 }
