@@ -882,13 +882,13 @@ SECTIONS {
 	getPathNodes__Q2_5Level4AreaFUi = 0x269a0f4;
 
 	/* LevelInfo */
-	sInstance__9LevelInfo = 0x101d18ec;
+	instance__9LevelInfo = 0x101d18ec;
 
 	/* LevelCamera */
-	sInstance__11LevelCamera = 0x101e7c54;
+	instance__11LevelCamera = 0x101e7c54;
 
 	/* LevelTimer */
-	sInstance__10LevelTimer = 0x101d15f4;
+	instance__10LevelTimer = 0x101d15f4;
 	setTime__10LevelTimerFi = 0x24c134c;
 	addTime__10LevelTimerFi = 0x24c14c0;
 

@@ -118,7 +118,7 @@ public:
 
 class LevelCamera : public sead::IDisposer {  // size:0x
 public:		
-	static LevelCamera *instance;		
+	static LevelCamera* instance;
 		
 	f32 _10;                // 10
 	f32 _14;                // 14

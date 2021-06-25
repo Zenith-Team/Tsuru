@@ -20,8 +20,8 @@ public:
     void execute();
     u32 getMaskForMovementType(u32 movementType);
 
-    DECLARE_STATE(MovementHandler, FindController)
-    DECLARE_STATE(MovementHandler, Linked)
+    DECLARE_STATE(MovementHandler, FindController);
+    DECLARE_STATE(MovementHandler, Linked);
 
     Vec3 position;                          // 0
     Vec3 _C;                                // C

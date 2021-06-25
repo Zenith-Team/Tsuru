@@ -6,7 +6,7 @@
     static State<CLASS> StateID_##NAME;                 \
     void beginState_##NAME();                           \
     void executeState_##NAME();                         \
-    void endState_##NAME();
+    void endState_##NAME()
 
 #define DECLARE_STATE_VIRTUAL(CLASS, NAME)              \
     static StateVirtual<CLASS> StateID_##NAME;          \

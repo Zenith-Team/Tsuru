@@ -14,7 +14,7 @@ Files:
 # - source/poisonmushroom.cpp    #| Sprite: 306, Profile: 354,             Notes: [SMB2: Lost Levels]   Written by Luminyx  |                                       | Poison mushroom recreation from The Lost Levels, damages player on contact
   - source/timeclock.cpp         #| Sprite: 555, Profile: 380,             Notes: [Mixed SMBU]          Written by iHarv    |                                       | Timer clock that adds bonus time
 # - source/tripleblock.cpp       #| Sprite: 102, Profile: 588,  [BROKEN]   Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Triple ? block, from NSMB2
-# - source/waveplatform.cpp      #| Sprite: 521, Profile: 834   [BROKEN]   Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Platform that floats on top of waves
+  - source/waveplatform.cpp      #| Sprite: 470, Profile: 752   [BROKEN]   Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Platform that floats on top of waves
 # - source/windactor.cpp         #| Sprite: 197, Profile: 793,  [BROKEN]   Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Not sure if this counts as a patch or a sprite because it replaces the broken wind sprite with its own (fixed) implementation
 #* Utility
   - source/actorspawner.cpp      #| Sprite: 436, Profile: 94,              Notes: [CodeDX]              Written by RicBent  | Ported by AboodXD                     | Just a basic actor spawner
@@ -30,45 +30,45 @@ Hooks:
 #$ Death Foo
 #! Very buggy
 #---------------------
-  - type: branch
-    instr: bl
-    addr: "230011C"
-    func: FooCloudUpdate
-
-  - type: branch
-    instr: bl
-    addr: "22FAD38"
-    func: FooCloudColorDark
-
-  - type: branch
-    instr: bl
-    addr: "23B4F4C"
-    func: FooCloudType_onCreate
-
-  - type: branch
-    instr: bl
-    addr: "22FAE50"
-    func: FooCloudColorDark
-
-  - type: branch
-    instr: bl
-    addr: "22FBBD8"
-    func: FooCloudColorLight
-
-  - type: branch
-    instr: bl
-    addr: "22FBA68"
-    func: DeathFooCollision
-
-  - type: branch
-    instr: bl
-    addr: "22FA520"
-    func: FooCloudTexture
-
-  - type: branch
-    instr: bl
-    addr: "23B5B5C"
-    func: FooCloudType_breathIn
+#  - type: branch
+#    instr: bl
+#    addr: "230011C"
+#    func: FooCloudUpdate
+#
+#  - type: branch
+#    instr: bl
+#    addr: "22FAD38"
+#    func: FooCloudColorDark
+#
+#  - type: branch
+#    instr: bl
+#    addr: "23B4F4C"
+#    func: FooCloudType_onCreate
+#
+#  - type: branch
+#    instr: bl
+#    addr: "22FAE50"
+#    func: FooCloudColorDark
+#
+#  - type: branch
+#    instr: bl
+#    addr: "22FBBD8"
+#    func: FooCloudColorLight
+#
+#  - type: branch
+#    instr: bl
+#    addr: "22FBA68"
+#    func: DeathFooCollision
+#
+#  - type: branch
+#    instr: bl
+#    addr: "22FA520"
+#    func: FooCloudTexture
+#
+#  - type: branch
+#    instr: bl
+#    addr: "23B5B5C"
+#    func: FooCloudType_breathIn
 #---------------------
 #$ Water Waves
 #---------------------
