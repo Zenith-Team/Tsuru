@@ -34,9 +34,6 @@ SECTIONS {
 	/* CAFE SDK STATIC */
 	ASM_VECDistance = 0x2af9b18;
 
-	/* CAFE SDK IMPORTS */
-	OSBlockSet = 0x2b049b0;
-
 	/* sead::IDisposer */
 	__ct__Q2_4sead9IDisposerFv = 0x2a0a2fc;
 	__dt__Q2_4sead9IDisposerFv = 0x2a0a384;
@@ -119,18 +116,12 @@ SECTIONS {
     /* ActorMgr */
 	instance__8ActorMgr = 0x101c30c8;
 	create__8ActorMgrFP14ActorBuildInfoUi = 0x2009a58;
-	createActor__8ActorMgrFP14ActorBuildInfoUi = 0x2009a58;
 	findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP9BaseActor = 0x2009b6c;
 
 	/* ActorList */
-	findById__9ActorListFPUi = 0x200a5c8;
 	findActorById__9ActorListFPUi = 0x200a5c8;
 
-	/* ActorMgr */
-	sInstance__8ActorMgr = 0x101c30c8;
-	create__8ActorMgrFP14ActorBuildInfoUi = 0x2009a58;
-
-	/* ActorBase */
+	/* BaseActor */
 	__vtbl__9BaseActor = 0x100006c0;
 	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__9BaseActorSFv = 0x101e9cc4;
 	typeInfo__L0__getRuntimeTypeInfoStatic__9BaseActorSFv = 0x101e9cc8;
@@ -145,7 +136,7 @@ SECTIONS {
 	afterDelete__9BaseActorFUi = 0x2002f3c;
 	getProfileId__9BaseActorFv = 0x2002c80;
 
-	/* Actor */
+	/* StageActor */
 	__vtbl__10StageActor = 0x10000268;
 	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x101e9cbc;
 	typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x101e9cc0;
@@ -941,6 +932,9 @@ SECTIONS {
 	/* EnvTerrain */
 	onExecute__10EnvTerrainFv = 0x026f0e9c;
 	setTop__10EnvTerrainFf = 0x26f1278;
+
+	/* Pokey */
+	collisionFireball__5PokeyFP14HitboxColliderT1 = 0x2433a38;
 
 	/* Misc */
 	ASM_MTXConcat = 0x2af98a0;

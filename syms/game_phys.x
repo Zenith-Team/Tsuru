@@ -942,6 +942,9 @@ SECTIONS {
 	onExecute__10EnvTerrainFv = 0xF2B0E9C;
 	setTop__10EnvTerrainFf = 0xF2B1278;
 
+	/* Pokey */
+	collisionFireball__5PokeyFP14HitboxColliderT1 = 0xEFF3A38;
+
 	/* Misc */
 	ASM_MTXConcat = 0xF6B98A0;
 	mapPositionToScreen__FR4Vec2RC4Vec2 = 0xEBE9368;
