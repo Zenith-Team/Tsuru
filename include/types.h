@@ -3,7 +3,6 @@
 #define __DEBUG 1
 #define nullptr NULL
 #define override
-#define deleted
 #define forceinline __attribute__((always_inline))
 
 // https://stackoverflow.com/a/1597129

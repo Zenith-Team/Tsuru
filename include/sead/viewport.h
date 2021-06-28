@@ -8,7 +8,7 @@ namespace sead {
 
 class Viewport {
 public:
-    virtual void vf0C() deleted;
+    virtual void vf0C();    // deleted
 
     Rect rect;
     u32 _10;
