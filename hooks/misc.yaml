@@ -18,4 +18,8 @@ Hooks:
   - type: branch
     instr: bl
     addr: "02430E1C"
-    func: StationaryPokey__FP5Enemy
+    func: StationaryPokey__FP5Pokey
+  # Add nybble to make pokey fireproof
+  - type: funcptr
+    addr: "100A3424"
+    func: FireproofPokey__FP5PokeyP14HitboxColliderT2

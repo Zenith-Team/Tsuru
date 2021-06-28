@@ -25,9 +25,6 @@ public:
 
     void set(f32 val) { x = val; y = val; z = val; };
     void set(f32 x, f32 y, f32 z) { this->x = x; this->y = y; this->z = z; };
-    void setX(f32 x) { this->x = x; }
-    void setY(f32 y) { this->y = y; }
-    void setZ(f32 z) { this->z = z; }
 
     Vec3& operator+=(const Vec3& rhs) { add(*this, *this, rhs); return *this; }
     Vec3& operator-=(const Vec3& rhs) { sub(*this, *this, rhs); return *this; }

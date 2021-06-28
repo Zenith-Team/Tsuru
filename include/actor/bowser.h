@@ -2,7 +2,9 @@
 
 #include "actor/boss.h"
 
-// TODO: members, verify, symbols
+#include "resarchive.h"
+
+// TODO: verify, symbols
 
 class Bowser : public Boss {  // size: 0x25c8
     SEAD_RTTI_OVERRIDE(Bowser, Boss)
@@ -143,5 +145,52 @@ public:
     void initHitsToDamage() override;
     u32 init();
 
-    // TODO: class members here
+    ResArchive* resArchive;         // 1B78
+    ResArchive* resArchive2;        // 1B7C
+    u32 _1B80;                      // 1B80
+    u32 _1B84;                      // 1B84
+    s32 _1B88;                      // 1B88     //? unsure of signedness
+    s32 _1B8C;                      // 1B8C
+    s32 _1B90;                      // 1B90
+    u32 _1B94;                      // 1B94
+    u32 _1B98;                      // 1B98
+    u32 _1B9C;                      // 1B9C
+    u8 _1BA0;                       // 1BA0
+    u8 unk1[3];                     // 1BA1     //? unknown values 1
+    u32 _1BA4;                      // 1BA4
+    u32 _1BA8;                      // 1BA8
+    u32 _1BAC;                      // 1BAC
+    u32 _1BB0;                      // 1BB0
+    u8 _1BB4;                       // 1BB4
+    u8 _1BB5;                       // 1BB5
+    u8 _1BB6;                       // 1BB6
+    u8 unk2;                        // 1BB7     //? unknown values 2
+    Vec3 _1BB8;                     // 1BB8     //? inited to position
+    u32 _1BC4;                      // 1BC4
+    u8 _1BC8[564];                  // 1BC8     //? is class
+    void* _1DFC;                    // 1DFC
+    void* _1E00;                    // 1E00
+    void* _1E04;                    // 1E04
+    void* _1E08;                    // 1E08
+    void* _1E0C;                    // 1E0C
+    f32 _1E10;                      // 1E10
+    f32 _1E14;                      // 1E14
+    Vec3 _1E18;                     // 1E18     //? 99% sure this is Vec3 because its a float* and it does new(0xC) and theres exactly that much space here
+    f32 _1E24;                      // 1E24    
+    u8 unk3[4];                     // 1E28     //? unknown values 3
+    u32 _1E2C;                      // 1E2C    
+    Bowser* _1E30;                  // 1E30    
+    void* _1E34;                    // 1E34    
+    void* _1E38;                    // 1E38
+    void* _1E3C;                    // 1E3C
+    void* _1E40;                    // 1E40
+    u32 _1E44;                      // 1E44
+    s32 _1E48;                      // 1E48
+    EffectWrapper effectWrapper;    // 1E4C
+    u8 unk4[52];					// 1EB4     //? unknown values 4
+    u32 _1EE8;                      // 1EE8
+    u8 unk5[1744];                  // 1EEC     //? unknown values 5
+    u32 _25BC;                      // 25BC
+    u32 _25C0;                      // 25C0
+    u8 unk6[4];                     // 25C4
 };

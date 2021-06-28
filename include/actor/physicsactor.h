@@ -25,7 +25,7 @@ public:
         _179A = unk;
     }
 
-    virtual u8 vf114() deleted;         // deleted
+    virtual u8 vf114();                 // deleted
 
     virtual void vf11C() { }            // nullsub
 
@@ -35,10 +35,10 @@ public:
         return 0;
     }
 
-    virtual void vf134() deleted;       // deleted
+    virtual void vf134();               // deleted
     virtual u32 vf13C();                // returns 0
     virtual void vf144(bool);           // nullsub
-    virtual void vf14C(StageActor*);         // nullsub
+    virtual void vf14C(StageActor*);    // nullsub
 
     virtual bool vf154() {
         return false;
