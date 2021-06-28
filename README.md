@@ -9,7 +9,7 @@ I have included as many headers as I could, to minimize the amount of reverse-en
 ### Actors
 * bobomb.h (unfinished)
 * boss.h (unfinished)
-* bowser.h (unfinished)
+* bowser.h
 * bowserfireball.h
 * brosbase.h
 * enemy.h (semi-unfinished)
@@ -18,6 +18,7 @@ I have included as many headers as I could, to minimize the amount of reverse-en
 * liquid.h (unfinished)
 * player.h (unfinished)
 * playerbase.h (unfinished)
+* pokey.h
 * rockywrench.h (unfinished)
 * spinningstar.h (unfinished)
 * thwomp.h
@@ -59,22 +60,26 @@ Miscellaneous hacks/patches are listed here
 * Disabled Miiverse related popups/menus (unfinished)
 * Disabled music speedup at 100 seconds
 * Disabled FXAA in-game
+* Fireproof pokey (unfinished)
 * Fixed collision conditions for some sprites
+* Infinite lives
 * Restored background offset settings functionality
 * Restored drawCircle16Impl and drawCircle32Impl in sead::PrimitiveRendererCafe
 * Restored sound effect reverb settings
 * RPL library loader
-* Sarc level loader
+* SARC level loader
 * Size modifier
 * Space Physics
+* Stationary pokey
 * Yoshi colors
 * ZLib loader
 
 # Credits
-* [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code and headers
+* [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code, headers, and build system
 * [Newer Team](https://github.com/Newer-Team) - [Newer U](https://github.com/Newer-Team/NewerSMBU) code and headers
 * [RicBent](https://github.com/RicBent) - [CodeDX](https://github.com/RicBent/codedx) code and headers
 * [RoadrunnerWMC](https://github.com/RoadrunnerWMC) - Customizable world map scripts
+* [Shibboleet](https://github.com/shibbo) - General code, headers, and contribution to the build system
 * [STUPID](https://github.com/stupidestmodder) - General code and headers
 * Modified dynamic_libs based on original implementation by dimok and [Maschell fork](https://github.com/Maschell/dynamic_libs)
 * shiftjis.h from [Apollo PS3](https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h)
