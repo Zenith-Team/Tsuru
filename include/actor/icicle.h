@@ -2,9 +2,9 @@
 
 #include "enemy.h"
 
-// TODO: methods, members, verify
+#include "model.h"
 
-class Icicle : public Enemy {  // size: 0x
+class Icicle : public Enemy {  // size: 0x19b8
     SEAD_RTTI_OVERRIDE(Icicle, Enemy);
 
 public:
@@ -16,7 +16,15 @@ public:
     u32 onDraw() override;
     u32 onDelete() override;
 
-    //? Some functions here
+    void setPlayerId(s8 id) override;
+    void removeHitboxColliders() override;
+    void addHitboxColliders() override;
+    CollisionMgr* getCollisionMgr() override;
+    void vfAC() override;
+    bool vfB4() override;
+    void vfBC() override;
+    void vfC4() override;
+    void vfCC() override;
 
     void vf10C() override;
     void vf11C() override;
@@ -44,7 +52,12 @@ public:
     bool collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    //? Two unknown extra functions here
+    virtual void vf4E4();
+    virtual void vf4EC();
     
-    // TODO: Class members here
+    ModelWrapper* model;                // 1880
+    u32 size;                           // 1884
+    HitboxCollider* hitboxCollider;     // 1888
+    void* _19B0;                        // 19B0
+    u8 unk1[4];                         // 19B4  //? unknown values 1
 };
