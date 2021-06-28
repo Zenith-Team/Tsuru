@@ -34,9 +34,6 @@ SECTIONS {
 	/* CAFE SDK STATIC */
 	ASM_VECDistance = 0xF6B9B18;
 
-	/* CAFE SDK IMPORTS */
-	OSBlockSet = 0xF6C49B0;
-
 	/* sead::IDisposer */
 	__ct__Q2_4sead9IDisposerFv = 0xF5CA2FC;
 	__dt__Q2_4sead9IDisposerFv = 0xF5CA384;
@@ -119,18 +116,12 @@ SECTIONS {
     /* ActorMgr */
 	instance__8ActorMgr = 0x106C52C8;
 	create__8ActorMgrFP14ActorBuildInfoUi = 0xEBC9A58;
-	createActor__8ActorMgrFP14ActorBuildInfoUi = 0xEBC9A58;
 	findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP9BaseActor = 0xEBC9B6C;
 
 	/* ActorList */
-	findById__9ActorListFPUi = 0xEBCA5C8;
 	findActorById__9ActorListFPUi = 0xEBCA5C8;
 
-	/* ActorMgr */
-	sInstance__8ActorMgr = 0x106C52C8;
-	create__8ActorMgrFP14ActorBuildInfoUi = 0xEBC9A58;
-
-	/* ActorBase */
+	/* BaseActor */
 	__vtbl__9BaseActor = 0x105028C0;
 	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__9BaseActorSFv = 0x106EBEC4;
 	typeInfo__L0__getRuntimeTypeInfoStatic__9BaseActorSFv = 0x106EBEC8;
@@ -145,7 +136,7 @@ SECTIONS {
 	afterDelete__9BaseActorFUi = 0xEBC2F3C;
 	getProfileId__9BaseActorFv = 0xEBC2C80;
 
-	/* Actor */
+	/* StageActor */
 	__vtbl__10StageActor = 0x10502468;
 	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x106EBEBC;
 	typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x106EBEC0;
