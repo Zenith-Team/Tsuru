@@ -23,3 +23,8 @@ Hooks:
   - type: funcptr
     addr: "100A3424"
     func: FireproofPokey__FP5PokeyP14HitboxColliderT2
+  # Infinite lives
+  - type: branch
+    instr: b
+    addr: "24c0058"
+    func: Return
