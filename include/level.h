@@ -137,13 +137,23 @@ public:
 
 class LevelTimer : public sead::IDisposer {  // size: 0x20
 public:
-    u8 unk1[4];         // 10   //? unknown values 1
-    u32 currentTime;    // 14
-    u8 unk2[8];         // 18   //? unknown values 2
+    LevelTimer();
 
+    s32 shiftTimeLimitLeft();
+    void setTime(s32 seconds);
     void addTime(s32 seconds);
-    
+    s32 shiftTimeLimitRight();
+    s32 getTimeLimitSeconds() const;
+
+    static LevelTimer* createInstance(sead::Heap*);
     static LevelTimer* instance;
+    
+    s32 freezeTimer;       // 10
+    s32 timeLimit;         // 14
+    s32 startTimeLimit;    // 18
+    bool isHurryUp;        // 1C
+    u8 flags;              // 1D
+    u16 _1E;               // 1E
 };
 
 class LevelInfo : public sead::IDisposer {  // size: 0x28
