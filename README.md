@@ -63,6 +63,7 @@ Miscellaneous hacks/patches are listed here
 * Fireproof pokey (unfinished)
 * Fixed collision conditions for some sprites
 * Infinite lives
+* Infinite time
 * Restored background offset settings functionality
 * Restored drawCircle16Impl and drawCircle32Impl in sead::PrimitiveRendererCafe
 * Restored sound effect reverb settings
@@ -87,5 +88,5 @@ Miscellaneous hacks/patches are listed here
 # Special Thanks
 * JHMaster for helping create tools to assist in reverse engineering
 * Joey for helping me set up NSMBU-Haxx when I first started
-* STUPID for basically teaching me everything I know about custom code hacks, thank you! <3
+* STUPID for basically teaching me everything I know about code hacks
 * Toms and Kinnay for giving me early access to the Newer U code

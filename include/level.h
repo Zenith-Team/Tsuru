@@ -135,10 +135,13 @@ public:
 	// TODO: zoom area, scroll limit, etc.		
 };
 
-class LevelTimer {
+class LevelTimer : public sead::IDisposer {  // size: 0x20
 public:
-    void setTime(s32 time);
-    void addTime(s32 time);
+    u8 unk1[4];         // 10   //? unknown values 1
+    u32 currentTime;    // 14
+    u8 unk2[8];         // 18   //? unknown values 2
+
+    void addTime(s32 seconds);
     
     static LevelTimer* instance;
 };

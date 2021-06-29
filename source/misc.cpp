@@ -1,7 +1,7 @@
+#include "log.h"
+#include "level.h"
 #include "actor/enemy.h"
 #include "actor/pokey.h"
-
-#include "log.h"
 
 void Bouncy__collisionYoshi(Enemy* _this, HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     if (_this->processCollision(hcSelf, hcOther, 1) == 0)

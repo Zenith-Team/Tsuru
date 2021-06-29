@@ -842,6 +842,8 @@ SECTIONS {
     /* Level */
 	instance__5Level = 0x101db048;
 	getArea__5LevelFUi = 0x269a2dc;
+
+	/* LevelTimer */
 	instance__10LevelTimer = 0x101d15f4;
 	addTime__10LevelTimerFi = 0x24c14c0;
 

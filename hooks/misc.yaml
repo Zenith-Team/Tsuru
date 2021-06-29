@@ -26,5 +26,10 @@ Hooks:
   # Infinite lives
   - type: branch
     instr: b
-    addr: "24c0058"
+    addr: "24C0058"
+    func: Return
+  # Infinite time
+  - type: branch
+    instr: b
+    addr: "24c1384"
     func: Return
