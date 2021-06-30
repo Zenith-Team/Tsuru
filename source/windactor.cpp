@@ -23,8 +23,8 @@ public:
     void updateEffects();
 };
 
-const Profile WindGeneratorProfile(&WindGenerator::build, ProfileId::Sprite197, "WindGenerator", nullptr, 0);
-PROFILE_RESOURCES(ProfileId::Sprite197, "env_snow");
+const Profile WindGeneratorProfile(&WindGenerator::build, Profile::spriteToProfileList[197], "WindGenerator", nullptr, 0);
+PROFILE_RESOURCES(Profile::spriteToProfileList[197], "env_snow");
 
 inline WindGenerator::WindGenerator(const ActorBuildInfo* buildInfo) : WindGeneratorBase(buildInfo) { }
 

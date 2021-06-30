@@ -72,6 +72,7 @@ Miscellaneous hacks/patches are listed here
 * Size modifier
 * Space Physics
 * Stationary pokey
+* Unlimited sprite slots
 * Yoshi colors
 * ZLib loader
 

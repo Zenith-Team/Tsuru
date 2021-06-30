@@ -44,8 +44,8 @@ CREATE_STATE(FlyBones, IdleRaised);
 CREATE_STATE(FlyBones, Die);
 
 const ActorInfo FlyBonesActorInfo = { Vec2i(8, -16), Vec2i(0, 16), Vec2i(8, 16), 0, 0, 0, 0, 0 };
-const Profile FlyBonesProfile(&FlyBones::build, ProfileId::Sprite310, "FlyBones", &FlyBonesActorInfo, 0);
-PROFILE_RESOURCES(ProfileId::Sprite310, "nokonokoB");
+const Profile FlyBonesProfile(&FlyBones::build, Profile::spriteToProfileList[310], "FlyBones", &FlyBonesActorInfo, 0);
+PROFILE_RESOURCES(Profile::spriteToProfileList[310], "nokonokoB");
 
 const HitboxCollider::Info FlyBones::collisionInfo = { Vec2(0.0f, 0.0f), Vec2(16.0f, 16.0f), 1, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback };
 
@@ -200,7 +200,7 @@ void FlyBones::executeState_Die() {
         Vec3 posKillFix(0.0f, -8.0f, 0.0f);
 
         ActorBuildInfo dryBones = { 0 };
-        dryBones.profile = Profile::get(ProfileId::Sprite137);
+        dryBones.profile = Profile::get(Profile::spriteToProfileList[137]);
         dryBones.position = position + posKillFix;
         ActorMgr::instance->create(&dryBones, 0);
 

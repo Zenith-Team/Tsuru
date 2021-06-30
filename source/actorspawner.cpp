@@ -1,4 +1,6 @@
 #include "actor/stageactor.h"
+
+#include "profile.h"
 #include "actormgr.h"
 #include "eventmgr.h"
 
@@ -18,8 +20,8 @@ public:
     bool spawned;
 };
 
-const Profile ActorSpawnerProfile(&ActorSpawner::build, ProfileId::Sprite436, "ActorSpawner", nullptr, 0);
-PROFILE_RESOURCES(ProfileId::Sprite436);
+const Profile ActorSpawnerProfile(&ActorSpawner::build, Profile::spriteToProfileList[436], "ActorSpawner", nullptr, 0);
+PROFILE_RESOURCES(Profile::spriteToProfileList[436]);
 
 
 
@@ -40,7 +42,7 @@ u32 ActorSpawner::onCreate() {
     u16 inputId = linkId | ((movementId & 0xF) << 8);
 
     if (movementId & 0x10)
-        spawnProfileId = Profile::spriteToProfileList[inputId];
+        spawnProfileId = Profile::Profile::spriteToProfileList[inputId];
     else
         spawnProfileId = inputId;
 

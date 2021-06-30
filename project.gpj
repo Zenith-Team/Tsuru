@@ -47,6 +47,8 @@ source/initializer.cpp
 source/misc.S
 source/misc.cpp
 source/nullsub.S
+source/profile.cpp
+source/profile.S
 source/sarcloader.S
 source/sead/decompressor.cpp
 source/sead/primitiverenderer.cpp

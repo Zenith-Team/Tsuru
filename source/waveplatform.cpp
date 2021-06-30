@@ -27,8 +27,8 @@ public:
     u32 targetRot;
 };
 
-const Profile WavePlatformProfile(&WavePlatform::build, ProfileId::Sprite470, "WavePlatform", nullptr, 0);
-PROFILE_RESOURCES(ProfileId::Sprite470, "star_coin");
+const Profile WavePlatformProfile(&WavePlatform::build, Profile::spriteToProfileList[470], "WavePlatform", nullptr, 0);
+PROFILE_RESOURCES(Profile::spriteToProfileList[470], "star_coin");
 
 WavePlatform::WavePlatform(const ActorBuildInfo* buildInfo) : StageActor(buildInfo) { }
 

@@ -101,8 +101,6 @@ SECTIONS {
 	cConvFuncTable__Q2_4sead6Endian = 0x101929a8;
 
 	/* Profile */
-	__ct__7ProfileFPFPC14ActorBuildInfo_P9BaseActorUiRCQ2_4sead23SafeStringBase__tm__2_cPC9ActorInfoT2 = 0x2019554;
-	get__7ProfileSFUi = 0x2019774;
 	spriteToProfileList__7Profile = 0x101ecd8c;
 	prioritiesOriginal__7Profile = 0x10001940;
 	hasResourcesOriginal__7Profile = 0x10002064;

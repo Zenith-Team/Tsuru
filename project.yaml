@@ -11,6 +11,7 @@ Modules:
   - hooks/hitboxcollider.yaml   # HitboxCollider patches
   - hooks/initializer.yaml      # Initialize static variables and load RPLs
   - hooks/misc.yaml             # Miscellaneous patches
+  - hooks/profile.yaml          # Additional profile slots
   - hooks/sarcloader.yaml       # Loads levels as .sarc if .szs isn't found
   - hooks/sead.yaml             # Standard library patches
   - hooks/sizemodifier.yaml     # Sprite size modifier
