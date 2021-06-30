@@ -40,8 +40,8 @@ public:
 };
 
 const ActorInfo magicPlatformActorInfo = { 0, 0, 0, 0, 0, 0, 0, ActorInfo::FlagIgnoreSpawnRange | ActorInfo::FlagUnknown };
-const Profile magicPlatformProfile(&MagicPlatform::build, ProfileId::Sprite314, "MagicPlatform", &magicPlatformActorInfo, 0);
-PROFILE_RESOURCES(ProfileId::Sprite314);
+const Profile magicPlatformProfile(&MagicPlatform::build, Profile::spriteToProfileList[314], "MagicPlatform", &magicPlatformActorInfo, 0);
+PROFILE_RESOURCES(Profile::spriteToProfileList[314]);
 
 // Callback table, useful for squishing the player
 StageActor::CallbackTable magicPlatformCallbackTable = {

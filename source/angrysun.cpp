@@ -3,6 +3,7 @@
 #include "math.h"
 #include "mask.h"
 #include "model.h"
+#include "profile.h"
 #include "drawmgr.h"
 #include "actormgr.h"
 #include "eventmgr.h"
@@ -63,8 +64,8 @@ CREATE_STATE(AngrySun, Swoop);
 CREATE_STATE(AngrySun, AttackSpin);
 CREATE_STATE(AngrySun, Spit);
 
-const Profile AngrySunProfile(&AngrySun::build, ProfileId::Sprite521, "AngrySun", nullptr, 0);
-PROFILE_RESOURCES(ProfileId::Sprite521, "star_coin");
+const Profile AngrySunProfile(&AngrySun::build, Profile::Profile::spriteToProfileList[521], "AngrySun", nullptr, 0);
+PROFILE_RESOURCES(Profile::Profile::spriteToProfileList[521], "star_coin");
 
 const HitboxCollider::Info AngrySun::colliderInfo = { Vec2(0.0f, 0.0f), Vec2(16.0f, 16.0f), 1, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback };
 
@@ -318,7 +319,7 @@ void AngrySun::executeState_Spit() {
 
     if (timer == 32) {
         ActorBuildInfo buildInfo = { 0 };
-        buildInfo.profile = Profile::get(!isMoon ? ProfileId::Sprite0 : ProfileId::Sprite0);
+        buildInfo.profile = Profile::get(!isMoon ? Profile::spriteToProfileList[0] : Profile::spriteToProfileList[0]);
         buildInfo.position = position;
         buildInfo.parentId = id;
 

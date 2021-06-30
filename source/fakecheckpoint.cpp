@@ -27,8 +27,8 @@ public:
     static const HitboxCollider::Info collisionInfo;
 };
 
-const Profile FakeCheckpointProfile(&FakeCheckpoint::build, ProfileId::Sprite312, "FakeCheckpoint", nullptr, 0);
-PROFILE_RESOURCES(ProfileId::Sprite312, "middle_flag");
+const Profile FakeCheckpointProfile(&FakeCheckpoint::build, Profile::spriteToProfileList[312], "FakeCheckpoint", nullptr, 0);
+PROFILE_RESOURCES(Profile::spriteToProfileList[312], "middle_flag");
 
 const HitboxCollider::Info FakeCheckpoint::collisionInfo = { Vec2(0.0f, -3.0f), Vec2(12.0f, 15.0f), 0, 5, 0, 0x824F, 0x20208, 0, &FakeCheckpoint::collisionCallback };
 
