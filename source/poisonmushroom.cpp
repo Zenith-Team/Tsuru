@@ -35,8 +35,8 @@ CREATE_STATE(PoisonMushroom, Move);
 CREATE_STATE(PoisonMushroom, Turn);
 
 const ActorInfo PoisonMushroomActorInfo = { Vec2i(8, -16), Vec2i(0, 16), Vec2i(8, 16), 0, 0, 0, 0, 0 };
-const Profile PoisonMushroomProfile(&PoisonMushroom::build, Profile::spriteToProfileList[306], "PoisonMushroom", &PoisonMushroomActorInfo, 0);
-PROFILE_RESOURCES(Profile::spriteToProfileList[306], "I_kinoko");
+const Profile PoisonMushroomProfile(&PoisonMushroom::build, ProfileId::Sprite306, "PoisonMushroom", &PoisonMushroomActorInfo, 0);
+PROFILE_RESOURCES(ProfileId::Sprite306, "I_kinoko");
 
 const HitboxCollider::Info PoisonMushroom::collisionInfo = { Vec2(0.0f, 8.0f), Vec2(8.0f, 8.0f), 1, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback };
 

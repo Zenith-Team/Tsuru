@@ -39,8 +39,8 @@ public:
 CREATE_STATE(FlipBlock, Flipping);
 
 const ActorInfo FlipBlockActorInfo = { Vec2i(8, -16), Vec2i(8, -8), 0x100, 0x100, 0, 0, 0, 0 };
-const Profile FlipBlockProfile(&FlipBlock::build, Profile::spriteToProfileList[551], "FlipBlock", &FlipBlockActorInfo, 0x1002);
-PROFILE_RESOURCES(Profile::spriteToProfileList[551], "block_snake");
+const Profile FlipBlockProfile(&FlipBlock::build, ProfileId::Sprite551, "FlipBlock", &FlipBlockActorInfo, 0x1002);
+PROFILE_RESOURCES(ProfileId::Sprite551, "block_snake");
 
 const HitboxCollider::Info FlipBlock::colliderInfo = { Vec2(0.0f, 8.0f), Vec2(8.0f, 8.0f), 0, 0, 0, 0, 0, 0, nullptr };
 

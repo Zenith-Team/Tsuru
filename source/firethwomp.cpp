@@ -9,8 +9,8 @@ public:
 };
 
 const ActorInfo FireThwompActorInfo = { Vec2i(16, -32), Vec2i(0, 0), Vec2i(2, 8), 0, 48, 0, 0, 32 };
-const Profile FireThwompProfile(&FireThwomp::build, Profile::spriteToProfileList[405], "FireThwomp", &FireThwompActorInfo, 0x116);
-PROFILE_RESOURCES(Profile::spriteToProfileList[405], "dossun");
+const Profile FireThwompProfile(&FireThwomp::build, ProfileId::Sprite405, "FireThwomp", &FireThwompActorInfo, 0x116);
+PROFILE_RESOURCES(ProfileId::Sprite405, "dossun");
 
 FireThwomp::FireThwomp(const ActorBuildInfo* buildInfo) : Thwomp(buildInfo) { }
 

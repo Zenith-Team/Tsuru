@@ -31,8 +31,8 @@ public:
     static const HitboxCollider::Info collisionInfo;
 };
 
-const Profile timeClockProfile(&TimeClock::build, Profile::spriteToProfileList[555], "TimeClock", nullptr, 0);
-PROFILE_RESOURCES(Profile::spriteToProfileList[555], "star_coin");
+const Profile timeClockProfile(&TimeClock::build, ProfileId::Sprite555, "TimeClock", nullptr, 0);
+PROFILE_RESOURCES(ProfileId::Sprite555, "star_coin");
 
 const HitboxCollider::Info TimeClock::collisionInfo = { Vec2(0.0f, -3.0f), Vec2(12.0f, 15.0f), 0, 5, 0, 0x824F, 0x20208, 0, &TimeClock::collisionCallback };
 
