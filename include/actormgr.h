@@ -27,10 +27,10 @@ public:
     sead::UnitHeap* playerUnitHeap;
     sead::UnitHeap* actorUnitHeap;
     u8 deferredActorCreations[0x5970]; // sead::FixedRingBuffer<ActorBuildInfo, 520>
-    BaseActor::ActorList actorsToCreate;
-    BaseActor::ActorList actorsToDelete;
-    BaseActor::ActorList activeActors;
-    BaseActor::ActorList drawableActors;
+    sead::OffsetList<BaseActor> actorsToCreate;
+    sead::OffsetList<BaseActor> actorsToDelete;
+    sead::OffsetList<BaseActor> activeActors;
+    sead::OffsetList<BaseActor> drawableActors;
     sead::FixedPtrArray<sead::Heap, 520> deletedActorHeaps;
     sead::FixedPtrArray<BaseActor, 520> finalExecuteList;
     ActorBuffer actors;

@@ -4,44 +4,9 @@
 #include "util/vec3.h"
 #include "sead.h"
 #include "profile.h"
+#include "actor/actorinfo.h"
+#include "actor/actorbuildinfo.h"
 
-struct ActorInfo {
-    enum Flags {
-        FlagIgnoreSpawnRange = 0x002,
-        FlagUnknown          = 0x008,
-        FlagGrouped          = 0x010,
-        FlagUnknown2         = 0x100
-    };
-
-    static ActorInfo Default;
-
-    Vec2i spawnOffset;            // 0
-    Vec2i spawnRangeOffset;       // 8
-    Vec2i spawnRangeSize;         // 10
-    u16 _18;                      // 18
-    u16 _1A;                      // 1A
-    u16 _1C;                      // 1C
-    u16 _1E;                      // 1E
-    u16 flags;                    // 20
-};
-
-struct ActorBuildInfo {
-    u32 settings1;                // 0
-    u32 settings2;                // 4
-    u32 parentId;                 // 8
-    Profile* profile;             // C
-    Vec3 position;                // 10
-    u32 rotation;                 // 1C
-    u8 layer;                     // 20
-    u8 eventId1;                  // 21
-    u8 eventId2;                  // 22
-    u8 pad1;                      // 23
-    u8 movementId;                // 24
-    u8 linkId;                    // 25
-    u8 initStateFlag;             // 26
-    u8 pad2;                      // 27
-    u8* _28;                      // 28
-};
 
 class BaseActor {  // size: 0x50
     SEAD_RTTI_BASE(BaseActor)
@@ -81,24 +46,23 @@ public:
     void removeChild(BaseActor* child);
     ProfileId::ProfileIdType getProfileId();
 
-    typedef sead::OffsetList<BaseActor> ActorList;
-
-    sead::Heap* heap;             // 0
-    u32 id;                       // 4
-    Profile* profile;             // 8
-    bool wasNotDeferred;          // C
-    bool isSprite;                // D
-    bool isCreated;               // E
-    bool isDeleted;               // F
-    u32 settings1;                // 10
-    u32 settings2;                // 14
-    u8 movementId;                // 18
-    u8 linkId;                    // 19
-    u8 initStateFlag;             // 1A
-    ActorList childList;          // 1C
-    sead::ListNode childNode;     // 2C
-    BaseActor* parent;            // 34
-    sead::ListNode actorListNode; // 38
-    sead::ListNode drawListNode;  // 40
-    u32 flags;                    // 48
+    sead::Heap* heap;                               // 0
+    u32 id;                                         // 4
+    Profile* profile;                               // 8
+    bool wasNotDeferred;                            // C
+    bool isSprite;                                  // D
+    bool isCreated;                                 // E
+    bool isDeleted;                                 // F
+    u32 settings1;                                  // 10
+    u32 settings2;                                  // 14
+    u8 movementId;                                  // 18
+    u8 linkId;                                      // 19
+    u8 initStateFlag;                               // 1A
+    u8 _1B;                                         // 1B     //? Padding
+    sead::OffsetList<BaseActor> childList;          // 1C
+    sead::ListNode childNode;                       // 2C
+    BaseActor* parent;                              // 34
+    sead::ListNode actorListNode;                   // 38
+    sead::ListNode drawListNode;                    // 40
+    u32 flags;                                      // 48
 };
