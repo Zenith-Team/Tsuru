@@ -1,3 +1,5 @@
+#pragma once
+
 #include "actor/baseactor.h"
 
 class CourseSelectActor : public BaseActor {
