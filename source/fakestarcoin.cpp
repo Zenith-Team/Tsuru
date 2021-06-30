@@ -29,8 +29,8 @@ public:
     static const HitboxCollider::Info collisionInfo;
 };
 
-const Profile fakeStarCoinProfile(&FakeStarCoin::build, Profile::spriteToProfileList[449], "FakeStarCoin", nullptr, 0);
-PROFILE_RESOURCES(Profile::spriteToProfileList[449], "star_coin");
+const Profile fakeStarCoinProfile(&FakeStarCoin::build, ProfileId::Sprite449, "FakeStarCoin", nullptr, 0);
+PROFILE_RESOURCES(ProfileId::Sprite449, "star_coin");
 
 const HitboxCollider::Info FakeStarCoin::collisionInfo = { Vec2(0.0f, -3.0f), Vec2(12.0f, 15.0f), 0, 5, 0, 0x824F, 0x20208, 0, &FakeStarCoin::collisionCallback };
 

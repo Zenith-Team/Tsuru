@@ -1,6 +1,5 @@
 #include "actor/brosbase.h"
 
-#include "profile.h"
 #include "drawmgr.h"
 #include "actormgr.h"
 
@@ -17,8 +16,8 @@ public:
 };
 
 const ActorInfo BombBroActorInfo = { Vec2i(8, -16), Vec2i(0, 16), Vec2i(8, 16), 0, 0, 0, 0, 32 };
-const Profile BombBroProfile(&BombBro::build, Profile::spriteToProfileList[572], "BombBro", &BombBroActorInfo, 0x12);
-PROFILE_RESOURCES(Profile::spriteToProfileList[572], "star_coin");
+const Profile BombBroProfile(&BombBro::build, ProfileId::Sprite572, "BombBro", &BombBroActorInfo, 0x12);
+PROFILE_RESOURCES(ProfileId::Sprite572, "star_coin");
 
 BombBro::BombBro(const ActorBuildInfo* buildInfo) : BrosBase(buildInfo) { }
 
@@ -28,7 +27,7 @@ BaseActor* BombBro::build(const ActorBuildInfo* buildInfo) {
 
 void BombBro::throwProjectile() {
     ActorBuildInfo buildInfo = { 0 };
-    buildInfo.profile = Profile::get(Profile::spriteToProfileList[0]);
+    buildInfo.profile = Profile::get(ProfileId::Sprite0);
     buildInfo.position = position;
     buildInfo.parentId = id;
 

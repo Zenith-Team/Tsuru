@@ -38,8 +38,8 @@ public:
     void spawnBabyYoshiEgg(u8 type);
 };
 
-const Profile TripleBlockProfile(&TripleBlock::build, Profile::spriteToProfileList[102], "TripleBlock", nullptr, 0);
-PROFILE_RESOURCES(Profile::spriteToProfileList[102], "switch");  // TODO: check if you can add multiple archives to PROFILE_RESOURCES
+const Profile TripleBlockProfile(&TripleBlock::build, ProfileId::Sprite102, "TripleBlock", nullptr, 0);
+PROFILE_RESOURCES(ProfileId::Sprite102, "switch");  // TODO: check if you can add multiple archives to PROFILE_RESOURCES
 
 TripleBlock::TripleBlock(const ActorBuildInfo* buildInfo) : BlockBase(buildInfo) { }
 

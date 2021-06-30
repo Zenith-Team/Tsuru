@@ -18,8 +18,8 @@ public:
     ModelWrapper* model;
 };
 
-const Profile ModelLoaderProfile(&ModelLoader::build, Profile::spriteToProfileList[308], "ModelLoader", nullptr, 0);
-PROFILE_RESOURCES(Profile::spriteToProfileList[308], "modelpack");
+const Profile ModelLoaderProfile(&ModelLoader::build, ProfileId::Sprite308, "ModelLoader", nullptr, 0);
+PROFILE_RESOURCES(ProfileId::Sprite308, "modelpack");
 
 ModelLoader::ModelLoader(const ActorBuildInfo* buildInfo) : StageActor(buildInfo) { }
 
