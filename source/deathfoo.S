@@ -1,84 +1,89 @@
 .rodata
-DeathCloudColorDark:    .byte 5, 0, 0, 255
-DeathCloudColorLight:   .byte 145, 0, 55, 255
-DeathCloudSize:         .float 1.0
+CloudSize: .float 1.0
 
 .text
+.include "macros.S"
 .include "registers.S"
 
-.global FooCloudType_onCreate
-FooCloudType_onCreate:
-    # Nybble 12 is checked
+# This function is currently unused as right now it just uses NoCloud=1 as the death foo enable nybble
+.global CheckDeathFooNybble
+CheckDeathFooNybble:
+	cmpwi r0, 0x0
+	beqlr
+	li 	  r29, 0xB0
+	blr
+
+.global RedirectCustomCloudTypeOnExecute
+RedirectCustomCloudTypeOnExecute:
+	# Check if cloud type is 0xB
+	cmplwi r0, 0xB
+
+	# Load the address of the CloudTypeIs1 label
+	SaveVolatileRegisters
+	lis    r3, 	   onExecute__5CloudFv__CloudTypeIs1@ha
+	ori    r3, r3, onExecute__5CloudFv__CloudTypeIs1@l
+	mtctr  r3
+	RestoreVolatileRegisters
+
+	# Branch to it if cloud type is 0xB
+	beqctr
+
+	# Otherwise restore replaced instruction and return
+	cmplwi r0, 0x5
+	blr
+
+.global CustomCloudColorBase
+CustomCloudColorBase:
+	# Load the CloudType nybble
+	lwz     r9, 0x10(r31)
+	extrwi  r9, r9, 4, 24
+
+	# Return if type is not 0xB (custom type 11)
+	cmpwi   r9, 0xB
 	bnelr
-	lwz     r29, 0x10(r30)
-	b       FooCloudType
 
-.global FooCloudType_breathIn
-FooCloudType_breathIn:
-	# Nybble 12 is checked
-    bnelr
-	lwz     r29, 0x10(r31)
+	# Load the custom base color and store it
+	# Hex color code: #050000
+	lis     r9, 0x0500
+	stw     r9, 0x10(r1)
 
-.global FooCloudType
-FooCloudType:
-	srwi.   r29, r29, 28
-	beqlr
-	li      r29, 0xB0
-
+	# Restore replaced instruction and return
+	mr      r15, r28
 	blr
 
-.global FooCloudUpdate
-FooCloudUpdate:
-	cmpwi   r0, 0xB
-	beqlr
-	cmpwi   r0, 1
+.global CustomCloudColorHighlight
+CustomCloudColorHighlight:
+	# Check if deathfoo is enabled
+	lwz     r10, 0x10(r31)
+	extrwi  r10, r10, 4, 24
+	cmpwi   r10, 0xB
 
+	# If so store the default color
+	bne     StoreFooCloudColorHighlight
+
+	# Otherwise let's load the custom highlight color
+	# Hex color code: #910037
+	lis     r26, 	  0x9100
+	ori		r26, r26, 0x3700
+
+	# And store it
+	b StoreFooCloudColorHighlight
+
+StoreFooCloudColorHighlight:
+	# Restore replaced instruction and return
+	stw     r26, 0x0(r7) # r7: 421605ec
 	blr
 
-.global FooCloudTexture
-FooCloudTexture:
+.global CustomCloudTexture
+CustomCloudTexture:
+	# wtf how does this even do anything??
+
 	cmpwi   r7, 0xB
 	beqlr
 	cmpwi   r7, 5
 
 	blr
 
-.global FooCloudColorDark
-FooCloudColorDark:
-	mr      r15, r28
-	lwz     r9, 0x10(r31)
-	extrwi  r9, r9, 4, 24
-	cmpwi   r9, 0xB
-	bnelr
-	
-	lis     r9,     DeathCloudColorDark@h
-	ori     r9, r9, DeathCloudColorDark@l
-	stw     r9, 0x10(r1)
-
-	blr
-
-.global FooCloudColorLight
-FooCloudColorLight:
-	lwz     r10, 0x10(r31)
-	extrwi  r10, r10, 4, 24
-	cmpwi   r10, 0xB
-	bne     StoreLightCloudColor
-	
-	lis     r10, DeathCloudColorLight@ha
-	lbzu    r9,  DeathCloudColorLight@l(r10)
-	insrwi  r26, r9, 8, 0
-
-	lbz     r9,  1(r10)
-	insrwi  r26, r9, 8, 8
-
-	lbz     r9,  2(r10)
-	insrwi  r26, r9, 8, 16
-
-.global StoreLightCloudColor
-StoreLightCloudColor:
-	stw     r26, 0(r7)
-
-	blr
 
 .global DeathFooCollision
 DeathFooCollision:
@@ -91,8 +96,8 @@ DeathFooCollision:
 	li      r23, 10
 	bnelr
 	
-	lis     r12, DeathCloudSize@ha
-	lfs     f6,  DeathCloudSize@l(r12)
+	lis     r12, CloudSize@ha
+	lfs     f6,  CloudSize@l(r12)
 	fcmpu   cr0, f1, f6
 	bgelr
 	

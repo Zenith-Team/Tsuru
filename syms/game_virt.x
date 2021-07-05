@@ -682,6 +682,9 @@ SECTIONS {
 	executeState_DieFall__6ThwompFv = 0x23236b4;
 	endState_DieFall__6ThwompFv = 0x23248d0;
 
+	/* Cloud */
+	onExecute__5CloudFv__CloudTypeIs1 = 0x230014c;
+
 	/* WindGeneratorBase */
 	__vtbl__13WindGenerator = 0x101560a8;
 	__dt__17WindGeneratorBaseFv = 0x288f044;
