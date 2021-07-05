@@ -38,7 +38,7 @@ CustomCloudColorBase:
 	lwz     r9, 0x10(r31)
 	extrwi  r9, r9, 4, 24
 
-	# Return if type is not 0xB (custom type 11)
+	# Return if type is not 0xB
 	cmpwi   r9, 0xB
 	bnelr
 
@@ -53,7 +53,7 @@ CustomCloudColorBase:
 
 .global CustomCloudColorHighlight
 CustomCloudColorHighlight:
-	# Check if deathfoo is enabled
+	# Check if cloud type is 0xB
 	lwz     r10, 0x10(r31)
 	extrwi  r10, r10, 4, 24
 	cmpwi   r10, 0xB
@@ -67,7 +67,7 @@ CustomCloudColorHighlight:
 	ori		r26, r26, 0x3700
 
 	# And store it
-	b StoreFooCloudColorHighlight
+	b 		StoreFooCloudColorHighlight
 
 StoreFooCloudColorHighlight:
 	# Restore replaced instruction and return
@@ -95,17 +95,17 @@ DeathFooCollision:
 	mtlr    r23
 	li      r23, 10
 	bnelr
-	
+
 	lis     r12, CloudSize@ha
 	lfs     f6,  CloudSize@l(r12)
 	fcmpu   cr0, f1, f6
 	bgelr
-	
+
 	# Check the transparency
 	clrlwi. r12, r26, 24
 	cmpwi   r12, 0xE0
 	blelr
-	
+
 	mflr    r23
 	fmr     f16, f1
 	lwz     r12, 0x4C(r11)
