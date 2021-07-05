@@ -21,54 +21,46 @@ Files:
 # - source/effectspawner.cpp     #| Sprite: 134, Profile: 790,  [BROKEN]   Notes: [CodeDX]              Written by RicBent  | Ported by Luminyx                     | Effect spawner that can spawn particles and sounds as well
   - source/magicplatform.cpp     #| Sprite: 314, Profile: 235,             Notes: [CodeDX]              Written by RicBent  | Ported by AboodXD                     | Allows dynamically moving solid tiles
 #* Patches
-  - source/deathfoo.S            #| Nybble 12 on Sprite 229, Profile 785,  Notes: [Newer SMBU]          Written by Kinnay
+  - source/deathfoo.S            #| Nybble 12 on Sprite 229, Profile 785,  Notes: [Newer SMBU]          Written by Kinnay   | Fixes by Luminyx
   - source/profileres.cpp        #| Patches profile resources to allow adding models to broken actors
   - source/waves.cpp             #| Nybbles on Sprite 88, Profile 84,      Notes: [Newer SMBU]          Written by Luminyx  | Original implementation by Kinnay     | The one and only, Newer U waves! :)
   - source/waves.S               #| ^
 Hooks:
 #---------------------
 #$ Death Foo
-#! Very buggy
 #---------------------
-#  - type: branch
-#    instr: bl
-#    addr: "230011C"
-#    func: FooCloudUpdate
-#
-#  - type: branch
-#    instr: bl
-#    addr: "22FAD38"
-#    func: FooCloudColorDark
-#
-#  - type: branch
-#    instr: bl
-#    addr: "23B4F4C"
-#    func: FooCloudType_onCreate
-#
-#  - type: branch
-#    instr: bl
-#    addr: "22FAE50"
-#    func: FooCloudColorDark
-#
-#  - type: branch
-#    instr: bl
-#    addr: "22FBBD8"
-#    func: FooCloudColorLight
-#
-#  - type: branch
-#    instr: bl
-#    addr: "22FBA68"
-#    func: DeathFooCollision
-#
-#  - type: branch
-#    instr: bl
-#    addr: "22FA520"
-#    func: FooCloudTexture
-#
-#  - type: branch
-#    instr: bl
-#    addr: "23B5B5C"
-#    func: FooCloudType_breathIn
+  # Temporary hack: instead of setting cloud type to "Spawned by foo with NoCloud enabled" when NoCloud is enabled, set the cloud type to 0xB (custom type 11)
+  - type: patch
+    addr: "23B4F4C" # In Foo::onCreate
+    data: 3BA000B0  # li r29, 0xB0
+  - type: patch
+    addr: "23B5B5C" # In Foo::executeState_BreathIn
+    data: 3BA000B0  # li r29, 0xB0
+  # Redirect cloud type 0xB to go to cloud type 1's onExecute
+  - type: branch
+    instr: bl
+    addr: "2300128" # In Cloud::onExecute
+    func: RedirectCustomCloudTypeOnExecute
+  # Set the cloud base color
+  - type: branch
+    instr: bl
+    addr: "22FAE50" # In Cloud::onExecute_SpawnedByFoo
+    func: CustomCloudColorBase
+  # Set the cloud highlight color
+  - type: branch
+    instr: bl
+    addr: "22FBBD8" # In Cloud::onExecute_SpawnedByFoo
+    func: CustomCloudColorHighlight
+  # Set the cloud texture (texanim frame 7->8)
+  - type: branch
+    instr: bl
+    addr: "22FA520" # In Cloud::onCreate
+    func: CustomCloudTexture
+  # Kill player on collision with cloud
+  - type: branch
+    instr: bl
+    addr: "22FBA68" # In Cloud::onExecute_SpawnedByFoo
+    func: DeathFooCollision
 #---------------------
 #$ Water Waves
 #---------------------
