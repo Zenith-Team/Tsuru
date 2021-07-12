@@ -87,37 +87,79 @@ CustomCloudTexture:
 
 .global DeathFooCollision
 DeathFooCollision:
+
+	SaveVolatileRegisters
+	li      r3, 0x8
+	stw     r3, 0x500(r11)
+	RestoreVolatileRegisters
+
+	# Load Player::vf8D4 pointer
+	lwz     r12, 0x4C(r11)	# Vtable pointer
+	lwz     r12, 0x8D4(r12)	# Pointer to vf8D4
+	mtctr   r12				# Load into ctr 
+
+	# Set up params
+	mr      r3,  r11		# this pointer as param 1
+	li      r4,  0			# 0 as param 2
+	li      r5,  0x10		# 0x10 as param 3
+
+	# Branch to Player::vf8D4 (subroutine at .text:02931458)
+	# vf8D4(this, 0, 0x10);
+	bctrl
+	RestoreVolatileRegisters
+
+	blr
+
+original:
+
+	# Save link register
 	mflr    r23
+
+	# Check distance between player and cloud
 	bl      ASM_VECDistance
+
+	# Check if cloud type is 0xB
 	lwz     r12, 0x10(r31)
 	extrwi  r12, r12, 4, 24
 	cmpwi   r12, 0xB
+
+	# Restore link register
 	mtlr    r23
+
 	li      r23, 10
+
+	# Return if not
 	bnelr
 
+	# Load cloud size?
 	lis     r12, CloudSize@ha
 	lfs     f6,  CloudSize@l(r12)
+	
+	# Return if player not close enough to cloud?
 	fcmpu   cr0, f1, f6
 	bgelr
 
-	# Check the transparency
+	# If passed here then it thinks player should take damage
+
 	clrlwi. r12, r26, 24
 	cmpwi   r12, 0xE0
 	blelr
 
 	mflr    r23
 	fmr     f16, f1
-	lwz     r12, 0x4C(r11)
-	lwz     r12, 0x8D4(r12)
 
-	mtctr   r12
-	mr      r3,  r11
-	li      r4,  0
-	li      r5,  0x10
+	# Load Player::vf8D4 pointer
+	lwz     r12, 0x4C(r11)	# Vtable pointer
+	lwz     r12, 0x8D4(r12)	# Pointer to vf8D4
+	mtctr   r12				# Load into ctr 
+
+	# Set up params
+	mr      r3,  r11		# this pointer as param 1
+	li      r4,  0			# 0 as param 2
+	li      r5,  0x10		# 0x10 as param 3
+
+	# Branch to Player::vf8D4 (subroutine at .text:02931458)
+	# vf8D4(this, 0, 0x10);
 	bctrl
-	fmr     f1,  f16
-	mtlr    r23
-	li      r23, 10
 
 	blr

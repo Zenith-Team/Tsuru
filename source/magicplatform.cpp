@@ -163,8 +163,8 @@ u32 MagicPlatform::onExecute() {
 
 u32 MagicPlatform::onDraw() {
     f32 angle = (static_cast<f32>(rotation.z) / 0x80000000) * M_PI;
-    f32 angleCos = cos(angle);
-    f32 angleSin = sin(angle);
+    f32 angleCos = cosf(angle);
+    f32 angleSin = sinf(angle);
 
     for (s32 y = 0; y < tileH; y++) {
         for (s32 x = 0; x < tileW; x++) {

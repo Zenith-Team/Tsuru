@@ -48,7 +48,7 @@ public:
 
     f32 dot(const Vec3& v) const { return dot(*this, v); }
 
-    f32 mag() const { return sqrt(magSq()); }
+    f32 mag() const { return sqrtf(magSq()); }
     f32 magSq() const { return x*x + y*y + z*z; }
     f32 dist(const Vec3& v) const { return dist(*this, v); }
     f32 distSq(const Vec3& v) const { return distSq(*this, v); }
@@ -148,7 +148,7 @@ inline f32 Vec3::distSq(const Vec3& a, const Vec3& b) {
 }
 
 inline f32 Vec3::angle(const Vec3& a, const Vec3& b) {
-    return acos(angleCos(a, b));
+    return acosf(angleCos(a, b));
 }
 
 inline f32 Vec3::angleCos(const Vec3& a, const Vec3& b) {

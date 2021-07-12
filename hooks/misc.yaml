@@ -33,3 +33,8 @@ Hooks:
     instr: b
     addr: "24c1384"
     func: Return
+  # Player test
+  - type: branch
+    instr: bl
+    addr: "2924310"
+    func: ReportPowerup

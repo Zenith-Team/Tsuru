@@ -17,22 +17,22 @@
 #define M_SQRT2         1.41421356237309504880
 #define M_SQRT1_2       0.7071067811865476
 
-f32 sin(f32 x);
-f32 cos(f32 x);
-f32 tan(f32 x);
-f32 asin(f32 x);
-f32 acos(f32 x);
-f32 atan2(f32 x, f32 y);
+f32 sinf(f32 x);
+f32 cosf(f32 x);
+f32 tanf(f32 x);
+f32 asinf(f32 x);
+f32 acosf(f32 x);
+f32 atan2f(f32 x, f32 y);
 
-f32 exp(f32 x);
-f32 log(f32 x);
-f32 pow(f32 x, f32 y);
-f32 sqrt(f32 a);
+f32 expf(f32 x);
+f32 logf(f32 x);
+f32 powf(f32 x, f32 y);
+f32 sqrtf(f32 a);
 
 inline f32 pow2(f32 x) { return x * x; }
 
-inline f32 fabs(f32 x) { return (x < 0.0f) ? -x : x; }
-f32 fmod(f32 a, f32 b);
+inline f32 fabsf(f32 x) { return (x < 0.0f) ? -x : x; }
+f32 fmodf(f32 a, f32 b);
 
 template <class T>
 const T& min(const T& a, const T& b) { return !(b<a) ? a : b; }
@@ -51,7 +51,7 @@ inline f32 rad_to_deg(f32 rad) {
 
 
 inline u32 fix_rad(f32 val) {
-    val = fmod(val, M_2PI);
+    val = fmodf(val, M_2PI);
     if (val < 0.0f) val += M_2PI;
     return val * 683565276;
 }
@@ -62,7 +62,7 @@ inline f32 unfix_rad(u32 val) {
 
 
 inline u32 fix_deg(f32 val) {
-    val = fmod(val, 360.0f);
+    val = fmodf(val, 360.0f);
     if (val < 0.0f) val += 360.0f;
     return val * 11930465.0f;
 }

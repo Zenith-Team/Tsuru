@@ -18,10 +18,11 @@ Files:
 # - source/windactor.cpp         #| Sprite: 197, Profile: 793,  [BROKEN]   Notes: [Newer SMBU]          Written by Kinnay   | Ported by Luminyx                     | Not sure if this counts as a patch or a sprite because it replaces the broken wind sprite with its own (fixed) implementation
 #* Utility
   - source/actorspawner.cpp      #| Sprite: 436, Profile: 94,              Notes: [CodeDX]              Written by RicBent  | Ported by AboodXD                     | Just a basic actor spawner
-# - source/effectspawner.cpp     #| Sprite: 134, Profile: 790,  [BROKEN]   Notes: [CodeDX]              Written by RicBent  | Ported by Luminyx                     | Effect spawner that can spawn particles and sounds as well
+# - source/effectspawner.cpp     #| Sprite: 134, Profile: 790,             Notes: [NSMBU Haxx]          Written by AboodXD  |                                       | 
   - source/magicplatform.cpp     #| Sprite: 314, Profile: 235,             Notes: [CodeDX]              Written by RicBent  | Ported by AboodXD                     | Allows dynamically moving solid tiles
 #* Patches
   - source/deathfoo.S            #| Nybble 12 on Sprite 229, Profile 785,  Notes: [Newer SMBU]          Written by Kinnay   | Fixes by Luminyx
+  - source/deathfoo.cpp
   - source/profileres.cpp        #| Patches profile resources to allow adding models to broken actors
   - source/waves.cpp             #| Nybbles on Sprite 88, Profile 84,      Notes: [Newer SMBU]          Written by Luminyx  | Original implementation by Kinnay     | The one and only, Newer U waves! :)
   - source/waves.S               #| ^

@@ -705,6 +705,29 @@ typedef struct _GX2PixelShader {
     GX2RBuffer shader_program_buffer;
 } GX2PixelShader;
 
+
+typedef struct _GX2GeometryShader {
+    u32 regs[19];
+    u32 shader_size;
+    void *shader_data;
+    u32 vertex_shader_size;
+    void *vertex_shader_data;
+    s32 shader_mode;
+    u32 uniform_blocks_count;
+    GX2UniformBlock *uniform_block;
+    u32 uniform_vars_count;
+    GX2UniformVar *uniform_var;
+    u32 initial_values_count;
+    GX2UniformInitialValue *initial_value;
+    u32 loops_count;
+    void *loops_data;
+    u32 sampler_vars_count;
+    GX2SamplerVar *sampler_var;
+    u32 data[6];
+    GX2RBuffer shader_program_buffer;
+    GX2RBuffer vertex_shader_program_buffer;
+} GX2GeometryShader;
+
 static const u32 attribute_dest_comp_selector[20] = {
     GX2_COMP_SEL_X001, GX2_COMP_SEL_XY01, GX2_COMP_SEL_X001, GX2_COMP_SEL_X001,  GX2_COMP_SEL_XY01, GX2_COMP_SEL_X001,
     GX2_COMP_SEL_X001, GX2_COMP_SEL_XY01, GX2_COMP_SEL_XY01, GX2_COMP_SEL_XYZ1, GX2_COMP_SEL_XYZW, GX2_COMP_SEL_XYZW,

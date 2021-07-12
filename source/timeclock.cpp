@@ -96,7 +96,7 @@ void TimeClock::updateModel() {
 void TimeClock::collect() {
     Vec3 effectPos(position.x, position.y - 18.0f, 4500.0f);
 
-    Effect::spawn(100, &effectPos, nullptr, nullptr);
+    Effect::spawn(RP_FlagPass_1, &effectPos, nullptr, nullptr);
     LevelTimer::instance->addTime(10);
     PlaySound("SE_OBJ_DDOOR_OPEN", position);
 
