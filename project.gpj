@@ -31,6 +31,7 @@ source/waveplatform.cpp
 source/actorspawner.cpp
 source/magicplatform.cpp
 source/deathfoo.S
+source/deathfoo.cpp
 source/profileres.cpp
 source/waves.cpp
 source/waves.S

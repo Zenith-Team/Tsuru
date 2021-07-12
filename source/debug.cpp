@@ -9,7 +9,7 @@
 void drawLine(const Vec2& position, const f32 rotation, const sead::Color4f& color, const float lineLength, const float lineThickness) {
     Vec3 scale(lineLength, lineThickness, 1.0f);
     Vec3 rot(0.0f, 0.0f, rotation);
-    Vec3 pos(position.x + (lineLength * cos(rotation)) / 2, position.y + (lineLength * sin(rotation)) / 2, 4000.f);
+    Vec3 pos(position.x + (lineLength * cosf(rotation)) / 2, position.y + (lineLength * sinf(rotation)) / 2, 4000.f);
 
     Mtx34 mtx;
     Mtx34::makeSRT(mtx, scale, rot, pos);
@@ -17,11 +17,13 @@ void drawLine(const Vec2& position, const f32 rotation, const sead::Color4f& col
 }
 
 void drawLine(const Vec2& point1, const Vec2& point2, const sead::Color4f& color, const float lineThickness) {
-    f32 length = sqrt(pow(point1.x - point2.x, 2) + pow(point1.y - point2.y, 2));
+    const f32 diffX = point1.x - point2.x;
+    const f32 diffY = point1.y - point2.y;
+    f32 length = sqrtf(diffX*diffX + diffY*diffY);
 
     const Vec2& leftPoint = (point1.x < point2.x) ? point1 : point2;
     const Vec2& rightPoint = (&leftPoint == &point1) ? point2 : point1;
-    f32 angle = atan2(rightPoint.y - leftPoint.y, rightPoint.x - leftPoint.x);
+    f32 angle = atan2f(rightPoint.y - leftPoint.y, rightPoint.x - leftPoint.x);
 
     drawLine(leftPoint, angle, color, length, lineThickness);
 }

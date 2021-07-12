@@ -4,12 +4,12 @@
 SECTIONS {
 
 	/* Math */
-	sin__Ff = 0x2afdd40;
-	cos__Ff = 0x2afe528;
-	atan2__FfT1 = 0x2afe670;
-	fmod__FfT1 = 0x2afd97c;
-	pow__FfT1 = 0x2afdea8;
-	sqrt__Ff = 0x2afdccc;
+	sinf__Ff = 0x2afdd40;
+	cosf__Ff = 0x2afe528;
+	atan2f__FfT1 = 0x2afe670;
+	fmodf__FfT1 = 0x2afd97c;
+	powf__FfT1 = 0x2afdea8;
+	sqrtf__Ff = 0x2afdccc;
 
 	/* new/delete */
 	__nw__FUi = 0x29f1594;
@@ -31,8 +31,24 @@ SECTIONS {
 	__gh_memclr32 = 0x2aff1e0;
 	vsnprintf = 0x2afbd54;
 
+	/* GHS C FUNCTIONS */
+	_f_ftoll = 0x2AFEBFC;
+
 	/* CAFE SDK STATIC */
 	ASM_VECDistance = 0x2af9b18;
+
+	/* nw::eft::EmitterSet */
+	SetMtx__Q3_2nw3eft10EmitterSetFRCQ3_2nw4math5MTX34 = 0x2A6AD00;
+
+	/* nw::eft::System */
+	CreateEmitterSetID__Q3_2nw3eft6SystemFPQ3_2nw3eft6HandleRCQ3_2nw4math5MTX34iUiUcT4 = 0x2A7F57C;
+
+	/* nw::math */
+	F_PI__Q2_2nw4math = 0x101B60FC;
+	I_HALF_ROUND_IDX__Q2_2nw4math = 0x101B6100;
+
+	/* nw::math::internal */
+	gSinCosTbl__Q3_2nw4math8internal = 0x101B610C;
 
 	/* sead::IDisposer */
 	__ct__Q2_4sead9IDisposerFv = 0x2a0a2fc;
@@ -825,7 +841,8 @@ SECTIONS {
 	execute__15MovementHandlerFv = 0x284b8c4;
 
 	/* Effect */
-	spawn__6EffectSFiP4Vec3P5Vec3uT2 = 0x22ab080;
+	spawn__6EffectSF7EffectsPC4Vec3PC5Vec3uT2 = 0x22ab080;
+	
 
 	/* EffectWrapper */
 	__ct__13EffectWrapperFv = 0x22ab868;
@@ -919,6 +936,19 @@ SECTIONS {
 	cbCallback6__14TwoWayPlatformSFP10StageActorUiT2 = 0x283fc14;
 	twoWayPlatformCbCallback2__14TwoWayPlatformFP12ColliderBaseP4Vec2 = 0x284184c;
 
+	/* PtclMgr */
+	instance__7PtclMgr = 0x101CD3A8;
+	getEmitterSetGroupID__7PtclMgrCFiUi = 0x22ACE58;
+
+	/* PlayerInput */
+	isDownPressed__11PlayerInputCFv = 0x2916114;
+	isDownHeld__11PlayerInputCFv = 0x2915F84;
+	isOnlyDownHeld__11PlayerInputCFv = 0x291644C;
+	isUpPressed__11PlayerInputCFv = 0x2916108;
+	isUpHeld__11PlayerInputCFv = 0x2915F78;
+	isRightHeld__11PlayerInputCFv = 0x2915F9C;
+	isLeftHeld__11PlayerInputCFv = 0x2915F90;
+
 	/* ResMgr */
 	ResMgr_LoadLevelResource = 0x29d2a20;
 	ResMgr_LoadLevelArchiveSuccess = 0x29d3354;
@@ -942,6 +972,7 @@ SECTIONS {
 	collisionFireball__5PokeyFP14HitboxColliderT1 = 0x2433a38;
 
 	/* Misc */
+	killplayer = 0x2931458
 	ASM_MTXConcat = 0x2af98a0;
 	mapPositionToScreen__FR4Vec2RC4Vec2 = 0x2029368;
 	moveValueTo__FPUiUiT2 = 0x29e11f0;

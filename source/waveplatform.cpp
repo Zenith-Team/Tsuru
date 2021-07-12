@@ -98,7 +98,7 @@ bool WavePlatform::updateWaveTargets() {
     f32 ydiff1 = ypos_m - ypos_l;
 	f32 ydiff2 = ypos_r - ypos_m;
 	f32 ydiffavg = (ydiff1 + ydiff2) / 2;
-	targetRot = (u32)(atan2(ydiffavg, 20.0) / (2 * M_PI) * 0x100000000);
+	targetRot = (u32)(atan2f(ydiffavg, 20.0) / (2 * M_PI) * 0x100000000);
 
     return 1;
 }

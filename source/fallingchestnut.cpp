@@ -106,11 +106,11 @@ void FallingChestnut::beginState_Evaluate() { }
 void FallingChestnut::executeState_Evaluate() {
     Vec2 dist;
 
-    if (distanceToPlayer(dist) > -1 && fabs(dist.x) < 48.0f) {
+    if (distanceToPlayer(dist) > -1 && fabsf(dist.x) < 48.0f) {
         doStateChange(&StateID_Falling);
     }
 
-    else if (distanceToPlayer(dist) > -1 && fabs(dist.x) < 80.0f) {
+    else if (distanceToPlayer(dist) > -1 && fabsf(dist.x) < 80.0f) {
 
     }
 }
@@ -149,7 +149,7 @@ void FallingChestnut::executeState_OnGround() {
 
     if (despawnDelay >= 60) {
         Vec3 effectPos(position.x, position.y - 18.0f, 4500.0f);
-        Effect::spawn(921, &effectPos, nullptr, nullptr);
+        Effect::spawn(RP_ObakeDoor_Disapp, &effectPos, nullptr, nullptr);
 
         isDeleted = true;
     }

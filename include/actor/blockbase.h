@@ -21,7 +21,7 @@ public:
         PropellerMushroom = 7,
         Star              = 8,
         ContinuousStar    = 9,
-        SquirrelMushroom  = 10,
+        AcornMushroom     = 10,
         LifeMoon          = 11,
         Coin              = 12,
         MultiCoin         = 13,
@@ -159,8 +159,7 @@ class BlockBase : public MovementBlockCoinBase {  // size: 0x1CD0
     SEAD_RTTI_OVERRIDE(BlockBase, MovementBlockCoinBase)
 
 public:
-    enum StateTypes
-    {
+    enum StateTypes {
         StateTypeQuestionBlock  = 0,
         StateTypeBrickBlock     = 1,
         StateTypeBlockUsed      = 2,

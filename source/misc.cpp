@@ -2,6 +2,7 @@
 #include "level.h"
 #include "actor/enemy.h"
 #include "actor/pokey.h"
+#include "actor/playerbase.h"
 
 void Bouncy__collisionYoshi(Enemy* _this, HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     if (_this->processCollision(hcSelf, hcOther, 1) == 0)
@@ -25,4 +26,8 @@ void FireproofPokey(Pokey* _this, HitboxCollider* hcSelf, HitboxCollider* hcOthe
         return;
     else
         _this->Pokey::collisionFireball(hcSelf, hcOther);
+}
+
+void LogPowerup(PlayerBase* _this) {
+    LOG("powerup state: %x", _this->powerupState);
 }

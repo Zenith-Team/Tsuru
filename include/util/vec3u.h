@@ -49,7 +49,7 @@ public:
 
     u32 dot(const Vec3u& v) const { return dot(*this, v); }
 
-    u32 mag() const { return sqrt(magSq()); }
+    u32 mag() const { return sqrtf(magSq()); }
     u32 magSq() const { return x*x + y*y + z*z; }
     u32 dist(const Vec3u& v) const { return dist(*this, v); }
     u32 distSq(const Vec3u& v) const { return distSq(*this, v); }
@@ -149,7 +149,7 @@ inline u32 Vec3u::distSq(const Vec3u& a, const Vec3u& b) {
 }
 
 inline u32 Vec3u::angle(const Vec3u& a, const Vec3u& b) {
-    return acos(angleCos(a, b));
+    return acosf(angleCos(a, b));
 }
 
 inline u32 Vec3u::angleCos(const Vec3u& a, const Vec3u& b) {

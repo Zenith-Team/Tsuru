@@ -93,7 +93,7 @@ void FakeStarCoin::updateModel() {
 void FakeStarCoin::collect() {
     Vec3 effectPos(position.x, position.y - 18.0f, 4500.0f);
 
-    Effect::spawn(921, &effectPos, nullptr, nullptr);
+    Effect::spawn(RP_ObakeDoor_Disapp, &effectPos, nullptr, nullptr);
     PlaySound("SE_OBJ_DDOOR_OPEN", position);
 
     if (eventId1)
