@@ -2,9 +2,8 @@
 ---
 Files:
   - source/yoshicolors.S
-  - source/yoshicolors.cpp
 Hooks:
-  # Patch array to unlock colors
+  # Patch resource array to add custom colors
   - type: branch
     instr: bl
     addr: "2969B38"

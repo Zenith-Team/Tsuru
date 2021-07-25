@@ -1,20 +1,18 @@
 #pragma once
 
-#include <stddef.h>
-
 #include "list.h"
-#include "idisposer.h"
+#include "string.h"
 #include "bitflag.h"
 #include "inamable.h"
-#include "runtimetypeinfo.h"
-#include "string.h"
+#include "idisposer.h"
 #include "criticalsection.h"
+#include "runtimetypeinfo.h"
 
 namespace sead { namespace hostio {
 
 class Context;
 
-} // namespace sead::hostio
+}
 
 class Heap : public IDisposer, public INamable {
 public:
@@ -57,22 +55,18 @@ public:
         return tryAlloc(size, alignment);
     }
 
-    typedef OffsetList<Heap> HeapList;
-    typedef OffsetList<IDisposer> DisposerList;
-
-    void *mStart;
+    void* mStart;
     size_t mSize;
     Heap* mParent;
-    HeapList mChildren;
+    OffsetList<Heap> mChildren;
     ListNode mListNode;
-    DisposerList mDisposerList;
+    OffsetList<IDisposer> mDisposerList;
     HeapDirection mDirection;
     CriticalSection mCS;
-    BitFlag32 mFlag;
+    BitFlag<u32> mFlag;
 };
 
-class FreeList
-{
+class FreeList {
 public:
     void* mFree;
     void* mWork;
@@ -108,6 +102,5 @@ public:
     u32 mFreeSize;
     FreeList mFreeList;
 };
-
 
 }

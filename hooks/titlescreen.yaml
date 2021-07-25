@@ -2,7 +2,7 @@
 ---
 Files: []
 Hooks:
-  # Disable acorns falling
+  # Disable spawning of falling acorns
   - type: nop
     addr: "29DF464"
   - type: nop

@@ -6,15 +6,15 @@ namespace sead {
 
 class PtrArrayImpl {
 public:
-    forceinline PtrArrayImpl(s32 ptrNumMax, void* buf)
+    forceinline PtrArrayImpl(s32 ptrNumMax, void* pBuf)
         : mPtrNum(0)
         , mPtrNumMax(0)
         , mPtrs(NULL)
     {
-        setBuffer(ptrNumMax, buf);
+        setBuffer(ptrNumMax, pBuf);
     }
 
-    void setBuffer(s32 ptrNumMax, void* buf);
+    void setBuffer(s32 ptrNumMax, void* pBuf);
 
     s32 mPtrNum;
     s32 mPtrNumMax;
@@ -22,11 +22,10 @@ public:
 };
 
 template <typename T>
-class PtrArray : public PtrArrayImpl
-{
+class PtrArray : public PtrArrayImpl {
 public:
-    forceinline PtrArray(s32 ptrNumMax, T** buf)
-        : PtrArrayImpl(ptrNumMax, buf)
+    forceinline PtrArray(s32 ptrNumMax, T** pBuf)
+        : PtrArrayImpl(ptrNumMax, pBuf)
     { }
 
     class iterator {

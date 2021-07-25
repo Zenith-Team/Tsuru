@@ -1,0 +1,123 @@
+
+---
+Files:
+  - source/profile.S
+  - source/profile.cpp
+Hooks:  
+  - type: branch
+    instr: b
+    addr: "2019554"
+    func: __ct__7ProfileFPFPC14ActorBuildInfo_P9BaseActorUiRCQ2_4sead23SafeStringBase__tm__2_cPC9ActorInfoT2
+  
+  - type: branch
+    instr: b
+    addr: "2019774"
+    func: get__7ProfileSFUi
+  
+  - type: branch
+    instr: b
+    addr: "2019988"
+    func: getPriority__7ProfileSFUi
+  
+  - type: branch
+    instr: b
+    addr: "20199A8"
+    func: getHasResources__7ProfileSFUi
+  
+  - type: branch
+    instr: b
+    addr: "20199CC"
+    func: getResourceCount__7ProfileSFUi
+  
+  - type: branch
+    instr: b
+    addr: "20199EC"
+    func: getResourceList__7ProfileSFUi
+  
+  - type: patch
+    addr: "200501A"
+    data: ffff
+  
+  - type: patch
+    addr: "2007C62"
+    data: ffff
+  
+  - type: patch
+    addr: "200806E"
+    data: ffff
+  
+  - type: patch
+    addr: "2008262"
+    data: ffff
+  
+  - type: patch
+    addr: "200844E"
+    data: ffff
+  
+  - type: patch
+    addr: "200457A"
+    data: ffff
+  
+  - type: patch
+    addr: "2017388"
+    data: 4e800020
+  
+  - type: branch
+    instr: bl
+    addr: "200A89C"
+    func: loadNumProfiles_r29
+
+  - type: branch
+    instr: bl
+    addr: "200A950"
+    func: loadNumProfiles_r30
+  
+  - type: branch
+    instr: bl
+    addr: "2004DA8"
+    func: SpriteToProfileList_r3
+  
+  - type: branch
+    instr: bl
+    addr: "2004948"
+    func: SpriteToProfileList_r3_2
+
+  - type: branch
+    instr: bl
+    addr: "2004FF8"
+    func: SpriteToProfileList_r19
+  
+  - type: branch
+    instr: bl
+    addr: "2004570"
+    func: SpriteToProfileList_r22
+  
+  - type: branch
+    instr: bl
+    addr: "2007C50"
+    func: SpriteToProfileList_r24
+  
+  - type: branch
+    instr: bl
+    addr: "2008064"
+    func: SpriteToProfileList_r24
+  
+  - type: branch
+    instr: bl
+    addr: "2008258"
+    func: SpriteToProfileList_r24
+  
+  - type: branch
+    instr: bl
+    addr: "2008440"
+    func: SpriteToProfileList_r26
+  
+  - type: branch
+    instr: bl
+    addr: "200A7EC"
+    func: SpriteToProfileList_r30
+  
+  - type: branch
+    instr: bl
+    addr: "2008678"
+    func: SpriteToProfileList_r31

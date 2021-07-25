@@ -82,7 +82,7 @@ Miscellaneous hacks/patches are listed here
 * [RoadrunnerWMC](https://github.com/RoadrunnerWMC) - Customizable world map scripts
 * [Shibboleet](https://github.com/shibbo) - General code, headers, and contribution to the build system
 * [STUPID](https://github.com/stupidestmodder) - General code and headers
-* Modified dynamic_libs based on original implementation by dimok and [Maschell fork](https://github.com/Maschell/dynamic_libs)
+* Modified dynamic_libs headers based on original implementation by Dimok and [Maschell fork](https://github.com/Maschell/dynamic_libs)
 * shiftjis.h from [Apollo PS3](https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h)
 
 # Special Thanks

@@ -2,12 +2,6 @@
 
 #include "types.h"
 
-template <class T>
-struct List {
-    u32 count;
-    T* list;
-};
-
 namespace sead {
 
 class ListNode {
@@ -28,10 +22,10 @@ class ListImpl {
 public:
     forceinline ListImpl()
         : mStartEnd(), mCount(0) {
-        mStartEnd.mNext = &mStartEnd;
-        mStartEnd.mPrev = &mStartEnd;
-    }
-
+            mStartEnd.mNext = &mStartEnd;
+            mStartEnd.mPrev = &mStartEnd;
+        }
+    
     void pushBack(ListNode* n) {
         mStartEnd.insertFront_(n);
         mCount += 1;
@@ -46,8 +40,6 @@ public:
     s32 mCount;
 };
 
-template <typename T>
-class TListNode;
 
 template <typename T>
 class TList : public ListImpl {
@@ -78,8 +70,7 @@ public:
             return *this;
         }
 
-        iterator operator--(int)
-        {
+        iterator operator--(int) {
             const iterator it(*this);
             (void)--*this;
             return it;
@@ -145,7 +136,8 @@ template <typename T>
 class OffsetList : public ListImpl {
 public:
     forceinline OffsetList()
-        : ListImpl(), mOffset(-1)
+        : ListImpl()
+        , mOffset(-1)
     { }
 
     void pushBack(T* item) {
@@ -159,7 +151,8 @@ public:
     class iterator {
     public:
         iterator(T* ptr, s32 offset)
-            : mPtr(ptr), mOffset(offset)
+            : mPtr(ptr)
+            , mOffset(offset)
         { }
 
         bool operator==(const iterator& other) const {

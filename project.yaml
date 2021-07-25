@@ -2,19 +2,9 @@
 ---
 Name: SuperHacks
 Modules:
-# - hooks/antialiasing.yaml     # Disables FXAA in-game
-  - hooks/areatask.yaml         # Area modifiers
-  - hooks/customsprites.yaml    # Custom sprites/actors
-  - hooks/debug.yaml            # Debug tools
-  - hooks/dynamiclibs.yaml      # Dynamic libraries
-  - hooks/fixes.yaml            # Miscellaneous bugfixes
-  - hooks/hitboxcollider.yaml   # HitboxCollider patches
-  - hooks/initializer.yaml      # Initialize static variables and load RPLs
-  - hooks/misc.yaml             # Miscellaneous patches
-  - hooks/sarcloader.yaml       # Loads levels as .sarc if .szs isn't found
-  - hooks/sead.yaml             # Standard library patches
-  - hooks/sizemodifier.yaml     # Sprite size modifier
-  - hooks/snowparticles.yaml    # Custom snow particles
-  - hooks/titlescreen.yaml      # Title screen patches
-  - hooks/worldmapscripts.yaml  # Custom world map scripts/sequences
-  - hooks/yoshicolors.yaml      # Patches Yoshis to have all colors
+  - hooks/customactors.yaml   # Custom sprites/actors
+  - hooks/dynlibs.yaml        # Dynamic libraries
+  - hooks/initializer.yaml    # Initializer
+  - hooks/profile.yaml        # Extra sprite slots
+  - hooks/titlescreen.yaml    # Title screen patches
+  - hooks/yoshicolors.yaml    # Extra colors for Yoshi
