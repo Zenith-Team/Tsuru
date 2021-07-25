@@ -8,6 +8,7 @@ project.ld
 project.gpj
 objs/*
 .vs/*
+.vscode
 *.o
 *.d
 *.ti
