@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game/graphics/model.h"
+#include "game/graphics/model/model.h"
 
 class DrawMgr {
 public:
