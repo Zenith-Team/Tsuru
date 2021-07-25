@@ -1,55 +1,56 @@
-# SuperHacks
-#### New Super Mario Bros. U Custom Code and ASM
-So basically this is just a massive compilation of code hacks for NSMBU, inspired by NewerSMBW, made with extensibility in mind. A lot of stuff here was made by me as I learned how to write hacks, and some of it may not be fully up-to-par, but I tried my test to clean everything up as much as possible. Make sure to also grab the assets pack form the releases page when installing the hacks.
+# SuperHacks (working title)
+#### New Super Mario Bros. U Extension and Hack Framework
+So basically this is just a massive compilation of code hacks for NSMBU made with scalability, accuracy, and integrity in mind. Besides the code hacks, there is also a multitude of headers included, to minimize the amount of reverse-engineering required for modifying the game for others. Make sure to also grab the assets pack form the releases page when installing the hacks.
 Project started on March 9 2021.
 
 # What's here
+Please note that a rewrite is currently in progress, so not everything listed here is available at the moment.
 ## Headers:
 I have included as many headers as I could, to minimize the amount of reverse-engineering required for modifying the game for others, and for completeness. There are much too many headers to keep track of, so here is a list of extra actor and actor base headers that are included here, plus some other special ones.
 ### Actors
-* bobomb.h (unfinished)
-* boss.h (unfinished)
+* bobomb.h
+* boss.h
 * bowser.h
 * bowserfireball.h
 * brosbase.h
-* enemy.h (semi-unfinished)
-* icicle.h (unfinished)
-* itembase.h (todo)
-* liquid.h (unfinished)
-* player.h (unfinished)
-* playerbase.h (unfinished)
+* enemy.h
+* icicle.h
+* itembase.h
+* liquid.h
+* player.h
+* playerbase.h
 * pokey.h
-* rockywrench.h (unfinished)
-* spinningstar.h (unfinished)
+* rockywrench.h
+* spinningstar.h
 * thwomp.h
 * windgeneratorbase.h (unfinished)
 * yoshi.h (unfinished)
 ### Special
-* dynamic_libs/h264_functions.h
-* dynamic_libs/h264_types.h
-* terrain.h (unfinished)
+* dynlibs/h264/functions.h
+* dynlibs/h264/types.h
+* terrain.h
 * taskmgr.h
 ## Custom Sprites:
 All custom sprites which were not written by me have credits in customsprites.yaml. Also listed there are the sprite/profile IDs of each custom sprite.
 * Actor Spawner
-* Angry Sun (unfinished)
-* Bomb Bro (unfinished)
-* Death Foo (very buggy)
+* Angry Sun
+* Bomb Bro
+* Death Foo
 * Effect Spawner
 * Fake Checkpoint
 * Fake Star Coin
-* Falling Chestnut (unfinished)
-* Fire Thwomp (unfinished)
+* Falling Chestnut
+* Fire Thwomp
 * Flipblock
 * Fly bones
 * Magic Platform
 * Model loader
-* Poison Mushroom (unfinished)
+* Poison Mushroom
 * Time Clock
-* Triple Block (unfinished, broken)
-* Water Waves (unfinished)
-* Water Waves Platform (unfinished, broken)
-* Wind generator (unfinished)
+* Triple Block
+* Water Waves
+* Water Waves Platform
+* Wind generator
 ## Patches:
 Miscellaneous hacks/patches are listed here
 * Add archive links for some unused actors to allow adding models
@@ -60,7 +61,7 @@ Miscellaneous hacks/patches are listed here
 * Disabled Miiverse related popups/menus (unfinished)
 * Disabled music speedup at 100 seconds
 * Disabled FXAA in-game
-* Fireproof pokey (unfinished)
+* Fireproof pokey
 * Fixed collision conditions for some sprites
 * Infinite lives
 * Infinite time
@@ -86,7 +87,6 @@ Miscellaneous hacks/patches are listed here
 * shiftjis.h from [Apollo PS3](https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h)
 
 # Special Thanks
-* JHMaster for helping create tools to assist in reverse engineering
-* Joey for helping me set up NSMBU-Haxx when I first started
+* Joey0980 for helping me set up NSMBU-Haxx when I first started
 * STUPID for basically teaching me everything I know about code hacks
 * Toms and Kinnay for giving me early access to the Newer U code
