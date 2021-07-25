@@ -1,5 +1,5 @@
 # SuperHacks (working title)
-#### New Super Mario Bros. U Extension and Hack Framework
+#### New Super Mario Bros. U Hack Framework and Extension 
 So basically this is just a massive compilation of code hacks for NSMBU made with scalability, accuracy, and integrity in mind. Besides the code hacks, there is also a multitude of headers included, to minimize the amount of reverse-engineering required for modifying the game for others. Make sure to also grab the assets pack form the releases page when installing the hacks.
 Project started on March 9 2021.
 
