@@ -5,7 +5,7 @@
 
 namespace agl { namespace lyr {
 
-class Layer : public sead::IDisposer {  // size: 0x41C
+class Layer : public sead::IDisposer {
 public:
     Layer();
     virtual ~Layer();

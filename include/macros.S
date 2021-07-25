@@ -1,10 +1,7 @@
 .include "registers.S"
 
 .macro SaveVolatileRegisters
-    # Allocate 0x38 bytes from stack
     stwu sp,  -0x38(sp)
-
-    # Save registers to stack
     stw  r0,  0x08(sp)
     stw  r3,  0x0C(sp)
     stw  r4,  0x10(sp)
@@ -23,7 +20,6 @@
 .endm
 
 .macro RestoreVolatileRegisters
-    # Restore registers from stack
     lwz  r0,  0x34(sp)
     mtcr r0
     lwz  r0,  0x3C(sp)
@@ -39,8 +35,6 @@
     lwz  r10, 0x28(sp)
     lwz  r11, 0x2C(sp)
     lwz  r12, 0x30(sp)
-
-    # Restore stack pointer
     addi sp,  sp, 0x38
 .endm
 

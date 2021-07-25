@@ -1,0 +1,8 @@
+# // Configuration settings for project
+
+#ifndef __SETTINGS_H
+#define __SETTINGS_H
+ 
+#define DEBUG 1
+
+#endif

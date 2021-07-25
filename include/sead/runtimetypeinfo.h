@@ -1,30 +1,33 @@
 #pragma once
 
+#include "types.h"
+
 namespace sead { namespace RuntimeTypeInfo {
 
-struct Interface {
+class Interface {
+public:
     Interface() { }
-
     virtual bool isDerived(const Interface* typeInfo) const = 0;
 };
 
-struct Root : public Interface
-{
+class Root : public Interface {
+public:
     Root() { }
 
-    virtual bool isDerived(const Interface* typeInfo) const {
+    bool isDerived(const Interface* typeInfo) const {
         return typeInfo == this;
     }
 };
 
 template <typename BaseType>
-struct Derive : public Interface {
+class Derive : public Interface {
+public:
     Derive() { }
 
-    virtual bool isDerived(const Interface* typeInfo) const {
+    bool isDerived(const Interface* typeInfo) const {
         if (this == typeInfo)
             return true;
-
+        
         const RuntimeTypeInfo::Interface* rootTypeInfo = BaseType::getRuntimeTypeInfoStatic();
         return rootTypeInfo->isDerived(typeInfo);
     }
@@ -34,16 +37,16 @@ struct Derive : public Interface {
 
 template <typename DerivedType, typename Type>
 inline bool
-IsDerivedFrom(const Type* obj) {
+IsDerivedFrom(const Type* pObj) {
     const RuntimeTypeInfo::Interface* typeInfo = DerivedType::getRuntimeTypeInfoStatic();
-    return obj != NULL && obj->checkDerivedRuntimeTypeInfo(typeInfo);
+    return pObj != NULL && pObj->checkDerivedRuntimeTypeInfo(typeInfo);
 }
 
 template<typename DerivedType, typename Type>
 inline DerivedType*
-DynamicCast(Type* obj) {
-    if (IsDerivedFrom<DerivedType, Type>(obj))
-        return static_cast<DerivedType*>(obj);
+DynamicCast(Type* pObj) {
+    if (IsDerivedFrom<DerivedType, Type>(pObj))
+        return static_cast<DerivedType*>(pObj);
 
     return NULL;
 }

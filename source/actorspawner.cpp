@@ -1,10 +1,11 @@
-#include "actor/stageactor.h"
-#include "actormgr.h"
-#include "eventmgr.h"
+#include "game/actor/stageactor.h"
+
+#include "log.h"
+#include "game/actormgr.h"
+#include "game/eventmgr.h"
+#include "game/profile/profileid.h"
 
 class ActorSpawner : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(ActorSpawner, StageActor)
-
 public:
     ActorSpawner(const ActorBuildInfo* buildInfo);
     virtual ~ActorSpawner() { }
@@ -14,19 +15,15 @@ public:
     u32 onCreate() override;
     u32 onExecute() override;
 
-    u16 spawnProfileId;
-    bool spawned;
+    u16 mSpawnProfileID;
+    bool mSpawned;
 };
 
-const Profile ActorSpawnerProfile(&ActorSpawner::build, ProfileId::Sprite436, "ActorSpawner", nullptr, 0);
-PROFILE_RESOURCES(ProfileId::Sprite436);
-
-
+const Profile ActorSpawnerProfile(&ActorSpawner::build, ProfileID::ActorSpawner, "ActorSpawner", nullptr, 0);
 
 ActorSpawner::ActorSpawner(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
-    , spawnProfileId(0)
-    , spawned(false)
+    , mSpawned(false)
 { }
 
 BaseActor* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
@@ -34,66 +31,67 @@ BaseActor* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 ActorSpawner::onCreate() {
-    if (!eventId2)
+    if (!mEventID2)
         return 2;
+    
+    u16 inputID = mLinkID | ((mMovementID & 0xF) << 8);
 
-    u16 inputId = linkId | ((movementId & 0xF) << 8);
-
-    if (movementId & 0x10)
-        spawnProfileId = Profile::spriteToProfileList[inputId];
+    if (mMovementID & 0x10)
+        mSpawnProfileID = Profile::spriteToProfileList[inputID];
     else
-        spawnProfileId = inputId;
+        mSpawnProfileID = inputID;
 
-    return onExecute(); //Call onExecute() to prevent the spawned actor to be missing for one frame if the event is alredy active.
+    // Call onExecute to prevent the spawned actor to be missing for one frame if the event is already active
+    return onExecute();
 }
 
 u32 ActorSpawner::onExecute() {
-    BaseActor* child = (childList.begin() != childList.end()) ? childList.begin().mPtr : nullptr;
+    BaseActor* child = (mChildList.begin() != mChildList.end()) ? mChildList.begin().mPtr : nullptr;
 
-    if (EventMgr::instance->isActive(eventId2-1)) {
-        if (initStateFlag == 2 && child) {
+    if (EventMgr::sInstance->isActive(mEventID2-1)) {
+        if (mInitialStateFlag == 2 && child) {
             StageActor* actor = sead::DynamicCast<StageActor, BaseActor>(child);
 
             if (actor) {
-                actor->isActive = true;
-                actor->isVisible = true;
+                actor->mIsActive = true;
+                actor->mIsVisible = true;
                 actor->addHitboxColliders();
             }
 
             return 1;
         }
 
-        if (!spawned) {
+        if (!mSpawned) {
             ActorBuildInfo buildInfo = { 0 };
 
-            buildInfo.parentId = id;
-            buildInfo.settings1 = settings1;
-            buildInfo.settings2 = settings2;
-            buildInfo.profile = Profile::get(spawnProfileId);
-            buildInfo.position = position;
-            buildInfo.eventId1 = eventId1 & 0xF;
-            buildInfo.eventId2 = (eventId1 >> 4) & 0xF;
+            buildInfo.mSettings1 = mSettings1;
+            buildInfo.mSettings2 = mSettings2;
+            buildInfo.mProfile = Profile::get(mSpawnProfileID);
+            buildInfo.mPosition = mPosition;
+            buildInfo.mEventID1 = mEventID1 & 0xF;
+            buildInfo.mEventID2 = (mEventID1 >> 4) & 0xF;
+            ActorMgr::sInstance->create(&buildInfo, 0);
 
-            ActorMgr::instance->create(&buildInfo, 0);
-
-            spawned = true;
+            mSpawned = true;
         }
     }
+
     else {
-        if (initStateFlag == 1 && child) {
-            child->isDeleted = true;
+        if (mInitialStateFlag == 1 && child) {
+            child->mIsDeleted = true;
         }
-        else if (initStateFlag == 2 && child) {
+
+        else if (mInitialStateFlag == 2 && child) {
             StageActor* actor = sead::DynamicCast<StageActor, BaseActor>(child);
 
             if (actor) {
-                actor->isActive = false;
-                actor->isVisible = false;
+                actor->mIsActive = false;
+                actor->mIsVisible = false;
                 actor->removeHitboxColliders();
             }
         }
 
-        spawned = false;
+        mSpawned = false;
     }
 
     return 1;

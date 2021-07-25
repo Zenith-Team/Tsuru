@@ -1,0 +1,9 @@
+
+---
+Files:
+#* Regular sprites:
+  - source/parabones.cpp
+#* Utility:
+  - source/actorspawner.cpp
+#* Patches:
+Hooks: []

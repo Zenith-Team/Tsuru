@@ -8,17 +8,17 @@ YoshiTexYellow:     .string "Yoshi_TexYellow"
 
 .global PatchYoshiColors
 PatchYoshiColors:
-    # Patch Pink Yoshi
+    # Add pink Yoshi
     lis      r0, YoshiTexPink@h
     ori      r0, r0, YoshiTexPink@l
     stw      r0, 0x8(r12)
 
-    # Patch Light Blue Yoshi
+    # Add light blue Yoshi
     lis      r0, YoshiTexLightBlue@h
     ori      r0, r0, YoshiTexLightBlue@l
     stw      r0, 0x10(r12)
 
-    # Patch Yellow Yoshi
+    # Add yellow Yoshi
     lis      r0, YoshiTexYellow@h
     ori      r0, r0, YoshiTexYellow@l
     stw      r0, 0x18(r12)
