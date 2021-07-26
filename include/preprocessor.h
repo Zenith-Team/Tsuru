@@ -1,14 +1,22 @@
 #pragma once
 
 // Concatenates both arguments
-#define PP_CONCAT(x, y) x##y
+#define PP_CONCAT(x, y) \
+    x##y
 
 // Stringizes x
-#define PP_STR(x) #x
+#define PP_STR(x) \
+    #x
 
 // Stringizes the value of x
 #define PP_STR_VAL(x) PP_STR(x)
 
+
+#define TOKENPASTE(x, y) \
+    x ## y
+
+#define TOKENPASTE2(x, y) \
+    TOKENPASTE(x, y)
 
 #define PP_ARG_N(                                     \
      _0,  _1,  _2,  _3,  _4,  _5,  _6,  _7,  _8,  _9, \
