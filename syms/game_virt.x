@@ -45,6 +45,9 @@ SECTIONS {
 	create__8ActorMgrFP14ActorBuildInfoUi = 0x2009a58;
 	findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP9BaseActor = 0x2009b6c;
 
+/* ApplicationTask */
+	sInstance__15ApplicationTask = 0x101e7d40; 
+
 /* BaseActor */
 	__vtbl__9BaseActor = 0x100006c0;
 	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__9BaseActorSFv = 0x101e9cc4;
@@ -60,11 +63,20 @@ SECTIONS {
 	afterDelete__9BaseActorFUi = 0x2002f3c;
 	getProfileId__9BaseActorFv = 0x2002c80;
 
+/* CourseTask */
+	sInstance__10CourseTask = 0x101d15f0;
+
+/* CourseSelectTask */
+	sInstance__16CourseSelectTask = 0x101cc96c;
+
 /* DrawMgr */
 	sInstance__7DrawMgr = 0x101d2d88;
 	drawModel__7DrawMgrFP5Model = 0x24fab58;
 	drawModel__7DrawMgrFP12ModelWrapper = 0x24fac98;
 	drawTile__7DrawMgrFUsRC4Vec3RCUiT2 = 0x24fad28;
+
+/* DRCModeTask */
+	sInstance__11DRCModeTask = 0x101d1904;
 
 /* Enemy */
 	__ct__5EnemyFPC14ActorBuildInfo = 0x2328494;
@@ -202,6 +214,9 @@ SECTIONS {
 	move__5EnemyFR16Vector2__tm__2_f = 0x232a67c;
 	getRect__5EnemyFR4Rect = 0x232a6a8;
 
+/* ErrorViewerTask */
+	sInstance__15ErrorViewerTask = 0x101d1904;
+
 
 /* EventMgr */
 	sInstance__8EventMgr = 0x101db06c;
@@ -319,6 +334,11 @@ SECTIONS {
 /* StateMgr */
 	execute__8StateMgrFv = 0x29c4a80;
 	changeState__8StateMgrFP9StateBase = 0x29c4af0;
+
+/* TaskMgr */
+	sInstance__7TaskMgr = 0x101e7b28;
+	startLevel__7TaskMgrFPQ2_4sead8TaskBaseUcT2 = 0x29941d0;
+	changeTask__7TaskMgrFPQ2_4sead8TaskBaseRQ2_4sead11TaskClassIDUiT3 = 0x2994164;
 
 /* Misc */
 	BLOSDynLoad_Acquire = 0x2A9EF58;
