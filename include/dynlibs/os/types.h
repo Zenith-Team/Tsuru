@@ -63,26 +63,28 @@ typedef volatile double vf64;
 #define OS_THREAD_ATTR_NAME_SENT        0x0080u        // debugger has seen the name
 #define OS_THREAD_ATTR_LAST (OS_THREAD_ATTR_DETACH | OS_THREAD_ATTR_PINNED_AFFINITY | OS_THREAD_ATTR_AFFINITY_NONE)
 
-typedef struct _OSThreadLink {
+typedef struct OSThread_ OSThread;
+
+typedef struct OSThreadLink_ {
     OSThread *next;
     OSThread *prev;
 }  OSThreadLink;
 
-typedef struct _OSThreadQueue {
+typedef struct OSThreadQueue_ {
     OSThread *head;
     OSThread *tail;
     void *parentStruct;
     u32 reserved;
 } OSThreadQueue;
 
-typedef struct _OSMessage {
+typedef struct OSMessage_ {
     u32 message;
     u32 data0;
     u32 data1;
     u32 data2;
 } OSMessage;
 
-typedef struct _OSMessageQueue {
+typedef struct OSMessageQueue_ {
     u32 tag;
     char *name;
     u32 reserved;
@@ -95,7 +97,7 @@ typedef struct _OSMessageQueue {
     int usedCount;
 } OSMessageQueue;
 
-typedef struct _OSContext {
+typedef struct OSContext_ {
     char tag[8];
 
     u32 gpr[32];
@@ -158,7 +160,7 @@ typedef enum OSExceptionType {
 
 typedef int (*ThreadFunc)(int argc, void *argv);
 
-typedef struct _OSThread {
+struct OSThread_ {
     OSContext context;
 
     u32 txtTag;
@@ -178,7 +180,7 @@ typedef struct _OSThread {
     ThreadFunc entryPoint;
 
     char _3A0[0x6A0 - 0x3A0];
-} OSThread;
+};
 
 typedef s64 OSTime;
 
@@ -202,12 +204,15 @@ typedef struct _OSSpinLock {
     u32 __unknown1;
 } OSSpinLock;
 
+struct _OSMutex;
+typedef struct _OSMutex OSMutex;
+
 typedef struct _OSMutexLink {
     OSMutex* next;
     OSMutex* prev;
 } OSMutexLink;
 
-typedef struct _OSMutex {
+struct _OSMutex {
     u32 txtTag;
     char *name;
     u32 reserved;
@@ -215,9 +220,9 @@ typedef struct _OSMutex {
     OSThread* thread;
     s32 count;
     OSMutexLink link;
-} OSMutex;
+};
 
-typedef struct _MCPTitleListType {
+typedef struct MCPTitleListType {
     u64 titleId;
     u8 unknwn[4];
     s8 path[56];
