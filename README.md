@@ -78,6 +78,7 @@ Miscellaneous hacks/patches are listed here
 
 # Credits
 * [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code, headers, and build system
+* [JHMaster2000](https://github.com/jhmaster2000) - General code and headers
 * [Newer Team](https://github.com/Newer-Team) - [Newer U](https://github.com/Newer-Team/NewerSMBU) code and headers
 * [RicBent](https://github.com/RicBent) - [CodeDX](https://github.com/RicBent/codedx) code and headers
 * [RoadrunnerWMC](https://github.com/RoadrunnerWMC) - Customizable world map scripts
