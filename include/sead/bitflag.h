@@ -14,4 +14,6 @@ public:
     T mBits;
 };
 
+typedef BitFlag<u32> BitFlag32;
+
 }
