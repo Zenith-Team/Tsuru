@@ -1,17 +1,15 @@
 #pragma once
 
 #include <cstddef>
+#include "preprocessor.h"
 
 // Workarounds to meet newer standards
 
 #define nullptr NULL
 #define override
 #define forceinline __attribute__((always_inline))
-
-#define TOKENPASTE(x, y) x ## y
-#define TOKENPASTE2(x, y) TOKENPASTE(x, y)
-
 #define static_assert(condition, ...) typedef int TOKENPASTE2(static_assert_, __LINE__)[(condition) ? 1 : -1]
+
 
 // Primitive type shortcuts
 
