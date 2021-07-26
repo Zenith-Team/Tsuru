@@ -53,19 +53,19 @@ class TaskBase : public TTreeNode<TaskBase*>, public IDisposer, public INamable 
 
 public:
     enum State {
-        Created     = 0,
-        Prepare     = 1,
-        PrepareDone = 2,
-        Sleep       = 3,
-        Running     = 4,
-        Dying       = 5,
-        Destroyable = 6,
-        Dead        = 7
+        cCreated     = 0,
+        cPrepare     = 1,
+        cPrepareDone = 2,
+        cSleep       = 3,
+        cRunning     = 4,
+        cDying       = 5,
+        cDestroyable = 6,
+        cDead        = 7
     };
 
     enum Tag {
-        System  = 0,
-        App     = 1
+        cSystem  = 0,
+        cApp     = 1
     };
 
     struct CreateArg {
@@ -94,11 +94,11 @@ public:
     virtual void pauseCalcChild(bool b);        // deleted
     virtual void pauseDrawChild(bool b);        // deleted
     virtual ~TaskBase();
-    virtual void prepare() {}
+    virtual void prepare();
     virtual void enterCommon();
-    virtual void enter() {}
-    virtual void exit() {}
-    virtual void onEvent(const TaskEvent&) {}
+    virtual void enter();
+    virtual void exit();
+    virtual void onEvent(const TaskEvent&);
     virtual void attachCalcImpl() = 0;
     virtual void attachDrawImpl() = 0;
     virtual void detachCalcImpl() = 0;

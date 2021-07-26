@@ -3,9 +3,11 @@
 #include "sead.h"
 #include "actor/stageactor.h"
 
-class ActorBuffer {
+class ActorBuffer { // Size: 0x18
 public:
-    BaseActor* findActorWithID(u32* id);
+    ActorBuffer();
+
+    BaseActor* findActorByID(u32* id);
 
     sead::Buffer<BaseActor*> mBuffer;
     u32 mUsedCount;
@@ -17,6 +19,10 @@ public:
 class ActorMgr {
 public:
     BaseActor* create(ActorBuildInfo* pBuildInfo, u32 addToActive);
+    BaseActor* instanciateActor(ActorBuildInfo* pBuildInfo, bool notDefer);
+    
+    u32 createActor(BaseActor* actor);  // Calls "create" virtual functions
+
 
     sead::IDisposer disposer;
     sead::UnitHeap* playerUnitHeap;
