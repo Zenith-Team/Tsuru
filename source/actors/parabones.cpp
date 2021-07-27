@@ -48,7 +48,9 @@ const ActorInfo ParaBonesActorInfo = { Vec2i(8, -16), Vec2i(0, 16), Vec2i(8, 16)
 const Profile ParaBonesProfile(&ParaBones::build, ProfileID::ParaBones, "ParaBones", &ParaBonesActorInfo, 0);
 PROFILE_RESOURCES(ProfileID::ParaBones, "nokonokoB");
 
-const HitboxCollider::Info ParaBones::sCollisionInfo = { Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Circle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback };
+const HitboxCollider::Info ParaBones::sCollisionInfo = {
+    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Circle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback
+};
 
 ParaBones::ParaBones(const ActorBuildInfo* pBuildInfo)
     : Enemy(pBuildInfo)
