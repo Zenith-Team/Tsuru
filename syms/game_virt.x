@@ -31,8 +31,18 @@ SECTIONS {
 /* GHS C Functions */
 	_f_ftoll = 0x2AFEBFC;
 
+/* Cafe SDK */
+	ASM_MTXConcat = 0x2af98a0;
+
 /* sead::GlobalRandom */
-    instance__Q2_4sead12GlobalRandom = 0x101e806c;
+    sInstance__Q2_4sead12GlobalRandom = 0x101e806c;
+
+/* sead::PrimitiveRenderer */
+	sInstance__Q2_4sead17PrimitiveRenderer = 0x101e8010;
+	setCamera__Q2_4sead17PrimitiveRendererFRCQ2_4sead6Camera = 0x2a083d0;
+	setProjection__Q2_4sead17PrimitiveRendererFRCQ2_4sead10Projection = 0x2a083e4;
+	begin__Q2_4sead17PrimitiveRendererFv = 0x2a08408;
+	end__Q2_4sead17PrimitiveRendererFv = 0x2a0841c;
 
 /* sead::Random */
 	getU32__Q2_4sead6RandomFv = 0x2a13780;
@@ -48,6 +58,9 @@ SECTIONS {
 /* Animation */
 	setRepeat__9AnimationFb = 0x24deed4;
 	reset__9AnimationFv = 0x24deeac;
+
+/* AreaTask */
+	drawLayer3D__8AreaTaskFRCQ3_3agl3lyr10RenderInfo = 0x24b84a8;
 
 /* ApplicationTask */
 	sInstance__15ApplicationTask = 0x101e7d40; 
@@ -66,6 +79,9 @@ SECTIONS {
 	onDelete__9BaseActorFv = 0x2002fb0;
 	afterDelete__9BaseActorFUi = 0x2002f3c;
 	getProfileId__9BaseActorFv = 0x2002c80;
+
+/* ColliderMgr */
+	sInstance__11ColliderMgr = 0x101c9360;
 
 /* CourseTask */
 	sInstance__10CourseTask = 0x101d15f0;
@@ -270,6 +286,9 @@ SECTIONS {
 	__CPR65__init__14HitboxColliderFP10StageActorPCQ2_J6J4InfoPPv = 0x219af1c;
 	Default__Q2_14HitboxCollider4Info = 0x10041bc0;
 
+/* HitboxColliderMgr */
+	sInstance__17HitboxColliderMgr = 0x101c95d8;
+
 /* ModelWrapper */
 	__ct__12ModelWrapperFP5ModelUiN42 = 0x24d4798;
 	setup__12ModelWrapperFP10ResArchivePvPQ2_4sead4Heap = 0x24d49a0;
@@ -278,8 +297,8 @@ SECTIONS {
 
 /* Mtx34 */
 	rotateAndTranslate__5Mtx34FRC17Vector3__tm__3_UiRC16Vector3__tm__2_f = 0x203c1c8;
-	makeST__5Mtx34SFR5Mtx34RC4Vec3T2 = 0x2222a88;
-	makeSRT__5Mtx34SFR5Mtx34RC4Vec3N22 = 0x2508424;
+	makeST__5Mtx34SFR5Mtx34RC16Vector3__tm__2_fT2 = 0x2222a88;
+	makeSRT__5Mtx34SFR5Mtx34RC16Vector3__tm__2_fN22 = 0x2508424;
 
 /* MultiStateActor */
 	vfAC__15MultiStateActorFv = 0x200abb0;
@@ -316,12 +335,18 @@ SECTIONS {
 	move__12PhysicsActorFR16Vector2__tm__2_f = 0x2004020;
 	getRect__12PhysicsActorFR4Rect = 0x200404c;
 
+/* PhysicsMgr */
+	getSensor__10PhysicsMgrCFUi = 0x218ce74;
+
 /* Profile */
 	profilesOriginal__7Profile = 0x101ED8DC;
 	prioritiesOriginal__7Profile = 0x10001940;
 	hasResourcesOriginal__7Profile = 0x10002064;
 	resourceCountOriginal__7Profile = 0x100023F8;
 	resourceListsOriginal__7Profile = 0x101C321C;
+
+/* Rect */
+	sZero__4Rect = 0x105ea79c;
 
 /* ResArchive */
 	getModel__10ResArchiveFRCQ2_4sead23SafeStringBase__tm__2_cUiN42bPQ2_4sead4Heap = 0x24ee440;
