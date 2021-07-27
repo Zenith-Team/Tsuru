@@ -3,4 +3,5 @@
 Files:
   - source/dynlibs/os.cpp
   - source/dynlibs/gx2.cpp
+  - source/hitboxcollider.cpp
 Hooks: []
