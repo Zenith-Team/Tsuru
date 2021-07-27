@@ -13,6 +13,7 @@ public:
     };
 
     void setRepeat(bool repeat);
+    void reset();
 
     inline bool isAnimationDone() {
         return mFlags & FlagIsDone;

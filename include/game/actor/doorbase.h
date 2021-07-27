@@ -5,7 +5,7 @@
 
 class DoorBase : public Enemy { // Size: 0x18A8
 public:
-    SEAD_RTTI_OVERRIDE(DoorBase, Enemy);
+    SEAD_RTTI_OVERRIDE(DoorBase, Enemy)
 
     DoorBase(const ActorBuildInfo *buildInfo);
     virtual ~DoorBase();
@@ -14,6 +14,7 @@ public:
     u32 onExecute() override;
     u32 onDraw() override;
 
+    virtual void vf18C();
     virtual void vf4E4(); // deleted
     virtual void ZOrder();
     DECLARE_STATE_VIRTUAL(DoorBase, Unk1);
@@ -28,9 +29,9 @@ public:
     virtual void initHitboxCollider();
     virtual void vf584();
     virtual void vf58C();
-    virtual void vf594();
+    virtual void vf594(); // open door anim
     virtual void playOpenDoorSound();
-    virtual void vf5A4();
+    virtual void vf5A4(); // close door anim
     virtual void playCloseDoorSound();
     virtual void vf5B4();
     virtual void vf5BC();

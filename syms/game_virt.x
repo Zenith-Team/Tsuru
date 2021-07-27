@@ -45,6 +45,10 @@ SECTIONS {
 	create__8ActorMgrFP14ActorBuildInfoUi = 0x2009a58;
 	findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP9BaseActor = 0x2009b6c;
 
+/* Animation */
+	setRepeat__9AnimationFb = 0x24deed4;
+	reset__9AnimationFv = 0x24deeac;
+
 /* ApplicationTask */
 	sInstance__15ApplicationTask = 0x101e7d40; 
 
@@ -68,6 +72,44 @@ SECTIONS {
 
 /* CourseSelectTask */
 	sInstance__16CourseSelectTask = 0x101cc96c;
+
+/* DoorBase */
+	__ct__8DoorBaseFPC14ActorBuildInfo = 0x27583f0;
+	__dt__8DoorBaseFv = 0x2759534;
+	checkDerivedRuntimeTypeInfo__8DoorBaseCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x27593b8;
+	getRuntimeTypeInfo__8DoorBaseCFv = __deleted_virtual_called;
+	onCreate__8DoorBaseFv = 0x2758540;
+	onExecute__8DoorBaseFv = 0x2758778;
+	onDraw__8DoorBaseFv = 0x27587c4;
+	vf18C__8DoorBaseFv = 0x27593b0;
+	vf4E4__8DoorBaseFv = __deleted_virtual_called;
+	ZOrder__8DoorBaseFv = 0x2758804;
+	beginState_Unk1__8DoorBaseFv = 0x2758814;
+    executeState_Unk1__8DoorBaseFv = 0x2758860;
+    endState_Unk1__8DoorBaseFv = 0x275893c;
+    beginState_Unk2__8DoorBaseFv = 0x2758948;
+    executeState_Unk2__8DoorBaseFv = 0x2758988;
+    endState_Unk2__8DoorBaseFv = 0x27595a0;
+    beginState_Unk3__8DoorBaseFv = 0x2758a2c;
+	executeState_Unk3__8DoorBaseFv = 0x2758a48;
+    endState_Unk3__8DoorBaseFv = 0x27595a4;
+    beginState_Unk4__8DoorBaseFv = 0x2758ac8;
+    executeState_Unk4__8DoorBaseFv = 0x2758b90;
+    endState_Unk4__8DoorBaseFv = 0x27595a8;
+    isCurrentStateUnk3__8DoorBaseFv = 0x27595ac;
+    vf55C__8DoorBaseFv = 0x275961c;
+    vf564__8DoorBaseFv = __deleted_virtual_called;
+    vf56C__8DoorBaseFv = __deleted_virtual_called;
+    vf584__8DoorBaseFv = 0x275962c;
+    vf58C__8DoorBaseFv = 0x2759630;
+    vf594__8DoorBaseFv = 0x2759634;
+    playOpenDoorSound__8DoorBaseFv = 0x2759638;
+    vf5A4__8DoorBaseFv = 0x2759698;
+    playCloseDoorSound__8DoorBaseFv = 0x275969c;
+    vf5B4__8DoorBaseFv = 0x27596fc;
+    vf5BC__8DoorBaseFv = 0x2759700;
+    vf5C4__8DoorBaseFv = 0x2759704;
+	colliderCallback__8DoorBaseSFP14HitboxColliderT1 = 0x2758c58;
 
 /* DrawMgr */
 	sInstance__7DrawMgr = 0x101d2d88;
@@ -217,7 +259,6 @@ SECTIONS {
 /* ErrorViewerTask */
 	sInstance__15ErrorViewerTask = 0x101d1904;
 
-
 /* EventMgr */
 	sInstance__8EventMgr = 0x101db06c;
 	set__8EventMgrFUiT1bN41 = 0x269cd68;
@@ -288,9 +329,6 @@ SECTIONS {
 	sInstance__13ResArchiveMgr = 0x101d2d50;
 	get__13ResArchiveMgrFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24f60ec;
 
-/* Animation */
-	setRepeat__9AnimationFb = 0x24deed4;
-
 /* SkeletalAnimation */
 	play__17SkeletalAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24fdadc;
 
@@ -336,10 +374,6 @@ SECTIONS {
 /* StateMgr */
 	execute__8StateMgrFv = 0x29c4a80;
 	changeState__8StateMgrFP9StateBase = 0x29c4af0;
-
-/* DoorBase */
-	__ct__8DoorBaseFPC14ActorBuildInfo = 0x27583f0;
-	colliderCallback__8DoorBaseSFP14HitboxColliderT1 = 0x2758c58;
 
 /* TaskMgr */
 	sInstance__7TaskMgr = 0x101e7b28;
