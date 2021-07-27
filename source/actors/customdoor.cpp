@@ -9,8 +9,8 @@ public:
 
     void loadModel() override;
     void initHitboxCollider() override;
-    void vf594() override;
-    void vf5A4() override;
+    void playOpenDoorAnim() override;
+    void playCloseDoorAnim() override;
 
     static const HitboxCollider::Info sCollisionInfo;
 };
@@ -46,14 +46,14 @@ void CustomDoor::loadModel() {
     sklAnim->setRepeat(false);
 }
 
-void CustomDoor::vf594() { // Open door anim
+void CustomDoor::playOpenDoorAnim() {
     SkeletalAnimation* sklAnim = this->mModel->mSklAnims[0];
     sklAnim->mSpeed = 1.0f;
     sklAnim->reset();
     sklAnim->setRepeat(false);
 };
 
-void CustomDoor::vf5A4() { // Close door anim
+void CustomDoor::playCloseDoorAnim() {
     SkeletalAnimation* sklAnim = this->mModel->mSklAnims[0];
     sklAnim->mSpeed = -1.0f;
     sklAnim->reset();
