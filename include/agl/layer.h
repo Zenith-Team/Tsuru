@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead.h"
+#include "sead/idisposer.h"
 #include "types.h"
 
 namespace agl { namespace lyr {

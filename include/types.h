@@ -53,10 +53,12 @@ struct Vector2 { // size: 0x8
     T x;  // _0
     T y;  // _4
 
-    Vector2(T val = 0) :
+    inline Vector2(T val = 0) :
         x(val), y(val) { }
-    Vector2(T x, T y) :
+    inline Vector2(T x, T y) :
         x(x), y(y) { }
+    inline Vector2(Vector3<T>& vec) :
+        x(reinterpret_cast<Vector2&>(vec).x), y(reinterpret_cast<Vector2&>(vec).y) { }
     
     Vector2 operator+(const Vector2& other) const { Vector2 result; add(result, *this, other); return result; }
     Vector2& operator+=(const Vector2& other) { add(*this, *this, other); return *this; }
@@ -100,11 +102,11 @@ struct Vector3 { // size: 0xC
     T y;  // _4
     T z;  // _8
 
-    Vector3(T val = 0) :
+    inline Vector3(T val = 0) :
         x(val), y(val), z(val) { }
-    Vector3(T x, T y, T z) :
+    inline Vector3(T x, T y, T z) :
         x(x), y(y), z(z) { }
-    Vector3(const Vector2<T>& vec) :
+    inline Vector3(const Vector2<T>& vec) :
         x(vec.x), y(vec.y), z(0) { }
     
     Vector3 operator+(const Vector3& other) const { Vector3 result; add(result, *this, other); return result; }
