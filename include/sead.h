@@ -2,6 +2,8 @@
 
 #include "sead/bitflag.h"
 #include "sead/buffer.h"
+#include "sead/camera.h"
+#include "sead/color.h"
 #include "sead/criticalsection.h"
 #include "sead/heap.h"
 #include "sead/heappolicies.h"
@@ -9,6 +11,7 @@
 #include "sead/inamable.h"
 #include "sead/list.h"
 #include "sead/methodtree.h"
+#include "sead/primitiverenderer.h"
 #include "sead/ptrarray.h"
 #include "sead/runtimetypeinfo.h"
 #include "sead/safestring.h"
