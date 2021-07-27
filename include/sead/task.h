@@ -28,10 +28,10 @@ typedef TaskBase* (*TaskFactory)(const TaskConstructArg&);
 class TaskClassID {
 public:
     enum Type {
-        Invalid = 0,
-        Int     = 1,
-        Factory = 2,
-        String  = 3
+        cInvalid = 0,
+        cInt     = 1,
+        cFactory = 2,
+        cString  = 3
     };
 
 public:
