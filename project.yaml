@@ -3,8 +3,10 @@
 Name: SuperHacks
 Modules:
   - hooks/customactors.yaml   # Custom sprites/actors
+  - hooks/debug.yaml          # Debugging features
   - hooks/dynlibs.yaml        # Dynamic libraries
   - hooks/initializer.yaml    # Initializer
   - hooks/profile.yaml        # Extra sprite slots
+  - hooks/sead.yaml           # Patches for sead
   - hooks/titlescreen.yaml    # Title screen patches
   - hooks/yoshicolors.yaml    # Extra colors for Yoshi
