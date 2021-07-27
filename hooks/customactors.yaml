@@ -3,6 +3,7 @@
 Files:
 #* Regular sprites:
   - source/parabones.cpp
+  - source/customdoor.cpp
 #* Utility:
   - source/actorspawner.cpp
 #* Patches:
