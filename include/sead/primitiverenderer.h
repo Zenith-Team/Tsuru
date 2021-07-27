@@ -93,8 +93,8 @@ public:
     virtual void drawSphere8x16Impl(const Mtx34& modelMtx, const Color4f& north, const Color4f& south);
     virtual void drawDisk16Impl(const Mtx34& modelMtx, const Color4f& center, const Color4f& edge);
     virtual void drawDisk32Impl(const Mtx34& modelMtx, const Color4f& center, const Color4f& edge);
-    virtual void drawCircle16Impl(const Mtx34& modelMtx, const Color4f& edge);  // deleted?
-    virtual void drawCircle32Impl(const Mtx34& modelMtx, const Color4f& edge);  // deleted?
+    virtual void drawCircle16Impl(const Mtx34& modelMtx, const Color4f& edge);
+    virtual void drawCircle32Impl(const Mtx34& modelMtx, const Color4f& edge);
     virtual void drawCylinder16Impl(const Mtx34& modelMtx, const Color4f& top, const Color4f& bottom);
     virtual void drawCylinder32Impl(const Mtx34& modelMtx, const Color4f& top, const Color4f& bottom);
     virtual ~PrimitiveRendererCafe();

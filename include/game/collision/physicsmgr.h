@@ -15,14 +15,6 @@ public:
         f32 mDistanceFromCenter; // _8
     };
 
-    enum Flags {
-        OnGround        = 1 << 0,
-        OnSlope         = 1 << 1,
-        OnSemiSold      = 1 << 4,
-        CollidedRight   = 1 << 18,
-        CollidedLeft    = 1 << 19
-    };
-
     PhysicsMgr();
 
     virtual ~PhysicsMgr();
@@ -37,41 +29,14 @@ public:
     virtual void vf64();
     virtual void vf6C();
 
-    void init(StageActor* owner, const Sensor* belowSensor, const Sensor* aboveSensor, const Sensor* adjacentSensor);
-    void setSensor(const Sensor* sensor, u32 sensorID);
-    const Sensor* getSensor(u32 sensorID) const;
-    bool doExplosionAt(const Vec2f& topLeft, const Vec2f& bottomRight);
-
-    inline bool isOnGround() { return this->mOutput & OnGround; }
-
-    u8 _unk4C[0x890-0x4C];       // 4C
-    StageActor* mOwner;          // 890
-    u32 _894;                    // 894
-    Vec3f* mPosition;            // 898  &owner->position
-    Vec3f* _89C;                 // 89C  &owner->_240, lastPosition?
-    u8* mLayer;                  // 8A0  &owner->layer
-    u8* mCollisionMask;          // 8A4  &owner->collisionMask
-    s8* mPlayerID;               // 8A8  &owner->playerId
-    u32 mOutput;                 // 8AC
-    u8 _unk8B0[0x914-0x8B0];     // 8B0
-    u8 _914;                     // 914
-    bool mHasBeenInited;         // 915
-    bool _916;                   // 916
-    bool _917;                   // 917
-    bool _918;                   // 918
-    bool mSensorIsSet[4];        // 919
-    bool mSensorIsNull[4];       // 91D
-    bool _921[4];                // 921
-    union {
-        struct {
-            Sensor mRightSensor; // 928
-            Sensor mLeftSensor;  // 934
-            Sensor mAboveSensor; // 940
-            Sensor mBelowSensor; // 94C
-        };
-
-        Sensor mSensors[4];
-    };
-
-    u8 _unk958[0x14DC-0x958];    // 958
+    u8 _4C[0x890 - 0x4C];       // _4C
+    StageActor* mOwner;         // _890
+    u32 _894;                   // _894
+    Vec3f* mPosition;           // _898
+    Vec3f* mLastPosition;       // _89C
+    u8* mLayer;                 // _8A0
+    u8* mCollisionMask;         // _8A4
+    s8* mPlayerId;              // _8A8
+    u32 _8AC;                   // _8AC
+    u8 _8B0[0x14DC - 0x8B0];    // _8B0
 };
