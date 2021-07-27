@@ -6,6 +6,7 @@ game_NSMBU_JP_Latest.x
 game_NSMBU_JP_Latest_Cemu.x
 project.ld
 project.gpj
+syms/game_phys.x
 objs
 .vs
 .vscode
