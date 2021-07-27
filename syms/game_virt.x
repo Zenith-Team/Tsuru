@@ -102,9 +102,9 @@ SECTIONS {
     vf56C__8DoorBaseFv = __deleted_virtual_called;
     vf584__8DoorBaseFv = 0x275962c;
     vf58C__8DoorBaseFv = 0x2759630;
-    vf594__8DoorBaseFv = 0x2759634;
+    playOpenDoorAnim__8DoorBaseFv = 0x2759634;
     playOpenDoorSound__8DoorBaseFv = 0x2759638;
-    vf5A4__8DoorBaseFv = 0x2759698;
+    playCloseDoorAnim__8DoorBaseFv = 0x2759698;
     playCloseDoorSound__8DoorBaseFv = 0x275969c;
     vf5B4__8DoorBaseFv = 0x27596fc;
     vf5BC__8DoorBaseFv = 0x2759700;

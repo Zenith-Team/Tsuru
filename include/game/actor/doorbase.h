@@ -29,9 +29,9 @@ public:
     virtual void initHitboxCollider();
     virtual void vf584();
     virtual void vf58C();
-    virtual void vf594(); // open door anim
+    virtual void playOpenDoorAnim();
     virtual void playOpenDoorSound();
-    virtual void vf5A4(); // close door anim
+    virtual void playCloseDoorAnim();
     virtual void playCloseDoorSound();
     virtual void vf5B4();
     virtual void vf5BC();
