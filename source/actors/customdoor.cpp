@@ -12,7 +12,7 @@ public:
     void vf594() override;
     void vf5A4() override;
 
-    static const HitboxCollider::Info sHCInfo;
+    static const HitboxCollider::Info sCollisionInfo;
 };
 
 const ActorInfo CustomDoorActorInfo = {
@@ -23,17 +23,18 @@ PROFILE_RESOURCES(ProfileID::CustomDoor, "obj_door");
 
 CustomDoor::CustomDoor(const ActorBuildInfo* buildInfo)
     : DoorBase(buildInfo)
-    {}
+{ }
+
 BaseActor* CustomDoor::build(const ActorBuildInfo* buildInfo) {
     return new CustomDoor(buildInfo);
 }
 
-const HitboxCollider::Info CustomDoor::sHCInfo = {
-    Vec2f(0.0f, 20.0f), Vec2f(12.0f, 20.0f), HitboxCollider::Rectangle, 3, 0, 1, 0, 0, &DoorBase::colliderCallback
+const HitboxCollider::Info CustomDoor::sCollisionInfo = {
+    Vec2f(0.0f, 20.0f), Vec2f(12.0f, 20.0f), HitboxCollider::Rectangle, 3, 0, 1, 0, 0, &DoorBase::collisionCallback
 };
 
 void CustomDoor::initHitboxCollider() {
-    mHitboxCollider.init(this, &CustomDoor::sHCInfo, nullptr);
+    mHitboxCollider.init(this, &CustomDoor::sCollisionInfo, nullptr);
     this->addHitboxColliders();
 }
 
@@ -45,16 +46,14 @@ void CustomDoor::loadModel() {
     sklAnim->setRepeat(false);
 }
 
-// open door anim
-void CustomDoor::vf594() {
+void CustomDoor::vf594() { // Open door anim
     SkeletalAnimation* sklAnim = this->mModel->mSklAnims[0];
     sklAnim->mSpeed = 1.0f;
     sklAnim->reset();
     sklAnim->setRepeat(false);
 };
 
-// close door anim
-void CustomDoor::vf5A4() {
+void CustomDoor::vf5A4() { // Close door anim
     SkeletalAnimation* sklAnim = this->mModel->mSklAnims[0];
     sklAnim->mSpeed = -1.0f;
     sklAnim->reset();

@@ -109,7 +109,7 @@ SECTIONS {
     vf5B4__8DoorBaseFv = 0x27596fc;
     vf5BC__8DoorBaseFv = 0x2759700;
     vf5C4__8DoorBaseFv = 0x2759704;
-	colliderCallback__8DoorBaseSFP14HitboxColliderT1 = 0x2758c58;
+	collisionCallback__8DoorBaseSFP14HitboxColliderT1 = 0x2758c58;
 
 /* DrawMgr */
 	sInstance__7DrawMgr = 0x101d2d88;

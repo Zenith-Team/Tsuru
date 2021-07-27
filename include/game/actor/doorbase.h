@@ -4,9 +4,9 @@
 #include "game/graphics/model/model.h"
 
 class DoorBase : public Enemy { // Size: 0x18A8
-public:
     SEAD_RTTI_OVERRIDE(DoorBase, Enemy)
 
+public:
     DoorBase(const ActorBuildInfo *buildInfo);
     virtual ~DoorBase();
 
@@ -37,7 +37,7 @@ public:
     virtual void vf5BC();
     virtual u32  vf5C4();
 
-    static void colliderCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+    static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 
     ModelWrapper* mModel;
     u32 _1884;
