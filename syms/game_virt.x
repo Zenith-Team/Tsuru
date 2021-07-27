@@ -330,7 +330,6 @@ SECTIONS {
 	vfC4__10StageActorFv = 0x2002ad0;
 	vfCC__10StageActorFv = 0x2002ad4;
 
-
 /* StateBase */
 	sCurrentID__9StateBase = 0x101e9f04;
 
@@ -341,6 +340,7 @@ SECTIONS {
 /* DoorBase */
 	__ct__8DoorBaseFPC14ActorBuildInfo = 0x27583f0;
 	colliderCallback__8DoorBaseSFP14HitboxColliderT1 = 0x2758c58;
+
 /* TaskMgr */
 	sInstance__7TaskMgr = 0x101e7b28;
 	startLevel__7TaskMgrFPQ2_4sead8TaskBaseUcT2 = 0x29941d0;
