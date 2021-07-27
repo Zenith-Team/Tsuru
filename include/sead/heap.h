@@ -1,12 +1,12 @@
 #pragma once
 
-#include "list.h"
-#include "string.h"
-#include "bitflag.h"
-#include "inamable.h"
-#include "idisposer.h"
-#include "criticalsection.h"
-#include "runtimetypeinfo.h"
+#include "sead/list.h"
+#include "sead/bitflag.h"
+#include "sead/inamable.h"
+#include "sead/idisposer.h"
+#include "sead/safestring.h"
+#include "sead/criticalsection.h"
+#include "sead/runtimetypeinfo.h"
 
 namespace sead { namespace hostio {
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "idisposer.h"
+#include "sead/idisposer.h"
 #include "dynlibs/os/types.h"
 
 namespace sead {
