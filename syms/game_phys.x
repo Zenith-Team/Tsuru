@@ -1,6 +1,6 @@
 SECTIONS {
 
-	/* Math */
+/* Math */
 	sinf__Ff = 0xF6BDD40;
 	cosf__Ff = 0xF6BE528;
 	atan2f__FfT1 = 0xF6BE670;
@@ -8,7 +8,7 @@ SECTIONS {
 	powf__FfT1 = 0xF6BDEA8;
 	sqrtf__Ff = 0xF6BDCCC;
 
-    /* new/delete */
+/* new/delete */
 	__nw__FUi = 0xF5B1594;
 	__nw__FUiPQ2_4sead4Heapi = 0xF5B1858;
 	__nwa__FUi = 0xF5B1630;
@@ -16,7 +16,7 @@ SECTIONS {
 	__dl__FPv = 0xF5B1748;
 	__dla__FPv = 0xF5B17D0;
 
-	/* GHS C++ Functions */
+/* GHS C++ Functions */
 	__pure_virtual_called = 0xF6BA554;
 	__deleted_virtual_called = 0xF6BA5E8;
 	__vec_new = 0xF6BA350;
@@ -28,24 +28,24 @@ SECTIONS {
 	__gh_memclr32 = 0xF6BF1E0;
 	vsnprintf = 0xF6BBD54;
 
-	/* GHS C Functions */
+/* GHS C Functions */
 	_f_ftoll = 0xF6BEBFC;
 
-    /* sead::GlobalRandom */
+/* sead::GlobalRandom */
 	instance__Q2_4sead12GlobalRandom = 0x106EA26C;
 
-    /* sead::Random */
+/* sead::Random */
 	getU32__Q2_4sead6RandomFv = 0xF5D3780;
 
-	/* ActorInfo */
+/* ActorInfo */
 	sDefault__9ActorInfo = 0x10503AF4;
 
-    /* ActorMgr */
+/* ActorMgr */
 	sInstance__8ActorMgr = 0x106C52C8;
 	create__8ActorMgrFP14ActorBuildInfoUi = 0xEBC9A58;
 	findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP9BaseActor = 0xEBC9B6C;
 
-	/* BaseActor */
+/* BaseActor */
 	__vtbl__9BaseActor = 0x105028C0;
 	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__9BaseActorSFv = 0x106EBEC4;
 	typeInfo__L0__getRuntimeTypeInfoStatic__9BaseActorSFv = 0x106EBEC8;
@@ -60,13 +60,13 @@ SECTIONS {
 	afterDelete__9BaseActorFUi = 0xEBC2F3C;
 	getProfileId__9BaseActorFv = 0xEBC2C80;
 
-	/* DrawMgr */
+/* DrawMgr */
 	sInstance__7DrawMgr = 0x106D4F88;
 	drawModel__7DrawMgrFP5Model = 0xF0BAB58;
 	drawModel__7DrawMgrFP12ModelWrapper = 0xF0BAC98;
 	drawTile__7DrawMgrFUsRC4Vec3RCUiT2 = 0xF0BAD28;
 
-	/* Enemy */
+/* Enemy */
 	__ct__5EnemyFPC14ActorBuildInfo = 0xEEE8494;
 	processCollision__5EnemyFP14HitboxColliderT1Ui = 0xEEE9B88;
 	killPlayerJump__5EnemyFP10StageActorRC16Vector2__tm__2_fP9StateBase = 0xEEEDA34;
@@ -203,28 +203,28 @@ SECTIONS {
 	getRect__5EnemyFR4Rect = 0xEEEA6A8;
 
 
-	/* EventMgr */
+/* EventMgr */
 	sInstance__8EventMgr = 0x106DD26C;
 	set__8EventMgrFUiT1bN41 = 0xF25CD68;
 
-	/* HitboxCollider */
+/* HitboxCollider */
 	__ct__14HitboxColliderFv = 0xED5A960;
 	__dt__14HitboxColliderFv = 0xED5AB90;
 	__CPR65__init__14HitboxColliderFP10StageActorPCQ2_J6J4InfoPPv = 0xED5AF1C;
 	Default__Q2_14HitboxCollider4Info = 0x10543DC0;
 
-	/* ModelWrapper */
+/* ModelWrapper */
 	__ct__12ModelWrapperFP5ModelUiN42 = 0xF094798;
 	setup__12ModelWrapperFP10ResArchivePvPQ2_4sead4Heap = 0xF0949A0;
 	updateModel__12ModelWrapperFv = 0xF094E84;
 	updateAnimations__12ModelWrapperFv = 0xF094D20;
 
-	/* Mtx34 */
+/* Mtx34 */
 	rotateAndTranslate__5Mtx34FRC17Vector3__tm__3_UiRC16Vector3__tm__2_f = 0xEBFC1C8;
 	makeST__5Mtx34SFR5Mtx34RC4Vec3T2 = 0xEDE2A88;
 	makeSRT__5Mtx34SFR5Mtx34RC4Vec3N22 = 0xF0C8424;
 
-	/* MultiStateActor */
+/* MultiStateActor */
 	vfAC__15MultiStateActorFv = 0xEBCABB0;
 	vfB4__15MultiStateActorFv = 0xEBCABB4;
 	vfBC__15MultiStateActorFv = 0xEBCABBC;
@@ -238,7 +238,7 @@ SECTIONS {
 	vf16C__15MultiStateActorFv = 0xEBCAC10;
 	vf174__15MultiStateActorFv = 0xEBCAC18;
 
-	/* PhysicsActor */
+/* PhysicsActor */
 	__vtbl__12PhysicsActor = 0x10502A4C;
 	__ct__12PhysicsActorFPC14ActorBuildInfo = 0xEBC2FB8;
 	__dt__12PhysicsActorFv = 0xEBC40B0;
@@ -259,24 +259,27 @@ SECTIONS {
 	move__12PhysicsActorFR16Vector2__tm__2_f = 0xEBC4020;
 	getRect__12PhysicsActorFR4Rect = 0xEBC404C;
 
-	/* Profile */
+/* Profile */
 	profilesOriginal__7Profile = 0x106EFADC;
 	prioritiesOriginal__7Profile = 0x10503B40;
 	hasResourcesOriginal__7Profile = 0x10504264;
 	resourceCountOriginal__7Profile = 0x105045F8;
 	resourceListsOriginal__7Profile = 0x106C541C;
 
-	/* ResArchive */
+/* ResArchive */
 	getModel__10ResArchiveFRCQ2_4sead23SafeStringBase__tm__2_cUiN42bPQ2_4sead4Heap = 0xF0AE440;
 
-	/* ResArchiveMgr */
+/* ResArchiveMgr */
 	sInstance__13ResArchiveMgr = 0x106D4F50;
 	get__13ResArchiveMgrFRCQ2_4sead23SafeStringBase__tm__2_c = 0xF0B60EC;
 
-	/* SkeletalAnimation */
+/* Animation */
+	setRepeat__9AnimationFb = 0xF09EED4;
+
+/* SkeletalAnimation */
 	play__17SkeletalAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0xF0BDADC;
 
-	/* StageActor */
+/* StageActor */
 	__vtbl__10StageActor = 0x10502468;
 	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x106EBEBC;
 	typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x106EBEC0;
@@ -313,14 +316,18 @@ SECTIONS {
 	vfCC__10StageActorFv = 0xEBC2AD4;
 
 
-	/* StateBase */
+/* StateBase */
 	sCurrentID__9StateBase = 0x106EC104;
 
-	/* StateMgr */
+/* StateMgr */
 	execute__8StateMgrFv = 0xF584A80;
 	changeState__8StateMgrFP9StateBase = 0xF584AF0;
 
-	/* Misc */
+/* DoorBase */
+	__ct__8DoorBaseFPC14ActorBuildInfo = 0xF3183F0;
+	colliderCallback__8DoorBaseSFP14HitboxColliderT1 = 0xF318C58;
+
+/* Misc */
 	BLOSDynLoad_Acquire = 0xF65EF58;
 	BOSDynLoad_FindExport = 0xF65F418;
 	directionToRotationList = 0x10702FD8;

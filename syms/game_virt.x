@@ -273,6 +273,9 @@ SECTIONS {
 	sInstance__13ResArchiveMgr = 0x101d2d50;
 	get__13ResArchiveMgrFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24f60ec;
 
+/* Animation */
+	setRepeat__9AnimationFb = 0x24deed4;
+
 /* SkeletalAnimation */
 	play__17SkeletalAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24fdadc;
 
@@ -319,6 +322,10 @@ SECTIONS {
 /* StateMgr */
 	execute__8StateMgrFv = 0x29c4a80;
 	changeState__8StateMgrFP9StateBase = 0x29c4af0;
+
+/* DoorBase */
+	__ct__8DoorBaseFPC14ActorBuildInfo = 0x27583f0;
+	colliderCallback__8DoorBaseSFP14HitboxColliderT1 = 0x2758c58;
 
 /* Misc */
 	BLOSDynLoad_Acquire = 0x2A9EF58;
