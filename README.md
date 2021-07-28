@@ -9,6 +9,7 @@ Please note that a rewrite is currently in progress, so not everything listed he
 
 ## Custom Sprites:
 All custom sprites which were not written by me have credits in customsprites.yaml. Also listed there are the sprite/profile IDs of each custom sprite.
+
 * Actor Spawner
 * Angry Sun *
 * Bomb Bro *
@@ -35,7 +36,7 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 * Customizable world map scripts *
 * Debug collision viewer
 * Disabled acorns falling on title screen
-* Disabled Miiverse integration*
+* Disabled Miiverse integration *
 * Fixed collision conditions for some sprites *
 * Infinite lives *
 * Infinite time *
