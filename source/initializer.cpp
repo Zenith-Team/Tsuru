@@ -2,6 +2,7 @@
 #include "config"
 #include "types.h"
 #include "dynlibs/os/functions.h"
+#include "dynlibs/gx2/functions.h"
 
 typedef void (*InitFunc)();
 extern "C" InitFunc _ctors[];
@@ -20,6 +21,7 @@ void initialize() {
 
     initialized = true;
 
+// Call staticInit functions from _ctors array
     for (s32 i = 0; _ctors[i]; i++)
         (*_ctors[i])();
 
@@ -33,8 +35,9 @@ void initialize() {
 
 // Init libraries
     InitOSFunctionPointers();
+    InitGX2FunctionPointers();
 
-#if DEBUG == 1
+#if DEBUG
     LOG("OSDynLoad_Acquire address: 0x%08X\n", OS_SPECIFICS->addr_OSDynLoad_Acquire);
     LOG("OSDynLoad_FindExport address: 0x%08X\n", OS_SPECIFICS->addr_OSDynLoad_FindExport);
 #endif

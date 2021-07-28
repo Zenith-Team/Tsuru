@@ -65,8 +65,9 @@ public:
     f32 getLeftX() const;
     f32 getCenterX() const;
 
+    // Custom functions
     void getRect(Rect& outRect);
-    static bool collidersOverlap(HitboxCollider* pHCSelf, HitboxCollider* pHCOther);
+    static bool sCollidersOverlap(HitboxCollider* pHCSelf, HitboxCollider* pHCOther);
 
     List::Node mActiveNode;     // _10
     List::Node mCreateNode;     // _1C

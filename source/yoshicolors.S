@@ -31,8 +31,8 @@ RandomYoshiColors:
     mflr     r0
     stw      r0, 0x8(sp)
 
-    lis      r3, instance__Q2_4sead12GlobalRandom@ha
-    lwz      r3, instance__Q2_4sead12GlobalRandom@l(r3)
+    lis      r3, sInstance__Q2_4sead12GlobalRandom@ha
+    lwz      r3, sInstance__Q2_4sead12GlobalRandom@l(r3)
     bl       getU32__Q2_4sead6RandomFv
     li       r4, 0x4
     mulhwu   r4, r3, r4
