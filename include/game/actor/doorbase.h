@@ -11,10 +11,12 @@ public:
     virtual ~DoorBase();
 
     u32 onCreate() override;
+
     u32 onExecute() override;
+
     u32 onDraw() override;
 
-    void vf18C() override; // nullsub (return type on Enemy may be wrong)
+    void vf18C() override; // nullsub
 
     virtual void vf4E4(); // deleted
     virtual void ZOrder();
