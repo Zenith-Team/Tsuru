@@ -7,35 +7,6 @@ Project started on March 9 2021.
 # What's here
 Please note that a rewrite is currently in progress, so not everything listed here is available at the moment. **Items with an asterisk next to the name have not been added after the rewrite yet.**
 
-## Headers:
-I have included as many headers as I could, to minimize the amount of reverse-engineering required for modifying the game for others, and for completeness. There are much too many headers to keep track of, so here is a list of extra actor and actor base headers that are included here, plus some other special ones.
-
-### Actors
-* bobomb.h *
-* boss.h *
-* bowser.h *
-* bowserfireball.h *
-* brosbase.h *
-* doorbase.h (unfinished)
-* enemy.h
-* icicle.h *
-* itembase.h *
-* liquid.h *
-* player.h *
-* playerbase.h *
-* pokey.h *
-* rockywrench.h *
-* spinningstar.h *
-* thwomp.h *
-* windgeneratorbase.h (unfinished) *
-* yoshi.h (unfinished) *
-
-### Special
-* dynlibs/h264/functions.h *
-* dynlibs/h264/types.h *
-* terrain.h *
-* taskmgr.h
-
 ## Custom Sprites:
 All custom sprites which were not written by me have credits in customsprites.yaml. Also listed there are the sprite/profile IDs of each custom sprite.
 * Actor Spawner
@@ -43,9 +14,9 @@ All custom sprites which were not written by me have credits in customsprites.ya
 * Bomb Bro *
 * Death Foo *
 * Effect Spawner *
+* Elemental Thwomp *
 * Fake Actor
 * Falling Chestnut *
-* Fire Thwomp *
 * Flipblock *
 * Magic Platform *
 * Model loader *
@@ -58,16 +29,13 @@ All custom sprites which were not written by me have credits in customsprites.ya
 * Wind generator *
 
 ## Patches:
-Miscellaneous hacks/patches are listed here
+Miscellaneous hacks/patches are listed here. Most of the game-changing patches are toggleable in the config file located in /include/
 * Add archive links for some unused actors to allow adding models *
 * Customizable snow particle colors *
 * Customizable world map scripts *
 * Debug collision viewer
 * Disabled acorns falling on title screen
-* Disabled Miiverse related popups/menus (unfinished) *
-* Disabled music speedup at 100 seconds *
-* Disabled FXAA in-game *
-* Fireproof pokey *
+* Disabled Miiverse integration*
 * Fixed collision conditions for some sprites *
 * Infinite lives *
 * Infinite time *
@@ -77,23 +45,21 @@ Miscellaneous hacks/patches are listed here
 * RPL library loader *
 * SARC level loader *
 * Size modifier *
-* Space Physics *
-* Stationary pokey *
+* Space physics *
 * Yoshi colors
-* ZLib loader *
 
 # Credits
 * [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code, headers, and build system
 * [jhmaster2000](https://github.com/jhmaster2000) - General code and headers
 * [Newer Team](https://github.com/Newer-Team) - [Newer U](https://github.com/Newer-Team/NewerSMBU) code and headers
 * [RicBent](https://github.com/RicBent) - [CodeDX](https://github.com/RicBent/codedx) code and headers
-* [RoadrunnerWMC](https://github.com/RoadrunnerWMC) - Customizable world map scripts
+* [RoadrunnerWMC](https://github.com/RoadrunnerWMC) - Customizable [world map scripts](https://github.com/RoadrunnerWMC/Cobra)
 * [Shibboleet](https://github.com/shibbo) - General code, headers, and contribution to the build system
 * [STUPID](https://github.com/stupidestmodder) - General code and headers
 * Modified dynamic_libs headers based on original implementation by Dimok and [Maschell fork](https://github.com/Maschell/dynamic_libs)
 * shiftjis.h from [Apollo PS3](https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h)
 
 # Special Thanks
-* Joey0980 for helping me set up NSMBU-Haxx when I first started
+* Joey0980 for helping me set up CafeLoader when I first started
 * STUPID for basically teaching me everything I know about code hacks
 * Toms and Kinnay for giving me early access to the Newer U code
