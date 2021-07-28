@@ -19,7 +19,7 @@ public:
 };
 
 const ActorInfo CustomDoorActorInfo = {
-    Vec2i(0x10, (signed)0xFFFFFFD0), Vec2i(0, 0x18), Vec2i(0x10, 0x18), 0x40, 0x40, 0, 0, 0
+    Vec2i(16, -48), Vec2i(0, 24), Vec2i(16, 24), 64, 64, 0, 0, 0
 };
 
 const Profile CustomDoorProfile(&CustomDoor::build, ProfileID::CustomDoor, "CustomDoor", &CustomDoorActorInfo, Profile::FlagDontRenderOffScreen);
