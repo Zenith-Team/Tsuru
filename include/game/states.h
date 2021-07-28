@@ -2,45 +2,6 @@
 
 #include "types.h"
 
-#define DECLARE_STATE(CLASS, NAME)                      \
-    static State<CLASS> StateID_##NAME;                 \
-    void beginState_##NAME();                           \
-    void executeState_##NAME();                         \
-    void endState_##NAME()
-
-#define DECLARE_STATE_VIRTUAL(CLASS, NAME)              \
-    static StateVirtual<CLASS> StateID_##NAME;          \
-    virtual void beginState_##NAME();                   \
-    virtual void executeState_##NAME();                 \
-    virtual void endState_##NAME()
-
-#define DECLARE_STATE_OVERRIDE(CLASS, NAME)             \
-    static StateVirtual<CLASS> StateID_##NAME;          \
-    void beginState_##NAME() override;                  \
-    void executeState_##NAME() override;                \
-    void endState_##NAME() override
-
-#define CREATE_STATE(CLASS, NAME)                       \
-    State<CLASS> CLASS::StateID_##NAME                  \
-        (&CLASS::beginState_##NAME,                     \
-         &CLASS::executeState_##NAME,                   \
-         &CLASS::endState_##NAME)
-
-#define CREATE_STATE_VIRTUAL(CLASS, NAME)               \
-    StateVirtual<CLASS> CLASS::StateID_##NAME           \
-        (&CLASS::beginState_##NAME,                     \
-         &CLASS::executeState_##NAME,                   \
-         &CLASS::endState_##NAME,                       \
-         &StateBase::sNullState)
-
-#define CREATE_STATE_OVERRIDE(CLASS, BASECLASS, NAME)   \
-    StateVirtual<CLASS> CLASS::StateID_##NAME           \
-        (&CLASS::beginState_##NAME,                     \
-         &CLASS::executeState_##NAME,                   \
-         &CLASS::endState_##NAME,                       \
-         &BASECLASS::StateID_##NAME)
-
-
 class StateBase {
 public:
     inline StateBase() {
@@ -204,3 +165,41 @@ public:
         return mManager.mLastState;
     }
 };
+
+#define DECLARE_STATE(CLASS, NAME)                      \
+    static State<CLASS> StateID_##NAME;                 \
+    void beginState_##NAME();                           \
+    void executeState_##NAME();                         \
+    void endState_##NAME()
+
+#define DECLARE_STATE_VIRTUAL(CLASS, NAME)              \
+    static StateVirtual<CLASS> StateID_##NAME;          \
+    virtual void beginState_##NAME();                   \
+    virtual void executeState_##NAME();                 \
+    virtual void endState_##NAME()
+
+#define DECLARE_STATE_OVERRIDE(CLASS, NAME)             \
+    static StateVirtual<CLASS> StateID_##NAME;          \
+    void beginState_##NAME() override;                  \
+    void executeState_##NAME() override;                \
+    void endState_##NAME() override
+
+#define CREATE_STATE(CLASS, NAME)                       \
+    State<CLASS> CLASS::StateID_##NAME                  \
+        (&CLASS::beginState_##NAME,                     \
+         &CLASS::executeState_##NAME,                   \
+         &CLASS::endState_##NAME)
+
+#define CREATE_STATE_VIRTUAL(CLASS, NAME)               \
+    StateVirtual<CLASS> CLASS::StateID_##NAME           \
+        (&CLASS::beginState_##NAME,                     \
+         &CLASS::executeState_##NAME,                   \
+         &CLASS::endState_##NAME,                       \
+         &StateBase::sNullState)
+
+#define CREATE_STATE_OVERRIDE(CLASS, BASECLASS, NAME)   \
+    StateVirtual<CLASS> CLASS::StateID_##NAME           \
+        (&CLASS::beginState_##NAME,                     \
+         &CLASS::executeState_##NAME,                   \
+         &CLASS::endState_##NAME,                       \
+         &BASECLASS::StateID_##NAME)
