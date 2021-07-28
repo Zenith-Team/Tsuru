@@ -5,8 +5,15 @@
 
 // Workarounds to meet newer standards
 
-#define nullptr NULL
+//! This is a hack, if you got here because of an error:
+//* To have override intellisense: Add \t-DOverride above \t-DCemu on compiler_cemu.py
+//? To just compile without override intellisense, uncomment #define below.
+//#define Override
+#ifdef Override
 #define override
+#endif
+
+#define nullptr NULL
 #define forceinline __attribute__((always_inline))
 #define static_assert(condition, ...) typedef int TOKENPASTE2(static_assert_, __LINE__)[(condition) ? 1 : -1]
 
