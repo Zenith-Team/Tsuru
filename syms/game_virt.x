@@ -126,7 +126,6 @@ SECTIONS {
     vf5BC__8DoorBaseFv = 0x2759700;
     vf5C4__8DoorBaseFv = 0x2759704;
 	collisionCallback__8DoorBaseSFP14HitboxColliderT1 = 0x2758c58;
-	StateID_Unk3__8DoorBase = 0x10221cd0;
 
 /* DrawMgr */
 	sInstance__7DrawMgr = 0x101d2d88;
