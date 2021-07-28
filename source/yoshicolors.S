@@ -6,8 +6,6 @@ YoshiTexYellow:     .string "Yoshi_TexYellow"
 .text
 .include "registers.S"
 
-.extern sInstance__Q2_4sead12GlobalRandom
-
 .global PatchYoshiColors
 PatchYoshiColors:
     # Add pink Yoshi
