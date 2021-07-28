@@ -21,6 +21,7 @@ public:
 const ActorInfo CustomDoorActorInfo = {
     Vec2i(10, -48), Vec2i(0, 18), Vec2i(10, 18), 40, 40, 0, 0, 0
 };
+
 const Profile CustomDoorProfile(&CustomDoor::build, ProfileID::CustomDoor, "CustomDoor", &CustomDoorActorInfo, 2);
 PROFILE_RESOURCES(ProfileID::CustomDoor, "obj_door");
 
