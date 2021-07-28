@@ -11,6 +11,10 @@ struct ActorBuildInfo;
 
 class Profile {
 public:
+    enum Flags {
+        FlagDontRenderOffScreen = 1 << 1;
+    };
+
     Profile(BaseActor* (*BuildFunc)(const ActorBuildInfo*), u32 id, const sead::SafeString& rName, const ActorInfo* pActorInfo, u32 flags);
 
     static Profile* get(u32 id);
