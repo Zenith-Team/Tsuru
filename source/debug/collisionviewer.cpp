@@ -160,9 +160,7 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
         }
 
         else {
-            #if DEBUG >= 2
             LOG("Found unknown collider for actor with id: 0x%x, and profile id: 0x%x\n", colliderBase->mOwner->mID, colliderBase->mOwner->mProfile->mID);
-            #endif
         }
 
         node = node->mNext;
