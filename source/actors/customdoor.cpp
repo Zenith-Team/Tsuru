@@ -22,7 +22,7 @@ const ActorInfo CustomDoorActorInfo = {
     Vec2i(0x10, (signed)0xFFFFFFD0), Vec2i(0, 0x18), Vec2i(0x10, 0x18), 0x40, 0x40, 0, 0, 0
 };
 
-const Profile CustomDoorProfile(&CustomDoor::build, ProfileID::CustomDoor, "CustomDoor", &CustomDoorActorInfo, 2);
+const Profile CustomDoorProfile(&CustomDoor::build, ProfileID::CustomDoor, "CustomDoor", &CustomDoorActorInfo, Profile::FlagDontRenderOffScreen);
 PROFILE_RESOURCES(ProfileID::CustomDoor, "obj_door");
 
 CustomDoor::CustomDoor(const ActorBuildInfo* buildInfo)
