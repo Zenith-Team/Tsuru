@@ -21,6 +21,7 @@ void initialize() {
 
     initialized = true;
 
+// Call staticInit functions from _ctors array
     for (s32 i = 0; _ctors[i]; i++)
         (*_ctors[i])();
 
