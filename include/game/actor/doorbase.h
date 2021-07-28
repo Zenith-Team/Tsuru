@@ -35,7 +35,7 @@ public:
     virtual void playCloseDoorAnim();
     virtual void playCloseDoorSound();
     virtual void vf5B4(); // nullsub
-    virtual void vf5BC(); 
+    virtual void vf5BC();
     virtual u32  vf5C4(); // nullsub
 
     static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
