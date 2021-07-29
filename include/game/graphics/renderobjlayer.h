@@ -53,12 +53,12 @@ public:
         virtual void setSklAnimRelatedFloat(u32 idx, f32) = 0;
         virtual f32 getSklAnimRelatedFloat() = 0;
         virtual void setSklAnim(u32 idx, const SkeletalAnimation& anim) = 0;
-        virtual void setTexAnim(u32 idx, const TextureAnimation& anim) = 0;
+        virtual void setTexPatternAnim(u32 idx, const TextureAnimation& anim) = 0;
         virtual void setTexSrtAnim(u32 idx, const ShaderAnimation& anim) = 0;
         virtual void setVisAnim(u32 idx, const VisibilityAnimation& anim) = 0;
         virtual void setShaAnim(u32 idx, const ShapeAnimation& anim) = 0;
         virtual const SkeletalAnimation** getSklAnims() const = 0;
-        virtual const TextureAnimation** getTexAnims() const = 0;
+        virtual const TextureAnimation** getTexPatternAnims() const = 0;
         virtual const ShaderAnimation** getTexSrtAnims() const = 0;
         virtual const VisibilityAnimation** getVisAnims() const = 0;
         virtual const ShapeAnimation** getShaAnims() const = 0;
