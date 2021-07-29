@@ -37,16 +37,16 @@ public:
 
 template <typename DerivedType, typename Type>
 inline bool
-IsDerivedFrom(const Type* pObj) {
+IsDerivedFrom(const Type* obj) {
     const RuntimeTypeInfo::Interface* typeInfo = DerivedType::getRuntimeTypeInfoStatic();
-    return pObj != NULL && pObj->checkDerivedRuntimeTypeInfo(typeInfo);
+    return obj != NULL && obj->checkDerivedRuntimeTypeInfo(typeInfo);
 }
 
 template<typename DerivedType, typename Type>
 inline DerivedType*
-DynamicCast(Type* pObj) {
-    if (IsDerivedFrom<DerivedType, Type>(pObj))
-        return static_cast<DerivedType*>(pObj);
+DynamicCast(Type* obj) {
+    if (IsDerivedFrom<DerivedType, Type>(obj))
+        return static_cast<DerivedType*>(obj);
 
     return NULL;
 }
