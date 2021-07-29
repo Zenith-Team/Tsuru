@@ -11,9 +11,9 @@ public:
         f32 cells[12];
     };
 
-    void rotateAndTranslate(const Vec3u& rRotation, const Vec3f& rTranslation);
-    static void makeST(Mtx34& rMtx, const Vec3f& rScale, const Vec3f& rTranslation);
-    static void makeSRT(Mtx34& rMtx, const Vec3f& rScale, const Vec3f& rRotation, const Vec3f& rTranslation);
+    void rotateAndTranslate(const Vec3u& rotation, const Vec3f& translation);
+    static void makeST(Mtx34& mtx, const Vec3f& scale, const Vec3f& translation);
+    static void makeSRT(Mtx34& mtx, const Vec3f& scale, const Vec3f& rotation, const Vec3f& translation);
 };
 
 class Mtx44 {

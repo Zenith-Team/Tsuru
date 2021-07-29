@@ -8,5 +8,5 @@ public:
 
     void drawModel(Model* pModel);
     void drawModel(ModelWrapper* pModelWrapper);
-    void drawTile(u16 tile, const Vec3f& rPosition, const u32& rRotation, const Vec3f& rScale);
+    void drawTile(u16 tile, const Vec3f& position, const u32& rotation, const Vec3f& scale);
 };
