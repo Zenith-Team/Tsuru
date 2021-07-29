@@ -22,7 +22,7 @@ public:
         }
     }
 
-    virtual ~RectCollider();
+    virtual ~RectCollider() { }
 
     bool vf54(u8*, Vec2f*) override;
 

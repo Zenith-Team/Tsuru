@@ -4,7 +4,7 @@
 class CustomDoor : public DoorBase {
 public:
     CustomDoor(const ActorBuildInfo* buildInfo);
-    virtual ~CustomDoor() {};
+    virtual ~CustomDoor() { };
 
     static BaseActor* build(const ActorBuildInfo* buildInfo);
 
