@@ -8,6 +8,7 @@ enum ProfileIDType {
     ActorSpawner = NumOriginal,
     ParaBones,
     CustomDoor,
+    FakeActor,
 
     Num
 };

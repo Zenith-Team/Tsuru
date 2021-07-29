@@ -4,6 +4,7 @@ Files:
 #* Regular sprites:
   - source/actors/customdoor.cpp
   - source/actors/parabones.cpp
+  - source/actors/fakeactor.cpp
 #* Utility:
   - source/actors/actorspawner.cpp
 #* Patches:
