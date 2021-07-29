@@ -37,7 +37,7 @@ BaseActor* CustomDoor::build(const ActorBuildInfo* buildInfo) {
 }
 
 const HitboxCollider::Info CustomDoor::sCollisionInfo = {
-    Vec2f(0.0f, 20.0f), Vec2f(12.0f, 20.0f), HitboxCollider::Rectangle, 3, 0, 1, 0, 0, &DoorBase::collisionCallback
+    Vec2f(0.0f, 20.0f), Vec2f(12.0f, 20.0f), HitboxCollider::ShapeRectangle, 3, 0, 1, 0, 0, &DoorBase::collisionCallback
 };
 
 void CustomDoor::initHitboxCollider() {
