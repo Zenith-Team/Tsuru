@@ -42,7 +42,7 @@ public:
     void calculate() override;
 
     void init(Model* pModel, ResArchive* pArchive, void* unk, sead::Heap* pHeap);
-    void play(ResArchive* pArchive, const sead::SafeString& rIdentifier);
+    void play(ResArchive* pArchive, const sead::SafeString& identifier);
 
     // nw::g3d::SkeletalAnimObj at 0x20
 };
@@ -53,7 +53,7 @@ public:
 
     void calculate() override;
 
-    void play(ResArchive* pArchive, const sead::SafeString& rIdentifier);
+    void play(ResArchive* pArchive, const sead::SafeString& identifier);
 };
 
 class ShaderAnimation : public ModelAnimation {
@@ -62,8 +62,8 @@ public:
 
     void calculate() override;
 
-    void playColorAnim(ResArchive* pArchive, const sead::SafeString& rIdentifier);
-    void playTexSrtAnim(ResArchive* pArchive, const sead::SafeString& rIdentifier);
+    void playColorAnim(ResArchive* pArchive, const sead::SafeString& identifier);
+    void playTexSrtAnim(ResArchive* pArchive, const sead::SafeString& identifier);
 };
 
 class VisibilityAnimation : public ModelAnimation {
@@ -72,7 +72,7 @@ public:
 
     void calculate() override;
 
-    void play(ResArchive* pArchive, const sead::SafeString& rIdentifier);
+    void play(ResArchive* pArchive, const sead::SafeString& identifier);
 };
 
 class ShapeAnimation : public ModelAnimation {
@@ -81,5 +81,5 @@ public:
 
     void calculate() override;
 
-    void play(ResArchive* pArchive, const sead::SafeString& rIdentifier);
+    void play(ResArchive* pArchive, const sead::SafeString& identifier);
 };

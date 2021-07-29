@@ -147,16 +147,16 @@ public:
             mShaAnims[idx]->play(mArchive, identifier);
     }
 
-    static inline ModelWrapper* create(const sead::SafeString& rArchiveIdentifier, const sead::SafeString& rModelIdentifier, u32 numSklAnims = 0, u32 numTexAnims = 0, u32 numTexSrtAnims = 0, u32 numVisAnims = 0, u32 numShaAnims = 0, bool unk2 = false) {
-        ResArchive* archive = ResArchiveMgr::sInstance->get(rArchiveIdentifier);
-        Model* model = archive->getModel(rModelIdentifier, numSklAnims, numTexAnims, numTexSrtAnims, numVisAnims, numShaAnims, unk2, nullptr);
+    static inline ModelWrapper* create(const sead::SafeString& archiveIdentifier, const sead::SafeString& modelIdentifier, u32 numSklAnims = 0, u32 numTexAnims = 0, u32 numTexSrtAnims = 0, u32 numVisAnims = 0, u32 numShaAnims = 0, bool unk2 = false) {
+        ResArchive* archive = ResArchiveMgr::sInstance->get(archiveIdentifier);
+        Model* model = archive->getModel(modelIdentifier, numSklAnims, numTexAnims, numTexSrtAnims, numVisAnims, numShaAnims, unk2, nullptr);
         ModelWrapper* wrapper = new ModelWrapper(model, numSklAnims, numTexAnims, numTexSrtAnims, numVisAnims, numShaAnims);
         wrapper->setup(archive, nullptr, nullptr);
         return wrapper;
     }
 
-    static inline ModelWrapper* create(ResArchive* pArchive, const sead::SafeString& rModelIdentifier, u32 numSklAnims = 0, u32 numTexAnims = 0, u32 numTexSrtAnims = 0, u32 numVisAnims = 0, u32 numShaAnims = 0, bool unk2 = false) {
-        Model* model = pArchive->getModel(rModelIdentifier, numSklAnims, numTexAnims, numTexSrtAnims, numVisAnims, numShaAnims, unk2, nullptr);
+    static inline ModelWrapper* create(ResArchive* pArchive, const sead::SafeString& modelIdentifier, u32 numSklAnims = 0, u32 numTexAnims = 0, u32 numTexSrtAnims = 0, u32 numVisAnims = 0, u32 numShaAnims = 0, bool unk2 = false) {
+        Model* model = pArchive->getModel(modelIdentifier, numSklAnims, numTexAnims, numTexSrtAnims, numVisAnims, numShaAnims, unk2, nullptr);
         ModelWrapper* wrapper = new ModelWrapper(model, numSklAnims, numTexAnims, numTexSrtAnims, numVisAnims, numShaAnims);
         wrapper->setup(pArchive, nullptr, nullptr);
         return wrapper;

@@ -22,8 +22,8 @@ public:
 public:
     EnemyFreezeMgr(Enemy* owner);
 
-    bool freeze(const Info& rInfo, u32 count);
-    void setFlags(const Flags& rFlags);
+    bool freeze(const Info& info, u32 count);
+    void setFlags(const Flags& flags);
 
     u8 mIceActorCount;      // 0
     u32 mIceActorIds[12];   // 4
