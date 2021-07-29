@@ -7,7 +7,7 @@ class MultiStateActor : public PhysicsActor { // Size: 0x17C8
     SEAD_RTTI_OVERRIDE(MultiStateActor, PhysicsActor)
 
 public:
-    MultiStateActor(const ActorBuildInfo* pBuildInfo);
+    MultiStateActor(const ActorBuildInfo* buildInfo);
     virtual ~MultiStateActor();
 
     void setPlayerID(s8 id) override;

@@ -15,7 +15,7 @@ public:
         FlagDontRenderOffScreen = 1 << 1
     };
 
-    Profile(BaseActor* (*BuildFunc)(const ActorBuildInfo*), u32 id, const sead::SafeString& name, const ActorInfo* pActorInfo, u32 flags);
+    Profile(BaseActor* (*buildFunc)(const ActorBuildInfo*), u32 id, const sead::SafeString& name, const ActorInfo* actorInfo, u32 flags);
 
     static Profile* get(u32 id);
     static s16 getPriority(u32 id);

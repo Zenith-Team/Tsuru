@@ -107,7 +107,7 @@ public:
 
     StateBase* getCurrentState();
     void execute();
-    void changeState(StateBase* pNextState);
+    void changeState(StateBase* nextState);
 
     StateExecutorBase* mExecutor;
     StateBase* mNextState;

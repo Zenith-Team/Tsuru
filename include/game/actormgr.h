@@ -18,8 +18,8 @@ public:
 
 class ActorMgr {
 public:
-    BaseActor* create(ActorBuildInfo* pBuildInfo, u32 addToActive);
-    BaseActor* instanciateActor(ActorBuildInfo* pBuildInfo, bool notDefer);
+    BaseActor* create(ActorBuildInfo* buildInfo, u32 addToActive);
+    BaseActor* instanciateActor(ActorBuildInfo* buildInfo, bool notDefer);
     
     u32 createActor(BaseActor* actor);  // Calls "create" virtual functions
 

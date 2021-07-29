@@ -7,7 +7,7 @@ class StageActor;
 
 class HitboxCollider : public sead::IDisposer { // size: 0x128
 public:
-    typedef void (*Callback)(HitboxCollider* pHCSelf, HitboxCollider* pHCOther);
+    typedef void (*Callback)(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 
     enum HitboxShape {
         ShapeRectangle      = 0,
@@ -67,7 +67,7 @@ public:
 
     // Custom functions
     void getRect(Rect& outRect);
-    static bool sCollidersOverlap(HitboxCollider* pHCSelf, HitboxCollider* pHCOther);
+    static bool sCollidersOverlap(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 
     List::Node mActiveNode;     // _10
     List::Node mCreateNode;     // _1C

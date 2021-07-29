@@ -10,12 +10,12 @@ void HitboxCollider::getRect(Rect& outRect) {
     outRect.bottom = ownerPos->y + this->mColliderInfo.mDistToCenter.y - this->mColliderInfo.mDistToEdge.y;
 }
 
-bool HitboxCollider::sCollidersOverlap(HitboxCollider* pHCSelf, HitboxCollider* pHCOther) {
+bool HitboxCollider::sCollidersOverlap(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     Rect thisRect;
-    pHCSelf->getRect(thisRect);
+    hcSelf->getRect(thisRect);
 
     Rect otherRect;
-    pHCOther->getRect(thisRect);
+    hcOther->getRect(thisRect);
 
     return Rect::RectsOverlap(thisRect, otherRect);
 }

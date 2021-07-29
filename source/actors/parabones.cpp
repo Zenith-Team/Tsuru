@@ -8,16 +8,16 @@ class ParaBones : public Enemy {
     SEAD_RTTI_OVERRIDE_IMPL(ParaBones, Enemy)
 
 public:
-    ParaBones(const ActorBuildInfo* pBuildInfo);
+    ParaBones(const ActorBuildInfo* buildInfo);
     virtual ~ParaBones() { }
 
-    static BaseActor* build(const ActorBuildInfo* pBuildInfo);
+    static BaseActor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
 
-    void collisionPlayer(HitboxCollider* pHCSelf, HitboxCollider* pHCOther) override;
+    void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
     void modelUpdate();
 
@@ -52,12 +52,12 @@ const HitboxCollider::Info ParaBones::sCollisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::ShapeCircle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback
 };
 
-ParaBones::ParaBones(const ActorBuildInfo* pBuildInfo)
-    : Enemy(pBuildInfo)
+ParaBones::ParaBones(const ActorBuildInfo* buildInfo)
+    : Enemy(buildInfo)
 { }
 
-BaseActor* ParaBones::build(const ActorBuildInfo* pBuildInfo) {
-    return new ParaBones(pBuildInfo);
+BaseActor* ParaBones::build(const ActorBuildInfo* buildInfo) {
+    return new ParaBones(buildInfo);
 }
 
 u32 ParaBones::onCreate() {
@@ -113,13 +113,13 @@ void ParaBones::modelUpdate() {
     mModel->updateAnimations();
 }
 
-void ParaBones::collisionPlayer(HitboxCollider* pHCSelf, HitboxCollider* pHCOther) {
-    u32 hitType = processCollision(pHCSelf, pHCOther, 0);
+void ParaBones::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    u32 hitType = processCollision(hcSelf, hcOther, 0);
 
     if (hitType == 0)
-        damagePlayer(pHCSelf, pHCOther);
+        damagePlayer(hcSelf, hcOther);
     else if (hitType == 1 || hitType == 3)
-        killPlayerJump(pHCOther->mOwner, 0.0f, &ParaBones::StateID_Die);
+        killPlayerJump(hcOther->mOwner, 0.0f, &ParaBones::StateID_Die);
 }
 
 // Lowering state

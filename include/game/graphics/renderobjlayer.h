@@ -34,7 +34,7 @@ public:
         virtual const char* getBoneName(u32 idx) const = 0;
         virtual u32 getBoneCount() const = 0;
         virtual void setBoneSRT(u32 idx, const Mtx34& mtxRT, const Vec3f& scale) = 0;
-        virtual void getBoneSRT(u32 idx, Mtx34* pMtxRT, Vec3f* pScale) = 0;
+        virtual void getBoneSRT(u32 idx, Mtx34* mtxRT, Vec3f* scale) = 0;
         virtual void setBoneTransform(u32 idx, const Mtx34& transform) = 0;
         virtual void getBoneTransform(u32 idx, Mtx34& transform) = 0;
         virtual void setBoneVisibility(u32 idx, bool visibility) = 0;

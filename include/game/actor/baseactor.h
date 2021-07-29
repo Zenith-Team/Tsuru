@@ -28,7 +28,7 @@ public:
     virtual u32 onDelete();
     virtual void afterDelete(u32);
 
-    void removeChild(BaseActor* pChild);
+    void removeChild(BaseActor* child);
     ProfileID::ProfileIDType getProfileID();
 
     sead::Heap* mHeap;                               // 0
