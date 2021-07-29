@@ -16,11 +16,11 @@ public:
     };
 
     enum Flags {
-        OnGround        = 1 << 0,
-        OnSlope         = 1 << 1,
-        OnSemiSold      = 1 << 4,
-        CollidedRight   = 1 << 18,
-        CollidedLeft    = 1 << 19
+        FlagOnGround        = 1 << 0,
+        FlagOnSlope         = 1 << 1,
+        FlagOnSemiSold      = 1 << 4,
+        FlagCollidedRight   = 1 << 18,
+        FlagCollidedLeft    = 1 << 19
     };
 
     PhysicsMgr();
