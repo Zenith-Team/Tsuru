@@ -63,7 +63,7 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
             Rect rect;
             hCollider->getRect(rect);
 
-            if (hCollider->mColliderInfo.mShape == HitboxCollider::Rectangle) {
+            if (hCollider->mColliderInfo.mShape == HitboxCollider::ShapeRectangle) {
                 Vec2f point1(rect.left, rect.top);
                 Vec2f point2(rect.right, rect.top);
                 Vec2f point3(rect.right, rect.bottom);
@@ -76,7 +76,7 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
                 drawLine(point1, point3, colorRed, 1.0f);   // Diagonal line
             }
 
-            else if (hCollider->mColliderInfo.mShape == HitboxCollider::Circle) {
+            else if (hCollider->mColliderInfo.mShape == HitboxCollider::ShapeCircle) {
                 f32 radius = (rect.right - rect.left) / 2.0f;
 
                 sead::PrimitiveRenderer::sInstance->drawCircle32(Vec3f(rect.left + radius, rect.bottom + radius, 4000.0f), radius, colorRed);
@@ -94,7 +94,7 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
         Rect rect;
         hCollider->getRect(rect);
 
-        if (hCollider->mColliderInfo.mShape == HitboxCollider::Rectangle) {
+        if (hCollider->mColliderInfo.mShape == HitboxCollider::ShapeRectangle) {
             Vec2f point1(rect.left, rect.top);
             Vec2f point2(rect.right, rect.top);
             Vec2f point3(rect.right, rect.bottom);
@@ -107,7 +107,7 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
             drawLine(point1, point3, colorRed, 1.0f); // Diagonal line
         }
 
-        else if (hCollider->mColliderInfo.mShape == HitboxCollider::Circle) {
+        else if (hCollider->mColliderInfo.mShape == HitboxCollider::ShapeCircle) {
             f32 radius = (rect.right - rect.left) / 2.0f;
 
             sead::PrimitiveRenderer::sInstance->drawCircle32(Vec3f(rect.left + radius, rect.bottom + radius, 4000.0f), radius, colorRed);
