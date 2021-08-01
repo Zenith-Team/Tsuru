@@ -147,7 +147,7 @@ SECTIONS {
 /* Enemy */
 	__ct__5EnemyFPC14ActorBuildInfo = 0x2328494;
 	processCollision__5EnemyFP14HitboxColliderT1Ui = 0x2329b88;
-	killPlayerJump__5EnemyFP10StageActorRC16Vector2__tm__2_fP9StateBase = 0x232da34;
+	killPlayerJump__5EnemyFP10StageActorRC13Vec2__tm__2_fP9StateBase = 0x232da34;
 	checkDerivedRuntimeTypeInfo__5EnemyCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x232a70c;
 	__dt__5EnemyFv = 0x232a868;
 	collisionCallback__5EnemySFP14HitboxColliderT1 = 0x2328c50;
@@ -277,7 +277,7 @@ SECTIONS {
 	beginState_Ice__5EnemyFv = 0x2330720;
 	executeState_Ice__5EnemyFv = 0x23307a0;
 	endState_Ice__5EnemyFv = 0x2330944;
-	move__5EnemyFR16Vector2__tm__2_f = 0x232a67c;
+	move__5EnemyFR13Vec2__tm__2_f = 0x232a67c;
 	getRect__5EnemyFR4Rect = 0x232a6a8;
 
 /* ErrorViewerTask */
@@ -303,9 +303,9 @@ SECTIONS {
 	updateAnimations__12ModelWrapperFv = 0x24d4d20;
 
 /* Mtx34 */
-	rotateAndTranslate__5Mtx34FRC17Vector3__tm__3_UiRC16Vector3__tm__2_f = 0x203c1c8;
-	makeST__5Mtx34SFR5Mtx34RC16Vector3__tm__2_fT2 = 0x2222a88;
-	makeSRT__5Mtx34SFR5Mtx34RC16Vector3__tm__2_fN22 = 0x2508424;
+	rotateAndTranslate__5Mtx34FRC14Vec3__tm__3_UiRC13Vec3__tm__2_f = 0x203c1c8;
+	makeST__5Mtx34SFR5Mtx34RC13Vec3__tm__2_fT2 = 0x2222a88;
+	makeSRT__5Mtx34SFR5Mtx34RC13Vec3__tm__2_fN22 = 0x2508424;
 
 /* MultiStateActor */
 	__vtbl__15MultiStateActor = 0x10001048;
@@ -324,7 +324,7 @@ SECTIONS {
 	vf174__15MultiStateActorFv = 0x200ac18;
 	damageFromUnder__15MultiStateActorFv = 0x200abc8;
 	vf154__15MultiStateActorFv = 0x200abec;
-	move__15MultiStateActorFR16Vector2__tm__2_f = 0x200abf4;
+	move__15MultiStateActorFR13Vec2__tm__2_f = 0x200abf4;
 	__dt__15MultiStateActorFv = 0x200b098;
 	checkDerivedRuntimeTypeInfo__15MultiStateActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x200af94;
 	getRuntimeTypeInfo__15MultiStateActorCFv = __deleted_virtual_called;
@@ -351,7 +351,7 @@ SECTIONS {
 	vf13C__12PhysicsActorFv = 0x2004008;
 	vf144__12PhysicsActorFb = 0x200375c;
 	vf14C__12PhysicsActorFP10StageActor = 0x2003760;
-	move__12PhysicsActorFR16Vector2__tm__2_f = 0x2004020;
+	move__12PhysicsActorFR13Vec2__tm__2_f = 0x2004020;
 	getRect__12PhysicsActorFR4Rect = 0x200404c;
 
 /* PhysicsMgr */
@@ -381,7 +381,7 @@ SECTIONS {
 	playTexSrtAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FEE50;
 
 /* ShapedCollider */
-	__ct__14ShapedColliderFiP16Vector2__tm__2_fPQ2_12ColliderBase4NodeT3 = 0x21a7904;
+	__ct__14ShapedColliderFiP13Vec2__tm__2_fPQ2_12ColliderBase4NodeT3 = 0x21a7904;
 	execute__14ShapedColliderFv = 0x21a871c;
 	__CPR62__init__14ShapedColliderFP10StageActorRCQ2_J6J4Info = 0x21ad3bc;
 
@@ -410,10 +410,10 @@ SECTIONS {
 	removeHitboxColliders__10StageActorFv = 0x20002cc;
 	addHitboxColliders__10StageActorFv = 0x2000328;
 	killAtGoal__10StageActorFv = 0x2002ad8;
-	splashWater__10StageActorFP16Vector3__tm__2_f = 0x2002adc;
-	splashLava__10StageActorFP16Vector3__tm__2_f = 0x2002ae0;
-	splashLavaWave__10StageActorFP16Vector3__tm__2_f = 0x2000960;
-	splashPoison__10StageActorFP16Vector3__tm__2_f = 0x2002ae4;
+	splashWater__10StageActorFP13Vec3__tm__2_f = 0x2002adc;
+	splashLava__10StageActorFP13Vec3__tm__2_f = 0x2002ae0;
+	splashLavaWave__10StageActorFP13Vec3__tm__2_f = 0x2000960;
+	splashPoison__10StageActorFP13Vec3__tm__2_f = 0x2002ae4;
 	isOffScreen__10StageActorFv = 0x2001254;
     setPlayerID__10StageActorFSc = 0x2002ab0;
     getActorPhysicsMgr__10StageActorFv = 0x2002ab8;
