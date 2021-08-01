@@ -10,9 +10,9 @@ public:
     class List {
     public:
         struct Node {
-            ColliderBase* mOwner;
-            Node* mNext;
-            Node* mPrev;
+            ColliderBase* mOwner;   // _0
+            Node* mNext;            // _4
+            Node* mPrev;            // _8
         };
     
     public:
@@ -22,8 +22,8 @@ public:
         virtual void insertFront(Node* node);
         virtual void clear();
 
-        Node* mFirst;
-        Node* mLast;
+        Node* mFirst;   // _0
+        Node* mLast;    // _4
     };
 
     class Node {
@@ -31,39 +31,39 @@ public:
         struct Sensor {
             Sensor();
 
-            Vec2f mPoint1;
-            Vec2f mPoint2;
+            Vec2f mPoint1;  // _0   Position relative to parent's center, Inited to (0, 0)
+            Vec2f mPoint2;  // _8   Position relative to parent's center, Inited to (1, 0)
         };
     
     public:
         Node();
 
-        u8 _0;
-        u8 _1;
-        u8 _2;
-        u8 _3;
-        Sensor mSensor;
-        u32 _14;
-        u32 mFlags;
-        u32 _1C;
+        u8 _0;              // _0   Inited to 8
+        u8 _1;              // _1   Inited to 0
+        u8 _2;              // _2   Inited to 0
+        u8 _3;              // _3   Inited to 0
+        Sensor mSensor;     // _4
+        u32 _14;            // _14  Inited to 0
+        u32 mFlags;         // _18  Inited to 0
+        u32 _1C;            // _1C  Inited to 0
     };
 
     class Node2 : public Node {
     public:
-        ColliderBase* mOwner;
-        u8 _24[4];
-        u32 mFlags2;
-        u32 _2C;
-        u32 _30;
-        u32 _34;
+        ColliderBase* mOwner;   // _20
+        u8 _24[4];              // _24
+        u32 mFlags2;            // _28
+        u32 _2C;                // _2C
+        u32 _30;                // _30
+        u32 _34;                // _34
     };
 
     struct OwnerInfo {
-        Vec3f* mPosition;
-        Vec3f* _4;
-        u8* mLayer;
-        u8* _C;
-        s8* mPlayerID;
+        Vec3f* mPosition;  // _0
+        Vec3f* _4;         // _4
+        u8* mLayer;        // _8
+        u8* _C;            // _C
+        s8* mPlayerID;     // _10
     };
 
     enum Type {
@@ -144,7 +144,7 @@ public:
     virtual ~ColliderBase() { }
     SEAD_RTTI_BASE(ColliderBase)
     virtual bool vf24(u32*, u32);
-    virtual u32 vf2C(u32*);       // deleted
+    virtual u32 vf2C(u32*); // deleted
     virtual void vf34() = 0;
     virtual void execute() = 0;
     virtual bool vf44(Node2*, u8*, Vec2f*, Vec2f*, u8) = 0;
@@ -162,18 +162,18 @@ public:
 
     List::Node _10[8];          // 10
     Rect mRect;                 // 70
-    Vec2f _80;                   // 80
+    Vec2f _80;                  // 80
     u32 _88;                    // 88
     u32 _8C;                    // 8C
     StageActor* mOwner;         // 90
     u32 _94;                    // 94
     OwnerInfo mOwnerInfo;       // 98
-    Vec2f mDistToCenter;         // AC
-    Vec2f _B4;                   // B4
-    Vec2f _BC;                   // BC
-    Vec2f _C4;                   // C4
-    Vec2f _CC;                   // CC
-    Vec2f _D4;                   // D4
+    Vec2f mDistToCenter;        // AC
+    Vec2f _B4;                  // B4
+    Vec2f _BC;                  // BC
+    Vec2f _C4;                  // C4
+    Vec2f _CC;                  // CC
+    Vec2f _D4;                  // D4
     u32 _DC;                    // DC
     u32 _E0;                    // E0
     Rect _E4;                   // E4   //? Possible Vec4
