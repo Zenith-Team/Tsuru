@@ -1,9 +1,24 @@
 
 ---
-Files: []
+Files:
+  - source/titlescreen.S
 Hooks:
   # Disable spawning of falling acorns
   - type: nop
     addr: "29DF464"
   - type: nop
     addr: "29DF4B8"
+
+  # Patch version string
+  - type: branch
+    instr: bl
+    addr: "266812C"
+    func: PatchVersionString
+  - type: nop
+    addr: "2668130"
+  - type: branch
+    instr: bl
+    addr: "2667FB8"
+    func: PatchVersionString
+  - type: nop
+    addr: "2667FBC"
