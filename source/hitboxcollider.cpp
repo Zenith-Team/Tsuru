@@ -1,4 +1,4 @@
-#include "game/actor/stageactor.h"
+#include "game/actor/stage/stageactor.h"
 #include "game/collision/hitboxcollider.h"
 
 void HitboxCollider::getRect(Rect& outRect) {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game/actor/enemy.h"
+#include "game/actor/stage/enemy.h"
 #include "game/graphics/model/model.h"
 
 class DoorBase : public Enemy { // Size: 0x18A8

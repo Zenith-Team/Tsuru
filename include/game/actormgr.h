@@ -1,7 +1,7 @@
 #pragma once
 
 #include "sead.h"
-#include "actor/stageactor.h"
+#include "actor/stage/stageactor.h"
 
 class ActorBuffer { // Size: 0x18
 public:

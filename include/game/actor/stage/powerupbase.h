@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game/actor/multistateactor.h"
+#include "game/actor/stage/multistateactor.h"
 
 class PowerupBase : public MultiStateActor {
     SEAD_RTTI_OVERRIDE(PowerupBase, MultiStateActor)

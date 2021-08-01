@@ -1,7 +1,7 @@
 #pragma once
 
-#include "baseactor.h"
 #include "game/eatdata.h"
+#include "game/actor/baseactor.h"
 #include "game/collision/hitboxcollider.h"
 #include "game/collision/actorphysicsmgr.h"
 

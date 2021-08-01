@@ -1,4 +1,4 @@
-#include "game/actor/enemy.h"
+#include "game/actor/stage/enemy.h"
 
 #include "game/actormgr.h"
 #include "game/direction.h"
