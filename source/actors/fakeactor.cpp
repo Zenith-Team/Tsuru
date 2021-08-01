@@ -1,6 +1,6 @@
-#include "game/actor/multistateactor.h"
 #include "game/graphics/drawmgr.h"
 #include "game/collision/collidermgr.h"
+#include "game/actor/stage/multistateactor.h"
 #include "game/collision/solid/rectcollider.h"
 //#include "effect.h"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game/actor/stageactor.h"
+#include "game/actor/stage/stageactor.h"
 #include "game/collision/actorphysicsmgr.h"
 
 class PhysicsActor : public StageActor { // size: 0x17A0

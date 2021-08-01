@@ -1,9 +1,8 @@
-#include "game/actor/stageactor.h"
-
 #include "log.h"
 #include "game/actormgr.h"
 #include "game/eventmgr.h"
 #include "game/profile/profileid.h"
+#include "game/actor/stage/stageactor.h"
 
 class ActorSpawner : public StageActor {
 public:
