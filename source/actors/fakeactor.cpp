@@ -23,12 +23,12 @@ public:
     ModelWrapper* mModel2;
 
     static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
-    //static void goalpoleCollisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+    static void goalpoleCollisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     static const HitboxCollider::Info sCheckpointCollisionInfo;
     static const HitboxCollider::Info sGoalpoleCollisionInfo;
     static const HitboxCollider::Info sStarcoinCollisionInfo;
 
-    //RectCollider mRectCollider;
+    RectCollider mRectCollider;
 
     Vec3f mEffectScale;
     Vec3f mEffectOffset;
@@ -49,7 +49,7 @@ PROFILE_RESOURCES(ProfileID::FakeActor, "middle_flag", "star_coin", "goal_set");
 
 FakeActor::FakeActor(const ActorBuildInfo* buildInfo)
     : MultiStateActor(buildInfo)
-    //, mRectCollider()
+    , mRectCollider()
     , mModel(nullptr)
     , mModel2(nullptr)
     , mModelOffset(0.0f, 0.0f, 0.0f)
@@ -63,7 +63,7 @@ BaseActor* FakeActor::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 FakeActor::onCreate() {    
-    switch (this->mSettings1 & 0xF) { // nybble 12
+    switch (this->mSettings1 & 0xF) { // Nybble 12
         case 0:  doStateChange(&StateID_Checkpoint); break;
         case 1:  doStateChange(&StateID_GoalPole);   break;
         case 2:  doStateChange(&StateID_StarCoin);   break;
@@ -75,7 +75,7 @@ u32 FakeActor::onCreate() {
 u32 FakeActor::onExecute() {
     this->updateModel();
     this->mStates.execute();
-    //if (this->states.currentState()->isEqual(&StateID_StarCoin)) {};
+    //if (this->mStates.currentState()->isEqual(&StateID_StarCoin)) {};
     return 1;
 }
 
@@ -160,11 +160,12 @@ void FakeActor::beginState_GoalPole() {
     this->mModel2->playTexSrtAnim("wait", 0);
     this->mModel2Offset = Vec3f(0.0f, 80.0f, 0.0f);
 
-    //ShapedCollider::Info colliderInfo = {
-    //    Vec2f(0.0f, 8.0f), 0.0f, 0.0f, Vec2f(-16.0f, 8.0f), Vec2f(16.0f, -8.0f), 0
-    //};
-    //this->mRectCollider.init(this, colliderInfo);
-    //ColliderMgr::sInstance->add(&mRectCollider);
+    ShapedCollider::Info colliderInfo = {
+        Vec2f(0.0f, 8.0f), 0.0f, 0.0f, Vec2f(-16.0f, 8.0f), Vec2f(16.0f, -8.0f), 0
+    };
+
+    this->mRectCollider.init(this, colliderInfo);
+    ColliderMgr::sInstance->add(&mRectCollider);
 
     this->mHitboxCollider.init(this, &FakeActor::sGoalpoleCollisionInfo, nullptr);
     this->addHitboxColliders();
@@ -176,7 +177,7 @@ void FakeActor::beginState_GoalPole() {
 }
 
 void FakeActor::executeState_GoalPole() {
-    //this->mRectCollider.execute();
+    this->mRectCollider.execute();
 }
 
 void FakeActor::endState_GoalPole() {}
