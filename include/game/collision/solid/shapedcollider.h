@@ -18,7 +18,7 @@ public:
 public:
     ShapedCollider();
     ShapedCollider(s32 numPoints, Vec2f* points, Node* nodes1, Node* nodes2);
-    virtual ~ShapedCollider() { }
+    virtual ~ShapedCollider();
 
     void vf34() override;
     void execute() override;
