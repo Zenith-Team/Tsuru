@@ -12,17 +12,17 @@ struct Vec2 { // size: 0x8
     inline Vec2(T x, T y) :
         x(x), y(y) { }
     
-    Vec2 operator+(const Vec2& other) const { Vec2 result; add(result, *this, other); return result; }
-    Vec2& operator+=(const Vec2& other) { add(*this, *this, other); return *this; }
+    inline Vec2 operator+(const Vec2& other) const { Vec2 result; add(result, *this, other); return result; }
+    inline Vec2& operator+=(const Vec2& other) { add(*this, *this, other); return *this; }
 
-    Vec2 operator-(const Vec2& other) const { Vec2 result; sub(result, *this, other); return result; }
-    Vec2& operator-=(const Vec2& other) { sub(*this, *this, other); return *this; }
+    inline Vec2 operator-(const Vec2& other) const { Vec2 result; sub(result, *this, other); return result; }
+    inline Vec2& operator-=(const Vec2& other) { sub(*this, *this, other); return *this; }
 
-    Vec2 operator*(const T val) const { Vec2 result; scale(result, *this, val); return result; }
-    Vec2& operator*=(const T val) { scale(*this, *this, val); return *this; }
+    inline Vec2 operator*(const T val) const { Vec2 result; scale(result, *this, val); return result; }
+    inline Vec2& operator*=(const T val) { scale(*this, *this, val); return *this; }
 
-    Vec2 operator/(const T val) const { return operator*(1 / val); }
-    Vec2& operator/=(const T val) { return operator*=(1 / val); }
+    inline Vec2 operator/(const T val) const { return operator*(1 / val); }
+    inline Vec2& operator/=(const T val) { return operator*=(1 / val); }
 
 private:
     static inline Vec2& add(Vec2& out, const Vec2& a, const Vec2& b) {
@@ -61,17 +61,17 @@ struct Vec3 { // size: 0xC
     inline Vec3(const Vec2<T>& vec) :
         x(vec.x), y(vec.y), z(0) { }
     
-    Vec3 operator+(const Vec3& other) const { Vec3 result; add(result, *this, other); return result; }
-    Vec3& operator+=(const Vec3& other) { add(*this, *this, other); return *this; }
+    inline Vec3 operator+(const Vec3& other) const { Vec3 result; add(result, *this, other); return result; }
+    inline Vec3& operator+=(const Vec3& other) { add(*this, *this, other); return *this; }
 
-    Vec3 operator-(const Vec3& other) const { Vec3 result; sub(result, *this, other); return result; }
-    Vec3& operator-=(const Vec3& other) { sub(*this, *this, other); return *this; }
+    inline Vec3 operator-(const Vec3& other) const { Vec3 result; sub(result, *this, other); return result; }
+    inline Vec3& operator-=(const Vec3& other) { sub(*this, *this, other); return *this; }
 
-    Vec3 operator*(const T val) const { Vec3 result; scale(result, *this, val); return result; }
-    Vec3& operator*=(const T val) { scale(*this, *this, val); return *this; }
+    inline Vec3 operator*(const T val) const { Vec3 result; scale(result, *this, val); return result; }
+    inline Vec3& operator*=(const T val) { scale(*this, *this, val); return *this; }
 
-    Vec3 operator/(const T val) const { return operator*(1 / val); }
-    Vec3& operator/=(const T val) { return operator*=(1 / val); }
+    inline Vec3 operator/(const T val) const { return operator*(1 / val); }
+    inline Vec3& operator/=(const T val) { return operator*=(1 / val); }
 
 private:
     static inline Vec3& add(Vec3& out, const Vec3& a, const Vec3& b) {

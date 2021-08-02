@@ -2,7 +2,7 @@
 #include "game/collision/collidermgr.h"
 #include "game/actor/stage/multistateactor.h"
 #include "game/collision/solid/rectcollider.h"
-//#include "effect.h"
+#include "game/effect/effect.h"
 
 class FakeActor : public MultiStateActor {
 public:
@@ -56,7 +56,7 @@ FakeActor::FakeActor(const ActorBuildInfo* buildInfo)
     , mModel2Offset(0.0f, 0.0f, 0.0f)
     , mEffectOffset(0.0f, 0.0f, 0.0f)
     , mEffectScale(1.0f, 1.0f, 1.0f)
-{ };
+{ }
 
 BaseActor* FakeActor::build(const ActorBuildInfo* buildInfo) {
     return new FakeActor(buildInfo);
@@ -93,6 +93,7 @@ void FakeActor::updateModel() {
         this->mModel->setMtx(mtx);
         this->mModel->updateModel();
     }
+
     if (this->mModel2) {
         this->mModel2->updateAnimations();
         Mtx34 mtx;
@@ -105,7 +106,7 @@ void FakeActor::updateModel() {
 void FakeActor::touch() {
     Vec3f effectOrigin(this->mPosition.x, this->mPosition.y, 4500.0f);
     Vec3f effectPos(effectOrigin + this->mEffectOffset);
-    //!Effect::spawn(RP_ObakeDoor_Disapp, &effectPos, nullptr, &this->mEffectScale);
+    Effect::spawn(RP_ObakeDoor_Disapp, &effectPos, nullptr, &this->mEffectScale);
     if (!(this->mSettings1 >> 0x1C & 0xF)) this->mIsDeleted = true;
 }
 
