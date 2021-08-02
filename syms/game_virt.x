@@ -360,6 +360,76 @@ SECTIONS {
 /* PhysicsMgr */
 	getSensor__10PhysicsMgrCFUi = 0x218ce74;
 
+/* Powerup */
+	__ct__7PowerupFPC14ActorBuildInfo = 0x251ebfc;
+	__dt__7PowerupFv = 0x251fe04;
+	checkDerivedRuntimeTypeInfo__7PowerupCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x251fc68;
+	getRuntimeTypeInfo__7PowerupCFv = __deleted_virtual_called;
+	setPlayerID__7PowerupFSc = 0x251faf0;
+	StateID_PowerupState1__7Powerup = 0x1020ac50;
+	getActorPhysicsMgr__7PowerupFv = 0x251fb1c;
+	vfAC__7PowerupFv = 0x251faf8;
+	vfB4__7PowerupFv = 0x251fafc;
+	vfBC__7PowerupFv = 0x251fb04;
+	vfC4__7PowerupFv = 0x251fb08;
+	vfCC__7PowerupFv = 0x251fb0c;
+	damageFromUnder__7PowerupFv = 0x251d8fc;
+	vf10C__7PowerupFUc = 0x251fb14;
+	vf11C__7PowerupFv = 0x251fc54;
+	vf124__7PowerupFf = 0x251fc58;
+	vf12C__7PowerupFv = 0x251fc5c;
+	vf13C__7PowerupFv = 0x251fc4c;
+	vf154__7PowerupFv = 0x251d918;
+	move__7PowerupFR13Vec2__tm__2_f = 0x251fb2c;
+	setYSpeed__7PowerupFf = 0x251fb40;
+	vf16C__7PowerupFv = 0x251fb48;
+	vf174__7PowerupFv = 0x251fb50;
+	getRect__7PowerupFR4Rect = 0x251fb58;
+	doStateChange__7PowerupFP9StateBase = 0x251fbc4;
+	vf29C__7PowerupFv = 0x251fdec;
+	vf2A4__7PowerupFv = 0x251fdf0;
+	vf2AC__7PowerupFv = 0x251ec6c;
+
+/* PowerupBase */
+	FUN_2517f90__11PowerupBaseFv = 0x2517f90;
+	spawnMethod__11PowerupBaseFv = 0x2518470;
+	updateModel__11PowerupBaseFv = 0x2518a4c;
+	FUN_2518f94__11PowerupBaseFv = 0x2518f94;
+	FUN_25183ac__11PowerupBaseFv = 0x25183ac;
+	onDraw__11PowerupBaseFv = 0x25176ec;
+	killAtGoal__11PowerupBaseFv = 0x2517bd0;
+	splashWater__11PowerupBaseFP13Vec3__tm__2_f = 0x2517c20;
+	splashLava__11PowerupBaseFP13Vec3__tm__2_f = 0x2517d5c;
+	splashLavaWave__11PowerupBaseFP13Vec3__tm__2_f = 0x2517e18;
+	splashPoison__11PowerupBaseFP13Vec3__tm__2_f = 0x2517ed4;
+	vf144__11PowerupBaseFb = 0x251771c;
+	vf1BC__11PowerupBaseFv = 0x251784c;
+	vf1CC__11PowerupBaseFv = 0x25178c0;
+	vf1D4__11PowerupBaseFv = 0x2517908;
+	vf1DC__11PowerupBaseFv = 0x2517950;
+	vf1E4__11PowerupBaseFv = 0x2517a40;
+	vf1EC__11PowerupBaseFv = 0x2517a84;
+	vf1F4__11PowerupBaseFv = 0x2517b3c;
+	vf204__11PowerupBaseFv = 0x2517b4c;
+	beginState_PowerupBaseState12__11PowerupBaseFv = 0x251bbe8;
+	executeState_PowerupBaseState12__11PowerupBaseFv = 0x251bc88;
+	endState_PowerupBaseState12__11PowerupBaseFv = 0x251dc94;
+	beginState_PowerupBaseState13__11PowerupBaseFv = 0x251bd60;
+	executeState_PowerupBaseState13__11PowerupBaseFv = 0x251beac;
+	endState_PowerupBaseState13__11PowerupBaseFv = 0x251dc98;
+	beginState_PowerupBaseState14__11PowerupBaseFv = 0x251c0d8;
+	executeState_PowerupBaseState14__11PowerupBaseFv = 0x251c29c;
+	endState_PowerupBaseState14__11PowerupBaseFv = 0x251dc9c;
+	beginState_PowerupBaseState15__11PowerupBaseFv = 0x251c2ac;
+	executeState_PowerupBaseState15__11PowerupBaseFv = 0x251c414;
+	endState_PowerupBaseState15__11PowerupBaseFv = 0x251dca0;
+	beginState_PowerupBaseState16__11PowerupBaseFv = 0x251c424;
+	executeState_PowerupBaseState16__11PowerupBaseFv = 0x251c530;
+	endState_PowerupBaseState16__11PowerupBaseFv = 0x251dca4;
+	beginState_SpatByYoshi__11PowerupBaseFv = 0x251c5fc;
+	executeState_SpatByYoshi__11PowerupBaseFv = 0x251c714;
+	endState_SpatByYoshi__11PowerupBaseFv = 0x251dca8;
+
 /* Profile */
 	profilesOriginal__7Profile = 0x101ED8DC;
 	prioritiesOriginal__7Profile = 0x10001940;
@@ -441,6 +511,9 @@ SECTIONS {
 
 /* Unknown Class */
 	FUN_02902b08__FP10StageActor = 0x2902b08;
+
+/* Redirections */
+	vf1C4__13CustomPowerupFv = 0x2520584;
 
 /* Misc */
 	BLOSDynLoad_Acquire = 0x2A9EF58;

@@ -3,6 +3,7 @@
 Files:
 #* Regular sprites:
   - source/actors/customdoor.cpp
+  - source/actors/custompowerup.cpp
   - source/actors/parabones.cpp
   - source/actors/fakeactor.cpp
 #* Utility:

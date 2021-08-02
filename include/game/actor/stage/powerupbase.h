@@ -46,10 +46,10 @@ public:
     void doStateChange(StateBase* state) override;
 
     virtual void vf18C(); // nullsub
-    virtual void vf194(); // nullsub
-    virtual void vf19C(); // nullsub
-    virtual void vf1A4(); // nullsub
-    virtual void vf1AC(); // nullsub
+    virtual void playBlockReleaseUpAnim(); // nullsub
+    virtual void playBlockReleaseDownAnim(); // nullsub
+    virtual void playIdleAnim(); // nullsub
+    virtual void playFloatAnim(); // nullsub
     virtual void vf1B4(); // nullsub
     virtual void vf1BC();
     virtual u32 vf1C4();
@@ -61,15 +61,31 @@ public:
     virtual void vf1F4();
     virtual void vf1FC(); // nullsub
     virtual u32 vf204();
-    DECLARE_STATE_VIRTUAL(PowerupBase, Unk12);
-    DECLARE_STATE_VIRTUAL(PowerupBase, Unk13);
-    DECLARE_STATE_VIRTUAL(PowerupBase, Unk14);
-    DECLARE_STATE_VIRTUAL(PowerupBase, Unk15);
-    DECLARE_STATE_VIRTUAL(PowerupBase, Unk16);
+    DECLARE_STATE_VIRTUAL(PowerupBase, PowerupBaseState12); // unknown state
+    DECLARE_STATE_VIRTUAL(PowerupBase, PowerupBaseState13); // unknown state
+    DECLARE_STATE_VIRTUAL(PowerupBase, PowerupBaseState14); // unknown state
+    DECLARE_STATE_VIRTUAL(PowerupBase, PowerupBaseState15); // unknown state
+    DECLARE_STATE_VIRTUAL(PowerupBase, PowerupBaseState16); // unknown state
     DECLARE_STATE_VIRTUAL(PowerupBase, SpatByYoshi);
 
-    void spawnMethod(); // Spawns the powerup in different ways depending on nybble 6
+    DECLARE_STATE(PowerupBase, BlockReleaseUp);
+    DECLARE_STATE(PowerupBase, BlockReleaseDown);
+    DECLARE_STATE(PowerupBase, PowerupBaseState3);  // unknown state
+    DECLARE_STATE(PowerupBase, RingRewardRelease);
+    DECLARE_STATE(PowerupBase, PowerupBaseState5);  // unknown state
+    DECLARE_STATE(PowerupBase, PowerupBaseState6);  // unknown state
+    DECLARE_STATE(PowerupBase, PowerupBaseState7);  // unknown state
+    DECLARE_STATE(PowerupBase, PowerupBaseState8);  // unknown state
+    DECLARE_STATE(PowerupBase, PowerupBaseState9);  // unknown state
+    DECLARE_STATE(PowerupBase, BeforeYoshiYongue);
+    DECLARE_STATE(PowerupBase, InYoshiTongue);
+
+    void spawnMethod();         // Spawns the powerup in different ways depending on nybble 6
     void spawnDustParticles();  // Spawns dust particles based on colliding tile type
+    void FUN_2517f90();         // Sets some physics and position values
+    void updateModel();         // Updates model animations and sets some position/rotation values on it
+    void FUN_2518f94();         // Yoshi eating related stuff
+    void FUN_25183ac();         // Sets this->_185F and this->_1828 to 0
 
     u8 unk1[8];
     u32 _17D0;
@@ -77,7 +93,7 @@ public:
     u32 _17D8;
     u8 unk2[36];
     ModelWrapper* mModel;
-    u8 unk3[4];
+    TextureAnimation* mTexAnim;
     u32 _1808;
     u32 _180C;
     u32 _1810;
@@ -88,7 +104,7 @@ public:
     u8 _1824;
     u8 _1825;
     u8 _1826;
-    u8 _1827;
+    bool _1827;
     u8 _1828;
     u8 _1829;
     u8 unk4[2];
@@ -117,7 +133,7 @@ public:
     f32 _1898;
     u8 unk7[4];
     u32 _18A0;
-    PowerupBase* _18A4;
+    PowerupBase* self;
     void* _18A8;
     HitboxCollider mHitboxCollider;
     u8 _19D4;

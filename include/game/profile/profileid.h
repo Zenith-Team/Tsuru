@@ -9,6 +9,7 @@ enum ProfileIDType {
     ParaBones,
     CustomDoor,
     FakeActor,
+    CustomPowerup,
 
     Num
 };
