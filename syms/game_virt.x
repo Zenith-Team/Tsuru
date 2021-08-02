@@ -457,6 +457,7 @@ SECTIONS {
 	__ct__14ShapedColliderFiP13Vec2__tm__2_fPQ2_12ColliderBase4NodeT3 = 0x21a7904;
 	execute__14ShapedColliderFv = 0x21a871c;
 	__CPR62__init__14ShapedColliderFP10StageActorRCQ2_J6J4Info = 0x21ad3bc;
+	__dt__14ShapedColliderFv = 0x21a7a04;
 
 /* SkeletalAnimation */
 	play__17SkeletalAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24fdadc;
