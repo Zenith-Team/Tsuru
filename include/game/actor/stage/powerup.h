@@ -2,7 +2,7 @@
 
 #include "game/actor/stage/powerupbase.h"
 
-class Powerup : PowerupBase { // Size: 0x1a98
+class Powerup : public PowerupBase { // Size: 0x1a98
     SEAD_RTTI_OVERRIDE(Powerup, PowerupBase)
 
 public:
@@ -45,7 +45,14 @@ public:
 
     void vf1FC() override;
 
-    DECLARE_STATE_VIRTUAL(PowerupBase, Unk18);
+    virtual void vf29C(); // nullsub
+    virtual void vf2A4(); // nullsub
+    virtual void vf2AC();
+
+    DECLARE_STATE(Powerup, PowerupState1);  // unknown state
+    DECLARE_STATE(Powerup, PowerupState2);  // unknown state
+    DECLARE_STATE(Powerup, PowerupState3);  // unknown state
+    DECLARE_STATE(Powerup, PowerupState4);  // unknown state
 
     u8 _1A90;   // _1A90
     u8 _1A91;   // _1A91
