@@ -93,14 +93,14 @@ public:
     DECLARE_STATE(PowerupBase, BeforeYoshiYongue);
     DECLARE_STATE(PowerupBase, InYoshiTongue);
 
-    void spawnMethod();                                                 // Spawns the powerup in different ways depending on nybble 6
-    void spawnDustParticles();                                          // Spawns dust particles based on colliding tile type
-    void FUN_2517f90();                                                 // Sets some physics and position values
-    void updateModel();                                                 // Updates model animations and sets some position/rotation values on it
-    void FUN_2518f94();                                                 // Yoshi eating related stuff
-    void FUN_25183ac();                                                 // Sets this->_185F and this->_1828 to 0
-    u32 FUN_25196e8(void* unk1, PowerupState setPowerupState, u32 unk2);         // Related to player collision
-    u32 FUN_2519580(u32 unk1, u32 unk2);                                // Related to player collision (plays get sound?)
+    void spawnMethod();                                         // Spawns the powerup in different ways depending on nybble 6
+    void spawnDustParticles();                                  // Spawns dust particles based on colliding tile type
+    void FUN_2517f90();                                         // Sets some physics and position values
+    void updateModel();                                         // Updates model animations and sets some position/rotation values on it
+    void FUN_2518f94();                                         // Yoshi eating related stuff
+    void FUN_25183ac();                                         // Sets this->_185F and this->_1828 to 0
+    u32 FUN_25196e8(void*, PowerupState setPowerupState, u32);  // Related to player collision (gives powerup state)
+    u32 FUN_2519580(u32 unk1, u32 unk2);                        // Related to player collision (plays get sound?)
 
     u8 unk1[8];
     u32 _17D0;
