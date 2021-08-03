@@ -1,8 +1,8 @@
 
 ---
 Files:
-  - source/profile.S
-  - source/profile.cpp
+  - source/profile/profile.S
+  - source/profile/profile.cpp
 Hooks:  
   - type: branch
     instr: b

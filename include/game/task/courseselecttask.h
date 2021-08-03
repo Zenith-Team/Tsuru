@@ -16,9 +16,9 @@ public:
 
     void calc() override;
 
-    DECLARE_STATE_VIRTUAL(CourseSelectTask, Unk1);
-    DECLARE_STATE_VIRTUAL(CourseSelectTask, Unk2);
-    DECLARE_STATE_VIRTUAL(CourseSelectTask, Unk3);
+    DECLARE_STATE_VIRTUAL(CourseSelectTask, CourseSelectTaskState1);
+    DECLARE_STATE_VIRTUAL(CourseSelectTask, CourseSelectTaskState2);
+    DECLARE_STATE_VIRTUAL(CourseSelectTask, CourseSelectTaskState3);
 
     void spawnCameraActor();
     void doStateChange(StateBase* state);

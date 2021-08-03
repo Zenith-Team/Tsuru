@@ -8,7 +8,7 @@
 #include "game/collision/solid/circularcollider.h"
 #include "game/collision/solid/solidontopcollider.h"
 #include "game/collision/actorphysicsmgr.h"
-#include "game/actormgr.h"
+#include "game/actor/actormgr.h"
 #include "agl/renderinfo.h"
 #include "math.h"
 

@@ -1,6 +1,6 @@
 #include "log.h"
-#include "game/actormgr.h"
 #include "game/eventmgr.h"
+#include "game/actor/actormgr.h"
 #include "game/profile/profileid.h"
 #include "game/actor/stage/stageactor.h"
 

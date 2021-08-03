@@ -20,11 +20,11 @@ public:
 
     virtual void vf4E4(); // deleted
     virtual void ZOrder();
-    DECLARE_STATE_VIRTUAL(DoorBase, Unk1);
-    DECLARE_STATE_VIRTUAL(DoorBase, Unk2);
-    DECLARE_STATE_VIRTUAL(DoorBase, Unk3);
-    DECLARE_STATE_VIRTUAL(DoorBase, Unk4);
-    virtual bool isCurrentStateUnk3();
+    DECLARE_STATE_VIRTUAL(DoorBase, DoorBaseState1);
+    DECLARE_STATE_VIRTUAL(DoorBase, DoorBaseState2);
+    DECLARE_STATE_VIRTUAL(DoorBase, DoorBaseState3);
+    DECLARE_STATE_VIRTUAL(DoorBase, DoorBaseState4);
+    virtual bool isCurrentStateDoorBaseState3();
     virtual u32  vf55C(); // nullsub
     virtual void vf564(); // deleted
     virtual void vf56C(); // deleted

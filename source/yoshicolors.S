@@ -1,10 +1,11 @@
+.include "registers.S"
+
 .rodata
 YoshiTexPink:       .string "Yoshi_TexPink"
 YoshiTexLightBlue:  .string "Yoshi_TexLightBlue"
 YoshiTexYellow:     .string "Yoshi_TexYellow"
 
 .text
-.include "registers.S"
 
 .global PatchYoshiColors
 PatchYoshiColors:
