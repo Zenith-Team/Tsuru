@@ -814,5 +814,5 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::ParaBones,     // 725
     ProfileID::CustomDoor,    // 726
     ProfileID::FakeActor,     // 727
-    ProfileID::CustomPowerup  // 728
+    ProfileID::PAcornActor    // 728
 };

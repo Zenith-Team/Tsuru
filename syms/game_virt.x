@@ -429,6 +429,8 @@ SECTIONS {
 	beginState_SpatByYoshi__11PowerupBaseFv = 0x251c5fc;
 	executeState_SpatByYoshi__11PowerupBaseFv = 0x251c714;
 	endState_SpatByYoshi__11PowerupBaseFv = 0x251dca8;
+	FUN_25196e8__11PowerupBaseFPvQ2_11PowerupBase12PowerupStateUi = 0x25196e8;
+	FUN_2519580__11PowerupBaseFUiT1 = 0x2519580;
 
 /* Profile */
 	profilesOriginal__7Profile = 0x101ED8DC;
@@ -512,9 +514,6 @@ SECTIONS {
 
 /* Unknown Class */
 	FUN_02902b08__FP10StageActor = 0x2902b08;
-
-/* Redirections */
-	vf1C4__13CustomPowerupFv = 0x2520584;
 
 /* Misc */
 	BLOSDynLoad_Acquire = 0x2A9EF58;
