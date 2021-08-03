@@ -35,10 +35,10 @@ public:
     void getRect(Rect& rect) override;
     void doStateChange(StateBase* state) override;
     void vf18C() override; // nullsub
-    void vf194() override; // nullsub
-    void vf19C() override; // nullsub
-    void vf1A4() override; // nullsub
-    void vf1AC() override; // nullsub
+    void playBlockReleaseUpAnim() override; // nullsub
+    void playBlockReleaseDownAnim() override; // nullsub
+    void playIdleAnim() override; // nullsub
+    void playFloatAnim() override; // nullsub
     void vf1B4() override; // nullsub
 
     u32 vf1C4() override;

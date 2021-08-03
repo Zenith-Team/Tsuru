@@ -84,8 +84,8 @@ u32 PAcornActor::vf1C4() {
 
     if (FUN_25196e8(&local, PowerupStatePAcorn, 1) != 0)
         return FUN_2519580(local, this->_1830);
-    else
-        return 0;
+
+    else return 0;
 }
 
 void PAcornActor::vf1FC() {
