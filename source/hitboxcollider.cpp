@@ -1,3 +1,11 @@
+/*
+    * This file is part of the HitboxCollider header.
+    * It has been moved to a seperate .cpp file because it
+    * can't be included directly in the header as
+    * #pragma once will prevent it from being included
+    * as it requires recursive inclusion of header files.
+*/
+
 #include "game/actor/stage/stageactor.h"
 #include "game/collision/hitboxcollider.h"
 

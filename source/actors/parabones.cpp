@@ -1,6 +1,5 @@
 #include "game/actor/stage/enemy.h"
-
-#include "game/actormgr.h"
+#include "game/actor/actormgr.h"
 #include "game/direction.h"
 #include "game/graphics/drawmgr.h"
 
