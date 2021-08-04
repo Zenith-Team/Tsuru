@@ -51,13 +51,32 @@ SECTIONS {
 /* sead::Random */
 	getU32__Q2_4sead6RandomFv = 0x2a13780;
 
+/* ActorBase */
+	__vtbl__9ActorBase = 0x100006c0;
+	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__9ActorBaseSFv = 0x101e9cc4;
+	typeInfo__L0__getRuntimeTypeInfoStatic__9ActorBaseSFv = 0x101e9cc8;
+	removeChild__9ActorBaseFP9ActorBase = 0x2002c8c;
+	beforeCreate__9ActorBaseFv = 0x2002f7c;
+	afterCreate__9ActorBaseFUi = 0x2002f00;
+	beforeExecute__9ActorBaseFv = 0x2002f04;
+	onExecute__9ActorBaseFv = 0x2002f8c;
+	afterExecute__9ActorBaseFUi = 0x2002f34;
+	finalExecute__9ActorBaseFv = 0x2002f94;
+	beforeDraw__9ActorBaseFv = 0x2002f98;
+	onDraw__9ActorBaseFv = 0x2002fa0;
+	afterDraw__9ActorBaseFUi = 0x2002f38;
+	beforeDelete__9ActorBaseFv = 0x2002fa8;
+	onDelete__9ActorBaseFv = 0x2002fb0;
+	afterDelete__9ActorBaseFUi = 0x2002f3c;
+	getProfileId__9ActorBaseFv = 0x2002c80;
+
 /* ActorInfo */
 	sDefault__9ActorInfo = 0x100018F4;
 
 /* ActorMgr */
 	sInstance__8ActorMgr = 0x101c30c8;
 	create__8ActorMgrFP14ActorBuildInfoUi = 0x2009a58;
-	findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP9BaseActor = 0x2009b6c;
+	findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP9ActorBase = 0x2009b6c;
 
 /* Animation */
 	setRepeat__9AnimationFb = 0x24deed4;
@@ -69,25 +88,6 @@ SECTIONS {
 /* ApplicationTask */
 	sInstance__15ApplicationTask = 0x101e7d40; 
 
-/* BaseActor */
-	__vtbl__9BaseActor = 0x100006c0;
-	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__9BaseActorSFv = 0x101e9cc4;
-	typeInfo__L0__getRuntimeTypeInfoStatic__9BaseActorSFv = 0x101e9cc8;
-	removeChild__9BaseActorFP9BaseActor = 0x2002c8c;
-	beforeCreate__9BaseActorFv = 0x2002f7c;
-	afterCreate__9BaseActorFUi = 0x2002f00;
-	beforeExecute__17CourseSelectActorFv = 0x2002f04;
-	onExecute__9BaseActorFv = 0x2002f8c;
-	afterExecute__9BaseActorFUi = 0x2002f34;
-	finalExecute__9BaseActorFv = 0x2002f94;
-	beforeDraw__17CourseSelectActorFv = 0x2002f98;
-	onDraw__9BaseActorFv = 0x2002fa0;
-	afterDraw__9BaseActorFUi = 0x2002f38;
-	beforeDelete__9BaseActorFv = 0x2002fa8;
-	onDelete__9BaseActorFv = 0x2002fb0;
-	afterDelete__9BaseActorFUi = 0x2002f3c;
-	getProfileId__9BaseActorFv = 0x2002c80;
-
 /* ColliderBase */
 	__ct__Q2_12ColliderBase4NodeFv = 0x21a1acc;
 
@@ -95,21 +95,25 @@ SECTIONS {
 	sInstance__11ColliderMgr = 0x101c9360;
 	add__11ColliderMgrFP12ColliderBase = 0x219269c;
 
-/* CourseSelectSomethingActor */
-	__ct__26CourseSelectSomethingActorFPC14ActorBuildInfo = 0x2201c04;
-	__dt__26CourseSelectSomethingActorFv = 0x2201d08;
-	checkDerivedRuntimeTypeInfo__26CourseSelectSomethingActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x2201d5c;
-	getRuntimeTypeInfo__26CourseSelectSomethingActorCFv = __deleted_virtual_called;
-	vf8C__26CourseSelectSomethingActorFv = 0x2201ce4;
-	vf94__26CourseSelectSomethingActorFv = 0x2201cec;
-	vf9C__26CourseSelectSomethingActorFv = 0x2201cf8;
-	vfA4__26CourseSelectSomethingActorFv = 0x2201d04;
-
 /* CourseTask */
 	sInstance__10CourseTask = 0x101d15f0;
 
 /* CourseSelectTask */
 	sInstance__16CourseSelectTask = 0x101cc96c;
+
+/* CSActor */
+	beforeExecute__7CSActorFv = 0x21d4d60;
+	beforeDraw__7CSActorFv = 0x21d4db8;
+
+/* CSSomethingActor */
+	__ct__16CSSomethingActorFPC14ActorBuildInfo = 0x2201c04;
+	__dt__16CSSomethingActorFv = 0x2201d08;
+	checkDerivedRuntimeTypeInfo__16CSSomethingActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x2201d5c;
+	getRuntimeTypeInfo__16CSSomethingActorCFv = __deleted_virtual_called;
+	vf8C__16CSSomethingActorFv = 0x2201ce4;
+	vf94__16CSSomethingActorFv = 0x2201cec;
+	vf9C__16CSSomethingActorFv = 0x2201cf8;
+	vfA4__16CSSomethingActorFv = 0x2201d04;
 
 /* DoorBase */
 	__ct__8DoorBaseFPC14ActorBuildInfo = 0x27583f0;

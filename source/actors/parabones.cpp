@@ -10,7 +10,7 @@ public:
     ParaBones(const ActorBuildInfo* buildInfo);
     virtual ~ParaBones() { }
 
-    static BaseActor* build(const ActorBuildInfo* buildInfo);
+    static ActorBase* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -55,7 +55,7 @@ ParaBones::ParaBones(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)
 { }
 
-BaseActor* ParaBones::build(const ActorBuildInfo* buildInfo) {
+ActorBase* ParaBones::build(const ActorBuildInfo* buildInfo) {
     return new ParaBones(buildInfo);
 }
 

@@ -9,7 +9,7 @@ public:
     FakeActor(const ActorBuildInfo* buildInfo);
     virtual ~FakeActor() { }
 
-    static BaseActor* build(const ActorBuildInfo* buildInfo);
+    static ActorBase* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -58,7 +58,7 @@ FakeActor::FakeActor(const ActorBuildInfo* buildInfo)
     , mEffectScale(1.0f, 1.0f, 1.0f)
 { }
 
-BaseActor* FakeActor::build(const ActorBuildInfo* buildInfo) {
+ActorBase* FakeActor::build(const ActorBuildInfo* buildInfo) {
     return new FakeActor(buildInfo);
 }
 

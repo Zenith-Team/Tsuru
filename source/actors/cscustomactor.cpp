@@ -1,14 +1,14 @@
-#include "game/actor/courseselect/courseselectsomethingactor.h"
+#include "game/actor/courseselect/cssomethingactor.h"
 #include "game/graphics/model/model.h"
 #include "game/graphics/drawmgr.h"
 #include "log.h"
 
-class CSCustomActor : public CourseSelectSomethingActor {
+class CSCustomActor : public CSSomethingActor {
 public:
     CSCustomActor(const ActorBuildInfo* buildInfo);
     virtual ~CSCustomActor() { }
 
-    static BaseActor* build(const ActorBuildInfo* buildInfo);
+    static ActorBase* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -18,10 +18,10 @@ public:
 };
 
 CSCustomActor::CSCustomActor(const ActorBuildInfo* buildInfo) 
-    : CourseSelectSomethingActor(buildInfo)
+    : CSSomethingActor(buildInfo)
 { }
 
-BaseActor* CSCustomActor::build(const ActorBuildInfo* buildInfo) {
+ActorBase* CSCustomActor::build(const ActorBuildInfo* buildInfo) {
     return new CSCustomActor(buildInfo);
 }
 

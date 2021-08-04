@@ -2,10 +2,10 @@
 
 #include "game/states.h"
 #include "game/collision/cshitboxcollider.h"
-#include "game/actor/courseselect/courseselectactor.h"
+#include "game/actor/courseselect/csactor.h"
 
-class CSCollisionActor : public CourseSelectActor {
-    SEAD_RTTI_OVERRIDE(CSCollisionActor, CourseSelectActor)
+class CSCollisionActor : public CSActor {
+    SEAD_RTTI_OVERRIDE(CSCollisionActor, CSActor)
 
 public:
     CSCollisionActor(const ActorBuildInfo* buildInfo);
