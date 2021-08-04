@@ -32,8 +32,6 @@ u32 CSCustomActor::onCreate() {
 }
 
 u32 CSCustomActor::onExecute() {
-    LOG("CSCustomActor onExecute");
-
     Mtx34 mtx;
 
     mtx.rotateAndTranslate(this->mRotation, this->mPosition);
