@@ -2,12 +2,12 @@
 
 #include "game/actor/actorbase.h"
 
-class CSActorBase : public ActorBase {
-    SEAD_RTTI_OVERRIDE(CSActorBase, ActorBase)
+class CourseSelectActorBase : public ActorBase {
+    SEAD_RTTI_OVERRIDE(CourseSelectActorBase, ActorBase)
 
 public:
-    CSActorBase(const ActorBuildInfo* buildInfo);
-    virtual ~CSActorBase();
+    CourseSelectActorBase(const ActorBuildInfo* buildInfo);
+    virtual ~CourseSelectActorBase();
 
     u32 beforeExecute() override;
     u32 beforeDraw() override;

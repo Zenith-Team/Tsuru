@@ -1,13 +1,13 @@
 #pragma once
 
-#include "game/actor/courseselect/csactorbase.h"
+#include "game/actor/courseselect/courseselectactorbase.h"
 
-class CSActor : public CSActorBase {
-    SEAD_RTTI_OVERRIDE(CSActor, CSActorBase)
+class CourseSelectActor : public CourseSelectActorBase {
+    SEAD_RTTI_OVERRIDE(CourseSelectActor, CourseSelectActorBase)
 
 public:
-    CSActor(const ActorBuildInfo* buildInfo);
-    virtual ~CSActor();
+    CourseSelectActor(const ActorBuildInfo* buildInfo);
+    virtual ~CourseSelectActor();
 
     u32 onCreate() override = 0;
 

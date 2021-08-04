@@ -1,9 +1,9 @@
-#include "game/actor/courseselect/cssomethingactor.h"
+#include "game/actor/courseselect/courseselectactor.h"
 #include "game/graphics/model/model.h"
 #include "game/graphics/drawmgr.h"
 #include "log.h"
 
-class CSCustomActor : public CSSomethingActor {
+class CSCustomActor : public CourseSelectActor {
 public:
     CSCustomActor(const ActorBuildInfo* buildInfo);
     virtual ~CSCustomActor() { }
@@ -18,7 +18,7 @@ public:
 };
 
 CSCustomActor::CSCustomActor(const ActorBuildInfo* buildInfo) 
-    : CSSomethingActor(buildInfo)
+    : CourseSelectActor(buildInfo)
 { }
 
 ActorBase* CSCustomActor::build(const ActorBuildInfo* buildInfo) {
@@ -26,7 +26,7 @@ ActorBase* CSCustomActor::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 CSCustomActor::onCreate() {
-    this->mModel = ModelWrapper::create("I_musasabi", "I_musasabiP", 1, 1, 0, 0, 0);
+    this->mModel = ModelWrapper::create("cobStarGate", "cobStarGate", 3);
 
     return 1;
 }
@@ -37,7 +37,7 @@ u32 CSCustomActor::onExecute() {
     mtx.rotateAndTranslate(this->mRotation, this->mPosition);
 
     this->mModel->setMtx(mtx);
-    this->mModel->setScale(this->mScale * 4);
+    this->mModel->setScale(this->mScale);
     this->mModel->updateModel();
 
     return 1;
