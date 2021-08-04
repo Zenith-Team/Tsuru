@@ -2,10 +2,10 @@
 
 #include "types.h"
 
-class CSHitboxCollider {
+class HitboxCollider3D {
 public:
-    CSHitboxCollider();
-    virtual ~CSHitboxCollider();
+    HitboxCollider3D();
+    virtual ~HitboxCollider3D();
 
     void init(void*, f32*);
 

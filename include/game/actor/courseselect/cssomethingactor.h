@@ -1,9 +1,10 @@
 #pragma once
 
-#include "game/actor/courseselect/csactor.h"
+#include "game/actor/courseselect/courseselectactor.h"
 
-class CSSomethingActor : public CSActor {
-    SEAD_RTTI_OVERRIDE(CSSomethingActor, CSActor)
+// TODO: Figure out a better name for this class (what does it do?)
+class CSSomethingActor : public CourseSelectActor {
+    SEAD_RTTI_OVERRIDE(CSSomethingActor, CourseSelectActor)
 
 public:
     CSSomethingActor(const ActorBuildInfo* buildInfo);

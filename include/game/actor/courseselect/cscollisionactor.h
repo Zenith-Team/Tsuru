@@ -1,20 +1,21 @@
 #pragma once
 
 #include "game/states.h"
-#include "game/collision/cshitboxcollider.h"
-#include "game/actor/courseselect/csactor.h"
+#include "game/collision/hitboxcollider3d.h"
+#include "game/actor/courseselect/courseselectactor.h"
 
-class CSCollisionActor : public CSActor {
-    SEAD_RTTI_OVERRIDE(CSCollisionActor, CSActor)
+class CSCollisionActor : public CourseSelectActor {
+    SEAD_RTTI_OVERRIDE(CSCollisionActor, CourseSelectActor)
 
 public:
     CSCollisionActor(const ActorBuildInfo* buildInfo);
     virtual ~CSCollisionActor();
 
-    virtual bool vf8C();
-    virtual void vf94();
-    virtual void vf9C();
-    virtual void vfA4(); // nullsub
+    bool vf8C() override;
+    void vf94() override;
+    void vf9C() override;
+    void vfA4() override; // nullsub
+
     virtual void vfAC(); // nullsub
     virtual u32 vfB4();
     virtual u32 vfBC();
@@ -34,7 +35,7 @@ public:
 
     StateWrapper<CSCollisionActor> mStates;
     u8 _12C[0x18];  // Unknown struct
-    CSHitboxCollider mHitbox;
+    HitboxCollider3D mHitbox;
     u32 mLinkID;
     u32 _164;
     u32 _168;

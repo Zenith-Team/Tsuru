@@ -98,12 +98,20 @@ SECTIONS {
 /* CourseTask */
 	sInstance__10CourseTask = 0x101d15f0;
 
+/* CourseSelectActor */
+	__ct__17CourseSelectActorFPC14ActorBuildInfo = 0x21d4cb4;
+	__dt__17CourseSelectActorFv = 0x21d5838;
+	checkDerivedRuntimeTypeInfo__17CourseSelectActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x21d588c;
+	getRuntimeTypeInfo__17CourseSelectActorCFv = __deleted_virtual_called;
+	beforeExecute__17CourseSelectActorFv = 0x21d4d60;
+	beforeDraw__17CourseSelectActorFv = 0x21d4db8;
+	vf8C__17CourseSelectActorFv = 0x21d5948;
+	vf94__17CourseSelectActorFv = 0x21d5950;
+	vf9C__17CourseSelectActorFv = 0x21d595c;
+	vfA4__17CourseSelectActorFv = 0x21d5968;
+
 /* CourseSelectTask */
 	sInstance__16CourseSelectTask = 0x101cc96c;
-
-/* CSActor */
-	beforeExecute__7CSActorFv = 0x21d4d60;
-	beforeDraw__7CSActorFv = 0x21d4db8;
 
 /* CSSomethingActor */
 	__ct__16CSSomethingActorFPC14ActorBuildInfo = 0x2201c04;
