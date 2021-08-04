@@ -75,8 +75,12 @@ SECTIONS {
 	typeInfo__L0__getRuntimeTypeInfoStatic__9BaseActorSFv = 0x101e9cc8;
 	removeChild__9BaseActorFP9BaseActor = 0x2002c8c;
 	beforeCreate__9BaseActorFv = 0x2002f7c;
+	afterCreate__9BaseActorFUi = 0x2002f00;
+	beforeExecute__17CourseSelectActorFv = 0x2002f04;
 	onExecute__9BaseActorFv = 0x2002f8c;
+	afterExecute__9BaseActorFUi = 0x2002f34;
 	finalExecute__9BaseActorFv = 0x2002f94;
+	beforeDraw__17CourseSelectActorFv = 0x2002f98;
 	onDraw__9BaseActorFv = 0x2002fa0;
 	afterDraw__9BaseActorFUi = 0x2002f38;
 	beforeDelete__9BaseActorFv = 0x2002fa8;
@@ -90,6 +94,16 @@ SECTIONS {
 /* ColliderMgr */
 	sInstance__11ColliderMgr = 0x101c9360;
 	add__11ColliderMgrFP12ColliderBase = 0x219269c;
+
+/* CourseSelectSomethingActor */
+	__ct__26CourseSelectSomethingActorFPC14ActorBuildInfo = 0x2201c04;
+	__dt__26CourseSelectSomethingActorFv = 0x2201d08;
+	checkDerivedRuntimeTypeInfo__26CourseSelectSomethingActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x2201d5c;
+	getRuntimeTypeInfo__26CourseSelectSomethingActorCFv = __deleted_virtual_called;
+	vf8C__26CourseSelectSomethingActorFv = 0x2201ce4;
+	vf94__26CourseSelectSomethingActorFv = 0x2201cec;
+	vf9C__26CourseSelectSomethingActorFv = 0x2201cf8;
+	vfA4__26CourseSelectSomethingActorFv = 0x2201d04;
 
 /* CourseTask */
 	sInstance__10CourseTask = 0x101d15f0;

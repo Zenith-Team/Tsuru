@@ -7,7 +7,7 @@
 class FakeActor : public MultiStateActor {
 public:
     FakeActor(const ActorBuildInfo* buildInfo);
-    virtual ~FakeActor() { };
+    virtual ~FakeActor() { }
 
     static BaseActor* build(const ActorBuildInfo* buildInfo);
 

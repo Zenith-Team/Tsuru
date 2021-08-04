@@ -1,12 +1,17 @@
 
 ---
 Files:
-#* Regular sprites:
+#* Stage Actors:
   - source/actors/customdoor.cpp
   - source/actors/pacornactor.cpp
   - source/actors/parabones.cpp
   - source/actors/fakeactor.cpp
-#* Utility:
   - source/actors/actorspawner.cpp
-#* Patches:
-Hooks: []
+#* Course Select Actors:
+  - source/actors/cscustomactor.cpp
+Hooks:
+  # Replace CSFireBro with CSCustomActor
+  - type: branch
+    instr: b
+    addr: "22775e8"
+    func: build__13CSCustomActorSFPC14ActorBuildInfo
