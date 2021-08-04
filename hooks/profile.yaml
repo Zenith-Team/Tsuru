@@ -7,7 +7,7 @@ Hooks:
   - type: branch
     instr: b
     addr: "2019554"
-    func: __ct__7ProfileFPFPC14ActorBuildInfo_P9BaseActorUiRCQ2_4sead23SafeStringBase__tm__2_cPC9ActorInfoT2
+    func: __ct__7ProfileFPFPC14ActorBuildInfo_P9ActorBaseUiRCQ2_4sead23SafeStringBase__tm__2_cPC9ActorInfoT2
   
   - type: branch
     instr: b

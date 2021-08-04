@@ -168,7 +168,7 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
 
     ActorBuffer* actors = &ActorMgr::sInstance->mActors;
     for (u32 i = 0; i < actors->mBuffer.mSize; i++) {
-        StageActor* actor = sead::DynamicCast<StageActor, BaseActor>(actors->mBuffer[i]);
+        StageActor* actor = sead::DynamicCast<StageActor, ActorBase>(actors->mBuffer[i]);
         if (actor == NULL || !actor->mIsVisible || actor->mIsDeleted)
             continue;
         

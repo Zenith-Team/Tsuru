@@ -1,14 +1,14 @@
 #pragma once
 
 #include "game/eatdata.h"
-#include "game/actor/baseactor.h"
+#include "game/actor/actorbase.h"
 #include "game/collision/hitboxcollider.h"
 #include "game/collision/actorphysicsmgr.h"
 
 class ColliderBase;
 
-class StageActor : public BaseActor {
-    SEAD_RTTI_OVERRIDE(StageActor, BaseActor)
+class StageActor : public ActorBase {
+    SEAD_RTTI_OVERRIDE(StageActor, ActorBase)
 
 public:
     struct CallbackTable {

@@ -5,7 +5,7 @@ public:
     PAcornActor(const ActorBuildInfo* buildInfo);
     virtual ~PAcornActor() { }
 
-    static BaseActor* build(const ActorBuildInfo* buildInfo);
+    static ActorBase* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -27,7 +27,7 @@ PAcornActor::PAcornActor(const ActorBuildInfo* buildInfo)
     : Powerup(buildInfo)
 { }
 
-BaseActor* PAcornActor::build(const ActorBuildInfo* buildInfo) {
+ActorBase* PAcornActor::build(const ActorBuildInfo* buildInfo) {
     return new PAcornActor(buildInfo);
 }
 

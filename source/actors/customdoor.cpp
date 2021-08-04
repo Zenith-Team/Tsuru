@@ -6,7 +6,7 @@ public:
     CustomDoor(const ActorBuildInfo* buildInfo);
     virtual ~CustomDoor() { }
 
-    static BaseActor* build(const ActorBuildInfo* buildInfo);
+    static ActorBase* build(const ActorBuildInfo* buildInfo);
 
     //void ZOrder() override; // broken
     void loadModel() override;
@@ -32,7 +32,7 @@ CustomDoor::CustomDoor(const ActorBuildInfo* buildInfo)
     this->_18A0 = 0x1E;
 }
 
-BaseActor* CustomDoor::build(const ActorBuildInfo* buildInfo) {
+ActorBase* CustomDoor::build(const ActorBuildInfo* buildInfo) {
     return new CustomDoor(buildInfo);
 }
 
