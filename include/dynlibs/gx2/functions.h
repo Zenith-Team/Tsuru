@@ -36,6 +36,9 @@ extern u32 gx2_handle;
 void InitGX2FunctionPointers(void);
 void InitAcquireGX2(void);
 
+#define GX2_SEL_MASK(x, y, z, w) (((x) << 24) | ((y) << 16) | ((z) << 8) | (w))
+#define GX2_COMP_MAP(x, y, z, w) (((x) << 24) | ((y) << 16) | ((z) << 8) | (w))
+
 extern void (* GX2Init)(u32 * init_attribs);
 extern void (* GX2Shutdown)(void);
 extern void (* GX2Flush)(void);
