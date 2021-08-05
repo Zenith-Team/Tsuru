@@ -5,6 +5,8 @@
 #include "sead/camera.h"
 #include "sead/color.h"
 #include "sead/criticalsection.h"
+#include "sead/filedevice.h"
+#include "sead/filedevicemgr.h"
 #include "sead/heap.h"
 #include "sead/heappolicies.h"
 #include "sead/idisposer.h"

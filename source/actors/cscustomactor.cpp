@@ -40,6 +40,8 @@ u32 CSCustomActor::onExecute() {
     this->mModel->setScale(this->mScale);
     this->mModel->updateModel();
 
+    this->mPosition.z -= 0.5f;
+
     return 1;
 }
 

@@ -810,9 +810,10 @@ u32 Profile::spriteToProfileList[] = {
     533,    // 723
 
     // Start of custom entries
-    ProfileID::ActorSpawner,  // 724
-    ProfileID::ParaBones,     // 725
-    ProfileID::CustomDoor,    // 726
-    ProfileID::FakeActor,     // 727
-    ProfileID::PAcornActor    // 728
+    ProfileID::ActorSpawner,    // 724
+    ProfileID::ParaBones,       // 725
+    ProfileID::CustomDoor,      // 726
+    ProfileID::FakeActor,       // 727
+    ProfileID::PAcornActor,     // 728
+    ProfileID::GraphicsActor,   // 729
 };
