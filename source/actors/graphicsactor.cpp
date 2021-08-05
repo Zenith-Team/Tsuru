@@ -526,18 +526,17 @@ u32 GraphicsActor::onDraw() {
 }
 
 void GraphicsActor::render() {
-    if (mHasRendered)
-        goto renderstep;
+    LOG("rendering");
 
     GX2RBuffer positionBuffer = { 0 };
     GX2RBuffer colorBuffer = { 0 };
     ShaderGroup group = { 0 };
     void* buffer = nullptr;
-    const u8* gshFileData = nullptr;
+    static const u8* gshFileData;
 
     sead::FileDevice::LoadArg file;
 
-    file.mPath = "superres/pos_col_shader.gsh";
+    file.mPath = "superres/shader/pos_col_shader.gsh";
 
     gshFileData = sead::FileDeviceMgr::sInstance->tryLoad(file);
 
@@ -546,6 +545,9 @@ void GraphicsActor::render() {
 
     if (!LoadGFDShaderGroup(&group, 0, gshFileData))
         goto exit;
+
+    if (mHasRendered)
+        goto renderstep;
 
     InitShaderAttribute(&group, "aPosition", 0, 0, GX2_ATTRIB_FORMAT_32_32_32_32_FLOAT);
     InitShaderAttribute(&group, "aColour", 1, 0, GX2_ATTRIB_FORMAT_32_32_32_32_FLOAT);
