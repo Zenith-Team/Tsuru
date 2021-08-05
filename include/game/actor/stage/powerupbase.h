@@ -65,7 +65,7 @@ public:
     virtual void playFloatAnim(); // nullsub
     virtual void vf1B4(); // nullsub
     virtual void vf1BC();
-    virtual u32 vf1C4();
+    virtual u32 vf1C4(); // Player collision
     virtual void vf1CC();
     virtual void vf1D4();
     virtual void vf1DC();
