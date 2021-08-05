@@ -34,6 +34,10 @@ SECTIONS {
 /* Cafe SDK */
 	ASM_MTXConcat = 0x2af98a0;
 
+/* sead::FileDeviceMgr */
+	sInstance__Q2_4sead13FileDeviceMgr = 0x101E7F18
+	tryLoad__Q2_4sead13FileDeviceMgrFRQ3_4sead10FileDevice7LoadArg = 0x29f8bbc;
+
 /* sead::GlobalRandom */
     sInstance__Q2_4sead12GlobalRandom = 0x101e806c;
 
