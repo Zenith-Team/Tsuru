@@ -1,9 +1,7 @@
 // Misc. utility C++ functions
 
-extern "C" {
-
 // Compare if two strings are equal
-int strcmp(const char *str1, const char *str2) {
+extern "C" int strcmp(const char *str1, const char *str2) {
     const unsigned char* s1 = (const unsigned char*)str1;
     const unsigned char* s2 = (const unsigned char*)str2;
     unsigned char c1, c2;
@@ -18,11 +16,10 @@ int strcmp(const char *str1, const char *str2) {
 }
 
 // Compare if two wide strings are equal
-int wcscmp(const wchar_t *str1, const wchar_t *str2) {
-    while (*str1 == *str2++) {
-        if (*str1++ == 0) return (0);
-    }
-    return (*str1 - *--str2);
-}
+extern "C" int wcscmp(const wchar_t *str1, const wchar_t *str2) {
+    while (*str1 == *str2++)
+        if (*str1++ == 0) 
+            return 0;
 
+    return (*str1 - *--str2);
 }

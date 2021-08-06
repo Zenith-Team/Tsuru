@@ -3,11 +3,11 @@
 Files:
 #* Stage Actors:
   - source/actors/customdoor.cpp
-  - source/actors/pacornactor.cpp
+  - source/actors/pacorn.cpp
   - source/actors/parabones.cpp
   - source/actors/fakeactor.cpp
   - source/actors/actorspawner.cpp
-  # - source/actors/graphicsactor.cpp
+  - source/actors/graphicsactor.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:
