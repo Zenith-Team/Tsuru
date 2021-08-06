@@ -1,9 +1,9 @@
 #include "game/actor/stage/powerup.h"
 
-class PAcornActor : public Powerup {
+class PAcorn : public Powerup {
 public:
-    PAcornActor(const ActorBuildInfo* buildInfo);
-    virtual ~PAcornActor() { }
+    PAcorn(const ActorBuildInfo* buildInfo);
+    virtual ~PAcorn() { }
 
     static ActorBase* build(const ActorBuildInfo* buildInfo);
 
@@ -20,18 +20,18 @@ public:
     void vf1FC() override;
 };
 
-const Profile PAcornActorProfile(&PAcornActor::build, ProfileID::PAcornActor, "PAcornActor", nullptr, 0x4016);
-PROFILE_RESOURCES(ProfileID::PAcornActor, "I_musasabi");
+const Profile PAcornProfile(&PAcorn::build, ProfileID::PAcorn, "PAcorn", nullptr, 16406);
+PROFILE_RESOURCES(ProfileID::PAcorn, "I_musasabi");
 
-PAcornActor::PAcornActor(const ActorBuildInfo* buildInfo)
+PAcorn::PAcorn(const ActorBuildInfo* buildInfo)
     : Powerup(buildInfo)
 { }
 
-ActorBase* PAcornActor::build(const ActorBuildInfo* buildInfo) {
-    return new PAcornActor(buildInfo);
+ActorBase* PAcorn::build(const ActorBuildInfo* buildInfo) {
+    return new PAcorn(buildInfo);
 }
 
-u32 PAcornActor::onCreate() {
+u32 PAcorn::onCreate() {
     this->_1827 = true;
     this->_1808 = 0;
     this->mModel = ModelWrapper::create("I_musasabi", "I_musasabiP", 1, 1, 0, 0, 0);
@@ -43,7 +43,7 @@ u32 PAcornActor::onCreate() {
     return 1;
 }
 
-u32 PAcornActor::onExecute() {
+u32 PAcorn::onExecute() {
     this->mStates.execute();
     // FUN_0232a958((this->_)._.unk6 + 0x28); //? Possibly ActorScaler related
     this->updateModel();
@@ -54,32 +54,32 @@ u32 PAcornActor::onExecute() {
     return 1;
 }
 
-void PAcornActor::vf18C() {
+void PAcorn::vf18C() {
     this->doStateChange(&StateID_PowerupState1);
 }
 
-void PAcornActor::playBlockReleaseUpAnim() {
+void PAcorn::playBlockReleaseUpAnim() {
     this->mModel->playSklAnim("out", 1);
 }
 
 
-void PAcornActor::playBlockReleaseDownAnim() {
+void PAcorn::playBlockReleaseDownAnim() {
     this->mModel->playSklAnim("out3", 3);
 }
 
-void PAcornActor::playIdleAnim() {
+void PAcorn::playIdleAnim() {
     this->mModel->playSklAnim("wait", 4);
 }
 
-void PAcornActor::playFloatAnim() {
+void PAcorn::playFloatAnim() {
     this->mModel->playSklAnim("wait2", 5);
 }
 
-void PAcornActor::vf1B4() {
+void PAcorn::vf1B4() {
     this->mModel->playSklAnim("out2", 2);
 }
 
-u32 PAcornActor::vf1C4() {
+u32 PAcorn::vf1C4() {
     u32 local;
 
     if (FUN_25196e8(&local, PowerupStatePAcorn, 1) != 0)
@@ -88,7 +88,7 @@ u32 PAcornActor::vf1C4() {
     else return 0;
 }
 
-void PAcornActor::vf1FC() {
+void PAcorn::vf1FC() {
     this->doStateChange(&StateID_PowerupState1);
 }
  

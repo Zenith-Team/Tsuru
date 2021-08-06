@@ -5,6 +5,8 @@
 #include "log.h"
 #include <string.h>
 
+//! Extremely scuffed temporary code (tried to implement functions needed from wut manually here(pain))
+
 // Data structures
 struct Header {
     u32 magic;
@@ -246,6 +248,8 @@ bool GetPixelShader(GX2PixelShader* shader, void* program, u32 index, const void
     else
         return GetGenericBlock(6, shader, 7, &shader->shader_data, program, 0, NULL, NULL, index, file);
 }
+#define GX2_SEL_MASK(x, y, z, w) (((x) << 24) | ((y) << 16) | ((z) << 8) | (w))
+#define GX2_COMP_MAP(x, y, z, w) (((x) << 24) | ((y) << 16) | ((z) << 8) | (w))
 
 // Location
 static s32 GetVertexAttribVarLocation(const GX2VertexShader* shader, const char* name) {
@@ -500,6 +504,8 @@ public:
     void render();
 
     bool mHasRendered;
+
+    f32* colors;
 };
 
 const Profile GraphicsActorProfile(&GraphicsActor::build, ProfileID::GraphicsActor, "GraphicsActor", nullptr, 0);
@@ -545,9 +551,6 @@ void GraphicsActor::render() {
 
     if (!LoadGFDShaderGroup(&group, 0, gshFileData))
         goto exit;
-
-    if (mHasRendered)
-        goto renderstep;
 
     InitShaderAttribute(&group, "aPosition", 0, 0, GX2_ATTRIB_FORMAT_32_32_32_32_FLOAT);
     InitShaderAttribute(&group, "aColour", 1, 0, GX2_ATTRIB_FORMAT_32_32_32_32_FLOAT);
@@ -600,7 +603,7 @@ renderstep:
     GX2RSetAttributeBuffer(&colorBuffer, 1, colorBuffer.elemSize, 0);
     GX2DrawEx(GX2_PRIMITIVE_TRIANGLES, 3, 0, 1);
 
-    return;
+    goto exit;
 
 exit:
     GX2RDestroyBufferEx(&positionBuffer, 0);

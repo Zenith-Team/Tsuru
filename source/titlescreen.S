@@ -10,23 +10,6 @@ VersionStringMsbtID: .string "Title_Ver_00"
 isVersionString: .word 0 # bool
 
 .text
- 
-.global PatchStringShit
-PatchStringShit:
-    # lwz r4, 0x30(r1)
-    # SaveVolatileRegisters
-    # lis r4, isVersionString@h
-    # ori r4, r4, isVersionString@l
-    # lwz r5, 0x0(r4)
-    # cmpwi r5, 0x0
-    # beq PatchStringShitReturn
-    # RestoreVolatileRegisters
-    # lis r4, PatchString@h
-    # ori r4, r4, PatchString@l
-    # blr
-# PatchStringShitReturn:
-    # RestoreVolatileRegisters
-    # blr
 
 .global PatchStringSize
 PatchStringSize:
@@ -35,7 +18,7 @@ PatchStringSize:
     lwz r31, 0x0(r31)
     cmpwi r31, 0x0
     mr r31, r3
-    beq PatchStringSizeReturn
+    beqlr
     lis r31, PatchString@h
     ori r31, r31, PatchString@l
     stw r31, 0x30(sp)
@@ -44,7 +27,6 @@ PatchStringSize:
     li r3, 0x0
     stw r3, 0x0(r31)
     li r31, 9
-PatchStringSizeReturn:
     blr
 
 .global CheckIfShouldPatchString

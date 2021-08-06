@@ -9,7 +9,7 @@ enum ProfileIDType {
     ParaBones,
     CustomDoor,
     FakeActor,
-    PAcornActor,
+    PAcorn,
     GraphicsActor,
 
     Num
