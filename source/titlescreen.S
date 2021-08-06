@@ -30,21 +30,21 @@ PatchStringShit:
 
 .global PatchStringSize
 PatchStringSize:
-    SaveVolatileRegisters
-    lis r5, isVersionString@h
-    ori r5, r5, isVersionString@l
-    lwz r31, 0x0(r5)
+    lis r31, isVersionString@h
+    ori r31, r31, isVersionString@l
+    lwz r31, 0x0(r31)
     cmpwi r31, 0x0
     mr r31, r3
     beq PatchStringSizeReturn
+    lis r31, PatchString@h
+    ori r31, r31, PatchString@l
+    stw r31, 0x30(sp)
+    lis r31, isVersionString@h
+    ori r31, r31, isVersionString@l
+    li r3, 0x0
+    stw r3, 0x0(r31)
     li r31, 9
-    lis r4, PatchString@h
-    ori r4, r4, PatchString@l
-    stw r4, 0x30(sp)
-    li r6, 0x0
-    stw r6, 0x0(r5)
 PatchStringSizeReturn:
-    RestoreVolatileRegisters
     blr
 
 .global CheckIfShouldPatchString
