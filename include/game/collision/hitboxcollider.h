@@ -96,14 +96,14 @@ public:
     f32 _EC[0xF];               // _EC
 };
 
-class HitboxColliderMgr : public sead::IDisposer { // Size: 0x40
+class HitboxColliderMgr { // Size: 0x40
+    SEAD_SINGLETON_DISPOSER(HitboxColliderMgr)
+
 public:
     // Constructor is inlined in HitboxCollider::createInstance
     inline HitboxColliderMgr();
     
     virtual ~HitboxColliderMgr();
-
-    static void createInstance(sead::Heap*);
 
     bool isInActiveList(HitboxCollider*);
     bool isInCreateList(HitboxCollider*);
@@ -113,8 +113,6 @@ public:
     void removeFromActiveList(HitboxCollider*);
     void removeFromCreateList(HitboxCollider*);
     void removeFromList3(HitboxCollider*);
-
-    static HitboxColliderMgr* sInstance;
 
     HitboxCollider::List mActiveList; // _10
     HitboxCollider::List mCreateList; // _1C
