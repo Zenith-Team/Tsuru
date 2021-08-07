@@ -1,5 +1,4 @@
 .text
-.include "registers.S"
 
 .global Return
 Return:

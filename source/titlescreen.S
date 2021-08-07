@@ -1,4 +1,3 @@
-.include "registers.S"
 .include "macros.S"
 
 .rodata

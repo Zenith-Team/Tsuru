@@ -1,5 +1,3 @@
-.include "registers.S"
-
 .text
 
 .global SpriteToProfileList_r3

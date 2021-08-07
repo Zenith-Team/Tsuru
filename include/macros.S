@@ -1,5 +1,3 @@
-.include "registers.S"
-
 .macro SaveVolatileRegisters
     stwu sp,  -0x38(sp)
     stw  r0,  0x08(sp)
