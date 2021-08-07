@@ -1,5 +1,3 @@
-.include "registers.S"
-
 .rodata
 YoshiTexPink:       .string "Yoshi_TexPink"
 YoshiTexLightBlue:  .string "Yoshi_TexLightBlue"
