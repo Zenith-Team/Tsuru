@@ -1,4 +1,4 @@
-#include "game/actor/stage/powerup.h"
+#include <game/actor/stage/powerup.h>
 
 class PAcorn : public Powerup {
 public:

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cstddef>
-#include "preprocessor.h"
+#include <preprocessor.h>
 
 // Workarounds to meet newer standards
 
@@ -54,6 +54,6 @@ typedef signed int         intptr_t;
 
 // Utility types
 
-#include "util/vec.h"
-#include "util/mtx.h"
-#include "util/rect.h"
+#include <util/vec.h>
+#include <util/mtx.h>
+#include <util/rect.h>

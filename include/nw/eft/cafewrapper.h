@@ -1,7 +1,7 @@
 #pragma once
 
-#include "nw/eft/enum.h"
-#include "dynlibs/gx2/types.h"
+#include <nw/eft/enum.h>
+#include <dynlibs/gx2/types.h>
 
 namespace nw { namespace eft {
 

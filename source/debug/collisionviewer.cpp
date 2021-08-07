@@ -1,18 +1,18 @@
-#include "config"
-#include "game/task/areatask.h"
+#include <config>
+#include <game/task/areatask.h>
 
 #if DEBUG
 
-#include "game/collision/collidermgr.h"
-#include "game/collision/solid/shapedcollider.h"
-#include "game/collision/solid/circularcollider.h"
-#include "game/collision/solid/solidontopcollider.h"
-#include "game/collision/actorphysicsmgr.h"
-#include "game/actor/actormgr.h"
-#include "agl/renderinfo.h"
-#include "math.h"
+#include <game/collision/collidermgr.h>
+#include <game/collision/solid/shapedcollider.h>
+#include <game/collision/solid/circularcollider.h>
+#include <game/collision/solid/solidontopcollider.h>
+#include <game/collision/actorphysicsmgr.h>
+#include <game/actor/actormgr.h>
+#include <agl/renderinfo.h>
+#include <math.h>
 
-#include "log.h"
+#include <log.h>
 
 void drawLine(const Vec2f& position, const f32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
     Vec3f scale(lineLength, lineThickness, 1.0f);

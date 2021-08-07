@@ -1,7 +1,7 @@
 #pragma once
 
-#include "util/mtx.h"
-#include "game/graphics/layeragl.h"
+#include <util/mtx.h>
+#include <game/graphics/layeragl.h>
 
 class ObjLayerRenderer;
 

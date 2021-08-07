@@ -1,7 +1,7 @@
 #pragma once
 
 #ifdef Cemu
-#include "dynlibs/os/functions.h"
+#include <dynlibs/os/functions.h>
 #define LOG(FMT, ARGS...)  __os_snprintf(log_msg, sizeof(log_msg), FMT, ## ARGS);  \
                            OSConsoleWrite(log_msg, sizeof(log_msg))
 #else

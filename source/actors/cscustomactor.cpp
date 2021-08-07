@@ -1,7 +1,7 @@
-#include "game/actor/courseselect/courseselectactor.h"
-#include "game/graphics/model/model.h"
-#include "game/graphics/drawmgr.h"
-#include "log.h"
+#include <game/actor/courseselect/courseselectactor.h>
+#include <game/graphics/model/model.h>
+#include <game/graphics/drawmgr.h>
+#include <log.h>
 
 class CSCustomActor : public CourseSelectActor {
 public:

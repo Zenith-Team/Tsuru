@@ -1,8 +1,8 @@
 #pragma once
 
-#include "game/effect/effect.h"
-#include "game/graphics/model/model.h"
-#include "game/actor/stage/multistateactor.h"
+#include <game/effect/effect.h>
+#include <game/graphics/model/model.h>
+#include <game/actor/stage/multistateactor.h>
 
 class PowerupBase : public MultiStateActor { // Size: 0x1a90
     SEAD_RTTI_OVERRIDE(PowerupBase, MultiStateActor)

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "list.h"
+#include <sead/list.h>
 
 namespace sead {
 

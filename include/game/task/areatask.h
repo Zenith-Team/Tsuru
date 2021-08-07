@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead/task.h"
-#include "agl/renderinfo.h"
+#include <sead/task.h>
+#include <agl/renderinfo.h>
 
 class AreaTask : public sead::CalculateTask {
 public:

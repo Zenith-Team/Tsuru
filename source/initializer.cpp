@@ -1,8 +1,8 @@
-#include "log.h"
-#include "config"
-#include "types.h"
-#include "dynlibs/os/functions.h"
-#include "dynlibs/gx2/functions.h"
+#include <log.h>
+#include <config>
+#include <types.h>
+#include <dynlibs/os/functions.h>
+#include <dynlibs/gx2/functions.h>
 
 typedef void (*InitFunc)();
 extern "C" InitFunc _ctors[];

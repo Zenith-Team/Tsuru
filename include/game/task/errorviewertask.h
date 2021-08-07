@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/task.h"
+#include <sead/task.h>
 
 class ErrorViewerTask : public sead::CalculateTask {
 public:

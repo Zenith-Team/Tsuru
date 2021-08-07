@@ -1,9 +1,9 @@
 #pragma once
 
-#include "sead.h"
-#include "types.h"
-#include "util/mtx.h"
-#include "dynlibs/gx2/types.h"
+#include <sead.h>
+#include <types.h>
+#include <util/mtx.h>
+#include <dynlibs/gx2/types.h>
 
 namespace sead {
 

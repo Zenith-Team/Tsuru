@@ -1,5 +1,5 @@
-#include "game/actor/stage/doorbase.h"
-#include "log.h"
+#include <game/actor/stage/doorbase.h>
+#include <log.h>
 
 class CustomDoor : public DoorBase {
 public:

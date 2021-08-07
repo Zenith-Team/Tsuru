@@ -1,8 +1,8 @@
-#include "game/actor/stage/stageactor.h"
-#include "sead.h"
-#include "dynlibs/gx2/functions.h"
-#include "dynlibs/os/functions.h"
-#include "log.h"
+#include <game/actor/stage/stageactor.h>
+#include <sead.h>
+#include <dynlibs/gx2/functions.h>
+#include <dynlibs/os/functions.h>
+#include <log.h>
 #include <string.h>
 
 //! Extremely scuffed temporary code (tried to implement functions needed from wut manually here(pain))

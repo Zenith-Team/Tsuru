@@ -1,9 +1,9 @@
 #pragma once
 
-#include "sead.h"
-#include "types.h"
-#include "profileid.h"
-#include "preprocessor.h"
+#include <sead.h>
+#include <types.h>
+#include <preprocessor.h>
+#include <game/profile/profileid.h>
 
 class ActorBase;
 struct ActorInfo;

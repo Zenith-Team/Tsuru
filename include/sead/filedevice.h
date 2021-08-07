@@ -1,7 +1,7 @@
 #pragma once
 
-#include "idisposer.h"
-#include "safestring.h"
+#include <sead/idisposer.h>
+#include <sead/safestring.h>
 
 namespace sead {
 

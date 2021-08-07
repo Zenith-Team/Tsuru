@@ -1,7 +1,7 @@
-#include "game/actor/stage/enemy.h"
-#include "game/actor/actormgr.h"
-#include "game/direction.h"
-#include "game/graphics/drawmgr.h"
+#include <game/actor/stage/enemy.h>
+#include <game/actor/actormgr.h>
+#include <game/direction.h>
+#include <game/graphics/drawmgr.h>
 
 class ParaBones : public Enemy {
     SEAD_RTTI_OVERRIDE_IMPL(ParaBones, Enemy)
