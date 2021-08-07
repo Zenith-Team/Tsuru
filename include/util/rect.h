@@ -1,6 +1,6 @@
 #pragma once
 
-#include "types.h"
+#include <types.h>
 
 struct Rect { // size: 0x10
     inline static bool RectsOverlap(Rect& thisRect, Rect& otherRect) {

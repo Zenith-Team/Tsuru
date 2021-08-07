@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead.h"
+#include <sead.h>
 
 class PlayerMgr {
     SEAD_SINGLETON_DISPOSER(PlayerMgr)

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game/collision/solid/colliderbase.h"
+#include <game/collision/solid/colliderbase.h>
 
 class ShapedCollider : public ColliderBase {
     SEAD_RTTI_OVERRIDE(ShapedCollider, ColliderBase)

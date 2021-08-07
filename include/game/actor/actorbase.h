@@ -1,8 +1,8 @@
 #pragma once
 
-#include "sead.h"
-#include "actorinfo.h"
-#include "actorbuildinfo.h"
+#include <sead.h>
+#include <game/actor/actorinfo.h>
+#include <game/actor/actorbuildinfo.h>
 
 class ActorBase { // size: 0x50
     SEAD_RTTI_BASE(ActorBase)

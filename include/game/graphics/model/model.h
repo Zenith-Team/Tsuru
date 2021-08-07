@@ -1,8 +1,8 @@
 #pragma once
 
-#include "game/container/resarchive.h"
-#include "game/graphics/renderobjlayer.h"
-#include "game/graphics/model/animation.h"
+#include <game/container/resarchive.h>
+#include <game/graphics/renderobjlayer.h>
+#include <game/graphics/model/animation.h>
 
 class Model : public RenderObjLayer::Node {
     SEAD_RTTI_OVERRIDE(Model, RenderObjLayer::Node)

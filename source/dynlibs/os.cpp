@@ -21,7 +21,7 @@
  * 3. This notice may not be removed or altered from any source
  * distribution.
  ***************************************************************************/
-#include "dynlibs/os/functions.h"
+#include <dynlibs/os/functions.h>
 
 #ifdef Cemu
 char log_msg[512];

@@ -21,8 +21,8 @@
  * 3. This notice may not be removed or altered from any source
  * distribution.
  ***************************************************************************/
-#include "dynlibs/os/functions.h"
-#include "dynlibs/gx2/types.h"
+#include <dynlibs/os/functions.h>
+#include <dynlibs/gx2/types.h>
 
 u32 gx2_handle = 0;
 

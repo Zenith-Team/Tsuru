@@ -1,7 +1,7 @@
 #pragma once
 
-#include "util/mtx.h"
-#include "sead/runtimetypeinfo.h"
+#include <util/mtx.h>
+#include <sead/runtimetypeinfo.h>
 
 namespace sead {
 

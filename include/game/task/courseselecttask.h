@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead/task.h"
-#include "game/states.h"
+#include <sead/task.h>
+#include <game/states.h>
 
 class CourseSelectTask : public sead::CalculateTask {
     SEAD_RTTI_OVERRIDE(CourseSelectTask, sead::CalculateTask)

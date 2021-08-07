@@ -1,8 +1,8 @@
 #pragma once
 
-#include "nw/eft/particle.h"
-#include "nw/eft/random.h"
-#include "nw/eft/resdata.h"
+#include <nw/eft/particle.h>
+#include <nw/eft/random.h>
+#include <nw/eft/resdata.h>
 
 namespace nw { namespace eft {
 

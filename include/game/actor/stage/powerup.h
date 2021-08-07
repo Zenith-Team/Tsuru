@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game/actor/stage/powerupbase.h"
+#include <game/actor/stage/powerupbase.h>
 
 class Powerup : public PowerupBase { // Size: 0x1a98
     SEAD_RTTI_OVERRIDE(Powerup, PowerupBase)

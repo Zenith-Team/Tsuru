@@ -1,6 +1,6 @@
 #pragma once
 
-#include "physicsmgr.h"
+#include <game/collision/physicsmgr.h>
 
 class ActorPhysicsMgr : public PhysicsMgr {
     SEAD_RTTI_OVERRIDE(ActorPhysicsMgr, PhysicsMgr)

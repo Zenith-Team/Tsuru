@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game/actor/actorbase.h"
+#include <game/actor/actorbase.h>
 
 class CourseSelectActorBase : public ActorBase {
     SEAD_RTTI_OVERRIDE(CourseSelectActorBase, ActorBase)
