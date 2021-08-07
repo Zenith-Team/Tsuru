@@ -1,7 +1,7 @@
 #pragma once
 
 #include "game/states.h"
-#include "game/collision/hitboxcollider3d.h"
+#include "game/collision/cshitboxcollider.h"
 #include "game/actor/courseselect/courseselectactor.h"
 
 class CSCollisionActor : public CourseSelectActor {
@@ -35,7 +35,7 @@ public:
 
     StateWrapper<CSCollisionActor> mStates;
     u8 _12C[0x18];  // Unknown struct
-    HitboxCollider3D mHitbox;
+    CSHitboxCollider mHitboxCollider;
     u32 mLinkID;
     u32 _164;
     u32 _168;

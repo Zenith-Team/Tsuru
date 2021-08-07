@@ -1,6 +1,9 @@
 
 ---
 Files:
+#* Files for hooks:
+  - source/nullsub.S
+#* Translation unit queue:
   - source/dynlibs/os.cpp
   - source/dynlibs/gx2.cpp
   - source/hitboxcollider.cpp

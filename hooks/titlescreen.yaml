@@ -10,30 +10,6 @@ Hooks:
     addr: "29DF4B8"
 
   # Patch version string
-  #- type: branch
-  #  instr: bl
-  #  addr: "266812C"
-  #  func: PatchVersionString
-  #- type: nop
-  #  addr: "2668130"
-  #- type: branch
-  #  instr: bl
-  #  addr: "2667FB8"
-  #  func: PatchVersionString
-  #- type: nop
-  #  addr: "2667FBC"
-  #- type: branch
-  #  instr: bl
-  #  addr: "266813C"
-  #  func: TestPatchIdkA
-  #- type: branch
-  #  instr: bl
-  #  addr: "2668144"
-  #  func: TestPatchIdkB
-  - type: branch
-    instr: bl
-    addr: "26810A4"
-    func: PatchStringShit
   - type: branch
     instr: bl
     addr: "2680F94"
