@@ -189,7 +189,7 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
                 p2 += 0.5f;
             }
 
-            if ( j < 2) {
+            if (j < 2) {
                 Vec2f point1(actorPhysicsMgr->mPosition->x + sensor->mDistanceFromCenter, actorPhysicsMgr->mPosition->y + p1);
                 Vec2f point2(actorPhysicsMgr->mPosition->x + sensor->mDistanceFromCenter, actorPhysicsMgr->mPosition->y + p2);
 
