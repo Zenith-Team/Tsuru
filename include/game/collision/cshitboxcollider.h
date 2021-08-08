@@ -5,6 +5,8 @@
 #include <sead.h>
 #include <types.h>
 
+class CSCollisionActor;
+
 class CSHitboxCollider {
 public:
     struct Info {
@@ -16,7 +18,7 @@ public:
     CSHitboxCollider();
     virtual ~CSHitboxCollider();
 
-    void init(void*, f32*);
+    void init(CSCollisionActor* owner, const Info* info);
     void add(CSHitboxCollider*);
 
     u32 mOwnerID;
@@ -34,6 +36,8 @@ public:
 
 public:
     void updateColliders();
+    void add(CSHitboxCollider* cshc);
+    s32 FUN_21c5894(CSHitboxCollider* cshc);    // Return type unknown
 
     UnknownStruct unk1;
     UnknownStruct unk2;
