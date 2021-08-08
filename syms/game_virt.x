@@ -117,6 +117,40 @@ SECTIONS {
 /* CourseSelectTask */
 	sInstance__16CourseSelectTask = 0x101cc96c;
 
+/* CSCollisionActor */
+	__ct__16CSCollisionActorFPC14ActorBuildInfo = 0x21d596c;
+	__dt__16CSCollisionActorFv = 0x21d60ec;
+	checkDerivedRuntimeTypeInfo__16CSCollisionActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x21d5ff0;
+	getRuntimeTypeInfo__16CSCollisionActorCFv = __deleted_virtual_called;
+	vf8C__16CSCollisionActorFv = 0x21d5fcc;
+	vf94__16CSCollisionActorFv = 0x21d5fd4;
+	vf9C__16CSCollisionActorFv = 0x21d5fe0;
+	vfA4__16CSCollisionActorFv = 0x21d5fec;
+	vfAC__16CSCollisionActorFv = 0x21d614c;
+	vfB4__16CSCollisionActorFv = 0x21d6150;
+	vfBC__16CSCollisionActorFv = 0x21d6158;
+	vfC4__16CSCollisionActorFdP13Vec3__tm__2_f = 0x21d6160;
+	vfCC__16CSCollisionActorFv = 0x21d6180;
+	vfD4__16CSCollisionActorFv = 0x21d6184;
+	vfDC__16CSCollisionActorFv = 0x21d618c;
+	vfE4__16CSCollisionActorFv = 0x21d6198;
+	vfEC__16CSCollisionActorFv = 0x21d61a0;
+	vfF4__16CSCollisionActorFP13Vec3__tm__2_f = 0x21d5d4c;
+	vfFC__16CSCollisionActorFv = 0x21d5d5c;
+	vf104__16CSCollisionActorFUi = 0x21d5e40;
+	vf10C__16CSCollisionActorFv = 0x21d5e54;
+	vf114__16CSCollisionActorFv = 0x21d5f08;
+	vf11C__16CSCollisionActorFv = 0x21d61a8;
+	vf124__16CSCollisionActorFv = 0x21d61c0;
+
+/* CSHitboxCollider */
+	__CPR72__init__16CSHitboxColliderFP16CSCollisionActorPCQ2_J6J4Info = 0x21c5634;
+
+/* CSHitboxColliderMgr */
+	sInstance__19CSHitboxColliderMgr = 0x101c9758;
+	add__19CSHitboxColliderMgrFP16CSHitboxCollider = 0x21c5800;
+	FUN_21c5894__19CSHitboxColliderMgrFP16CSHitboxCollider = 0x21c5894;
+
 /* CSSomethingActor */
 	__ct__16CSSomethingActorFPC14ActorBuildInfo = 0x2201c04;
 	__dt__16CSSomethingActorFv = 0x2201d08;

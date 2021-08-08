@@ -1,9 +1,9 @@
-#include <game/actor/courseselect/courseselectactor.h>
+#include <game/actor/courseselect/cscollisionactor.h>
 #include <game/graphics/model/model.h>
 #include <game/graphics/drawmgr.h>
 #include <log.h>
 
-class CSCustomActor : public CourseSelectActor {
+class CSCustomActor : public CSCollisionActor {
 public:
     CSCustomActor(const ActorBuildInfo* buildInfo);
     virtual ~CSCustomActor() { }
@@ -15,10 +15,18 @@ public:
     u32 onDraw() override;
 
     ModelWrapper* mModel;
+    
+    static const CSHitboxCollider::Info sCollisionInfo;
+};
+
+const Profile CSCustomActorProfile(&CSCustomActor::build, 869, "CSCustomActor", nullptr, 0);
+
+const CSHitboxCollider::Info CSCustomActor::sCollisionInfo = {
+    32.0f, Vec3f(0.0f)
 };
 
 CSCustomActor::CSCustomActor(const ActorBuildInfo* buildInfo) 
-    : CourseSelectActor(buildInfo)
+    : CSCollisionActor(buildInfo)
 { }
 
 ActorBase* CSCustomActor::build(const ActorBuildInfo* buildInfo) {
@@ -27,6 +35,10 @@ ActorBase* CSCustomActor::build(const ActorBuildInfo* buildInfo) {
 
 u32 CSCustomActor::onCreate() {
     this->mModel = ModelWrapper::create("cobStarGate", "cobStarGate", 3);
+
+    this->mHitboxCollider.init(this, &CSCustomActor::sCollisionInfo);
+
+    CSHitboxColliderMgr::sInstance->FUN_21c5894(&this->mHitboxCollider);
 
     return 1;
 }
@@ -40,7 +52,10 @@ u32 CSCustomActor::onExecute() {
     this->mModel->setScale(this->mScale);
     this->mModel->updateModel();
 
-    this->mPosition.z -= 0.5f;
+    CSHitboxColliderMgr::sInstance->add(&this->mHitboxCollider);
+
+    if (CSHitboxColliderMgr::sInstance->FUN_21c5894(&this->mHitboxCollider) != 0) { LOG("NOT zero"); }
+    else { LOG("YES zero"); }
 
     return 1;
 }
