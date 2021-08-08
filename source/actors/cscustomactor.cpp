@@ -22,7 +22,8 @@ public:
 const Profile CSCustomActorProfile(&CSCustomActor::build, 869, "CSCustomActor", nullptr, 0);
 
 const CSHitboxCollider::Info CSCustomActor::sCollisionInfo = {
-    32.0f, Vec3f(0.0f)
+    32.0f,      // Size
+    Vec3f(0.0f) // Offset
 };
 
 CSCustomActor::CSCustomActor(const ActorBuildInfo* buildInfo) 
@@ -52,10 +53,14 @@ u32 CSCustomActor::onExecute() {
     this->mModel->setScale(this->mScale);
     this->mModel->updateModel();
 
+    // This needs to be in onExecute for the collision check below to work so it's probably not "add"
     CSHitboxColliderMgr::sInstance->add(&this->mHitboxCollider);
 
-    if (CSHitboxColliderMgr::sInstance->FUN_21c5894(&this->mHitboxCollider) != 0) { LOG("NOT zero"); }
-    else { LOG("YES zero"); }
+    // Checks if player collided (gets called twice around 1 second after player collision, also causes the player to bounce back and go into a fighting stance)
+    if (CSHitboxColliderMgr::sInstance->FUN_21c5894(&this->mHitboxCollider) != 0) {
+        this->mRotation += 0x5000000;
+        LOG("Player collided");
+    }
 
     return 1;
 }
