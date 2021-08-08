@@ -31,8 +31,16 @@ SECTIONS {
 /* GHS C Functions */
 	_f_ftoll = 0x2AFEBFC;
 
-/* Cafe SDK */
+/* Cafe SDK Static */
 	ASM_MTXConcat = 0x2af98a0;
+	GFDGetPixelShaderCount = 0x2AF8C10;
+	GFDGetPixelShaderHeaderSize = 0x2AF8D10;
+	GFDGetPixelShaderProgramSize = 0x2AF8D40;
+	GFDGetPixelShader = 0x2AF8FC0;
+	GFDGetVertexShaderCount = 0x2AF8C04;
+	GFDGetVertexShaderHeaderSize = 0x2AF8D00;
+	GFDGetVertexShaderProgramSize = 0x2AF8D40;
+	GFDGetVertexShader = 0x2AF8E3C;
 
 /* sead::FileDeviceMgr */
 	sInstance__Q2_4sead13FileDeviceMgr = 0x101E7F18
