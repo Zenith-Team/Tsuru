@@ -44,15 +44,6 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
     sead::PrimitiveRenderer::sInstance->setProjection(*renderInfo.mProjection);
     sead::PrimitiveRenderer::sInstance->begin();
 
-    static const sead::Color4f colorRed(1.0f, 0.0f, 0.0f, 1.0f);
-    static const sead::Color4f colorGreen(0.0f, 1.0f, 0.0f, 1.0f);
-    static const sead::Color4f colorBlue(0.0f, 0.0f, 1.0f, 1.0f);
-    static const sead::Color4f colorCyan(0.0f, 1.0f, 1.0f, 1.0f);
-    static const sead::Color4f colorYellow(1.0f, 1.0f, 0.0f, 1.0f);
-    static const sead::Color4f colorMagenta(1.0f, 0.0f, 1.0f, 1.0f);
-    static const sead::Color4f colorBlack(0.0f, 0.0f, 0.0f, 1.0f);
-    static const sead::Color4f colorWhite(1.0f, 1.0f, 1.0f, 1.0f);
-
     HitboxCollider::List::Node* hColliderNode;
     hColliderNode = HitboxColliderMgr::sInstance->mActiveList.mFirst;
 
@@ -69,17 +60,17 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
                 Vec2f point3(rect.right, rect.bottom);
                 Vec2f point4(rect.left, rect.bottom);
 
-                drawLine(point1, point2, colorRed, 1.0f);
-                drawLine(point2, point3, colorRed, 1.0f);
-                drawLine(point3, point4, colorRed, 1.0f);
-                drawLine(point1, point4, colorRed, 1.0f);
-                drawLine(point1, point3, colorRed, 1.0f);   // Diagonal line
+                drawLine(point1, point2, sead::colorRed, 1.0f);
+                drawLine(point2, point3, sead::colorRed, 1.0f);
+                drawLine(point3, point4, sead::colorRed, 1.0f);
+                drawLine(point1, point4, sead::colorRed, 1.0f);
+                drawLine(point1, point3, sead::colorRed, 1.0f);   // Diagonal line
             }
 
             else if (hCollider->mColliderInfo.mShape == HitboxCollider::ShapeCircle) {
                 f32 radius = (rect.right - rect.left) / 2.0f;
 
-                sead::PrimitiveRenderer::sInstance->drawCircle32(Vec3f(rect.left + radius, rect.bottom + radius, 4000.0f), radius, colorRed);
+                sead::PrimitiveRenderer::sInstance->drawCircle32(Vec3f(rect.left + radius, rect.bottom + radius, 4000.0f), radius, sead::colorRed);
             }
         }
 
@@ -100,17 +91,17 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
             Vec2f point3(rect.right, rect.bottom);
             Vec2f point4(rect.left, rect.bottom);
 
-            drawLine(point1, point2, colorRed, 1.0f);
-            drawLine(point2, point3, colorRed, 1.0f);
-            drawLine(point3, point4, colorRed, 1.0f);
-            drawLine(point1, point4, colorRed, 1.0f);
-            drawLine(point1, point3, colorRed, 1.0f); // Diagonal line
+            drawLine(point1, point2, sead::colorRed, 1.0f);
+            drawLine(point2, point3, sead::colorRed, 1.0f);
+            drawLine(point3, point4, sead::colorRed, 1.0f);
+            drawLine(point1, point4, sead::colorRed, 1.0f);
+            drawLine(point1, point3, sead::colorRed, 1.0f); // Diagonal line
         }
 
         else if (hCollider->mColliderInfo.mShape == HitboxCollider::ShapeCircle) {
             f32 radius = (rect.right - rect.left) / 2.0f;
 
-            sead::PrimitiveRenderer::sInstance->drawCircle32(Vec3f(rect.left + radius, rect.bottom + radius, 4000.0f), radius, colorRed);
+            sead::PrimitiveRenderer::sInstance->drawCircle32(Vec3f(rect.left + radius, rect.bottom + radius, 4000.0f), radius, sead::colorRed);
         }
 
         hColliderNode = hColliderNode->mNext;
@@ -124,7 +115,7 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
         if (sead::IsDerivedFrom<CircularCollider, ColliderBase>(colliderBase)) {
             CircularCollider* collider = static_cast<CircularCollider*>(colliderBase);
 
-            sead::PrimitiveRenderer::sInstance->drawCircle32(Vec3f(collider->mOwnerInfo.mPosition->x + collider->mDistToCenter.x + collider->_160.x, collider->mOwnerInfo.mPosition->y + collider->mDistToCenter.y + collider->_160.y, 4000.f), collider->mRadius, colorBlue);
+            sead::PrimitiveRenderer::sInstance->drawCircle32(Vec3f(collider->mOwnerInfo.mPosition->x + collider->mDistToCenter.x + collider->_160.x, collider->mOwnerInfo.mPosition->y + collider->mDistToCenter.y + collider->_160.y, 4000.f), collider->mRadius, sead::colorBlue);
         }
 
         else if (sead::IsDerivedFrom<SolidOnTopCollider, ColliderBase>(colliderBase)) {
@@ -136,7 +127,7 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
 
             for (u32 i = 0; i < collider->mNodes1.mSize; i++) {
                 const ColliderBase::Node& node = collider->mNodes1[i];
-                drawLine(center + node.mSensor.mPoint1, center + node.mSensor.mPoint2, colorGreen, 1.0f);
+                drawLine(center + node.mSensor.mPoint1, center + node.mSensor.mPoint2, sead::colorGreen, 1.0f);
             }
         }
 
@@ -149,13 +140,13 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
 
             for (u32 i = 0; i < collider->mNodes1.mSize; i++) {
                 const ColliderBase::Node& node = collider->mNodes1[i];
-                drawLine(center + node.mSensor.mPoint1, center + node.mSensor.mPoint2, colorBlue, 1.0f);
+                drawLine(center + node.mSensor.mPoint1, center + node.mSensor.mPoint2, sead::colorBlue, 1.0f);
             }
 
             if (collider->mPoints.mSize >= 4 && !(collider->mPoints.mSize & 1)) {
                 const ColliderBase::Node& node1 = collider->mNodes1[0];
                 const ColliderBase::Node& node2 = collider->mNodes1[collider->mPoints.mSize / 2 - 1];
-                drawLine(center + node1.mSensor.mPoint1, center + node2.mSensor.mPoint2, colorBlue, 1.0f);
+                drawLine(center + node1.mSensor.mPoint1, center + node2.mSensor.mPoint2, sead::colorBlue, 1.0f);
             }
         }
 
@@ -193,14 +184,14 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
                 Vec2f point1(actorPhysicsMgr->mPosition->x + sensor->mDistanceFromCenter, actorPhysicsMgr->mPosition->y + p1);
                 Vec2f point2(actorPhysicsMgr->mPosition->x + sensor->mDistanceFromCenter, actorPhysicsMgr->mPosition->y + p2);
 
-                drawLine(point1, point2, colorYellow, 1.0f);
+                drawLine(point1, point2, sead::colorYellow, 1.0f);
             }
 
             else {
                 Vec2f point1(actorPhysicsMgr->mPosition->x + p1, actorPhysicsMgr->mPosition->y + sensor->mDistanceFromCenter);
                 Vec2f point2(actorPhysicsMgr->mPosition->x + p2, actorPhysicsMgr->mPosition->y + sensor->mDistanceFromCenter);
 
-                drawLine(point1, point2, (j == 2) ? colorWhite : colorCyan, 1.0f);
+                drawLine(point1, point2, (j == 2) ? sead::colorWhite : sead::colorCyan, 1.0f);
             }
         }
     }
