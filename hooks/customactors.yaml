@@ -7,12 +7,6 @@ Files:
   - source/actors/parabones.cpp
   - source/actors/fakeactor.cpp
   - source/actors/actorspawner.cpp
-  - source/actors/graphicsactor.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks: []
-  # Replace CSFireBro with CSCustomActor
- #- type: branch
- #  instr: b
- #  addr: "22775e8"
- #  func: build__13CSCustomActorSFPC14ActorBuildInfo

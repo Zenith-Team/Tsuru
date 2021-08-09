@@ -36,7 +36,7 @@ public:
     virtual void drawCylinder32Impl(const Mtx34& modelMtx, const Color4f& top, const Color4f& btm) = 0;
 };
 
-class PrimitiveRenderer: public IDisposer {
+class PrimitiveRenderer : public IDisposer {
 public:
     class QuadArg {
     public:
@@ -77,26 +77,26 @@ class PrimitiveRendererCafe : public PrimitiveRendererBase {
 public:
     PrimitiveRendererCafe(Heap* heap);
 
-    virtual void prepareFromBinaryImpl(Heap* heap, const void* binData, u32);
-    virtual void prepareImpl(Heap* heap, const SafeString& path);
-    virtual void setCameraImpl(const Camera& camera);
-    virtual void setProjectionImpl(const Projection& projection);
-    virtual void beginImpl();
-    virtual void endImpl();
-    virtual void drawQuadImpl(const Mtx34& modelMtx, const Color4f& colorL, const Color4f& colorR);
-    virtual void drawQuadImpl(const Mtx34& modelMtx, const Texture& texture, const Color4f& colorL, const Color4f& colorR, const Vec2f& uv_src, const Vec2f& uv_size);
-    virtual void drawBoxImpl(const Mtx34& modelMtx, const Color4f& colorL, const Color4f& colorR);
-    virtual void drawCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1);
-    virtual void drawWireCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1);
-    virtual void drawLineImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1);
-    virtual void drawSphere4x8Impl(const Mtx34& modelMtx, const Color4f& north, const Color4f& south);
-    virtual void drawSphere8x16Impl(const Mtx34& modelMtx, const Color4f& north, const Color4f& south);
-    virtual void drawDisk16Impl(const Mtx34& modelMtx, const Color4f& center, const Color4f& edge);
-    virtual void drawDisk32Impl(const Mtx34& modelMtx, const Color4f& center, const Color4f& edge);
-    virtual void drawCircle16Impl(const Mtx34& modelMtx, const Color4f& edge);  // deleted?
-    virtual void drawCircle32Impl(const Mtx34& modelMtx, const Color4f& edge);  // deleted?
-    virtual void drawCylinder16Impl(const Mtx34& modelMtx, const Color4f& top, const Color4f& bottom);
-    virtual void drawCylinder32Impl(const Mtx34& modelMtx, const Color4f& top, const Color4f& bottom);
+    void prepareFromBinaryImpl(Heap* heap, const void* binData, u32) override;
+    void prepareImpl(Heap* heap, const SafeString& path) override;
+    void setCameraImpl(const Camera& camera) override;
+    void setProjectionImpl(const Projection& projection) override;
+    void beginImpl() override;
+    void endImpl() override;
+    void drawQuadImpl(const Mtx34& modelMtx, const Color4f& colorL, const Color4f& colorR) override;
+    void drawQuadImpl(const Mtx34& modelMtx, const Texture& texture, const Color4f& colorL, const Color4f& colorR, const Vec2f& uv_src, const Vec2f& uv_size) override;
+    void drawBoxImpl(const Mtx34& modelMtx, const Color4f& colorL, const Color4f& colorR) override;
+    void drawCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) override;
+    void drawWireCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) override;
+    void drawLineImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) override;
+    void drawSphere4x8Impl(const Mtx34& modelMtx, const Color4f& north, const Color4f& south) override;
+    void drawSphere8x16Impl(const Mtx34& modelMtx, const Color4f& north, const Color4f& south) override;
+    void drawDisk16Impl(const Mtx34& modelMtx, const Color4f& center, const Color4f& edge) override;
+    void drawDisk32Impl(const Mtx34& modelMtx, const Color4f& center, const Color4f& edge) override;
+    void drawCircle16Impl(const Mtx34& modelMtx, const Color4f& edge) override;  // deleted?
+    void drawCircle32Impl(const Mtx34& modelMtx, const Color4f& edge) override;  // deleted?
+    void drawCylinder16Impl(const Mtx34& modelMtx, const Color4f& top, const Color4f& bottom) override;
+    void drawCylinder32Impl(const Mtx34& modelMtx, const Color4f& top, const Color4f& bottom) override;
     virtual ~PrimitiveRendererCafe();
 
     void drawLines_(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1, PrimitiveRendererUtil::Vertex* vtx, u32 vtxNum, u16* idx, u32 idxNum);
