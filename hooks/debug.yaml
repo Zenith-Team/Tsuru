@@ -14,3 +14,8 @@ Hooks:
     instr: bl
     addr: "22664ec"
     func: CourseSelectTaskDebugDraw
+  # Redirect CourseSelectTask::drawLayer3D_DRC to branch to a custom function instead of drawLayer3D
+  - type: branch
+    instr: b
+    addr: "2267704"
+    func: debugDraw__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo

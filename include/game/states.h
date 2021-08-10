@@ -121,7 +121,7 @@ public:
     virtual ~StateWrapper() { }
 
     StateExecutor<TOwner> mExecutor;
-    StateMgr manager;
+    StateMgr mManager;
 
     inline void changeState(StateBase* nextState) {
         mManager.changeState(nextState);
