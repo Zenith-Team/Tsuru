@@ -19,7 +19,6 @@ public:
     virtual ~CSHitboxCollider();
 
     void init(CSCollisionActor* owner, const Info* info);
-    void add(CSHitboxCollider*);
 
     u32 mOwnerID;
     u32 _4;
@@ -31,7 +30,7 @@ class CSHitboxColliderMgr {
 
 public:
     struct UnknownStruct : public sead::PtrArrayImpl {
-        u8 unk1[1032];
+        u8 data[1032];
     };
 
 public:
@@ -39,6 +38,6 @@ public:
     void add(CSHitboxCollider* cshc);
     s32 FUN_21c5894(CSHitboxCollider* cshc);    // Return type unknown
 
-    UnknownStruct unk1;
-    UnknownStruct unk2;
+    UnknownStruct mArray1;
+    UnknownStruct mArray2;
 };

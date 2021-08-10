@@ -1,5 +1,6 @@
 #include <config>
 #include <game/task/areatask.h>
+#include <game/task/courseselecttask.h>
 
 #if DEBUG
 
@@ -9,6 +10,8 @@
 #include <game/collision/solid/solidontopcollider.h>
 #include <game/collision/actorphysicsmgr.h>
 #include <game/actor/actormgr.h>
+#include <game/actor/courseselect/cscollisionactor.h>
+#include <game/collision/cshitboxcollider.h>
 #include <agl/renderinfo.h>
 #include <math.h>
 
@@ -37,7 +40,7 @@ void drawLine(const Vec2f& point1, const Vec2f& point2, const sead::Color4f& col
 #endif
 
 void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
-    drawLayer3D(renderInfo);
+    this->drawLayer3D(renderInfo);
 
 #if DEBUG
     sead::PrimitiveRenderer::sInstance->setCamera(*renderInfo.mCamera);
@@ -200,5 +203,47 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
 
     sead::PrimitiveRenderer::sInstance->end();
 
+#endif
+}
+
+void CourseSelectTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
+    this->drawLayer3D(renderInfo);
+
+#if DEBUG
+    sead::PrimitiveRenderer::sInstance->setCamera(*renderInfo.mCamera);
+    sead::PrimitiveRenderer::sInstance->setProjection(*renderInfo.mProjection);
+    sead::PrimitiveRenderer::sInstance->begin();
+
+
+    for (u32 i = 0; i < CSHitboxColliderMgr::sInstance->mArray1.mPtrNum; i++) {
+        CSHitboxCollider* cshCollider = static_cast<CSHitboxCollider*>(CSHitboxColliderMgr::sInstance->mArray1.mPtrs[i]);
+
+        if (!cshCollider)
+            continue;
+
+        CourseSelectActorBase* actor = reinterpret_cast<CourseSelectActorBase*>(ActorMgr::sInstance->mActors.findActorByID(&cshCollider->mOwnerID));
+
+        if (!actor)
+            continue;
+
+        sead::PrimitiveRenderer::sInstance->drawCube(actor->mPosition + cshCollider->mInfo.mOffset, cshCollider->mInfo.mSize, sead::colorYellow);
+    }
+
+
+    for (u32 i = 0; i < CSHitboxColliderMgr::sInstance->mArray2.mPtrNum; i++) {
+        CSHitboxCollider* cshCollider = static_cast<CSHitboxCollider*>(CSHitboxColliderMgr::sInstance->mArray2.mPtrs[i]);
+
+        if (!cshCollider)
+            continue;
+
+        CourseSelectActorBase* actor = reinterpret_cast<CourseSelectActorBase*>(ActorMgr::sInstance->mActors.findActorByID(&cshCollider->mOwnerID));
+
+        if (!actor)
+            continue;
+
+        sead::PrimitiveRenderer::sInstance->drawCube(actor->mPosition + cshCollider->mInfo.mOffset, cshCollider->mInfo.mSize, sead::colorRed);
+    }
+
+    sead::PrimitiveRenderer::sInstance->end();
 #endif
 }

@@ -4,6 +4,30 @@
 
 namespace sead {
 
+void PrimitiveRenderer::drawCube(const Vec3f& position, f32 size, const Color4f& color) {
+    Vec3f scale(size);
+
+    Mtx34 mtx;
+    Mtx34::makeST(mtx, scale, position);
+
+    Mtx34 outMtx;
+    (void)MTX34MULT(&outMtx, &mModelMtx, &mtx);
+
+    this->mRendererImpl->drawCubeImpl(outMtx, color, color);
+}
+
+void PrimitiveRenderer::drawWireCube(const Vec3f& position, f32 size, const Color4f& color) {
+    Vec3f scale(size);
+
+    Mtx34 mtx;
+    Mtx34::makeST(mtx, scale, position);
+
+    Mtx34 outMtx;
+    (void)MTX34MULT(&outMtx, &mModelMtx, &mtx);
+
+    this->mRendererImpl->drawWireCubeImpl(outMtx, color, color);
+}
+
 void PrimitiveRenderer::drawCircle16(const Vec3f& position, f32 radius, const Color4f& color) {
     f32 diameter = radius + radius;
     Vec3f scale(diameter);
@@ -14,7 +38,7 @@ void PrimitiveRenderer::drawCircle16(const Vec3f& position, f32 radius, const Co
     Mtx34 outMtx;
     (void)MTX34MULT(&outMtx, &mModelMtx, &mtx);
 
-    mRendererImpl->drawCircle16Impl(outMtx, color);
+    this->mRendererImpl->drawCircle16Impl(outMtx, color);
 }
 
 void PrimitiveRenderer::drawCircle32(const Vec3f& position, f32 radius, const Color4f& color) {
@@ -27,24 +51,32 @@ void PrimitiveRenderer::drawCircle32(const Vec3f& position, f32 radius, const Co
     Mtx34 outMtx;
     (void)MTX34MULT(&outMtx, &mModelMtx, &mtx);
 
-    mRendererImpl->drawCircle32Impl(outMtx, color);
+    this->mRendererImpl->drawCircle32Impl(outMtx, color);
 }
 
-void PrimitiveRendererCafe::drawLines_(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1, PrimitiveRendererUtil::Vertex* vtx, u32 vtxNum, u16* idx, u32 idxNum) {
-    GX2SetVertexUniformReg(mParamUserOffset, 12, &modelMtx);
-    GX2SetVertexUniformReg(mParamColor0Offset, 4, &c0);
-    GX2SetVertexUniformReg(mParamColor1Offset, 4, &c1);
-    GX2SetPixelUniformReg(mParamRateOffset, 4, &Rect::sZero);
-    GX2SetAttribBuffer(0, vtxNum * 0x24, 0x24, vtx);
-    GX2DrawIndexedEx(GX2_PRIMITIVE_LINE_LOOP, idxNum, GX2_INDEX_FORMAT_U16, idx, 0, 1);
+void PrimitiveRendererCafe::drawCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) {
+    drawTriangles_(modelMtx, c0, c1, mCubeVertexBuf, 8, mCubeIndexBuf, 36, NULL);
+}
+
+void PrimitiveRendererCafe::drawWireCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) {
+    drawLines_(modelMtx, c0, c1, this->mWireCubeVertexBuf, 8, this->mWireCubeIndexBuf, 17);
 }
 
 void PrimitiveRendererCafe::drawCircle16Impl(const Mtx34& modelMtx, const Color4f& edge) {
-    drawLines_(modelMtx, edge, edge, mDiskSVertexBuf, 17, mCircleSIndexBuf, 16);
+    drawLines_(modelMtx, edge, edge, this->mDiskSVertexBuf, 17, this->mCircleSIndexBuf, 16);
 }
 
 void PrimitiveRendererCafe::drawCircle32Impl(const Mtx34& modelMtx, const Color4f& edge) {
-    drawLines_(modelMtx, edge, edge, mDiskLVertexBuf, 33, mCircleLIndexBuf, 32);
+    drawLines_(modelMtx, edge, edge, this->mDiskLVertexBuf, 33, this->mCircleLIndexBuf, 32);
+}
+
+void PrimitiveRendererCafe::drawLines_(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1, PrimitiveRendererUtil::Vertex* vtx, u32 vtxNum, u16* idx, u32 idxNum) {
+    GX2SetVertexUniformReg(this->mParamUserOffset, 12, &modelMtx);
+    GX2SetVertexUniformReg(this->mParamColor0Offset, 4, &c0);
+    GX2SetVertexUniformReg(this->mParamColor1Offset, 4, &c1);
+    GX2SetPixelUniformReg(this->mParamRateOffset, 4, &Rect::sZero);
+    GX2SetAttribBuffer(0, vtxNum * 0x24, 0x24, vtx);
+    GX2DrawIndexedEx(GX2_PRIMITIVE_LINE_LOOP, idxNum, GX2_INDEX_FORMAT_U16, idx, 0, 1);
 }
 
 }

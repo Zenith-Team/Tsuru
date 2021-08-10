@@ -41,7 +41,7 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 * Infinite lives *
 * Infinite time *
 * Restored background offset settings functionality *
-* Restored drawCircle16Impl and drawCircle32Impl in sead::PrimitiveRendererCafe
+* Restored many of sead::PrimitiveRendererCafe's deleted functions
 * Restored sound effect reverb settings *
 * RPL library loader *
 * SARC level loader *

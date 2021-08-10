@@ -2,6 +2,7 @@
 
 #include <sead.h>
 #include <types.h>
+#include <math.h>
 #include <util/mtx.h>
 #include <dynlibs/gx2/types.h>
 
@@ -57,6 +58,8 @@ public:
     void end();
 
     void drawQuad(const QuadArg& arg);
+    void drawCube(const Vec3f& position, f32 size, const Color4f& color);
+    void drawWireCube(const Vec3f& position, f32 size, const Color4f& color);
     void drawCircle16(const Vec3f& position, f32 radius, const Color4f& color);
     void drawCircle32(const Vec3f& position, f32 radius, const Color4f& color);
 
@@ -69,7 +72,18 @@ public:
 
 namespace PrimitiveRendererUtil {
 
-class Vertex;
+class Vertex {
+public:
+    Vertex(const Vec3f& pos, const Vec2f& uv, const Color4f& color)
+        : mPos(pos)
+        , mUV(uv)
+        , mColor(color)
+    { }
+
+    Vec3f mPos;
+    Vec3f mUV;
+    Color4f mColor;
+};
 
 }
 
@@ -87,19 +101,20 @@ public:
     void drawQuadImpl(const Mtx34& modelMtx, const Texture& texture, const Color4f& colorL, const Color4f& colorR, const Vec2f& uv_src, const Vec2f& uv_size) override;
     void drawBoxImpl(const Mtx34& modelMtx, const Color4f& colorL, const Color4f& colorR) override;
     void drawCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) override;
-    void drawWireCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) override;
+    void drawWireCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) override;    // restored
     void drawLineImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) override;
     void drawSphere4x8Impl(const Mtx34& modelMtx, const Color4f& north, const Color4f& south) override;
     void drawSphere8x16Impl(const Mtx34& modelMtx, const Color4f& north, const Color4f& south) override;
     void drawDisk16Impl(const Mtx34& modelMtx, const Color4f& center, const Color4f& edge) override;
     void drawDisk32Impl(const Mtx34& modelMtx, const Color4f& center, const Color4f& edge) override;
-    void drawCircle16Impl(const Mtx34& modelMtx, const Color4f& edge) override;  // deleted?
-    void drawCircle32Impl(const Mtx34& modelMtx, const Color4f& edge) override;  // deleted?
+    void drawCircle16Impl(const Mtx34& modelMtx, const Color4f& edge) override;  // restored
+    void drawCircle32Impl(const Mtx34& modelMtx, const Color4f& edge) override;  // restored
     void drawCylinder16Impl(const Mtx34& modelMtx, const Color4f& top, const Color4f& bottom) override;
     void drawCylinder32Impl(const Mtx34& modelMtx, const Color4f& top, const Color4f& bottom) override;
     virtual ~PrimitiveRendererCafe();
 
     void drawLines_(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1, PrimitiveRendererUtil::Vertex* vtx, u32 vtxNum, u16* idx, u32 idxNum);
+    void drawTriangles_(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1, PrimitiveRendererUtil::Vertex* vtx, u32 vtxNum, u16* idx, u32 idxNum, const GX2Texture* tex);
 
     Mtx34 mCameraMtx;
     Mtx44 mProjectionMtx;

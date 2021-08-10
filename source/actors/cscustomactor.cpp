@@ -45,14 +45,6 @@ u32 CSCustomActor::onCreate() {
 }
 
 u32 CSCustomActor::onExecute() {
-    Mtx34 mtx;
-
-    mtx.rotateAndTranslate(this->mRotation, this->mPosition);
-
-    this->mModel->setMtx(mtx);
-    this->mModel->setScale(this->mScale);
-    this->mModel->updateModel();
-
     // This needs to be in onExecute for the collision check below to work so it's probably not "add"
     CSHitboxColliderMgr::sInstance->add(&this->mHitboxCollider);
 
@@ -66,7 +58,19 @@ u32 CSCustomActor::onExecute() {
 }
 
 u32 CSCustomActor::onDraw() {
+    Mtx34 mtx;
+
+    mtx.rotateAndTranslate(this->mRotation, this->mPosition);
+
+    this->mModel->setMtx(mtx);
+    this->mModel->setScale(this->mScale);
+    this->mModel->updateModel();
+
     DrawMgr::sInstance->drawModel(mModel);
+
+    sead::PrimitiveRenderer::sInstance->begin();
+    sead::PrimitiveRenderer::sInstance->mRendererImpl->drawWireCubeImpl(mtx, sead::colorRed, sead::colorBlue);
+    sead::PrimitiveRenderer::sInstance->end();
 
     return 1;
 }
