@@ -60,6 +60,9 @@ SECTIONS {
 	begin__Q2_4sead17PrimitiveRendererFv = 0x2a08408;
 	end__Q2_4sead17PrimitiveRendererFv = 0x2a0841c;
 
+/* sead::PrimitiveRendererCafe */
+	drawTriangles___Q2_4sead21PrimitiveRendererCafeFRC5Mtx34RCQ2_4sead7Color4fT2PQ3_4sead21PrimitiveRendererUtil6VertexUiPUsT5PC11_GX2Texture = 0x2a0a190;
+
 /* sead::Random */
 	getU32__Q2_4sead6RandomFv = 0x2a13780;
 
@@ -81,6 +84,9 @@ SECTIONS {
 	onDelete__9ActorBaseFv = 0x2002fb0;
 	afterDelete__9ActorBaseFUi = 0x2002f3c;
 	getProfileId__9ActorBaseFv = 0x2002c80;
+
+/* ActorBuffer */
+	findActorByID__11ActorBufferFPUi = 0x200a5c8;
 
 /* ActorInfo */
 	sDefault__9ActorInfo = 0x100018F4;
@@ -124,6 +130,10 @@ SECTIONS {
 
 /* CourseSelectTask */
 	sInstance__16CourseSelectTask = 0x101cc96c;
+	drawLayer3D__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo = 0x22676a4;
+
+/* CSPlayerMgr */
+	sInstance__11CSPlayerMgr = 0x101cc30c;
 
 /* CSCollisionActor */
 	__ct__16CSCollisionActorFPC14ActorBuildInfo = 0x21d596c;

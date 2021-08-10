@@ -4,7 +4,13 @@ Files:
   - source/debug/collisionviewer.S
   - source/debug/collisionviewer.cpp
 Hooks:
+  # Hijack funcptr of AreaTask::drawLayer3D to point to a custom function
   - type: branch
     instr: bl
     addr: "24B65E0"
     func: AreaTaskDebugDraw
+  # Hijack funcptr of CourseSelectTask::drawLayer3D to point to a custom function
+  - type: branch
+    instr: bl
+    addr: "22664ec"
+    func: CourseSelectTaskDebugDraw

@@ -38,7 +38,7 @@ void initialize() {
     InitGX2FunctionPointers();
 
 #if DEBUG
-    LOG("OSDynLoad_Acquire address: 0x%08X\n", OS_SPECIFICS->addr_OSDynLoad_Acquire);
-    LOG("OSDynLoad_FindExport address: 0x%08X\n", OS_SPECIFICS->addr_OSDynLoad_FindExport);
+    LOG("OSDynLoad_Acquire address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_Acquire);
+    LOG("OSDynLoad_FindExport address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_FindExport);
 #endif
 }
