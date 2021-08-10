@@ -19,10 +19,8 @@ public:
     static const CSHitboxCollider::Info sCollisionInfo;
 };
 
-const Profile CSCustomActorProfile(&CSCustomActor::build, 869, "CSCustomActor", nullptr, 0);
-
 const CSHitboxCollider::Info CSCustomActor::sCollisionInfo = {
-    32.0f,      // Size
+    64.0f,      // Size
     Vec3f(0.0f) // Offset
 };
 
@@ -38,8 +36,6 @@ u32 CSCustomActor::onCreate() {
     this->mModel = ModelWrapper::create("cobStarGate", "cobStarGate", 3);
 
     this->mHitboxCollider.init(this, &CSCustomActor::sCollisionInfo);
-
-    CSHitboxColliderMgr::sInstance->FUN_21c5894(&this->mHitboxCollider);
 
     return 1;
 }
@@ -67,10 +63,6 @@ u32 CSCustomActor::onDraw() {
     this->mModel->updateModel();
 
     DrawMgr::sInstance->drawModel(mModel);
-
-    sead::PrimitiveRenderer::sInstance->begin();
-    sead::PrimitiveRenderer::sInstance->mRendererImpl->drawWireCubeImpl(mtx, sead::colorRed, sead::colorBlue);
-    sead::PrimitiveRenderer::sInstance->end();
 
     return 1;
 }
