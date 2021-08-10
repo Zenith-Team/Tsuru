@@ -16,6 +16,9 @@ public:
     void vf9C() override;
     void vfA4() override; // nullsub
 
+    // Custom functions
+    inline void doStateChange(StateBase* state) { this->mStates.changeState(state); }
+
     virtual void vfAC(); // nullsub
     virtual u32 vfB4();
     virtual u32 vfBC();
