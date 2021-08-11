@@ -28,27 +28,25 @@ private:
 
 template <class TOwner>
 class State : public StateBase { //size: 0x20
-public:
-    typedef void (TOwner::*funcPtr)();
+    typedef void (TOwner::*PTMF)();
 
 public:
-    State(funcPtr begin, funcPtr execute, funcPtr end)
+    State(PTMF begin, PTMF execute, PTMF end)
         : mBegin(begin), mExecute(execute), mEnd(end)
     { }
 
 protected:
-    funcPtr mBegin;     // _8
-    funcPtr mExecute;   // _10
-    funcPtr mEnd;       // _18
+    PTMF mBegin;     // _8
+    PTMF mExecute;   // _10
+    PTMF mEnd;       // _18
 };
 
 template <class TOwner>
 class StateVirtual : public State<TOwner> {
-public:
-    typedef void (TOwner::*funcPtr)();
+    typedef void (TOwner::*PTMF)();
 
 public:
-    StateVirtual(funcPtr begin, funcPtr execute, funcPtr end, StateBase* baseState)
+    StateVirtual(PTMF begin, PTMF execute, PTMF end, StateBase* baseState)
         : State<TOwner>(begin, execute, end), mBaseState(baseState)
     { }
 

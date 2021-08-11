@@ -12,8 +12,7 @@
 #include <game/actor/actormgr.h>
 #include <game/actor/courseselect/cscollisionactor.h>
 #include <game/collision/cshitboxcollider.h>
-#include <agl/renderinfo.h>
-#include <math.h>
+#include <agl/lyr/renderinfo.h>
 
 #include <log.h>
 
@@ -39,7 +38,7 @@ void drawLine(const Vec2f& point1, const Vec2f& point2, const sead::Color4f& col
 
 #endif
 
-void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
+void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
 
 #if DEBUG
@@ -206,7 +205,7 @@ void AreaTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
 #endif
 }
 
-void CourseSelectTask::debugDraw(const agl::lyr::RenderInfo& renderInfo) {
+void CourseSelectTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
 
 #if DEBUG

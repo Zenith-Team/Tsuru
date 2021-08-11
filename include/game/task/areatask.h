@@ -1,7 +1,7 @@
 #pragma once
 
 #include <sead/task.h>
-#include <agl/renderinfo.h>
+#include <agl/lyr/renderinfo.h>
 
 class AreaTask : public sead::CalculateTask {
 public:
@@ -9,7 +9,7 @@ public:
 
     // Custom functions
     void readOptions();
-    void debugDraw(const agl::lyr::RenderInfo& renderInfo);
+    void drawLayerDebug(const agl::lyr::RenderInfo& renderInfo);
 
     static AreaTask* sInstance;
 

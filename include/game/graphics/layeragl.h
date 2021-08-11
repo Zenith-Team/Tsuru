@@ -1,6 +1,6 @@
 #pragma once
 
-#include <agl/layer.h>
+#include <agl/lyr/layer.h>
 
 class LayerAgl : public agl::lyr::Layer {
 public:
