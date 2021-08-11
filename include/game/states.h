@@ -31,6 +31,7 @@ class State : public StateBase { //size: 0x20
 public:
     typedef void (TOwner::*funcPtr)();
 
+public:
     State(funcPtr begin, funcPtr execute, funcPtr end)
         : mBegin(begin), mExecute(execute), mEnd(end)
     { }
@@ -46,6 +47,7 @@ class StateVirtual : public State<TOwner> {
 public:
     typedef void (TOwner::*funcPtr)();
 
+public:
     StateVirtual(funcPtr begin, funcPtr execute, funcPtr end, StateBase* baseState)
         : State<TOwner>(begin, execute, end), mBaseState(baseState)
     { }
