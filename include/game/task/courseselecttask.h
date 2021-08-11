@@ -2,8 +2,8 @@
 
 #include <sead/task.h>
 #include <game/states.h>
-#include <agl/renderinfo.h>
-#include <agl/layer.h>
+#include <agl/lyr/renderinfo.h>
+#include <agl/lyr/drawmethod.h>
 
 class CourseSelectTask : public sead::CalculateTask {
     SEAD_RTTI_OVERRIDE(CourseSelectTask, sead::CalculateTask)
@@ -34,7 +34,7 @@ public:
     void doStateChange(StateBase* state);
 
     // Custom functions
-    void debugDraw(const agl::lyr::RenderInfo& renderInfo);
+    void drawLayerDebug(const agl::lyr::RenderInfo& renderInfo);
 
     DECLARE_STATE_VIRTUAL(CourseSelectTask, CourseSelectTaskState1);
     DECLARE_STATE_VIRTUAL(CourseSelectTask, CourseSelectTaskState2);

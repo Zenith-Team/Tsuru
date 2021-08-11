@@ -18,4 +18,4 @@ Hooks:
   - type: branch
     instr: b
     addr: "2267704"
-    func: debugDraw__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo
+    func: drawLayerDebug__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo

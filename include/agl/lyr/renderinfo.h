@@ -1,23 +1,12 @@
 #pragma once
 
 #include <types.h>
+#include <agl/lyr/layer.h>
 
-namespace sead {
+namespace sead { class Camera; class Projection; class Viewport; }
+namespace agl { class DisplayList; class RenderBuffer; }
 
-class Camera;
-class Projection;
-class Viewport;
-
-}
-
-namespace agl {
-
-class DisplayList;
-class RenderBuffer;
-
-namespace lyr {
-
-class Layer;
+namespace agl { namespace lyr {
 
 class RenderInfo {
 public:
@@ -33,6 +22,4 @@ public:
     bool _24;
 };
 
-}
-
-}
+} }

@@ -5,17 +5,8 @@
 
 namespace agl { namespace lyr {
 
-class Layer : public sead::IDisposer {
-public:
-    Layer();
-    virtual ~Layer();
-
-    // ...
-
-    u8 _10[0x41C - 0x10];
-};
-
 class DrawMethod : public sead::IDisposer {
+    typedef void (DrawMethod::*PTMF)();
 
 public:
     sead::SafeString mName;
@@ -23,7 +14,7 @@ public:
     u32 _1C;
     u32 _20;
     u32 _24;
-    u8 mMethod[8];  //! This is a PTMF, please make it into one
+    PTMF mMethod;
     u32 _30;
     u32 _34;
     u32 _38;
