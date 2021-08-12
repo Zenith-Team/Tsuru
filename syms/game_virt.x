@@ -24,8 +24,9 @@ SECTIONS {
 	__record_needed_destruction = 0x2afa52c;
 	__gh_float_printf = 0x2afaba8;
 	__gh_long_long_printf = 0x2afab84;
-	__ghs_strcmp = 0x2afa60c;
 	__gh_memclr32 = 0x2aff1e0;
+	__ghs_strcmp = 0x2afa60c;
+	__memzero = 0x2afa55c;
 	vsnprintf = 0x2afbd54;
 
 /* GHS C Functions */
