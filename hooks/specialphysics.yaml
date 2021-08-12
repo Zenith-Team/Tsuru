@@ -1,0 +1,9 @@
+
+---
+Files:
+  - source/specialphysics.cpp
+Hooks:
+  - type: branch
+    instr: bl
+    addr: "24B5D98" # AreaTask::prepare
+    func: readOptions__8AreaTaskFv

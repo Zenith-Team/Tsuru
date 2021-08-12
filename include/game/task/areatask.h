@@ -13,7 +13,7 @@ public:
 
     static AreaTask* sInstance;
 
-    u8 _0[0x72C];
+    u8 unk1[1636];
     u32 mWrapFlag;
-    u8 _730[0x4B4];
+    u8 unk2[1204];
 };
