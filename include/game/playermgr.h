@@ -1,19 +1,18 @@
 #pragma once
 
 #include <sead.h>
+#include <game/actor/stage/player.h>
 
 class PlayerMgr {
     SEAD_SINGLETON_DISPOSER(PlayerMgr)
 
 public:
-    static PlayerMgr* sInstance;
-
     u32 _10;
     u32 _14;
     u32 _18;
     u32 _1C;
-    void* mPlayers[4];      // Player*
-    void** mPtrToPlayers;   // Player*
+    Player* mPlayers[4];
+    Player** mPtrToPlayers;
     u32 _34;
     u32 _38;
     u32 _3C;

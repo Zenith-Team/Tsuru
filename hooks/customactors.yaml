@@ -7,6 +7,7 @@ Files:
   - source/actors/parabones.cpp
   - source/actors/fakeactor.cpp
   - source/actors/actorspawner.cpp
+  - source/actors/windgenerator.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks: []

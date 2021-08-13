@@ -84,7 +84,7 @@ SECTIONS {
 	beforeDelete__9ActorBaseFv = 0x2002fa8;
 	onDelete__9ActorBaseFv = 0x2002fb0;
 	afterDelete__9ActorBaseFUi = 0x2002f3c;
-	getProfileId__9ActorBaseFv = 0x2002c80;
+	getProfileID__9ActorBaseFv = 0x2002c80;
 
 /* ActorBuffer */
 	findActorByID__11ActorBufferFPUi = 0x200a5c8;
@@ -443,6 +443,9 @@ SECTIONS {
 /* PhysicsMgr */
 	getSensor__10PhysicsMgrCFUi = 0x218ce74;
 
+/* PlayerMgr */
+	sInstance__9PlayerMgr = 0x101e6994;
+
 /* Powerup */
 	__ct__7PowerupFPC14ActorBuildInfo = 0x251ebfc;
 	__dt__7PowerupFv = 0x251fe04;
@@ -594,6 +597,20 @@ SECTIONS {
 	sInstance__7TaskMgr = 0x101e7b28;
 	startLevel__7TaskMgrFPQ2_4sead8TaskBaseUcT2 = 0x29941d0;
 	changeTask__7TaskMgrFPQ2_4sead8TaskBaseRQ2_4sead11TaskClassIDUiT3 = 0x2994164;
+
+/* WindGenerator */
+	__dt__13WindGeneratorFv = 0x288efa0;
+	checkDerivedRuntimeTypeInfo__13WindGeneratorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x288eefc;
+	getRuntimeTypeInfo__13WindGeneratorCFv = __deleted_virtual_called;
+	onCreate__13WindGeneratorFv = 0x288ebc4;
+	setPlayerID__13WindGeneratorFSc = 0x288ef74;
+	getActorPhysicsMgr__13WindGeneratorFv = 0x288ef7c;
+	vfAC__13WindGeneratorFv = 0x288ef84;
+	vfB4__13WindGeneratorFv = 0x288ef88;
+	vfBC__13WindGeneratorFv = 0x288ef90;
+	vfC4__13WindGeneratorFv = 0x288ef94;
+	vfCC__13WindGeneratorFv = 0x288ef98;
+	damageFromUnder__13WindGeneratorFv = 0x288ef9c;
 
 /* Unknown Class */
 	FUN_02902b08__FP10StageActor = 0x2902b08;

@@ -29,7 +29,7 @@ public:
     virtual void afterDelete(u32);
 
     void removeChild(ActorBase* child);
-    ProfileID::ProfileIDType getProfileID();
+    u32 getProfileID();
 
     sead::Heap* mHeap;                               // 0
     u32 mID;                                         // 4
