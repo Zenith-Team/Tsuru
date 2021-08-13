@@ -7,4 +7,5 @@ CheatMgr::CheatMgr()
     , mInvincibilityEnabled(false)
     , mCollisionViewerEnabled(false)
     , mDebugLoggingEnabled(false)
+    , mAntiAliasingEnabled(false)
 { }
