@@ -36,7 +36,7 @@ u32 PAcorn::onCreate() {
     this->_1808 = 0;
     this->mModel = ModelWrapper::create("I_musasabi", "I_musasabiP", 1, 1, 0, 0, 0);
 
-    this->FUN_2517f90();
+    this->setupActor();
     this->spawnMethod();
     this->updateModel();
 

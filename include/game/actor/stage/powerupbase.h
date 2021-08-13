@@ -95,7 +95,7 @@ public:
 
     void spawnMethod();                                         // Spawns the powerup in different ways depending on nybble 6
     void spawnDustParticles();                                  // Spawns dust particles based on colliding tile type
-    void FUN_2517f90();                                         // Sets some physics and position values
+    void setupActor();                                          // Sets some physics and position values
     void updateModel();                                         // Updates model animations and sets some position/rotation values on it
     void FUN_2518f94();                                         // Yoshi eating related stuff
     void FUN_25183ac();                                         // Sets this->_185F and this->_1828 to 0
