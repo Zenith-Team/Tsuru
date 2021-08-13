@@ -2,6 +2,7 @@
 ---
 Name: SuperHacks
 Modules:
+  - hooks/cheatmgr.yaml       # Cheat menu
   - hooks/customactors.yaml   # Custom sprites/actors
   - hooks/debug.yaml          # Debugging features
   - hooks/initializer.yaml    # Initializer

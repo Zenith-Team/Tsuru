@@ -1,23 +1,27 @@
 #include <log.h>
-#include <config>
 #include <types.h>
 #include <dynlibs/os/functions.h>
 #include <dynlibs/gx2/functions.h>
 
-typedef void (*InitFunc)();
-extern "C" InitFunc _ctors[];
+#include "cheatmgr.h"
 
+// staticInit array
+typedef void (*funcPtr)();
+extern "C" funcPtr _ctors[];
+
+// RPL loading dependencies
 OsSpecifics osSpecifics;
+extern u32 BLOSDynLoad_Acquire;
+extern u32 BOSDynLoad_FindExport;
 
-extern "C" {
-    extern u32 BLOSDynLoad_Acquire;
-    extern u32 BOSDynLoad_FindExport;
-}
+// Create custom singletons
+CheatMgr* CheatMgr::sInstance = new CheatMgr;
 
 void initialize() {
     // Duplicate call check
     static bool initialized = false;
-    if (initialized) return;
+    if (initialized)
+        return;
     initialized = true;
 
     // Call staticInit functions from _ctors array
@@ -37,8 +41,8 @@ void initialize() {
     InitOSFunctionPointers();
     InitGX2FunctionPointers();
 
-#if DEBUG
-    LOG("OSDynLoad_Acquire address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_Acquire);
-    LOG("OSDynLoad_FindExport address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_FindExport);
-#endif
+    if (CheatMgr::sInstance->mDebugLoggingEnabled) {
+        LOG("OSDynLoad_Acquire address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_Acquire);
+        LOG("OSDynLoad_FindExport address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_FindExport);
+    }
 }
