@@ -474,7 +474,7 @@ SECTIONS {
 	vf2AC__7PowerupFv = 0x251ec6c;
 
 /* PowerupBase */
-	FUN_2517f90__11PowerupBaseFv = 0x2517f90;
+	setupActor__11PowerupBaseFv = 0x2517f90;
 	spawnMethod__11PowerupBaseFv = 0x2518470;
 	updateModel__11PowerupBaseFv = 0x2518a4c;
 	FUN_2518f94__11PowerupBaseFv = 0x2518f94;
