@@ -15,7 +15,7 @@ extern u32 BLOSDynLoad_Acquire;
 extern u32 BOSDynLoad_FindExport;
 
 // Create custom singletons
-CheatMgr* CheatMgr::sInstance = new CheatMgr;
+CheatMgr CheatMgr::sInstance;
 
 void initialize() {
     // Duplicate call check
@@ -41,7 +41,7 @@ void initialize() {
     InitOSFunctionPointers();
     InitGX2FunctionPointers();
 
-    if (CheatMgr::sInstance->mDebugLoggingEnabled) {
+    if (CheatMgr::sInstance.mDebugLoggingEnabled) {
         LOG("OSDynLoad_Acquire address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_Acquire);
         LOG("OSDynLoad_FindExport address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_FindExport);
     }

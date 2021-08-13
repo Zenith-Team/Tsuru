@@ -36,7 +36,7 @@ void drawLine(const Vec2f& point1, const Vec2f& point2, const sead::Color4f& col
 void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
 
-    if (CheatMgr::sInstance->mCollisionViewerEnabled) {
+    if (CheatMgr::sInstance.mCollisionViewerEnabled) {
         sead::PrimitiveRenderer::sInstance->setCamera(*renderInfo.mCamera);
         sead::PrimitiveRenderer::sInstance->setProjection(*renderInfo.mProjection);
         sead::PrimitiveRenderer::sInstance->begin();
@@ -147,7 +147,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
                 }
             }
 
-            else if (CheatMgr::sInstance->mDebugLoggingEnabled) {
+            else if (CheatMgr::sInstance.mDebugLoggingEnabled) {
                 LOG("Found unknown collider for actor with id: 0x%x, and profile id: 0x%x\n", colliderBase->mOwner->mID, colliderBase->mOwner->mProfile->mID);
             }
 
@@ -200,7 +200,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
 void CourseSelectTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
 
-    if (CheatMgr::sInstance->mCollisionViewerEnabled) {
+    if (CheatMgr::sInstance.mCollisionViewerEnabled) {
         sead::PrimitiveRenderer::sInstance->setCamera(*renderInfo.mCamera);
         sead::PrimitiveRenderer::sInstance->setProjection(*renderInfo.mProjection);
         sead::PrimitiveRenderer::sInstance->begin();

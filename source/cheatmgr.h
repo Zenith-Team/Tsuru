@@ -6,7 +6,7 @@ class CheatMgr {
 public:
     CheatMgr();
 
-    static CheatMgr* sInstance;
+    static CheatMgr sInstance;
 
     bool mInfiniteLivesEnabled;
     bool mInfiniteTimeEnabled;
@@ -14,4 +14,5 @@ public:
     bool mInvincibilityEnabled;
     bool mCollisionViewerEnabled;
     bool mDebugLoggingEnabled;
+    bool mAntiAliasingEnabled;
 };
