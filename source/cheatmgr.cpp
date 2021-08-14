@@ -8,4 +8,5 @@ CheatMgr::CheatMgr()
     , mCollisionViewerEnabled(false)
     , mDebugLoggingEnabled(false)
     , mAntiAliasingEnabled(false)
+    , mQuickRespawnEnabled(false)
 { }

@@ -15,4 +15,5 @@ public:
     bool mCollisionViewerEnabled;   // _4
     bool mDebugLoggingEnabled;      // _5
     bool mAntiAliasingEnabled;      // _6
+    bool mQuickRespawnEnabled;      // _7
 };
