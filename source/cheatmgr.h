@@ -8,11 +8,11 @@ public:
 
     static CheatMgr sInstance;
 
-    bool mInfiniteLivesEnabled;
-    bool mInfiniteTimeEnabled;
-    bool mNoClipEnabled;
-    bool mInvincibilityEnabled;
-    bool mCollisionViewerEnabled;
-    bool mDebugLoggingEnabled;
-    bool mAntiAliasingEnabled;
+    bool mInfiniteLivesEnabled;     // _0
+    bool mInfiniteTimeEnabled;      // _1
+    bool mNoClipEnabled;            // _2
+    bool mInvincibilityEnabled;     // _3
+    bool mCollisionViewerEnabled;   // _4
+    bool mDebugLoggingEnabled;      // _5
+    bool mAntiAliasingEnabled;      // _6
 };
