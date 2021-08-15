@@ -3,7 +3,7 @@
 CheatMgr::CheatMgr()
     : mInfiniteLivesEnabled(false)
     , mInfiniteTimeEnabled(false)
-    , mNoClipEnabled(false)
+    , mNoClipEnabled(true)
     , mInvincibilityEnabled(false)
     , mCollisionViewerEnabled(false)
     , mDebugLoggingEnabled(false)

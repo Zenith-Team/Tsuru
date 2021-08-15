@@ -56,6 +56,33 @@ InfiniteTimeEnabled:
     RestoreVolatileRegisters
     blr
 
+.global NoClip
+NoClip:
+    SaveVolatileRegisters
+
+    # Load CheatMgr::sInstance.mNoClipEnabled
+    lis     r3, sInstance__8CheatMgr@ha
+    addi    r3, r3, sInstance__8CheatMgr@l
+    lbz     r4, 0x2(r3)
+
+    # If it's on then skip setting the sensor
+    cmpwi   r4, 1
+    beq NoClipEnabled
+
+    # Otherwise continue to set the sensor
+    RestoreVolatileRegisters
+    stwu    sp, -0x4(sp)
+    mflr    r0
+    stw     r0, 0x8(sp)
+    bl      setSensor__10PhysicsMgrFPCQ2_10PhysicsMgr6SensorUi
+    lwz     r0, 0x8(sp)
+    mtlr    r0
+    addi    sp, sp, 0x4
+    blr
+NoClipEnabled:
+    RestoreVolatileRegisters
+    blr
+
 .global Invincibility
 Invincibility:
     SaveVolatileRegisters
