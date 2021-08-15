@@ -9,3 +9,8 @@ Hooks:
     instr: b
     func: Invincibility
     addr: "293117c"
+  # Infinite time
+  - type: branch
+    instr: b
+    func: InfiniteTime
+    addr: "24c1384"
