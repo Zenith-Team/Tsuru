@@ -27,6 +27,14 @@ Hooks:
     instr: bl
     func: NoClip
     addr: "2928b4c" # Right sensor 2
+  - type: branch
+    instr: bl
+    func: NoClip
+    addr: "2928d18" # Top sensor
+  - type: branch
+    instr: bl
+    func: NoClip
+    addr: "2928b3c" # Top sensor 2
   # Invincibility
   - type: branch
     instr: b
