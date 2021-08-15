@@ -442,6 +442,7 @@ SECTIONS {
 
 /* PhysicsMgr */
 	getSensor__10PhysicsMgrCFUi = 0x218ce74;
+	setSensor__10PhysicsMgrFPCQ2_10PhysicsMgr6SensorUi = 0x218aefc;
 
 /* PlayerMgr */
 	sInstance__9PlayerMgr = 0x101e6994;

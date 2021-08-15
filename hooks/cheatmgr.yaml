@@ -14,8 +14,21 @@ Hooks:
     instr: b
     func: InfiniteTime
     addr: "24c1384"
+  # NoClip
+  - type: branch
+    instr: bl
+    func: NoClip
+    addr: "2928d5c" # Left sensor
+  - type: branch
+    instr: bl
+    func: NoClip
+    addr: "2928d28" # Right sensor
+  - type: branch
+    instr: bl
+    func: NoClip
+    addr: "2928b4c" # Right sensor 2
   # Invincibility
   - type: branch
     instr: b
     func: Invincibility
-    addr: "293117c"
+    addr: "293117c" # Player::hurt
