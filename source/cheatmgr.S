@@ -1,7 +1,5 @@
 .include "macros.S"
 
-.extern sInstance__8CheatMgr
-
 .global Invincibility
 Invincibility:
     SaveVolatileRegisters
