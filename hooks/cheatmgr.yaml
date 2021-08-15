@@ -4,13 +4,18 @@ Files:
   - source/cheatmgr.S
   - source/cheatmgr.cpp
 Hooks:
-  # Invincibility
+  # Infinite lives
   - type: branch
     instr: b
-    func: Invincibility
-    addr: "293117c"
+    func: InfiniteLives
+    addr: "24c0058"
   # Infinite time
   - type: branch
     instr: b
     func: InfiniteTime
     addr: "24c1384"
+  # Invincibility
+  - type: branch
+    instr: b
+    func: Invincibility
+    addr: "293117c"
