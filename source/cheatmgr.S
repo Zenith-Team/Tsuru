@@ -9,7 +9,7 @@ InfiniteLives:
     addi    r3, r3, sInstance__8CheatMgr@l
     lbz     r4, 0x0(r3)
 
-    # If it's on restore registers and return false
+    # If it's on then restore registers and return false
     cmpwi   r4, 1
     beq     InfiniteLivesEnabled
 
@@ -37,7 +37,7 @@ InfiniteTime:
     addi    r3, r3, sInstance__8CheatMgr@l
     lbz     r4, 0x1(r3)
 
-    # If it's on restore registers and return false
+    # If it's on then restore registers and return false
     cmpwi   r4, 1
     beq     InfiniteTimeEnabled
 
@@ -65,7 +65,7 @@ Invincibility:
     addi    r3, r3, sInstance__8CheatMgr@l
     lbz     r4, 0x3(r3)
 
-    # If it's on restore registers and return false
+    # If it's on then restore registers and return false
     cmpwi   r4, 1
     beq     InvincibilityEnabled
 
