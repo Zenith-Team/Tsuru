@@ -9,9 +9,9 @@ InfiniteLives:
     addi    r3, r3, sInstance__8CheatMgr@l
     lbz     r4, 0x0(r3)
 
-    # If it's on then restore registers and return false
+    # If it's on then return false
     cmpwi   r4, 1
-    beq     InfiniteLivesEnabled
+    beq     SafeReturn
 
     # Otherwise restore replaced instruction and continue the function
     RestoreVolatileRegisters
@@ -24,9 +24,6 @@ InfiniteLives:
     lwz     r3, 0x8(sp)
     addi    sp, sp, 0x4
     bctr
-InfiniteLivesEnabled:
-    RestoreVolatileRegisters
-    blr
 
 .global InfiniteTime
 InfiniteTime:
@@ -39,7 +36,7 @@ InfiniteTime:
 
     # If it's on then restore registers and return false
     cmpwi   r4, 1
-    beq     InfiniteTimeEnabled
+    beq     SafeReturn
 
     # Otherwise restore replaced instruction and continue the function
     RestoreVolatileRegisters
@@ -52,9 +49,6 @@ InfiniteTime:
     lwz     r3, 0x8(sp)
     addi    sp, sp, 0x4
     bctr
-InfiniteTimeEnabled:
-    RestoreVolatileRegisters
-    blr
 
 .global NoClip
 NoClip:
@@ -67,7 +61,7 @@ NoClip:
 
     # If it's on then skip setting the sensor
     cmpwi   r4, 1
-    beq NoClipEnabled
+    beq     SafeReturn
 
     # Otherwise continue to set the sensor
     RestoreVolatileRegisters
@@ -78,9 +72,6 @@ NoClip:
     lwz     r0, 0x8(sp)
     mtlr    r0
     addi    sp, sp, 0x4
-    blr
-NoClipEnabled:
-    RestoreVolatileRegisters
     blr
 
 .global Invincibility
@@ -94,7 +85,7 @@ Invincibility:
 
     # If it's on then restore registers and return false
     cmpwi   r4, 1
-    beq     InvincibilityEnabled
+    beq     SafeReturn
 
     # Otherwise restore replaced instruction and continue the function
     RestoreVolatileRegisters
@@ -107,6 +98,3 @@ Invincibility:
     lwz     r3, 0x8(sp)
     addi    sp, sp, 0x4
     bctr
-InvincibilityEnabled:
-    RestoreVolatileRegisters
-    b       ReturnFalse

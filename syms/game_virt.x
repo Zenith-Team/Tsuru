@@ -113,6 +113,7 @@ SECTIONS {
 /* ColliderMgr */
 	sInstance__11ColliderMgr = 0x101c9360;
 	add__11ColliderMgrFP12ColliderBase = 0x219269c;
+	remove__11ColliderMgrFP12ColliderBase = 0x219282c;
 
 /* CourseTask */
 	sInstance__10CourseTask = 0x101d15f0;
