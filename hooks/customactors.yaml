@@ -8,6 +8,14 @@ Files:
   - source/actors/fakeactor.cpp
   - source/actors/actorspawner.cpp
   - source/actors/windgenerator.cpp
+  - source/actors/starcoinshard.cpp
+  - source/actors/beepblock.cpp
+  - source/actors/beepblock.S
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
-Hooks: []
+Hooks:
+  # Update beep block state
+  - type: branch
+    instr: b
+    func: UpdateBeepBlockStates
+    addr: "24bfa4c" # CourseTask::calc

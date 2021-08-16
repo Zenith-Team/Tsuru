@@ -1,3 +1,5 @@
+.include "macros.S"
+
 .text
 
 .global Return
@@ -12,4 +14,9 @@ ReturnFalse:
 .global ReturnTrue
 ReturnTrue:
     li r3, 0x1
+    blr
+
+.global SafeReturn
+SafeReturn:
+    RestoreVolatileRegisters
     blr

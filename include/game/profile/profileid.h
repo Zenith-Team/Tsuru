@@ -10,6 +10,8 @@ enum ProfileIDType {
     CustomDoor,
     FakeActor,
     PAcorn,
+    StarCoinShard,
+    BeepBlock,
 
     Num
 };
