@@ -4,7 +4,6 @@
 #include <game/collision/solid/rectcollider.h>
 #include <game/collision/collidermgr.h>
 #include <game/actor/actormgr.h>
-#include <log.h>
 
 class BeepBlock : public MultiStateActor {
 public:
@@ -27,6 +26,8 @@ public:
     RectCollider mRectCollider;
 
     static BeepBlockState CurrentBeepBlockState;
+    
+    static const ShapedCollider::Info colliderInfo;
 
     DECLARE_STATE(BeepBlock, RedEnabled);
     DECLARE_STATE(BeepBlock, RedDisabled);
@@ -41,6 +42,10 @@ CREATE_STATE(BeepBlock, BlueDisabled);
 
 const Profile BeepBlockProfile(&BeepBlock::build, ProfileID::BeepBlock, "BeepBlock", nullptr, 0);
 
+const ShapedCollider::Info BeepBlock::colliderInfo = {
+    Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-16.0f, 8.0f), Vec2f(16.0f, -8.0f), 0
+};
+
 BeepBlock::BeepBlockState BeepBlock::CurrentBeepBlockState = BeepBlock::BeepBlockStateBlue;
 
 BeepBlock::BeepBlock(const ActorBuildInfo* buildInfo)
@@ -54,17 +59,11 @@ ActorBase* BeepBlock::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 BeepBlock::onCreate() {
-    LOG("on creatr");
-    this->doStateChange(&StateID_RedDisabled);
+    this->mRectCollider.init(this, colliderInfo);
 
     this->mModel = ModelWrapper::create("star_coin", "star_coinA");
 
-    ShapedCollider::Info colliderInfo = {
-        Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-16.0f, 8.0f), Vec2f(16.0f, -8.0f), 0
-    };
-
-    this->mRectCollider.init(this, colliderInfo);
-    ColliderMgr::sInstance->add(&this->mRectCollider);
+    this->doStateChange(&StateID_RedDisabled);
 
     return 1;
 }
@@ -77,7 +76,7 @@ u32 BeepBlock::onExecute() {
     this->mModel->setMtx(mtx);
     this->mModel->updateModel();
 
-    LOG("beep state %i", BeepBlock::CurrentBeepBlockState);
+    this->mStates.execute();
 
     return 1;
 }
@@ -91,7 +90,6 @@ u32 BeepBlock::onDraw() {
 /* STATE: RedEnabled */
 
 void BeepBlock::beginState_RedEnabled() {
-    LOG("added collider");
     ColliderMgr::sInstance->add(&this->mRectCollider);
 
     // Don't forget to change the model here when that's done :)
@@ -99,8 +97,9 @@ void BeepBlock::beginState_RedEnabled() {
 
 void BeepBlock::executeState_RedEnabled() {
     if (CurrentBeepBlockState == BeepBlockStateBlue)
-        LOG("beep block state is blue so switching to red disabled");
         this->doStateChange(&StateID_RedDisabled);
+    
+    this->mRectCollider.execute();
 }
 
 void BeepBlock::endState_RedEnabled() { }
@@ -108,7 +107,6 @@ void BeepBlock::endState_RedEnabled() { }
 /* STATE: RedDisabled */
 
 void BeepBlock::beginState_RedDisabled() {
-    LOG("removed collider");
     ColliderMgr::sInstance->remove(&this->mRectCollider);
 
     // Don't forget to change the model here when that's done :)
@@ -116,7 +114,6 @@ void BeepBlock::beginState_RedDisabled() {
 
 void BeepBlock::executeState_RedDisabled() {
     if (CurrentBeepBlockState == BeepBlockStateRed)
-        LOG("beep block state is red so switching to red enabled");
         this->doStateChange(&StateID_RedEnabled);
 }
 
@@ -133,6 +130,8 @@ void BeepBlock::beginState_BlueEnabled() {
 void BeepBlock::executeState_BlueEnabled() {
     if (CurrentBeepBlockState == BeepBlockStateRed)
         this->doStateChange(&StateID_BlueDisabled);
+    
+    this->mRectCollider.execute();
 }
 
 void BeepBlock::endState_BlueEnabled() { }
