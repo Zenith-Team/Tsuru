@@ -9,5 +9,6 @@ Modules:
   - hooks/misc.yaml           # Miscellaneous items
   - hooks/profile.yaml        # Extra profile and sprite slots
   - hooks/sead.yaml           # Patches for the sead library
+  - hooks/sound.yaml          # Patches that affect sound
   - hooks/titlescreen.yaml    # Title screen patches
   - hooks/yoshicolors.yaml    # Extra colors for Yoshi
