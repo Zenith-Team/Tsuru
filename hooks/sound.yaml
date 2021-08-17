@@ -1,0 +1,9 @@
+
+---
+Files:
+  - source/sound/sfxreverb.cpp
+Hooks:
+  - type: branch
+    instr: b
+    addr: "29C3B7C"
+    func: SetFxReverbHiAndDelay__FPvUi

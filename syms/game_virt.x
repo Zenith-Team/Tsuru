@@ -107,6 +107,10 @@ SECTIONS {
 /* ApplicationTask */
 	sInstance__15ApplicationTask = 0x101e7d40; 
 
+/* AudioFx */
+	getReverbHiParam__7AudioFxFv = 0x29b2fd8;
+	getDelayParam__7AudioFxFv = 0x29b2fe0;
+
 /* ColliderBase */
 	__ct__Q2_12ColliderBase4NodeFv = 0x21a1acc;
 
@@ -561,6 +565,12 @@ SECTIONS {
 /* SkeletalAnimation */
 	play__17SkeletalAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24fdadc;
 
+/* SoundSystem */
+	sInstance__11SoundSystem = 0x101e7c84;
+
+/* SoundSystemBase */
+	getAudioFx__15SoundSystemBaseFv = 0x29b1aa4;
+
 /* StageActor */
 	__vtbl__10StageActor = 0x10000268;
 	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x101e9cbc;
@@ -631,4 +641,10 @@ SECTIONS {
 	BLOSDynLoad_Acquire = 0x2A9EF58;
 	BOSDynLoad_FindExport = 0x2A9F418;
 	directionToRotationList = 0x10200dd8;
+	DefaultReverbHiParam = 0x1022d328;
+	DefaultDelayParam = 0x1022d354;
+	SFXReverb_0 = 0x101e7d14;
+	SFXReverb_1 = 0x101e7d18;
+	SFXReverbPlyJump_0 = 0x101e7d1c;
+	SFXReverbPlyJump_1 = 0x101e7d20;
 }
