@@ -9,7 +9,7 @@ public:
     ActorSpawner(const ActorBuildInfo* buildInfo);
     virtual ~ActorSpawner() { }
 
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static Actor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -25,7 +25,7 @@ ActorSpawner::ActorSpawner(const ActorBuildInfo* buildInfo)
     , mSpawned(false)
 { }
 
-ActorBase* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
+Actor* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
     return new ActorSpawner(buildInfo);
 }
 
@@ -45,11 +45,11 @@ u32 ActorSpawner::onCreate() {
 }
 
 u32 ActorSpawner::onExecute() {
-    ActorBase* child = (mChildList.begin() != mChildList.end()) ? mChildList.begin().mPtr : nullptr;
+    Actor* child = (mChildList.begin() != mChildList.end()) ? mChildList.begin().mPtr : nullptr;
 
     if (EventMgr::sInstance->isActive(mEventID2-1)) {
         if (mInitialStateFlag == 2 && child) {
-            StageActor* actor = sead::DynamicCast<StageActor, ActorBase>(child);
+            StageActor* actor = sead::DynamicCast<StageActor, Actor>(child);
 
             if (actor) {
                 actor->mIsActive = true;
@@ -81,7 +81,7 @@ u32 ActorSpawner::onExecute() {
         }
 
         else if (mInitialStateFlag == 2 && child) {
-            StageActor* actor = sead::DynamicCast<StageActor, ActorBase>(child);
+            StageActor* actor = sead::DynamicCast<StageActor, Actor>(child);
 
             if (actor) {
                 actor->mIsActive = false;

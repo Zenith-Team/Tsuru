@@ -156,7 +156,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
 
         ActorBuffer* actors = &ActorMgr::sInstance->mActors;
         for (u32 i = 0; i < actors->mBuffer.mSize; i++) {
-            StageActor* actor = sead::DynamicCast<StageActor, ActorBase>(actors->mBuffer[i]);
+            StageActor* actor = sead::DynamicCast<StageActor, Actor>(actors->mBuffer[i]);
             if (actor == NULL || !actor->mIsVisible || actor->mIsDeleted)
                 continue;
             
@@ -211,7 +211,7 @@ void CourseSelectTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
             if (!cshCollider)
                 continue;
 
-            CourseSelectActorBase* actor = reinterpret_cast<CourseSelectActorBase*>(ActorMgr::sInstance->mActors.findActorByID(&cshCollider->mOwnerID));
+            CourseSelectActor* actor = reinterpret_cast<CourseSelectActor*>(ActorMgr::sInstance->mActors.findActorByID(&cshCollider->mOwnerID));
 
             if (!actor)
                 continue;
@@ -226,7 +226,7 @@ void CourseSelectTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
             if (!cshCollider)
                 continue;
 
-            CourseSelectActorBase* actor = reinterpret_cast<CourseSelectActorBase*>(ActorMgr::sInstance->mActors.findActorByID(&cshCollider->mOwnerID));
+            CourseSelectActor* actor = reinterpret_cast<CourseSelectActor*>(ActorMgr::sInstance->mActors.findActorByID(&cshCollider->mOwnerID));
 
             if (!actor)
                 continue;

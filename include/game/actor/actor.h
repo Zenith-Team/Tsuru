@@ -4,12 +4,12 @@
 #include <game/actor/actorinfo.h>
 #include <game/actor/actorbuildinfo.h>
 
-class ActorBase { // size: 0x50
-    SEAD_RTTI_BASE(ActorBase)
+class Actor { // size: 0x50
+    SEAD_RTTI_BASE(Actor)
 
 public:
-    ActorBase(const ActorBuildInfo* buildInfo);
-    virtual ~ActorBase();
+    Actor(const ActorBuildInfo* buildInfo);
+    virtual ~Actor();
 
     virtual u32 beforeCreate();
     virtual u32 onCreate();
@@ -28,7 +28,7 @@ public:
     virtual u32 onDelete();
     virtual void afterDelete(u32);
 
-    void removeChild(ActorBase* child);
+    void removeChild(Actor* child);
     u32 getProfileID();
 
     sead::Heap* mHeap;                               // 0
@@ -44,9 +44,9 @@ public:
     u8 mLinkID;                                      // 19
     u8 mInitialStateFlag;                            // 1A
     u8 _1B;                                          // 1B     //? Padding
-    sead::OffsetList<ActorBase> mChildList;          // 1C
+    sead::OffsetList<Actor> mChildList;          // 1C
     sead::ListNode mChildNode;                       // 2C
-    ActorBase* mParent;                              // 34
+    Actor* mParent;                              // 34
     sead::ListNode mActorListNode;                   // 38
     sead::ListNode mDrawListNode;                    // 40
     u32 mFlags;                                      // 48

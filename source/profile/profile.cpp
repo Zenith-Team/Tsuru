@@ -1,5 +1,5 @@
 #include <game/profile/profile.h>
-#include <game/actor/actorbase.h>
+#include <game/actor/actor.h>
 
 Profile* Profile::profilesCustom[Profile::NUM_PROFILES_CUSTOM];
 s16 Profile::prioritiesCustom[Profile::NUM_PROFILES_CUSTOM] = { 0 };
@@ -7,7 +7,7 @@ u8 Profile::hasResourcesCustom[Profile::NUM_PROFILES_CUSTOM] = { 0 };
 u8 Profile::resourceCountCustom[Profile::NUM_PROFILES_CUSTOM] = { 0 };
 const sead::SafeString* Profile::resourceListsCustom[Profile::NUM_PROFILES_CUSTOM] = { nullptr };
 
-Profile::Profile(ActorBase* (*buildFunc)(const ActorBuildInfo*), u32 id, const sead::SafeString& name, const ActorInfo* actorInfo, u32 flags) {
+Profile::Profile(Actor* (*buildFunc)(const ActorBuildInfo*), u32 id, const sead::SafeString& name, const ActorInfo* actorInfo, u32 flags) {
     this->mBuildFunc = buildFunc;
     this->mID = id;
 

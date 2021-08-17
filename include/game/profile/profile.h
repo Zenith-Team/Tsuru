@@ -5,7 +5,7 @@
 #include <preprocessor.h>
 #include <game/profile/profileid.h>
 
-class ActorBase;
+class Actor;
 struct ActorInfo;
 struct ActorBuildInfo;
 
@@ -15,7 +15,7 @@ public:
         FlagDontRenderOffScreen = 1 << 1
     };
 
-    Profile(ActorBase* (*buildFunc)(const ActorBuildInfo*), u32 id, const sead::SafeString& name, const ActorInfo* actorInfo, u32 flags);
+    Profile(Actor* (*buildFunc)(const ActorBuildInfo*), u32 id, const sead::SafeString& name, const ActorInfo* actorInfo, u32 flags);
 
     static Profile* get(u32 id);
     static s16 getPriority(u32 id);
@@ -27,7 +27,7 @@ public:
 
     static u32 spriteToProfileList[];
 
-    ActorBase* (*mBuildFunc)(const ActorBuildInfo*);
+    Actor* (*mBuildFunc)(const ActorBuildInfo*);
     u32 mID;
     const ActorInfo* mActorInfo;
     u8 mHasResourcesLoaded;

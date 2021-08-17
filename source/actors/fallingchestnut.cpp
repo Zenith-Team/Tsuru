@@ -11,7 +11,7 @@ public:
     FallingChestnut(const ActorBuildInfo* buildInfo);
     virtual ~FallingChestnut() { }
     
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static Actor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -47,7 +47,7 @@ FallingChestnut::FallingChestnut(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)
 { }
 
-ActorBase* FallingChestnut::build(const ActorBuildInfo* buildInfo) {
+Actor* FallingChestnut::build(const ActorBuildInfo* buildInfo) {
     return new FallingChestnut(buildInfo);
 }
 

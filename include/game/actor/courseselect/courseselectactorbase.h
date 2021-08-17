@@ -1,9 +1,9 @@
 #pragma once
 
-#include <game/actor/actorbase.h>
+#include <game/actor/actor.h>
 
-class CourseSelectActorBase : public ActorBase {
-    SEAD_RTTI_OVERRIDE(CourseSelectActorBase, ActorBase)
+class CourseSelectActorBase : public Actor {
+    SEAD_RTTI_OVERRIDE(CourseSelectActor, Actor)
 
 public:
     CourseSelectActorBase(const ActorBuildInfo* buildInfo);
