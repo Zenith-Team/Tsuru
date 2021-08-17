@@ -37,7 +37,7 @@ public:
     virtual void vf64();
     virtual void vf6C();
 
-    void init(StageActor* owner, const Sensor* belowSensor, const Sensor* aboveSensor, const Sensor* adjacentSensor);
+    void init(StageActor* owner, const Sensor* belowSensor = nullptr, const Sensor* aboveSensor = nullptr, const Sensor* adjacentSensor = nullptr);
     void setSensor(const Sensor* sensor, u32 sensorID);
     const Sensor* getSensor(u32 sensorID) const;
     bool doExplosionAt(const Vec2f& topLeft, const Vec2f& bottomRight);
