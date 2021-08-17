@@ -1,8 +1,8 @@
 
 ---
 Files:
-  - source/cheatmgr.S
-  - source/cheatmgr.cpp
+  - source/cheatmgr/cheatmgr.S
+  - source/cheatmgr/cheatmgr.cpp
 Hooks:
   # Infinite lives
   - type: branch

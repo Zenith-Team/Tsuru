@@ -11,7 +11,7 @@
 #include <agl/lyr/renderinfo.h>
 #include <log.h>
 
-#include "../cheatmgr.h"
+#include "../cheatmgr/cheatmgr.h"
 
 void drawLine(const Vec2f& position, const f32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
     Vec3f scale(lineLength, lineThickness, 1.0f);
