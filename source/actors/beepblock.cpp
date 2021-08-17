@@ -7,9 +7,9 @@
 
 class BeepBlock : public MultiStateActor {
 public:
-    enum BeepBlockState {
-        BeepBlockStateRed = 0,
-        BeepBlockStateBlue = 1
+    enum BeepBlockColor {
+        BeepBlockColorRed = 0,
+        BeepBlockColorBlue = 1
     };
 
 public:
@@ -24,8 +24,9 @@ public:
 
     ModelWrapper* mModel;
     RectCollider mRectCollider;
+    BeepBlockColor mBeepBlockType;
 
-    static BeepBlockState CurrentBeepBlockState;
+    static BeepBlockColor CurrentBeepBlockState;
     
     static const ShapedCollider::Info colliderInfo;
 
@@ -46,12 +47,13 @@ const ShapedCollider::Info BeepBlock::colliderInfo = {
     Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-16.0f, 8.0f), Vec2f(16.0f, -8.0f), 0
 };
 
-BeepBlock::BeepBlockState BeepBlock::CurrentBeepBlockState = BeepBlock::BeepBlockStateBlue;
+BeepBlock::BeepBlockColor BeepBlock::CurrentBeepBlockState = BeepBlock::BeepBlockColorBlue;
 
 BeepBlock::BeepBlock(const ActorBuildInfo* buildInfo)
     : MultiStateActor(buildInfo)
     , mModel(nullptr)
     , mRectCollider()
+    , mBeepBlockType(BeepBlockColorBlue)
 { }
 
 Actor* BeepBlock::build(const ActorBuildInfo* buildInfo) {
@@ -63,7 +65,12 @@ u32 BeepBlock::onCreate() {
 
     this->mModel = ModelWrapper::create("star_coin", "star_coinA");
 
-    this->doStateChange(&StateID_RedDisabled);
+    this->mBeepBlockType = static_cast<BeepBlockColor>(this->mSettings1 >> 0x1C);
+
+    if (this->mBeepBlockType == BeepBlockColorRed)
+        this->doStateChange(&StateID_RedDisabled);
+    else
+        this->doStateChange(&StateID_BlueDisabled);
 
     return 1;
 }
@@ -96,7 +103,7 @@ void BeepBlock::beginState_RedEnabled() {
 }
 
 void BeepBlock::executeState_RedEnabled() {
-    if (CurrentBeepBlockState == BeepBlockStateBlue)
+    if (CurrentBeepBlockState == BeepBlockColorBlue)
         this->doStateChange(&StateID_RedDisabled);
     
     this->mRectCollider.execute();
@@ -113,7 +120,7 @@ void BeepBlock::beginState_RedDisabled() {
 }
 
 void BeepBlock::executeState_RedDisabled() {
-    if (CurrentBeepBlockState == BeepBlockStateRed)
+    if (CurrentBeepBlockState == BeepBlockColorRed)
         this->doStateChange(&StateID_RedEnabled);
 }
 
@@ -128,7 +135,7 @@ void BeepBlock::beginState_BlueEnabled() {
 }
 
 void BeepBlock::executeState_BlueEnabled() {
-    if (CurrentBeepBlockState == BeepBlockStateRed)
+    if (CurrentBeepBlockState == BeepBlockColorRed)
         this->doStateChange(&StateID_BlueDisabled);
     
     this->mRectCollider.execute();
@@ -145,7 +152,7 @@ void BeepBlock::beginState_BlueDisabled() {
 }
 
 void BeepBlock::executeState_BlueDisabled() {
-    if (CurrentBeepBlockState == BeepBlockStateBlue)
+    if (CurrentBeepBlockState == BeepBlockColorBlue)
         this->doStateChange(&StateID_BlueEnabled);
 }
 
