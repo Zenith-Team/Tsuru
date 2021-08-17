@@ -12,6 +12,7 @@ enum ProfileIDType {
     PAcorn,
     StarCoinShard,
     BeepBlock,
+    FallingChestnut,
 
     Num
 };

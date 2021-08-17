@@ -816,5 +816,6 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::FakeActor,       // 727
     ProfileID::PAcorn,          // 728
     ProfileID::StarCoinShard,   // 729
-    ProfileID::BeepBlock        // 730
+    ProfileID::BeepBlock,       // 730
+    ProfileID::FallingChestnut  // 731
 };
