@@ -3,7 +3,7 @@
 #include <dynlibs/os/functions.h>
 #include <dynlibs/gx2/functions.h>
 
-#include "cheatmgr.h"
+#include "cheatmgr/cheatmgr.h"
 
 // staticInit array
 typedef void (*funcPtr)();
