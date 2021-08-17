@@ -67,24 +67,24 @@ SECTIONS {
 /* sead::Random */
 	getU32__Q2_4sead6RandomFv = 0x2a13780;
 
-/* ActorBase */
-	__vtbl__9ActorBase = 0x100006c0;
-	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__9ActorBaseSFv = 0x101e9cc4;
-	typeInfo__L0__getRuntimeTypeInfoStatic__9ActorBaseSFv = 0x101e9cc8;
-	removeChild__9ActorBaseFP9ActorBase = 0x2002c8c;
-	beforeCreate__9ActorBaseFv = 0x2002f7c;
-	afterCreate__9ActorBaseFUi = 0x2002f00;
-	beforeExecute__9ActorBaseFv = 0x2002f04;
-	onExecute__9ActorBaseFv = 0x2002f8c;
-	afterExecute__9ActorBaseFUi = 0x2002f34;
-	finalExecute__9ActorBaseFv = 0x2002f94;
-	beforeDraw__9ActorBaseFv = 0x2002f98;
-	onDraw__9ActorBaseFv = 0x2002fa0;
-	afterDraw__9ActorBaseFUi = 0x2002f38;
-	beforeDelete__9ActorBaseFv = 0x2002fa8;
-	onDelete__9ActorBaseFv = 0x2002fb0;
-	afterDelete__9ActorBaseFUi = 0x2002f3c;
-	getProfileID__9ActorBaseFv = 0x2002c80;
+/* Actor */
+	__vtbl__5Actor = 0x100006c0;
+	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__5ActorSFv = 0x101e9cc4;
+	typeInfo__L0__getRuntimeTypeInfoStatic__5ActorSFv = 0x101e9cc8;
+	removeChild__5ActorFP5Actor = 0x2002c8c;
+	beforeCreate__5ActorFv = 0x2002f7c;
+	afterCreate__5ActorFUi = 0x2002f00;
+	beforeExecute__5ActorFv = 0x2002f04;
+	onExecute__5ActorFv = 0x2002f8c;
+	afterExecute__5ActorFUi = 0x2002f34;
+	finalExecute__5ActorFv = 0x2002f94;
+	beforeDraw__5ActorFv = 0x2002f98;
+	onDraw__5ActorFv = 0x2002fa0;
+	afterDraw__5ActorFUi = 0x2002f38;
+	beforeDelete__5ActorFv = 0x2002fa8;
+	onDelete__5ActorFv = 0x2002fb0;
+	afterDelete__5ActorFUi = 0x2002f3c;
+	getProfileID__5ActorFv = 0x2002c80;
 
 /* ActorBuffer */
 	findActorByID__11ActorBufferFPUi = 0x200a5c8;
@@ -95,7 +95,7 @@ SECTIONS {
 /* ActorMgr */
 	sInstance__8ActorMgr = 0x101c30c8;
 	create__8ActorMgrFP14ActorBuildInfoUi = 0x2009a58;
-	findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP9ActorBase = 0x2009b6c;
+	findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP5Actor = 0x2009b6c;
 
 /* Animation */
 	setRepeat__9AnimationFb = 0x24deed4;
@@ -236,6 +236,7 @@ SECTIONS {
 	processCollision__5EnemyFP14HitboxColliderT1Ui = 0x2329b88;
 	killPlayerJump__5EnemyFP10StageActorRC13Vec2__tm__2_fP9StateBase = 0x232da34;
 	checkDerivedRuntimeTypeInfo__5EnemyCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x232a70c;
+	getRuntimeTypeInfo__5EnemyCFv = __deleted_virtual_called;
 	__dt__5EnemyFv = 0x232a868;
 	collisionCallback__5EnemySFP14HitboxColliderT1 = 0x2328c50;
 	beforeExecute__5EnemyFv = 0x2328644;
@@ -442,8 +443,10 @@ SECTIONS {
 	getRect__12PhysicsActorFR4Rect = 0x200404c;
 
 /* PhysicsMgr */
+	init__10PhysicsMgrFP10StageActorPCQ2_10PhysicsMgr6SensorN22 = 0x218af6c;
 	getSensor__10PhysicsMgrCFUi = 0x218ce74;
 	setSensor__10PhysicsMgrFPCQ2_10PhysicsMgr6SensorUi = 0x218aefc;
+	processCollisions__10PhysicsMgrFv = 0x218d954;
 
 /* PlayerInput */
 	isUpHeld__11PlayerInputCFv = 0x2916114;
@@ -593,6 +596,7 @@ SECTIONS {
 	vfBC__10StageActorFv = 0x2002acc;
 	vfC4__10StageActorFv = 0x2002ad0;
 	vfCC__10StageActorFv = 0x2002ad4;
+	distanceToPlayer__10StageActorFR13Vec2__tm__2_f = 0x20005a4;
 
 /* StateBase */
 	sCurrentID__9StateBase = 0x101e9f04;

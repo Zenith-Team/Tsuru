@@ -8,7 +8,7 @@ public:
     StarCoinShard(const ActorBuildInfo* buildInfo);
     virtual ~StarCoinShard() { }
 
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static Actor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -33,7 +33,7 @@ StarCoinShard::StarCoinShard(const ActorBuildInfo* buildInfo)
     : MultiStateActor(buildInfo)
 { }
 
-ActorBase* StarCoinShard::build(const ActorBuildInfo* buildInfo) {
+Actor* StarCoinShard::build(const ActorBuildInfo* buildInfo) {
     return new StarCoinShard(buildInfo);
 }
 

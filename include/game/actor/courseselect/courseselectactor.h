@@ -3,7 +3,7 @@
 #include <game/actor/courseselect/courseselectactorbase.h>
 
 class CourseSelectActor : public CourseSelectActorBase {
-    SEAD_RTTI_OVERRIDE(CourseSelectActor, CourseSelectActorBase)
+    SEAD_RTTI_OVERRIDE(CourseSelectActor, CourseSelectActor)
 
 public:
     CourseSelectActor(const ActorBuildInfo* buildInfo);

@@ -8,7 +8,7 @@ public:
     FixedWindGenerator(const ActorBuildInfo* buildInfo);
     virtual ~FixedWindGenerator() { }
 
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static Actor* build(const ActorBuildInfo* buildInfo);
 
     u32 onExecute() override;
 };
@@ -23,7 +23,7 @@ FixedWindGenerator::FixedWindGenerator(const ActorBuildInfo* buildInfo)
     : WindGenerator(buildInfo)
 { }
 
-ActorBase* FixedWindGenerator::build(const ActorBuildInfo* buildInfo) {
+Actor* FixedWindGenerator::build(const ActorBuildInfo* buildInfo) {
     return new FixedWindGenerator(buildInfo);
 }
 
@@ -36,9 +36,9 @@ u32 FixedWindGenerator::onExecute() {
     }
 
     // Blow actors
-    ActorBase** current = ActorMgr::sInstance->mActors.mBuffer.mBuffer;
+    Actor** current = ActorMgr::sInstance->mActors.mBuffer.mBuffer;
     while (current < ActorMgr::sInstance->mActors.mLast) {
-        ActorBase* actor = *current;
+        Actor* actor = *current;
         if (actor) {
             u32 profileID = actor->getProfileID();
             for (u32 i = 0; i < 10; i++) {

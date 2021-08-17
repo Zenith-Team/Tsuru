@@ -16,7 +16,7 @@ public:
     BeepBlock(const ActorBuildInfo* buildInfo);
     virtual ~BeepBlock() { }
 
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static Actor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -54,7 +54,7 @@ BeepBlock::BeepBlock(const ActorBuildInfo* buildInfo)
     , mRectCollider()
 { }
 
-ActorBase* BeepBlock::build(const ActorBuildInfo* buildInfo) {
+Actor* BeepBlock::build(const ActorBuildInfo* buildInfo) {
     return new BeepBlock(buildInfo);
 }
 

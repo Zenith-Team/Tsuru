@@ -8,7 +8,7 @@ public:
     CSCustomActor(const ActorBuildInfo* buildInfo);
     virtual ~CSCustomActor() { }
 
-    static ActorBase* build(const ActorBuildInfo* buildInfo);
+    static Actor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
     u32 onExecute() override;
@@ -28,7 +28,7 @@ CSCustomActor::CSCustomActor(const ActorBuildInfo* buildInfo)
     : CSCollisionActor(buildInfo)
 { }
 
-ActorBase* CSCustomActor::build(const ActorBuildInfo* buildInfo) {
+Actor* CSCustomActor::build(const ActorBuildInfo* buildInfo) {
     return new CSCustomActor(buildInfo);
 }
 
