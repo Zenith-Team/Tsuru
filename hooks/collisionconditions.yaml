@@ -1,0 +1,8 @@
+
+---
+Files:
+  - source/collisionconditions.cpp
+Hooks:
+  - type: funcptr
+    addr: "0x100AE7FC"
+    func: collisionYoshi_Bounce__FP5EnemyP14HitboxColliderT2
