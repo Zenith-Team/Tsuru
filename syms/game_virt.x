@@ -540,6 +540,9 @@ SECTIONS {
 	resourceCountOriginal__7Profile = 0x100023F8;
 	resourceListsOriginal__7Profile = 0x101C321C;
 
+/* RDashMgr */
+	sInstance__8RDashMgr = 0x101E7D9C;
+
 /* Rect */
 	sZero__4Rect = 0x105ea79c;
 
@@ -552,6 +555,11 @@ SECTIONS {
 /* ResArchiveMgr */
 	sInstance__13ResArchiveMgr = 0x101d2d50;
 	get__13ResArchiveMgrFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24f60ec;
+
+/* ResMgr */
+	ResMgr_LoadLevelResource = 0x29D2A20;
+	ResMgr_LoadLevelArchiveFail = 0x29D333C;
+	ResMgr_LoadLevelArchiveSuccess = 0x29D3354;
 
 /* ShaderAnimation */
 	playTexSrtAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FEE50;
@@ -636,6 +644,8 @@ SECTIONS {
 
 /* Unknown Class */
 	FUN_02902b08__FP10StageActor = 0x2902b08;
+	setBufferedString = 0x29D4240;
+	formatBufferedString = 0x2A0F308;
 
 /* Misc */
 	BLOSDynLoad_Acquire = 0x2A9EF58;
@@ -647,4 +657,5 @@ SECTIONS {
 	SFXReverb_1 = 0x101e7d18;
 	SFXReverbPlyJump_0 = 0x101e7d1c;
 	SFXReverbPlyJump_1 = 0x101e7d20;
+	nullterminator = 0x1018A56D;
 }
