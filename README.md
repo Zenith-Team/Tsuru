@@ -1,7 +1,7 @@
 # SuperHacks (working title)
 
 #### New Super Mario Bros. U Hack Framework and Extension 
-So basically this is just a massive compilation of code hacks for NSMBU made with scalability, accuracy, and integrity in mind. Besides the code hacks, there is also a multitude of headers included, to minimize the amount of reverse-engineering required for modifying the game for others. Make sure to also grab the assets pack form the releases page when installing the hacks.
+So basically this is just a massive compilation of code hacks for NSMBU made with scalability, accuracy, and integrity in mind. Besides the code hacks, there is also a multitude of headers included, to minimize the amount of reverse-engineering required for modifying the game for others. Make sure to also grab the assets pack from the releases page when installing the hacks.
 Project started on March 9 2021.
 
 # What's here
@@ -12,41 +12,49 @@ All custom sprites which were not written by me have credits in customsprites.ya
 
 * Actor Spawner
 * Angry Sun *
+* Beep Block
 * Bomb Bro *
 * Death Foo *
 * Effect Spawner *
 * Elemental Thwomp *
 * Fake Actor
-* Falling Chestnut *
+* Falling Chestnut
 * Flipblock *
 * Magic Platform *
-* Model loader *
+* Mini-only door
+* Model Loader *
+* P-Acorn
 * Para-Bones
 * Poison Mushroom *
+* Star Coin Shard
 * Time Clock *
 * Triple Block *
 * Water Waves *
 * Water Waves Platform *
-* Wind generator *
+* Wind generator
 
 ## Patches:
 Miscellaneous hacks/patches are listed here. Most of the game-changing patches are toggleable in the config file located in /include/
 * Add archive links for some unused actors to allow adding models *
+* Cheat menu to activate cheats and debug settings
 * Customizable snow particle colors *
 * Customizable world map scripts *
-* Debug collision viewer
+* Debug collision viewer for levels and world map
 * Disabled acorns falling on title screen
 * Disabled Miiverse integration *
+* Extra profile slots for up to 64812 new actors
 * Fixed collision conditions for some sprites *
-* Infinite lives *
-* Infinite time *
+* Indicator for hacks loaded via version string
+* Infinite lives
+* Infinite time
+* NoClip
 * Restored background offset settings functionality *
 * Restored many of sead::PrimitiveRendererCafe's deleted functions
-* Restored sound effect reverb settings *
-* RPL library loader *
-* SARC level loader *
+* Restored sound effect reverb settings
+* RPL library loader
+* SARC level loader
 * Size modifier *
-* Space physics *
+* Space physics
 * Yoshi colors
 
 # Credits
