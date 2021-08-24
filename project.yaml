@@ -11,6 +11,7 @@ Modules:
   - hooks/profile.yaml              # Extra profile and sprite slots
   - hooks/sarcloader.yaml           # Allow loading uncompressed .sarc levels
   - hooks/sead.yaml                 # Patches for the sead library
+  - hooks/snowparticles.yaml        # Allows changing snow particle colors from spritedata
   - hooks/sound.yaml                # Patches that affect sound
   - hooks/titlescreen.yaml          # Title screen patches
   - hooks/yoshicolors.yaml          # Extra colors for Yoshi

@@ -2,8 +2,10 @@
 
 #include <types.h>
 #include <agl/lyr/layer.h>
+#include <sead/projection.h>
+#include <sead/camera.h>
 
-namespace sead { class Camera; class Projection; class Viewport; }
+namespace sead { class Viewport; }
 namespace agl { class DisplayList; class RenderBuffer; }
 
 namespace agl { namespace lyr {
