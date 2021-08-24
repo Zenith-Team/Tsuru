@@ -17,6 +17,8 @@ public:
 };
 
 class ActorMgr {
+    SEAD_SINGLETON_DISPOSER(ActorMgr)
+
 public:
     Actor* create(ActorBuildInfo* buildInfo, u32 addToActive);
     Actor* instanciateActor(ActorBuildInfo* buildInfo, bool notDefer);
@@ -24,7 +26,6 @@ public:
     u32 createActor(Actor* actor);  // Calls "create" virtual functions
 
 
-    sead::IDisposer mDisposer;
     sead::UnitHeap* mPlayerUnitHeap;
     sead::UnitHeap* mActorUnitHeap;
     u8 mDeferredActorCreations[0x5970]; // sead::FixedRingBuffer<ActorBuildInfo, 520>
@@ -36,6 +37,4 @@ public:
     sead::FixedPtrArray<Actor, 520> mFinalExecuteList;
     ActorBuffer mActors;
     // ...
-
-    static ActorMgr* sInstance;
 };
