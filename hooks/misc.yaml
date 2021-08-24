@@ -7,4 +7,5 @@ Files:
   - source/dynlibs/gx2.cpp
   - source/hitboxcollider.cpp
   - source/utils.cpp
+  - source/profileres.cpp
 Hooks: []
