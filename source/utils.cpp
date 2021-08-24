@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <cstdarg>
 
 #include <dynlibs/os/functions.h>
 
