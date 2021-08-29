@@ -66,7 +66,7 @@ u32 FallingChestnut::onCreate() {
 
 u32 FallingChestnut::onExecute() {
     Vec3f posOffset(0.0f, -16.0f, 0.0f);
-    Vec3u rotOffset(-90, 0, 0);
+    Vec3u rotOffset(0x40000000, 0, 0);
 
     Mtx34 mtx;
     mtx.rotateAndTranslate(this->mRotation + rotOffset, this->mPosition + posOffset);
