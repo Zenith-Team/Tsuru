@@ -33,7 +33,7 @@ namespace FFL {
          CreateID createId; // C
          u8 _16[2];
          u16 _18;
-         u16 miiName[10];   // 1A | wide string
+         wchar_t miiName[10];   // 1A
          u8 _2E;
          u8 _2F;
          u32 _30;
@@ -46,7 +46,7 @@ namespace FFL {
 
     struct MiiData { // Size: 0x5C
         MiiDataCore miiDataCore;
-        u16 creatorName[10]; // wide string
+        wchar_t creatorName[10];
     };
 
     // A complete Mii character object
