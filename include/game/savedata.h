@@ -123,7 +123,7 @@ struct SaveData { // Size: 0xB134
     };
 
     struct SaveSlot {
-        bool isInUse;
+        bool isNotEmpty;
         u8 lastSessionPlayerCount;
         u8 coinCount;
         u8 csActiveW6Switch;            // 0: Red Active, 1: Blue Active
