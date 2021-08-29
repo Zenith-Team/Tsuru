@@ -42,7 +42,13 @@ public:
     const Sensor* getSensor(u32 sensorID) const;
     bool doExplosionAt(const Vec2f& topLeft, const Vec2f& bottomRight);
 
-    inline bool isOnGround() { return this->mOutput & FlagOnGround; }
+    inline bool isOnGround()      { return this->mOutput & FlagOnGround;      }
+    inline bool isCollidedRight() { return this->mOutput & FlagCollidedRight; }
+    inline bool isCollidedLeft()  { return this->mOutput & FlagCollidedLeft;  }
+    inline bool isCollided(u32 direction) {
+        if (direction > 1) return false;
+        return this->mOutput & (FlagCollidedRight << direction);
+    }
 
     u8 _unk4C[0x890-0x4C];       // 4C
     StageActor* mOwner;          // 890
