@@ -584,7 +584,7 @@ SECTIONS {
 	__LSG__typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x101e9cbc;
 	typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x101e9cc0;
 	__ct__10StageActorFPC14ActorBuildInfo = 0x2000ac8;
-	directionToPlayerH__10StageActorFRC4Vec3 = 0x20005ec;
+	directionToPlayerH__10StageActorFRC13Vec3__tm__2_f = 0x20005ec;
 	directionToActorH__10StageActorFRC10StageActor = 0x200c800;
 	distanceToPlayer__10StageActorFR4Vec2 = 0x20005a4;
 	deleteActorWhenOutOfView__10StageActorFUi = 0x20007a0;
@@ -653,6 +653,7 @@ SECTIONS {
 	directionToRotationList = 0x10200dd8;
 	DefaultReverbHiParam = 0x1022d328;
 	DefaultDelayParam = 0x1022d354;
+	moveValueTo__FPUiUiT2 = 0x29e0de8;
 	SFXReverb_0 = 0x101e7d14;
 	SFXReverb_1 = 0x101e7d18;
 	SFXReverbPlyJump_0 = 0x101e7d1c;
