@@ -6,22 +6,22 @@ extern "C" {
 #endif
 
 typedef struct _OsSpecifics {
-    unsigned int addrOSDynLoadAcquire;
-    unsigned int addrOSDynLoadFindExport;
-    unsigned int addrOSTitleMainEntry;
+    unsigned int addr_OSDynLoad_Acquire;
+    unsigned int addr_OSDynLoad_FindExport;
+    unsigned int addr_OSTitle_main_entry;
 
-    unsigned int addrKernSyscallTbl1;
-    unsigned int addrKernSyscallTbl2;
-    unsigned int addrKernSyscallTbl3;
-    unsigned int addrKernSyscallTbl4;
-    unsigned int addrKernSyscallTbl5;
+    unsigned int addr_KernSyscallTbl1;
+    unsigned int addr_KernSyscallTbl2;
+    unsigned int addr_KernSyscallTbl3;
+    unsigned int addr_KernSyscallTbl4;
+    unsigned int addr_KernSyscallTbl5;
 } OsSpecifics;
 
-typedef struct _sMemArea {
+typedef struct _s_mem_area {
     unsigned int        address;
     unsigned int        size;
-    struct _sMemArea* next;
-} sMemArea;
+    struct _s_mem_area* next;
+} s_mem_area;
 
 #ifdef __cplusplus
 }

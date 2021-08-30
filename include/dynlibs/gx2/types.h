@@ -560,51 +560,51 @@ typedef struct _GX2Surface {
     u32 width;
     u32 height;
     u32 depth;
-    u32 numMips;
+    u32 num_mips;
     s32 format;
     s32 aa;
     s32 use;
-    u32 imageSize;
-    void *imageData;
-    u32 mipSize;
-    void *mipData;
+    u32 image_size;
+    void *image_data;
+    u32 mip_size;
+    void *mip_data;
     s32 tile;
     u32 swizzle;
     u32 align;
     u32 pitch;
-    u32 mipOffset[13];
+    u32 mip_offset[13];
 } GX2Surface;
 
 typedef struct _GX2ColorBuffer {
     GX2Surface surface;
-    u32 viewMip;
-    u32 viewFirstSlice;
-    u32 viewSlicesCount;
-    void *auxData;
-    u32  auxSize;
+    u32 view_mip;
+    u32 view_first_slice;
+    u32 view_slices_count;
+    void *aux_data;
+    u32  aux_size;
     u32 regs[5];
 } GX2ColorBuffer;
 
 typedef struct _GX2DepthBuffer {
     GX2Surface surface;
-    u32 viewMip;
-    u32 viewFirstSlice;
-    u32 viewSlicesCount;
-    void *hiZData;
-    u32  hiZSize;
-    f32 clearDepth;
-    u32 clearStencil;
+    u32 view_mip;
+    u32 view_first_slice;
+    u32 view_slices_count;
+    void *hiZ_data;
+    u32  hiZ_size;
+    f32 clear_depth;
+    u32 clear_stencil;
     u32 regs[7];
 } GX2DepthBuffer;
 
 
 typedef struct _GX2Texture {
     GX2Surface surface;
-    u32 viewFirstMip;
-    u32 viewMipsCount;
-    u32 viewFirstSlice;
-    u32 viewSlicesCount;
-    u32 componentSelector;
+    u32 view_first_mip;
+    u32 view_mips_count;
+    u32 view_first_slice;
+    u32 view_slices_count;
+    u32 component_selector;
     u32 regs[5];
 } GX2Texture;
 
@@ -618,25 +618,25 @@ typedef struct _GX2AttribStream {
     u32 buffer;
     u32 offset;
     s32 format;
-    s32 indexType;
+    s32 index_type;
     u32 divisor;
-    u32 destinationSelector;
-    s32 endianSwap;
+    u32 destination_selector;
+    s32 endian_swap;
 } GX2AttribStream;
 
 typedef struct _GX2FetchShader {
     s32 type;
     u32 reg;
-    u32 shaderSize;
-    void *shaderProgram;
-    u32 attributesCount;
+    u32 shader_size;
+    void *shader_program;
+    u32 attributes_count;
     u32 divisor[3];
 } GX2FetchShader;
 
 typedef struct _GX2AttribVar {
     const char *name;
-    s32 varType;
-    u32 arrayCount;
+    s32 var_type;
+    u32 array_count;
     u32 location;
 } GX2AttribVar;
 
@@ -644,7 +644,7 @@ typedef struct _GX2AttribVar {
 typedef struct _GX2UniformBlock {
     const char *name;
     u32 location;
-    u32 blockSize;
+    u32 block_size;
 } GX2UniformBlock;
 
 typedef struct _GX2UniformInitialValue {
@@ -654,88 +654,88 @@ typedef struct _GX2UniformInitialValue {
 
 typedef struct _GX2SamplerVar {
     const char *name;
-    s32 samplerType;
+    s32 sampler_type;
     u32 location;
 } GX2SamplerVar;
 
 typedef struct _GX2UniformVar {
     const char *name;
-    s32 varType;
-    u32 arrayCount;
+    s32 var_type;
+    u32 array_count;
     u32 offset;
-    u32 blockIndex;
+    u32 block_index;
 } GX2UniformVar;
 
 typedef struct _GX2VertexShader {
     u32 regs[52];
-    u32 shaderSize;
-    void *shaderData;
-    s32 shaderMode;
-    u32 uniformBlocksCount;
-    GX2UniformBlock *uniformBlock;
-    u32 uniformVarsCount;
-    GX2UniformVar *uniformVar;
-    u32 initialValuesCount;
-    GX2UniformInitialValue *initialValue;
-    u32 loopsCount;
-    void *loopsData;
-    u32 samplerVarsCount;
-    GX2SamplerVar *samplerVar;
-    u32 attributeVarsCount;
-    GX2AttribVar *attributeVar;
+    u32 shader_size;
+    void *shader_data;
+    s32 shader_mode;
+    u32 uniform_blocks_count;
+    GX2UniformBlock *uniform_block;
+    u32 uniform_vars_count;
+    GX2UniformVar *uniform_var;
+    u32 initial_values_count;
+    GX2UniformInitialValue *initial_value;
+    u32 loops_count;
+    void *loops_data;
+    u32 sampler_vars_count;
+    GX2SamplerVar *sampler_var;
+    u32 attribute_vars_count;
+    GX2AttribVar *attribute_var;
     u32 data[6];
-    GX2RBuffer shaderProgramBuffer;
+    GX2RBuffer shader_program_buffer;
 } GX2VertexShader;
 
 typedef struct _GX2PixelShader {
     u32 regs[41];
-    u32 shaderSize;
-    void *shaderData;
-    s32 shaderMode;
-    u32 uniformBlocksCount;
-    GX2UniformBlock *uniformBlock;
-    u32 uniformVarsCount;
-    GX2UniformVar *uniformVar;
-    u32 initialValuesCount;
-    GX2UniformInitialValue *initialValue;
-    u32 loopsCount;
-    void *loopsData;
-    u32 samplerVarsCount;
-    GX2SamplerVar *samplerVar;
-    GX2RBuffer shaderProgramBuffer;
+    u32 shader_size;
+    void *shader_data;
+    s32 shader_mode;
+    u32 uniform_blocks_count;
+    GX2UniformBlock *uniform_block;
+    u32 uniform_vars_count;
+    GX2UniformVar *uniform_var;
+    u32 initial_values_count;
+    GX2UniformInitialValue *initial_value;
+    u32 loops_count;
+    void *loops_data;
+    u32 sampler_vars_count;
+    GX2SamplerVar *sampler_var;
+    GX2RBuffer shader_program_buffer;
 } GX2PixelShader;
 
 
 typedef struct _GX2GeometryShader {
     u32 regs[19];
-    u32 shaderSize;
-    void *shaderData;
-    u32 vertexShaderSize;
-    void *vertexShaderData;
-    s32 shaderMode;
-    u32 uniformBlocksCount;
-    GX2UniformBlock *uniformBlock;
-    u32 uniformVarsCount;
-    GX2UniformVar *uniformVar;
-    u32 initialValuesCount;
-    GX2UniformInitialValue *initialValue;
-    u32 loopsCount;
-    void *loopsData;
-    u32 samplerVarsCount;
-    GX2SamplerVar *samplerVar;
+    u32 shader_size;
+    void *shader_data;
+    u32 vertex_shader_size;
+    void *vertex_shader_data;
+    s32 shader_mode;
+    u32 uniform_blocks_count;
+    GX2UniformBlock *uniform_block;
+    u32 uniform_vars_count;
+    GX2UniformVar *uniform_var;
+    u32 initial_values_count;
+    GX2UniformInitialValue *initial_value;
+    u32 loops_count;
+    void *loops_data;
+    u32 sampler_vars_count;
+    GX2SamplerVar *sampler_var;
     u32 data[6];
-    GX2RBuffer shaderProgramBuffer;
-    GX2RBuffer vertexShaderProgramBuffer;
+    GX2RBuffer shader_program_buffer;
+    GX2RBuffer vertex_shader_program_buffer;
 } GX2GeometryShader;
 
-static const u32 attributeDestCompSelector[20] = {
+static const u32 attribute_dest_comp_selector[20] = {
     GX2_COMP_SEL_X001, GX2_COMP_SEL_XY01, GX2_COMP_SEL_X001, GX2_COMP_SEL_X001,  GX2_COMP_SEL_XY01, GX2_COMP_SEL_X001,
     GX2_COMP_SEL_X001, GX2_COMP_SEL_XY01, GX2_COMP_SEL_XY01, GX2_COMP_SEL_XYZ1, GX2_COMP_SEL_XYZW, GX2_COMP_SEL_XYZW,
     GX2_COMP_SEL_XY01, GX2_COMP_SEL_XY01, GX2_COMP_SEL_XYZW, GX2_COMP_SEL_XYZW, GX2_COMP_SEL_XYZ1, GX2_COMP_SEL_XYZ1,
     GX2_COMP_SEL_XYZW, GX2_COMP_SEL_XYZW
 };
 
-static const u32 textureCompSelector[54] = {
+static const u32 texture_comp_selector[54] = {
     GX2_COMP_SEL_NONE, GX2_COMP_SEL_X001, GX2_COMP_SEL_XY01, GX2_COMP_SEL_NONE, GX2_COMP_SEL_NONE, GX2_COMP_SEL_X001,
     GX2_COMP_SEL_X001, GX2_COMP_SEL_XY01, GX2_COMP_SEL_XYZ1, GX2_COMP_SEL_XYZ1, GX2_COMP_SEL_XYZW, GX2_COMP_SEL_XYZW,
     GX2_COMP_SEL_WZYX, GX2_COMP_SEL_X001, GX2_COMP_SEL_X001, GX2_COMP_SEL_XY01, GX2_COMP_SEL_XY01, GX2_COMP_SEL_NONE,
