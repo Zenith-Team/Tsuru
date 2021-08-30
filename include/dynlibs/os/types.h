@@ -113,7 +113,7 @@ typedef struct OSContext_ {
     u32 ex0;
     u32 ex1;
 
-    u32 exception_type;
+    u32 exceptionType;
     u32 reserved;
 
     double fpscr;
@@ -199,9 +199,9 @@ typedef struct _OSCalendarTime {
 
 typedef struct _OSSpinLock {
     u32 owner;
-    u32 __unknown0;
+    u32 _4;
     u32 recursion;
-    u32 __unknown1;
+    u32 _C;
 } OSSpinLock;
 
 struct _OSMutex;

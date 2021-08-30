@@ -11,8 +11,8 @@ extern "C" funcPtr _ctors[];
 
 // RPL loading dependencies
 OsSpecifics osSpecifics;
-extern u32 BLOSDynLoad_Acquire;
-extern u32 BOSDynLoad_FindExport;
+extern u32 BLOSDynLoadAcquire;
+extern u32 BOSDynLoadFindExport;
 
 // Create custom singletons
 CheatMgr CheatMgr::sInstance;
@@ -28,21 +28,21 @@ void initialize() {
     for (s32 i = 0; _ctors[i]; i++)
         (*_ctors[i])();
 
-    // Set OSDynLoad_Acquire and OSDynLoad_FindExport
-    OS_SPECIFICS->addr_OSDynLoad_Acquire    = (u32)(BLOSDynLoad_Acquire   & 0x03FFFFFC);
-    OS_SPECIFICS->addr_OSDynLoad_FindExport = (u32)(BOSDynLoad_FindExport & 0x03FFFFFC);
+    // Set OSDynLoadAcquire and OSDynLoadFindExport
+    OS_SPECIFICS->addrOSDynLoadAcquire    = (u32)(BLOSDynLoadAcquire   & 0x03FFFFFC);
+    OS_SPECIFICS->addrOSDynLoadFindExport = (u32)(BOSDynLoadFindExport & 0x03FFFFFC);
 
-    if (!(BLOSDynLoad_Acquire & 2))
-        OS_SPECIFICS->addr_OSDynLoad_Acquire    += (u32)&BLOSDynLoad_Acquire;
-    if (!(BOSDynLoad_FindExport & 2))
-        OS_SPECIFICS->addr_OSDynLoad_FindExport += (u32)&BOSDynLoad_FindExport;
+    if (!(BLOSDynLoadAcquire & 2))
+        OS_SPECIFICS->addrOSDynLoadAcquire    += (u32)&BLOSDynLoadAcquire;
+    if (!(BOSDynLoadFindExport & 2))
+        OS_SPECIFICS->addrOSDynLoadFindExport += (u32)&BOSDynLoadFindExport;
 
     // Init RPL libraries
     InitOSFunctionPointers();
     InitGX2FunctionPointers();
 
     if (CheatMgr::sInstance.mDebugLoggingEnabled) {
-        LOG("OSDynLoad_Acquire address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_Acquire);
-        LOG("OSDynLoad_FindExport address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_FindExport);
+        LOG("OSDynLoadAcquire address: 0x%08X", OS_SPECIFICS->addrOSDynLoadAcquire);
+        LOG("OSDynLoadFindExport address: 0x%08X", OS_SPECIFICS->addrOSDynLoadFindExport);
     }
 }
