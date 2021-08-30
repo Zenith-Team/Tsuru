@@ -101,6 +101,10 @@ SECTIONS {
 	setRepeat__9AnimationFb = 0x24deed4;
 	reset__9AnimationFv = 0x24deeac;
 
+/* AreaRumbleMgr */
+	sInstance__13AreaRumbleMgr = 0x101d1660;
+	rumble__13AreaRumbleMgrFiScN22 = 0x24c4d3c;
+
 /* AreaTask */
 	drawLayer3D__8AreaTaskFRCQ3_3agl3lyr10RenderInfo = 0x24b84a8;
 
@@ -648,8 +652,8 @@ SECTIONS {
 	formatBufferedString = 0x2A0F308;
 
 /* Misc */
-	BLOSDynLoad_Acquire = 0x2A9EF58;
-	BOSDynLoad_FindExport = 0x2A9F418;
+	BLOSDynLoadAcquire = 0x2A9EF58;
+	BOSDynLoadFindExport = 0x2A9F418;
 	directionToRotationList = 0x10200dd8;
 	DefaultReverbHiParam = 0x1022d328;
 	DefaultDelayParam = 0x1022d354;
@@ -659,4 +663,5 @@ SECTIONS {
 	SFXReverbPlyJump_0 = 0x101e7d1c;
 	SFXReverbPlyJump_1 = 0x101e7d20;
 	nullterminator = 0x1018A56D;
+	moveFloatTo__FRffT2 = 0x2027984;
 }
