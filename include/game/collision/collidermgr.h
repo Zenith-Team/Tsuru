@@ -2,16 +2,12 @@
 
 #include <game/collision/solid/colliderbase.h>
 
-class ColliderMgr : public sead::IDisposer {
+class ColliderMgr {
+    SEAD_SINGLETON_DISPOSER(ColliderMgr)
+
 public:
     void add(ColliderBase* collider);
     void remove(ColliderBase* collider);
 
-    static ColliderMgr* instance() { return sInstance; }
-
-protected:
-    static ColliderMgr* sInstance;
-
-public:
-    ColliderBase::List mLists[7];
+    ColliderBase::List lists[7];
 };

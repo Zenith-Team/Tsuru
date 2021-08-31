@@ -2,20 +2,20 @@
 
 #include <sead.h>
 
-class LevelInfo : public sead::IDisposer {
-public:
-    static LevelInfo* sInstance;
+class LevelInfo {
+    SEAD_SINGLETON_DISPOSER(LevelInfo)
 
-    u8 mWorld;                   // 10
-    u8 mLevel;                   // 11
-    u8 mArea;                    // 12
-    u8 mEntrance;                // 13
-    u32 mZone;                   // 14
-    u32 mEntranceType;           // 18
-    u8 mDestWorld;               // 1C
-    u8 mDestLevel;               // 1D
-    u8 mDestArea;                // 1E
-    u8 mDestEntrance;            // 1F
-    u32 mDestZone;               // 20
-    u32 mDestEntranceType;       // 24
+public:
+    u8 world;                   // 10
+    u8 level;                   // 11
+    u8 area;                    // 12
+    u8 entrance;                // 13
+    u32 zone;                   // 14
+    u32 entranceType;           // 18
+    u8 destWorld;               // 1C
+    u8 destLevel;               // 1D
+    u8 destArea;                // 1E
+    u8 destEntrance;            // 1F
+    u32 destZone;               // 20
+    u32 destEntranceType;       // 24
 };

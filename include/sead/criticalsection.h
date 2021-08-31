@@ -14,7 +14,7 @@ public:
     bool tryLock();
     void unlock();
 
-    OSMutex mCriticalSectionInner;
+    OSMutex criticalSectionInner;
 };
 
 }

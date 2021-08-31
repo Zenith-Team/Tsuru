@@ -55,21 +55,21 @@ public:
         return tryAlloc(size, alignment);
     }
 
-    void* mStart;
-    size_t mSize;
-    Heap* mParent;
-    OffsetList<Heap> mChildren;
-    ListNode mListNode;
-    OffsetList<IDisposer> mDisposerList;
-    HeapDirection mDirection;
-    CriticalSection mCS;
-    BitFlag<u32> mFlag;
+    void* start;
+    size_t size;
+    Heap* parent;
+    OffsetList<Heap> children;
+    ListNode listNode;
+    OffsetList<IDisposer> disposerList;
+    HeapDirection direction;
+    CriticalSection criticalSection;
+    BitFlag<u32> flag;
 };
 
 class FreeList {
 public:
-    void* mFree;
-    void* mWork;
+    void* free;
+    void* work;
 };
 
 class UnitHeap : public Heap {
@@ -96,11 +96,11 @@ public:
     virtual bool isResizable() const;
     virtual bool isAdjustable() const;
 
-    u32 mBlockSize;
-    void* mAreaStart;
-    u32 mAreaSize;
-    u32 mFreeSize;
-    FreeList mFreeList;
+    u32 blockSize;
+    void* areaStart;
+    u32 areaSize;
+    u32 freeSize;
+    FreeList freeList;
 };
 
 }

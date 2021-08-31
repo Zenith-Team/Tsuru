@@ -7,16 +7,16 @@ namespace sead {
 class INamable {
 public:
     INamable()
-        : mINamableName()
+        : inamableName()
     { }
 
     INamable(const char* str)
-        : mINamableName(str)
+        : inamableName(str)
     { }
 
     ~INamable() { }
 
-    SafeString mINamableName;
+    SafeString inamableName;
 };
 
 }

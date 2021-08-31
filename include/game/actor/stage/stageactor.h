@@ -77,59 +77,59 @@ public:
     void actorCbCallback3(ColliderBase*, Vec2f*);
     void actorCbCallback4(ColliderBase*, Vec2f*);
 
-    u32 mDirection;                     // _50      Inited to 0
-    s8 mPlayerID;                       // _54      Inited to -1
-    s8 mControllerPlayerID;             // _55      Inited to -1
-    u8 mLayer;                          // _56      Inited to buildInfo->layer
-    u8 mCollisionMask;                  // _57      Inited to 1
-    f32 mXSpeed;                        // _58      Inited to 0
-    f32 _5C;                            // _5C      Inited to 0
-    f32 mFallSpeed;                     // _60      Inited to 0
-    f32 mGravity;                       // _64      Inited to 0
-    f32 mXAcceleration;                 // _68      Inited to 0
-    Vec3f mPosition;                    // _6C      
-    Vec3f mSpeed;                       // _78      Inited to 0
-    Vec3f mMaxSpeed;                    // _84      Inited to 0
-    Vec3f mScale;                       // _90      Inited to 1.0
-    Vec3u mRotation;                    // _9C      Inited to 0
-    u32 _A8;                            // _A8      Inited to 0
-    u32 _AC;                            // _AC      Inited to 0
-    u32 mRotationDelta;                 // _B0      Inited to 0
-    Vec2f mPositionDelta;               // _B4      Inited to 0
-    HitboxCollider mHitboxCollider;     // _BC      
-    Vec2f mVisibleAreaOffs;             // _1E4     Inited to actorInfo->spawnRangeOffset
-    Vec2f mVisibleAreaSize;             // _1EC     Inited to actorInfo->spawnRangeSize
-    Vec2f mSize;                        // _1F4     
-    f32 _1FC;                           // _1FC     Inited to 256.0 + actorInfo->_18
-    f32 _200;                           // _200     Inited to 256.0 + actorInfo->_1A
-    f32 _204;                           // _204     Inited to 80.0 + actorInfo->_1C
-    f32 _208;                           // _208     Inited to 80.0 + actorInfo->_1E
-    u8 mZoneID;                         // _20C     
-    u8 mType;                           // _20D     0: Actor, 1: Player, 2: Yoshi, 3: Enemy, 4: Unknown
-    bool mIsActive;                     // _20E     Inited to true
-    bool mIsVisible;                    // _20F     Inited to true
-    bool mNoSpawn;                      // _210     Inited to false
-    u8 _211;                            // _211     Inited to 1
-    u8 _212;                            // _212     Inited to 0
-    u8 mEventID1;                       // _213     
-    u8 mEventID2;                       // _214     
-    u8 _215;                            // _215     
-    u16 mActorInfoFlags;                // _216     Inited to actorInfo->flags
-    u32 mBumpDamageTimer;               // _218     Inited to 0
-    u32 _21C;                           // _21C     Inited to 0
-    u32 _220;                           // _220     Inited to 0
-    u32 _224;                           // _224     Inited to 0
-    u32 _228;                           // _228     Inited to 0
-    u32 mKillStreak;                    // _22C     Inited to 0
-    u32 mProfileFlags;                  // _230     Inited to profile->flags
-    Vec3f mPositionOffset;              // _234     Inited to 0
-    Vec3f _240;                         // _240     Inited to position
-    Vec3f _24C;                         // _24C     Inited to position
-    Vec3f _258;                         // _258     Inited to position
-    YoshiEatData* mYoshiEatData;        // _264
-    BabyYoshiEatData* mBabyYoshiData;   // _268
-    u32 _26C;                           // _26C
-    u8* _270;                           // _270     buildInfo->_28
-    f32 _274;                           // _274     Inited to 0
-    void* mBabyYoshiBubbleData;         // _278
+    u32 direction;                          // _50      Inited to 0
+    s8 playerID;                            // _54      Inited to -1
+    s8 controllerPlayerID;                  // _55      Inited to -1
+    u8 layer;                               // _56      Inited to buildInfo->layer
+    u8 collisionMask;                       // _57      Inited to 1
+    f32 xSpeed;                             // _58      Inited to 0
+    f32 _5C;                                // _5C      Inited to 0
+    f32 fallSpeed;                          // _60      Inited to 0
+    f32 gravity;                            // _64      Inited to 0
+    f32 xAcceleration;                      // _68      Inited to 0
+    Vec3f position;                         // _6C      
+    Vec3f speed;                            // _78      Inited to 0
+    Vec3f maxSpeed;                         // _84      Inited to 0
+    Vec3f scale;                            // _90      Inited to 1.0
+    Vec3u rotation;                         // _9C      Inited to 0
+    u32 _A8;                                // _A8      Inited to 0
+    u32 _AC;                                // _AC      Inited to 0
+    u32 rotationDelta;                      // _B0      Inited to 0
+    Vec2f positionDelta;                    // _B4      Inited to 0
+    HitboxCollider hitboxCollider;          // _BC      
+    Vec2f visibleAreaOffs;                  // _1E4     Inited to actorInfo->spawnRangeOffset
+    Vec2f visibleAreaSize;                  // _1EC     Inited to actorInfo->spawnRangeSize
+    Vec2f size;                             // _1F4     
+    f32 _1FC;                               // _1FC     Inited to 256.0 + actorInfo->_18
+    f32 _200;                               // _200     Inited to 256.0 + actorInfo->_1A
+    f32 _204;                               // _204     Inited to 80.0 + actorInfo->_1C
+    f32 _208;                               // _208     Inited to 80.0 + actorInfo->_1E
+    u8 zoneID;                              // _20C     
+    u8 type;                                // _20D     0: Actor, 1: Player, 2: Yoshi, 3: Enemy, 4: Unknown
+    bool isActive;                          // _20E     Inited to true
+    bool isVisible;                         // _20F     Inited to true
+    bool noSpawn;                           // _210     Inited to false
+    u8 _211;                                // _211     Inited to 1
+    u8 _212;                                // _212     Inited to 0
+    u8 eventID1;                            // _213     
+    u8 eventID2;                            // _214     
+    u8 _215;                                // _215     
+    u16 actorInfoFlags;                     // _216     Inited to actorInfo->flags
+    u32 bumpDamageTimer;                    // _218     Inited to 0
+    u32 _21C;                               // _21C     Inited to 0
+    u32 _220;                               // _220     Inited to 0
+    u32 _224;                               // _224     Inited to 0
+    u32 _228;                               // _228     Inited to 0
+    u32 killStreak;                         // _22C     Inited to 0
+    u32 profileFlags;                       // _230     Inited to profile->flags
+    Vec3f positionOffset;                   // _234     Inited to 0
+    Vec3f _240;                             // _240     Inited to position
+    Vec3f _24C;                             // _24C     Inited to position
+    Vec3f _258;                             // _258     Inited to position
+    YoshiEatData* yoshiEatData;             // _264
+    BabyYoshiEatData* babyYoshiEatData;     // _268
+    u32 _26C;                               // _26C
+    u8* _270;                               // _270     buildInfo->_28
+    f32 _274;                               // _274     Inited to 0
+    void* babyYoshiBubbleData;              // _278
 };

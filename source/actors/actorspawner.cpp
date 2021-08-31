@@ -14,15 +14,15 @@ public:
     u32 onCreate() override;
     u32 onExecute() override;
 
-    u16 mSpawnProfileID;
-    bool mSpawned;
+    u16 spawnProfileID;
+    bool spawned;
 };
 
 const Profile ActorSpawnerProfile(&ActorSpawner::build, ProfileID::ActorSpawner, "ActorSpawner", nullptr, 0);
 
 ActorSpawner::ActorSpawner(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
-    , mSpawned(false)
+    , spawned(false)
 { }
 
 Actor* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
@@ -30,15 +30,15 @@ Actor* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 ActorSpawner::onCreate() {
-    if (!mEventID2)
+    if (!eventID2)
         return 2;
     
     u16 inputID = mLinkID | ((mMovementID & 0xF) << 8);
 
     if (mMovementID & 0x10)
-        mSpawnProfileID = Profile::spriteToProfileList[inputID];
+        this->spawnProfileID = Profile::spriteToProfileList[inputID];
     else
-        mSpawnProfileID = inputID;
+        this->spawnProfileID = inputID;
 
     // Call onExecute to prevent the spawned actor to be missing for one frame if the event is already active
     return onExecute();
@@ -47,50 +47,50 @@ u32 ActorSpawner::onCreate() {
 u32 ActorSpawner::onExecute() {
     Actor* child = (mChildList.begin() != mChildList.end()) ? mChildList.begin().mPtr : nullptr;
 
-    if (EventMgr::sInstance->isActive(mEventID2-1)) {
+    if (EventMgr::instance()->isActive(eventID2-1)) {
         if (mInitialStateFlag == 2 && child) {
             StageActor* actor = sead::DynamicCast<StageActor, Actor>(child);
 
             if (actor) {
-                actor->mIsActive = true;
-                actor->mIsVisible = true;
+                actor->isActive = true;
+                actor->isVisible = true;
                 actor->addHitboxColliders();
             }
 
             return 1;
         }
 
-        if (!mSpawned) {
+        if (!this->spawned) {
             ActorBuildInfo buildInfo = { 0 };
 
-            buildInfo.mSettings1 = mSettings1;
-            buildInfo.mSettings2 = mSettings2;
-            buildInfo.mProfile = Profile::get(mSpawnProfileID);
-            buildInfo.mPosition = mPosition;
-            buildInfo.mEventID1 = mEventID1 & 0xF;
-            buildInfo.mEventID2 = (mEventID1 >> 4) & 0xF;
+            buildInfo.settings1 = this->settings1;
+            buildInfo.settings2 = this->settings2;
+            buildInfo.mProfile = Profile::get(this->spawnProfileID);
+            buildInfo.position = this->position;
+            buildInfo.eventID1 = this->eventID1 & 0xF;
+            buildInfo.eventID2 = (this->eventID1 >> 4) & 0xF;
             ActorMgr::instance()->create(&buildInfo, 0);
 
-            mSpawned = true;
+            this->spawned = true;
         }
     }
 
     else {
         if (mInitialStateFlag == 1 && child) {
-            child->mIsDeleted = true;
+            child->isDeleted = true;
         }
 
         else if (mInitialStateFlag == 2 && child) {
             StageActor* actor = sead::DynamicCast<StageActor, Actor>(child);
 
             if (actor) {
-                actor->mIsActive = false;
-                actor->mIsVisible = false;
+                actor->isActive = false;
+                actor->isVisible = false;
                 actor->removeHitboxColliders();
             }
         }
 
-        mSpawned = false;
+        this->spawned = false;
     }
 
     return 1;

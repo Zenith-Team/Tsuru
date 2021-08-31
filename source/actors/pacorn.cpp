@@ -34,7 +34,7 @@ Actor* PAcorn::build(const ActorBuildInfo* buildInfo) {
 u32 PAcorn::onCreate() {
     this->_1827 = true;
     this->_1808 = 0;
-    this->mModel = ModelWrapper::create("I_musasabi", "I_musasabiP", 1, 1, 0, 0, 0);
+    this->model = ModelWrapper::create("I_musasabi", "I_musasabiP", 1, 1, 0, 0, 0);
 
     this->setupActor();
     this->spawnMethod();
@@ -59,24 +59,24 @@ void PAcorn::vf18C() {
 }
 
 void PAcorn::playBlockReleaseUpAnim() {
-    this->mModel->playSklAnim("out", 1);
+    this->model->playSklAnim("out", 1);
 }
 
 
 void PAcorn::playBlockReleaseDownAnim() {
-    this->mModel->playSklAnim("out3", 3);
+    this->model->playSklAnim("out3", 3);
 }
 
 void PAcorn::playIdleAnim() {
-    this->mModel->playSklAnim("wait", 4);
+    this->model->playSklAnim("wait", 4);
 }
 
 void PAcorn::playFloatAnim() {
-    this->mModel->playSklAnim("wait2", 5);
+    this->model->playSklAnim("wait2", 5);
 }
 
 void PAcorn::vf1B4() {
-    this->mModel->playSklAnim("out2", 2);
+    this->model->playSklAnim("out2", 2);
 }
 
 u32 PAcorn::vf1C4() {

@@ -14,16 +14,12 @@ enum BlendType {
     BlendTypeMax = 6,
 };
 
-static_assert(sizeof(BlendType) == 4, "BlendType size mismatch");
-
 enum ColorSourceType { 
     ColorSourceTypeFirst = 0,
     ColorSourceTypeRandom = 1,
     ColorSourceType3v4k = 2,
     ColorSourceTypeMax = 3,
 };
-
-static_assert(sizeof(ColorSourceType) == 4, "ColorSourceType size mismatch");
 
 enum CpuCore {
     CpuCore0 = 0,
@@ -32,20 +28,14 @@ enum CpuCore {
     CpuCoreMax = 3,
 };
 
-static_assert(sizeof(CpuCore) == 4, "CpuCore size mismatch");
-
 enum CustomActionCallBackID {
     CustomActionCallBackIDInvalid = 0xFFFFFFFF,
     CustomActionCallBackIDMax = 8,
 };
 
-static_assert(sizeof(CustomActionCallBackID) == 4, "CustomActionCallBackID size mismatch");
-
 enum CustomShaderCallBackID {
     CustomShaderCallBackIDMax = 9,
 };
-
-static_assert(sizeof(CustomShaderCallBackID) == 4, "CustomShaderCallBackID size mismatch");
 
 enum DisplaySideType {
     DisplaySideTypeBoth = 0,
@@ -54,15 +44,11 @@ enum DisplaySideType {
     DisplaySideTypeMax = 3,
 };
 
-static_assert(sizeof(DisplaySideType) == 4, "DisplaySideType size mismatch");
-
 enum EmitterType {
     EmitterTypeSimple = 0,
     EmitterTypeComplex = 1,
     EmitterTypeMax = 2,
 };
-
-static_assert(sizeof(EmitterType) == 4, "EmitterType size mismatch");
 
 enum FragmentComposite { 
     FragmentCompositeMul = 0,
@@ -71,16 +57,12 @@ enum FragmentComposite {
     FragmentCompositeMax = 3,
 };
 
-static_assert(sizeof(FragmentComposite) == 4, "FragmentComposite size mismatch");
-
 enum MeshType {
     MeshTypeParticle = 0,
     MeshTypePrimitive = 1,
     MeshTypeStripe = 2,
     MeshTypeMax = 3,
 };
-
-static_assert(sizeof(MeshType) == 4, "MeshType size mismatch");
 
 enum ParticleBehaviorFlag {
     ParticleBehaviorFlagAirResist       = 0x0001,
@@ -99,8 +81,6 @@ enum ParticleBehaviorFlag {
     ParticleBehaviorFlagHasTex1         = 0x4000,
 };
 
-static_assert(sizeof(ParticleBehaviorFlag) == 4, "ParticleBehaviorFlag size mismatch");
-
 enum PtclFollowType {
     PtclFollowTypeSRT = 0,
     PtclFollowTypeNone = 1,
@@ -108,16 +88,12 @@ enum PtclFollowType {
     PtclFollowTypeMax = 3,
 };
 
-static_assert(sizeof(PtclFollowType) == 4, "PtclFollowType size mismatch");
-
 enum PtclType {
     PtclTypeSimple = 0,
     PtclTypeComplex = 1,
     PtclTypeChild = 2,
     PtclTypeMax = 3,
 };
-
-static_assert(sizeof(PtclFollowType) == 4, "PtclFollowType size mismatch");
 
 enum ShaderAttrib {
     ShaderAttribScl        = 0x001,
@@ -131,8 +107,6 @@ enum ShaderAttrib {
     ShaderAttribEmMat      = 0x100,
 };
 
-static_assert(sizeof(ShaderAttrib) == 4, "ShaderAttrib size mismatch");
-
 enum ShaderType {
     ShaderTypeNormal = 0,
     ShaderTypeUserMacro1 = 1,
@@ -140,15 +114,11 @@ enum ShaderType {
     ShaderTypeMax = 3,
 };
 
-static_assert(sizeof(ShaderType) == 4, "ShaderType size mismatch");
-
 enum TextureFilterMode {
     TextureFilterModeLinear = 0,
     TextureFilterModePoint = 1,
     TextureFilterModeMax = 2,
 };
-
-static_assert(sizeof(TextureFilterMode) == 4, "TextureFilterMode size mismatch");
 
 enum TextureResFormat { 
     TextureResFormatInvalid = 0,
@@ -170,8 +140,6 @@ enum TextureResFormat {
     TextureResFormatMax = 16,
 };
 
-static_assert(sizeof(TextureResFormat) == 4, "TextureResFormat size mismatch");
-
 enum TextureSlot {
     TextureSlot0 = 0,
     TextureSlot1 = 1,
@@ -181,8 +149,6 @@ enum TextureSlot {
     TextureSlotMax = 4,
 };
 
-static_assert(sizeof(TextureSlot) == 4, "TextureSlot size mismatch");
-
 enum TextureWrapMode {
     TextureWrapModeMirror = 0,
     TextureWrapModeWrap = 1,
@@ -190,8 +156,6 @@ enum TextureWrapMode {
     TextureWrapModeMirror_Once = 3,
     TextureWrapModeMax = 4,
 };
-
-static_assert(sizeof(TextureWrapMode) == 4, "TextureWrapMode size mismatch");
 
 enum VertexRotationMode { 
     VertexRotationModeNone = 0,
@@ -201,8 +165,6 @@ enum VertexRotationMode {
     VertexRotationModeRotateXYZ = 4,
     VertexRotationModeMax = 5,
 };
-
-static_assert(sizeof(VertexRotationMode) == 4, "VertexRotationMode size mismatch");
 
 enum VertexTransformMode { 
     VertexTransformModeBillboard = 0,
@@ -216,15 +178,11 @@ enum VertexTransformMode {
     VertexTransformModeYBillboard = 8,
 };
 
-static_assert(sizeof(VertexTransformMode) == 4, "VertexTransformMode size mismatch");
-
 enum ZBufATestType {
     ZBufATestTypeNormal = 0,
     ZBufATestTypeIgnoreZ = 1,
     ZBufATestTypeAlpha = 2,
     ZBufATestTypeMax = 3,
 };
-
-static_assert(sizeof(ZBufATestType) == 4, "ZBufATestType size mismatch");
 
 } }

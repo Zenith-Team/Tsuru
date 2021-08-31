@@ -8,13 +8,11 @@ namespace nw { namespace eft {
 class Handle {
 public:
     Handle()
-        : mEmitterSet(NULL)
+        : emitterSet(NULL)
     { }
 
-    EmitterSet* mEmitterSet;
-    u32 mCreateID;
+    EmitterSet* emitterSet;
+    u32 createID;
 };
-
-static_assert(sizeof(Handle) == 8, "Handle size mismatch");
 
 } }

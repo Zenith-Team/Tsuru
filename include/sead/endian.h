@@ -18,13 +18,9 @@ public:
         return EndianType_Little;
     }
 
-    static inline EndianType getHostEndian() {
-        return hostEndian;
-    }
+    static inline EndianType getHostEndian() { return hostEndian; }
 
-    static inline u32 toHost(EndianType from, u32 x) {
-        return convFuncTable.conv32[from^hostEndian](x);
-    }
+    static inline u32 toHost(EndianType from, u32 x) { return convFuncTable.conv32[from^hostEndian](x); }
 
 private:
     struct ConvFuncTable {

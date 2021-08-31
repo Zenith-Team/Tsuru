@@ -100,7 +100,7 @@ struct SimpleEmitterData : EmitterData { // Size: 0x6F4
     u8 mDisplayParent;
     u8 mEmitSameDistance;
     u8 mSphereUseLatitude;
-    VertexRotationMode mRotationMode;
+    VertexRotationMode rotationMode;
     PtclFollowType mPtclFollowType;
     u32 mFragmentColorMode;
     u32 mFragmentAlphaMode;
@@ -240,7 +240,7 @@ struct ChildData { // Size: 0x2FC
     f32 mCcaleInheritRatio;
     math::VEC2 mPtclEmitScale;
     f32 mPtclScaleRandom;
-    VertexRotationMode mRotationMode;
+    VertexRotationMode rotationMode;
     math::VEC3 mPtclRotate;
     math::VEC3 mPtclRotateRandom;
     math::VEC3 mAngularVelocity;

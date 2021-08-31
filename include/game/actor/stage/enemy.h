@@ -134,9 +134,9 @@ public:
     u8  _17E3;                  // _17E3
     u16 _17E4[0x4];             // _17E4
     u32 _17EC;                  // _17EC
-    EnemyFreezeMgr mFreezeMgr;  // _17F0
-    u8  _1840[0x1860-0x1840];   // _1840  //? Possibly BabyYoshiBubbleData
-    Enemy* mSelf;               // _1860
+    EnemyFreezeMgr freezeMgr;   // _17F0
+    u8 _1840[0x1860-0x1840];    // _1840  //? Possibly BabyYoshiBubbleData
+    Enemy* self;                // _1860
     void* _1864;                // _1864
     u8  _1868;                  // _1868
     u8  _1869;                  // _1869

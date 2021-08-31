@@ -107,8 +107,8 @@ public:
     u32 _17D4;
     u32 _17D8;
     u8 unk2[36];
-    ModelWrapper* mModel;
-    TextureAnimation* mTexAnim;
+    ModelWrapper* model;
+    TextureAnimation* texAnim;
     u32 _1808;
     u32 _180C;
     u32 _1810;
@@ -150,7 +150,7 @@ public:
     u32 _18A0;
     PowerupBase* self;
     void* _18A8;
-    HitboxCollider mHitboxCollider;
+    HitboxCollider hitboxCollider;
     u8 _19D4;
     u8 unk8[3];
     f32 _19D8;
@@ -165,7 +165,7 @@ public:
     u32 _19F8;
     u32 _19FC;
     u32 _1A00;
-    EffectWrapper mEffectWrapper;
+    EffectWrapper effectWrapper;
     u32 _1A6C;
     u8 _1A70;
     u8 _1A71;

@@ -48,27 +48,27 @@ void CustomDoor::initHitboxCollider() {
 // Broken override
 /*void CustomDoor::ZOrder() {
     // nybble5 checkbox
-    if (this->mSettings1 >> 0x1C == 1) this->mPosition.z  = 0xC5228000;
-    else this->mPosition.z = 0x42000000;
+    if (this->settings1 >> 0x1C == 1) this->position.z  = 0xC5228000;
+    else this->position.z = 0x42000000;
 };*/
 
 void CustomDoor::loadModel() {
-    this->mModel = ModelWrapper::create("obj_door", "obj_doorA", 1, 1, 2, 1);
-    this->mModel->playSklAnim("obj_doorA", 0);
-    SkeletalAnimation* sklAnim = this->mModel->mSklAnims[0];
+    this->model = ModelWrapper::create("obj_door", "obj_doorA", 1, 1, 2, 1);
+    this->model->playSklAnim("obj_doorA", 0);
+    SkeletalAnimation* sklAnim = this->model->mSklAnims[0];
     sklAnim->mSpeed = -1.0f;
     sklAnim->setRepeat(false);
 }
 
 void CustomDoor::playOpenDoorAnim() {
-    SkeletalAnimation* sklAnim = this->mModel->mSklAnims[0];
+    SkeletalAnimation* sklAnim = this->model->mSklAnims[0];
     sklAnim->mSpeed = 1.0f;
     sklAnim->reset();
     sklAnim->setRepeat(false);
 };
 
 void CustomDoor::playCloseDoorAnim() {
-    SkeletalAnimation* sklAnim = this->mModel->mSklAnims[0];
+    SkeletalAnimation* sklAnim = this->model->mSklAnims[0];
     sklAnim->mSpeed = -1.0f;
     sklAnim->reset();
     sklAnim->setRepeat(false);

@@ -10,7 +10,7 @@ public:
     Actor* findActorByID(u32* id);
 
     sead::Buffer<Actor*> mBuffer;
-    u32 mUsedCount;
+    u32 usedCount;
     Actor** mLast;
     u32 _10;
     u8 _14;
@@ -26,15 +26,15 @@ public:
     u32 createActor(Actor* actor);  // Calls "create" virtual functions
 
 
-    sead::UnitHeap* mPlayerUnitHeap;
-    sead::UnitHeap* mActorUnitHeap;
-    u8 mDeferredActorCreations[0x5970]; // sead::FixedRingBuffer<ActorBuildInfo, 520>
-    sead::OffsetList<Actor> mActorsToCreate;
-    sead::OffsetList<Actor> mActorsToDelete;
-    sead::OffsetList<Actor> mActiveActors;
-    sead::OffsetList<Actor> mDrawableActors;
-    sead::FixedPtrArray<sead::Heap, 520> mDeletedActorHeaps;
-    sead::FixedPtrArray<Actor, 520> mFinalExecuteList;
-    ActorBuffer mActors;
+    sead::UnitHeap* playerUnitHeap;
+    sead::UnitHeap* actorUnitHeap;
+    u8 deferredActorCreations[0x5970]; // sead::FixedRingBuffer<ActorBuildInfo, 520>
+    sead::OffsetList<Actor> actorsToCreate;
+    sead::OffsetList<Actor> actorsToDelete;
+    sead::OffsetList<Actor> activeActors;
+    sead::OffsetList<Actor> drawableActors;
+    sead::FixedPtrArray<sead::Heap, 520> deletedActorHeaps;
+    sead::FixedPtrArray<Actor, 520> finalExecuteList;
+    ActorBuffer actors;
     // ...
 };
