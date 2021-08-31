@@ -37,7 +37,7 @@ public:
     virtual void drawCylinder32Impl(const Mtx34& modelMtx, const Color4f& top, const Color4f& btm) = 0;
 };
 
-class PrimitiveRenderer {
+class PrimitiveRenderer : public IDisposer {
     SEAD_SINGLETON_DISPOSER(PrimitiveRenderer)
 
 public:

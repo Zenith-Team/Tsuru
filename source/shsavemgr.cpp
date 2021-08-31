@@ -53,7 +53,6 @@ void SHSaveMgr::init() {
     }
 
     LOG("SHSaveMgr inited!");
-    LOG("NoClip: %i", SHSaveMgr::sSaveData.noClipEnabled);
     SHSaveMgr::instance()->mInited = true;
 }
 
