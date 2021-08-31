@@ -5,6 +5,7 @@
 #include <cstdarg>
 
 #include <dynlibs/os/functions.h>
+#include <types.h>
 
 // Compare if two strings are equal
 extern "C" int strcmp(const char *str1, const char *str2) {
@@ -38,14 +39,3 @@ extern "C" int snprintf(char* buffer, unsigned int length, const char* string, .
     va_end(args);
     return result;
 }
-
-// Shortcut to optimized OSBlockMove from C memcpy
-inline void* memcpy(void* dst, const void* src, size_t size) {
-    return OSBlockMove(dst, src, size, 0);
-}
-
-// Shortcut to optimized OSBlockSet from C memset
-inline void* memset(void* dst, unsigned char value, size_t size) {
-    return OSBlockSet(dst, value, size);
-}
-

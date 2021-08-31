@@ -11,7 +11,7 @@
 #include <agl/lyr/renderinfo.h>
 #include <log.h>
 
-#include "../cheatmgr/cheatmgr.h"
+#include <custom/cheatmgr.h>
 
 void drawLine(const Vec2f& position, const f32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
     Vec3f scale(lineLength, lineThickness, 1.0f);
@@ -20,7 +20,7 @@ void drawLine(const Vec2f& position, const f32 rotation, const sead::Color4f& co
 
     Mtx34 mtx;
     Mtx34::makeSRT(mtx, scale, rot, pos);
-    sead::PrimitiveRenderer::sInstance->mRendererImpl->drawQuadImpl(mtx, color, color);
+    sead::PrimitiveRenderer::instance()->mRendererImpl->drawQuadImpl(mtx, color, color);
 }
 
 void drawLine(const Vec2f& point1, const Vec2f& point2, const sead::Color4f& color, const f32 lineThickness) {
@@ -37,12 +37,12 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
 
     if (CheatMgr::sInstance.mCollisionViewerEnabled) {
-        sead::PrimitiveRenderer::sInstance->setCamera(*renderInfo.mCamera);
-        sead::PrimitiveRenderer::sInstance->setProjection(*renderInfo.mProjection);
-        sead::PrimitiveRenderer::sInstance->begin();
+        sead::PrimitiveRenderer::instance()->setCamera(*renderInfo.mCamera);
+        sead::PrimitiveRenderer::instance()->setProjection(*renderInfo.mProjection);
+        sead::PrimitiveRenderer::instance()->begin();
 
         HitboxCollider::List::Node* hColliderNode;
-        hColliderNode = HitboxColliderMgr::sInstance->mActiveList.mFirst;
+        hColliderNode = HitboxColliderMgr::instance()->mActiveList.mFirst;
 
         while (hColliderNode != nullptr) {
             HitboxCollider* hCollider = hColliderNode->mOwner;
@@ -67,14 +67,14 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
                 else if (hCollider->mColliderInfo.mShape == HitboxCollider::ShapeCircle) {
                     f32 radius = (rect.right - rect.left) / 2.0f;
 
-                    sead::PrimitiveRenderer::sInstance->drawCircle32(Vec3f(rect.left + radius, rect.bottom + radius, 4000.0f), radius, sead::colorRed);
+                    sead::PrimitiveRenderer::instance()->drawCircle32(Vec3f(rect.left + radius, rect.bottom + radius, 4000.0f), radius, sead::colorRed);
                 }
             }
 
             hColliderNode = hColliderNode->mNext;
         }
 
-        hColliderNode = HitboxColliderMgr::sInstance->_34.mFirst;
+        hColliderNode = HitboxColliderMgr::instance()->_34.mFirst;
 
         while (hColliderNode != nullptr) {
             HitboxCollider* hCollider = hColliderNode->mOwner;
@@ -98,13 +98,13 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
             else if (hCollider->mColliderInfo.mShape == HitboxCollider::ShapeCircle) {
                 f32 radius = (rect.right - rect.left) / 2.0f;
 
-                sead::PrimitiveRenderer::sInstance->drawCircle32(Vec3f(rect.left + radius, rect.bottom + radius, 4000.0f), radius, sead::colorRed);
+                sead::PrimitiveRenderer::instance()->drawCircle32(Vec3f(rect.left + radius, rect.bottom + radius, 4000.0f), radius, sead::colorRed);
             }
 
             hColliderNode = hColliderNode->mNext;
         }
 
-        ColliderBase::List* activeList = &ColliderMgr::sInstance->mLists[0];
+        ColliderBase::List* activeList = &ColliderMgr::instance()->mLists[0];
         ColliderBase::List::Node* node = activeList->mFirst;
 
         while (node != nullptr) {
@@ -112,7 +112,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
             if (sead::IsDerivedFrom<CircularCollider, ColliderBase>(colliderBase)) {
                 CircularCollider* collider = static_cast<CircularCollider*>(colliderBase);
 
-                sead::PrimitiveRenderer::sInstance->drawCircle32(Vec3f(collider->mOwnerInfo.mPosition->x + collider->mDistToCenter.x + collider->_160.x, collider->mOwnerInfo.mPosition->y + collider->mDistToCenter.y + collider->_160.y, 4000.f), collider->mRadius, sead::colorBlue);
+                sead::PrimitiveRenderer::instance()->drawCircle32(Vec3f(collider->mOwnerInfo.mPosition->x + collider->mDistToCenter.x + collider->_160.x, collider->mOwnerInfo.mPosition->y + collider->mDistToCenter.y + collider->_160.y, 4000.f), collider->mRadius, sead::colorBlue);
             }
 
             else if (sead::IsDerivedFrom<SolidOnTopCollider, ColliderBase>(colliderBase)) {
@@ -154,7 +154,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
             node = node->mNext;
         }
 
-        ActorBuffer* actors = &ActorMgr::sInstance->mActors;
+        ActorBuffer* actors = &ActorMgr::instance()->mActors;
         for (u32 i = 0; i < actors->mBuffer.mSize; i++) {
             StageActor* actor = sead::DynamicCast<StageActor, Actor>(actors->mBuffer[i]);
             if (actor == NULL || !actor->mIsVisible || actor->mIsDeleted)
@@ -193,7 +193,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
             }
         }
 
-        sead::PrimitiveRenderer::sInstance->end();
+        sead::PrimitiveRenderer::instance()->end();
     }
 }
 
@@ -201,39 +201,39 @@ void CourseSelectTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
 
     if (CheatMgr::sInstance.mCollisionViewerEnabled) {
-        sead::PrimitiveRenderer::sInstance->setCamera(*renderInfo.mCamera);
-        sead::PrimitiveRenderer::sInstance->setProjection(*renderInfo.mProjection);
-        sead::PrimitiveRenderer::sInstance->begin();
+        sead::PrimitiveRenderer::instance()->setCamera(*renderInfo.mCamera);
+        sead::PrimitiveRenderer::instance()->setProjection(*renderInfo.mProjection);
+        sead::PrimitiveRenderer::instance()->begin();
 
-        for (u32 i = 0; i < CSHitboxColliderMgr::sInstance->mArray1.mPtrNum; i++) {
-            CSHitboxCollider* cshCollider = static_cast<CSHitboxCollider*>(CSHitboxColliderMgr::sInstance->mArray1.mPtrs[i]);
-
-            if (!cshCollider)
-                continue;
-
-            CourseSelectActor* actor = reinterpret_cast<CourseSelectActor*>(ActorMgr::sInstance->mActors.findActorByID(&cshCollider->mOwnerID));
-
-            if (!actor)
-                continue;
-
-            sead::PrimitiveRenderer::sInstance->drawCube(actor->mPosition + cshCollider->mInfo.mOffset, cshCollider->mInfo.mSize, sead::colorYellow);
-        }
-
-
-        for (u32 i = 0; i < CSHitboxColliderMgr::sInstance->mArray2.mPtrNum; i++) {
-            CSHitboxCollider* cshCollider = static_cast<CSHitboxCollider*>(CSHitboxColliderMgr::sInstance->mArray2.mPtrs[i]);
+        for (u32 i = 0; i < CSHitboxColliderMgr::instance()->mArray1.mPtrNum; i++) {
+            CSHitboxCollider* cshCollider = static_cast<CSHitboxCollider*>(CSHitboxColliderMgr::instance()->mArray1.mPtrs[i]);
 
             if (!cshCollider)
                 continue;
 
-            CourseSelectActor* actor = reinterpret_cast<CourseSelectActor*>(ActorMgr::sInstance->mActors.findActorByID(&cshCollider->mOwnerID));
+            CourseSelectActor* actor = reinterpret_cast<CourseSelectActor*>(ActorMgr::instance()->mActors.findActorByID(&cshCollider->mOwnerID));
 
             if (!actor)
                 continue;
 
-            sead::PrimitiveRenderer::sInstance->drawCube(actor->mPosition + cshCollider->mInfo.mOffset, cshCollider->mInfo.mSize, sead::colorRed);
+            sead::PrimitiveRenderer::instance()->drawCube(actor->mPosition + cshCollider->mInfo.mOffset, cshCollider->mInfo.mSize, sead::colorYellow);
         }
 
-        sead::PrimitiveRenderer::sInstance->end();
+
+        for (u32 i = 0; i < CSHitboxColliderMgr::instance()->mArray2.mPtrNum; i++) {
+            CSHitboxCollider* cshCollider = static_cast<CSHitboxCollider*>(CSHitboxColliderMgr::instance()->mArray2.mPtrs[i]);
+
+            if (!cshCollider)
+                continue;
+
+            CourseSelectActor* actor = reinterpret_cast<CourseSelectActor*>(ActorMgr::instance()->mActors.findActorByID(&cshCollider->mOwnerID));
+
+            if (!actor)
+                continue;
+
+            sead::PrimitiveRenderer::instance()->drawCube(actor->mPosition + cshCollider->mInfo.mOffset, cshCollider->mInfo.mSize, sead::colorRed);
+        }
+
+        sead::PrimitiveRenderer::instance()->end();
     }
 }

@@ -55,6 +55,8 @@ public:
 public:
     FileDevice* tryOpen(FileHandle* handle, const SafeString& path, FileOpenFlag flag, u32 divSize);
     bool tryClose(FileHandle* handle);
+    bool tryRead(u32* bytesRead, FileHandle* handle, u8* outBuffer, u32 bytesToRead);
+    bool tryWrite(u32* bytesWritten, FileHandle* handle, const u8* inBuffer, u32 bytesToWrite);
 
     static const s32 cBufferMinAlignment = 0x40;
 };
@@ -86,6 +88,8 @@ public:
         if (_device != nullptr)
             _device->tryClose(this);
     }
+
+    u32 read(u8* outBuffer, u32 bytesToRead);
 
     s32 mDivSize;
 };

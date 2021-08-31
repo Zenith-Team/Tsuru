@@ -43,9 +43,17 @@ SECTIONS {
 	GFDGetVertexShaderProgramSize = 0x2AF8D40;
 	GFDGetVertexShader = 0x2AF8E3C;
 
+/* sead::FileDevice */
+	tryClose__Q2_4sead10FileDeviceFPQ2_4sead10FileHandle = 0x29f78c0;
+	tryWrite__Q2_4sead10FileDeviceFPUiPQ2_4sead10FileHandlePCUcUi = 0x29f7ae8;
+
 /* sead::FileDeviceMgr */
 	sInstance__Q2_4sead13FileDeviceMgr = 0x101E7F18
 	tryLoad__Q2_4sead13FileDeviceMgrFRQ3_4sead10FileDevice7LoadArg = 0x29f8bbc;
+	tryOpen__Q2_4sead13FileDeviceMgrFPQ2_4sead10FileHandleRCQ2_4sead23SafeStringBase__tm__2_cQ3_4sead10FileDevice12FileOpenFlagUi = 0x29f8b0c;
+
+/* sead::FileHandle */
+	read__Q2_4sead10FileHandleFPUcUi = 0x29F81D0;
 
 /* sead::GlobalRandom */
     sInstance__Q2_4sead12GlobalRandom = 0x101e806c;
@@ -652,8 +660,8 @@ SECTIONS {
 	formatBufferedString = 0x2A0F308;
 
 /* Misc */
-	BLOSDynLoadAcquire = 0x2A9EF58;
-	BOSDynLoadFindExport = 0x2A9F418;
+	BLOSDynLoad_Acquire = 0x2A9EF58;
+	BOSDynLoad_FindExport = 0x2A9F418;
 	directionToRotationList = 0x10200dd8;
 	DefaultReverbHiParam = 0x1022d328;
 	DefaultDelayParam = 0x1022d354;
