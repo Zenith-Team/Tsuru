@@ -18,38 +18,38 @@ public:
 
     struct LoadArg {
         LoadArg()
-            : path("")
-            , buffer(NULL)
-            , buffersize(0)
-            , heap(NULL)
-            , alignment(0)
-            , divSize(0)
-            , readSize(0)
-            , roundupSize(0)
-            , needUnload(false)
+            : mPath("")
+            , mBuffer(NULL)
+            , mBuffersize(0)
+            , mHeap(NULL)
+            , mAlignment(0)
+            , mDivSize(0)
+            , mReadSize(0)
+            , mRoundupSize(0)
+            , mNeedUnload(false)
         { }
 
         LoadArg(const LoadArg& arg)
-            : path(arg.path)
-            , buffer(arg.buffer)
-            , buffersize(arg.buffersize)
-            , heap(arg.heap)
-            , alignment(arg.alignment)
-            , divSize(arg.divSize)
-            , readSize(arg.readSize)
-            , roundupSize(arg.roundupSize)
-            , needUnload(arg.needUnload)
+            : mPath(arg.mPath)
+            , mBuffer(arg.mBuffer)
+            , mBuffersize(arg.mBuffersize)
+            , mHeap(arg.mHeap)
+            , mAlignment(arg.mAlignment)
+            , mDivSize(arg.mDivSize)
+            , mReadSize(arg.mReadSize)
+            , mRoundupSize(arg.mRoundupSize)
+            , mNeedUnload(arg.mNeedUnload)
         { }
 
-        SafeString path;
-        u8* buffer;
-        u32 buffersize;
-        Heap* heap;
-        s32 alignment;
-        u32 divSize;
-        u32 readSize;
-        u32 roundupSize;
-        bool needUnload;
+        SafeString mPath;
+        u8* mBuffer;
+        u32 mBuffersize;
+        Heap* mHeap;
+        s32 mAlignment;
+        u32 mDivSize;
+        u32 mReadSize;
+        u32 mRoundupSize;
+        bool mNeedUnload;
     };
 
 public:
@@ -65,33 +65,33 @@ class HandleBase : public IDisposer {
 public:
     HandleBase() 
         : IDisposer()
-        , device(nullptr)
-        , originalDevice(nullptr)
+        , mDevice(nullptr)
+        , mOriginalDevice(nullptr)
     { }
 
     virtual ~HandleBase() { }
 
-    FileDevice* device;
-    FileDevice* originalDevice;
-    u8 handleBuffer[0x20]; // SafeArray<u8, 32>
+    FileDevice* mDevice;
+    FileDevice* mOriginalDevice;
+    u8 mHandleBuffer[0x20]; // SafeArray<u8, 32>
 };
 
 class FileHandle : public HandleBase {
 public:
     FileHandle()
         : HandleBase()
-        , divSize(0)
+        , mDivSize(0)
     { }
 
     virtual ~FileHandle() {
-        FileDevice* _device = this->originalDevice;
+        FileDevice* _device = mOriginalDevice;
         if (_device != nullptr)
             _device->tryClose(this);
     }
 
     u32 read(u8* outBuffer, u32 bytesToRead);
 
-    s32 divSize;
+    s32 mDivSize;
 };
 
 }

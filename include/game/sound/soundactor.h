@@ -35,6 +35,6 @@ public:
     u32 _78;
     f32 _7C;
     f32 _80;
-    Handle handles[6];
+    Handle mHandles[6];
     Vec2f _114;
 };

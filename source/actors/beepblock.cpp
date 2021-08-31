@@ -63,9 +63,9 @@ Actor* BeepBlock::build(const ActorBuildInfo* buildInfo) {
 u32 BeepBlock::onCreate() {
     this->mRectCollider.init(this, colliderInfo);
 
-    this->model = ModelWrapper::create("star_coin", "star_coinA");
+    this->mModel = ModelWrapper::create("star_coin", "star_coinA");
 
-    this->mBeepBlockType = static_cast<BeepBlockColor>(this->settings1 >> 0x1C);
+    this->mBeepBlockType = static_cast<BeepBlockColor>(this->mSettings1 >> 0x1C);
 
     if (this->mBeepBlockType == BeepBlockColorRed)
         this->doStateChange(&StateID_RedDisabled);
@@ -76,12 +76,12 @@ u32 BeepBlock::onCreate() {
 }
 
 u32 BeepBlock::onExecute() {
-    this->model->updateAnimations();
+    this->mModel->updateAnimations();
     
     Mtx34 mtx;
-    mtx.rotateAndTranslate(this->rotation, this->position);
-    this->model->setMtx(mtx);
-    this->model->updateModel();
+    mtx.rotateAndTranslate(this->mRotation, this->mPosition);
+    this->mModel->setMtx(mtx);
+    this->mModel->updateModel();
 
     this->mStates.execute();
 
@@ -89,7 +89,7 @@ u32 BeepBlock::onExecute() {
 }
 
 u32 BeepBlock::onDraw() {
-    DrawMgr::instance()->drawModel(this->model);
+    DrawMgr::instance()->drawModel(this->mModel);
 
     return 1;
 }

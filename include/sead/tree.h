@@ -21,16 +21,16 @@ public:
     void pushBackSibling(TreeNode*);
     void pushFrontChild(TreeNode*);
 
-    TreeNode* parent;
-    TreeNode* child;
-    TreeNode* next;
-    TreeNode* prev;
+    TreeNode* mParent;
+    TreeNode* mChild;
+    TreeNode* mNext;
+    TreeNode* mPrev;
 };
 
 template <typename T>
 class TTreeNode : public TreeNode {
 public:
-    T data;
+    T mData;
 };
 
 }

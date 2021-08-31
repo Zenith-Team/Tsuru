@@ -18,4 +18,6 @@ public:
     void EmitSameDistance(const SimpleEmitterData* data, EmitterInstance* emitter);
 };
 
+static_assert(sizeof(EmitterSimpleCalc) == 4, "EmitterSimpleCalc size mismatch");
+
 } }

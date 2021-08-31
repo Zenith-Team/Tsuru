@@ -18,9 +18,9 @@ class TaskParameter;
 class FaderTaskBase;
 
 struct TaskConstructArg {
-    HeapArray* heapArray;
-    TaskMgr* mgr;
-    TaskParameter* param;
+    HeapArray* mHeapArray;
+    TaskMgr* mMgr;
+    TaskParameter* mParam;
 };
 
 typedef TaskBase* (*TaskFactory)(const TaskConstructArg&);
@@ -35,17 +35,17 @@ public:
     };
 
 public:
-    Type type;
+    Type mType;
     union {
-        s32 integer;
-        TaskFactory factory;
-        const char* string;
-    } id;
+        s32 mInt;
+        TaskFactory mFactory;
+        const char* mString;
+    } mID;
 };
 
 class TaskUserID {
 public:
-    s32 id;
+    s32 mID;
 };
 
 class TaskBase : public TTreeNode<TaskBase*>, public IDisposer, public INamable {
@@ -71,17 +71,17 @@ public:
     struct CreateArg {
         typedef void (*SingletonFunc)(TaskBase*);
 
-        TaskClassID factory;
-        HeapPolicies heapPolicies;
-        TaskBase* parent;
-        TaskParameter* parameter;
-        FaderTaskBase* fader;
-        TaskBase* srcTask;
-        TaskBase** createdTask;
-        void* createCallback;  // DelegateEvent<TaskBase*>::Slot*
-        TaskUserID userID;
-        Tag tag;
-        SingletonFunc instanceCB;
+        TaskClassID mFactory;
+        HeapPolicies mHeapPolicies;
+        TaskBase* mParent;
+        TaskParameter* mParameter;
+        FaderTaskBase* mFader;
+        TaskBase* mSrcTask;
+        TaskBase** mCreatedTask;
+        void* mCreateCallback;  // DelegateEvent<TaskBase*>::Slot*
+        TaskUserID mUserID;
+        Tag mTag;
+        SingletonFunc mInstanceCB;
     };
 
 public:
@@ -107,14 +107,14 @@ public:
     virtual MethodTreeNode* getMethodTreeNode(s32 method_type) = 0;
     virtual void onDestroy();                   // deleted
 
-    TaskParameter* parameter;  // _2C
-    BitFlag32 internalFlag;    // _30
-    ListNode taskListNode;     // _34
-    HeapArray heapArray;       // _44
-    TaskMgr* taskMgr;          // _5C
-    State state;               // _60
-    Tag tag;                   // _64
-    TaskClassID classID;       // _68
+    TaskParameter* mParameter;  // _2C
+    BitFlag32 mInternalFlag;    // _30
+    ListNode mTaskListNode;     // _34
+    HeapArray mHeapArray;       // _44
+    TaskMgr* mTaskMgr;          // _5C
+    State mState;               // _60
+    Tag mTag;                   // _64
+    TaskClassID mClassID;       // _68
 };
 
 class CalculateTask : public TaskBase {
@@ -131,15 +131,15 @@ public:
 
     void attachCalcImpl() override;
     void attachDrawImpl() override;
-   void detachCalcImpl() override;
-   void detachDrawImpl() override;
+    void detachCalcImpl() override;
+    void detachDrawImpl() override;
 
     const RuntimeTypeInfo::Interface* getCorrespondingMethodTreeMgrTypeInfo() const override;   // deleted
     MethodTreeNode* getMethodTreeNode(s32 methodType) override;
 
     virtual void calc();
-    
-    MethodTreeNode calcNode;
+
+    MethodTreeNode mCalcNode;
 };
 
 }
@@ -148,26 +148,26 @@ public:
 public:                                                                 \
     class TaskSingleton {                                               \
     public:                                                             \
-        TaskSingleton() : set(false) { }                                \
+        TaskSingleton() : mSet(false) { }                               \
         ~TaskSingleton() {                                              \
-            if (set)                                                    \
+            if (mSet)                                                   \
                 CLASS::sInstance = nullptr;                             \
         }                                                               \
                                                                         \
-        bool set;                                                       \
+        bool mSet;                                                      \
     };                                                                  \
                                                                         \
     static void setInstance(sead::TaskBase* task);                      \
     static CLASS* sInstance;                                            \
                                                                         \
-    TaskSingleton taskSingleton;
+    TaskSingleton mTaskSingleton;
 
 #define SEAD_SET_SINGLETON_TASK(CLASS)                                  \
     void CLASS::setInstance(sead::TaskBase* task) {                     \
         if (CLASS::sInstance)                                           \
             return;                                                     \
         CLASS::sInstance = reinterpret_cast<CLASS*>(task);              \
-        reinterpret_cast<CLASS*>(task)->taskSingleton.set = true;       \
+        reinterpret_cast<CLASS*>(task)->mTaskSingleton.mSet = true;     \
     }
 
 #define SEAD_SINGLETON_TASK_IMPL(CLASS)                                 \

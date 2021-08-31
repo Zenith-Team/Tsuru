@@ -26,15 +26,15 @@ public:
     u32 GetAttribute(const char* name, u32 buffer, VertexFormat attribFormat, u32 offset, bool instanceID);
     void SetupShader(Heap* heap);
 
-    GX2VertexShader* vertexShader;
-    GX2PixelShader* pixelShader;
-    GX2GeometryShader* geometryShader;
-    GX2FetchShader fetchShader;
-    void* fetchShaderBufPtr;
-    u32 numAttribute;
-    GX2AttribStream attributes[16];
-    u32 attributeBuffer[16];
-    bool initialized;
+    GX2VertexShader* mVertexShader;
+    GX2PixelShader* mPixelShader;
+    GX2GeometryShader* mGeometryShader;
+    GX2FetchShader mFetchShader;
+    void* mFetchShaderBufPtr;
+    u32 mNumAttribute;
+    GX2AttribStream mAttributes[16];
+    u32 mAttributeBuffer[16];
+    bool mInitialized;
 };
 
 static_assert(sizeof(Shader) == 0x278, "Shader size mismatch");
@@ -63,23 +63,25 @@ public:
 
 public:
     UniformBlock() {
-        this->initialized = false;
-        this->blockNotExist = false;
-        this->bufferSize = 0;
-        this->location = 0;
-        this->shaderStage = ShaderStageMax;
+        this->mInitialized = false;
+        this->mBlockNotExist = false;
+        this->mBufferSize = 0;
+        this->mLocation = 0;
+        this->mShaderStage = ShaderStageMax;
     }
 
     bool InitializeVertexUniformBlock(Shader* shader, const char* name, u32);
     bool InitializePixelUniformBlock(Shader* shader, const char* name, u32);
     void BindUniformBlock(const void* buffer);
 
-    bool initialized;
-    bool blockNotExist;
-    u32 bufferSize;
-    u32 location;
-    ShaderStage shaderStage;
+    bool mInitialized;
+    bool mBlockNotExist;
+    u32 mBufferSize;
+    u32 mLocation;
+    ShaderStage mShaderStage;
 };
+
+static_assert(sizeof(UniformBlock) == 0x10, "UniformBlock size mismatch");
 
 class VertexBuffer { // Size: 0x10
 public:
@@ -92,14 +94,18 @@ public:
 
     static void BindExtBuffer(u32 index, u32 size, u32, u32 stride, void* buffer);
 
-    u32 _0;
-    u32 size;
-    u32 bufferSize;
-    void* buffer;
+    u32 mUnused;
+    u32 mSize;
+    u32 mBufferSize;
+    void* mBuffer;
 };
+
+static_assert(sizeof(VertexBuffer) == 0x10, "VertexBuffer size mismatch");
 
 } }
 
-u32 _DEMOGFDReadVertexShader(nw::eft::Heap* heap, GX2VertexShader** shader, u32 index, const void* binary);
-u32 _DEMOGFDReadPixelShader(nw::eft::Heap* heap, GX2PixelShader** shader, u32 index, const void* binary);
-u32 _DEMOGFDReadGeometryShader(nw::eft::Heap* heap, GX2GeometryShader** shader, u32 index, const void* binary);
+typedef int BOOL;
+
+BOOL _DEMOGFDReadVertexShader(nw::eft::Heap* heap, GX2VertexShader** shader, u32 index, const void* binary);
+BOOL _DEMOGFDReadPixelShader(nw::eft::Heap* heap, GX2PixelShader** shader, u32 index, const void* binary);
+BOOL _DEMOGFDReadGeometryShader(nw::eft::Heap* heap, GX2GeometryShader** shader, u32 index, const void* binary);

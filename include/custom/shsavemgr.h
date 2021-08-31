@@ -34,5 +34,5 @@ public:
 
     static SHSaveData sSaveData;
     
-    bool inited;
+    bool mInited;
 };

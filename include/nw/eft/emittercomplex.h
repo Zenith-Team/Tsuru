@@ -22,4 +22,6 @@ public:
     static void CalcComplex(EmitterInstance* emitter, PtclInstance* ptcl, CpuCore core);
 };
 
+static_assert(sizeof(EmitterComplexCalc) == 4, "EmitterComplexCalc size mismatch");
+
 } }

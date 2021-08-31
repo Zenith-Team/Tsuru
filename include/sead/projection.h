@@ -34,13 +34,13 @@ public:
     void updateMatrixImpl_() const;
     const Mtx44& getDeviceProjectionMatrix() const;
 
-    mutable bool dirty;
-    mutable bool deviceDirty;
-    Mtx44 matrix;
-    Mtx44 deviceMatrix;
-    Graphics::DevicePosture devicePosture;
-    f32 deviceZScale;
-    f32 deviceZOffset;
+    mutable bool mDirty;
+    mutable bool mDeviceDirty;
+    Mtx44 mMatrix;
+    Mtx44 mDeviceMatrix;
+    Graphics::DevicePosture mDevicePosture;
+    f32 mDeviceZScale;
+    f32 mDeviceZOffset;
 };
 
 }

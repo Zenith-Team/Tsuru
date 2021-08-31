@@ -36,37 +36,33 @@ public:
     // Custom functions
     void drawLayerDebug(const agl::lyr::RenderInfo& renderInfo);
 
-    static CourseSelectTask* instance() { return sInstance; }
-
     DECLARE_STATE_VIRTUAL(CourseSelectTask, CourseSelectTaskState1);
     DECLARE_STATE_VIRTUAL(CourseSelectTask, CourseSelectTaskState2);
     DECLARE_STATE_VIRTUAL(CourseSelectTask, CourseSelectTaskState3);
 
-protected:
     static CourseSelectTask* sInstance;
 
-public:
     u8 _C8;                                             // _C8
     u8 unk1[15];                                        // _C9
-    StateWrapper<CourseSelectTask> states;              // _D8
-    agl::lyr::DrawMethod drawMethodCourseSelect;        // _FC
-    agl::lyr::DrawMethod drawMethod2D;                  // _13C
-    agl::lyr::DrawMethod drawMethod3D;                  // _17C
-    agl::lyr::DrawMethod drawMethod3D_World;            // _1BC
-    agl::lyr::DrawMethod drawMethod2D_Menu;             // _1FC
-    agl::lyr::DrawMethod drawMethod2D_TV;               // _23C
-    agl::lyr::DrawMethod drawMethod2D_Pre3D;            // _27C
-    agl::lyr::DrawMethod drawMethodCourseSelectDRC;     // _2BC
-    agl::lyr::DrawMethod drawMethod3D_DRC;              // _2FC
-    agl::lyr::DrawMethod drawMethod2D_DRC;              // _33C
-    agl::lyr::DrawMethod drawMethod2D_Pre3D_DRC;        // _37C
+    StateWrapper<CourseSelectTask> mStates;             // _D8
+    agl::lyr::DrawMethod mDrawMethodCourseSelect;       // _FC
+    agl::lyr::DrawMethod mDrawMethod2D;                 // _13C
+    agl::lyr::DrawMethod mDrawMethod3D;                 // _17C
+    agl::lyr::DrawMethod mDrawMethod3D_World;           // _1BC
+    agl::lyr::DrawMethod mDrawMethod2D_Menu;            // _1FC
+    agl::lyr::DrawMethod mDrawMethod2D_TV;              // _23C
+    agl::lyr::DrawMethod mDrawMethod2D_Pre3D;           // _27C
+    agl::lyr::DrawMethod mDrawMethodCourseSelectDRC;    // _2BC
+    agl::lyr::DrawMethod mDrawMethod3D_DRC;             // _2FC
+    agl::lyr::DrawMethod mDrawMethod2D_DRC;             // _33C
+    agl::lyr::DrawMethod mDrawMethod2D_Pre3D_DRC;       // _37C
     u8 _3BC[88];                                        // _3BC     //? is class
     u8 _414[172];                                       // _414     //? is class
     u8 _4C0[88];                                        // _4C0     //? is class
     u8 _518[172];                                       // _518     //? is class
     u8 _5C4[404][4];                                    // _5C4     //? is struct
     u8 _C14[404];                                       // _C14     //? is class
-    u32 cameraActorID;                                  // _DA8
+    u32 mCameraActorID;                                 // _DA8
     char* _DAC;                                         // _DAC
     u8 unk2[16];                                        // _DB0
     u32 _DC0;                                           // _DC0

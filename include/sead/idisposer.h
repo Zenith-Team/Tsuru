@@ -14,8 +14,8 @@ public:
 private:
     friend class Heap;
 
-    Heap* disposerHeap;
-    ListNode listNode;
+    Heap* mDisposerHeap;
+    ListNode mListNode;
 };
 
 }
@@ -43,7 +43,7 @@ private:
                                                                                   \
         friend class SingletonDisposer_;                                          \
                                                                                   \
-        u32 singletonDisposerBuf_[sizeof(SingletonDisposer_) / sizeof(u32)];
+        u32 mSingletonDisposerBuf_[sizeof(SingletonDisposer_) / sizeof(u32)];
 
 #define SEAD_CREATE_SINGLETON_INSTANCE(CLASS)                                                                    \
     CLASS* CLASS::createInstance(sead::Heap* heap) {                                                             \

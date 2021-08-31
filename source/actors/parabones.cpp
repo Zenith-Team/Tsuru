@@ -61,7 +61,7 @@ Actor* ParaBones::build(const ActorBuildInfo* buildInfo) {
 
 u32 ParaBones::onCreate() {
     Vec3u rotationOffset(0, 1000, 0);
-    this->rotation.y = directionToRotationList[Direction::Left];
+    this->mRotation.y = directionToRotationList[Direction::Left];
 
     mModel = ModelWrapper::create("nokonokoB", "nokonokoB", 10);
     mModel->playSklAnim("flyA", 0);
@@ -104,7 +104,7 @@ u32 ParaBones::onDraw() {
 void ParaBones::modelUpdate() {
     Mtx34 mtx;
 
-    mtx.rotateAndTranslate(rotation, position);
+    mtx.rotateAndTranslate(mRotation, mPosition);
 
     mModel->setMtx(mtx);
     mModel->setScale(mScale);
@@ -207,9 +207,9 @@ void ParaBones::beginState_Die() {
 
     ActorBuildInfo DryBones = { 0 };
     DryBones.mProfile = Profile::get(Profile::spriteToProfileList[137]);
-    DryBones.position += posKillFix;
+    DryBones.mPosition += posKillFix;
     ActorMgr::instance()->create(&DryBones, 0);
-    this->isDeleted = true;
+    this->mIsDeleted = true;
 }
 
 void ParaBones::executeState_Die() { }

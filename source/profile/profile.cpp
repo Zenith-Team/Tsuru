@@ -8,16 +8,16 @@ u8 Profile::resourceCountCustom[Profile::NUM_PROFILES_CUSTOM] = { 0 };
 const sead::SafeString* Profile::resourceListsCustom[Profile::NUM_PROFILES_CUSTOM] = { nullptr };
 
 Profile::Profile(Actor* (*buildFunc)(const ActorBuildInfo*), u32 id, const sead::SafeString& name, const ActorInfo* actorInfo, u32 flags) {
-    this->buildFunc = buildFunc;
-    this->id = id;
+    this->mBuildFunc = buildFunc;
+    this->mID = id;
 
     if (actorInfo)
         this->mActorInfo = actorInfo;
     else
         this->mActorInfo = &ActorInfo::sDefault;
     
-    this->hasResourcesLoaded = 0;
-    this->flags = flags;
+    this->mHasResourcesLoaded = 0;
+    this->mFlags = flags;
 
     if (id < NUM_PROFILES_ORIGINAL)
         profilesOriginal[id] = this;

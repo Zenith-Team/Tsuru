@@ -9,28 +9,28 @@ class HeapArray {
 public:
     HeapArray(HeapArray& other);
 
-    Heap* heaps[4];
-    bool adjusted[4];
-    s32 primaryIndex;
+    Heap* mHeaps[4];
+    bool mAdjusted[4];
+    s32 mPrimaryIndex;
 };
 
 class HeapPolicy {
 public:
     HeapPolicy();
 
-    Heap* parent;
-    u32 size;
-    u32 createSlack;
-    u32 adjustSlack;
-    u8 adjust;
-    u8 temporary;
-    u8 dontCreate;
+    Heap* mParent;
+    u32 mSize;
+    u32 mCreateSlack;
+    u32 mAdjustSlack;
+    u8 mAdjust;
+    u8 mTemporary;
+    u8 mDontCreate;
 };
 
 class HeapPolicies {
 public:
-    HeapPolicy policies[4];
-    s32 primaryIndex;
+    HeapPolicy mPolicies[4];
+    s32 mPrimaryIndex;
 };
 
 }

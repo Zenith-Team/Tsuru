@@ -5,13 +5,13 @@
 class StateBase {
 public:
     inline StateBase() {
-        this->id = sCurrentID++;
+        this->mID = sCurrentID++;
     }
 
     virtual ~StateBase() { }
 
     virtual s32 getRootID() {
-        return this->id;
+        return mID;
     }
 
     inline bool isEqual(StateBase* other) {
@@ -20,7 +20,7 @@ public:
 
     static StateBase sNullState;
 
-    s32 id;
+    s32 mID;
 
 private:
     static s32 sCurrentID;
@@ -32,13 +32,13 @@ class State : public StateBase { //size: 0x20
 
 public:
     State(PTMF begin, PTMF execute, PTMF end)
-        : begin(begin), execute(execute), end(end)
+        : mBegin(begin), mExecute(execute), mEnd(end)
     { }
 
 protected:
-    PTMF begin;     // _8
-    PTMF execute;   // _10
-    PTMF end;       // _18
+    PTMF mBegin;     // _8
+    PTMF mExecute;   // _10
+    PTMF mEnd;       // _18
 };
 
 template <class TOwner>
@@ -47,20 +47,20 @@ class StateVirtual : public State<TOwner> {
 
 public:
     StateVirtual(PTMF begin, PTMF execute, PTMF end, StateBase* baseState)
-        : State<TOwner>(begin, execute, end), baseState(baseState)
+        : State<TOwner>(begin, execute, end), mBaseState(baseState)
     { }
 
     virtual ~StateVirtual() { }
 
     s32 getRootID() override {
-        if (this->baseState->id != -1)
-            return this->baseState->getRootID();
-        else
-            return this->id;
+        if (mBaseState->mID != -1)
+            return mBaseState->getRootID();
+
+        return mID;
     }
 
 private:
-    StateBase* baseState;
+    StateBase* mBaseState;
 };
 
 class StateMethodExecutorBase {
@@ -76,8 +76,8 @@ public:
     StateBase* getCurrentState() override;
     void execute() override;
 
-    TOwner* owner;                 // _4
-    State<TOwner>* currentState;   // _8
+    TOwner* mOwner;                 // _4
+    State<TOwner>* mCurrentState;   // _8
 };
 
 class StateExecutorBase {
@@ -98,7 +98,7 @@ public:
     void resetState(StateMethodExecutorBase* methodExecutor) override;
     StateMethodExecutorBase* callBegin(StateMethodExecutorBase* methodExecutor) override;
 
-    StateMethodExecutor<TOwner> methodExecutor;
+    StateMethodExecutor<TOwner> mMethodExecutor;
 };
 
 class StateMgr {
@@ -109,10 +109,10 @@ public:
     void execute();
     void changeState(StateBase* nextState);
 
-    StateExecutorBase* executor;
-    StateBase* nextState;
-    StateMethodExecutorBase* currentMethodExecutor;
-    StateBase* lastState;
+    StateExecutorBase* mExecutor;
+    StateBase* mNextState;
+    StateMethodExecutorBase* mCurrentMethodExecutor;
+    StateBase* mLastState;
 };
 
 template <class TOwner>
@@ -120,15 +120,24 @@ class StateWrapper {
 public:
     virtual ~StateWrapper() { }
 
-    inline void changeState(StateBase* nextState) { this->manager.changeState(nextState); }
+    StateExecutor<TOwner> mExecutor;
+    StateMgr mManager;
 
-    inline void execute() { this->manager.execute(); }
+    inline void changeState(StateBase* nextState) {
+        mManager.changeState(nextState);
+    }
 
-    inline StateBase* currentState() { return this->executor.methodExecutor.currentState; }
-    inline StateBase* lastState() { return this->manager.lastState; }
+    inline void execute() {
+        mManager.execute();
+    }
 
-    StateExecutor<TOwner> executor;
-    StateMgr manager;
+    inline StateBase* currentState() {
+        return mExecutor.mMethodExecutor.mCurrentState;
+    }
+
+    inline StateBase* lastState() {
+        return mManager.mLastState;
+    }
 };
 
 template <class TOwner>
@@ -136,16 +145,25 @@ class MultiStateWrapper {
 public:
     virtual ~MultiStateWrapper() { }
 
-    inline void changeState(StateBase* nextState) { this->manager.changeState(nextState); }
-
-    inline void execute() { this->manager.execute(); }
-
-    inline StateBase* currentState() { return this->executor.methodExecutor.currentState; }
-    inline StateBase* lastState() { return this->manager.lastState; }
-
-    StateExecutor<TOwner> executor;
-    StateMgr manager;
+    StateExecutor<TOwner> mExecutor;
+    StateMgr mManager;
     StateBase* _20;
+
+    inline void changeState(StateBase* nextState) {
+        mManager.changeState(nextState);
+    }
+
+    inline void execute() {
+        mManager.execute();
+    }
+
+    inline StateBase* currentState() {
+        return mExecutor.mMethodExecutor.mCurrentState;
+    }
+
+    inline StateBase* lastState() {
+        return mManager.mLastState;
+    }
 };
 
 #define DECLARE_STATE(CLASS, NAME)                      \

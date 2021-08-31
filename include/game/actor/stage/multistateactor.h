@@ -34,5 +34,5 @@ public:
 
     virtual void doStateChange(StateBase* state);
 
-    MultiStateWrapper<MultiStateActor> states; // _17A0
+    MultiStateWrapper<MultiStateActor> mStates; // _17A0
 };

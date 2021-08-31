@@ -7,11 +7,11 @@ class CircularCollider : public ColliderBase {
 
 public:
     struct Info {
-        Vec2f distToCenter;
+        Vec2f mDistToCenter;
         Vec2f _8;
         Vec2f _10;
-        f32 radius;
-        u32 rotation;
+        f32 mRadius;
+        u32 mRotation;
     };
 
 public:
@@ -36,6 +36,6 @@ public:
     Vec2f _158;
     Vec2f _160;
     Vec2f _168;
-    f32 radius;
+    f32 mRadius;
     u8 _174[0x190-0x174];
 };

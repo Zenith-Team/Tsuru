@@ -13,4 +13,6 @@ public:
     virtual void Free(void* ptr) = 0;
 };
 
+static_assert(sizeof(Heap) == 4, "Heap size mismatch");
+
 } }

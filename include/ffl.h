@@ -24,7 +24,7 @@ namespace FFL {
         u8 _1;
         u8 _2;
         u8 index;
-        CreateIDBase createIDBase;
+        CreateIDBase createIdBase;
     };
 
     struct MiiDataCore { // Size: 0x48

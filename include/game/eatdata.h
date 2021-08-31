@@ -18,7 +18,7 @@ public:
     virtual bool vf54(void*);
     virtual void* vf5C(void*);
 
-    u32 ownerID;    // 0
+    u32 ownerId;    // 0
     u32 _4;         // 4
     u32 state;      // 8
     u32 spitType;   // C
@@ -38,7 +38,7 @@ public:
     virtual bool handleEaten(void*);
     virtual void vf3C();
 
-    u32 ownerID;        // 0
+    u32 ownerId;        // 0
     u32 _4;             // 4
     Vec3f scale;        // 8
     u32 _14;            // 14

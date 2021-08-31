@@ -35,12 +35,12 @@ public:
 
     typedef IDelegate2<MethodTreeNode*, PauseFlag> PauseEventDelegate;
 
-    struct { u32 data_[4]; } delegateHolder;
-    mutable CriticalSection* criticalSection;
-    u32 priority;
-    BitFlag32 pauseFlag;
-    PauseEventDelegate* pauseEventDelegate;
-    void* userID;
+    struct { u32 data_[4]; } mDelegateHolder;
+    mutable CriticalSection* mCriticalSection;
+    u32 mPriority;
+    BitFlag32 mPauseFlag;
+    PauseEventDelegate* mPauseEventDelegate;
+    void* mUserID;
 };
 
 }
