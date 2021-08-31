@@ -42,10 +42,10 @@ u32 CSCustomActor::onCreate() {
 
 u32 CSCustomActor::onExecute() {
     // This needs to be in onExecute for the collision check below to work so it's probably not "add"
-    CSHitboxColliderMgr::sInstance->add(&this->mHitboxCollider);
+    CSHitboxColliderMgr::instance()->add(&this->mHitboxCollider);
 
     // Checks if player collided (gets called twice around 1 second after player collision, also causes the player to bounce back and go into a fighting stance)
-    if (CSHitboxColliderMgr::sInstance->FUN_21c5894(&this->mHitboxCollider) != 0) {
+    if (CSHitboxColliderMgr::instance()->FUN_21c5894(&this->mHitboxCollider) != 0) {
         this->mRotation += 0x5000000;
         LOG("Player collided");
     }
@@ -62,7 +62,7 @@ u32 CSCustomActor::onDraw() {
     this->mModel->setScale(this->mScale);
     this->mModel->updateModel();
 
-    DrawMgr::sInstance->drawModel(mModel);
+    DrawMgr::instance()->drawModel(mModel);
 
     return 1;
 }

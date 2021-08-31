@@ -5,6 +5,7 @@
 #include <sead/camera.h>
 #include <sead/color.h>
 #include <sead/criticalsection.h>
+#include <sead/endian.h>
 #include <sead/filedevice.h>
 #include <sead/filedevicemgr.h>
 #include <sead/heap.h>
@@ -13,6 +14,7 @@
 #include <sead/inamable.h>
 #include <sead/list.h>
 #include <sead/methodtree.h>
+#include <sead/new.h>
 #include <sead/primitiverenderer.h>
 #include <sead/ptrarray.h>
 #include <sead/runtimetypeinfo.h>

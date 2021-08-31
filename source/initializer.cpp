@@ -2,8 +2,9 @@
 #include <types.h>
 #include <dynlibs/os/functions.h>
 #include <dynlibs/gx2/functions.h>
-
-#include "cheatmgr/cheatmgr.h"
+#include <sead.h>
+#include <custom/cheatmgr.h>
+#include <custom/shsavemgr.h>
 
 // staticInit array
 typedef void (*funcPtr)();

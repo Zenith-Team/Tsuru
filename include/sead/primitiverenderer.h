@@ -37,7 +37,9 @@ public:
     virtual void drawCylinder32Impl(const Mtx34& modelMtx, const Color4f& top, const Color4f& btm) = 0;
 };
 
-class PrimitiveRenderer : public IDisposer {
+class PrimitiveRenderer {
+    SEAD_SINGLETON_DISPOSER(PrimitiveRenderer)
+
 public:
     class QuadArg {
     public:
@@ -63,9 +65,6 @@ public:
     void drawCircle16(const Vec3f& position, f32 radius, const Color4f& color);
     void drawCircle32(const Vec3f& position, f32 radius, const Color4f& color);
 
-    static PrimitiveRenderer* sInstance;
-
-    u32 mSingletonDisposerBuf_[4];
     PrimitiveRendererBase* mRendererImpl;
     Mtx34 mModelMtx;
 };

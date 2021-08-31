@@ -96,7 +96,7 @@ u32 ParaBones::onExecute() {
 }
 
 u32 ParaBones::onDraw() {
-    DrawMgr::sInstance->drawModel(mModel);
+    DrawMgr::instance()->drawModel(mModel);
 
     return 1;
 }
@@ -208,7 +208,7 @@ void ParaBones::beginState_Die() {
     ActorBuildInfo DryBones = { 0 };
     DryBones.mProfile = Profile::get(Profile::spriteToProfileList[137]);
     DryBones.mPosition += posKillFix;
-    ActorMgr::sInstance->create(&DryBones, 0);
+    ActorMgr::instance()->create(&DryBones, 0);
     this->mIsDeleted = true;
 }
 

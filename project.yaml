@@ -5,12 +5,13 @@ Modules:
   - hooks/cheatmgr.yaml             # Cheat menu
   - hooks/collisionconditions.yaml  # Fixes collision conditions for some actors
   - hooks/customactors.yaml         # Custom sprites/actors
-  - hooks/debug.yaml                # Debugging features
+# - hooks/debug.yaml                # Debugging features
   - hooks/initializer.yaml          # Initializer
   - hooks/misc.yaml                 # Miscellaneous items
   - hooks/profile.yaml              # Extra profile and sprite slots
   - hooks/sarcloader.yaml           # Allow loading uncompressed .sarc levels
   - hooks/sead.yaml                 # Patches for the sead library
+  - hooks/shsavemgr.yaml            # Manages the custom savedata file
   - hooks/snowparticles.yaml        # Allows changing snow particle colors from spritedata
   - hooks/sound.yaml                # Patches that affect sound
   - hooks/titlescreen.yaml          # Title screen patches

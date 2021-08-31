@@ -30,14 +30,14 @@ Actor* FixedWindGenerator::build(const ActorBuildInfo* buildInfo) {
 u32 FixedWindGenerator::onExecute() {
     // Blow players
     for (u32 i = 0; i < 4; i++) {
-        Player* player = PlayerMgr::sInstance->mPlayers[i];
+        Player* player = PlayerMgr::instance()->mPlayers[i];
         if (player)
             player->mPosition.x += this->mFinalWindStrength * 2.5;
     }
 
     // Blow actors
-    Actor** current = ActorMgr::sInstance->mActors.mBuffer.mBuffer;
-    while (current < ActorMgr::sInstance->mActors.mLast) {
+    Actor** current = ActorMgr::instance()->mActors.mBuffer.mBuffer;
+    while (current < ActorMgr::instance()->mActors.mLast) {
         Actor* actor = *current;
         if (actor) {
             u32 profileID = actor->getProfileID();

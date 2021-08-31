@@ -1,73 +1,74 @@
 #pragma once
 
 #include <types.h>
+#include <custom/utils.h>
 #include "ffl.h"
 
 struct SaveData { // Size: 0xB134
-    enum GameCompletionFlags {
-        UnknownFlag1 = 0x1,
-        AllLevels    = 0x2,
-        UnknownFlag2 = 0x4,
-        AllStarCoins = 0x8,
-        AllExits     = 0x10
+    enum GameCompletionFlag {
+        GameCompletionFlag_Unknown1     = 0x1,
+        GameCompletionFlag_AllLevels    = 0x2,
+        GameCompletionFlag_Unknown2     = 0x4,
+        GameCompletionFlag_AllStarCoins = 0x8,
+        GameCompletionFlag_AllExits     = 0x10
     };
 
-    enum WorldCompletionFlags {
-        OpeningCutscenePlayed = 0x1,
-        World1Complete        = 0x2,
-        World2Complete        = 0x4,
-        World3Complete        = 0x8,
-        World4Complete        = 0x10,
-        World5Complete        = 0x20,
-        World6Complete        = 0x40,
-        World7Complete        = 0x80,
-        World8Complete        = 0x100,
-        AllWorldsComplete     = 0x1FF
+    enum WorldCompletionFlag {
+        WorldCompletionFlag_OpeningCutscenePlayed = 0x1,
+        WorldCompletionFlag_World1Complete        = 0x2,
+        WorldCompletionFlag_World2Complete        = 0x4,
+        WorldCompletionFlag_World3Complete        = 0x8,
+        WorldCompletionFlag_World4Complete        = 0x10,
+        WorldCompletionFlag_World5Complete        = 0x20,
+        WorldCompletionFlag_World6Complete        = 0x40,
+        WorldCompletionFlag_World7Complete        = 0x80,
+        WorldCompletionFlag_World8Complete        = 0x100,
+        WorldCompletionFlag_AllWorldsComplete     = 0x1FF
     };
 
-    enum BabyYoshisAvailableFlags {
-        World1PinkBabyYoshi = 0x1,
-        World3PinkBabyYoshi = 0x2,
-        World4BlueBabyYoshi = 0x4,
-        World6BlueBabyYoshi = 0x8,
-        AllBabyYoshis       = 0xF
+    enum BabyYoshisAvailableFlag {
+        BabyYoshisAvailableFlag_World1PinkBabyYoshi = 0x1,
+        BabyYoshisAvailableFlag_World3PinkBabyYoshi = 0x2,
+        BabyYoshisAvailableFlag_World4BlueBabyYoshi = 0x4,
+        BabyYoshisAvailableFlag_World6BlueBabyYoshi = 0x8,
+        BabyYoshisAvailableFlag_AllBabyYoshis       = 0xF
     };
 
     enum ActiveBabyYoshi {
-        World1PinkBabyYoshi = 0,
-        World3PinkBabyYoshi = 1,
-        World4BlueBabyYoshi = 2,
-        World6BlueBabyYoshi = 3,
-        NoBabyYoshi         = 4
+        ActiveBabyYoshi_World1PinkBabyYoshi = 0,
+        ActiveBabyYoshi_World3PinkBabyYoshi = 1,
+        ActiveBabyYoshi_World4BlueBabyYoshi = 2,
+        ActiveBabyYoshi_World6BlueBabyYoshi = 3,
+        ActiveBabyYoshi_NoBabyYoshi         = 4
     };
 
-    enum LevelCompletionFlags { // TODO: More research, not all values are here, some are incomplete
-        Locked                     = 0x0,
-        Unlocked                   = 0x1,
-        PlayedOnce                 = 0x2,
-        ForeverUnlockedToadHouse   = 0x3,
-        AmbushCleared              = 0x42,
-        ClearedOrUsedToadHouse     = 0x43,
-        ClearedOrSecretExitCleared = 0xC3,
+    enum LevelCompletionFlag { // TODO: More research, not all values are here, some are incomplete
+        LevelCompletionFlag_Locked                     = 0x0,
+        LevelCompletionFlag_Unlocked                   = 0x1,
+        LevelCompletionFlag_PlayedOnce                 = 0x2,
+        LevelCompletionFlag_ForeverUnlockedToadHouse   = 0x3,
+        LevelCompletionFlag_AmbushCleared              = 0x42,
+        LevelCompletionFlag_ClearedOrUsedToadHouse     = 0x43,
+        LevelCompletionFlag_ClearedOrSecretExitCleared = 0xC3,
     };
 
     enum LevelStarCoinsCollected { // TODO: More research, not all values are here
-        NoStarCoins = 0x0,
-        AllStarCoins = 0x77
+        LevelStarCoinsCollected_None = 0x0,
+        LevelStarCoinsCollected_All  = 0x77
     };
 
     enum InventoryItem { //? The missing 0x4 entry is not a mistake, it doesn't seem to be anything.
-        Mushroom   = 0x0,
-        FireFlower = 0x1,
-        SuperStar  = 0x2,
-        IceFlower  = 0x3,
+        InventoryItem_Mushroom   = 0x0,
+        InventoryItem_FireFlower = 0x1,
+        InventoryItem_SuperStar  = 0x2,
+        InventoryItem_IceFlower  = 0x3,
         
-        Propeller  = 0x5,
-        Mini       = 0x6,
-        Penguin    = 0x7,
-        Acorn      = 0x8,
-        PAcorn     = 0x9,
-        NoItem     = 0xE
+        InventoryItem_Propeller  = 0x5,
+        InventoryItem_Mini       = 0x6,
+        InventoryItem_Penguin    = 0x7,
+        InventoryItem_Acorn      = 0x8,
+        InventoryItem_PAcorn     = 0x9,
+        InventoryItem_NoItem     = 0xE
     };
 
     struct Header {
@@ -83,9 +84,9 @@ struct SaveData { // Size: 0xB134
     };
 
     struct CSLocation {
-        u8 worldNumber; // 0-indexed
-        u8 sectionID;   // Per-world worldmap sections. Used for W5 Haunted section, W8 and W9.
-        u8 pathNodeID;  // 0-indexed, does not follow the visible order of paths in-game at all.
+        u8 worldNumber;         // 0-indexed
+        u8 sectionID;           // Per-world worldmap sections. Used for W5 Haunted section, W8 and W9.
+        u8 pathNodeID;          // 0-indexed, does not follow the visible order of paths in-game at all.
     };
 
     struct AmbushEnemy {
@@ -135,8 +136,8 @@ struct SaveData { // Size: 0xB134
         u8 playerCharacterSelection[4]; // TODO: Verify order
         u8 playerPowerupState[4];       // Order: Mario, Luigi, Blue Toad, Yellow Toad //* enum = PowerupBase::PowerupState
         u8 playerGameOverCount[4];      // Order: Mario, Luigi, Blue Toad, Yellow Toad
-        u16 worldCompletionFlags;       //* enum = SaveData::WorldCompletionFlags
-        u8 gameCompletionFlags;         //* enum = SaveData::GameCompletionFlags
+        u16 worldCompletionFlag;        //* enum = SaveData::WorldCompletionFlag
+        u8 gameCompletionFlag;          //* enum = SaveData::GameCompletionFlag
         u8 _1F;
         Vec3f _20;
         u8 _2C;
@@ -158,30 +159,30 @@ struct SaveData { // Size: 0xB134
         u8 _52;
         u8 _53;
         u8 _54;
-        u8 babyYoshisAvailableFlags; //* enum = SaveData::BabyYoshisAvailableFlags
-        u8 activeBabyYoshi;          //* enum = SaveData::ActiveBabyYoshi
+        u8 babyYoshisAvailableFlag;         //* enum = SaveData::BabyYoshisAvailableFlag
+        u8 activeBabyYoshi;                 //* enum = SaveData::ActiveBabyYoshi
         u8 _57;
         u8 _58;
         u8 _59;
         u8 pinkBabyYoshiReappearCounter;
         u8 blueBabyYoshiReappearCounter;
-        u8 ambushItemReappearCounter[4]; // TODO: Map out order*
-        u8 ambushItems[4];               // TODO: Figure out values, maybe PowerupStates but untested
-        u8 remainingNabbitAttempts[7];   // TODO: Map out order*
-        u8 levelCompletionFlags[123];    //* enum = SaveData::LevelCompletionFlags
+        u8 ambushItemReappearCounter[4];    // TODO: Map out order*
+        u8 ambushItems[4];                  // TODO: Figure out values, maybe PowerupStates but untested
+        u8 remainingNabbitAttempts[7];      // TODO: Map out order*
+        u8 levelCompletionFlag[123];        //* enum = SaveData::LevelCompletionFlag
         u8 levelDeathCounter[62];
-        u8 levelStarCoinsCollected[41];  //* enum = SaveData::LevelStarCoinsCollected
-        u8 inventoryItem[10];            //* enum = SaveData::InventoryItem
+        u8 levelStarCoinsCollected[41];     //* enum = SaveData::LevelStarCoinsCollected
+        u8 inventoryItem[10];               //* enum = SaveData::InventoryItem
         AmbushData ambushData;
         Statistics statistics;
-        u8 caughtNabbitFlags; // TODO: Figure out flags
+        u8 caughtNabbitFlags;               // TODO: Figure out flags
         u8 padding[3];
         u32 CRC32;
     };
 
     struct Challenge {
-        u8 completionState;      // TODO: check if this is a bool
-        u8 completionPlayerUsed; // TODO: Check which player each value is
+        u8 completionState;                 // TODO: check if this is a bool
+        u8 completionPlayerUsed;            // TODO: Check which player each value is
         u16 _2;
         FFL::StoreData completionMiiUsed;
         u32 highscore;
@@ -190,10 +191,10 @@ struct SaveData { // Size: 0xB134
 
     struct ChallengeData {
         bool exists;
-        u8 categoryMedalsCount[5]; // TODO: Figure out categories
+        u8 categoryMedalsCount[5];          // TODO: Figure out categories
         u8 _6;
         u8 _7;
-        Challenge challenges[80];  // TODO: Map out challenges
+        Challenge challenges[80];           // TODO: Map out challenges
         u8 _21C8[0x1440];
         u32 CRC32; // 3608
     };
@@ -203,9 +204,9 @@ struct SaveData { // Size: 0xB134
         u8 _1;
         u8 _2;
         u8 _3;
-        u32 highscores[32];  // Stored in hundredths of a second
+        u32 highscores[32];                 // Stored in hundredths of a second
         u8 _84[32];
-        u32 CRC32; // A4
+        u32 CRC32;                          // A4
     };
     
     struct CoinEditCoin {
@@ -220,7 +221,7 @@ struct SaveData { // Size: 0xB134
     struct CoinEditStarCoin {
         u8 area;
         u8 zone;
-        u8 _2; // Possibly "bool exists;" like in CoinEditCoin?
+        u8 _2;                              // Possibly "bool exists;" like in CoinEditCoin?
         u8 _3;
         f32 xPos;
         f32 yPos;
@@ -288,19 +289,19 @@ struct SaveData { // Size: 0xB134
 
     struct MiiData {
         u8 entriesCount;
-        FFL::CreateID FFLCreateIDEntries[62]; // Mii ID list
+        FFL::CreateID FFLCreateIDEntries[62];   // Mii ID list
         u8 padding[3];
         u32 CRC32;
     };
 
-    Header header;                      // 0
-    SaveSlot saveSlots[3];              // 10
-    SaveSlot nsluSaveSlots[3];          // 61C
-    SaveSlot quickSaveSlots[3];         // C28
-    SaveSlot nsluQuickSaveSlots[3];     // 1234
-    ChallengeData challengeData;        // 1840
-    BoostRushData boostRushData;        // 4E4C
-    CoinEditData coinEditData;          // 4EF4
-    TelemetryStatistics telemetryStats; // AE2C
-    MiiData miiData;                    // AEC0
+    Header header;                              // 0
+    SaveSlot saveSlots[3];                      // 10
+    SaveSlot nsluSaveSlots[3];                  // 61C
+    SaveSlot quickSaveSlots[3];                 // C28
+    SaveSlot nsluQuickSaveSlots[3];             // 1234
+    ChallengeData challengeData;                // 1840
+    BoostRushData boostRushData;                // 4E4C
+    CoinEditData coinEditData;                  // 4EF4
+    TelemetryStatistics telemetryStats;         // AE2C
+    MiiData miiData;                            // AEC0
 };
