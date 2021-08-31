@@ -7,18 +7,18 @@ namespace sead {
 class PtrArrayImpl {
 public:
     forceinline PtrArrayImpl(s32 ptrNumMax, void* buf)
-        : ptrNum(0)
-        , ptrNumMax(0)
-        , ptrs(NULL)
+        : mPtrNum(0)
+        , mPtrNumMax(0)
+        , mPtrs(NULL)
     {
         setBuffer(ptrNumMax, buf);
     }
 
     void setBuffer(s32 ptrNumMax, void* buf);
 
-    s32 ptrNum;
-    s32 ptrNumMax;
-    void** ptrs;
+    s32 mPtrNum;
+    s32 mPtrNumMax;
+    void** mPtrs;
 };
 
 template <typename T>
@@ -30,12 +30,12 @@ public:
 
     class iterator {
     public:
-        iterator(T* const* inPptr)
-            : pptr(inPptr)
+        iterator(T* const* pptr)
+            : mPPtr(pptr)
         { }
 
         bool operator==(const iterator& other) const {
-            return this->pptr == other.pptr;
+            return mPPtr == other.mPPtr;
         }
 
         bool operator!=(const iterator& other) const {
@@ -43,27 +43,27 @@ public:
         }
 
         iterator& operator++() {
-            ++this->pptr;
+            ++mPPtr;
             return *this;
         }
 
         T& operator*() const {
-            return **this->pptr;
+            return **mPPtr;
         }
 
         T* operator->() const {
-            return *this->pptr;
+            return *mPPtr;
         }
 
-        T* const* pptr;
+        T* const* mPPtr;
     };
 
     iterator begin() const {
-        return iterator(reinterpret_cast<T**>(ptrs));
+        return iterator(reinterpret_cast<T**>(mPtrs));
     }
 
     iterator end() const {
-        return iterator(reinterpret_cast<T**>(ptrs) + ptrNum);
+        return iterator(reinterpret_cast<T**>(mPtrs) + mPtrNum);
     }
 };
 
@@ -71,10 +71,10 @@ template <typename T, s32 N>
 class FixedPtrArray : public PtrArray<T> {
 public:
     forceinline FixedPtrArray()
-        : PtrArray<T>(N, reinterpret_cast<T**>(work))
+        : PtrArray<T>(N, reinterpret_cast<T**>(mWork))
     { }
 
-    u8 work[N*sizeof(void*)];
+    u8 mWork[N*sizeof(void*)];
 };
 
 }

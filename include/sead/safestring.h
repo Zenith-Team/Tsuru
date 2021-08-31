@@ -6,11 +6,11 @@ template <typename T>
 class SafeStringBase {
 public:
     SafeStringBase()
-        : stringTop(&cNullChar)
+        : mStringTop(&cNullChar)
     { }
 
     SafeStringBase(const T* str)
-        : stringTop(str)
+        : mStringTop(str)
     { }
 
     virtual ~SafeStringBase() { }
@@ -18,7 +18,7 @@ public:
 
     inline const T* cstr() const {
         assureTerminationImpl_();
-        return this->stringTop;
+        return mStringTop;
     }
 
     inline const SafeStringBase<T> getPart(s32 at) const {
@@ -26,11 +26,11 @@ public:
         if (at < 0 || at > len)
             return SafeStringBase<T>::cEmptyString;
         
-        return SafeStringBase<T>(stringTop + at);
+        return SafeStringBase<T>(mStringTop + at);
     }
 
     inline const T& unsafeAt_(s32 idx) const {
-        return this->stringTop[idx];
+        return mStringTop[idx];
     }
 
     inline s32 calcLength() const;
@@ -43,7 +43,7 @@ public:
     static const SafeStringBase cEmptyString;
     static const s32 cMaximumLength = 0x40000;
 
-    const T* stringTop; // _4
+    const T* mStringTop; // _4
 };
 
 typedef SafeStringBase<char> SafeString;

@@ -102,53 +102,53 @@ public:
     void updateAnimations();
 
     inline void setMtx(const Mtx34& mtxRT) {
-        this->model->setMtx(mtxRT);
+        mModel->setMtx(mtxRT);
     }
 
     inline const Mtx34& getMtx() const {
-        return this->model->getMtx();
+        return mModel->getMtx();
     }
 
     inline void setScale(const Vec3f& scale) {
-        this->model->setScale(scale);
+        mModel->setScale(scale);
     }
 
     inline const Vec3f& getScale() const {
-        return this->model->getScale();
+        return mModel->getScale();
     }
 
     inline void playSklAnim(const sead::SafeString& identifier, u32 idx) {
-        if (idx < this->sklAnims.size)
-            this->sklAnims[idx]->play(this->archive, identifier);
+        if (idx < mSklAnims.mSize)
+            mSklAnims[idx]->play(mArchive, identifier);
     }
 
     inline void playTexPatternAnim(const sead::SafeString& identifier, u32 idx) {
-        if (idx < this->texPatternAnims.size)
-            this->texPatternAnims[idx]->play(this->archive, identifier);
+        if (idx < mTexPatternAnims.mSize)
+            mTexPatternAnims[idx]->play(mArchive, identifier);
     }
 
     inline void playColorAnim(const sead::SafeString& identifier, u32 idx) {
-        if (idx < this->texSrtAnims.size)
-            this->texSrtAnims[idx]->playColorAnim(this->archive, identifier);
+        if (idx < mTexSrtAnims.mSize)
+            mTexSrtAnims[idx]->playColorAnim(mArchive, identifier);
     }
 
     inline void playTexSrtAnim(const sead::SafeString& identifier, u32 idx) {
-        if (idx < this->texSrtAnims.size)
-            this->texSrtAnims[idx]->playTexSrtAnim(this->archive, identifier);
+        if (idx < mTexSrtAnims.mSize)
+            mTexSrtAnims[idx]->playTexSrtAnim(mArchive, identifier);
     }
 
     inline void playBoneVisAnim(const sead::SafeString& identifier, u32 idx) {
-        if (idx < this->visAnims.size)
-            this->visAnims[idx]->play(this->archive, identifier);
+        if (idx < mVisAnims.mSize)
+            mVisAnims[idx]->play(mArchive, identifier);
     }
 
     inline void playShapeAnim(const sead::SafeString& identifier, u32 idx) {
-        if (idx < this->shaAnims.size)
-            this->shaAnims[idx]->play(this->archive, identifier);
+        if (idx < mShaAnims.mSize)
+            mShaAnims[idx]->play(mArchive, identifier);
     }
 
     static inline ModelWrapper* create(const sead::SafeString& archiveIdentifier, const sead::SafeString& modelIdentifier, u32 numSklAnims = 0, u32 numTexPatternAnims = 0, u32 numTexSrtAnims = 0, u32 numVisAnims = 0, u32 numShaAnims = 0, bool unk2 = false) {
-        ResArchive* archive = ResArchiveMgr::instance()->get(archiveIdentifier);
+        ResArchive* archive = ResArchiveMgr::sInstance->get(archiveIdentifier);
         Model* model = archive->getModel(modelIdentifier, numSklAnims, numTexPatternAnims, numTexSrtAnims, numVisAnims, numShaAnims, unk2, nullptr);
         ModelWrapper* wrapper = new ModelWrapper(model, numSklAnims, numTexPatternAnims, numTexSrtAnims, numVisAnims, numShaAnims);
         wrapper->setup(archive, nullptr, nullptr);
@@ -162,11 +162,11 @@ public:
         return wrapper;
     }
 
-	Model* model;                                      // 0
-	ResArchive* archive;                               // 4
-	sead::Buffer<SkeletalAnimation*> sklAnims;         // 8
-	sead::Buffer<TextureAnimation*> texPatternAnims;  // 10
-	sead::Buffer<ShaderAnimation*> texSrtAnims;        // 18
-	sead::Buffer<VisibilityAnimation*> visAnims;       // 20
-	sead::Buffer<ShapeAnimation*> shaAnims;            // 28
+	Model* mModel;                                      // 0
+	ResArchive* mArchive;                               // 4
+	sead::Buffer<SkeletalAnimation*> mSklAnims;         // 8
+	sead::Buffer<TextureAnimation*> mTexPatternAnims;   // 10
+	sead::Buffer<ShaderAnimation*> mTexSrtAnims;        // 18
+	sead::Buffer<VisibilityAnimation*> mVisAnims;       // 20
+	sead::Buffer<ShapeAnimation*> mShaAnims;            // 28
 };

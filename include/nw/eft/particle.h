@@ -47,7 +47,7 @@ struct PtclInstance { // Size: 0x180
     math::VEC3 mVelocity;
     math::VEC3 mWorldPos;
     math::VEC3 mWorldPosDiff;
-    math::VEC3 rotation;
+    math::VEC3 mRotation;
     math::VEC3 mAngularVelocity;
     f32 mRandomF32;
     f32 mAlpha;

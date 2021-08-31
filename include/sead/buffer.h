@@ -8,23 +8,23 @@ template <typename T>
 class Buffer {
 public:
     Buffer()
-        : size(0)
-        , buffer(NULL)
+        : mSize(0)
+        , mBuffer(NULL)
     { }
 
     void setBuffer(s32 size, T* bufferptr) {
         if (size > 0 && bufferptr) {
-            this->size = size;
-            this->buffer = bufferptr;
+            mSize = size;
+            mBuffer = bufferptr;
         }
     }
 
     T* unsafeGet(s32 index) {
-        return &this->buffer[index];
+        return &mBuffer[index];
     }
 
     const T* unsafeGet(s32 index) const {
-        return &this->buffer[index];
+        return &mBuffer[index];
     }
 
     T& operator[] (s32 index) {
@@ -35,8 +35,8 @@ public:
         return *unsafeGet(index);
     }
 
-    s32 size;
-    T* buffer;
+    s32 mSize;
+    T* mBuffer;
 };
 
 }

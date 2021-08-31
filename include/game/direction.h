@@ -2,7 +2,7 @@
 
 #include <types.h>
 
-extern u32 sDirectionToRotationList[];
+extern u32 directionToRotationList[];
 
 namespace Direction { enum Direction {
     Right = 0,
