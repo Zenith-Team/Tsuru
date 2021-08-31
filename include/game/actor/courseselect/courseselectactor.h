@@ -28,10 +28,10 @@ public:
     f32 _E4;            // Inited to 1.0
     u32 _E8;            // Inited to 0
     u32 _EC;            // Inited to 0
-    u32 mEventID2;      // Inited to buildInfo->mEventID2
-    u32 mLayer;         // Inited to buildInfo->mLayer
-    u32 mMovementID;    // Inited to buildInfo->mMovementID
-    u32 mEventID1;      // Inited to buildInfo->mEventID1
+    u32 eventID2;       // Inited to buildInfo->eventID2
+    u32 layer;          // Inited to buildInfo->layer
+    u32 movementID;     // Inited to buildInfo->movementID
+    u32 eventID1;       // Inited to buildInfo->eventID1
     u32 _100;           // Inited to 0
     u8 _104;            // Inited to false
 };

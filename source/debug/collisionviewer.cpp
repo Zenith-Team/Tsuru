@@ -112,7 +112,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
             if (sead::IsDerivedFrom<CircularCollider, ColliderBase>(colliderBase)) {
                 CircularCollider* collider = static_cast<CircularCollider*>(colliderBase);
 
-                sead::PrimitiveRenderer::instance()->drawCircle32(Vec3f(collider->mOwnerInfo.mPosition->x + collider->mDistToCenter.x + collider->_160.x, collider->mOwnerInfo.mPosition->y + collider->mDistToCenter.y + collider->_160.y, 4000.f), collider->mRadius, sead::colorBlue);
+                sead::PrimitiveRenderer::instance()->drawCircle32(Vec3f(collider->mOwnerInfo.position->x + collider->mDistToCenter.x + collider->_160.x, collider->mOwnerInfo.position->y + collider->mDistToCenter.y + collider->_160.y, 4000.f), collider->mRadius, sead::colorBlue);
             }
 
             else if (sead::IsDerivedFrom<SolidOnTopCollider, ColliderBase>(colliderBase)) {
@@ -120,7 +120,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
                 if (collider->mPoints.mSize < 2)
                     continue;
                 
-                const Vec2f center = Vec2f((*collider->mOwnerInfo.mPosition).x, (*collider->mOwnerInfo.mPosition).y) + collider->mDistToCenter;
+                const Vec2f center = Vec2f((*collider->mOwnerInfo.position).x, (*collider->mOwnerInfo.position).y) + collider->mDistToCenter;
 
                 for (u32 i = 0; i < collider->mNodes1.mSize; i++) {
                     const ColliderBase::Node& node = collider->mNodes1[i];
@@ -133,7 +133,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
                 if (collider->mPoints.mSize < 2)
                     continue;
                 
-                const Vec2f center = Vec2f((*collider->mOwnerInfo.mPosition).x, (*collider->mOwnerInfo.mPosition).y) + collider->mDistToCenter;
+                const Vec2f center = Vec2f((*collider->mOwnerInfo.position).x, (*collider->mOwnerInfo.position).y) + collider->mDistToCenter;
 
                 for (u32 i = 0; i < collider->mNodes1.mSize; i++) {
                     const ColliderBase::Node& node = collider->mNodes1[i];
@@ -157,11 +157,11 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
         ActorBuffer* actors = &ActorMgr::instance()->mActors;
         for (u32 i = 0; i < actors->mBuffer.mSize; i++) {
             StageActor* actor = sead::DynamicCast<StageActor, Actor>(actors->mBuffer[i]);
-            if (actor == NULL || !actor->mIsVisible || actor->mIsDeleted)
+            if (actor == NULL || !actor->isVisible || actor->isDeleted)
                 continue;
             
             ActorPhysicsMgr* actorPhysicsMgr = actor->getActorPhysicsMgr();
-            if (actorPhysicsMgr == NULL || actorPhysicsMgr->mPosition == NULL)
+            if (actorPhysicsMgr == NULL || actorPhysicsMgr->position == NULL)
                 continue;
             
             for (u32 j = 0; j < 4; j++) {
@@ -178,15 +178,15 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
                 }
 
                 if (j < 2) {
-                    Vec2f point1(actorPhysicsMgr->mPosition->x + sensor->mDistanceFromCenter, actorPhysicsMgr->mPosition->y + p1);
-                    Vec2f point2(actorPhysicsMgr->mPosition->x + sensor->mDistanceFromCenter, actorPhysicsMgr->mPosition->y + p2);
+                    Vec2f point1(actorPhysicsMgr->position->x + sensor->mDistanceFromCenter, actorPhysicsMgr->position->y + p1);
+                    Vec2f point2(actorPhysicsMgr->position->x + sensor->mDistanceFromCenter, actorPhysicsMgr->position->y + p2);
 
                     drawLine(point1, point2, sead::colorYellow, 1.0f);
                 }
 
                 else {
-                    Vec2f point1(actorPhysicsMgr->mPosition->x + p1, actorPhysicsMgr->mPosition->y + sensor->mDistanceFromCenter);
-                    Vec2f point2(actorPhysicsMgr->mPosition->x + p2, actorPhysicsMgr->mPosition->y + sensor->mDistanceFromCenter);
+                    Vec2f point1(actorPhysicsMgr->position->x + p1, actorPhysicsMgr->position->y + sensor->mDistanceFromCenter);
+                    Vec2f point2(actorPhysicsMgr->position->x + p2, actorPhysicsMgr->position->y + sensor->mDistanceFromCenter);
 
                     drawLine(point1, point2, (j == 2) ? sead::colorWhite : sead::colorCyan, 1.0f);
                 }
@@ -216,7 +216,7 @@ void CourseSelectTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
             if (!actor)
                 continue;
 
-            sead::PrimitiveRenderer::instance()->drawCube(actor->mPosition + cshCollider->mInfo.mOffset, cshCollider->mInfo.mSize, sead::colorYellow);
+            sead::PrimitiveRenderer::instance()->drawCube(actor->position + cshCollider->mInfo.mOffset, cshCollider->mInfo.mSize, sead::colorYellow);
         }
 
 
@@ -231,7 +231,7 @@ void CourseSelectTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
             if (!actor)
                 continue;
 
-            sead::PrimitiveRenderer::instance()->drawCube(actor->mPosition + cshCollider->mInfo.mOffset, cshCollider->mInfo.mSize, sead::colorRed);
+            sead::PrimitiveRenderer::instance()->drawCube(actor->position + cshCollider->mInfo.mOffset, cshCollider->mInfo.mSize, sead::colorRed);
         }
 
         sead::PrimitiveRenderer::instance()->end();

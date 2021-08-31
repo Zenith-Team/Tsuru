@@ -31,7 +31,7 @@ struct EmitterInstance { // Size: 0x220
     }
 
     bool HasChild() const {
-        return this->mData->mType != EmitterTypeSimple && (static_cast<const ComplexEmitterData*>(this->mData)->mChildFlags & 1);
+        return this->mData->mType != EmitterTypeSimple && (static_cast<const ComplexEmitterData*>(this->mData)->childFlags & 1);
     }
 
     const ChildData* GetChildData() const {
@@ -41,66 +41,64 @@ struct EmitterInstance { // Size: 0x220
         return reinterpret_cast<const ChildData*>(static_cast<const ComplexEmitterData*>(this->mData) + 1);
     }
 
-    f32 mCounter;
-    f32 mCounter2;
-    f32 mEmitCounter;
-    f32 mPreCalcCounter;
-    f32 mEmitLostTime;
-    u32 mNumParticles;
-    u32 mNumChildParticles;
-    u32 mGroupID;
-    EmitterSet* mEmitterSet;
-    EmitterController* mController;
-    u32 mEmitterSetCreateID;
-    math::MTX34 mMatrixRT;
-    math::MTX34 mMatrixSRT;
-    PtclRandom mRandom;
-    s32 mEmissionInterval;
-    f32 mFadeAlpha;
-    f32 mEmissionSpeed;
-    math::VEC3 mPrevPos;   // Used for equidistant emission
-    bool mPrevPosSet;      // ^^
-    f32 mEmitLostDistance; // ^^
-    math::VEC3 mScaleRandom;
-    math::VEC3 mRotateRandom;
-    math::VEC3 mTranslateRandom;
-    PtclFollowType mPtclFollowType;
-    EmitterInstance* mPrev;
-    EmitterInstance* mNext;
-    EmitterCalc* mCalc;
-    const SimpleEmitterData* mData;
-    PtclInstance* mParticleHead;
-    PtclInstance* mChildParticleHead;
-    PtclInstance* mParticleTail;
-    PtclInstance* mChildParticleTail;
-    ParticleShader* mShader[ShaderTypeMax];
-    ParticleShader* mChildShader[ShaderTypeMax];
-    Primitive* mPrimitive;
-    Primitive* mChildPrimitive;
-    KeyFrameAnimArray* mAnimArray;
-    f32 mAnim[25];
-    math::MTX34 mAnimMatrixRT;
-    math::MTX34 mAnimMatrixSRT;
-    f32 mEmitLostRate;
-    bool mIsEmitted;
-    bool mIsCalculated;
-    u8 mUnused;
-    u32 mParticleBehaviorFlg;
-    u32 mShaderAvailableAttribFlg;
-    u32 mChildShaderAvailableAttribFlg;
-    u32 mNumDrawParticle;
-    u32 mNumDrawChildParticle;
-    u32 mNumDrawStripe;
-    PtclAttributeBuffer* mPtclAttributeBuffer;
-    PtclAttributeBuffer* mChildPtclAttributeBuffer;
-    StripeVertexBuffer* mStripeVertexBuffer;
-    EmitterStaticUniformBlock* mEmitterStaticUniformBlock;
-    EmitterStaticUniformBlock* mChildEmitterStaticUniformBlock;
-    EmitterDynamicUniformBlock* mEmitterDynamicUniformBlock;
-    EmitterDynamicUniformBlock* mChildEmitterDynamicUniformBlock;
+    f32 counter;
+    f32 counter2;
+    f32 emitCounter;
+    f32 preCalcCounter;
+    f32 emitLostTime;
+    u32 numParticles;
+    u32 numChildParticles;
+    u32 groupID;
+    EmitterSet* emitterSet;
+    EmitterController* controller;
+    u32 emitterSetCreateID;
+    math::MTX34 matrixRT;
+    math::MTX34 matrixSRT;
+    PtclRandom random;
+    s32 emissionInterval;
+    f32 fadeAlpha;
+    f32 emissionSpeed;
+    math::VEC3 prevPos;   // Used for equidistant emission
+    bool prevPosSet;      // ^^
+    f32 emitLostDistance; // ^^
+    math::VEC3 scaleRandom;
+    math::VEC3 rotateRandom;
+    math::VEC3 translateRandom;
+    PtclFollowType ptclFollowType;
+    EmitterInstance* prev;
+    EmitterInstance* next;
+    EmitterCalc* calc;
+    const SimpleEmitterData* data;
+    PtclInstance* particleHead;
+    PtclInstance* childParticleHead;
+    PtclInstance* particleTail;
+    PtclInstance* childParticleTail;
+    ParticleShader* shader[ShaderTypeMax];
+    ParticleShader* childShader[ShaderTypeMax];
+    Primitive* primitive;
+    Primitive* childPrimitive;
+    KeyFrameAnimArray* animArray;
+    f32 anim[25];
+    math::MTX34 animMatrixRT;
+    math::MTX34 animMatrixSRT;
+    f32 emitLostRate;
+    bool isEmitted;
+    bool isCalculated;
+    u8 unused;
+    u32 particleBehaviorFlg;
+    u32 shaderAvailableAttribFlg;
+    u32 childShaderAvailableAttribFlg;
+    u32 numDrawParticle;
+    u32 numDrawChildParticle;
+    u32 numDrawStripe;
+    PtclAttributeBuffer* ptclAttributeBuffer;
+    PtclAttributeBuffer* childPtclAttributeBuffer;
+    StripeVertexBuffer* stripeVertexBuffer;
+    EmitterStaticUniformBlock* emitterStaticUniformBlock;
+    EmitterStaticUniformBlock* childEmitterStaticUniformBlock;
+    EmitterDynamicUniformBlock* emitterDynamicUniformBlock;
+    EmitterDynamicUniformBlock* childEmitterDynamicUniformBlock;
 };
-
-static_assert(sizeof(EmitterInstance) == 0x220, "EmitterInstance size mismatch");
 
 class System;
 
@@ -110,7 +108,7 @@ public:
         sSys = system;
     }
 
-    virtual ~EmitterCalc() { } // deleted
+    virtual ~EmitterCalc() // deleted
     virtual void CalcEmitter(EmitterInstance* emitter) = 0;
     virtual PtclType GetPtclType() const = 0;
     virtual u32 CalcParticle(EmitterInstance* emitter, CpuCore core, bool noCalcBehavior, bool noMakePtclAttributeBuffer) = 0;
@@ -118,43 +116,43 @@ public:
 
     static void RemoveParticle(EmitterInstance* emitter, PtclInstance* ptcl, CpuCore core);
     static inline void AddChildPtclToList(EmitterInstance* emitter, PtclInstance* childPtcl) {
-        if (emitter->mChildParticleHead == NULL) {
-            emitter->mChildParticleHead = childPtcl;
-            childPtcl->mNext = NULL;
-            childPtcl->mPrev = NULL;
+        if (emitter->childParticleHead == NULL) {
+            emitter->childParticleHead = childPtcl;
+            childPtcl->next = NULL;
+            childPtcl->prev = NULL;
         }
         
         else {
-            emitter->mChildParticleHead->mPrev = childPtcl;
-            childPtcl->mNext = emitter->mChildParticleHead;
-            emitter->mChildParticleHead = childPtcl;
-            childPtcl->mPrev = NULL;
+            emitter->childParticleHead->prev = childPtcl;
+            childPtcl->next = emitter->childParticleHead;
+            emitter->childParticleHead = childPtcl;
+            childPtcl->prev = NULL;
         }
 
-        if (emitter->mChildParticleTail == NULL)
-            emitter->mChildParticleTail = childPtcl;
+        if (emitter->childParticleTail == NULL)
+            emitter->childParticleTail = childPtcl;
 
-        emitter->mNumChildParticles++;
+        emitter->numChildParticles++;
     }
 
     static inline void AddPtclToList(EmitterInstance* emitter, PtclInstance* ptcl) {
-        if (emitter->mParticleHead == NULL) {
-            emitter->mParticleHead = ptcl;
-            ptcl->mNext = NULL;
-            ptcl->mPrev = NULL;
+        if (emitter->particleHead == NULL) {
+            emitter->particleHead = ptcl;
+            ptcl->next = NULL;
+            ptcl->prev = NULL;
         }
 
         else {
-            emitter->mParticleHead->mPrev = ptcl;
-            ptcl->mNext = emitter->mParticleHead;
-            emitter->mParticleHead = ptcl;
-            ptcl->mPrev = NULL;
+            emitter->particleHead->prev = ptcl;
+            ptcl->next = emitter->particleHead;
+            emitter->particleHead = ptcl;
+            ptcl->prev = NULL;
         }
 
-        if (emitter->mParticleTail == NULL)
-            emitter->mParticleTail = ptcl;
+        if (emitter->particleTail == NULL)
+            emitter->particleTail = ptcl;
 
-        emitter->mNumParticles++;
+        emitter->numParticles++;
     }
 
     static void EmitCommon(EmitterInstance* emitter, PtclInstance* ptcl);
@@ -197,11 +195,7 @@ public:
     static System* sSys;
 
     typedef PtclInstance* (*EmitFunction)(EmitterInstance* emitter);
-    static EmitFunction mEmitFunctions[];
+    static EmitFunction emitFunctions[];
 };
-
-static_assert(sizeof(EmitterCalc) == 4, "EmitterCalc size mismatch");
-
-
 
 } }

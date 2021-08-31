@@ -19,13 +19,13 @@ public:
         return mFlags & FlagIsDone;
     }
 
-    f32 mStartFrame; // 0    Inited to 0.0
-    f32 mEndFrame;   // 4    Inited to 1.0
-    f32 _8;          // 8    Inited to 0.0
-    f32 _C;          // C    Inited to 1.0
-    f32 mFrame;      // 10   Inited to 0.0
-    f32 mSpeed;      // 14   Inited to 1.0
-    u32 mFlags;      // 18   Inited to FlagRepeat | FlagUnk2
+    f32 startFrame;     // 0    Inited to 0.0
+    f32 endFrame;       // 4    Inited to 1.0
+    f32 _8;             // 8    Inited to 0.0
+    f32 _C;             // C    Inited to 1.0
+    f32 frame;          // 10   Inited to 0.0
+    f32 speed;          // 14   Inited to 1.0
+    u32 flags;          // 18   Inited to FlagRepeat | FlagUnk2
 };
 
 class ModelAnimation : public Animation {

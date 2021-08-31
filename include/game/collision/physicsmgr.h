@@ -10,9 +10,9 @@ class PhysicsMgr : public TileChecker {
 
 public:
     struct Sensor {
-        f32 mPoint1;             // _0
-        f32 mPoint2;             // _4
-        f32 mDistanceFromCenter; // _8
+        f32 point1;             // _0
+        f32 point2;             // _4
+        f32 distanceFromCenter; // _8
     };
 
     enum Flags {
@@ -42,42 +42,42 @@ public:
     const Sensor* getSensor(u32 sensorID) const;
     bool doExplosionAt(const Vec2f& topLeft, const Vec2f& bottomRight);
 
-    inline bool isOnGround()      { return this->mOutput & FlagOnGround;      }
-    inline bool isCollidedRight() { return this->mOutput & FlagCollidedRight; }
-    inline bool isCollidedLeft()  { return this->mOutput & FlagCollidedLeft;  }
+    inline bool isOnGround()      { return this->output & FlagOnGround;      }
+    inline bool isCollidedRight() { return this->output & FlagCollidedRight; }
+    inline bool isCollidedLeft()  { return this->output & FlagCollidedLeft;  }
     inline bool isCollided(u32 direction) {
         if (direction > 1) return false;
-        return this->mOutput & (FlagCollidedRight << direction);
+        return this->output & (FlagCollidedRight << direction);
     }
 
-    u8 _unk4C[0x890-0x4C];       // 4C
-    StageActor* mOwner;          // 890
-    u32 _894;                    // 894
-    Vec3f* mPosition;            // 898  &owner->position
-    Vec3f* _89C;                 // 89C  &owner->_240, lastPosition?
-    u8* mLayer;                  // 8A0  &owner->layer
-    u8* mCollisionMask;          // 8A4  &owner->collisionMask
-    s8* mPlayerID;               // 8A8  &owner->playerId
-    u32 mOutput;                 // 8AC
-    u8 _unk8B0[0x914-0x8B0];     // 8B0
-    u8 _914;                     // 914
-    bool mHasBeenInited;         // 915
-    bool _916;                   // 916
-    bool _917;                   // 917
-    bool _918;                   // 918
-    bool mSensorIsSet[4];        // 919
-    bool mSensorIsNull[4];       // 91D
-    bool _921[4];                // 921
+    u8 _unk4C[0x890-0x4C];          // 4C
+    StageActor* owner;              // 890
+    u32 _894;                       // 894
+    Vec3f* position;                // 898  &owner->position
+    Vec3f* _89C;                    // 89C  &owner->_240, lastPosition?
+    u8* layer;                      // 8A0  &owner->layer
+    u8* collisionMask;              // 8A4  &owner->collisionMask
+    s8* playerID;                   // 8A8  &owner->playerId
+    u32 output;                     // 8AC
+    u8 _unk8B0[0x914-0x8B0];        // 8B0
+    u8 _914;                        // 914
+    bool hasBeenInited;             // 915
+    bool _916;                      // 916
+    bool _917;                      // 917
+    bool _918;                      // 918
+    bool sensorIsSet[4];            // 919
+    bool sensorIsNull[4];           // 91D
+    bool _921[4];                   // 921
     union {
         struct {
-            Sensor mRightSensor; // 928
-            Sensor mLeftSensor;  // 934
-            Sensor mAboveSensor; // 940
-            Sensor mBelowSensor; // 94C
+            Sensor rightSensor;     // 928
+            Sensor leftSensor;      // 934
+            Sensor aboveSensor;     // 940
+            Sensor belowSensor;     // 94C
         };
 
-        Sensor mSensors[4];
+        Sensor sensors[4];
     };
 
-    u8 _unk958[0x14DC-0x958];    // 958
+    u8 _unk958[0x14DC-0x958];       // 958
 };

@@ -12,15 +12,15 @@ namespace agl { namespace lyr {
 
 class RenderInfo {
 public:
-    u32 mRenderStepIndex;
-    u32 mDisplayType;
-    RenderBuffer* mFrameBuffer;
+    u32 renderStepIndex;
+    u32 displayType;
+    RenderBuffer* frameBuffer;
     u32 _C;
-    Layer* mParentLayer;
-    sead::Camera* mCamera;
-    sead::Projection* mProjection;
-    sead::Viewport* mViewport;
-    DisplayList* mDisplayList;
+    Layer* parentLayer;
+    sead::Camera* camera;
+    sead::Projection* projection;
+    sead::Viewport* viewport;
+    DisplayList* displayList;
     bool _24;
 };
 

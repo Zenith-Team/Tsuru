@@ -10,7 +10,7 @@ namespace nw { namespace eft {
 struct VertexShaderKey { // Size: 0x20
     void InitializeSimple(const SimpleEmitterData* data) {
         this->mTransformMode = data->mVertexTransformMode;
-        this->mRotationMode = (u8)(data->mRotationMode != VertexRotationModeNone);
+        this->rotationMode = (u8)(data->rotationMode != VertexRotationModeNone);
         this->mShaderUserSetting = data->mShaderUserSetting;
         this->mShaderUserFlag = data->mShaderUserFlag;
         this->mShaderUserSwitchFlag = data->mShaderUserSwitchFlag;
@@ -58,7 +58,7 @@ struct VertexShaderKey { // Size: 0x20
 
     void InitializeChild(const ChildData* data) {
         this->mTransformMode = data->mVertexTransformMode;
-        this->mRotationMode = (u8)(data->mRotationMode != VertexRotationModeNone);
+        this->rotationMode = (u8)(data->rotationMode != VertexRotationModeNone);
         this->mShaderUserSetting = data->mShaderUserSetting;
         this->mShaderUserFlag = data->mShaderUserFlag;
         this->mShaderUserSwitchFlag = data->mShaderUserSwitchFlag;
@@ -83,7 +83,7 @@ struct VertexShaderKey { // Size: 0x20
 
     bool operator==(const VertexShaderKey& other) {
         return (this->mTransformMode           == other.mTransformMode
-                && this->mRotationMode         == other.mRotationMode
+                && this->rotationMode         == other.rotationMode
                 && this->mShaderUserSetting    == other.mShaderUserSetting
                 && this->mShaderUserFlag       == other.mShaderUserFlag
                 && this->mShaderUserSwitchFlag == other.mShaderUserSwitchFlag
@@ -94,7 +94,7 @@ struct VertexShaderKey { // Size: 0x20
     }
 
     u8 mTransformMode;
-    u8 mRotationMode;
+    u8 rotationMode;
     u8 mShaderUserSetting;
     u8 mStripeType;
     bool mStripeEmitterCoord;

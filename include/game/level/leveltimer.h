@@ -2,7 +2,9 @@
 
 #include <sead.h>
 
-class LevelTimer : public sead::IDisposer {
+class LevelTimer {
+    SEAD_SINGLETON_DISPOSER(LevelTimer)
+
 public:
     LevelTimer();
 
@@ -14,12 +16,10 @@ public:
 
     s32 getTimeLimitSeconds() const;
 
-    static LevelTimer* sInstance;
-
-    s32 mFreezeTimer;       // _10
-    s32 mTimeLimit;         // _14
-    s32 mStartTimeLimit;    // _18
-    bool mIsHurryUp;        // _1C
-    u8 mFlags;              // _1D
+    s32 freezeTimer;        // _10
+    s32 timeLimit;          // _14
+    s32 startTimeLimit;     // _18
+    bool isHurryUp;         // _1C
+    u8 flags;               // _1D
     u16 _1E;                // _1E
 };

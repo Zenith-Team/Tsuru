@@ -7,11 +7,11 @@ class SolidOnTopCollider : public ColliderBase {
 
 public:
     struct Info {
-        Vec2f mDistToCenter;
+        Vec2f distToCenter;
         f32 _8;
         f32 _C;
-        Vec2f* mPoints;
-        u32 mRotation;
+        Vec2f* points;
+        u32 rotation;
     };
 
 public:
@@ -33,9 +33,9 @@ public:
     void init(StageActor* owner, const Info& info);
     void init(StageActor* owner, const Info& info, s32 numPoints, sead::Heap* heap = nullptr);
 
-    sead::Buffer<Vec2f> mPoints;
-    sead::Buffer<Node> mNodes1;
-    sead::Buffer<Node> mNodes2;
+    sead::Buffer<Vec2f> points;
+    sead::Buffer<Node> nodes1;
+    sead::Buffer<Node> nodes2;
     f32 _170;
     u8 _174[0x178-0x174];
 };

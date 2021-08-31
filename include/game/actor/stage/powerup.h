@@ -54,7 +54,7 @@ public:
     DECLARE_STATE(Powerup, PowerupState3);  // unknown state
     DECLARE_STATE(Powerup, PowerupState4);  // unknown state
 
-    u8 _1A90;   // _1A90
-    u8 _1A91;   // _1A91
-    u8 unk1[6]; // _1A92
+    u8 _1A90;       // _1A90
+    u8 _1A91;       // _1A91
+    u8 _1A92[6];    // _1A92
 };

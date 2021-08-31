@@ -8,8 +8,8 @@
 class Effect {
 public:
     Effect() {
-        mEffectHandle.mEmitterSet = NULL;
-        init();
+        this->effectHandle.emitterSet = NULL;
+        this->init();
     }
 
     void init();
@@ -22,10 +22,10 @@ public:
     static bool spawn(EffectIDType effectID, const Mtx34* mtx, bool mtxHasScale);
     static bool spawn(EffectIDType effectID, const Vec3f* position, const Vec3u* rotation = nullptr, const Vec3f* scale = nullptr);
 
-    Mtx34 mMtx;                    // 0
-    bool mMtxHasScale;             // 30
-    nw::eft::Handle mEffectHandle; // 34
-    void* mShaderParam;            // 3C
+    Mtx34 mtx;                    // 0
+    bool mtxHasScale;             // 30
+    nw::eft::Handle effectHandle; // 34
+    void* shaderParam;            // 3C
 };
 
 
@@ -34,22 +34,22 @@ public:
     EffectWrapper();
 
     virtual ~EffectWrapper() {
-        destroy();
+        this->destroy();
     }
 
     SEAD_RTTI_BASE(EffectWrapper)
 
 public:
-    void init(EffectIDType effectId, const Mtx34* mtx, bool mtxHasScale);
-    void init(EffectIDType effectId, const Vec3f* position, const Vec3u* rotation, const Vec3f* scale);
+    void init(EffectIDType effectID, const Mtx34* mtx, bool mtxHasScale);
+    void init(EffectIDType effectID, const Vec3f* position, const Vec3u* rotation, const Vec3f* scale);
 
     bool update(const Vec3f* position, const Vec3u* rotation, const Vec3f* scale);
     bool update(const Mtx34* mtx, bool mtxHasScale);
 
     void destroy();
 
-    EffectIDType mEffectID; // 60
-    bool mIsActive;         // 64
+    EffectIDType effectID; // 60
+    bool isActive;         // 64
 };
 
 class ActorEffect : public EffectWrapper {

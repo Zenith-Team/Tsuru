@@ -25,13 +25,13 @@ public:
 
     static u32 getNumProfiles();
 
-    static u32 spriteToProfileList[];
+    static u32 sSpriteToProfileList[];
 
-    Actor* (*mBuildFunc)(const ActorBuildInfo*);
-    u32 mID;
-    const ActorInfo* mActorInfo;
-    u8 mHasResourcesLoaded;
-    u32 mFlags;
+    Actor* (*buildFunc)(const ActorBuildInfo*);
+    u32 id;
+    const ActorInfo* actorInfo;
+    u8 hasResourcesLoaded;
+    u32 flags;
 
 private:
     static const u32 NUM_PROFILES_ORIGINAL = ProfileID::NumOriginal;

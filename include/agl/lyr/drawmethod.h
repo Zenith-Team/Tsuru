@@ -9,12 +9,12 @@ class DrawMethod : public sead::IDisposer {
     typedef void (DrawMethod::*PTMF)();
 
 public:
-    sead::SafeString mName;
+    sead::SafeString name;
     u32 _18;
     u32 _1C;
     u32 _20;
     u32 _24;
-    PTMF mMethod;
+    PTMF method;
     u32 _30;
     u32 _34;
     u32 _38;

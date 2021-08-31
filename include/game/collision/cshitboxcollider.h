@@ -10,8 +10,8 @@ class CSCollisionActor;
 class CSHitboxCollider {
 public:
     struct Info {
-        f32 mSize;
-        Vec3f mOffset;
+        f32 size;
+        Vec3f offset;
     };
 
 public:
@@ -20,9 +20,9 @@ public:
 
     void init(CSCollisionActor* owner, const Info* info);
 
-    u32 mOwnerID;
+    u32 ownerID;
     u32 _4;
-    Info mInfo;
+    Info info;
 };
 
 class CSHitboxColliderMgr {
@@ -38,6 +38,6 @@ public:
     void add(CSHitboxCollider* cshc);
     s32 FUN_21c5894(CSHitboxCollider* cshc);    // Return type unknown
 
-    UnknownStruct mArray1;
-    UnknownStruct mArray2;
+    UnknownStruct array1;
+    UnknownStruct array2;
 };
