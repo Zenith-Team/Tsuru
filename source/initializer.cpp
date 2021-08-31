@@ -3,7 +3,6 @@
 #include <dynlibs/os/functions.h>
 #include <dynlibs/gx2/functions.h>
 #include <sead.h>
-#include <custom/cheatmgr.h>
 #include <custom/shsavemgr.h>
 
 // staticInit array
@@ -14,9 +13,6 @@ extern "C" funcPtr _ctors[];
 OsSpecifics osSpecifics;
 extern u32 BLOSDynLoad_Acquire;
 extern u32 BOSDynLoad_FindExport;
-
-// Create custom singletons
-CheatMgr CheatMgr::sInstance;
 
 void initialize() {
     // Duplicate call check
@@ -42,8 +38,6 @@ void initialize() {
     InitOSFunctionPointers();
     InitGX2FunctionPointers();
 
-    if (CheatMgr::sInstance.mDebugLoggingEnabled) {
-        LOG("OSDynLoad_Acquire address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_Acquire);
-        LOG("OSDynLoad_FindExport address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_FindExport);
-    }
+    LOG("OSDynLoad_Acquire address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_Acquire);
+    LOG("OSDynLoad_FindExport address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_FindExport);
 }

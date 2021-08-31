@@ -2,7 +2,7 @@
 ---
 Name: SuperHacks
 Modules:
-  - hooks/cheatmgr.yaml             # Cheat menu
+  - hooks/cheats.yaml               # Cheat menu
   - hooks/collisionconditions.yaml  # Fixes collision conditions for some actors
   - hooks/customactors.yaml         # Custom sprites/actors
 # - hooks/debug.yaml                # Debugging features
