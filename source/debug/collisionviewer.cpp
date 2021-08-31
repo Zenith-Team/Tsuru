@@ -11,7 +11,7 @@
 #include <agl/lyr/renderinfo.h>
 #include <log.h>
 
-#include <custom/cheatmgr.h>
+#include <custom/shsavemgr.h>
 
 void drawLine(const Vec2f& position, const f32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
     Vec3f scale(lineLength, lineThickness, 1.0f);
@@ -36,7 +36,7 @@ void drawLine(const Vec2f& point1, const Vec2f& point2, const sead::Color4f& col
 void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
 
-    if (CheatMgr::sInstance.mCollisionViewerEnabled) {
+    if (SHSaveMgr::sSaveData.collisionViewerEnabled) {
         sead::PrimitiveRenderer::instance()->setCamera(*renderInfo.mCamera);
         sead::PrimitiveRenderer::instance()->setProjection(*renderInfo.mProjection);
         sead::PrimitiveRenderer::instance()->begin();
@@ -147,8 +147,8 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
                 }
             }
 
-            else if (CheatMgr::sInstance.mDebugLoggingEnabled) {
-                LOG("Found unknown collider for actor with id: 0x%x, and profile id: 0x%x\n", colliderBase->mOwner->mID, colliderBase->mOwner->mProfile->mID);
+            else {
+                //// LOG("Found unknown collider for actor with id: 0x%x, and profile id: 0x%x\n", colliderBase->mOwner->mID, colliderBase->mOwner->mProfile->mID);
             }
 
             node = node->mNext;
@@ -200,7 +200,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
 void CourseSelectTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
 
-    if (CheatMgr::sInstance.mCollisionViewerEnabled) {
+    if (SHSaveMgr::sSaveData.collisionViewerEnabled) {
         sead::PrimitiveRenderer::instance()->setCamera(*renderInfo.mCamera);
         sead::PrimitiveRenderer::instance()->setProjection(*renderInfo.mProjection);
         sead::PrimitiveRenderer::instance()->begin();
