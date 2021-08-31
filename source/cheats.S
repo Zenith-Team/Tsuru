@@ -4,10 +4,10 @@
 InfiniteLives:
     SaveVolatileRegisters
 
-    # Load CheatMgr::sInstance.mInfiniteLivesEnabled
-    lis     r3, sInstance__8CheatMgr@ha
-    addi    r3, r3, sInstance__8CheatMgr@l
-    lbz     r4, 0x0(r3)
+    # Load SHSaveMgr::sSaveData.infiniteLivesEnabled
+    lis     r3, sSaveData__9SHSaveMgr@ha
+    addi    r3, r3, sSaveData__9SHSaveMgr@l
+    lbz     r4, 0x4(r3)
 
     # If it's on then return false
     cmpwi   r4, 1
@@ -29,10 +29,10 @@ InfiniteLives:
 InfiniteTime:
     SaveVolatileRegisters
 
-    # Load CheatMgr::sInstance.mInfiniteTimeEnabled
-    lis     r3, sInstance__8CheatMgr@ha
-    addi    r3, r3, sInstance__8CheatMgr@l
-    lbz     r4, 0x1(r3)
+    # Load SHSaveMgr::sSaveData.infiniteTimeEnabled
+    lis     r3, sSaveData__9SHSaveMgr@ha
+    addi    r3, r3, sSaveData__9SHSaveMgr@l
+    lbz     r4, 0x5(r3)
 
     # If it's on then restore registers and return false
     cmpwi   r4, 1
@@ -54,10 +54,10 @@ InfiniteTime:
 NoClip:
     SaveVolatileRegisters
 
-    # Load CheatMgr::sInstance.mNoClipEnabled
-    lis     r3, sInstance__8CheatMgr@ha
-    addi    r3, r3, sInstance__8CheatMgr@l
-    lbz     r4, 0x2(r3)
+    # Load SHSaveMgr::sSaveData.noClipEnabled
+    lis     r3, sSaveData__9SHSaveMgr@ha
+    addi    r3, r3, sSaveData__9SHSaveMgr@l
+    lbz     r4, 0x6(r3)
 
     # If it's on then skip setting the sensor
     cmpwi   r4, 1
@@ -78,10 +78,10 @@ NoClip:
 Invincibility:
     SaveVolatileRegisters
 
-    # Load CheatMgr::sInstance.mInvincibilityEnabled
-    lis     r3, sInstance__8CheatMgr@ha
-    addi    r3, r3, sInstance__8CheatMgr@l
-    lbz     r4, 0x3(r3)
+    # Load SHSaveMgr::sSaveData.invincibilityEnabled
+    lis     r3, sSaveData__9SHSaveMgr@ha
+    addi    r3, r3, sSaveData__9SHSaveMgr@l
+    lbz     r4, 0x7(r3)
 
     # If it's on then restore registers and return false
     cmpwi   r4, 1

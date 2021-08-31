@@ -21,11 +21,6 @@ void SHSaveMgr::init() {
 
     u32 bytesRead = readHandle.read(reinterpret_cast<u8*>(&SHSaveMgr::sSaveData), sizeof(SHSaveMgr::SHSaveData));
 
-    if (bytesRead != sizeof(SHSaveMgr::SHSaveData)) { // Savefile is corrupted OR something broke with reading
-        LOG("Read size mismatch, read size: %u, expected size: %u", bytesRead, sizeof(SHSaveMgr::SHSaveData));
-        //return;
-    }
-
     if (!readHandle.mDevice) { // Savefile does not exist
         LOG("sh_savedata.dat does not exist. Creating...");
 
@@ -47,12 +42,18 @@ void SHSaveMgr::init() {
         }
     }
 
+    else if (bytesRead != sizeof(SHSaveMgr::SHSaveData)) { // Savefile is corrupted OR something broke with reading
+        LOG("Read size mismatch, read size: %u, expected size: %u", bytesRead, sizeof(SHSaveMgr::SHSaveData));
+        return; // TODO: Make it recreate the file again
+    }
+
     if (SHSaveMgr::sSaveData.magic != 0xCAFEF00D) {
         LOG("sh_savedata.dat is corrupted. Recreating...");
         return; // TODO: Make it recreate the file again
     }
 
     LOG("SHSaveMgr inited!");
+    LOG("NoClip: %i", SHSaveMgr::sSaveData.noClipEnabled);
     SHSaveMgr::instance()->mInited = true;
 }
 
