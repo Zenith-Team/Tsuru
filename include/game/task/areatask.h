@@ -4,6 +4,8 @@
 #include <agl/lyr/renderinfo.h>
 
 class AreaTask : public sead::CalculateTask {
+    SEAD_SINGLETON_TASK(AreaTask)
+
 public:
     void drawLayer3D(const agl::lyr::RenderInfo& renderInfo);
 
@@ -11,12 +13,6 @@ public:
     void readOptions();
     void drawLayerDebug(const agl::lyr::RenderInfo& renderInfo);
 
-    static AreaTask* instance() { return sInstance; }
-
-protected:
-    static AreaTask* sInstance;
-
-public:
     u8 _C8[1636];
     u32 mWrapFlag;
     u8 _730[1204];

@@ -5,6 +5,8 @@
 #include <game/effect/effect.h>
 
 class FakeActor : public MultiStateActor {
+    SEAD_RTTI_OVERRIDE_IMPL(FakeActor, MultiStateActor)
+
 public:
     FakeActor(const ActorBuildInfo* buildInfo);
     virtual ~FakeActor() { }

@@ -3,9 +3,7 @@
 #include <sead/task.h>
 
 class CourseTask : public sead::CalculateTask {
-public:
-    static CourseTask* instance() { return sInstance; }
+    SEAD_SINGLETON_TASK(CourseTask)
 
-protected:
-    static CourseTask* sInstance;
+public:
 };

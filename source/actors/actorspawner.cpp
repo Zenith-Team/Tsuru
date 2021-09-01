@@ -5,6 +5,8 @@
 #include <game/actor/stage/stageactor.h>
 
 class ActorSpawner : public StageActor {
+    SEAD_RTTI_OVERRIDE_IMPL(ActorSpawner, StageActor)
+
 public:
     ActorSpawner(const ActorBuildInfo* buildInfo);
     virtual ~ActorSpawner() { }

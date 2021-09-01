@@ -5,15 +5,18 @@
 
 namespace agl { namespace lyr {
 
+struct RenderInfo;
+
 class DrawMethod : public sead::IDisposer {
-    typedef void (DrawMethod::*PTMF)();
+public:
+    typedef void (sead::TaskBase::*PTMF)(const RenderInfo& renderInfo); //? This is a hack, how does AGL handle this PTMF officially?
 
 public:
     sead::SafeString mName;
     u32 _18;
     u32 _1C;
     u32 _20;
-    u32 _24;
+    sead::TaskBase* _24;    //? Is this official?
     PTMF mMethod;
     u32 _30;
     u32 _34;

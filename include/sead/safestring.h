@@ -6,7 +6,7 @@ template <typename T>
 class SafeStringBase {
 public:
     SafeStringBase()
-        : mStringTop(&cNullChar)
+        : mStringTop(&sNullChar)
     { }
 
     SafeStringBase(const T* str)
@@ -24,7 +24,7 @@ public:
     inline const SafeStringBase<T> getPart(s32 at) const {
         s32 len = calcLength();
         if (at < 0 || at > len)
-            return SafeStringBase<T>::cEmptyString;
+            return SafeStringBase<T>::sEmptyString;
         
         return SafeStringBase<T>(mStringTop + at);
     }
@@ -38,10 +38,10 @@ public:
     inline s32 comparen(const SafeStringBase<T>& str, s32 n) const;
     inline s32 findIndex(const SafeStringBase<T>& str) const;
 
-    static const T cNullChar;
-    static const T cLineBreakChar;
-    static const SafeStringBase cEmptyString;
-    static const s32 cMaximumLength = 0x40000;
+    static const T sNullChar;
+    static const T sLineBreakChar;
+    static const SafeStringBase sEmptyString;
+    static const s32 sMaximumLength = 0x40000;
 
     const T* mStringTop; // _4
 };

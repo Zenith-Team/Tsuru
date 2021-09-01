@@ -13,6 +13,7 @@ enum ProfileIDType {
     StarCoinShard,
     BeepBlock,
     FallingChestnut,
+    TaskChanger,
 
     Num
 };

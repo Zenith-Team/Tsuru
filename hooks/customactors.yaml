@@ -12,6 +12,7 @@ Files:
   - source/actors/beepblock.cpp
   - source/actors/beepblock.S
   - source/actors/fallingchestnut.cpp
+  - source/actors/taskchanger.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:

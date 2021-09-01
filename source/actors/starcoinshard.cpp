@@ -4,6 +4,8 @@
 #include <game/actor/actormgr.h>
 
 class StarCoinShard : public MultiStateActor {
+    SEAD_RTTI_OVERRIDE_IMPL(StarCoinShard, MultiStateActor)
+
 public:
     StarCoinShard(const ActorBuildInfo* buildInfo);
     virtual ~StarCoinShard() { }

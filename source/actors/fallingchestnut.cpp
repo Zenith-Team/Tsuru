@@ -8,6 +8,8 @@
 #include <sead.h>
 
 class FallingChestnut : public Enemy {
+    SEAD_RTTI_OVERRIDE_IMPL(FallingChestnut, Enemy)
+
 public:
     FallingChestnut(const ActorBuildInfo* buildInfo);
     virtual ~FallingChestnut() { }
