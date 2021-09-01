@@ -31,16 +31,16 @@ void CutsceneTask::enter() {
     LOG("cutscene task enter");
 
     // Most of this is a copy of GameOverScene's behavior
-    this->drawMethodCutscene.mName = "Cutscene";
+    this->drawMethodCutscene.name = "Cutscene";
 
     this->drawMethodCutscene._18 = 1;
     this->drawMethodCutscene._24 = this;
     
-    this->drawMethodCutscene.mMethod = static_cast<agl::lyr::DrawMethod::PTMF>(&CutsceneTask::drawLayerCutscene);
+    this->drawMethodCutscene.method = static_cast<agl::lyr::DrawMethod::PTMF>(&CutsceneTask::drawLayerCutscene);
 
-    agl::lyr::Layer* layer = agl::lyr::Renderer::instance()->mLayers.mBuffer[0];
-    if (0xE < agl::lyr::Renderer::instance()->mLayers.mSize)
-        layer = agl::lyr::Renderer::instance()->mLayers.mBuffer[0xE];
+    agl::lyr::Layer* layer = agl::lyr::Renderer::instance()->layers.mBuffer[0];
+    if (0xE < agl::lyr::Renderer::instance()->layers.mSize)
+        layer = agl::lyr::Renderer::instance()->layers.mBuffer[0xE];
     
     layer->pushBackDrawMethod(0, &this->drawMethodCutscene);
 }

@@ -581,7 +581,7 @@ typedef struct _GX2ColorBuffer {
     u32 view_first_slice;
     u32 view_slices_count;
     void *aux_data;
-    u32  aux_size;
+    u32 aux_size;
     u32 regs[5];
 } GX2ColorBuffer;
 
@@ -591,7 +591,7 @@ typedef struct _GX2DepthBuffer {
     u32 view_first_slice;
     u32 view_slices_count;
     void *hiZ_data;
-    u32  hiZ_size;
+    u32 hiZ_size;
     f32 clear_depth;
     u32 clear_stencil;
     u32 regs[7];

@@ -37,8 +37,8 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
 
     if (SHSaveMgr::sSaveData.collisionViewerEnabled) {
-        sead::PrimitiveRenderer::instance()->setCamera(*renderInfo.mCamera);
-        sead::PrimitiveRenderer::instance()->setProjection(*renderInfo.mProjection);
+        sead::PrimitiveRenderer::instance()->setCamera(*renderInfo.camera);
+        sead::PrimitiveRenderer::instance()->setProjection(*renderInfo.projection);
         sead::PrimitiveRenderer::instance()->begin();
 
         HitboxCollider::List::Node* hColliderNode;
@@ -201,8 +201,8 @@ void CourseSelectTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
 
     if (SHSaveMgr::sSaveData.collisionViewerEnabled) {
-        sead::PrimitiveRenderer::instance()->setCamera(*renderInfo.mCamera);
-        sead::PrimitiveRenderer::instance()->setProjection(*renderInfo.mProjection);
+        sead::PrimitiveRenderer::instance()->setCamera(*renderInfo.camera);
+        sead::PrimitiveRenderer::instance()->setProjection(*renderInfo.projection);
         sead::PrimitiveRenderer::instance()->begin();
 
         for (u32 i = 0; i < CSHitboxColliderMgr::instance()->mArray1.mPtrNum; i++) {

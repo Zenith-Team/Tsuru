@@ -224,13 +224,13 @@ extern bool (*OSGetSharedData)(u32 type, u32 unk_r4, u8 *addr, u32 *size);
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //! Memory functions
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-extern u32 *pMEMAllocFromDefaultHeapEx;
-extern u32 *pMEMAllocFromDefaultHeap;
-extern u32 *pMEMFreeToDefaultHeap;
+extern u32 *MEMAllocFromDefaultHeapExPtr;
+extern u32 *MEMAllocFromDefaultHeapPtr;
+extern u32 *MEMFreeToDefaultHeapPtr;
 
-#define MEMAllocFromDefaultHeapEx ((void * (*)(size_t, int))(*pMEMAllocFromDefaultHeapEx))
-#define MEMAllocFromDefaultHeap ((void * (*)(size_t))(*pMEMAllocFromDefaultHeap))
-#define MEMFreeToDefaultHeap ((void (*)(void *))(*pMEMFreeToDefaultHeap))
+#define MEMAllocFromDefaultHeapEx ((void * (*)(size_t, int))(*MEMAllocFromDefaultHeapExPtr))
+#define MEMAllocFromDefaultHeap ((void * (*)(size_t))(*MEMAllocFromDefaultHeapPtr))
+#define MEMFreeToDefaultHeap ((void (*)(void *))(*MEMFreeToDefaultHeapPtr))
 
 extern void* (* MEMAllocFromAllocator) (void * allocator, u32 size);
 extern void (* MEMFreeToAllocator) (void * allocator, void* address);

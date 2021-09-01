@@ -7,11 +7,11 @@ SEAD_SINGLETON_DISPOSER_IMPL(SHSaveMgr)
 SHSaveMgr::SHSaveData SHSaveMgr::sSaveData __attribute__((aligned(sead::FileDevice::cBufferMinAlignment)));
 
 SHSaveMgr::SHSaveMgr()
-    : mInited(false)
+    : inited(false)
 { }
 
 void SHSaveMgr::init() {
-    if (SHSaveMgr::instance()->mInited) {
+    if (SHSaveMgr::instance()->inited) {
         LOG("SHSaveMgr was inited already. Returning...");
         return;
     }
@@ -53,13 +53,13 @@ void SHSaveMgr::init() {
     }
 
     LOG("SHSaveMgr inited!");
-    SHSaveMgr::instance()->mInited = true;
+    SHSaveMgr::instance()->inited = true;
 }
 
 void SHSaveMgr::save() {
     LOG("Saving SHSaveData...");
 
-    if (!SHSaveMgr::instance()->mInited) {
+    if (!SHSaveMgr::instance()->inited) {
         LOG("SHSaveMgr was not inited. Returning...");
         return;
     }

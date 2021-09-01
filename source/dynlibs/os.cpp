@@ -131,9 +131,9 @@ EXPORT_DECL(bool, OSGetSharedData, u32 type, u32 unk_r4, u8 *addr, u32 *size);
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //! Memory functions
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-EXPORT_VAR(u32 *, pMEMAllocFromDefaultHeapEx);
-EXPORT_VAR(u32 *, pMEMAllocFromDefaultHeap);
-EXPORT_VAR(u32 *, pMEMFreeToDefaultHeap);
+EXPORT_VAR(u32 *, MEMAllocFromDefaultHeapExPtr);
+EXPORT_VAR(u32 *, MEMAllocFromDefaultHeapPtr);
+EXPORT_VAR(u32 *, MEMFreeToDefaultHeapPtr);
 
 EXPORT_DECL(void *, MEMAllocFromAllocator, void * allocator, u32 size);
 EXPORT_DECL(void, MEMFreeToAllocator, void * allocator, void* address);
@@ -369,9 +369,9 @@ void InitOSFunctionPointers(void) {
     //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //! Memory functions
     //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    OSDynLoad_FindExport(coreinit_handle, 1, "MEMAllocFromDefaultHeapEx", &pMEMAllocFromDefaultHeapEx);
-    OSDynLoad_FindExport(coreinit_handle, 1, "MEMAllocFromDefaultHeap", &pMEMAllocFromDefaultHeap);
-    OSDynLoad_FindExport(coreinit_handle, 1, "MEMFreeToDefaultHeap", &pMEMFreeToDefaultHeap);
+    OSDynLoad_FindExport(coreinit_handle, 1, "MEMAllocFromDefaultHeapEx", &MEMAllocFromDefaultHeapExPtr);
+    OSDynLoad_FindExport(coreinit_handle, 1, "MEMAllocFromDefaultHeap", &MEMAllocFromDefaultHeapPtr);
+    OSDynLoad_FindExport(coreinit_handle, 1, "MEMFreeToDefaultHeap", &MEMFreeToDefaultHeapPtr);
 
     OS_FIND_EXPORT(coreinit_handle, MEMAllocFromAllocator);
     OS_FIND_EXPORT(coreinit_handle, MEMFreeToAllocator);
