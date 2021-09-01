@@ -38,6 +38,8 @@ public:
 };
 
 class PrimitiveRenderer : public IDisposer {
+    SEAD_SINGLETON_DISPOSER(PrimitiveRenderer)
+
 public:
     class QuadArg {
     public:
@@ -63,9 +65,6 @@ public:
     void drawCircle16(const Vec3f& position, f32 radius, const Color4f& color);
     void drawCircle32(const Vec3f& position, f32 radius, const Color4f& color);
 
-    static PrimitiveRenderer* sInstance;
-
-    u32 mSingletonDisposerBuf_[4];
     PrimitiveRendererBase* mRendererImpl;
     Mtx34 mModelMtx;
 };

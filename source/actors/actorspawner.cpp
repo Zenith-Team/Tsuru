@@ -5,6 +5,8 @@
 #include <game/actor/stage/stageactor.h>
 
 class ActorSpawner : public StageActor {
+    SEAD_RTTI_OVERRIDE_IMPL(ActorSpawner, StageActor)
+
 public:
     ActorSpawner(const ActorBuildInfo* buildInfo);
     virtual ~ActorSpawner() { }
@@ -47,7 +49,7 @@ u32 ActorSpawner::onCreate() {
 u32 ActorSpawner::onExecute() {
     Actor* child = (mChildList.begin() != mChildList.end()) ? mChildList.begin().mPtr : nullptr;
 
-    if (EventMgr::sInstance->isActive(mEventID2-1)) {
+    if (EventMgr::instance()->isActive(mEventID2-1)) {
         if (mInitialStateFlag == 2 && child) {
             StageActor* actor = sead::DynamicCast<StageActor, Actor>(child);
 
@@ -69,7 +71,7 @@ u32 ActorSpawner::onExecute() {
             buildInfo.mPosition = mPosition;
             buildInfo.mEventID1 = mEventID1 & 0xF;
             buildInfo.mEventID2 = (mEventID1 >> 4) & 0xF;
-            ActorMgr::sInstance->create(&buildInfo, 0);
+            ActorMgr::instance()->create(&buildInfo, 0);
 
             mSpawned = true;
         }

@@ -167,7 +167,7 @@ struct OSThread_ {
     u8 state;
     u8 attr;
 
-    short threadId;
+    short threadID;
     int suspend;
     int priority;
 
@@ -223,7 +223,7 @@ struct _OSMutex {
 };
 
 typedef struct MCPTitleListType {
-    u64 titleId;
+    u64 titleID;
     u8 unknwn[4];
     s8 path[56];
     u32 appType;

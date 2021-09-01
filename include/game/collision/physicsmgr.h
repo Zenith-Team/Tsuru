@@ -57,7 +57,7 @@ public:
     Vec3f* _89C;                 // 89C  &owner->_240, lastPosition?
     u8* mLayer;                  // 8A0  &owner->layer
     u8* mCollisionMask;          // 8A4  &owner->collisionMask
-    s8* mPlayerID;               // 8A8  &owner->playerId
+    s8* mPlayerID;               // 8A8  &owner->playerID
     u32 mOutput;                 // 8AC
     u8 _unk8B0[0x914-0x8B0];     // 8B0
     u8 _914;                     // 914

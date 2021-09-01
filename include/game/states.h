@@ -112,7 +112,7 @@ public:
     StateExecutorBase* mExecutor;
     StateBase* mNextState;
     StateMethodExecutorBase* mCurrentMethodExecutor;
-    StateBase* mLastState;
+    StateBase* mPrevState;
 };
 
 template <class TOwner>
@@ -136,7 +136,7 @@ public:
     }
 
     inline StateBase* lastState() {
-        return mManager.mLastState;
+        return mManager.mPrevState;
     }
 };
 
@@ -162,7 +162,7 @@ public:
     }
 
     inline StateBase* lastState() {
-        return mManager.mLastState;
+        return mManager.mPrevState;
     }
 };
 

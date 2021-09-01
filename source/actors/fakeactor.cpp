@@ -5,6 +5,8 @@
 #include <game/effect/effect.h>
 
 class FakeActor : public MultiStateActor {
+    SEAD_RTTI_OVERRIDE_IMPL(FakeActor, MultiStateActor)
+
 public:
     FakeActor(const ActorBuildInfo* buildInfo);
     virtual ~FakeActor() { }
@@ -80,8 +82,8 @@ u32 FakeActor::onExecute() {
 }
 
 u32 FakeActor::onDraw() {
-    if (this->mModel)  DrawMgr::sInstance->drawModel(this->mModel);
-    if (this->mModel2) DrawMgr::sInstance->drawModel(this->mModel2);
+    if (this->mModel)  DrawMgr::instance()->drawModel(this->mModel);
+    if (this->mModel2) DrawMgr::instance()->drawModel(this->mModel2);
     return 1;
 }
 
@@ -166,7 +168,7 @@ void FakeActor::beginState_GoalPole() {
     };
 
     this->mRectCollider.init(this, colliderInfo);
-    ColliderMgr::sInstance->add(&mRectCollider);
+    ColliderMgr::instance()->add(&mRectCollider);
 
     this->mHitboxCollider.init(this, &FakeActor::sGoalpoleCollisionInfo, nullptr);
     this->addHitboxColliders();

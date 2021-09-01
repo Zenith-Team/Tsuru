@@ -5,8 +5,11 @@
 #include <game/graphics/drawmgr.h>
 #include <game/effect/effect.h>
 #include <math.h>
+#include <sead.h>
 
 class FallingChestnut : public Enemy {
+    SEAD_RTTI_OVERRIDE_IMPL(FallingChestnut, Enemy)
+
 public:
     FallingChestnut(const ActorBuildInfo* buildInfo);
     virtual ~FallingChestnut() { }
@@ -53,7 +56,7 @@ Actor* FallingChestnut::build(const ActorBuildInfo* buildInfo) {
 
 u32 FallingChestnut::onCreate() {
     this->mModel = ModelWrapper::create("iga_kuribo", "iga_kuribo");
-
+    
     this->mHitboxCollider.init(this, &FallingChestnut::collisionInfo, 0);
     this->addHitboxColliders();
 
@@ -81,7 +84,7 @@ u32 FallingChestnut::onExecute() {
 }
 
 u32 FallingChestnut::onDraw() {
-    DrawMgr::sInstance->drawModel(this->mModel);
+    DrawMgr::instance()->drawModel(this->mModel);
 
     return 1;
 }

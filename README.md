@@ -17,6 +17,7 @@ All custom sprites which were not written by me have credits in customsprites.ya
 * Death Foo *
 * Effect Spawner *
 * Elemental Thwomp *
+* Example World Map Actor
 * Fake Actor
 * Falling Chestnut
 * Flipblock *
@@ -37,6 +38,7 @@ All custom sprites which were not written by me have credits in customsprites.ya
 Miscellaneous hacks/patches are listed here. Most of the game-changing patches are toggleable in the config file located in /include/
 * Add archive links for some unused actors to allow adding models *
 * Cheat menu to activate cheats and debug settings
+* Custom save data manager
 * Customizable snow particle colors
 * Customizable world map scripts *
 * Debug collision viewer for levels and world map

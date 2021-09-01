@@ -6,6 +6,8 @@
 #include <game/actor/actormgr.h>
 
 class BeepBlock : public MultiStateActor {
+    SEAD_RTTI_OVERRIDE_IMPL(BeepBlock, MultiStateActor)
+
 public:
     enum BeepBlockColor {
         BeepBlockColorRed = 0,
@@ -89,7 +91,7 @@ u32 BeepBlock::onExecute() {
 }
 
 u32 BeepBlock::onDraw() {
-    DrawMgr::sInstance->drawModel(this->mModel);
+    DrawMgr::instance()->drawModel(this->mModel);
 
     return 1;
 }
@@ -97,7 +99,7 @@ u32 BeepBlock::onDraw() {
 /* STATE: RedEnabled */
 
 void BeepBlock::beginState_RedEnabled() {
-    ColliderMgr::sInstance->add(&this->mRectCollider);
+    ColliderMgr::instance()->add(&this->mRectCollider);
 
     // Don't forget to change the model here when that's done :)
 }
@@ -114,7 +116,7 @@ void BeepBlock::endState_RedEnabled() { }
 /* STATE: RedDisabled */
 
 void BeepBlock::beginState_RedDisabled() {
-    ColliderMgr::sInstance->remove(&this->mRectCollider);
+    ColliderMgr::instance()->remove(&this->mRectCollider);
 
     // Don't forget to change the model here when that's done :)
 }
@@ -129,7 +131,7 @@ void BeepBlock::endState_RedDisabled() { }
 /* STATE: BlueEnabled */
 
 void BeepBlock::beginState_BlueEnabled() {
-    ColliderMgr::sInstance->add(&this->mRectCollider);
+    ColliderMgr::instance()->add(&this->mRectCollider);
 
     // Don't forget to change the model here when that's done :)
 }
@@ -146,7 +148,7 @@ void BeepBlock::endState_BlueEnabled() { }
 /* STATE: BlueDisabled */
 
 void BeepBlock::beginState_BlueDisabled() {
-    ColliderMgr::sInstance->remove(&this->mRectCollider);
+    ColliderMgr::instance()->remove(&this->mRectCollider);
 
     // Don't forget to change the model here when that's done :)
 }

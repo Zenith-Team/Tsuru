@@ -1,0 +1,15 @@
+
+---
+Files:
+  - source/shsavemgr.cpp
+Hooks:
+  # Initialize SHSaveMgr
+  - type: branch
+    instr: b
+    addr: "29d5b68" # RootTask::prepare()
+    func: boot__9SHSaveMgrSFv
+  # Save custom savedata with original savedata
+  - type: branch
+    instr: b
+    addr: "29d97b8"
+    func: save__9SHSaveMgrFv

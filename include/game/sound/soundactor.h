@@ -15,6 +15,9 @@ class BasicSoundActor : public SoundActor {
 public:
     void* playSound(const char* label, Vec2f* screenPos, u32 unk);
 
+    static BasicSoundActor* instance() { return sInstance; }
+
+protected:
     static BasicSoundActor* sInstance;
 };
 

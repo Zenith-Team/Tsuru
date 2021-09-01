@@ -2,7 +2,9 @@
 
 #include <sead.h>
 
-class Level : public sead::IDisposer {
+class Level {
+    SEAD_SINGLETON_DISPOSER(Level)
+
 public:
     class Area {
     public:
@@ -83,8 +85,6 @@ public:
 
 public:
     Area* getArea(u32 id);
-
-    static Level* sInstance;
 
     Area mAreas[4];
 };

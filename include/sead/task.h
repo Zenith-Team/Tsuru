@@ -107,6 +107,8 @@ public:
     virtual MethodTreeNode* getMethodTreeNode(s32 method_type) = 0;
     virtual void onDestroy();                   // deleted
 
+    void adjustHeapAll();
+
     TaskParameter* mParameter;  // _2C
     BitFlag32 mInternalFlag;    // _30
     ListNode mTaskListNode;     // _34
@@ -146,19 +148,24 @@ public:
 
 #define SEAD_SINGLETON_TASK(CLASS)                                      \
 public:                                                                 \
+    static CLASS* instance() { return sInstance; }                      \
+    static void setInstance(sead::TaskBase* task);                      \
+                                                                        \
+protected:                                                              \
+    static CLASS* sInstance;                                            \
+                                                                        \
+private:                                                                \
     class TaskSingleton {                                               \
     public:                                                             \
         TaskSingleton() : mSet(false) { }                               \
         ~TaskSingleton() {                                              \
-            if (mSet)                                                   \
-                CLASS::sInstance = nullptr;                             \
+            if (mSet) CLASS::sInstance = nullptr;                       \
         }                                                               \
                                                                         \
         bool mSet;                                                      \
     };                                                                  \
                                                                         \
-    static void setInstance(sead::TaskBase* task);                      \
-    static CLASS* sInstance;                                            \
+    friend class TaskSingleton;                                         \
                                                                         \
     TaskSingleton mTaskSingleton;
 

@@ -2,6 +2,8 @@
 #include <log.h>
 
 class CustomDoor : public DoorBase {
+    SEAD_RTTI_OVERRIDE_IMPL(CustomDoor, DoorBase)
+
 public:
     CustomDoor(const ActorBuildInfo* buildInfo);
     virtual ~CustomDoor() { }

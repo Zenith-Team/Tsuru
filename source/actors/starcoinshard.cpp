@@ -4,6 +4,8 @@
 #include <game/actor/actormgr.h>
 
 class StarCoinShard : public MultiStateActor {
+    SEAD_RTTI_OVERRIDE_IMPL(StarCoinShard, MultiStateActor)
+
 public:
     StarCoinShard(const ActorBuildInfo* buildInfo);
     virtual ~StarCoinShard() { }
@@ -60,7 +62,7 @@ u32 StarCoinShard::onExecute() {
 }
 
 u32 StarCoinShard::onDraw() {
-    DrawMgr::sInstance->drawModel(this->mModel);
+    DrawMgr::instance()->drawModel(this->mModel);
 
     return 1;
 }
@@ -75,7 +77,7 @@ void StarCoinShard::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hc
         starCoinBuildInfo.mProfile = Profile::get(426);
         starCoinBuildInfo.mPosition = hcSelf->mOwner->mPosition;
 
-        ActorMgr::sInstance->create(&starCoinBuildInfo, 0);
+        ActorMgr::instance()->create(&starCoinBuildInfo, 0);
     }
 
     hcSelf->mOwner->mIsDeleted = true;
