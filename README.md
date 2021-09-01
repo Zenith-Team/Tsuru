@@ -59,6 +59,9 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 * Space physics
 * Yoshi colors
 
+# Building
+This project is meant to be compiled with my fork of shibboleet's fork of the [CafeLoader Project Compiler](https://github.com/Luminyx1/CafeLoader-Compiler) script. A version of this source code that is ready for building will always be available on the [releases](https://github.com/Luminyx1/SuperHacks/releases) page which includes additional files required for compiling. Keep in mind that currently this project targets version 1.3.0 of the standalone copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not of high priority.
+
 # Credits
 * [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code, headers, and build system
 * [jhmaster2000](https://github.com/jhmaster2000) - General code and headers
