@@ -14,11 +14,7 @@ class SoundSystem : public SoundSystemBase {
 public:
     nw::snd::SoundArchive* getSoundArchive();
 
-    inline const char* getItemLabel(u32 id) {
-        return getSoundArchive()->GetItemLabel(id);
-    }
+    inline const char* getItemLabel(u32 id) { return getSoundArchive()->GetItemLabel(id); }
 
-    inline u32 getItemID(const char* label) {
-        return getSoundArchive()->GetItemID(label);
-    }
+    inline u32 getItemID(const char* label) { return getSoundArchive()->GetItemID(label); }
 };

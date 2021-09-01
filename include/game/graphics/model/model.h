@@ -148,7 +148,7 @@ public:
     }
 
     static inline ModelWrapper* create(const sead::SafeString& archiveIdentifier, const sead::SafeString& modelIdentifier, u32 numSklAnims = 0, u32 numTexPatternAnims = 0, u32 numTexSrtAnims = 0, u32 numVisAnims = 0, u32 numShaAnims = 0, bool unk2 = false) {
-        ResArchive* archive = ResArchiveMgr::sInstance->get(archiveIdentifier);
+        ResArchive* archive = ResArchiveMgr::instance()->get(archiveIdentifier);
         Model* model = archive->getModel(modelIdentifier, numSklAnims, numTexPatternAnims, numTexSrtAnims, numVisAnims, numShaAnims, unk2, nullptr);
         ModelWrapper* wrapper = new ModelWrapper(model, numSklAnims, numTexPatternAnims, numTexSrtAnims, numVisAnims, numShaAnims);
         wrapper->setup(archive, nullptr, nullptr);

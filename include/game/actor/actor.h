@@ -31,23 +31,23 @@ public:
     void removeChild(Actor* child);
     u32 getProfileID();
 
-    sead::Heap* mHeap;                               // 0
-    u32 mID;                                         // 4
-    Profile* mProfile;                               // 8
-    bool mWasNotDeferred;                            // C
-    bool mIsSprite;                                  // D
-    bool mIsCreated;                                 // E
-    bool mIsDeleted;                                 // F
-    u32 mSettings1;                                  // 10
-    u32 mSettings2;                                  // 14
-    u8 mMovementID;                                  // 18
-    u8 mLinkID;                                      // 19
-    u8 mInitialStateFlag;                            // 1A
-    u8 _1B;                                          // 1B     //? Padding
-    sead::OffsetList<Actor> mChildList;          // 1C
-    sead::ListNode mChildNode;                       // 2C
-    Actor* mParent;                              // 34
-    sead::ListNode mActorListNode;                   // 38
-    sead::ListNode mDrawListNode;                    // 40
-    u32 mFlags;                                      // 48
+    sead::Heap* mHeap;                      // 0
+    u32 mID;                                // 4
+    Profile* mProfile;                      // 8
+    bool mWasNotDeferred;                   // C
+    bool mIsSprite;                         // D
+    bool mIsCreated;                        // E
+    bool mIsDeleted;                        // F
+    u32 mSettings1;                         // 10
+    u32 mSettings2;                         // 14
+    u8 mMovementID;                         // 18
+    u8 mLinkID;                             // 19
+    u8 mInitialStateFlag;                   // 1A
+    u8 _1B;                                 // 1B     //? Padding
+    sead::OffsetList<Actor> mChildList;     // 1C
+    sead::ListNode mChildNode;              // 2C
+    Actor* mParent;                         // 34
+    sead::ListNode mActorListNode;          // 38
+    sead::ListNode mDrawListNode;           // 40
+    u32 mFlags;                             // 48
 };

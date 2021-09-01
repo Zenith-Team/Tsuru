@@ -26,7 +26,7 @@ public:
     void setFlags(const Flags& flags);
 
     u8 mIceActorCount;      // 0
-    u32 mIceActorIds[12];   // 4
+    u32 mIceActorIDs[12];   // 4
     u8 mBreakTime;          // 34
     u8 _35;                 // 35   Gravity related
     u8 _36;                 // 36   ^

@@ -4,5 +4,8 @@
 
 class ApplicationTask : public sead::CalculateTask {
 public:
+    static ApplicationTask* instance() { return sInstance; }
+
+protected:
     static ApplicationTask* sInstance;
 };

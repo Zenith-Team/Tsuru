@@ -9,9 +9,8 @@ public:
 
     Actor* findActorByID(u32* id);
 
-    sead::Buffer<Actor*> mBuffer;
-    u32 mUsedCount;
-    Actor** mLast;
+    sead::Buffer<Actor*> mStartBuffer;
+    sead::Buffer<Actor*> mEndBuffer;
     u32 _10;
     u8 _14;
 };

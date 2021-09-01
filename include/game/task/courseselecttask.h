@@ -40,8 +40,12 @@ public:
     DECLARE_STATE_VIRTUAL(CourseSelectTask, CourseSelectTaskState2);
     DECLARE_STATE_VIRTUAL(CourseSelectTask, CourseSelectTaskState3);
 
+    static CourseSelectTask* instance() { return sInstance; }
+
+protected:
     static CourseSelectTask* sInstance;
 
+public:
     u8 _C8;                                             // _C8
     u8 unk1[15];                                        // _C9
     StateWrapper<CourseSelectTask> mStates;             // _D8
