@@ -7,19 +7,19 @@ namespace nw { namespace eft {
 class Random { // Size: 0x10
 public:
     Random() {
-        Init();
+        this->Init();
     }
 
     Random(u32 seed) {
-        Init(seed);
+        this->Init(seed);
     }
 
     Random(u32 seedX, u32 seedY, u32 seedZ, u32 seedW) {
-        Init(seedX, seedY, seedZ, seedW);
+        this->Init(seedX, seedY, seedZ, seedW);
     }
 
     void Init() {
-        Init(0);
+        this->Init(0);
     }
 
     void Init(u32 seed) {

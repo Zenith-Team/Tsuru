@@ -85,7 +85,7 @@ public:
     u8 mCollisionMask;          // _6C
     u8 mLayer;                  // _6D
     u8 mFlags;                  // _6E
-    u8 _6F;                     // _6F  Padding?
+    u8 _6F;                     // _6F  //? Maybe padding
     void** mCallbackTable;      // _70
     Info mColliderInfo;         // _74
     f32 mTrapezoidTopLeft;      // _A0

@@ -40,8 +40,8 @@ public:
     SEAD_RTTI_BASE(EffectWrapper)
 
 public:
-    void init(EffectIDType effectId, const Mtx34* mtx, bool mtxHasScale);
-    void init(EffectIDType effectId, const Vec3f* position, const Vec3u* rotation, const Vec3f* scale);
+    void init(EffectIDType effectID, const Mtx34* mtx, bool mtxHasScale);
+    void init(EffectIDType effectID, const Vec3f* position, const Vec3u* rotation, const Vec3f* scale);
 
     bool update(const Vec3f* position, const Vec3u* rotation, const Vec3f* scale);
     bool update(const Mtx34* mtx, bool mtxHasScale);

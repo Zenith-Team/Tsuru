@@ -2,10 +2,10 @@
 
 #include <sead.h>
 
-class LevelCamera : public sead::IDisposer {
-public:
-    static LevelCamera* sInstance;
+class LevelCamera {
+	SEAD_SINGLETON_DISPOSER(LevelCamera)
 
+public:
 	f32 _10;                // 10
 	f32 _14;                // 14
 	Rect mZoneBox;          // 18
