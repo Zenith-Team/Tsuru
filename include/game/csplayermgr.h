@@ -10,7 +10,6 @@ public:
 
     void spawnPlayer();
 
-    u8 unk1[16];
     u8 _10; // class
     u8 _11; // class
     u32 mPlayerActorID;

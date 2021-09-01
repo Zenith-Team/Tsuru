@@ -4,6 +4,8 @@
 #include <log.h>
 
 class CSCustomActor : public CSCollisionActor {
+    SEAD_RTTI_OVERRIDE_IMPL(CSCustomActor, CSCollisionActor)
+
 public:
     CSCustomActor(const ActorBuildInfo* buildInfo);
     virtual ~CSCustomActor() { }

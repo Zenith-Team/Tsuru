@@ -43,6 +43,27 @@ SECTIONS {
 	GFDGetVertexShaderProgramSize = 0x2AF8D40;
 	GFDGetVertexShader = 0x2AF8E3C;
 
+/* agl::lyr::Layer */
+	pushBackDrawMethod__Q3_3agl3lyr5LayerFUiPQ3_3agl3lyr10DrawMethod = 0x2a376b8;
+
+/* agl::lyr::Renderer */
+	sInstance__Q3_3agl3lyr8Renderer = 0x101e8a2c;
+
+/* sead::CalculateTask */
+	__ct__Q2_4sead13CalculateTaskFRCQ2_4sead16TaskConstructArgPCc = 0x29fc508;
+	__dt__Q2_4sead13CalculateTaskFv = 0x29fc2f0;
+	checkDerivedRuntimeTypeInfo__Q2_4sead13CalculateTaskCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x29fc7d8;
+	pauseCalc__Q2_4sead13CalculateTaskFb = 0x29fc444;
+	pauseDraw__Q2_4sead13CalculateTaskFb = 0x29fc85c;
+	pauseCalcRec__Q2_4sead13CalculateTaskFb = __deleted_virtual_called;
+	pauseDrawRec__Q2_4sead13CalculateTaskFb = __deleted_virtual_called;
+	attachCalcImpl__Q2_4sead13CalculateTaskFv = 0x29fc384;
+	attachDrawImpl__Q2_4sead13CalculateTaskFv = 0x29fc854;
+	detachCalcImpl__Q2_4sead13CalculateTaskFv = 0x29fc43c;
+	detachDrawImpl__Q2_4sead13CalculateTaskFv = 0x29fc858;
+	getCorrespondingMethodTreeMgrTypeInfo__Q2_4sead13CalculateTaskCFv = __deleted_virtual_called;
+	getMethodTreeNode__Q2_4sead13CalculateTaskFi = 0x29fc4f0;
+
 /* sead::FileDevice */
 	tryClose__Q2_4sead10FileDeviceFPQ2_4sead10FileHandle = 0x29f78c0;
 	tryWrite__Q2_4sead10FileDeviceFPUiPQ2_4sead10FileHandlePCUcUi = 0x29f7ae8;
@@ -74,6 +95,16 @@ SECTIONS {
 
 /* sead::Random */
 	getU32__Q2_4sead6RandomFv = 0x2a13780;
+
+/* sead::TaskBase */
+	pauseCalcChild__Q2_4sead8TaskBaseFb = __deleted_virtual_called;
+	pauseDrawChild__Q2_4sead8TaskBaseFb = __deleted_virtual_called;
+	prepare__Q2_4sead8TaskBaseFv = 0x29fff6c;
+	exit__Q2_4sead8TaskBaseFv = 0x29fff74;
+	onEvent__Q2_4sead8TaskBaseFRCQ2_4sead9TaskEvent = 0x29fff78;
+	onDestroy__Q2_4sead8TaskBaseFv = __deleted_virtual_called;
+	enterCommon__Q2_4sead8TaskBaseFv = 0x29ff818;
+	adjustHeapAll__Q2_4sead8TaskBaseFv = 0x29ff9dc;
 
 /* Actor */
 	__vtbl__5Actor = 0x100006c0;

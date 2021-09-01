@@ -3,9 +3,7 @@
 #include <sead/task.h>
 
 class DRCModeTask : public sead::CalculateTask {
-public:
-    static DRCModeTask* instance() { return sInstance; }
+    SEAD_SINGLETON_TASK(DRCModeTask)
 
-protected:
-    static DRCModeTask* sInstance;
+public:
 };

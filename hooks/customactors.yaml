@@ -1,0 +1,23 @@
+
+---
+Files:
+#* Stage Actors:
+  - source/actors/customdoor.cpp
+  - source/actors/pacorn.cpp
+  - source/actors/parabones.cpp
+  - source/actors/fakeactor.cpp
+  - source/actors/actorspawner.cpp
+  - source/actors/windgenerator.cpp
+  - source/actors/starcoinshard.cpp
+  - source/actors/beepblock.cpp
+  - source/actors/beepblock.S
+  - source/actors/fallingchestnut.cpp
+  - source/actors/taskchanger.cpp
+#* Course Select Actors:
+  - source/actors/cscustomactor.cpp
+Hooks:
+  # Update beep block state
+  - type: branch
+    instr: b
+    func: UpdateBeepBlockStates
+    addr: "24bfa4c" # CourseTask::calc

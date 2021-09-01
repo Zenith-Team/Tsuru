@@ -3,9 +3,7 @@
 #include <sead/task.h>
 
 class ErrorViewerTask : public sead::CalculateTask {
-public:
-    static ErrorViewerTask* instance() { return sInstance; }
+    SEAD_SINGLETON_TASK(ErrorViewerTask)
 
-protected:
-    static ErrorViewerTask* sInstance;
+public:
 };

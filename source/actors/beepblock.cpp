@@ -6,6 +6,8 @@
 #include <game/actor/actormgr.h>
 
 class BeepBlock : public MultiStateActor {
+    SEAD_RTTI_OVERRIDE_IMPL(BeepBlock, MultiStateActor)
+
 public:
     enum BeepBlockColor {
         BeepBlockColorRed = 0,
