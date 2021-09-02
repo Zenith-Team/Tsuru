@@ -117,12 +117,12 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
 
             else if (sead::IsDerivedFrom<SolidOnTopCollider, ColliderBase>(colliderBase)) {
                 SolidOnTopCollider* collider = static_cast<SolidOnTopCollider*>(colliderBase);
-                if (collider->mPoints.mSize < 2)
+                if (collider->mPoints.size < 2)
                     continue;
                 
                 const Vec2f center = Vec2f((*collider->mOwnerInfo.mPosition).x, (*collider->mOwnerInfo.mPosition).y) + collider->mDistToCenter;
 
-                for (u32 i = 0; i < collider->mNodes1.mSize; i++) {
+                for (u32 i = 0; i < collider->mNodes1.size; i++) {
                     const ColliderBase::Node& node = collider->mNodes1[i];
                     drawLine(center + node.mSensor.mPoint1, center + node.mSensor.mPoint2, sead::colorGreen, 1.0f);
                 }
@@ -130,19 +130,19 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
 
             else if(sead::IsDerivedFrom<ShapedCollider, ColliderBase>(colliderBase)) {
                 ShapedCollider* collider = static_cast<ShapedCollider*>(colliderBase);
-                if (collider->mPoints.mSize < 2)
+                if (collider->mPoints.size < 2)
                     continue;
                 
                 const Vec2f center = Vec2f((*collider->mOwnerInfo.mPosition).x, (*collider->mOwnerInfo.mPosition).y) + collider->mDistToCenter;
 
-                for (u32 i = 0; i < collider->mNodes1.mSize; i++) {
+                for (u32 i = 0; i < collider->mNodes1.size; i++) {
                     const ColliderBase::Node& node = collider->mNodes1[i];
                     drawLine(center + node.mSensor.mPoint1, center + node.mSensor.mPoint2, sead::colorBlue, 1.0f);
                 }
 
-                if (collider->mPoints.mSize >= 4 && !(collider->mPoints.mSize & 1)) {
+                if (collider->mPoints.size >= 4 && !(collider->mPoints.size & 1)) {
                     const ColliderBase::Node& node1 = collider->mNodes1[0];
-                    const ColliderBase::Node& node2 = collider->mNodes1[collider->mPoints.mSize / 2 - 1];
+                    const ColliderBase::Node& node2 = collider->mNodes1[collider->mPoints.size / 2 - 1];
                     drawLine(center + node1.mSensor.mPoint1, center + node2.mSensor.mPoint2, sead::colorBlue, 1.0f);
                 }
             }
@@ -155,7 +155,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
         }
 
         ActorBuffer* actors = &ActorMgr::instance()->mActors;
-        for (u32 i = 0; i < actors->mStartBuffer.mSize; i++) {
+        for (u32 i = 0; i < actors->mStartBuffer.size; i++) {
             StageActor* actor = sead::DynamicCast<StageActor, Actor>(actors->mStartBuffer[i]);
             if (actor == NULL || !actor->mIsVisible || actor->mIsDeleted)
                 continue;

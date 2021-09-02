@@ -12,7 +12,7 @@ SEAD_SINGLETON_TASK_IMPL(CutsceneTask)
 sead::TaskBase* CutsceneTask::construct(const sead::TaskConstructArg& arg) {
     LOG("cutscene task construct");
 
-    return new(arg.mHeapArray->mHeaps[arg.mHeapArray->mPrimaryIndex], 4) CutsceneTask(arg);
+    return new(arg.mHeapArray->heaps[arg.mHeapArray->primaryIndex], 4) CutsceneTask(arg);
 }
 
 CutsceneTask::CutsceneTask(const sead::TaskConstructArg& arg)
@@ -38,9 +38,9 @@ void CutsceneTask::enter() {
     
     this->drawMethodCutscene.method = static_cast<agl::lyr::DrawMethod::PTMF>(&CutsceneTask::drawLayerCutscene);
 
-    agl::lyr::Layer* layer = agl::lyr::Renderer::instance()->layers.mBuffer[0];
-    if (0xE < agl::lyr::Renderer::instance()->layers.mSize)
-        layer = agl::lyr::Renderer::instance()->layers.mBuffer[0xE];
+    agl::lyr::Layer* layer = agl::lyr::Renderer::instance()->layers.buffer[0];
+    if (0xE < agl::lyr::Renderer::instance()->layers.size)
+        layer = agl::lyr::Renderer::instance()->layers.buffer[0xE];
     
     layer->pushBackDrawMethod(0, &this->drawMethodCutscene);
 }
