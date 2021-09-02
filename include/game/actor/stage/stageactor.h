@@ -12,22 +12,22 @@ class StageActor : public Actor {
 
 public:
     struct CallbackTable {
-        typedef bool (StageActor::*typeAcCallbackB)(HitboxCollider*, Vec2f*);
-        typedef void (StageActor::*typeAcCallbackV)(HitboxCollider*, Vec2f*);
-        typedef bool (StageActor::*typeCbCallbackB)(ColliderBase*, Vec2f*);
-        typedef void (StageActor::*typeCbCallbackV)(ColliderBase*, Vec2f*);
+        typedef bool (StageActor::*typeHCCallbackB)(HitboxCollider*, Vec2f*);
+        typedef void (StageActor::*typeHCCallbackV)(HitboxCollider*, Vec2f*);
+        typedef bool (StageActor::*typeCBCallbackB)(ColliderBase*, Vec2f*);
+        typedef void (StageActor::*typeCBCallbackV)(ColliderBase*, Vec2f*);
 
-        void (StageActor::*root)();                               // nullptr
-        typeAcCallbackB acCallback0;
-        typeAcCallbackB acCallback1;
-        typeAcCallbackB acCallback2;
-        typeAcCallbackV acCallback3;
-        typeAcCallbackV acCallback4;
-        typeCbCallbackB cbCallback0;
-        typeCbCallbackB cbCallback1;
-        typeCbCallbackB cbCallback2;
-        typeCbCallbackV cbCallback3;
-        typeCbCallbackV cbCallback4;
+        void (StageActor::*root)(); // nullptr
+        typeHCCallbackB hcCallback0;
+        typeHCCallbackB hcCallback1;
+        typeHCCallbackB hcCallback2;
+        typeHCCallbackV hcCallback3;
+        typeHCCallbackV hcCallback4;
+        typeCBCallbackB cbCallback0;
+        typeCBCallbackB cbCallback1;
+        typeCBCallbackB cbCallback2;
+        typeCBCallbackV cbCallback3;
+        typeCBCallbackV cbCallback4;
     };
 
 public:
@@ -66,16 +66,16 @@ public:
     void cullCheck(u32 unkMask = 0);
     bool deleteActorWhenOutOfView(u32);
 
-    bool actorAcCallback0(HitboxCollider*, Vec2f*);
-    bool actorAcCallback1(HitboxCollider*, Vec2f*);
-    bool actorAcCallback2(HitboxCollider*, Vec2f*);
-    void actorAcCallback3(HitboxCollider*, Vec2f*);
-    void actorAcCallback4(HitboxCollider*, Vec2f*);
-    bool actorCbCallback0(ColliderBase*, Vec2f*);
-    bool actorCbCallback1(ColliderBase*, Vec2f*);
-    bool actorCbCallback2(ColliderBase*, Vec2f*);
-    void actorCbCallback3(ColliderBase*, Vec2f*);
-    void actorCbCallback4(ColliderBase*, Vec2f*);
+    bool actorHCCallback0(HitboxCollider*, Vec2f*);
+    bool actorHCCallback1(HitboxCollider*, Vec2f*);
+    bool actorHCCallback2(HitboxCollider*, Vec2f*);
+    void actorHCCallback3(HitboxCollider*, Vec2f*);
+    void actorHCCallback4(HitboxCollider*, Vec2f*);
+    bool actorCBCallback0(ColliderBase*, Vec2f*);
+    bool actorCBCallback1(ColliderBase*, Vec2f*);
+    bool actorCBCallback2(ColliderBase*, Vec2f*);
+    void actorCBCallback3(ColliderBase*, Vec2f*);
+    void actorCBCallback4(ColliderBase*, Vec2f*);
 
     u32 mDirection;                     // _50      Inited to 0
     s8 mPlayerID;                       // _54      Inited to -1
