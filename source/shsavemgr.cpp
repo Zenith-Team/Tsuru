@@ -21,7 +21,7 @@ void SHSaveMgr::init() {
 
     u32 bytesRead = readHandle.read(reinterpret_cast<u8*>(&SHSaveMgr::sSaveData), sizeof(SHSaveMgr::SHSaveData));
 
-    if (!readHandle.mDevice) { // Savefile does not exist
+    if (!readHandle.device) { // Savefile does not exist
         LOG("sh_savedata.dat does not exist. Creating...");
 
         u32 bytesWritten;
@@ -29,8 +29,8 @@ void SHSaveMgr::init() {
         
         sead::FileDevice* device = sead::FileDeviceMgr::instance()->tryOpen(&writeHandle, "save://sh_savedata.dat", sead::FileDevice::cFileOpenFlagCreate, 0);
         
-        if (!writeHandle.mDevice) {
-            LOG("writeHandle.mDevice is nullptr");
+        if (!writeHandle.device) {
+            LOG("writeHandle.device is nullptr");
             return;
         }
 
@@ -67,14 +67,14 @@ void SHSaveMgr::save() {
     sead::FileHandle handle;
     sead::FileDeviceMgr::instance()->tryOpen(&handle, "save://sh_savedata.dat", sead::FileDevice::cFileOpenFlagWriteOnly, 0);
 
-    if (!handle.mDevice) {
-        LOG("handle.mDevice is nullptr");
+    if (!handle.device) {
+        LOG("handle.device is nullptr");
         return;
     }
 
     u32 bytesWritten;
 
-    handle.mDevice->tryWrite(&bytesWritten, &handle, reinterpret_cast<u8*>(&SHSaveMgr::sSaveData), sizeof(SHSaveMgr::SHSaveData));
+    handle.device->tryWrite(&bytesWritten, &handle, reinterpret_cast<u8*>(&SHSaveMgr::sSaveData), sizeof(SHSaveMgr::SHSaveData));
 
     if (bytesWritten != sizeof(SHSaveMgr::SHSaveData))
         LOG("Write size mismatch: wrote size: %u, expeected size: %u", bytesWritten, sizeof(SHSaveMgr::SHSaveData));

@@ -118,32 +118,32 @@ public:
     }
 
     inline void playSklAnim(const sead::SafeString& identifier, u32 idx) {
-        if (idx < mSklAnims.mSize)
+        if (idx < mSklAnims.size)
             mSklAnims[idx]->play(mArchive, identifier);
     }
 
     inline void playTexPatternAnim(const sead::SafeString& identifier, u32 idx) {
-        if (idx < mTexPatternAnims.mSize)
+        if (idx < mTexPatternAnims.size)
             mTexPatternAnims[idx]->play(mArchive, identifier);
     }
 
     inline void playColorAnim(const sead::SafeString& identifier, u32 idx) {
-        if (idx < mTexSrtAnims.mSize)
+        if (idx < mTexSrtAnims.size)
             mTexSrtAnims[idx]->playColorAnim(mArchive, identifier);
     }
 
     inline void playTexSrtAnim(const sead::SafeString& identifier, u32 idx) {
-        if (idx < mTexSrtAnims.mSize)
+        if (idx < mTexSrtAnims.size)
             mTexSrtAnims[idx]->playTexSrtAnim(mArchive, identifier);
     }
 
     inline void playBoneVisAnim(const sead::SafeString& identifier, u32 idx) {
-        if (idx < mVisAnims.mSize)
+        if (idx < mVisAnims.size)
             mVisAnims[idx]->play(mArchive, identifier);
     }
 
     inline void playShapeAnim(const sead::SafeString& identifier, u32 idx) {
-        if (idx < mShaAnims.mSize)
+        if (idx < mShaAnims.size)
             mShaAnims[idx]->play(mArchive, identifier);
     }
 

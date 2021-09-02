@@ -14,7 +14,7 @@ public:
 
     virtual void doUpdateMatrix(Mtx34* mtx) const = 0;
 
-    Mtx34 mMatrix;
+    Mtx34 matrix;
 };
 
 }

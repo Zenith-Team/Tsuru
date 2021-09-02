@@ -8,10 +8,10 @@ template <typename T>
 class BitFlag {
 public:
     BitFlag()
-        : mBits(0)
+        : bits(0)
     { }
 
-    T mBits;
+    T bits;
 };
 
 typedef BitFlag<u32> BitFlag32;
