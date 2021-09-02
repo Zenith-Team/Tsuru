@@ -1,0 +1,20 @@
+
+---
+Files:
+  - source/sizemodifier.S
+Hooks:
+  # Modify the scale member of the actor
+  - type: branch
+    instr: b
+    addr: "2000FE4" # StageActor::afterCreate
+    func: ScaleActor
+  # Modify the HitboxCollider info of the actor
+  - type: branch
+    instr: bl
+    addr: "219AF58" # HitboxCollider::init
+    func: ScaleHitboxCollider
+  # Modify the PhysicsMgr sensor of the actor
+  - type: branch
+    instr: b
+    addr: "218AF50" # PhysicsMgr::setSensor
+    func: ScalePhysicsMgr
