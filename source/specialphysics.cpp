@@ -8,7 +8,7 @@ extern f32 PlayerJumpMax;
 extern f32 PlayerDescentRate;
 
 void AreaTask::readOptions() {
-    Level::Area* area = Level::sInstance->getArea(LevelInfo::sInstance->mArea);
+    Level::Area* area = Level::instance()->getArea(LevelInfo::instance()->mArea);
     Level::Area::Options* areaOptions = reinterpret_cast<Level::Area::Options*>(area->mBlocks[1]);
 
     // Wrap flag set to "wrap" 
