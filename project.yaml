@@ -13,6 +13,7 @@ Modules:
   - hooks/sarcloader.yaml           # Allow loading uncompressed .sarc levels
   - hooks/sead.yaml                 # Patches for the sead library
   - hooks/shsavemgr.yaml            # Manages the custom savedata file
+  - hooks/sizemodifier.yaml         # Scale actors as you wish using nybble 
   - hooks/snowparticles.yaml        # Allows changing snow particle colors from spritedata
   - hooks/sound.yaml                # Patches that affect sound
   - hooks/titlescreen.yaml          # Title screen patches

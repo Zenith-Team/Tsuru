@@ -3,9 +3,15 @@
 Files:
 #* Translation unit queue:
   - source/common.S
+  - source/misc.S
   - source/dynlibs/os.cpp
   - source/dynlibs/gx2.cpp
   - source/hitboxcollider.cpp
   - source/utils.cpp
   - source/profileres.cpp
-Hooks: []
+Hooks:
+  # Sets PhysicsMgr->owner before doing anything else so that functions there have access to the actor pointer
+  - type: branch
+    instr: bl
+    addr: "218af98"
+    func: SetPhysicsMgrOwner
