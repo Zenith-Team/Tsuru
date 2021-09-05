@@ -12,7 +12,7 @@ SEAD_SINGLETON_TASK_IMPL(CutsceneTask)
 sead::TaskBase* CutsceneTask::construct(const sead::TaskConstructArg& arg) {
     LOG("cutscene task construct");
 
-    return new(arg.mHeapArray->heaps[arg.mHeapArray->primaryIndex], 4) CutsceneTask(arg);
+    return new(arg.heapArray->heaps[arg.heapArray->primaryIndex], 4) CutsceneTask(arg);
 }
 
 CutsceneTask::CutsceneTask(const sead::TaskConstructArg& arg)
