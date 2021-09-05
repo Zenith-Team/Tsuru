@@ -120,15 +120,15 @@ public:
     static inline void AddChildPtclToList(EmitterInstance* emitter, PtclInstance* childPtcl) {
         if (emitter->childParticleHead == NULL) {
             emitter->childParticleHead = childPtcl;
-            childPtcl->mNext = NULL;
-            childPtcl->mPrev = NULL;
+            childPtcl->next = NULL;
+            childPtcl->prev = NULL;
         }
         
         else {
-            emitter->childParticleHead->mPrev = childPtcl;
-            childPtcl->mNext = emitter->childParticleHead;
+            emitter->childParticleHead->prev = childPtcl;
+            childPtcl->next = emitter->childParticleHead;
             emitter->childParticleHead = childPtcl;
-            childPtcl->mPrev = NULL;
+            childPtcl->prev = NULL;
         }
 
         if (emitter->childParticleTail == NULL)
@@ -140,15 +140,15 @@ public:
     static inline void AddPtclToList(EmitterInstance* emitter, PtclInstance* ptcl) {
         if (emitter->particleHead == NULL) {
             emitter->particleHead = ptcl;
-            ptcl->mNext = NULL;
-            ptcl->mPrev = NULL;
+            ptcl->next = NULL;
+            ptcl->prev = NULL;
         }
 
         else {
-            emitter->particleHead->mPrev = ptcl;
-            ptcl->mNext = emitter->particleHead;
+            emitter->particleHead->prev = ptcl;
+            ptcl->next = emitter->particleHead;
             emitter->particleHead = ptcl;
-            ptcl->mPrev = NULL;
+            ptcl->prev = NULL;
         }
 
         if (emitter->particleTail == NULL)

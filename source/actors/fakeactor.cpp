@@ -121,10 +121,10 @@ void FakeActor::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
 void FakeActor::goalpoleCollisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
   StageActor* actor = hcOther->mOwner;
 
-  if (actor->mType == 1 || actor->mType == 2 && FUN_02902b08(actor)) {
+  if (actor->type == 1 || actor->type == 2 && FUN_02902b08(actor)) {
     u32 unknown = 0;
 
-    if (actor->mType == 2) unknown = 2;
+    if (actor->type == 2) unknown = 2;
 
     actor->mPosition.x = actor->mPosition.x - hcSelf->_B0[unknown];
   }
