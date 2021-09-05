@@ -8,18 +8,18 @@ class FxDelay {
 public:
     struct DelayParam {
         DelayParam() 
-            : mDelay(160.0f)
-            , mFeedback(0.4f)
-            , mOutGain(1.0f)
-            , mMaxDelay(160.0f)
-            , mLpf(1.0f)
+            : delay(160.0f)
+            , feedback(0.4f)
+            , outGain(1.0f)
+            , maxDelay(160.0f)
+            , lpf(1.0f)
         { }
         
-        f32 mDelay;
-        f32 mFeedback;
-        f32 mOutGain;
-        f32 mMaxDelay;
-        f32 mLpf;
+        f32 delay;
+        f32 feedback;
+        f32 outGain;
+        f32 maxDelay;
+        f32 lpf;
     };
 };
 

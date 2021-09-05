@@ -6,10 +6,10 @@ namespace nw { namespace math { namespace internal {
 
 // Based on sead
 struct SinCosSample {
-    f32 mSinVal;
-    f32 mSinDelta;
-    f32 mCosVal;
-    f32 mCosDelta;
+    f32 sinVal;
+    f32 sinDelta;
+    f32 cosVal;
+    f32 cosDelta;
 };
 
 extern const SinCosSample gSinCosTbl[0x100+1];
@@ -22,9 +22,9 @@ inline void SinCosIdx(f32* sinVal, f32* cosVal, u32 angle) {
     const internal::SinCosSample& sample = internal::gSinCosTbl[idx];
 
     // if (sinVal != NULL)
-        *sinVal = sample.mSinVal + sample.mSinDelta * del;
+        *sinVal = sample.sinVal + sample.sinDelta * del;
     // if (cosVal != NULL)
-        *cosVal = sample.mCosVal + sample.mCosDelta * del;
+        *cosVal = sample.cosVal + sample.cosDelta * del;
 }
 
 inline f32 SinIdx(u32 angle) {
@@ -36,7 +36,7 @@ inline f32 SinIdx(u32 angle) {
     f32 del = static_cast<f32>(angle & 0xFFFFFF) / 0x1000000;
     const internal::SinCosSample& sample = internal::gSinCosTbl[idx];
 
-    return sample.mSinVal + sample.mSinDelta * del;
+    return sample.sinVal + sample.sinDelta * del;
 }
 
 inline f32 CosIdx(u32 angle) {
@@ -48,7 +48,7 @@ inline f32 CosIdx(u32 angle) {
     f32 del = static_cast<f32>(angle & 0xFFFFFF) / 0x1000000;
     const internal::SinCosSample& sample = internal::gSinCosTbl[idx];
 
-    return sample.mCosVal + sample.mCosDelta * del;
+    return sample.cosVal + sample.cosDelta * del;
 }
 
 inline f32 Idx2Rad(f32 angle) {
