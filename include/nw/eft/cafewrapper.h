@@ -26,15 +26,15 @@ public:
     u32 GetAttribute(const char* name, u32 buffer, VertexFormat attribFormat, u32 offset, bool instanceID);
     void SetupShader(Heap* heap);
 
-    GX2VertexShader* mVertexShader;
-    GX2PixelShader* mPixelShader;
-    GX2GeometryShader* mGeometryShader;
-    GX2FetchShader mFetchShader;
-    void* mFetchShaderBufPtr;
-    u32 mNumAttribute;
-    GX2AttribStream mAttributes[16];
-    u32 mAttributeBuffer[16];
-    bool mInitialized;
+    GX2VertexShader* vertexShader;
+    GX2PixelShader* pixelShader;
+    GX2GeometryShader* geometryShader;
+    GX2FetchShader fetchShader;
+    void* fetchShaderBufPtr;
+    u32 numAttribute;
+    GX2AttribStream attributes[16];
+    u32 attributeBuffer[16];
+    bool initialized;
 };
 
 static_assert(sizeof(Shader) == 0x278, "Shader size mismatch");
@@ -44,10 +44,10 @@ public:
     TextureSampler();
     ~TextureSampler();
 
-    bool Setup(TextureFilterMode filterMode, TextureWrapMode wrapmodeX, TextureWrapMode wrapModeY);
+    bool Setup(TextureFilterMode filterMode, TextureWrapMode wrapModeX, TextureWrapMode wrapModeY);
     bool SetupLOD(f32 maxLOD, f32 biasLOD);
 
-    GX2Sampler mSampler;
+    GX2Sampler sampler;
 };
 
 static_assert(sizeof(TextureSampler) == 0xC, "TextureSampler size mismatch");
@@ -63,22 +63,22 @@ public:
 
 public:
     UniformBlock() {
-        this->mInitialized = false;
-        this->mBlockNotExist = false;
-        this->mBufferSize = 0;
-        this->mLocation = 0;
-        this->mShaderStage = ShaderStageMax;
+        this->initialized = false;
+        this->blockNotExist = false;
+        this->bufferSize = 0;
+        this->location = 0;
+        this->shaderStage = ShaderStageMax;
     }
 
     bool InitializeVertexUniformBlock(Shader* shader, const char* name, u32);
     bool InitializePixelUniformBlock(Shader* shader, const char* name, u32);
     void BindUniformBlock(const void* buffer);
 
-    bool mInitialized;
-    bool mBlockNotExist;
-    u32 mBufferSize;
-    u32 mLocation;
-    ShaderStage mShaderStage;
+    bool initialized;
+    bool blockNotExist;
+    u32 bufferSize;
+    u32 location;
+    ShaderStage shaderStage;
 };
 
 static_assert(sizeof(UniformBlock) == 0x10, "UniformBlock size mismatch");
@@ -94,10 +94,10 @@ public:
 
     static void BindExtBuffer(u32 index, u32 size, u32, u32 stride, void* buffer);
 
-    u32 mUnused;
-    u32 mSize;
-    u32 mBufferSize;
-    void* mBuffer;
+    u32 unused;
+    u32 size;
+    u32 bufferSize;
+    void* buffer;
 };
 
 static_assert(sizeof(VertexBuffer) == 0x10, "VertexBuffer size mismatch");
