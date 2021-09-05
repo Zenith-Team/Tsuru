@@ -20,10 +20,10 @@ public:
     void SetupTexture(const TextureRes* texture, TextureSlot slot, FragmentTextureLocation samplerLocation);
     void SetupTexture(const GX2Texture* texture, TextureSlot slot, FragmentTextureLocation samplerLocation);
 
-    TextureSampler mTextureSampler;
-    TextureSampler mTextureSampler2;
-    BlendType mBlendType;
-    ZBufATestType mZBufATestType;
+    TextureSampler textureSampler;
+    TextureSampler textureSampler2;
+    BlendType blendType;
+    ZBufATestType zBufATestType;
 };
 
 static_assert(sizeof(RenderContext) == 0x20, "RenderContext size mismatch");

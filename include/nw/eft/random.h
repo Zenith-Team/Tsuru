@@ -24,29 +24,29 @@ public:
 
     void Init(u32 seed) {
         static const u32 a = 0x6C078965;
-        this->mX = a * (seed ^ (seed >> 30u)) + 1;
-        this->mY = a * (mX ^ (mX >> 30u)) + 2;
-        this->mZ = a * (mY ^ (mY >> 30u)) + 3;
-        this->mW = a * (mZ ^ (mZ >> 30u)) + 4;
+        this->x = a * (seed ^ (seed >> 30u)) + 1;
+        this->y = a * (x ^ (x >> 30u)) + 2;
+        this->z = a * (y ^ (y >> 30u)) + 3;
+        this->w = a * (z ^ (z >> 30u)) + 4;
     }
 
     void Init(u32 seedX, u32 seedY, u32 seedZ, u32 seedW) {
         if ((seedX | seedY | seedZ | seedW) == 0)   // Seeds must not all be zero
             return Init(0);
         
-        this->mX = seedX;
-        this->mY = seedY;
-        this->mZ = seedZ;
-        this->mW = seedW;
+        this->x = seedX;
+        this->y = seedY;
+        this->z = seedZ;
+        this->w = seedW;
     }
 
     u32 GetU32() {
-        u32 x = this->mX ^ (this->mX << 11u);
-        this->mX = this->mY;
-        this->mY = this->mZ;
-        this->mZ = this->mW;
-        this->mW = this->mW ^ (this->mW >> 19u) ^ x ^ (x >> 8u);
-        return this->mW;
+        u32 x = this->x ^ (this->x << 11u);
+        this->x = this->y;
+        this->y = this->z;
+        this->z = this->w;
+        this->w = this->w ^ (this->w >> 19u) ^ x ^ (x >> 8u);
+        return this->w;
     }
 
     u32 GetU32(u32 max) {
@@ -70,10 +70,10 @@ public:
     }
 
 private:
-    u32 mX;
-    u32 mY;
-    u32 mZ;
-    u32 mW;
+    u32 x;
+    u32 y;
+    u32 z;
+    u32 w;
 };
 
 static_assert(sizeof(Random) == 0x10, "Random size mismatch");
@@ -85,14 +85,14 @@ public:
     PtclRandom();
 
     void Init(u32 seed) {
-        mRandomVec3Idx = (u16)seed;
-        mRandomNormVec3Idx = (u16)(seed >> 16);
-        mVal = seed;
+        randomVec3Idx = (u16)seed;
+        randomNormVec3Idx = (u16)(seed >> 16);
+        val = seed;
     }
 
     u32 GetU32() {
-        u32 x = mVal;
-        mVal = mVal * 0x41C64E6D + 12345;
+        u32 x = val;
+        val = val * 0x41C64E6D + 12345;
         return x;
     }
 
@@ -122,23 +122,23 @@ public:
     }
 
     const math::VEC3& GetVec3() {
-        return sVec3Tbl[mRandomVec3Idx++ & 0x1FF];
+        return sVec3Tbl[randomVec3Idx++ & 0x1FF];
     }
 
     const math::VEC3& GetNormalizedVec3() {
-        return sNormalizedVec3Tbl[mRandomNormVec3Idx++ & 0x1FF];
+        return sNormalizedVec3Tbl[randomNormVec3Idx++ & 0x1FF];
     }
 
     static void Initialize(Heap* heap);
     static Random* GetGlobalRandom();
 
-    static Random gRandom;
+    static Random globalRandom;
     static math::VEC3* sVec3Tbl;
     static math::VEC3* sNormalizedVec3Tbl;
 
-    u16 mRandomVec3Idx;
-    u16 mRandomNormVec3Idx;
-    u32 mVal;
+    u16 randomVec3Idx;
+    u16 randomNormVec3Idx;
+    u32 val;
 };
 
 static_assert(sizeof(PtclRandom) == 8, "PtclRandom size mismatch");

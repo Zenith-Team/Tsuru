@@ -22,9 +22,9 @@ struct ViewUniformBlock;
 class Renderer {
 public:
     struct PtclViewZ { // Size: 0xC
-        PtclInstance* mPtcl;
-        u32 mZ;
-        u32 mIdx;
+        PtclInstance* ptcl;
+        u32 z;
+        u32 idx;
     };
 
     static_assert(sizeof(PtclViewZ) == 0xC, "PtclViewZ size mismatch");
@@ -61,35 +61,35 @@ public:
 
     void BindParticleAttributeBlock(PtclAttributeBuffer* ptclAttributeBuffer, ParticleShader* shader, u32 numInstances);
 
-    System* mSystem;
-    Heap* mHeap;
-    RenderContext mRenderContext;
-    u32 mPrimitiveMode;
-    math::MTX44 mView;
-    math::MTX44 mViewProj;
-    math::MTX44 mBillboard;
-    math::VEC3 mEyeVec;
-    math::VEC3 mEyePos;
-    VertexBuffer mVBPos;
-    VertexBuffer mVBIndex;
-    Primitive* mPrimitive;
-    ViewUniformBlock* mViewUniformBlock;
+    System* system;
+    Heap* heap;
+    RenderContext renderContext;
+    u32 primitiveMode;
+    math::MTX44 view;
+    math::MTX44 viewProj;
+    math::MTX44 billboard;
+    math::VEC3 eyeVec;
+    math::VEC3 eyePos;
+    VertexBuffer VBPos;
+    VertexBuffer VBIndex;
+    Primitive* primitive;
+    ViewUniformBlock* viewUniformBlock;
     union {
-        const GX2Texture* mTextures[2];
+        const GX2Texture* textures[2];
         struct {
-            const GX2Texture* mDepthBufferTexture;
-            const GX2Texture* mFrameBufferTexture;
+            const GX2Texture* depthBufferTexture;
+            const GX2Texture* frameBufferTexture;
         };
     };
-    math::VEC2 mDepthBufferTextureOffset;
-    math::VEC2 mDepthBufferTextureScale;
-    math::VEC2 mFrameBufferTextureOffset;
-    math::VEC2 mFrameBufferTextureScale;
-    TemporaryBuffer mDoubleBuffer;
-    u32 mStripeNumDrawVertex;
-    PtclType mCurrentParticleType;
-    ShaderType mShaderType;
-    u32 mRenderVisibilityFlags;
+    math::VEC2 depthBufferTextureOffset;
+    math::VEC2 depthBufferTextureScale;
+    math::VEC2 frameBufferTextureOffset;
+    math::VEC2 frameBufferTextureScale;
+    TemporaryBuffer doubleBuffer;
+    u32 stripeNumDrawVertex;
+    PtclType currentParticleType;
+    ShaderType shaderType;
+    u32 renderVisibilityFlags;
 };
 
 } }
