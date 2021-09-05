@@ -15,14 +15,14 @@ class Texture;
 
 class PrimitiveRendererBase {
 public:
-    virtual void prepareFromBinaryImpl(Heap* heap, const void* bin_data, u32 bin_size) = 0;
+    virtual void prepareFromBinaryImpl(Heap* heap, const void* binData, u32 binSize) = 0;
     virtual void prepareImpl(Heap* heap, const SafeString& path) = 0;
     virtual void setCameraImpl(const Camera& camera) = 0;
     virtual void setProjectionImpl(const Projection& projection) = 0;
     virtual void beginImpl() = 0;
     virtual void endImpl() = 0;
     virtual void drawQuadImpl(const Mtx34& modelMtx, const Color4f& colorL, const Color4f& colorR) = 0;
-    virtual void drawQuadImpl(const Mtx34& modelMtx, const Texture& texture, const Color4f& colorL, const Color4f& colorR, const Vec2f& uv_src, const Vec2f& uv_size) = 0;
+    virtual void drawQuadImpl(const Mtx34& modelMtx, const Texture& texture, const Color4f& colorL, const Color4f& colorR, const Vec2f& uvSrc, const Vec2f& uvSize) = 0;
     virtual void drawBoxImpl(const Mtx34& modelMtx, const Color4f& colorL, const Color4f& colorR) = 0;
     virtual void drawCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) = 0;
     virtual void drawWireCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) = 0;
@@ -97,7 +97,7 @@ public:
     void beginImpl() override;
     void endImpl() override;
     void drawQuadImpl(const Mtx34& modelMtx, const Color4f& colorL, const Color4f& colorR) override;
-    void drawQuadImpl(const Mtx34& modelMtx, const Texture& texture, const Color4f& colorL, const Color4f& colorR, const Vec2f& uv_src, const Vec2f& uv_size) override;
+    void drawQuadImpl(const Mtx34& modelMtx, const Texture& texture, const Color4f& colorL, const Color4f& colorR, const Vec2f& uvSrc, const Vec2f& uvSize) override;
     void drawBoxImpl(const Mtx34& modelMtx, const Color4f& colorL, const Color4f& colorR) override;
     void drawCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) override;
     void drawWireCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) override;    // restored
