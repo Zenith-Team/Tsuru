@@ -12,14 +12,14 @@ struct SinCosSample {
     f32 cosDelta;
 };
 
-extern const SinCosSample gSinCosTbl[0x100+1];
+extern const SinCosSample globalSinCosTbl[0x100+1];
 
 }
 
 inline void SinCosIdx(f32* sinVal, f32* cosVal, u32 angle) {
     u32 idx = (angle >> 24) & 0xFF;
     f32 del = static_cast<f32>(angle & 0xFFFFFF) / 0x1000000;
-    const internal::SinCosSample& sample = internal::gSinCosTbl[idx];
+    const internal::SinCosSample& sample = internal::globalSinCosTbl[idx];
 
     // if (sinVal != NULL)
         *sinVal = sample.sinVal + sample.sinDelta * del;
@@ -34,7 +34,7 @@ inline f32 SinIdx(u32 angle) {
 
     u32 idx = (angle >> 24) & 0xFF;
     f32 del = static_cast<f32>(angle & 0xFFFFFF) / 0x1000000;
-    const internal::SinCosSample& sample = internal::gSinCosTbl[idx];
+    const internal::SinCosSample& sample = internal::globalSinCosTbl[idx];
 
     return sample.sinVal + sample.sinDelta * del;
 }
@@ -46,7 +46,7 @@ inline f32 CosIdx(u32 angle) {
 
     u32 idx = (angle >> 24) & 0xFF;
     f32 del = static_cast<f32>(angle & 0xFFFFFF) / 0x1000000;
-    const internal::SinCosSample& sample = internal::gSinCosTbl[idx];
+    const internal::SinCosSample& sample = internal::globalSinCosTbl[idx];
 
     return sample.cosVal + sample.cosDelta * del;
 }
