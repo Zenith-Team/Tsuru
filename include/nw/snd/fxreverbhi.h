@@ -8,30 +8,30 @@ class FxReverbHi {
 public:
     struct ReverbHiParam {
         ReverbHiParam()
-            : mPreDelayTime(0.02f)
-            , mFusedTime(3.0f)
-            , mColoration(0.6f)
-            , mDamping(0.4f)
-            , mCrosstalk(0.1f)
-            , mOutGain(1.0f)
-            , mEarlyMode(5)
-            , mPreDelayTimeMax(0.02f)
-            , mFusedMode(0)
-            , mEarlyGain(0.0f)
-            , mFusedGain(1.0f)
+            : preDelayTime(0.02f)
+            , fusedTime(3.0f)
+            , coloration(0.6f)
+            , damping(0.4f)
+            , crosstalk(0.1f)
+            , outGain(1.0f)
+            , earlyMode(5)
+            , preDelayTimeMax(0.02f)
+            , fusedMode(0)
+            , earlyGain(0.0f)
+            , fusedGain(1.0f)
         { }
 
-        f32 mPreDelayTime;
-        f32 mFusedTime;
-        f32 mColoration;
-        f32 mDamping;
-        f32 mCrosstalk;
-        f32 mOutGain;
-        u32 mEarlyMode;
-        f32 mPreDelayTimeMax;
-        u32 mFusedMode;
-        f32 mEarlyGain;
-        f32 mFusedGain;
+        f32 preDelayTime;
+        f32 fusedTime;
+        f32 coloration;
+        f32 damping;
+        f32 crosstalk;
+        f32 outGain;
+        u32 earlyMode;
+        f32 preDelayTimeMax;
+        u32 fusedMode;
+        f32 earlyGain;
+        f32 fusedGain;
     };
 };
 

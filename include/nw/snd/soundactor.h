@@ -28,8 +28,8 @@ public:
     f32 _54;
     f32 _58;
     f32 _5C;
-    bool mIsInitialized;
-    bool mIsFinalized;
+    bool isInitialized;
+    bool isFinalized;
 };
 
 } }
