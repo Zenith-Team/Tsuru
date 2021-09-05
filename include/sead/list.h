@@ -7,37 +7,37 @@ namespace sead {
 class ListNode {
 public:
     forceinline ListNode()
-        : mPrev(NULL)
-        , mNext(NULL)
+        : prev(NULL)
+        , next(NULL)
     { }
 
     void insertFront_(ListNode* node);
     void erase_();
 
-    ListNode* mPrev;
-    ListNode* mNext;
+    ListNode* prev;
+    ListNode* next;
 };
 
 class ListImpl {
 public:
     forceinline ListImpl()
-        : mStartEnd(), mCount(0) {
-            mStartEnd.mNext = &mStartEnd;
-            mStartEnd.mPrev = &mStartEnd;
+        : startEnd(), count(0) {
+            startEnd.next = &startEnd;
+            startEnd.prev = &startEnd;
         }
     
     void pushBack(ListNode* n) {
-        mStartEnd.insertFront_(n);
-        mCount += 1;
+        startEnd.insertFront_(n);
+        count += 1;
     }
 
     void erase(ListNode* n) {
         n->erase_();
-        mCount -= 1;
+        count -= 1;
     }
 
-    ListNode mStartEnd;
-    s32 mCount;
+    ListNode startEnd;
+    s32 count;
 };
 
 
@@ -51,11 +51,11 @@ public:
     class iterator {
     public:
         iterator(TListNode<T>* ptr)
-            : mPtr(ptr) {
+            : ptr(ptr) {
         }
 
         iterator& operator++() {
-            mPtr = static_cast<TListNode<T>*>(mPtr->mNext);
+            ptr = static_cast<TListNode<T>*>(ptr->next);
             return *this;
         }
 
@@ -66,7 +66,7 @@ public:
         }
 
         iterator& operator--() {
-            mPtr = static_cast<TListNode<T>*>(mPtr->mPrev);
+            ptr = static_cast<TListNode<T>*>(ptr->prev);
             return *this;
         }
 
@@ -77,32 +77,32 @@ public:
         }
 
         friend bool operator==(iterator it1, iterator it2) {
-            return it1.mPtr == it2.mPtr;
+            return it1.ptr == it2.ptr;
         }
 
         friend bool operator!=(iterator it1, iterator it2) {
             return !(it1 == it2);
         }
 
-        TListNode<T>* mPtr;
+        TListNode<T>* ptr;
     };
 
     iterator begin() const {
-        return iterator(static_cast<TListNode<T>*>(mStartEnd.mNext));
+        return iterator(static_cast<TListNode<T>*>(startEnd.next));
     }
 
     iterator end() const {
-        return iterator(static_cast<TListNode<T>*>(const_cast<ListNode*>(&mStartEnd)));
+        return iterator(static_cast<TListNode<T>*>(const_cast<ListNode*>(&startEnd)));
     }
 
     void pushBack(TListNode<T>* obj) {
         obj->erase();
-        obj->mList = this;
+        obj->list = this;
         ListImpl::pushBack(obj);
     }
 
     void erase(TListNode<T>* obj) {
-        obj->mList = NULL;
+        obj->list = NULL;
         ListImpl::erase(obj);
     }
 };
@@ -112,24 +112,24 @@ class TListNode : public ListNode {
 public:
     forceinline TListNode()
         : ListNode()
-        , mData(NULL)
-        , mList(NULL)
+        , data(NULL)
+        , list(NULL)
     { }
 
     forceinline TListNode(T data)
         : ListNode()
-        , mData(data)
-        , mList(NULL)
+        , data(data)
+        , list(NULL)
     { }
 
     void erase() {
-        TList<T>* list = mList;
+        TList<T>* list = list;
         if (list != NULL)
             list->erase(this);
     }
 
-    T mData;
-    TList<T>* mList;
+    T data;
+    TList<T>* list;
 };
 
 template <typename T>
@@ -137,7 +137,7 @@ class OffsetList : public ListImpl {
 public:
     forceinline OffsetList()
         : ListImpl()
-        , mOffset(-1)
+        , offset(-1)
     { }
 
     void pushBack(T* item) {
@@ -151,12 +151,12 @@ public:
     class iterator {
     public:
         iterator(T* ptr, s32 offset)
-            : mPtr(ptr)
-            , mOffset(offset)
+            : ptr(ptr)
+            , offset(offset)
         { }
 
         bool operator==(const iterator& other) const {
-            return mPtr == other.mPtr;
+            return ptr == other.ptr;
         }
 
         bool operator!=(const iterator& other) const {
@@ -164,48 +164,48 @@ public:
         }
 
         iterator& operator++() {
-            ListNode* node = static_cast<ListNode*>(static_cast<void*>(mPtr) + mOffset)->mNext;
-            mPtr = static_cast<T*>(static_cast<void*>(node) + -mOffset);
+            ListNode* node = static_cast<ListNode*>(static_cast<void*>(ptr) + offset)->next;
+            ptr = static_cast<T*>(static_cast<void*>(node) + -offset);
             return *this;
         }
 
         T& operator*() const {
-            return *mPtr;
+            return *ptr;
         }
 
         T* operator->() const {
-            return mPtr;
+            return ptr;
         }
 
-        T* mPtr;
-        s32 mOffset;
+        T* ptr;
+        s32 offset;
     };
 
     iterator begin() const {
-        return iterator(listNodeToObj(mStartEnd.mNext), mOffset);
+        return iterator(listNodeToObj(startEnd.next), offset);
     }
 
     iterator end() const {
-        return iterator(listNodeToObj(const_cast<ListNode*>(&mStartEnd)), mOffset);
+        return iterator(listNodeToObj(const_cast<ListNode*>(&startEnd)), offset);
     }
 
     ListNode* objToListNode(T* obj) const {
-        return static_cast<ListNode*>(static_cast<void*>(obj) + mOffset);
+        return static_cast<ListNode*>(static_cast<void*>(obj) + offset);
     }
 
     const ListNode* objToListNode(const T* obj) const {
-        return static_cast<const ListNode*>(static_cast<const void*>(obj) + mOffset);
+        return static_cast<const ListNode*>(static_cast<const void*>(obj) + offset);
     }
 
     T* listNodeToObj(ListNode* node) const {
-        return static_cast<T*>(static_cast<void*>(node) + -mOffset);
+        return static_cast<T*>(static_cast<void*>(node) + -offset);
     }
 
     const T* listNodeToObj(const ListNode* node) const {
-        return static_cast<const T*>(static_cast<const void*>(node) + -mOffset);
+        return static_cast<const T*>(static_cast<const void*>(node) + -offset);
     }
 
-    s32 mOffset;
+    s32 offset;
 };
 
 }

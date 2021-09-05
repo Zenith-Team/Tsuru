@@ -20,7 +20,7 @@ void drawLine(const Vec2f& position, const f32 rotation, const sead::Color4f& co
 
     Mtx34 mtx;
     Mtx34::makeSRT(mtx, scale, rot, pos);
-    sead::PrimitiveRenderer::instance()->mRendererImpl->drawQuadImpl(mtx, color, color);
+    sead::PrimitiveRenderer::instance()->rendererImpl->drawQuadImpl(mtx, color, color);
 }
 
 void drawLine(const Vec2f& point1, const Vec2f& point2, const sead::Color4f& color, const f32 lineThickness) {

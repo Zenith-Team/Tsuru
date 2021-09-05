@@ -47,7 +47,7 @@ u32 ActorSpawner::onCreate() {
 }
 
 u32 ActorSpawner::onExecute() {
-    Actor* child = (mChildList.begin() != mChildList.end()) ? mChildList.begin().mPtr : nullptr;
+    Actor* child = (mChildList.begin() != mChildList.end()) ? mChildList.begin().ptr : nullptr;
 
     if (EventMgr::instance()->isActive(mEventID2-1)) {
         if (mInitialStateFlag == 2 && child) {
