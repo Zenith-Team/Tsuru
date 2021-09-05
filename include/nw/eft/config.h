@@ -9,32 +9,32 @@ class Heap;
 class Config { // Size: 0x20
 public:
     Config()
-        : mHeap(NULL)
-        , mNumEmitterMax(0x100)
-        , mNumParticleMax(0x800)
-        , mNumEmitterSetMax(0x80)
-        , mNumResourceMax(1)
-        , mNumStripeMax(0x100)
-        , mDoubleBufferSize(0x20000)
+        : heap(NULL)
+        , numEmitterMax(0x100)
+        , numParticleMax(0x800)
+        , numEmitterSetMax(0x80)
+        , numResourceMax(1)
+        , numStripeMax(0x100)
+        , doubleBufferSize(0x20000)
     { }
 
     virtual ~Config() { }
 
     virtual void SetEffectHeap(Heap* heap) {
-        this->mHeap = heap;
+        this->heap = heap;
     }
 
     virtual Heap* GetEffectHeap() const {
-        return this->mHeap;
+        return this->heap;
     }
 
-    Heap* mHeap;
-    u32 mNumEmitterMax;
-    u32 mNumParticleMax;
-    u32 mNumEmitterSetMax;
-    u32 mNumResourceMax;
-    u32 mNumStripeMax;
-    u32 mDoubleBufferSize;
+    Heap* heap;
+    u32 numEmitterMax;
+    u32 numParticleMax;
+    u32 numEmitterSetMax;
+    u32 numResourceMax;
+    u32 numStripeMax;
+    u32 doubleBufferSize;
 };
 
 static_assert(sizeof(Config) == 0x20, "Config size mismatch");
