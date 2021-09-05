@@ -30,7 +30,7 @@ Actor* FixedWindGenerator::build(const ActorBuildInfo* buildInfo) {
 u32 FixedWindGenerator::onExecute() {
     // Blow players
     for (u32 i = 0; i < 4; i++) {
-        Player* player = PlayerMgr::instance()->mPlayers[i];
+        Player* player = PlayerMgr::instance()->players[i];
         if (player)
             player->mPosition.x += this->mFinalWindStrength * 2.5;
     }
