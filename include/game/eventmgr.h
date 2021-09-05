@@ -10,9 +10,9 @@ public:
 
     inline u64 mask(u8 id) { return 1ULL << id; }
 
-    inline bool isActive(u8 id) { return (mEvents & mask(id)) != 0; }
-    inline bool isInactive(u8 id) { return (mEvents & mask(id)) == 0; }
+    inline bool isActive(u8 id) { return (events & mask(id)) != 0; }
+    inline bool isInactive(u8 id) { return (events & mask(id)) == 0; }
 
-    u64 mEvents;                // _10
-    u8 _18[0x940-0x18];         // _18
+    u64 events;            // _10
+    u8 _18[0x928];         // _18
 };

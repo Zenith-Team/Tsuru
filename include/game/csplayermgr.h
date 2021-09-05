@@ -12,6 +12,6 @@ public:
 
     u8 _10; // class
     u8 _11; // class
-    u32 mPlayerActorID;
-    u8 unk2[28];
+    u32 playerActorID; // 12
+    u8 _16[28];
 };

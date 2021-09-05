@@ -5,13 +5,13 @@
 class StateBase {
 public:
     inline StateBase() {
-        this->mID = sCurrentID++;
+        this->ID = sCurrentID++;
     }
 
     virtual ~StateBase() { }
 
     virtual s32 getRootID() {
-        return mID;
+        return ID;
     }
 
     inline bool isEqual(StateBase* other) {
@@ -20,7 +20,7 @@ public:
 
     static StateBase sNullState;
 
-    s32 mID;
+    s32 ID;
 
 private:
     static s32 sCurrentID;
@@ -32,13 +32,13 @@ class State : public StateBase { //size: 0x20
 
 public:
     State(PTMF begin, PTMF execute, PTMF end)
-        : mBegin(begin), mExecute(execute), mEnd(end)
+        : begin(begin), execute(execute), end(end)
     { }
 
 protected:
-    PTMF mBegin;     // _8
-    PTMF mExecute;   // _10
-    PTMF mEnd;       // _18
+    PTMF begin;     // _8
+    PTMF execute;   // _10
+    PTMF end;       // _18
 };
 
 template <class TOwner>
@@ -47,20 +47,20 @@ class StateVirtual : public State<TOwner> {
 
 public:
     StateVirtual(PTMF begin, PTMF execute, PTMF end, StateBase* baseState)
-        : State<TOwner>(begin, execute, end), mBaseState(baseState)
+        : State<TOwner>(begin, execute, end), baseState(baseState)
     { }
 
     virtual ~StateVirtual() { }
 
     s32 getRootID() override {
-        if (mBaseState->mID != -1)
-            return mBaseState->getRootID();
+        if (baseState->ID != -1)
+            return baseState->getRootID();
 
-        return mID;
+        return ID;
     }
 
 private:
-    StateBase* mBaseState;
+    StateBase* baseState;
 };
 
 class StateMethodExecutorBase {
@@ -76,8 +76,8 @@ public:
     StateBase* getCurrentState() override;
     void execute() override;
 
-    TOwner* mOwner;                 // _4
-    State<TOwner>* mCurrentState;   // _8
+    TOwner* owner;                 // _4
+    State<TOwner>* currentState;   // _8
 };
 
 class StateExecutorBase {
@@ -98,7 +98,7 @@ public:
     void resetState(StateMethodExecutorBase* methodExecutor) override;
     StateMethodExecutorBase* callBegin(StateMethodExecutorBase* methodExecutor) override;
 
-    StateMethodExecutor<TOwner> mMethodExecutor;
+    StateMethodExecutor<TOwner> methodExecutor;
 };
 
 class StateMgr {
@@ -109,10 +109,10 @@ public:
     void execute();
     void changeState(StateBase* nextState);
 
-    StateExecutorBase* mExecutor;
-    StateBase* mNextState;
-    StateMethodExecutorBase* mCurrentMethodExecutor;
-    StateBase* mPrevState;
+    StateExecutorBase* executor;
+    StateBase* nextState;
+    StateMethodExecutorBase* currentMethodExecutor;
+    StateBase* prevState;
 };
 
 template <class TOwner>
@@ -120,23 +120,23 @@ class StateWrapper {
 public:
     virtual ~StateWrapper() { }
 
-    StateExecutor<TOwner> mExecutor;
-    StateMgr mManager;
+    StateExecutor<TOwner> executor;
+    StateMgr manager;
 
     inline void changeState(StateBase* nextState) {
-        mManager.changeState(nextState);
+        manager.changeState(nextState);
     }
 
     inline void execute() {
-        mManager.execute();
+        manager.execute();
     }
 
     inline StateBase* currentState() {
-        return mExecutor.mMethodExecutor.mCurrentState;
+        return executor.methodExecutor.currentState;
     }
 
     inline StateBase* lastState() {
-        return mManager.mPrevState;
+        return manager.prevState;
     }
 };
 
@@ -145,24 +145,24 @@ class MultiStateWrapper {
 public:
     virtual ~MultiStateWrapper() { }
 
-    StateExecutor<TOwner> mExecutor;
-    StateMgr mManager;
+    StateExecutor<TOwner> executor;
+    StateMgr manager;
     StateBase* _20;
 
     inline void changeState(StateBase* nextState) {
-        mManager.changeState(nextState);
+        manager.changeState(nextState);
     }
 
     inline void execute() {
-        mManager.execute();
+        manager.execute();
     }
 
     inline StateBase* currentState() {
-        return mExecutor.mMethodExecutor.mCurrentState;
+        return executor.methodExecutor.currentState;
     }
 
     inline StateBase* lastState() {
-        return mManager.mPrevState;
+        return manager.prevState;
     }
 };
 
