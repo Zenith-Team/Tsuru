@@ -8,7 +8,7 @@
 class Effect {
 public:
     Effect() {
-        mEffectHandle.mEmitterSet = NULL;
+        mEffectHandle.emitterSet = NULL;
         init();
     }
 

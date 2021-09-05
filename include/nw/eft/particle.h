@@ -8,28 +8,28 @@
 namespace nw { namespace eft {
 
 struct AlphaAnim { // Size: 0x10
-    f32 mStartDiff;
-    f32 mEndDiff;
-    s32 mTime2;
-    s32 mTime3;
+    f32 startDiff;
+    f32 endDiff;
+    s32 time;
+    s32 time2;
 };
 
 static_assert(sizeof(AlphaAnim) == 0x10, "AlphaAnim size mismatch");
 
 struct ScaleAnim { // Size: 0x18
-    math::VEC2 mStartDiff;
-    math::VEC2 mEndDiff;
-    s32 mTime2;
-    s32 mTime3;
+    math::VEC2 startDiff;
+    math::VEC2 endDiff;
+    s32 time;
+    s32 time2;
 };
 
 static_assert(sizeof(ScaleAnim) == 0x18, "ScaleAnim size mismatch");
 
 struct TexUVParam { // Size: 0x1C
-    f32 mRotate;
-    math::VEC2 mOffset;
-    math::VEC2 mScroll;
-    math::VEC2 mScale;
+    f32 rotate;
+    math::VEC2 offset;
+    math::VEC2 scroll;
+    math::VEC2 scale;
 };
 
 static_assert(sizeof(TexUVParam) == 0x1C, "TexUVParam size mismatch");
@@ -40,57 +40,57 @@ struct PtclStripe;
 struct SimpleEmitterData;
 
 struct PtclInstance { // Size: 0x180
-    f32 mCounter;
-    s32 mLifespan;
-    math::VEC3 mPos;
-    math::VEC3 mPosDiff;
-    math::VEC3 mVelocity;
-    math::VEC3 mWorldPos;
-    math::VEC3 mWorldPosDiff;
-    math::VEC3 mRotation;
-    math::VEC3 mAngularVelocity;
-    f32 mRandomF32;
-    f32 mAlpha;
-    AlphaAnim* mAlphaAnim;
-    math::VEC2 mScale;
-    ScaleAnim* mScaleAnim;
-    TexUVParam mTexAnimParam[2]; // For each texture
-    f32 mFluctuationAlpha;
-    f32 mFluctuationScale;
+    f32 counter;
+    s32 lifespan;
+    math::VEC3 pos;
+    math::VEC3 posDiff;
+    math::VEC3 velocity;
+    math::VEC3 worldPos;
+    math::VEC3 worldPosDiff;
+    math::VEC3 rotation;
+    math::VEC3 angularVelocity;
+    f32 randomF32;
+    f32 alpha;
+    AlphaAnim* alphaAnim;
+    math::VEC2 scale;
+    ScaleAnim* scaleAnim;
+    TexUVParam texAnimParam[2]; // For each texture
+    f32 fluctuationAlpha;
+    f32 fluctuationScale;
     union {
-        ut::Color4f mColor[2];
+        ut::Color4f color[2];
         struct {
-            ut::Color4f mColor0;
-            ut::Color4f mColor1;
+            ut::Color4f color0;
+            ut::Color4f color1;
         };
     };
-    PtclAttributeBuffer* mPtclAttributeBuffer;
-    math::MTX34 mMatrixRT;
-    math::MTX34 mMatrixSRT;
-    math::MTX34* mpMatrixRT;
-    math::MTX34* mpMatrixSRT;
-    u32 mUnused;
-    const SimpleEmitterData* mData;
-    PtclInstance* mPrev;
-    PtclInstance* mNext;
-    EmitterInstance* mEmitter;
-    PtclStripe* mStripe;
-    PtclType mType;
-    u32 mRandomU32;
-    f32 mChildEmitCounter;
-    f32 mChildPreCalcCounter;
-    f32 mChildEmitLostTime;
-    u8 mUnusedPad[0x180 - 0x16C];
+    PtclAttributeBuffer* ptclAttributeBuffer;
+    math::MTX34 matrixRT;
+    math::MTX34 matrixSRT;
+    math::MTX34* matrixRTPtr;
+    math::MTX34* matrixSRTPtr;
+    u32 unused;
+    const SimpleEmitterData* data;
+    PtclInstance* prev;
+    PtclInstance* next;
+    EmitterInstance* emitter;
+    PtclStripe* stripe;
+    PtclType type;
+    u32 randomU32;
+    f32 childEmitCounter;
+    f32 childPreCalcCounter;
+    f32 childEmitLostTime;
+    u8 unusedPad[0x180 - 0x16C];
 };
 
 static_assert(sizeof(PtclInstance) == 0x180, "PtclInstance size mismatch");
 
 struct PtclStripeSliceHistory { // Size: 0x58
-    math::VEC3 mPos;
-    f32 mScale;
-    math::MTX34 mEmitterMatrixSRT;
-    math::VEC3 mOuter;
-    math::VEC3 mDir;
+    math::VEC3 pos;
+    f32 scale;
+    math::MTX34 emitterMatrixSRT;
+    math::VEC3 outer;
+    math::VEC3 dir;
 };
 
 static_assert(sizeof(PtclStripeSliceHistory) == 0x58, "PtclStripSliceHistory size mismatch");
@@ -98,22 +98,22 @@ static_assert(sizeof(PtclStripeSliceHistory) == 0x58, "PtclStripSliceHistory siz
 struct ComplexEmitterData;
 
 struct PtclStripe { // Size: 0x5880
-    PtclInstance* mParticle;
-    u32 mQueueFront;
-    u32 mQueueRear;
-    PtclStripeSliceHistory mQueue[256];
-    u32 mQueueCount;
-    u32 mGroupID;
-    const ComplexEmitterData* mData;
-    s32 mCounter;
-    math::MTX34 mEmitterMatrixSRT;
-    math::VEC3 mCurrentSliceDir;
-    math::VEC3 mPos0;
-    math::VEC3 mPos1;
-    PtclStripe* mPrev;
-    PtclStripe* mNext;
-    u32 mDrawFirstVertex;
-    u32 mNumDraw;
+    PtclInstance* particle;
+    u32 queueFront;
+    u32 queueRear;
+    PtclStripeSliceHistory queue[256];
+    u32 queueCount;
+    u32 groupID;
+    const ComplexEmitterData* data;
+    s32 counter;
+    math::MTX34 emitterMatrixSRT;
+    math::VEC3 currentSliceDir;
+    math::VEC3 pos0;
+    math::VEC3 pos1;
+    PtclStripe* prev;
+    PtclStripe* next;
+    u32 drawFirstVertex;
+    u32 numDraw;
 };
 
 static_assert(sizeof(PtclStripe) == 0x5880, "PtclStripe size mismatch");
