@@ -45,11 +45,11 @@ public:
     public:
         QuadArg();
 
-        Vec3f mCenter;
-        Vec2f mSize;
-        Color4f mColor0;
-        Color4f mColor1;
-        bool mHorizontal;
+        Vec3f center;
+        Vec2f size;
+        Color4f color0;
+        Color4f color1;
+        bool horizontal;
     };
 
 public:
@@ -65,8 +65,8 @@ public:
     void drawCircle16(const Vec3f& position, f32 radius, const Color4f& color);
     void drawCircle32(const Vec3f& position, f32 radius, const Color4f& color);
 
-    PrimitiveRendererBase* mRendererImpl;
-    Mtx34 mModelMtx;
+    PrimitiveRendererBase* rendererImpl;
+    Mtx34 modelMtx;
 };
 
 namespace PrimitiveRendererUtil {
@@ -74,14 +74,14 @@ namespace PrimitiveRendererUtil {
 class Vertex {
 public:
     Vertex(const Vec3f& pos, const Vec2f& uv, const Color4f& color)
-        : mPos(pos)
-        , mUV(uv)
-        , mColor(color)
+        : pos(pos)
+        , UV(uv)
+        , color(color)
     { }
 
-    Vec3f mPos;
-    Vec3f mUV;
-    Color4f mColor;
+    Vec3f pos;
+    Vec3f UV;
+    Color4f color;
 };
 
 }
@@ -115,64 +115,64 @@ public:
     void drawLines_(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1, PrimitiveRendererUtil::Vertex* vtx, u32 vtxNum, u16* idx, u32 idxNum);
     void drawTriangles_(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1, PrimitiveRendererUtil::Vertex* vtx, u32 vtxNum, u16* idx, u32 idxNum, const GX2Texture* tex);
 
-    Mtx34 mCameraMtx;
-    Mtx44 mProjectionMtx;
-    GX2VertexShader* mVertexShader;
-    GX2PixelShader* mPixelShader;
-    u32 mParamWVPOffset;
-    u32 mParamUserOffset;
-    u32 mParamRateOffset;
-    u32 mParamColor0Offset;
-    u32 mParamColor1Offset;
-    u32 mParamTexLocation;
-    u32 mAttrVertexLocation;
-    u32 mAttrTexCoord0Location;
-    u32 mAttrColorRateLocation;
-    GX2AttribStream mAttributes[3];
-    void* mFetchShaderBufPtr;
-    GX2FetchShader mFetchShader;
-    GX2Sampler mDrawQuadSampler;
+    Mtx34 cameraMtx;
+    Mtx44 projectionMtx;
+    GX2VertexShader* vertexShader;
+    GX2PixelShader* pixelShader;
+    u32 paramWVPOffset;
+    u32 paramUserOffset;
+    u32 paramRateOffset;
+    u32 paramColor0Offset;
+    u32 paramColor1Offset;
+    u32 paramTexLocation;
+    u32 attrVertexLocation;
+    u32 attrTexCoord0Location;
+    u32 attrColorRateLocation;
+    GX2AttribStream attributes[3];
+    void* fetchShaderBufPtr;
+    GX2FetchShader fetchShader;
+    GX2Sampler drawQuadSampler;
 
     // Quad, Box
-    PrimitiveRendererUtil::Vertex* mQuadVertexBuf;
-    u16*                           mQuadIndexBuf;
-    u16*                           mBoxIndexBuf;
+    PrimitiveRendererUtil::Vertex* quadVertexBuf;
+    u16*                           quadIndexBuf;
+    u16*                           boxIndexBuf;
 
     // Line
-    PrimitiveRendererUtil::Vertex* mLineVertexBuf;
-    u16*                           mLineIndexBuf;
+    PrimitiveRendererUtil::Vertex* lineVertexBuf;
+    u16*                           lineIndexBuf;
 
     // Cube
-    PrimitiveRendererUtil::Vertex* mCubeVertexBuf;
-    u16*                           mCubeIndexBuf;
+    PrimitiveRendererUtil::Vertex* cubeVertexBuf;
+    u16*                           cubeIndexBuf;
 
     // WireCube
-    PrimitiveRendererUtil::Vertex* mWireCubeVertexBuf;
-    u16*                           mWireCubeIndexBuf;
+    PrimitiveRendererUtil::Vertex* wireCubeVertexBuf;
+    u16*                           wireCubeIndexBuf;
 
     // SphereS
-    PrimitiveRendererUtil::Vertex* mSphereSVertexBuf;
-    u16*                           mSphereSIndexBuf;
+    PrimitiveRendererUtil::Vertex* sphereSVertexBuf;
+    u16*                           sphereSIndexBuf;
 
     // SphereL
-    PrimitiveRendererUtil::Vertex* mSphereLVertexBuf;
-    u16*                           mSphereLIndexBuf;
+    PrimitiveRendererUtil::Vertex* sphereLVertexBuf;
+    u16*                           sphereLIndexBuf;
 
     // DiskS, DiskL, CircleS, CircleL
-    PrimitiveRendererUtil::Vertex* mDiskSVertexBuf;
-    u16*                           mDiskSIndexBuf;
-    PrimitiveRendererUtil::Vertex* mDiskLVertexBuf;
-    u16*                           mDiskLIndexBuf;
-    u16*                           mCircleSIndexBuf;
-    u16*                           mCircleLIndexBuf;
+    PrimitiveRendererUtil::Vertex* diskSVertexBuf;
+    u16*                           diskSIndexBuf;
+    PrimitiveRendererUtil::Vertex* diskLVertexBuf;
+    u16*                           diskLIndexBuf;
+    u16*                           circleSIndexBuf;
+    u16*                           circleLIndexBuf;
 
     // CylinderS
-    PrimitiveRendererUtil::Vertex* mCylinderSVertexBuf;
-    u16*                           mCylinderSIndexBuf;
+    PrimitiveRendererUtil::Vertex* cylinderSVertexBuf;
+    u16*                           cylinderSIndexBuf;
 
     // CylinderL
-    PrimitiveRendererUtil::Vertex* mCylinderLVertexBuf;
-    u16*                           mCylinderLIndexBuf;
+    PrimitiveRendererUtil::Vertex* cylinderLVertexBuf;
+    u16*                           cylinderLIndexBuf;
 };
 
 }
