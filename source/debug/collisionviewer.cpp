@@ -205,8 +205,8 @@ void CourseSelectTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
         sead::PrimitiveRenderer::instance()->setProjection(*renderInfo.projection);
         sead::PrimitiveRenderer::instance()->begin();
 
-        for (u32 i = 0; i < CSHitboxColliderMgr::instance()->mArray1.mPtrNum; i++) {
-            CSHitboxCollider* cshCollider = static_cast<CSHitboxCollider*>(CSHitboxColliderMgr::instance()->mArray1.mPtrs[i]);
+        for (u32 i = 0; i < CSHitboxColliderMgr::instance()->mArray1.ptrNum; i++) {
+            CSHitboxCollider* cshCollider = static_cast<CSHitboxCollider*>(CSHitboxColliderMgr::instance()->mArray1.ptrs[i]);
 
             if (!cshCollider)
                 continue;
@@ -220,8 +220,8 @@ void CourseSelectTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
         }
 
 
-        for (u32 i = 0; i < CSHitboxColliderMgr::instance()->mArray2.mPtrNum; i++) {
-            CSHitboxCollider* cshCollider = static_cast<CSHitboxCollider*>(CSHitboxColliderMgr::instance()->mArray2.mPtrs[i]);
+        for (u32 i = 0; i < CSHitboxColliderMgr::instance()->mArray2.ptrNum; i++) {
+            CSHitboxCollider* cshCollider = static_cast<CSHitboxCollider*>(CSHitboxColliderMgr::instance()->mArray2.ptrs[i]);
 
             if (!cshCollider)
                 continue;
