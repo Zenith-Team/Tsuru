@@ -1,4 +1,4 @@
-# SuperHacks (working title)
+# Tsuru
 
 #### New Super Mario Bros. U Hack Framework and Extension 
 So basically this is just a massive compilation of code hacks for NSMBU made with scalability, accuracy, and integrity in mind. Besides the code hacks, there is also a multitude of headers included, to minimize the amount of reverse-engineering required for modifying the game for others. Make sure to also grab the assets pack from the releases page when installing the hacks.
@@ -60,15 +60,16 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 * Yoshi colors
 
 # Building
-This project is meant to be compiled with my fork of shibboleet's fork of the [CafeLoader Project Compiler](https://github.com/Luminyx1/CafeLoader-Compiler) script. A version of this source code that is ready for building will always be available on the [releases](https://github.com/Luminyx1/SuperHacks/releases) page which includes additional files required for compiling. Keep in mind that currently this project targets version 1.3.0 of the standalone copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not of high priority.
+This project is meant to be compiled with my fork of shibboleet's fork of the [CafeLoader Project Compiler](https://github.com/Luminyx1/CafeLoader-Compiler) script. A version of this source code that is ready for building will always be available on the [releases](https://github.com/Luminyx1/Tsuru/releases) page which includes additional files required for compiling. Keep in mind that currently this project targets version 1.3.0 of the standalone copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not our top priority.
 
 # Credits
 * [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code, headers, and build system
 * [jhmaster2000](https://github.com/jhmaster2000) - General code and headers
+* [Luminyx](https://github.com/Luminyx1) - Project leader, general code and headers
 * [Newer Team](https://github.com/Newer-Team) - [Newer U](https://github.com/Newer-Team/NewerSMBU) code and headers
 * [RicBent](https://github.com/RicBent) - [CodeDX](https://github.com/RicBent/codedx) code and headers
 * [RoadrunnerWMC](https://github.com/RoadrunnerWMC) - Customizable [world map scripts](https://github.com/RoadrunnerWMC/Cobra)
-* [Shibboleet](https://github.com/shibbo) - General code, headers, and contribution to the build system
+* [shibboleet](https://github.com/shibbo) - General code, headers, and contribution to the build system
 * [STUPID](https://github.com/stupidestmodder) - General code and headers
 * Modified dynamic_libs headers based on original implementation by Dimok and [Maschell fork](https://github.com/Maschell/dynamic_libs)
 * shiftjis.h from [Apollo PS3](https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h)
