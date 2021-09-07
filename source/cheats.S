@@ -5,8 +5,8 @@ InfiniteLives:
     SaveVolatileRegisters
 
     # Load SHSaveMgr::sSaveData.infiniteLivesEnabled
-    lis     r3, sSaveData__9SHSaveMgr@ha
-    addi    r3, r3, sSaveData__9SHSaveMgr@l
+    lis     r3, sSaveData__12TsuruSaveMgr@ha
+    addi    r3, r3, sSaveData__12TsuruSaveMgr@l
     lbz     r4, 0x4(r3)
 
     # If it's on then restore registers and return false
@@ -30,8 +30,8 @@ InfiniteTime:
     SaveVolatileRegisters
 
     # Load SHSaveMgr::sSaveData.infiniteTimeEnabled
-    lis     r3, sSaveData__9SHSaveMgr@ha
-    addi    r3, r3, sSaveData__9SHSaveMgr@l
+    lis     r3, sSaveData__12TsuruSaveMgr@ha
+    addi    r3, r3, sSaveData__12TsuruSaveMgr@l
     lbz     r4, 0x5(r3)
 
     # If it's on then restore registers and return false
@@ -55,8 +55,8 @@ NoClip:
     SaveVolatileRegisters
 
     # Load SHSaveMgr::sSaveData.noClipEnabled
-    lis     r3, sSaveData__9SHSaveMgr@ha
-    addi    r3, r3, sSaveData__9SHSaveMgr@l
+    lis     r3, sSaveData__12TsuruSaveMgr@ha
+    addi    r3, r3, sSaveData__12TsuruSaveMgr@l
     lbz     r4, 0x6(r3)
 
     # If it's on then skip setting the sensor
@@ -79,8 +79,8 @@ Invincibility:
     SaveVolatileRegisters
 
     # Load SHSaveMgr::sSaveData.invincibilityEnabled
-    lis     r3, sSaveData__9SHSaveMgr@ha
-    addi    r3, r3, sSaveData__9SHSaveMgr@l
+    lis     r3, sSaveData__12TsuruSaveMgr@ha
+    addi    r3, r3, sSaveData__12TsuruSaveMgr@l
     lbz     r4, 0x7(r3)
 
     # If it's on then restore registers and return false

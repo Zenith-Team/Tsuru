@@ -3,7 +3,6 @@
 #include <dynlibs/os/functions.h>
 #include <dynlibs/gx2/functions.h>
 #include <sead.h>
-#include <custom/shsavemgr.h>
 
 // staticInit array
 typedef void (*funcPtr)();

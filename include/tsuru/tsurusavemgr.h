@@ -1,10 +1,10 @@
 #include <types.h>
 #include <sead.h>
 
-class SHSaveMgr {
+class TsuruSaveMgr {
 public:
-    struct SHSaveData {
-        SHSaveData()
+    struct TsuruSaveData {
+        TsuruSaveData()
             : magic(0xCAFEF00D)
             , infiniteLivesEnabled(false)
             , infiniteTimeEnabled(false)
@@ -22,17 +22,17 @@ public:
     };
 
 public:
-    SEAD_SINGLETON_DISPOSER(SHSaveMgr)
+    SEAD_SINGLETON_DISPOSER(TsuruSaveMgr)
 
 public:
-    SHSaveMgr();
+    TsuruSaveMgr();
 
     void init();
     void save();
 
     static void boot();
 
-    static SHSaveData sSaveData;
+    static TsuruSaveData sSaveData;
     
     bool inited;
 };
