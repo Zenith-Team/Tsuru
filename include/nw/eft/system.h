@@ -10,78 +10,78 @@ struct PtclInstance;
 class Renderer;
 
 struct EmitterPreCalcArg {
-    EmitterInstance* mEmitter;
+    EmitterInstance* emitter;
 };
 
 static_assert(sizeof(EmitterPreCalcArg) == 4, "EmitterPreCalcArg size mismatch");
 
 struct EmitterPostCalcArg {
-    EmitterInstance* mEmitter;
+    EmitterInstance* emitter;
 };
 
 static_assert(sizeof(EmitterPostCalcArg) == 4, "EmitterPostCalcArg size mismatch");
 
 struct ParticleEmitArg {
-    PtclInstance* mPtcl;
+    PtclInstance* ptcl;
 };
 
 static_assert(sizeof(ParticleEmitArg) == 4, "ParticleEmitArg size mismatch");
 
 struct ParticleRemoveArg {
-    PtclInstance* mPtcl;
+    PtclInstance* ptcl;
 };
 
 static_assert(sizeof(ParticleRemoveArg) == 4, "ParticleRemoveArg size mismatch");
 
 struct ParticleCalcArg {
-    EmitterInstance* mEmitter;
-    PtclInstance* mPtcl;
-    CpuCore mCore;
-    bool mNoCalcBehavior;
+    EmitterInstance* emitter;
+    PtclInstance* ptcl;
+    CpuCore core;
+    bool noCalcBehavior;
 };
 
 static_assert(sizeof(ParticleCalcArg) == 0x10, "ParticleCalcArg size mismatch");
 
 struct ParticleMakeAttrArg {
-    EmitterInstance* mEmitter;
-    PtclInstance* mPtcl;
-    CpuCore mCore;
-    bool mNoCalcBehavior;
+    EmitterInstance* emitter;
+    PtclInstance* ptcl;
+    CpuCore core;
+    bool noCalcBehavior;
 };
 
 static_assert(sizeof(ParticleMakeAttrArg) == 0x10, "ParticleMakeAttrArg size mismatch");
 
 struct EmitterDrawOverrideArg {
-    const EmitterInstance* mEmitter;
-    Renderer* mRenderer;
-    bool mFlushCache;
-    void* mArgData;
+    const EmitterInstance* emitter;
+    Renderer* renderer;
+    bool flushCache;
+    void* argData;
 };
 
 static_assert(sizeof(EmitterDrawOverrideArg) == 0x10, "EmitterDrawOverrideArg size mismatch");
 
 struct ShaderEmitterPostCalcArg {
-    EmitterInstance* mEmitter;
-    bool mNoCalcBehavior;
-    bool mChildParticle;
+    EmitterInstance* emitter;
+    bool noCalcBehavior;
+    bool childParticle;
 };
 
 static_assert(sizeof(ShaderEmitterPostCalcArg) == 8, "ShaderEmitterPostCalcArg size mismatch");
 
 struct ShaderDrawOverrideArg {
-    const EmitterInstance* mEmitter;
-    Renderer* mRenderer;
-    bool mFlushCache;
-    void* mArgData;
+    const EmitterInstance* emitter;
+    Renderer* renderer;
+    bool flushCache;
+    void* argData;
 };
 
 static_assert(sizeof(ShaderDrawOverrideArg) == 0x10, "ShaderDrawOverrideArg size mismatch");
 
 struct RenderStateSetArg {
-    const EmitterInstance* mEmitter;
-    Renderer* mRenderer;
-    bool mFlushCache;
-    void* mArgData;
+    const EmitterInstance* emitter;
+    Renderer* renderer;
+    bool flushCache;
+    void* argData;
 };
 
 static_assert(sizeof(RenderStateSetArg) == 0x10, "RenderStateSetArg size mismatch");
@@ -112,8 +112,8 @@ struct SimpleEmitterData;
 class System { // Size: 0xA28
 public:
     struct PtclViewZ { // Size: 0x8
-        EmitterSet* mEmitterSet;
-        u32 mZ;
+        EmitterSet* emitterSet;
+        u32 z;
     };
 
     static_assert(sizeof(PtclViewZ) == 8, "PtclViewZ size mismatch");
@@ -174,57 +174,57 @@ public:
     // For qsort
     static int ComparePtclViewZ(const void* a, const void* b);
 
-    bool mInitialized;
-    Heap* mHeap;
-    Resource** mResources;
-    u32 mNumResourceMax;
-    EmitterSet* mEmitterSets;
-    s32 mNumEmitterSetMax;
-    s32 mNumEmitterSetMaxMask;
-    math::MTX44 mView[CpuCoreMax];
-    EmitterInstance* mEmitterGroups[64];  // Maximum of 64 groups
-    EmitterSet* mEmitterSetGroupHead[64]; // Maximum of 64 groups
-    EmitterSet* mEmitterSetGroupTail[64]; // Maximum of 64 groups
-    EmitterInstance* mEmitters;
-    EmitterStaticUniformBlock* mEmitterStaticUniformBlocks;
-    s32 mCurrentEmitterIdx;
-    s32 mNumUnusedEmitters;
-    PtclInstance* mParticles;
-    s32 mCurrentParticleIdx;
-    AlphaAnim* mAlphaAnim;
-    ScaleAnim* mScaleAnim;
-    PtclInstance** mChildParticles[CpuCoreMax];
-    s32 mNumChildParticle[CpuCoreMax];
-    PtclInstance** mParticlesToRemove[CpuCoreMax];
-    s32 mNumParticleToRemove[CpuCoreMax];
-    PtclStripe* mStripes;
-    PtclStripe* mStripeGroups[64]; // Maximum of 64 groups
-    u32 mUnused0;
-    s32 mCurrentEmitterSetIdx;
-    s32 mCurrentStripeIdx;
-    s32 mNumEmitterMax;
-    s32 mNumParticleMax;
-    s32 mNumStripeMax;
-    s32 mNumEmitterMaxMask;
-    s32 mNumParticleMaxMask;
-    s32 mNumStripeMaxMask;
-    u32 mNumCalcEmitter;
-    u32 mNumCalcParticle;
-    u32 mNumCalcEmitterSet;
-    u32 mNumEmittedParticle;
-    u32 mNumCalcStripe;
-    u64 mActiveGroupsFlg;
-    u32 mUnusedFlags[CpuCoreMax][64]; // Maximum of 64 groups
-    Renderer* mRenderers[CpuCoreMax];
-    u32 mCurrentEmitterSetCreateID;
-    EmitterCalc* mEmitterCalc[EmitterTypeMax];
-    void* mResourceWork;
-    void* mEmitterSetWork;
-    void* mRendererWork[CpuCoreMax];
-    void* mEmitterSimpleCalcWork;
-    void* mEmitterComplexCalcWork;
-    u8 mUnusedPad[4];
-    s32 mUnkCallbackVal; // When not equal to -1, currentCallbackID must be valid
+    bool initialized;
+    Heap* heap;
+    Resource** resources;
+    u32 numResourceMax;
+    EmitterSet* emitterSets;
+    s32 numEmitterSetMax;
+    s32 numEmitterSetMaxMask;
+    math::MTX44 view[CpuCoreMax];
+    EmitterInstance* emitterGroups[64];  // Maximum of 64 groups
+    EmitterSet* emitterSetGroupHead[64]; // Maximum of 64 groups
+    EmitterSet* emitterSetGroupTail[64]; // Maximum of 64 groups
+    EmitterInstance* emitters;
+    EmitterStaticUniformBlock* emitterStaticUniformBlocks;
+    s32 currentEmitterIdx;
+    s32 numUnusedEmitters;
+    PtclInstance* particles;
+    s32 currentParticleIdx;
+    AlphaAnim* alphaAnim;
+    ScaleAnim* scaleAnim;
+    PtclInstance** childParticles[CpuCoreMax];
+    s32 numChildParticle[CpuCoreMax];
+    PtclInstance** particlesToRemove[CpuCoreMax];
+    s32 numParticleToRemove[CpuCoreMax];
+    PtclStripe* stripes;
+    PtclStripe* stripeGroups[64]; // Maximum of 64 groups
+    u32 unused0;
+    s32 currentEmitterSetIdx;
+    s32 currentStripeIdx;
+    s32 numEmitterMax;
+    s32 numParticleMax;
+    s32 numStripeMax;
+    s32 numEmitterMaxMask;
+    s32 numParticleMaxMask;
+    s32 numStripeMaxMask;
+    u32 numCalcEmitter;
+    u32 numCalcParticle;
+    u32 numCalcEmitterSet;
+    u32 numEmittedParticle;
+    u32 numCalcStripe;
+    u64 activeGroupsFlg;
+    u32 unusedFlags[CpuCoreMax][64]; // Maximum of 64 groups
+    Renderer* renderers[CpuCoreMax];
+    u32 currentEmitterSetCreateID;
+    EmitterCalc* emitterCalc[EmitterTypeMax];
+    void* resourceWork;
+    void* emitterSetWork;
+    void* rendererWork[CpuCoreMax];
+    void* emitterSimpleCalcWork;
+    void* emitterComplexCalcWork;
+    u8 unusedPad[4];
+    s32 unkCallbackVal; // When not equal to -1, currentCallbackID must be valid
     CustomActionCallBackID currentCallbackID;
     CustomActionEmitterPreCalcCallback customActionEmitterPreCalcCallback[CustomActionCallBackIDMax];
     CustomActionParticleEmitCallback customActionParticleEmitCallback[CustomActionCallBackIDMax];

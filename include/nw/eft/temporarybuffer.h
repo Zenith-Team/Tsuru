@@ -18,18 +18,18 @@ namespace nw { namespace eft{
 
 struct TemporaryBuffer { // Size: 0x18
     inline void Initialize(Heap* heap, u32 size) {
-        this->mCurrentBufferIdx = 0;
-        this->mBufferSize = size;
-        this->mBufferUsedSize = 0;
-        this->mBufferFlushedSize = 0;
-        this->mBuffer[0] = heap->Alloc(mBufferSize, 0x100);
-        this->mBuffer[1] = heap->Alloc(mBufferSize, 0x100);
+        this->currentBufferIdx = 0;
+        this->bufferSize = size;
+        this->bufferUsedSize = 0;
+        this->bufferFlushedSize = 0;
+        this->buffer[0] = heap->Alloc(bufferSize, 0x100);
+        this->buffer[1] = heap->Alloc(bufferSize, 0x100);
     }
 
     inline void Swap() {
-        this->mCurrentBufferIdx = !this->mCurrentBufferIdx;
-        this->mBufferUsedSize = 0;
-        this->mBufferFlushedSize = 0;
+        this->currentBufferIdx = !this->currentBufferIdx;
+        this->bufferUsedSize = 0;
+        this->bufferFlushedSize = 0;
     }
 
     inline void* Alloc(u32 size) {
@@ -37,11 +37,11 @@ struct TemporaryBuffer { // Size: 0x18
             return NULL;
 
         u32 sizeAligned = (size & ~0xFFU) + 0x100;
-        if (this->mBufferUsedSize + sizeAligned > this->mBufferSize)
+        if (this->bufferUsedSize + sizeAligned > this->bufferSize)
             return NULL;
 
-        u8* ret = static_cast<u8*>(mBuffer[mCurrentBufferIdx]) + mBufferUsedSize;
-        mBufferUsedSize += sizeAligned;
+        u8* ret = static_cast<u8*>(buffer[currentBufferIdx]) + bufferUsedSize;
+        bufferUsedSize += sizeAligned;
 
         // DCZeroRange(ret, sizeAligned)
         for (u32 i = 0; i < sizeAligned >> 8; i++) {
@@ -68,17 +68,17 @@ struct TemporaryBuffer { // Size: 0x18
     }
 
     inline void FlushCache() {
-        if (this->mBufferFlushedSize != this->mBufferUsedSize) {
-            DCFlushRange(static_cast<u8*>(this->mBuffer[mCurrentBufferIdx]) + this->mBufferFlushedSize, this->mBufferUsedSize - this->mBufferFlushedSize);
-            this->mBufferFlushedSize = this->mBufferUsedSize;
+        if (this->bufferFlushedSize != this->bufferUsedSize) {
+            DCFlushRange(static_cast<u8*>(this->buffer[currentBufferIdx]) + this->bufferFlushedSize, this->bufferUsedSize - this->bufferFlushedSize);
+            this->bufferFlushedSize = this->bufferUsedSize;
         }
     }
 
-    u32 mCurrentBufferIdx;
-    u32 mBufferSize;
-    u32 mBufferUsedSize;
-    u32 mBufferFlushedSize;
-    void* mBuffer[2];
+    u32 currentBufferIdx;
+    u32 bufferSize;
+    u32 bufferUsedSize;
+    u32 bufferFlushedSize;
+    void* buffer[2];
 };
 
 static_assert(sizeof(TemporaryBuffer) == 0x18, "TemporaryBuffer size mismatch");
