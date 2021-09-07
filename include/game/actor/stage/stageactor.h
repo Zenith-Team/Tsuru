@@ -11,6 +11,15 @@ class StageActor : public Actor {
     SEAD_RTTI_OVERRIDE(StageActor, Actor)
 
 public:
+    enum StageActorType {
+        StageActorType_Actor    = 0,
+        StageActorType_Player   = 1,
+        StageActorType_Yoshi    = 2,
+        StageActorType_Enemy    = 3,
+        StageActorType_Unknown  = 4
+    };
+
+public:
     struct CallbackTable {
         typedef bool (StageActor::*typeHCCallbackB)(HitboxCollider*, Vec2f*);
         typedef void (StageActor::*typeHCCallbackV)(HitboxCollider*, Vec2f*);
