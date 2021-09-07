@@ -1,15 +1,15 @@
 
 ---
 Files:
-  - source/shsavemgr.cpp
+  - source/tsurusavemgr.cpp
 Hooks:
-  # Initialize SHSaveMgr
+  # Initialize TsuruSaveMgr
   - type: branch
     instr: b
     addr: "29d5b68" # RootTask::prepare()
-    func: boot__9SHSaveMgrSFv
+    func: boot__12TsuruSaveMgrSFv
   # Save custom savedata with original savedata
   - type: branch
     instr: b
     addr: "29d97b8"
-    func: save__9SHSaveMgrFv
+    func: save__12TsuruSaveMgrFv

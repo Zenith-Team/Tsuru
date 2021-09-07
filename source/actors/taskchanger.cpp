@@ -1,7 +1,7 @@
 #include <game/task/coursetask.h>
 #include <game/actor/stage/stageactor.h>
 #include <game/task/taskmgr.h>
-#include <custom/task/cutscenetask.h>
+#include <tsuru/task/cutscenetask.h>
 
 class TaskChanger : public StageActor {
     SEAD_RTTI_OVERRIDE_IMPL(TaskChanger, StageActor)

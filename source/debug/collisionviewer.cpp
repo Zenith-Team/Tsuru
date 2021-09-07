@@ -11,7 +11,7 @@
 #include <agl/lyr/renderinfo.h>
 #include <log.h>
 
-#include <custom/shsavemgr.h>
+#include <tsuru/tsurusavemgr.h>
 
 void drawLine(const Vec2f& position, const f32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
     Vec3f scale(lineLength, lineThickness, 1.0f);
@@ -36,7 +36,7 @@ void drawLine(const Vec2f& point1, const Vec2f& point2, const sead::Color4f& col
 void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
 
-    if (SHSaveMgr::sSaveData.collisionViewerEnabled) {
+    if (TsuruSaveMgr::sSaveData.collisionViewerEnabled) {
         sead::PrimitiveRenderer::instance()->setCamera(*renderInfo.camera);
         sead::PrimitiveRenderer::instance()->setProjection(*renderInfo.projection);
         sead::PrimitiveRenderer::instance()->begin();
@@ -200,7 +200,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
 void CourseSelectTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
 
-    if (SHSaveMgr::sSaveData.collisionViewerEnabled) {
+    if (TsuruSaveMgr::sSaveData.collisionViewerEnabled) {
         sead::PrimitiveRenderer::instance()->setCamera(*renderInfo.camera);
         sead::PrimitiveRenderer::instance()->setProjection(*renderInfo.projection);
         sead::PrimitiveRenderer::instance()->begin();
