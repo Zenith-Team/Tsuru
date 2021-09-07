@@ -4,6 +4,6 @@
 
 // TODO: finish this
 
-class Player : public PlayerBase {
+class Player : public PlayerBase { // Size: 0x34D8
 public:
 };

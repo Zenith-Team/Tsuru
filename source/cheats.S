@@ -9,7 +9,7 @@ InfiniteLives:
     addi    r3, r3, sSaveData__9SHSaveMgr@l
     lbz     r4, 0x4(r3)
 
-    # If it's on then return false
+    # If it's on then restore registers and return false
     cmpwi   r4, 1
     beq     SafeReturn
 
