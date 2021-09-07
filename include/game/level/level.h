@@ -30,8 +30,30 @@ public:
             u16 mX;                         // _2
             u16 mY;                         // _4
             u16 mEventID1_2;                // _6
-            u32 mSettings1;                 // _8
-            u32 MSettings2;                 // _C
+            union { u32 mSettings1;
+                struct {
+                    u32 nybble12 : 4;
+                    u32 nybble11 : 4;
+                    u32 nybble10 : 4;
+                    u32 nybble9  : 4;
+                    u32 nybble8  : 4;
+                    u32 nybble7  : 4;
+                    u32 nybble6  : 4;
+                    u32 nybble5  : 4;
+                };
+            };
+            union { u32 mSettings2;
+                struct {
+                    u32 nybble20 : 4;
+                    u32 nybble19 : 4;
+                    u32 nybble18 : 4;
+                    u32 nybble17 : 4;
+                    u32 nybble16 : 4;
+                    u32 nybble15 : 4;
+                    u32 nybble14 : 4;
+                    u32 nybble13 : 4;
+                };
+            };
             u8 mZoneID;                     // _10
             u8 mLayer;                      // _11
             u8 mMovementID;                 // _12
