@@ -19,21 +19,20 @@ public:
         PowerupState_PAcorn     = 8
     };
 
-public:
-    u8 _27C[0x2A8 - 0x27C];
-    PlayerInput input;
-    u8 _33C[0x500 - 0x33C];
-    PowerupState powerupState;
-    u8 _504[0x508 - 0x504];
-    ActorPhysicsMgr playerPhysicsMgr;
-    u8 _19E8[0x1AA8 - 0x19E8];
-    PhysicsMgr::Sensor sensorID2;
-    PhysicsMgr::Sensor sensorID3;
-    PhysicsMgr::Sensor sensorID0_1;
-    u8 _1ACC[0x1BB8 - 0x1ACC];
-    HitboxCollider playerHitboxCollider1;
-    HitboxCollider playerHitboxCollider2;
-    HitboxCollider playerHitboxCollider3;
-    HitboxCollider playerHitboxCollider4;
-    u8 _2058[0x2750 - 0x2058];
+    u8 _27C[0x2C];                        // _27C
+    PlayerInput input;                    // _2A8
+    u8 _33C[0x1C4];                       // _33C
+    PowerupState powerupState;            // _500
+    u8 _504[0x4];                         // _504
+    ActorPhysicsMgr playerPhysicsMgr;     // _508
+    u8 _19E8[0xC0];                       // _19E8
+    PhysicsMgr::Sensor sensorID2;         // _1AA8
+    PhysicsMgr::Sensor sensorID3;         // _1AB4
+    PhysicsMgr::Sensor sensorID0_1;       // _1AC0
+    u8 _1ACC[0xEC];                       // _1ACC
+    HitboxCollider playerHitboxCollider1; // _1BB8
+    HitboxCollider playerHitboxCollider2; // _1CE0
+    HitboxCollider playerHitboxCollider3; // _1E08
+    HitboxCollider playerHitboxCollider4; // _1F30
+    u8 _2058[0x6F8];                      // _2058
 };
