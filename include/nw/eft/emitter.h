@@ -24,14 +24,14 @@ struct EmitterInstance { // Size: 0x220
     void UpdateResInfo();
 
     const ComplexEmitterData* GetComplexEmitterData() const {
-        if (this->data->mType != EmitterTypeComplex)
+        if (this->data->type != EmitterTypeComplex)
             return NULL;
         
         return static_cast<const ComplexEmitterData*>(this->data);
     }
 
     bool HasChild() const {
-        return this->data->mType != EmitterTypeSimple && (static_cast<const ComplexEmitterData*>(this->data)->mChildFlags & 1);
+        return this->data->type != EmitterTypeSimple && (static_cast<const ComplexEmitterData*>(this->data)->childFlags & 1);
     }
 
     const ChildData* GetChildData() const {

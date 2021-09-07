@@ -9,23 +9,23 @@ namespace nw { namespace eft {
 
 struct VertexShaderKey { // Size: 0x20
     void InitializeSimple(const SimpleEmitterData* data) {
-        this->mTransformMode = data->mVertexTransformMode;
-        this->mRotationMode = (u8)(data->mRotationMode != VertexRotationModeNone);
-        this->mShaderUserSetting = data->mShaderUserSetting;
-        this->mShaderUserFlag = data->mShaderUserFlag;
-        this->mShaderUserSwitchFlag = data->mShaderUserSwitchFlag;
+        this->mTransformMode = data->vertexTransformMode;
+        this->mRotationMode = (u8)(data->rotationMode != VertexRotationModeNone);
+        this->mShaderUserSetting = data->shaderUserSetting;
+        this->mShaderUserFlag = data->shaderUserFlag;
+        this->mShaderUserSwitchFlag = data->shaderUserSwitchFlag;
         this->mStripeType = 0;
         //this->mStripeEmitterCoord = false; <-- Nintendo forgot to do this
-        this->mIsPrimitive = data->mMeshType == MeshTypePrimitive;
+        this->mIsPrimitive = data->meshType == MeshTypePrimitive;
     }
 
     void InitializeComplex(const ComplexEmitterData* cdata) {
         InitializeSimple(cdata);
 
-        if (cdata->mVertexTransformMode == VertexTransformModeStripe || cdata->mVertexTransformMode == VertexTransformModeComplexStripe) {
-            this->mStripeType = reinterpret_cast<const StripeData*>((u32)cdata + cdata->mStripeDataOffs)->mType;
+        if (cdata->vertexTransformMode == VertexTransformModeStripe || cdata->vertexTransformMode == VertexTransformModeComplexStripe) {
+            this->mStripeType = reinterpret_cast<const StripeData*>((u32)cdata + cdata->stripeDataOffs)->type;
 
-            if (cdata->mStripeFlags & 1)
+            if (cdata->stripeFlags & 1)
                 mStripeEmitterCoord = true;
             else
                 mStripeEmitterCoord = false;
@@ -36,7 +36,7 @@ struct VertexShaderKey { // Size: 0x20
     }
 
     void Initialize(const SimpleEmitterData* data) {
-        if (data->mType == EmitterTypeComplex)
+        if (data->type == EmitterTypeComplex)
             InitializeComplex(static_cast<const ComplexEmitterData*>(data));
         else
             InitializeSimple(data);
@@ -45,7 +45,7 @@ struct VertexShaderKey { // Size: 0x20
     }
 
     void Initialize(const SimpleEmitterData* data, const char* userMacro) {
-        if (data->mType == EmitterTypeComplex)
+        if (data->type == EmitterTypeComplex)
             InitializeComplex(static_cast<const ComplexEmitterData*>(data));
         else
             InitializeSimple(data);
@@ -57,14 +57,14 @@ struct VertexShaderKey { // Size: 0x20
     }
 
     void InitializeChild(const ChildData* data) {
-        this->mTransformMode = data->mVertexTransformMode;
-        this->mRotationMode = (u8)(data->mRotationMode != VertexRotationModeNone);
-        this->mShaderUserSetting = data->mShaderUserSetting;
-        this->mShaderUserFlag = data->mShaderUserFlag;
-        this->mShaderUserSwitchFlag = data->mShaderUserSwitchFlag;
+        this->mTransformMode = data->vertexTransformMode;
+        this->mRotationMode = (u8)(data->rotationMode != VertexRotationModeNone);
+        this->mShaderUserSetting = data->shaderUserSetting;
+        this->mShaderUserFlag = data->shaderUserFlag;
+        this->mShaderUserSwitchFlag = data->shaderUserSwitchFlag;
         this->mStripeType = 3;
         //this->mStripeEmitterCoord = false; <-- Nintendo forgot to do this
-        this->mIsPrimitive = data->mMeshType == MeshTypePrimitive;
+        this->mIsPrimitive = data->meshType == MeshTypePrimitive;
     }
 
     void Initialize(const ChildData* data) {
@@ -108,47 +108,47 @@ static_assert(sizeof(VertexShaderKey) == 0x20, "VertexShaderKey size mismatch");
 
 struct FragmentShaderKey {
     void InitializeSimple(const SimpleEmitterData* data) {
-        this->mShaderMode           = data->mFragmentShaderMode;
-        this->mSoftEdge             = data->mFragmentSoftEdge;
-        this->mTextureMode          = (data->mTextures[1].mWidth != 0 && data->mTextures[1].mHeight != 0) ? 1 : 0;
-        this->mColorMode            = data->mFragmentColorMode;
-        this->mAlphaMode            = data->mFragmentAlphaMode;
-        this->mShaderUserSetting    = data->mShaderUserSetting;
-        this->mShaderUserFlag       = data->mShaderUserFlag;
-        this->mShaderUserSwitchFlag = data->mShaderUserSwitchFlag;
-        this->mRefractionApplyAlpha = data->mRefractionApplyAlpha;
-        this->mIsPrimitive          = data->mMeshType == MeshTypePrimitive;
+        this->mShaderMode           = data->fragmentShaderMode;
+        this->mSoftEdge             = data->fragmentSoftEdge;
+        this->mTextureMode          = (data->textures[1].width != 0 && data->textures[1].height != 0) ? 1 : 0;
+        this->mColorMode            = data->fragmentColorMode;
+        this->mAlphaMode            = data->fragmentAlphaMode;
+        this->mShaderUserSetting    = data->shaderUserSetting;
+        this->mShaderUserFlag       = data->shaderUserFlag;
+        this->mShaderUserSwitchFlag = data->shaderUserSwitchFlag;
+        this->mRefractionApplyAlpha = data->refractionApplyAlpha;
+        this->mIsPrimitive          = data->meshType == MeshTypePrimitive;
 
-        switch (data->mTextureColorBlend) {
+        switch (data->textureColorBlend) {
             case FragmentCompositeMul: this->mTextureColorBlend = 0; break;
             case FragmentCompositeAdd: this->mTextureColorBlend = 1; break;
             case FragmentCompositeSub: this->mTextureColorBlend = 2; break;
         }
 
-        switch (data->mTextureAlphaBlend) {
+        switch (data->textureAlphaBlend) {
             case FragmentCompositeMul: this->mTextureAlphaBlend = 0; break;
             case FragmentCompositeAdd: this->mTextureAlphaBlend = 1; break;
             case FragmentCompositeSub: this->mTextureAlphaBlend = 2; break;
         }
 
-        switch (data->mPrimitiveColorBlend) {
+        switch (data->primitiveColorBlend) {
             case FragmentCompositeMul: this->mPrimitiveColorBlend = 0; break;
             case FragmentCompositeAdd: this->mPrimitiveColorBlend = 1; break;
             case FragmentCompositeSub: this->mPrimitiveColorBlend = 2; break;
         }
 
-        switch (data->mPrimitiveAlphaBlend) {
+        switch (data->primitiveAlphaBlend) {
             case FragmentCompositeMul: this->mPrimitiveAlphaBlend = 0; break;
             case FragmentCompositeAdd: this->mPrimitiveAlphaBlend = 1; break;
             case FragmentCompositeSub: this->mPrimitiveAlphaBlend = 2; break;
         }
 
-        this->mTexture0ColorSrc  = data->mFlags >> 11 & 1;
-        this->mTexture1ColorSrc  = data->mFlags >> 12 & 1;
-        this->mPrimitiveColorSrc = data->mFlags >> 13 & 1;
-        this->mTexture0AlphaSrc  = data->mFlags >> 14 & 1;
-        this->mTexture1AlphaSrc  = data->mFlags >> 15 & 1;
-        this->mPrimitiveAlphaSrc = data->mFlags >> 16 & 1;
+        this->mTexture0ColorSrc  = data->flags >> 11 & 1;
+        this->mTexture1ColorSrc  = data->flags >> 12 & 1;
+        this->mPrimitiveColorSrc = data->flags >> 13 & 1;
+        this->mTexture0AlphaSrc  = data->flags >> 14 & 1;
+        this->mTexture1AlphaSrc  = data->flags >> 15 & 1;
+        this->mPrimitiveAlphaSrc = data->flags >> 16 & 1;
 
         this->mUnused0 = 0;
         this->mUnused1 = 0;
@@ -169,26 +169,26 @@ struct FragmentShaderKey {
     }
 
     void InitializeChild(const ChildData* data, u32 childFlags) {
-        this->mShaderMode           = data->mFragmentShaderMode;
-        this->mSoftEdge             = data->mFragmentSoftEdge;
+        this->mShaderMode           = data->fragmentShaderMode;
+        this->mSoftEdge             = data->fragmentSoftEdge;
         this->mTextureMode          = 0;
-        this->mColorMode            = data->mFragmentColorMode;
-        this->mAlphaMode            = data->mFragmentAlphaMode;
-        this->mShaderUserSetting    = data->mShaderUserSetting;
-        this->mShaderUserFlag       = data->mShaderUserFlag;
-        this->mShaderUserSwitchFlag = data->mShaderUserSwitchFlag;
-        this->mRefractionApplyAlpha = data->mRefractionApplyAlpha;
+        this->mColorMode            = data->fragmentColorMode;
+        this->mAlphaMode            = data->fragmentAlphaMode;
+        this->mShaderUserSetting    = data->shaderUserSetting;
+        this->mShaderUserFlag       = data->shaderUserFlag;
+        this->mShaderUserSwitchFlag = data->shaderUserSwitchFlag;
+        this->mRefractionApplyAlpha = data->refractionApplyAlpha;
         this->mTextureColorBlend    = 0;
         this->mTextureAlphaBlend    = 0;
-        this->mIsPrimitive          = data->mMeshType == MeshTypePrimitive;
+        this->mIsPrimitive          = data->meshType == MeshTypePrimitive;
 
-        switch (data->mPrimitiveColorBlend) {
+        switch (data->primitiveColorBlend) {
             case FragmentCompositeMul: this->mPrimitiveColorBlend = 0; break;
             case FragmentCompositeAdd: this->mPrimitiveColorBlend = 1; break;
             case FragmentCompositeSub: this->mPrimitiveColorBlend = 2; break;
         }
 
-        switch (data->mPrimitiveAlphaBlend) {
+        switch (data->primitiveAlphaBlend) {
             case FragmentCompositeMul: this->mPrimitiveAlphaBlend = 0; break;
             case FragmentCompositeAdd: this->mPrimitiveAlphaBlend = 1; break;
             case FragmentCompositeSub: this->mPrimitiveAlphaBlend = 2; break;
