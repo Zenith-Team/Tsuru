@@ -38,8 +38,30 @@ public:
     bool mIsSprite;                         // D
     bool mIsCreated;                        // E
     bool mIsDeleted;                        // F
-    u32 mSettings1;                         // 10
-    u32 mSettings2;                         // 14
+    union { u32 mSettings1;
+        struct {
+            u32 nybble12 : 4;
+            u32 nybble11 : 4;
+            u32 nybble10 : 4;
+            u32 nybble9  : 4;
+            u32 nybble8  : 4;
+            u32 nybble7  : 4;
+            u32 nybble6  : 4;
+            u32 nybble5  : 4;
+        };
+    };
+    union { u32 mSettings2;
+        struct {
+            u32 nybble20 : 4;
+            u32 nybble19 : 4;
+            u32 nybble18 : 4;
+            u32 nybble17 : 4;
+            u32 nybble16 : 4;
+            u32 nybble15 : 4;
+            u32 nybble14 : 4;
+            u32 nybble13 : 4;
+        };
+    };
     u8 mMovementID;                         // 18
     u8 mLinkID;                             // 19
     u8 mInitialStateFlag;                   // 1A
