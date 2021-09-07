@@ -31,45 +31,45 @@ public:
     void removeChild(Actor* child);
     u32 getProfileID();
 
-    sead::Heap* mHeap;                      // 0
-    u32 mID;                                // 4
-    Profile* mProfile;                      // 8
-    bool mWasNotDeferred;                   // C
-    bool mIsSprite;                         // D
-    bool mIsCreated;                        // E
-    bool mIsDeleted;                        // F
-    union { u32 mSettings1;
-        struct {
-            u32 nybble12 : 4;
-            u32 nybble11 : 4;
-            u32 nybble10 : 4;
-            u32 nybble9  : 4;
-            u32 nybble8  : 4;
-            u32 nybble7  : 4;
-            u32 nybble6  : 4;
-            u32 nybble5  : 4;
-        };
-    };
-    union { u32 mSettings2;
-        struct {
-            u32 nybble20 : 4;
-            u32 nybble19 : 4;
-            u32 nybble18 : 4;
-            u32 nybble17 : 4;
-            u32 nybble16 : 4;
-            u32 nybble15 : 4;
-            u32 nybble14 : 4;
-            u32 nybble13 : 4;
-        };
-    };
-    u8 mMovementID;                         // 18
-    u8 mLinkID;                             // 19
-    u8 mInitialStateFlag;                   // 1A
-    u8 _1B;                                 // 1B     //? Padding
-    sead::OffsetList<Actor> mChildList;     // 1C
-    sead::ListNode mChildNode;              // 2C
-    Actor* mParent;                         // 34
-    sead::ListNode mActorListNode;          // 38
-    sead::ListNode mDrawListNode;           // 40
-    u32 mFlags;                             // 48
+    sead::Heap* mHeap;                      // _0
+    u32 mID;                                // _4
+    Profile* mProfile;                      // _8
+    bool mWasNotDeferred;                   // _C
+    bool mIsSprite;                         // _D
+    bool mIsCreated;                        // _E
+    bool mIsDeleted;                        // _F
+    union { u32 mSettings1;                 // _10
+        struct {                            // _10
+            u32 nybble12 : 4;               // _10
+            u32 nybble11 : 4;               // _10
+            u32 nybble10 : 4;               // _10
+            u32 nybble9  : 4;               // _10
+            u32 nybble8  : 4;               // _10
+            u32 nybble7  : 4;               // _10
+            u32 nybble6  : 4;               // _10
+            u32 nybble5  : 4;               // _10
+        };                                  // _10
+    };                                      // _10
+    union { u32 mSettings2;                 // _14
+        struct {                            // _14
+            u32 nybble20 : 4;               // _14
+            u32 nybble19 : 4;               // _14
+            u32 nybble18 : 4;               // _14
+            u32 nybble17 : 4;               // _14
+            u32 nybble16 : 4;               // _14
+            u32 nybble15 : 4;               // _14
+            u32 nybble14 : 4;               // _14
+            u32 nybble13 : 4;               // _14
+        };                                  // _14
+    };                                      // _14
+    u8 mMovementID;                         // _18
+    u8 mLinkID;                             // _19
+    u8 mInitialStateFlag;                   // _1A
+    u8 _1B;                                 // _1B     //? Padding
+    sead::OffsetList<Actor> mChildList;     // _1C
+    sead::ListNode mChildNode;              // _2C
+    Actor* mParent;                         // _34
+    sead::ListNode mActorListNode;          // _38
+    sead::ListNode mDrawListNode;           // _40
+    u32 mFlags;                             // _48
 };
