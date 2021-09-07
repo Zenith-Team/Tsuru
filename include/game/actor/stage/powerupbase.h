@@ -150,7 +150,7 @@ public:
     u32 _18A0;
     PowerupBase* self;
     void* _18A8;
-    HitboxCollider mHitboxCollider;
+    HitboxCollider _18AC;
     u8 _19D4;
     u8 unk8[3];
     f32 _19D8;
