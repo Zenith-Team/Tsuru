@@ -6,6 +6,8 @@
 #include <game/sound/soundactor.h>
 #include <game/sound/soundsystem.h>
 
+extern const char** sfxArray[1040];
+
 extern BasicSoundActor* GlobalBasicSoundActorA;
 extern BasicSoundActor* GlobalBasicSoundActorB;
 
