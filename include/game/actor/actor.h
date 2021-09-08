@@ -31,14 +31,14 @@ public:
     void removeChild(Actor* child);
     u32 getProfileID();
 
-    sead::Heap* mHeap;                      // _0
-    u32 mID;                                // _4
-    Profile* mProfile;                      // _8
-    bool mWasNotDeferred;                   // _C
-    bool mIsSprite;                         // _D
-    bool mIsCreated;                        // _E
-    bool mIsDeleted;                        // _F
-    union { u32 mSettings1;                 // _10
+    sead::Heap* heap;                       // _0
+    u32 ID;                                 // _4
+    Profile* profile;                       // _8
+    bool wasNotDeferred;                    // _C
+    bool isSprite;                          // _D
+    bool isCreated;                         // _E
+    bool isDeleted;                         // _F
+    union { u32 settings1;                  // _10
         struct {                            // _10
             u32 nybble12 : 4;               // _10
             u32 nybble11 : 4;               // _10
@@ -50,7 +50,7 @@ public:
             u32 nybble5  : 4;               // _10
         };                                  // _10
     };                                      // _10
-    union { u32 mSettings2;                 // _14
+    union { u32 settings2;                  // _14
         struct {                            // _14
             u32 nybble20 : 4;               // _14
             u32 nybble19 : 4;               // _14
@@ -62,14 +62,14 @@ public:
             u32 nybble13 : 4;               // _14
         };                                  // _14
     };                                      // _14
-    u8 mMovementID;                         // _18
-    u8 mLinkID;                             // _19
-    u8 mInitialStateFlag;                   // _1A
+    u8 movementID;                          // _18
+    u8 linkID;                              // _19
+    u8 initialStateFlag;                    // _1A
     u8 _1B;                                 // _1B     //? Padding
-    sead::OffsetList<Actor> mChildList;     // _1C
-    sead::ListNode mChildNode;              // _2C
-    Actor* mParent;                         // _34
-    sead::ListNode mActorListNode;          // _38
-    sead::ListNode mDrawListNode;           // _40
-    u32 mFlags;                             // _48
+    sead::OffsetList<Actor> childList;      // _1C
+    sead::ListNode childNode;               // _2C
+    Actor* parent;                          // _34
+    sead::ListNode actorListNode;           // _38
+    sead::ListNode drawListNode;            // _40
+    u32 flags;                             // _48
 };

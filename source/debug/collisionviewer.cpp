@@ -148,16 +148,16 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
             }
 
             else {
-                //// LOG("Found unknown collider for actor with id: 0x%x, and profile id: 0x%x\n", colliderBase->mOwner->mID, colliderBase->mOwner->mProfile->mID);
+                //// LOG("Found unknown collider for actor with id: 0x%x, and profile id: 0x%x\n", colliderBase->mOwner->ID, colliderBase->mOwner->profile->ID);
             }
 
             node = node->mNext;
         }
 
-        ActorBuffer* actors = &ActorMgr::instance()->mActors;
-        for (u32 i = 0; i < actors->mStartBuffer.size; i++) {
-            StageActor* actor = sead::DynamicCast<StageActor, Actor>(actors->mStartBuffer[i]);
-            if (actor == NULL || !actor->mIsVisible || actor->mIsDeleted)
+        ActorBuffer* actors = &ActorMgr::instance()->actors;
+        for (u32 i = 0; i < actors->startBuffer.size; i++) {
+            StageActor* actor = sead::DynamicCast<StageActor, Actor>(actors->startBuffer[i]);
+            if (actor == NULL || !actor->isVisible || actor->isDeleted)
                 continue;
             
             ActorPhysicsMgr* actorPhysicsMgr = actor->getActorPhysicsMgr();
@@ -211,12 +211,12 @@ void CourseSelectTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
             if (!cshCollider)
                 continue;
 
-            CourseSelectActor* actor = reinterpret_cast<CourseSelectActor*>(ActorMgr::instance()->mActors.findActorByID(&cshCollider->mOwnerID));
+            CourseSelectActor* actor = reinterpret_cast<CourseSelectActor*>(ActorMgr::instance()->actors.findActorByID(&cshCollider->mOwnerID));
 
             if (!actor)
                 continue;
 
-            sead::PrimitiveRenderer::instance()->drawCube(actor->mPosition + cshCollider->mInfo.mOffset, cshCollider->mInfo.mSize, sead::colorYellow);
+            sead::PrimitiveRenderer::instance()->drawCube(actor->position + cshCollider->mInfo.mOffset, cshCollider->mInfo.mSize, sead::colorYellow);
         }
 
 
@@ -226,12 +226,12 @@ void CourseSelectTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
             if (!cshCollider)
                 continue;
 
-            CourseSelectActor* actor = reinterpret_cast<CourseSelectActor*>(ActorMgr::instance()->mActors.findActorByID(&cshCollider->mOwnerID));
+            CourseSelectActor* actor = reinterpret_cast<CourseSelectActor*>(ActorMgr::instance()->actors.findActorByID(&cshCollider->mOwnerID));
 
             if (!actor)
                 continue;
 
-            sead::PrimitiveRenderer::instance()->drawCube(actor->mPosition + cshCollider->mInfo.mOffset, cshCollider->mInfo.mSize, sead::colorRed);
+            sead::PrimitiveRenderer::instance()->drawCube(actor->position + cshCollider->mInfo.mOffset, cshCollider->mInfo.mSize, sead::colorRed);
         }
 
         sead::PrimitiveRenderer::instance()->end();

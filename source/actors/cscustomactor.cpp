@@ -37,18 +37,18 @@ Actor* CSCustomActor::build(const ActorBuildInfo* buildInfo) {
 u32 CSCustomActor::onCreate() {
     this->mModel = ModelWrapper::create("cobStarGate", "cobStarGate", 3);
 
-    this->mHitboxCollider.init(this, &CSCustomActor::sCollisionInfo);
+    this->hitboxCollider.init(this, &CSCustomActor::sCollisionInfo);
 
     return 1;
 }
 
 u32 CSCustomActor::onExecute() {
     // This needs to be in onExecute for the collision check below to work so it's probably not "add"
-    CSHitboxColliderMgr::instance()->add(&this->mHitboxCollider);
+    CSHitboxColliderMgr::instance()->add(&this->hitboxCollider);
 
     // Checks if player collided (gets called twice around 1 second after player collision, also causes the player to bounce back and go into a fighting stance)
-    if (CSHitboxColliderMgr::instance()->FUN_21c5894(&this->mHitboxCollider) != 0) {
-        this->mRotation += 0x5000000;
+    if (CSHitboxColliderMgr::instance()->FUN_21c5894(&this->hitboxCollider) != 0) {
+        this->rotation += 0x5000000;
         LOG("Player collided");
     }
 
@@ -58,10 +58,10 @@ u32 CSCustomActor::onExecute() {
 u32 CSCustomActor::onDraw() {
     Mtx34 mtx;
 
-    mtx.rotateAndTranslate(this->mRotation, this->mPosition);
+    mtx.rotateAndTranslate(this->rotation, this->position);
 
     this->mModel->setMtx(mtx);
-    this->mModel->setScale(this->mScale);
+    this->mModel->setScale(this->scale);
     this->mModel->updateModel();
 
     DrawMgr::instance()->drawModel(mModel);

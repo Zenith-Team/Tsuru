@@ -32,12 +32,12 @@ Actor* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 ActorSpawner::onCreate() {
-    if (!mEventID2)
+    if (!eventID2)
         return 2;
     
-    u16 inputID = mLinkID | ((mMovementID & 0xF) << 8);
+    u16 inputID = linkID | ((movementID & 0xF) << 8);
 
-    if (mMovementID & 0x10)
+    if (movementID & 0x10)
         mSpawnProfileID = Profile::spriteToProfileList[inputID];
     else
         mSpawnProfileID = inputID;
@@ -47,15 +47,15 @@ u32 ActorSpawner::onCreate() {
 }
 
 u32 ActorSpawner::onExecute() {
-    Actor* child = (mChildList.begin() != mChildList.end()) ? mChildList.begin().ptr : nullptr;
+    Actor* child = (childList.begin() != childList.end()) ? childList.begin().ptr : nullptr;
 
-    if (EventMgr::instance()->isActive(mEventID2-1)) {
-        if (mInitialStateFlag == 2 && child) {
+    if (EventMgr::instance()->isActive(eventID2-1)) {
+        if (initialStateFlag == 2 && child) {
             StageActor* actor = sead::DynamicCast<StageActor, Actor>(child);
 
             if (actor) {
-                actor->mIsActive = true;
-                actor->mIsVisible = true;
+                actor->isActive = true;
+                actor->isVisible = true;
                 actor->addHitboxColliders();
             }
 
@@ -65,12 +65,12 @@ u32 ActorSpawner::onExecute() {
         if (!mSpawned) {
             ActorBuildInfo buildInfo = { 0 };
 
-            buildInfo.mSettings1 = mSettings1;
-            buildInfo.mSettings2 = mSettings2;
-            buildInfo.mProfile = Profile::get(mSpawnProfileID);
-            buildInfo.mPosition = mPosition;
-            buildInfo.mEventID1 = mEventID1 & 0xF;
-            buildInfo.mEventID2 = (mEventID1 >> 4) & 0xF;
+            buildInfo.settings1 = settings1;
+            buildInfo.settings2 = settings2;
+            buildInfo.profile = Profile::get(mSpawnProfileID);
+            buildInfo.position = position;
+            buildInfo.eventID1 = eventID1 & 0xF;
+            buildInfo.eventID2 = (eventID1 >> 4) & 0xF;
             ActorMgr::instance()->create(&buildInfo, 0);
 
             mSpawned = true;
@@ -78,16 +78,16 @@ u32 ActorSpawner::onExecute() {
     }
 
     else {
-        if (mInitialStateFlag == 1 && child) {
-            child->mIsDeleted = true;
+        if (initialStateFlag == 1 && child) {
+            child->isDeleted = true;
         }
 
-        else if (mInitialStateFlag == 2 && child) {
+        else if (initialStateFlag == 2 && child) {
             StageActor* actor = sead::DynamicCast<StageActor, Actor>(child);
 
             if (actor) {
-                actor->mIsActive = false;
-                actor->mIsVisible = false;
+                actor->isActive = false;
+                actor->isVisible = false;
                 actor->removeHitboxColliders();
             }
         }

@@ -23,16 +23,16 @@ public:
 
     void vf11C() override;
     void vf124(f32) override;
-    u32 vf12C() override;
+    u32  vf12C() override;
 
     bool vf154() override;
     void move(Vec2f& dest) override;
     void setYSpeed(f32) override;
-    u32 vf16C() override;
-    u32 vf174() override;
+    u32  vf16C() override;
+    u32  vf174() override;
     void getRect(Rect& rect) override;
 
     virtual void doStateChange(StateBase* state);
 
-    MultiStateWrapper<MultiStateActor> mStates; // _17A0
+    MultiStateWrapper<MultiStateActor> states; // _17A0
 };

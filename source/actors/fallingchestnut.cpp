@@ -57,10 +57,10 @@ Actor* FallingChestnut::build(const ActorBuildInfo* buildInfo) {
 u32 FallingChestnut::onCreate() {
     this->mModel = ModelWrapper::create("iga_kuribo", "iga_kuribo");
     
-    this->mHitboxCollider.init(this, &FallingChestnut::collisionInfo, 0);
+    this->hitboxCollider.init(this, &FallingChestnut::collisionInfo, 0);
     this->addHitboxColliders();
 
-    this->mPhysicsMgr.init(this, &FallingChestnut::belowSensor);
+    this->physicsMgr.init(this, &FallingChestnut::belowSensor);
 
     this->doStateChange(&StateID_Idle);
 
@@ -72,13 +72,13 @@ u32 FallingChestnut::onExecute() {
     Vec3u rotOffset(0x40000000, 0, 0);
 
     Mtx34 mtx;
-    mtx.rotateAndTranslate(this->mRotation + rotOffset, this->mPosition + posOffset);
+    mtx.rotateAndTranslate(this->rotation + rotOffset, this->position + posOffset);
 
     this->mModel->setMtx(mtx);
-    this->mModel->setScale(this->mScale);
+    this->mModel->setScale(this->scale);
     this->mModel->updateModel();
 
-    this->mStates.execute();
+    this->states.execute();
 
     return 1;
 }
@@ -108,18 +108,18 @@ void FallingChestnut::endState_Idle() { }
 /* STATE: Falling */
 
 void FallingChestnut::beginState_Falling() {
-    this->mGravity = -0.1875f;
-    this->mMaxSpeed.y = -4.0f;
+    this->gravity = -0.1875f;
+    this->maxSpeed.y = -4.0f;
 }
 
 void FallingChestnut::executeState_Falling() {
     this->handleGravity();
     this->handleSpeed();
 
-    this->mPhysicsMgr.processCollisions();
+    this->physicsMgr.processCollisions();
 
-    if (this->mPhysicsMgr.isOnGround()) {
-        this->mSpeed.y = 0.0f;
+    if (this->physicsMgr.isOnGround()) {
+        this->speed.y = 0.0f;
         this->doStateChange(&StateID_OnGround);
     }
 }
@@ -134,10 +134,10 @@ void FallingChestnut::executeState_OnGround() {
     this->mDespawnDelay++;
 
     if (this->mDespawnDelay >= 60) {
-        Vec3f effectPos(this->mPosition.x, this->mPosition.y - 18.0f, 4500.0f);
+        Vec3f effectPos(this->position.x, this->position.y - 18.0f, 4500.0f);
         Effect::spawn(RP_ObakeDoor_Disapp, &effectPos);
 
-        this->mIsDeleted = true;
+        this->isDeleted = true;
     }
 }
 
