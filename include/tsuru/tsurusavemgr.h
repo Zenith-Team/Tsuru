@@ -30,6 +30,8 @@ public:
     void init();
     void save();
 
+    bool write();
+
     static void boot();
 
     static TsuruSaveData sSaveData;
