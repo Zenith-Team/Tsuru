@@ -29,19 +29,19 @@ public:
     void damageFromUnder() override;
 
     virtual void vf10C(u8 unk);
-    virtual u8 vf114();       // deleted
+    virtual u8   vf114();       // deleted
     virtual void vf11C();
     virtual void vf124(f32 unk);
-    virtual u32 vf12C();
-    virtual void vf134();     // deleted
-    virtual u32 vf13C();
+    virtual u32  vf12C();
+    virtual void vf134();       // deleted
+    virtual u32  vf13C();
     virtual void vf144(bool unk);
     virtual void vf14C(StageActor* unk);
     virtual bool vf154();
     virtual void move(Vec2f& dest);
     virtual void setYSpeed(f32 ySpeed);
-    virtual u32 vf16C();
-    virtual u32 vf174();
+    virtual u32  vf16C();
+    virtual u32  vf174();
     virtual void getRect(Rect& rect);
 
     void handleGravity();
@@ -49,19 +49,19 @@ public:
 
     inline bool checkForSuitableGround(f32 xOffset, f32 yOffset) {
         TileChecker::Param checkParam = { 0 };
-        checkParam._2 = this->mLayer;
-        checkParam._3 = this->mCollisionMask;
+        checkParam._2 = this->layer;
+        checkParam._3 = this->collisionMask;
 
         TileChecker tileChecker(checkParam);
 
-        Vec2f a(this->mPosition.x, this->mPosition.y);
-        Vec2f b(this->mPosition.x + xOffset, this->mPosition.y + yOffset);
+        Vec2f a(this->position.x, this->position.y);
+        Vec2f b(this->position.x + xOffset, this->position.y + yOffset);
 
         return tileChecker.check(nullptr, a, b, 8);
     }
 
     u32 _27C;                           // _27C
-    ActorPhysicsMgr mPhysicsMgr;        // _280
+    ActorPhysicsMgr physicsMgr;         // _280
     f32 _1760;                          // _1760 Inited to 0
     f32 _1764;                          // _1764 Inited to 
     Vec3f* _1768;                       // _1768 Inited to &position
@@ -73,8 +73,8 @@ public:
     f32 _1774;                          // _1774 Inited to 1.0
     Vec2f _1778;                        // _1778 Inited to 0
     Vec2f _1780;                        // _1780 Inited to 0
-    f32 mMaxYSpeed;                     // _1788 Inited to 1.5
-    f32 mMinYSpeed;                     // _178C Inited to -1.5
+    f32 maxYSpeed;                      // _1788 Inited to 1.5
+    f32 minYSpeed;                      // _178C Inited to -1.5
     f32 _1790;                          // _1790 Inited to -0.0625
     u8 _1794;                           // _1794 Inited to 0
     u8 _1795;                           // _1795 Inited to 0

@@ -67,7 +67,7 @@ u32 BeepBlock::onCreate() {
 
     this->mModel = ModelWrapper::create("star_coin", "star_coinA");
 
-    this->mBeepBlockType = static_cast<BeepBlockColor>(this->mSettings1 >> 0x1C);
+    this->mBeepBlockType = static_cast<BeepBlockColor>(this->settings1 >> 0x1C);
 
     if (this->mBeepBlockType == BeepBlockColorRed)
         this->doStateChange(&StateID_RedDisabled);
@@ -81,11 +81,11 @@ u32 BeepBlock::onExecute() {
     this->mModel->updateAnimations();
     
     Mtx34 mtx;
-    mtx.rotateAndTranslate(this->mRotation, this->mPosition);
+    mtx.rotateAndTranslate(this->rotation, this->position);
     this->mModel->setMtx(mtx);
     this->mModel->updateModel();
 
-    this->mStates.execute();
+    this->states.execute();
 
     return 1;
 }

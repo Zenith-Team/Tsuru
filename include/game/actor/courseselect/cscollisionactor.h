@@ -17,7 +17,7 @@ public:
     void vfA4() override; // nullsub
 
     // Custom functions
-    inline void doStateChange(StateBase* state) { this->mStates.changeState(state); }
+    inline void doStateChange(StateBase* state) { this->states.changeState(state); }
 
     virtual void vfAC(); // nullsub
     virtual u32 vfB4();
@@ -36,14 +36,14 @@ public:
     virtual void vf11C();
     virtual void vf124();
 
-    StateWrapper<CSCollisionActor> mStates;
-    u8 _12C[0x18];  // Unknown struct
-    CSHitboxCollider mHitboxCollider;
-    u32 mLinkID;
+    StateWrapper<CSCollisionActor> states;
+    u8  _12C[0x18];  // Unknown struct
+    CSHitboxCollider hitboxCollider;
+    u32 linkID;
     u32 _164;
     u32 _168;
     s32 _16C;
-    u8 _170;
-    u8 _171;
-    u8 _172;
+    u8  _170;
+    u8  _171;
+    u8  _172;
 };

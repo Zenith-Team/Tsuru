@@ -42,14 +42,14 @@ public:
 
     static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 
-    ModelWrapper* mModel;
-    u32 _1884;
-    u32 _1888;
-    u32 _188C;
-    u32 _1890;
-    u32 _1894;
+    ModelWrapper* model;
+    u32  _1884;
+    u32  _1888;
+    u32  _188C;
+    u32  _1890;
+    u32  _1894;
     bool _1898;
-    u32 _189C;
-    u32 _18A0;
-    s32 _18A4;
+    u32  _189C;
+    u32  _18A0;
+    s32  _18A4;
 };

@@ -65,7 +65,7 @@ Actor* FakeActor::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 FakeActor::onCreate() {    
-    switch (this->mSettings1 & 0xF) { // Nybble 12
+    switch (this->settings1 & 0xF) { // Nybble 12
         case 0:  doStateChange(&StateID_Checkpoint); break;
         case 1:  doStateChange(&StateID_GoalPole);   break;
         case 2:  doStateChange(&StateID_StarCoin);   break;
@@ -76,8 +76,8 @@ u32 FakeActor::onCreate() {
 
 u32 FakeActor::onExecute() {
     this->updateModel();
-    this->mStates.execute();
-    //if (this->mStates.currentState()->isEqual(&StateID_StarCoin)) {};
+    this->states.execute();
+    //if (this->states.currentState()->isEqual(&StateID_StarCoin)) {};
     return 1;
 }
 
@@ -91,7 +91,7 @@ void FakeActor::updateModel() {
     if (this->mModel) {
         this->mModel->updateAnimations();
         Mtx34 mtx;
-        mtx.rotateAndTranslate(this->mRotation, this->mPosition + this->mModelOffset);
+        mtx.rotateAndTranslate(this->rotation, this->position + this->mModelOffset);
         this->mModel->setMtx(mtx);
         this->mModel->updateModel();
     }
@@ -99,17 +99,17 @@ void FakeActor::updateModel() {
     if (this->mModel2) {
         this->mModel2->updateAnimations();
         Mtx34 mtx;
-        mtx.rotateAndTranslate(this->mRotation, this->mPosition + this->mModel2Offset);
+        mtx.rotateAndTranslate(this->rotation, this->position + this->mModel2Offset);
         this->mModel2->setMtx(mtx);
         this->mModel2->updateModel();
     }
 }
 
 void FakeActor::touch() {
-    Vec3f effectOrigin(this->mPosition.x, this->mPosition.y, 4500.0f);
+    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
     Vec3f effectPos(effectOrigin + this->mEffectOffset);
     Effect::spawn(RP_ObakeDoor_Disapp, &effectPos, nullptr, &this->mEffectScale);
-    if (!(this->mSettings1 >> 0x1C & 0xF)) this->mIsDeleted = true;
+    if (!(this->settings1 >> 0x1C & 0xF)) this->isDeleted = true;
 }
 
 void FakeActor::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
@@ -126,7 +126,7 @@ void FakeActor::goalpoleCollisionCallback(HitboxCollider* hcSelf, HitboxCollider
 
     if (actor->type == 2) unknown = 2;
 
-    actor->mPosition.x = actor->mPosition.x - hcSelf->_B0[unknown];
+    actor->position.x = actor->position.x - hcSelf->_B0[unknown];
   }
 }*/
 
@@ -139,10 +139,10 @@ const HitboxCollider::Info FakeActor::sCheckpointCollisionInfo = {
 void FakeActor::beginState_Checkpoint() {
     this->mModel = ModelWrapper::create("middle_flag", "middle_flag", 4);
     this->mModel->playSklAnim("wait", 0);
-    this->mHitboxCollider.init(this, &FakeActor::sCheckpointCollisionInfo, nullptr);
+    this->hitboxCollider.init(this, &FakeActor::sCheckpointCollisionInfo, nullptr);
     this->addHitboxColliders();
 
-    this->mRotation.y -= 0x40000000;
+    this->rotation.y -= 0x40000000;
     this->updateModel();
 }
 
@@ -170,12 +170,12 @@ void FakeActor::beginState_GoalPole() {
     this->mRectCollider.init(this, colliderInfo);
     ColliderMgr::instance()->add(&mRectCollider);
 
-    this->mHitboxCollider.init(this, &FakeActor::sGoalpoleCollisionInfo, nullptr);
+    this->hitboxCollider.init(this, &FakeActor::sGoalpoleCollisionInfo, nullptr);
     this->addHitboxColliders();
 
     this->mEffectOffset = Vec3f(0.0f, 20.0f, 0.0f);
     this->mEffectScale = Vec3f(2.25f, 2.25f, 2.25f);
-    this->mRotation.y -= 0x40000000;
+    this->rotation.y -= 0x40000000;
     this->updateModel();
 }
 
@@ -193,7 +193,7 @@ const HitboxCollider::Info FakeActor::sStarcoinCollisionInfo = {
 
 void FakeActor::beginState_StarCoin() {
     this->mModel = ModelWrapper::create("star_coin", "star_coinA", 0);
-    this->mHitboxCollider.init(this, &FakeActor::sStarcoinCollisionInfo, nullptr);
+    this->hitboxCollider.init(this, &FakeActor::sStarcoinCollisionInfo, nullptr);
     this->addHitboxColliders();
 
     this->mEffectOffset = Vec3f(0.0f, -24.0f, 0.0f);
@@ -201,7 +201,7 @@ void FakeActor::beginState_StarCoin() {
 }
 
 void FakeActor::executeState_StarCoin() {
-    this->mRotation.y += 0x3FD27D2;
+    this->rotation.y += 0x3FD27D2;
 }
 
 void FakeActor::endState_StarCoin() {}

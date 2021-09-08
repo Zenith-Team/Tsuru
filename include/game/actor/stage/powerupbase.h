@@ -45,16 +45,16 @@ public:
     
     void vf11C() override;
     void vf124(f32 unk) override;
-    u32 vf12C() override;
+    u32  vf12C() override;
     
-    u32 vf13C() override;
+    u32  vf13C() override;
     void vf144(bool unk) override;
 
     bool vf154() override;
     void move(Vec2f& dest) override;
     void setYSpeed(f32 ySpeed) override;
-    u32 vf16C() override;
-    u32 vf174() override;
+    u32  vf16C() override;
+    u32  vf174() override;
     void getRect(Rect& rect) override;
     void doStateChange(StateBase* state) override;
 
@@ -65,7 +65,7 @@ public:
     virtual void playFloatAnim(); // nullsub
     virtual void vf1B4(); // nullsub
     virtual void vf1BC();
-    virtual u32 vf1C4(); // Player collision
+    virtual u32  vf1C4(); // Player collision
     virtual void vf1CC();
     virtual void vf1D4();
     virtual void vf1DC();
@@ -73,7 +73,7 @@ public:
     virtual void vf1EC();
     virtual void vf1F4();
     virtual void vf1FC(); // nullsub
-    virtual u32 vf204();
+    virtual u32  vf204();
     DECLARE_STATE_VIRTUAL(PowerupBase, PowerupBaseState12); // unknown state
     DECLARE_STATE_VIRTUAL(PowerupBase, PowerupBaseState13); // unknown state
     DECLARE_STATE_VIRTUAL(PowerupBase, PowerupBaseState14); // unknown state
@@ -102,13 +102,13 @@ public:
     u32 FUN_25196e8(void*, PowerupState setPowerupState, u32);  // Related to player collision (gives powerup state)
     u32 FUN_2519580(u32 unk1, u32 unk2);                        // Related to player collision (plays get sound?)
 
-    u8 unk1[8];
+    u8  unk1[8];
     u32 _17D0;
     u32 _17D4;
     u32 _17D8;
-    u8 unk2[36];
-    ModelWrapper* mModel;
-    TextureAnimation* mTexAnim;
+    u8  unk2[36];
+    ModelWrapper* model;
+    TextureAnimation* texAnim;
     u32 _1808;
     u32 _180C;
     u32 _1810;
@@ -116,13 +116,13 @@ public:
     u32 _1818;
     u32 _181C;
     u32 _1820;
-    u8 _1824;
-    u8 _1825;
-    u8 _1826;
+    u8  _1824;
+    u8  _1825;
+    u8  _1826;
     bool _1827;
-    u8 _1828;
-    u8 _1829;
-    u8 unk4[2];
+    u8  _1828;
+    u8  _1829;
+    u8  unk3[2];
     u32 _182C;
     s32 _1830;
     u32 _1834;
@@ -135,24 +135,24 @@ public:
     u32 _1850;
     u32 _1854;
     u16 _1858;
-    u8 _185A;
-    u8 unk5;
+    u8  _185A;
+    u8  unk4;
     u16 _185C;
-    u8 _185E;
-    u8 _185F;
-    u8 _1860;
-    u8 _1861;
-    u8 _1862;
-    u8 _1863;
-    u8 unk6[52];
+    u8  _185E;
+    u8  _185F;
+    u8  _1860;
+    u8  _1861;
+    u8  _1862;
+    u8  _1863;
+    u8  unk5[52];
     f32 _1898;
-    u8 unk7[4];
+    u8  unk6[4];
     u32 _18A0;
     PowerupBase* self;
     void* _18A8;
     HitboxCollider _18AC;
-    u8 _19D4;
-    u8 unk8[3];
+    u8  _19D4;
+    u8  unk7[3];
     f32 _19D8;
     f32 _19DC;
     u32 _19E0;
@@ -160,21 +160,21 @@ public:
     f32 _19E8;
     f32 _19EC;
     u32 _19F0;
-    u8 _19F4;
-    u8 unk9[3];
+    u8  _19F4;
+    u8  unk8[3];
     u32 _19F8;
     u32 _19FC;
     u32 _1A00;
-    EffectWrapper mEffectWrapper;
+    EffectWrapper effectWrapper;
     u32 _1A6C;
-    u8 _1A70;
-    u8 _1A71;
-    u8 unk10[2];
+    u8  _1A70;
+    u8  _1A71;
+    u8  unk9[2];
     u32 _1A74;
     u32 _1A78;
-    u8 _1A7C;
-    u8 _1A7D;
-    u8 _1A7E;
-    u8 unk11[13];
+    u8  _1A7C;
+    u8  _1A7D;
+    u8  _1A7E;
+    u8  unk10[0xD];
     void* _1A8C;
 };

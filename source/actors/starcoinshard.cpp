@@ -42,7 +42,7 @@ Actor* StarCoinShard::build(const ActorBuildInfo* buildInfo) {
 u32 StarCoinShard::onCreate() {
     this->mModel = ModelWrapper::create("star_coin", "star_coinA");
 
-    this->mHitboxCollider.init(this, &StarCoinShard::sCollisionInfo, nullptr);
+    this->hitboxCollider.init(this, &StarCoinShard::sCollisionInfo, nullptr);
     this->addHitboxColliders();
 
     return 1;
@@ -52,11 +52,11 @@ u32 StarCoinShard::onExecute() {
     this->mModel->updateAnimations();
     
     Mtx34 mtx;
-    mtx.rotateAndTranslate(this->mRotation, this->mPosition);
+    mtx.rotateAndTranslate(this->rotation, this->position);
     this->mModel->setMtx(mtx);
     this->mModel->updateModel();
 
-    this->mRotation.y += 0x3FD27D2;
+    this->rotation.y += 0x3FD27D2;
 
     return 1;
 }
@@ -73,12 +73,12 @@ void StarCoinShard::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hc
 
         ActorBuildInfo starCoinBuildInfo = { 0 };
 
-        starCoinBuildInfo.mSettings1 = hcSelf->mOwner->mSettings1;
-        starCoinBuildInfo.mProfile = Profile::get(426);
-        starCoinBuildInfo.mPosition = hcSelf->mOwner->mPosition;
+        starCoinBuildInfo.settings1 = hcSelf->mOwner->settings1;
+        starCoinBuildInfo.profile = Profile::get(426);
+        starCoinBuildInfo.position = hcSelf->mOwner->position;
 
         ActorMgr::instance()->create(&starCoinBuildInfo, 0);
     }
 
-    hcSelf->mOwner->mIsDeleted = true;
+    hcSelf->mOwner->isDeleted = true;
 }

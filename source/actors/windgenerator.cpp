@@ -32,18 +32,18 @@ u32 FixedWindGenerator::onExecute() {
     for (u32 i = 0; i < 4; i++) {
         Player* player = PlayerMgr::instance()->players[i];
         if (player)
-            player->mPosition.x += this->mFinalWindStrength * 2.5;
+            player->position.x += this->finalWindStrength * 2.5;
     }
 
     // Blow actors
-    Actor** current = ActorMgr::instance()->mActors.mStartBuffer.buffer;
-    while (current < ActorMgr::instance()->mActors.mEndBuffer.buffer) {
+    Actor** current = ActorMgr::instance()->actors.startBuffer.buffer;
+    while (current < ActorMgr::instance()->actors.endBuffer.buffer) {
         Actor* actor = *current;
         if (actor) {
             u32 profileID = actor->getProfileID();
             for (u32 i = 0; i < 10; i++) {
                 if (profileID == affectedActors[i]) {
-                    ((StageActor*)actor)->mPosition.x += this->mFinalWindStrength * 2.5;
+                    ((StageActor*)actor)->position.x += this->finalWindStrength * 2.5;
                     break;
                 }
             }

@@ -2,11 +2,11 @@
 
 #include <game/actor/stage/stageactor.h>
 
-class WindGenerator : public StageActor { // Size: 0x2a0
+class WindGenerator : public StageActor { // Size: 0x2A0
     SEAD_RTTI_OVERRIDE(WindGenerator, StageActor)
 
 public:
-    // TODO: maybe this isn't the best way of doing this.. (the ctor is inlined in the build function)
+    // TODO: maybe this isn't the best way of doing this... (the ctor is inlined in the build function)
     inline WindGenerator(const ActorBuildInfo* buildInfo) : StageActor(buildInfo) { }
     virtual ~WindGenerator();
 
@@ -25,11 +25,11 @@ public:
 
     void damageFromUnder() override;
 
-    f32 mFinalWindStrength;     // _27C
-    f32 mWindStrength;          // _280
+    f32 finalWindStrength;      // _27C
+    f32 windStrength;           // _280
     f32 _284;                   // _284
     f32 _288;                   // _288
-    u8 unk1[4];                 // _28C
+    u8  _28C[4];                // _28C
     u32 _290;                   // _290
     u32 _294;                   // _294
     u32 _298;                   // _298
