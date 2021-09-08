@@ -5,7 +5,7 @@
 class TileChecker {
 public:
     struct Result {
-        u8 _0;
+        u8  _0;
         f32 _4;
         f32 _8;
         u32 _C;
@@ -17,10 +17,10 @@ public:
     };
 
     struct Param {
-        u8 _0;
-        u8 _1;
-        u8 _2;
-        u8 _3;
+        u8  _0;
+        u8  _1;
+        u8  _2;
+        u8  _3;
         u32 _4;
         u32 _8;
     };
@@ -31,10 +31,10 @@ public:
     void init(const Param&);
     bool check(Result*, const Vec2f&, const Vec2f&, u32);
 
-    u8 _0;
-    u8 _1;
-    u8 _2;
-    u8 _3;
+    u8  _0;
+    u8  _1;
+    u8  _2;
+    u8  _3;
     u32 _4;
     u32 _8;
     u32 _C;

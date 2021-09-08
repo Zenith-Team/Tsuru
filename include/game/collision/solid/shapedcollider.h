@@ -7,12 +7,12 @@ class ShapedCollider : public ColliderBase {
 
 public:
     struct Info {
-        Vec2f mDistToCenter;    // _0
-        f32 _8;                 // _8
-        f32 _C;                 // _C
-        Vec2f mTopLeft;         // _10
-        Vec2f mBottomRight;     // _18
-        u32 mRotation;          // _20
+        Vec2f distToCenter;    // _0
+        f32 _8;                // _8
+        f32 _C;                // _C
+        Vec2f topLeft;         // _10
+        Vec2f bottomRight;     // _18
+        u32 rotation;          // _20
     };
 
 public:
@@ -36,7 +36,7 @@ public:
     void init(StageActor* owner, const Info& info);
     void setRect(Vec2f* topLeft, Vec2f* bottomRight);
 
-    sead::Buffer<Vec2f> mPoints;
-    sead::Buffer<Node> mNodes1;
-    sead::Buffer<Node> mNodes2;
+    sead::Buffer<Vec2f> points;
+    sead::Buffer<Node>  nodes1;
+    sead::Buffer<Node>  nodes2;
 };

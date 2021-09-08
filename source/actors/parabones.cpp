@@ -118,7 +118,7 @@ void ParaBones::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther)
     if (hitType == 0)
         damagePlayer(hcSelf, hcOther);
     else if (hitType == 1 || hitType == 3)
-        killPlayerJump(hcOther->mOwner, 0.0f, &ParaBones::StateID_Die);
+        killPlayerJump(hcOther->owner, 0.0f, &ParaBones::StateID_Die);
 }
 
 // Lowering state
