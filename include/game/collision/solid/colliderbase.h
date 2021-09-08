@@ -10,9 +10,9 @@ public:
     class List {
     public:
         struct Node {
-            ColliderBase* mOwner;   // _0
-            Node* mNext;            // _4
-            Node* mPrev;            // _8
+            ColliderBase* owner;   // _0
+            Node* next;            // _4
+            Node* prev;            // _8
         };
     
     public:
@@ -22,8 +22,8 @@ public:
         virtual void insertFront(Node* node);
         virtual void clear();
 
-        Node* mFirst;   // _0
-        Node* mLast;    // _4
+        Node* first;   // _0
+        Node* last;    // _4
     };
 
     class Node {
@@ -31,8 +31,8 @@ public:
         struct Sensor {
             Sensor();
 
-            Vec2f mPoint1;  // _0   Position relative to parent's center, Inited to (0, 0)
-            Vec2f mPoint2;  // _8   Position relative to parent's center, Inited to (1, 0)
+            Vec2f point1;  // _0   Position relative to parent's center, Inited to (0, 0)
+            Vec2f point2;  // _8   Position relative to parent's center, Inited to (1, 0)
         };
     
     public:
@@ -42,28 +42,28 @@ public:
         u8 _1;              // _1   Inited to 0
         u8 _2;              // _2   Inited to 0
         u8 _3;              // _3   Inited to 0
-        Sensor mSensor;     // _4
+        Sensor sensor;      // _4
         u32 _14;            // _14  Inited to 0
-        u32 mFlags;         // _18  Inited to 0
+        u32 flags;          // _18  Inited to 0
         u32 _1C;            // _1C  Inited to 0
     };
 
     class Node2 : public Node {
     public:
-        ColliderBase* mOwner;   // _20
-        u8 _24[4];              // _24
-        u32 mFlags2;            // _28
+        ColliderBase* owner;    // _20
+        u8  _24[4];             // _24
+        u32 flags2;             // _28
         u32 _2C;                // _2C
         u32 _30;                // _30
         u32 _34;                // _34
     };
 
     struct OwnerInfo {
-        Vec3f* mPosition;  // _0
+        Vec3f* position;   // _0
         Vec3f* _4;         // _4
-        u8* mLayer;        // _8
+        u8* layer;         // _8
         u8* _C;            // _C
-        s8* mPlayerID;     // _10
+        s8* playerID;      // _10
     };
 
     enum Type {
@@ -161,14 +161,14 @@ public:
     void setSurfaceType(SurfaceType surfaceType);
 
     List::Node _10[8];          // 10
-    Rect mRect;                 // 70
+    Rect rect;                  // 70
     Vec2f _80;                  // 80
     u32 _88;                    // 88
     u32 _8C;                    // 8C
-    StageActor* mOwner;         // 90
+    StageActor* owner;          // 90
     u32 _94;                    // 94
-    OwnerInfo mOwnerInfo;       // 98
-    Vec2f mDistToCenter;        // AC
+    OwnerInfo ownerInfo;        // 98
+    Vec2f distToCenter;         // AC
     Vec2f _B4;                  // B4
     Vec2f _BC;                  // BC
     Vec2f _C4;                  // C4
@@ -177,18 +177,18 @@ public:
     u32 _DC;                    // DC
     u32 _E0;                    // E0
     Rect _E4;                   // E4   //? Possible Vec4
-    u32 mRotation;              // F4
+    u32 rotation;               // F4
     u32 _F8;                    // F8
     List _FC[4];                // FC
-    Type mType;                 // 12C
-    u32 mFlags;                 // 130
+    Type type;                  // 12C
+    u32 flags;                  // 130
     u32 _134;                   // 134
-    Callback mTopCallback;      // 138  PhysicsMgr Sensor colliding with top of the collider
-    Callback mBottomCallback;   // 13C  PhysicsMgr Sensor colliding with bottom of the collider
-    Callback mSideCallback;     // 140  PhysicsMgr Sensor colliding with side of the collider
+    Callback topCallback;       // 138  PhysicsMgr Sensor colliding with top of the collider
+    Callback bottomCallback;    // 13C  PhysicsMgr Sensor colliding with bottom of the collider
+    Callback sideCallback;      // 140  PhysicsMgr Sensor colliding with side of the collider
     void* _144;                 // 144
     void* _148;                 // 148
     void* _14C;                 // 14C
-    void** mCallbackTable;      // 150
+    void** callbackTable;       // 150
     u32 _154;                   // 154
 };

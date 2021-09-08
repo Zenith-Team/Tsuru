@@ -13,5 +13,5 @@ protected:
     static ColliderMgr* sInstance;
 
 public:
-    ColliderBase::List mLists[7];
+    ColliderBase::List lists[7];
 };

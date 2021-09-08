@@ -10,12 +10,12 @@
 #include <game/collision/hitboxcollider.h>
 
 void HitboxCollider::getRect(Rect& outRect) {
-    Vec3f* ownerPos = &this->mOwner->position;
+    Vec3f* ownerPos = &this->owner->position;
 
-    outRect.left   = ownerPos->x + this->mColliderInfo.mDistToCenter.x - this->mColliderInfo.mDistToEdge.x;
-    outRect.right  = ownerPos->x + this->mColliderInfo.mDistToCenter.x + this->mColliderInfo.mDistToEdge.x;
-    outRect.top    = ownerPos->y + this->mColliderInfo.mDistToCenter.y + this->mColliderInfo.mDistToEdge.y;
-    outRect.bottom = ownerPos->y + this->mColliderInfo.mDistToCenter.y - this->mColliderInfo.mDistToEdge.y;
+    outRect.left   = ownerPos->x + this->colliderInfo.distToCenter.x - this->colliderInfo.distToEdge.x;
+    outRect.right  = ownerPos->x + this->colliderInfo.distToCenter.x + this->colliderInfo.distToEdge.x;
+    outRect.top    = ownerPos->y + this->colliderInfo.distToCenter.y + this->colliderInfo.distToEdge.y;
+    outRect.bottom = ownerPos->y + this->colliderInfo.distToCenter.y - this->colliderInfo.distToEdge.y;
 }
 
 bool HitboxCollider::sCollidersOverlap(HitboxCollider* hcSelf, HitboxCollider* hcOther) {

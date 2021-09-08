@@ -113,13 +113,13 @@ void FakeActor::touch() {
 }
 
 void FakeActor::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    static_cast<FakeActor*>(hcSelf->mOwner)->touch();
+    static_cast<FakeActor*>(hcSelf->owner)->touch();
 }
 
 /*bool FUN_02902b08(StageActor* actor);
 
 void FakeActor::goalpoleCollisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-  StageActor* actor = hcOther->mOwner;
+  StageActor* actor = hcOther->owner;
 
   if (actor->type == 1 || actor->type == 2 && FUN_02902b08(actor)) {
     u32 unknown = 0;
