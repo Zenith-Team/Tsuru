@@ -10,7 +10,7 @@ public:
     Model* getModel(const sead::SafeString& identifier, u32 unk1, u32 numSklAnims, u32 numTexPatternAnims, u32 numShuAnims, u32 numVisAnims, u32 numShaAnims, bool unk2, sead::Heap* heap);
     Model* getModel(const sead::SafeString& identifier, u32 numSklAnims, u32 numTexPatternAnims, u32 numShuAnims, u32 numVisAnims, u32 numShaAnims, bool unk2, sead::Heap* heap);
 
-    nw::g3d::res::ResFile* mRes;
+    nw::g3d::res::ResFile* res;
 };
 
 class ResArchiveMgr {
