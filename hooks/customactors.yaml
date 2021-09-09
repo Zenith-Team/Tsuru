@@ -16,8 +16,8 @@ Files:
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:
-  # Update beep block state
+# Update beep block states
   - type: branch
     instr: b
     func: UpdateBeepBlockStates
-    addr: "24bfa4c" # CourseTask::calc
+    addr: "24bfa4c" # CourseTask::calc()

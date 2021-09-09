@@ -3,7 +3,8 @@
 Files:
   - source/specialphysics.cpp
 Hooks:
+# Set physics values for special gravity
   - type: branch
     instr: bl
-    addr: "24B5D98" # AreaTask::prepare
-    func: readOptions__8AreaTaskFv
+    addr: "24B5D98" # AreaTask::prepare()
+    func: setPhysicsValues__8AreaTaskFv

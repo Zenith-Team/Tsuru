@@ -10,8 +10,8 @@ Files:
   - source/utils.cpp
   - source/profileres.cpp
 Hooks:
-  # Sets PhysicsMgr->owner before doing anything else so that functions there have access to the actor pointer
+# Sets PhysicsMgr->owner before doing anything else so that functions there have access to the actor pointer
   - type: branch
     instr: bl
-    addr: "218af98"
+    addr: "218af98" # PhysicsMgr::init()
     func: SetPhysicsMgrOwner

@@ -3,13 +3,13 @@
 Files:
   - source/titlescreen.S
 Hooks:
-  # Disable spawning of falling acorns
+# Disable spawning of falling acorns
   - type: nop
-    addr: "29DF464"
+    addr: "29DF464" # TitlescreenController::beginState_TitlescreenControllerState3()
   - type: nop
-    addr: "29DF4B8"
+    addr: "29DF4B8" # TitlescreenController::beginState_TitlescreenControllerState3()
 
-  # Patch version string
+# Patch version string
   - type: branch
     instr: bl
     addr: "2680F94"

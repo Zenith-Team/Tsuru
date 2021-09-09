@@ -3,6 +3,7 @@
 Files:
   - source/sizemodifier.S
 Hooks:
+# Modify actor size
   # Modify the scale member of the actor
   - type: branch
     instr: b

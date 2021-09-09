@@ -3,7 +3,7 @@
 Files:
   - source/sead/primitiverenderer.cpp
 Hooks:
-  # Restore sead::PrimitiveRendererCafe's deleted functions
+# Restore sead::PrimitiveRendererCafe's deleted functions
   - type: funcptr
     addr: "10190f4c"
     func: drawCubeImpl__Q2_4sead21PrimitiveRendererCafeFRC5Mtx34RCQ2_4sead7Color4fT2

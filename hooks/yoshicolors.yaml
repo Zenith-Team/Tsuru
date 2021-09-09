@@ -3,13 +3,14 @@
 Files:
   - source/yoshicolors.S
 Hooks:
-  # Patch resource array to add custom colors
+# Patch resource array to add custom colors
   - type: branch
     instr: bl
-    addr: "2969B38"
+    addr: "2969B38" # Yoshi::resourceStaticInit()
     func: PatchYoshiColors
-  # Randomize nybble 12
+
+# Randomize nybble 12
   - type: branch
     instr: bl
-    addr: "295DF50"
+    addr: "295DF50" # Yoshi::Yoshi()
     func: RandomYoshiColors

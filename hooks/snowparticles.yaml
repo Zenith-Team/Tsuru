@@ -3,37 +3,40 @@
 Files:
   - source/snowparticles.S
 Hooks:
+# Save the colors from the spritedata
   - type: branch
     instr: bl
-    addr: "283A5A8"
+    addr: "283A5A8" # SnowParticles::SnowParticles()
     func: SnowSave
 
+# Set the color to what we saved above
+  # Red and Alpha
   - type: branch
     instr: bl
-    addr: "2507578"
+    addr: "2507578" # SnowParticles::render()
     func: Snow1RaA
-
+  # Blue
   - type: branch
     instr: bl
-    addr: "250758C"
+    addr: "250758C" # SnowParticles::render()
     func: Snow1B
-
+  # Green
   - type: branch
     instr: bl
-    addr: "2507594"
+    addr: "2507594" # SnowParticles::render()
     func: Snow1G
-
+  # Red 2
   - type: branch
     instr: bl
-    addr: "250769C"
+    addr: "250769C" # SnowParticles::render()
     func: Snow2R
-
+  # Green 2 and Blue 2
   - type: branch
     instr: bl
-    addr: "25076B4"
+    addr: "25076B4" # SnowParticles::render()
     func: Snow2GaB
-
+  # Alpha
   - type: branch
     instr: bl
-    addr: "25076D4"
+    addr: "25076D4" # SnowParticles::render()
     func: Snow2A

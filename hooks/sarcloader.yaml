@@ -3,6 +3,7 @@
 Files:
   - source/sarcloader.S
 Hooks:
+# Load levels as uncompressed SARChive
   - type: branch
     instr: bl
     addr: "29D3330"

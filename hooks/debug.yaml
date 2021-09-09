@@ -4,18 +4,21 @@ Files:
   - source/debug/collisionviewer.S
   - source/debug/collisionviewer.cpp
 Hooks:
+# Draw debug layer for levels
   # Hijack funcptr of AreaTask::drawLayer3D to point to a custom function
   - type: branch
     instr: bl
-    addr: "24B65E0"
+    addr: "24B65E0" # AreaTask::FUN_24b6398()
     func: AreaTaskDebugDraw
+
+# Draw debug layer for world map
   # Hijack funcptr of CourseSelectTask::drawLayer3D to point to a custom function
   - type: branch
     instr: bl
-    addr: "22664ec"
+    addr: "22664ec" # CourseSelectTask::enter()
     func: CourseSelectTaskDebugDraw
   # Redirect CourseSelectTask::drawLayer3D_DRC to branch to a custom function instead of drawLayer3D
   - type: branch
     instr: b
-    addr: "2267704"
+    addr: "2267704" # CourseSelectTask::drawLayer3D_DRC()
     func: drawLayerDebug__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo

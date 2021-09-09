@@ -2,7 +2,8 @@
 ---
 Files: [source/initializer.cpp]
 Hooks:
+# Initialize things that need to do so
   - type: branch
     instr: b
-    addr: "2AFA050"
+    addr: "2AFA050" # __call_ctors()
     func: initialize__Fv
