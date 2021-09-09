@@ -24,9 +24,9 @@ public:
     u32 onExecute() override;
     u32 onDraw() override;
 
-    ModelWrapper* mModel;
-    RectCollider mRectCollider;
-    BeepBlockColor mBeepBlockType;
+    ModelWrapper* model;
+    RectCollider rectCollider;
+    BeepBlockColor beepBlockType;
 
     static BeepBlockColor CurrentBeepBlockState;
     
@@ -53,9 +53,9 @@ BeepBlock::BeepBlockColor BeepBlock::CurrentBeepBlockState = BeepBlock::BeepBloc
 
 BeepBlock::BeepBlock(const ActorBuildInfo* buildInfo)
     : MultiStateActor(buildInfo)
-    , mModel(nullptr)
-    , mRectCollider()
-    , mBeepBlockType(BeepBlockColorBlue)
+    , model(nullptr)
+    , rectCollider()
+    , beepBlockType(BeepBlockColorBlue)
 { }
 
 Actor* BeepBlock::build(const ActorBuildInfo* buildInfo) {
@@ -63,13 +63,13 @@ Actor* BeepBlock::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 BeepBlock::onCreate() {
-    this->mRectCollider.init(this, colliderInfo);
+    this->rectCollider.init(this, colliderInfo);
 
-    this->mModel = ModelWrapper::create("star_coin", "star_coinA");
+    this->model = ModelWrapper::create("star_coin", "star_coinA");
 
-    this->mBeepBlockType = static_cast<BeepBlockColor>(this->settings1 >> 0x1C);
+    this->beepBlockType = static_cast<BeepBlockColor>(this->settings1 >> 0x1C);
 
-    if (this->mBeepBlockType == BeepBlockColorRed)
+    if (this->beepBlockType == BeepBlockColorRed)
         this->doStateChange(&StateID_RedDisabled);
     else
         this->doStateChange(&StateID_BlueDisabled);
@@ -78,12 +78,12 @@ u32 BeepBlock::onCreate() {
 }
 
 u32 BeepBlock::onExecute() {
-    this->mModel->updateAnimations();
+    this->model->updateAnimations();
     
     Mtx34 mtx;
     mtx.rotateAndTranslate(this->rotation, this->position);
-    this->mModel->setMtx(mtx);
-    this->mModel->updateModel();
+    this->model->setMtx(mtx);
+    this->model->updateModel();
 
     this->states.execute();
 
@@ -91,7 +91,7 @@ u32 BeepBlock::onExecute() {
 }
 
 u32 BeepBlock::onDraw() {
-    DrawMgr::instance()->drawModel(this->mModel);
+    DrawMgr::instance()->drawModel(this->model);
 
     return 1;
 }
@@ -99,7 +99,7 @@ u32 BeepBlock::onDraw() {
 /* STATE: RedEnabled */
 
 void BeepBlock::beginState_RedEnabled() {
-    ColliderMgr::instance()->add(&this->mRectCollider);
+    ColliderMgr::instance()->add(&this->rectCollider);
 
     // Don't forget to change the model here when that's done :)
 }
@@ -108,7 +108,7 @@ void BeepBlock::executeState_RedEnabled() {
     if (CurrentBeepBlockState == BeepBlockColorBlue)
         this->doStateChange(&StateID_RedDisabled);
     
-    this->mRectCollider.execute();
+    this->rectCollider.execute();
 }
 
 void BeepBlock::endState_RedEnabled() { }
@@ -116,7 +116,7 @@ void BeepBlock::endState_RedEnabled() { }
 /* STATE: RedDisabled */
 
 void BeepBlock::beginState_RedDisabled() {
-    ColliderMgr::instance()->remove(&this->mRectCollider);
+    ColliderMgr::instance()->remove(&this->rectCollider);
 
     // Don't forget to change the model here when that's done :)
 }
@@ -131,7 +131,7 @@ void BeepBlock::endState_RedDisabled() { }
 /* STATE: BlueEnabled */
 
 void BeepBlock::beginState_BlueEnabled() {
-    ColliderMgr::instance()->add(&this->mRectCollider);
+    ColliderMgr::instance()->add(&this->rectCollider);
 
     // Don't forget to change the model here when that's done :)
 }
@@ -140,7 +140,7 @@ void BeepBlock::executeState_BlueEnabled() {
     if (CurrentBeepBlockState == BeepBlockColorRed)
         this->doStateChange(&StateID_BlueDisabled);
     
-    this->mRectCollider.execute();
+    this->rectCollider.execute();
 }
 
 void BeepBlock::endState_BlueEnabled() { }
@@ -148,7 +148,7 @@ void BeepBlock::endState_BlueEnabled() { }
 /* STATE: BlueDisabled */
 
 void BeepBlock::beginState_BlueDisabled() {
-    ColliderMgr::instance()->remove(&this->mRectCollider);
+    ColliderMgr::instance()->remove(&this->rectCollider);
 
     // Don't forget to change the model here when that's done :)
 }

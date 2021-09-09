@@ -20,8 +20,8 @@ public:
     u32 onExecute() override;
     u32 onDraw() override;
 
-    ModelWrapper* mModel;
-    u32 mDespawnDelay;
+    ModelWrapper* model;
+    u32 despawnDelay;
 
     static const HitboxCollider::Info collisionInfo;
     static const ActorPhysicsMgr::Sensor belowSensor;
@@ -55,7 +55,7 @@ Actor* FallingChestnut::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 FallingChestnut::onCreate() {
-    this->mModel = ModelWrapper::create("iga_kuribo", "iga_kuribo");
+    this->model = ModelWrapper::create("iga_kuribo", "iga_kuribo");
     
     this->hitboxCollider.init(this, &FallingChestnut::collisionInfo, 0);
     this->addHitboxColliders();
@@ -74,9 +74,9 @@ u32 FallingChestnut::onExecute() {
     Mtx34 mtx;
     mtx.rotateAndTranslate(this->rotation + rotOffset, this->position + posOffset);
 
-    this->mModel->setMtx(mtx);
-    this->mModel->setScale(this->scale);
-    this->mModel->updateModel();
+    this->model->setMtx(mtx);
+    this->model->setScale(this->scale);
+    this->model->updateModel();
 
     this->states.execute();
 
@@ -84,7 +84,7 @@ u32 FallingChestnut::onExecute() {
 }
 
 u32 FallingChestnut::onDraw() {
-    DrawMgr::instance()->drawModel(this->mModel);
+    DrawMgr::instance()->drawModel(this->model);
 
     return 1;
 }
@@ -131,9 +131,9 @@ void FallingChestnut::endState_Falling() { }
 void FallingChestnut::beginState_OnGround() { }
 
 void FallingChestnut::executeState_OnGround() {
-    this->mDespawnDelay++;
+    this->despawnDelay++;
 
-    if (this->mDespawnDelay >= 60) {
+    if (this->despawnDelay >= 60) {
         Vec3f effectPos(this->position.x, this->position.y - 18.0f, 4500.0f);
         Effect::spawn(RP_ObakeDoor_Disapp, &effectPos);
 

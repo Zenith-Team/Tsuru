@@ -17,7 +17,6 @@ class ResArchiveMgr {
     SEAD_SINGLETON_DISPOSER(ResArchiveMgr)
 
 public:
-
     ResArchive* get(const sead::SafeString& identifier);
 };
 
