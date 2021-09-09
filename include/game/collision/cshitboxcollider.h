@@ -30,7 +30,7 @@ class CSHitboxColliderMgr {
 
 public:
     struct UnknownStruct : public sead::PtrArrayImpl {
-        u8 data[1032];
+        u8 _0[1032];
     };
 
 public:

@@ -25,13 +25,13 @@ public:
     bool freeze(const Info& info, u32 count);
     void setFlags(const Flags& flags);
 
-    u8 iceActorCount;      // 0
-    u32 iceActorIDs[12];   // 4
-    u8 breakTime;          // 34
+    u8 iceActorCount;       // 0
+    u32 iceActorIDs[12];    // 4
+    u8 breakTime;           // 34
     u8 _35;                 // 35   Gravity related
     u8 _36;                 // 36   ^
     u32 _38;                // 38
-    Enemy* owner;          // 3C
+    Enemy* owner;           // 3C
     s16 _40;                // 40
     u16 _42;                // 42
     u16 _44;                // 44

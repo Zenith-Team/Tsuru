@@ -6,7 +6,6 @@ class WindGenerator : public StageActor { // Size: 0x2A0
     SEAD_RTTI_OVERRIDE(WindGenerator, StageActor)
 
 public:
-    // TODO: maybe this isn't the best way of doing this... (the ctor is inlined in the build function)
     inline WindGenerator(const ActorBuildInfo* buildInfo) : StageActor(buildInfo) { }
     virtual ~WindGenerator();
 

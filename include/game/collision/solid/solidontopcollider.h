@@ -34,8 +34,8 @@ public:
     void init(StageActor* owner, const Info& info, s32 numPoints, sead::Heap* heap = nullptr);
 
     sead::Buffer<Vec2f> points;
-    sead::Buffer<Node>  nodes1;
-    sead::Buffer<Node>  nodes2;
+    sead::Buffer<Node> nodes1;
+    sead::Buffer<Node> nodes2;
     f32 _170;
     u8  _174[0x4];
 };

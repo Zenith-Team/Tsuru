@@ -34,19 +34,19 @@ public:
     u32  vf174() override;
     void getRect(Rect& rect) override;
     void doStateChange(StateBase* state) override;
-    void vf18C() override; // nullsub
-    void playBlockReleaseUpAnim() override; // nullsub
-    void playBlockReleaseDownAnim() override; // nullsub
-    void playIdleAnim() override; // nullsub
-    void playFloatAnim() override; // nullsub
-    void vf1B4() override; // nullsub
+    void vf18C() override;                      // nullsub
+    void playBlockReleaseUpAnim() override;     // nullsub
+    void playBlockReleaseDownAnim() override;   // nullsub
+    void playIdleAnim() override;               // nullsub
+    void playFloatAnim() override;              // nullsub
+    void vf1B4() override;                      // nullsub
 
     u32  vf1C4() override;
 
     void vf1FC() override;
 
-    virtual void vf29C(); // nullsub
-    virtual void vf2A4(); // nullsub
+    virtual void vf29C();                       // nullsub
+    virtual void vf2A4();                       // nullsub
     virtual void vf2AC();
 
     DECLARE_STATE(Powerup, PowerupState1);  // unknown state

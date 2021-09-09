@@ -28,20 +28,20 @@ struct CreateID { // Size: 0xA
 };
 
 struct MiiDataCore { // Size: 0x48
-     u32 _0;
-     AuthorID authorID; // 4
-     CreateID createID; // C
-     u8 _16[2];
-     u16 _18;
-     wchar_t miiName[10];   // 1A
-     u8 _2E;
-     u8 _2F;
-     u32 _30;
-     u32 _34;
-     u32 _38;
-     u32 _3C;
-     u32 _40;
-     u32 _44;
+    u32 _0;
+    AuthorID authorID; // 4
+    CreateID createID; // C
+    u8 _16[2];
+    u16 _18;
+    wchar_t miiName[10];   // 1A
+    u8 _2E;
+    u8 _2F;
+    u32 _30;
+    u32 _34;
+    u32 _38;
+    u32 _3C;
+    u32 _40;
+    u32 _44;
 };
 
 struct MiiData { // Size: 0x5C

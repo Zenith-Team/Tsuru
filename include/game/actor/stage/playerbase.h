@@ -19,6 +19,7 @@ public:
         PowerupState_PAcorn     = 8
     };
 
+public:
     u8 _27C[0x2C];                        // _27C
     PlayerInput input;                    // _2A8
     u8 _33C[0x1C4];                       // _33C

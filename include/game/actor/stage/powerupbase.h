@@ -58,21 +58,21 @@ public:
     void getRect(Rect& rect) override;
     void doStateChange(StateBase* state) override;
 
-    virtual void vf18C(); // nullsub
-    virtual void playBlockReleaseUpAnim(); // nullsub
-    virtual void playBlockReleaseDownAnim(); // nullsub
-    virtual void playIdleAnim(); // nullsub
-    virtual void playFloatAnim(); // nullsub
-    virtual void vf1B4(); // nullsub
+    virtual void vf18C();                       // nullsub
+    virtual void playBlockReleaseUpAnim();      // nullsub
+    virtual void playBlockReleaseDownAnim();    // nullsub
+    virtual void playIdleAnim();                // nullsub
+    virtual void playFloatAnim();               // nullsub
+    virtual void vf1B4();                       // nullsub
     virtual void vf1BC();
-    virtual u32  vf1C4(); // Player collision
+    virtual u32  vf1C4();                       // Player collision
     virtual void vf1CC();
     virtual void vf1D4();
     virtual void vf1DC();
     virtual void vf1E4();
     virtual void vf1EC();
     virtual void vf1F4();
-    virtual void vf1FC(); // nullsub
+    virtual void vf1FC();                       // nullsub
     virtual u32  vf204();
     DECLARE_STATE_VIRTUAL(PowerupBase, PowerupBaseState12); // unknown state
     DECLARE_STATE_VIRTUAL(PowerupBase, PowerupBaseState13); // unknown state
@@ -165,7 +165,7 @@ public:
     u32 _19F8;
     u32 _19FC;
     u32 _1A00;
-    EffectWrapper effectWrapper;
+    EffectWrapper _1A04;
     u32 _1A6C;
     u8  _1A70;
     u8  _1A71;
