@@ -5,7 +5,6 @@
 #include <sead.h>
 
 // staticInit array
-typedef void (*funcPtr)();
 extern "C" funcPtr _ctors[];
 
 // RPL loading dependencies

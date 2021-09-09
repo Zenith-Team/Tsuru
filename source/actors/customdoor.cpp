@@ -57,21 +57,21 @@ void CustomDoor::initHitboxCollider() {
 void CustomDoor::loadModel() {
     this->model = ModelWrapper::create("obj_door", "obj_doorA", 1, 1, 2, 1);
     this->model->playSklAnim("obj_doorA", 0);
-    SkeletalAnimation* sklAnim = this->model->mSklAnims[0];
-    sklAnim->mSpeed = -1.0f;
+    SkeletalAnimation* sklAnim = this->model->sklAnims[0];
+    sklAnim->speed = -1.0f;
     sklAnim->setRepeat(false);
 }
 
 void CustomDoor::playOpenDoorAnim() {
-    SkeletalAnimation* sklAnim = this->model->mSklAnims[0];
-    sklAnim->mSpeed = 1.0f;
+    SkeletalAnimation* sklAnim = this->model->sklAnims[0];
+    sklAnim->speed = 1.0f;
     sklAnim->reset();
     sklAnim->setRepeat(false);
 };
 
 void CustomDoor::playCloseDoorAnim() {
-    SkeletalAnimation* sklAnim = this->model->mSklAnims[0];
-    sklAnim->mSpeed = -1.0f;
+    SkeletalAnimation* sklAnim = this->model->sklAnims[0];
+    sklAnim->speed = -1.0f;
     sklAnim->reset();
     sklAnim->setRepeat(false);
 };

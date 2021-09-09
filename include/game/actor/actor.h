@@ -32,7 +32,7 @@ public:
     u32 getProfileID();
 
     sead::Heap* heap;                       // _0
-    u32 ID;                                 // _4
+    u32 id;                                 // _4
     Profile* profile;                       // _8
     bool wasNotDeferred;                    // _C
     bool isSprite;                          // _D

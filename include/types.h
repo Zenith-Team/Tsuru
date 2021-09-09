@@ -46,11 +46,13 @@ typedef volatile s64       vs64;
 typedef volatile f32       vf32;
 typedef volatile f64       vf64;
 
-typedef unsigned int       size_t;
-typedef signed int         ssize_t;
+typedef unsigned int     size_t;
+typedef signed int      ssize_t;
 
-typedef unsigned int       uintptr_t;
-typedef signed int         intptr_t;
+typedef unsigned int  uintptr_t;
+typedef signed int     intptr_t;
+
+typedef void       (*funcPtr)();
 
 // Utility types
 

@@ -25,6 +25,7 @@ public:
         u32 _8;
     };
 
+public:
     TileChecker();
     TileChecker(const Param&);
 
