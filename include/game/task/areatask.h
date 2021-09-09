@@ -14,6 +14,6 @@ public:
     void drawLayerDebug(const agl::lyr::RenderInfo& renderInfo);
 
     u8 _C8[1636];
-    u32 mWrapFlag;
+    u32 wrapFlag;
     u8 _730[1204];
 };
