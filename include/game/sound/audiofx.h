@@ -4,6 +4,6 @@
 
 class AudioFx {
 public:
-    nw::snd::internal::FxReverbHiParam& getReverbHiParam();
-    nw::snd::internal::FxDelayParam& getDelayParam();
+    nw::snd::FxReverbHi::ReverbHiParam& getReverbHiParam();
+    nw::snd::FxDelay::DelayParam& getDelayParam();
 };
