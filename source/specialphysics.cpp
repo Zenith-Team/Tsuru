@@ -7,16 +7,15 @@ extern f32 MiniPlayerJumpArc;
 extern f32 PlayerJumpMax;
 extern f32 PlayerDescentRate;
 
-void AreaTask::readOptions() {
-    Level::Area* area = Level::instance()->getArea(LevelInfo::instance()->mArea);
-    Level::Area::Options* areaOptions = reinterpret_cast<Level::Area::Options*>(area->mBlocks[1]);
+void AreaTask::setPhysicsValues() {
+    Level::Area* area = Level::instance()->getArea(LevelInfo::instance()->area);
+    Level::Area::Options* areaOptions = reinterpret_cast<Level::Area::Options*>(area->blocks[1]);
 
     // Wrap flag set to "wrap" 
-    if (areaOptions->mWrapByte & 1)
-        this->mWrapFlag = 1;
+    if (areaOptions->wrapValue & 1) this->wrapFlag = 1;
 
     // Wrap flag set to "low-gravity"
-    else if (areaOptions->mWrapByte & 2) {
+    else if (areaOptions->wrapValue & 2) {
         PlayerJumpArc = 0.5f;
         MiniPlayerJumpArc = 0.5f;
         PlayerJumpMax = 4.5f;
@@ -24,8 +23,8 @@ void AreaTask::readOptions() {
     }
 
     // Wrap flag set to "wrap + low-gravity"
-    else if (areaOptions->mWrapByte & 3) {
-        this->mWrapFlag = 1;
+    else if (areaOptions->wrapValue & 3) {
+        this->wrapFlag = 1;
 
         PlayerJumpArc = 0.5f;
         MiniPlayerJumpArc = 0.5f;
@@ -35,7 +34,7 @@ void AreaTask::readOptions() {
 
     // Wrap flag not set
     else {
-        this->mWrapFlag = 0;
+        this->wrapFlag = 0;
 
         PlayerJumpArc = 2.5f;
         MiniPlayerJumpArc = 2.5f;

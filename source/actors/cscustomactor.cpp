@@ -16,7 +16,7 @@ public:
     u32 onExecute() override;
     u32 onDraw() override;
 
-    ModelWrapper* mModel;
+    ModelWrapper* model;
     
     static const CSHitboxCollider::Info sCollisionInfo;
 };
@@ -35,7 +35,7 @@ Actor* CSCustomActor::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 CSCustomActor::onCreate() {
-    this->mModel = ModelWrapper::create("cobStarGate", "cobStarGate", 3);
+    this->model = ModelWrapper::create("cobStarGate", "cobStarGate", 3);
 
     this->hitboxCollider.init(this, &CSCustomActor::sCollisionInfo);
 
@@ -60,11 +60,11 @@ u32 CSCustomActor::onDraw() {
 
     mtx.rotateAndTranslate(this->rotation, this->position);
 
-    this->mModel->setMtx(mtx);
-    this->mModel->setScale(this->scale);
-    this->mModel->updateModel();
+    this->model->setMtx(mtx);
+    this->model->setScale(this->scale);
+    this->model->updateModel();
 
-    DrawMgr::instance()->drawModel(mModel);
+    DrawMgr::instance()->drawModel(model);
 
     return 1;
 }

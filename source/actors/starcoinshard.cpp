@@ -20,7 +20,7 @@ public:
     static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     static const HitboxCollider::Info sCollisionInfo;
 
-    ModelWrapper* mModel;
+    ModelWrapper* model;
 };
 
 const Profile StarCoinShardProfile(&StarCoinShard::build, ProfileID::StarCoinShard, "StarCoinShard", nullptr, 0);
@@ -40,7 +40,7 @@ Actor* StarCoinShard::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 StarCoinShard::onCreate() {
-    this->mModel = ModelWrapper::create("star_coin", "star_coinA");
+    this->model = ModelWrapper::create("star_coin", "star_coinA");
 
     this->hitboxCollider.init(this, &StarCoinShard::sCollisionInfo, nullptr);
     this->addHitboxColliders();
@@ -49,12 +49,12 @@ u32 StarCoinShard::onCreate() {
 }
 
 u32 StarCoinShard::onExecute() {
-    this->mModel->updateAnimations();
+    this->model->updateAnimations();
     
     Mtx34 mtx;
     mtx.rotateAndTranslate(this->rotation, this->position);
-    this->mModel->setMtx(mtx);
-    this->mModel->updateModel();
+    this->model->setMtx(mtx);
+    this->model->updateModel();
 
     this->rotation.y += 0x3FD27D2;
 
@@ -62,7 +62,7 @@ u32 StarCoinShard::onExecute() {
 }
 
 u32 StarCoinShard::onDraw() {
-    DrawMgr::instance()->drawModel(this->mModel);
+    DrawMgr::instance()->drawModel(this->model);
 
     return 1;
 }

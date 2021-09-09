@@ -16,15 +16,15 @@ public:
     u32 onCreate() override;
     u32 onExecute() override;
 
-    u16 mSpawnProfileID;
-    bool mSpawned;
+    u16 spawnProfileID;
+    bool spawned;
 };
 
 const Profile ActorSpawnerProfile(&ActorSpawner::build, ProfileID::ActorSpawner, "ActorSpawner", nullptr, 0);
 
 ActorSpawner::ActorSpawner(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
-    , mSpawned(false)
+    , spawned(false)
 { }
 
 Actor* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
@@ -38,9 +38,9 @@ u32 ActorSpawner::onCreate() {
     u16 inputID = linkID | ((movementID & 0xF) << 8);
 
     if (movementID & 0x10)
-        mSpawnProfileID = Profile::spriteToProfileList[inputID];
+        spawnProfileID = Profile::spriteToProfileList[inputID];
     else
-        mSpawnProfileID = inputID;
+        spawnProfileID = inputID;
 
     // Call onExecute to prevent the spawned actor to be missing for one frame if the event is already active
     return onExecute();
@@ -62,18 +62,18 @@ u32 ActorSpawner::onExecute() {
             return 1;
         }
 
-        if (!mSpawned) {
+        if (!spawned) {
             ActorBuildInfo buildInfo = { 0 };
 
             buildInfo.settings1 = settings1;
             buildInfo.settings2 = settings2;
-            buildInfo.profile = Profile::get(mSpawnProfileID);
+            buildInfo.profile = Profile::get(spawnProfileID);
             buildInfo.position = position;
             buildInfo.eventID1 = eventID1 & 0xF;
             buildInfo.eventID2 = (eventID1 >> 4) & 0xF;
             ActorMgr::instance()->create(&buildInfo, 0);
 
-            mSpawned = true;
+            spawned = true;
         }
     }
 
@@ -92,7 +92,7 @@ u32 ActorSpawner::onExecute() {
             }
         }
 
-        mSpawned = false;
+        spawned = false;
     }
 
     return 1;

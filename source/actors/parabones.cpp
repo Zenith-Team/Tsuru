@@ -20,13 +20,13 @@ public:
 
     void modelUpdate();
 
-    ModelWrapper* mModel;
-    u32 mTimerIdleLowered;
-    u32 mTimerIdleRaised;
-    u32 mTimerLowering;
-    u32 mTimerRising;
-    u16 mFlyDistance;
-    u16 mIdleTime;
+    ModelWrapper* model;
+    u32 timerIdleLowered;
+    u32 timerIdleRaised;
+    u32 timerLowering;
+    u32 timerRising;
+    u16 flyDistance;
+    u16 idleTime;
 
     static const HitboxCollider::Info sCollisionInfo;
 
@@ -63,14 +63,14 @@ u32 ParaBones::onCreate() {
     Vec3u rotationOffset(0, 1000, 0);
     this->rotation.y = directionToRotationList[Direction::Left];
 
-    mModel = ModelWrapper::create("nokonokoB", "nokonokoB", 10);
-    mModel->playSklAnim("flyA", 0);
+    model = ModelWrapper::create("nokonokoB", "nokonokoB", 10);
+    model->playSklAnim("flyA", 0);
 
     hitboxCollider.init(this, &ParaBones::sCollisionInfo, nullptr);
     addHitboxColliders();
 
-    mFlyDistance = 200;
-    mIdleTime = 150;
+    flyDistance = 200;
+    idleTime = 150;
 
     doStateChange(&ParaBones::StateID_Lowering);
 
@@ -83,10 +83,10 @@ u32 ParaBones::onExecute() {
     handleGravity();
     handleSpeed();
 
-    if (mTimerLowering >= mFlyDistance)
+    if (timerLowering >= flyDistance)
         speed.y = 0.0f;
     else
-        mTimerLowering += 1;
+        timerLowering += 1;
 
     states.execute();
 
@@ -96,7 +96,7 @@ u32 ParaBones::onExecute() {
 }
 
 u32 ParaBones::onDraw() {
-    DrawMgr::instance()->drawModel(mModel);
+    DrawMgr::instance()->drawModel(model);
 
     return 1;
 }
@@ -106,10 +106,10 @@ void ParaBones::modelUpdate() {
 
     mtx.rotateAndTranslate(rotation, position);
 
-    mModel->setMtx(mtx);
-    mModel->setScale(scale);
-    mModel->updateModel();
-    mModel->updateAnimations();
+    model->setMtx(mtx);
+    model->setScale(scale);
+    model->updateModel();
+    model->updateAnimations();
 }
 
 void ParaBones::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
@@ -124,19 +124,19 @@ void ParaBones::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther)
 // Lowering state
 
 void ParaBones::beginState_Lowering() {
-    mTimerLowering = 0;
+    timerLowering = 0;
     gravity = -1.0f;
     maxSpeed.y = -1.0f;
 }
 
 void ParaBones::executeState_Lowering() {
-    if (mTimerLowering >= mFlyDistance) {
+    if (timerLowering >= flyDistance) {
         speed.y = 0.0f;
         doStateChange(&ParaBones::StateID_IdleLowered);
     }
     
     else
-        mTimerLowering++;
+        timerLowering++;
 }
 
 void ParaBones::endState_Lowering() { }
@@ -145,16 +145,16 @@ void ParaBones::endState_Lowering() { }
 // IdleLowered state
 
 void ParaBones::beginState_IdleLowered() {
-    mTimerIdleLowered = 0;
+    timerIdleLowered = 0;
     gravity = 0.0f;
     maxSpeed.y = 0.0f;
 }
 
 void ParaBones::executeState_IdleLowered() {
-    if (mTimerIdleLowered >= mIdleTime)
+    if (timerIdleLowered >= idleTime)
         doStateChange(&ParaBones::StateID_Rising);
     else
-        mTimerIdleLowered++;
+        timerIdleLowered++;
 }
 
 void ParaBones::endState_IdleLowered() { }
@@ -163,19 +163,19 @@ void ParaBones::endState_IdleLowered() { }
 // Rising state
 
 void ParaBones::beginState_Rising() {
-    mTimerRising = 0;
+    timerRising = 0;
     gravity = 0.0875f;
     maxSpeed.y = 1.0f;
 }
 
 void ParaBones::executeState_Rising() {
-    if (mTimerRising >= mFlyDistance / 2) {
+    if (timerRising >= flyDistance / 2) {
         speed.y = 0.0f;
         doStateChange(&ParaBones::StateID_IdleRaised);
     }
 
     else
-        mTimerRising++;
+        timerRising++;
 }
 
 void ParaBones::endState_Rising() { }
@@ -184,16 +184,16 @@ void ParaBones::endState_Rising() { }
 // IdleRaised state
 
 void ParaBones::beginState_IdleRaised() {
-    mTimerIdleRaised = 0;
+    timerIdleRaised = 0;
     gravity = 0.0f;
     maxSpeed.y = 0.0f;
 }
 
 void ParaBones::executeState_IdleRaised() {
-    if (mTimerIdleRaised >= mIdleTime)
+    if (timerIdleRaised >= idleTime)
         doStateChange(&ParaBones::StateID_Lowering);
     else
-        mTimerIdleRaised++;
+        timerIdleRaised++;
 }
 
 void ParaBones::endState_IdleRaised() { }

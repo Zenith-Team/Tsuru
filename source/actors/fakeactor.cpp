@@ -21,8 +21,8 @@ public:
     void updateModel();
     void updateModel2();
 
-    ModelWrapper* mModel;
-    ModelWrapper* mModel2;
+    ModelWrapper* model;
+    ModelWrapper* model2;
 
     static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     static void goalpoleCollisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
@@ -30,12 +30,12 @@ public:
     static const HitboxCollider::Info sGoalpoleCollisionInfo;
     static const HitboxCollider::Info sStarcoinCollisionInfo;
 
-    RectCollider mRectCollider;
+    RectCollider rectCollider;
 
-    Vec3f mEffectScale;
-    Vec3f mEffectOffset;
-    Vec3f mModelOffset;
-    Vec3f mModel2Offset;
+    Vec3f effectScale;
+    Vec3f effectOffset;
+    Vec3f modelOffset;
+    Vec3f model2Offset;
 
     DECLARE_STATE(FakeActor, Checkpoint);
     DECLARE_STATE(FakeActor, GoalPole);
@@ -51,13 +51,13 @@ PROFILE_RESOURCES(ProfileID::FakeActor, "middle_flag", "star_coin", "goal_set");
 
 FakeActor::FakeActor(const ActorBuildInfo* buildInfo)
     : MultiStateActor(buildInfo)
-    , mRectCollider()
-    , mModel(nullptr)
-    , mModel2(nullptr)
-    , mModelOffset(0.0f, 0.0f, 0.0f)
-    , mModel2Offset(0.0f, 0.0f, 0.0f)
-    , mEffectOffset(0.0f, 0.0f, 0.0f)
-    , mEffectScale(1.0f, 1.0f, 1.0f)
+    , rectCollider()
+    , model(nullptr)
+    , model2(nullptr)
+    , modelOffset(0.0f, 0.0f, 0.0f)
+    , model2Offset(0.0f, 0.0f, 0.0f)
+    , effectOffset(0.0f, 0.0f, 0.0f)
+    , effectScale(1.0f, 1.0f, 1.0f)
 { }
 
 Actor* FakeActor::build(const ActorBuildInfo* buildInfo) {
@@ -82,33 +82,33 @@ u32 FakeActor::onExecute() {
 }
 
 u32 FakeActor::onDraw() {
-    if (this->mModel)  DrawMgr::instance()->drawModel(this->mModel);
-    if (this->mModel2) DrawMgr::instance()->drawModel(this->mModel2);
+    if (this->model)  DrawMgr::instance()->drawModel(this->model);
+    if (this->model2) DrawMgr::instance()->drawModel(this->model2);
     return 1;
 }
 
 void FakeActor::updateModel() {
-    if (this->mModel) {
-        this->mModel->updateAnimations();
+    if (this->model) {
+        this->model->updateAnimations();
         Mtx34 mtx;
-        mtx.rotateAndTranslate(this->rotation, this->position + this->mModelOffset);
-        this->mModel->setMtx(mtx);
-        this->mModel->updateModel();
+        mtx.rotateAndTranslate(this->rotation, this->position + this->modelOffset);
+        this->model->setMtx(mtx);
+        this->model->updateModel();
     }
 
-    if (this->mModel2) {
-        this->mModel2->updateAnimations();
+    if (this->model2) {
+        this->model2->updateAnimations();
         Mtx34 mtx;
-        mtx.rotateAndTranslate(this->rotation, this->position + this->mModel2Offset);
-        this->mModel2->setMtx(mtx);
-        this->mModel2->updateModel();
+        mtx.rotateAndTranslate(this->rotation, this->position + this->model2Offset);
+        this->model2->setMtx(mtx);
+        this->model2->updateModel();
     }
 }
 
 void FakeActor::touch() {
     Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
-    Vec3f effectPos(effectOrigin + this->mEffectOffset);
-    Effect::spawn(RP_ObakeDoor_Disapp, &effectPos, nullptr, &this->mEffectScale);
+    Vec3f effectPos(effectOrigin + this->effectOffset);
+    Effect::spawn(RP_ObakeDoor_Disapp, &effectPos, nullptr, &this->effectScale);
     if (!(this->settings1 >> 0x1C & 0xF)) this->isDeleted = true;
 }
 
@@ -137,8 +137,8 @@ const HitboxCollider::Info FakeActor::sCheckpointCollisionInfo = {
 };
 
 void FakeActor::beginState_Checkpoint() {
-    this->mModel = ModelWrapper::create("middle_flag", "middle_flag", 4);
-    this->mModel->playSklAnim("wait", 0);
+    this->model = ModelWrapper::create("middle_flag", "middle_flag", 4);
+    this->model->playSklAnim("wait", 0);
     this->hitboxCollider.init(this, &FakeActor::sCheckpointCollisionInfo, nullptr);
     this->addHitboxColliders();
 
@@ -156,31 +156,31 @@ const HitboxCollider::Info FakeActor::sGoalpoleCollisionInfo = {
 };
 
 void FakeActor::beginState_GoalPole() {
-    this->mModel = ModelWrapper::create("goal_set", "baseA", 1, 0, 1);
-    this->mModel2 = ModelWrapper::create("goal_set", "goal_flag", 1, 0, 1);
+    this->model = ModelWrapper::create("goal_set", "baseA", 1, 0, 1);
+    this->model2 = ModelWrapper::create("goal_set", "goal_flag", 1, 0, 1);
 
-    this->mModel2->playSklAnim("wait", 0);
-    this->mModel2->playTexSrtAnim("wait", 0);
-    this->mModel2Offset = Vec3f(0.0f, 80.0f, 0.0f);
+    this->model2->playSklAnim("wait", 0);
+    this->model2->playTexSrtAnim("wait", 0);
+    this->model2Offset = Vec3f(0.0f, 80.0f, 0.0f);
 
     ShapedCollider::Info colliderInfo = {
         Vec2f(0.0f, 8.0f), 0.0f, 0.0f, Vec2f(-16.0f, 8.0f), Vec2f(16.0f, -8.0f), 0
     };
 
-    this->mRectCollider.init(this, colliderInfo);
-    ColliderMgr::instance()->add(&mRectCollider);
+    this->rectCollider.init(this, colliderInfo);
+    ColliderMgr::instance()->add(&rectCollider);
 
     this->hitboxCollider.init(this, &FakeActor::sGoalpoleCollisionInfo, nullptr);
     this->addHitboxColliders();
 
-    this->mEffectOffset = Vec3f(0.0f, 20.0f, 0.0f);
-    this->mEffectScale = Vec3f(2.25f, 2.25f, 2.25f);
+    this->effectOffset = Vec3f(0.0f, 20.0f, 0.0f);
+    this->effectScale = Vec3f(2.25f, 2.25f, 2.25f);
     this->rotation.y -= 0x40000000;
     this->updateModel();
 }
 
 void FakeActor::executeState_GoalPole() {
-    this->mRectCollider.execute();
+    this->rectCollider.execute();
 }
 
 void FakeActor::endState_GoalPole() {}
@@ -192,11 +192,11 @@ const HitboxCollider::Info FakeActor::sStarcoinCollisionInfo = {
 };
 
 void FakeActor::beginState_StarCoin() {
-    this->mModel = ModelWrapper::create("star_coin", "star_coinA", 0);
+    this->model = ModelWrapper::create("star_coin", "star_coinA", 0);
     this->hitboxCollider.init(this, &FakeActor::sStarcoinCollisionInfo, nullptr);
     this->addHitboxColliders();
 
-    this->mEffectOffset = Vec3f(0.0f, -24.0f, 0.0f);
+    this->effectOffset = Vec3f(0.0f, -24.0f, 0.0f);
     this->updateModel();
 }
 
