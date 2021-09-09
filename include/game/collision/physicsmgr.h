@@ -15,6 +15,7 @@ public:
         f32 distanceFromCenter; // _8
     };
 
+public:
     enum Flags {
         FlagOnGround        = 1 << 0,
         FlagOnSlope         = 1 << 1,
@@ -23,6 +24,7 @@ public:
         FlagCollidedLeft    = 1 << 19
     };
 
+public:
     PhysicsMgr();
 
     virtual ~PhysicsMgr();
