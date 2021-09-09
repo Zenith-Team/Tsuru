@@ -3,6 +3,7 @@
 Files:
   - source/sound/sfxreverb.cpp
 Hooks:
+# Restore SFX reverb values
   - type: branch
     instr: b
     addr: "29C3B7C"

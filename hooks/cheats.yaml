@@ -3,39 +3,47 @@
 Files:
   - source/cheats.S
 Hooks:
-  # Infinite lives
+# Infinite lives
   - type: branch
     instr: b
     func: InfiniteLives
-    addr: "24c0058"
-  # Infinite time
+    addr: "24c0058" # CourseTask::FUN_24c0058
+
+# Infinite time
   - type: branch
     instr: b
     func: InfiniteTime
-    addr: "24c1384"
-  # NoClip
+    addr: "24c1384" # LevelTimer::getTimeLimitSeconds()
+
+# NoClip
+  # Conditionally kill left sensor
   - type: branch
     instr: bl
     func: NoClip
-    addr: "2928d5c" # Left sensor
+    addr: "2928d5c" # Player::FUN_292897c()
+  # Conditionally kill right sensor
   - type: branch
     instr: bl
     func: NoClip
-    addr: "2928d28" # Right sensor
+    addr: "2928d28" # Player::FUN_292897c()
+  # Conditionally kill right sensor (again)
   - type: branch
     instr: bl
     func: NoClip
-    addr: "2928b4c" # Right sensor 2
+    addr: "2928b4c" # Player::FUN_292897c()
+  # Conditionally kill top sensor
   - type: branch
     instr: bl
     func: NoClip
-    addr: "2928d18" # Top sensor
+    addr: "2928d18" # Player::FUN_292897c()
+  # Conditionally kill top sensor (again)
   - type: branch
     instr: bl
     func: NoClip
-    addr: "2928b3c" # Top sensor 2
-  # Invincibility
+    addr: "2928b3c" # Player::FUN_292897c()
+
+# Invincibility
   - type: branch
     instr: b
     func: Invincibility
-    addr: "293117c" # Player::hurt
+    addr: "293117c" # Player::hurt()

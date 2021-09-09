@@ -10,7 +10,7 @@ public:
     void drawLayer3D(const agl::lyr::RenderInfo& renderInfo);
 
     // Custom functions
-    void readOptions();
+    void setPhysicsValues();
     void drawLayerDebug(const agl::lyr::RenderInfo& renderInfo);
 
     u8 _C8[1636];
