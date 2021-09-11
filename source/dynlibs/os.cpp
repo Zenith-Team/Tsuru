@@ -62,12 +62,12 @@ EXPORT_DECL(s32, OSIsThreadSuspended, OSThread* thread);
 EXPORT_DECL(s32, OSSetThreadPriority, OSThread* thread, s32 priority);
 EXPORT_DECL(s32, OSJoinThread, OSThread* thread, s32* retVal);
 EXPORT_DECL(void, OSDetachThread, OSThread* thread);
-EXPORT_DECL(OSThread*,OSGetCurrentThread,void);
-EXPORT_DECL(const char*,OSGetThreadName,OSThread* thread);
-EXPORT_DECL(void ,OSGetActiveThreadLink,OSThread* thread, void* link);
-EXPORT_DECL(u32 ,OSGetThreadAffinity,OSThread* thread);
-EXPORT_DECL(s32 ,OSGetThreadPriority,OSThread* thread);
-EXPORT_DECL(void ,OSSetThreadName,OSThread* thread, const char* name);
+EXPORT_DECL(OSThread*, OSGetCurrentThread, void);
+EXPORT_DECL(const char*, OSGetThreadName, OSThread* thread);
+EXPORT_DECL(void, OSGetActiveThreadLink, OSThread* thread, void* link);
+EXPORT_DECL(u32, OSGetThreadAffinity, OSThread* thread);
+EXPORT_DECL(s32, OSGetThreadPriority, OSThread* thread);
+EXPORT_DECL(void, OSSetThreadName, OSThread* thread, const char* name);
 EXPORT_DECL(s32, OSGetCoreId, void);
 EXPORT_DECL(void, OSSleepTicks, u64 ticks);
 EXPORT_DECL(u64, OSGetTick, void);
@@ -78,9 +78,9 @@ EXPORT_DECL(void, OSTicksToCalendarTime, u64 time, OSCalendarTime* calendarTime)
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //! Message functions
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-EXPORT_DECL(void,OSInitMessageQueue,OSMessageQueue* queue, OSMessage* messages, s32 size);
-EXPORT_DECL(u32,OSSendMessage,OSMessageQueue* queue, OSMessage* message, s32 flags);
-EXPORT_DECL(u32,OSReceiveMessage,OSMessageQueue* queue, OSMessage* message, s32 flags);
+EXPORT_DECL(void, OSInitMessageQueue, OSMessageQueue* queue, OSMessage* messages, s32 size);
+EXPORT_DECL(u32, OSSendMessage, OSMessageQueue* queue, OSMessage* message, s32 flags);
+EXPORT_DECL(u32, OSReceiveMessage, OSMessageQueue* queue, OSMessage* message, s32 flags);
 
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //! Mutex functions
@@ -100,7 +100,7 @@ EXPORT_DECL(void, OSFatal, const char* msg);
 EXPORT_DECL(void, OSConsoleWrite, const char* msg, s32 size);
 EXPORT_DECL(void*, OSSetExceptionCallback, u8 exceptionType, exception_callback newCallback);
 EXPORT_DECL(void*, OSSetExceptionCallbackEx, s32 unkwn, u8 exceptionType, exception_callback newCallback);
-EXPORT_DECL(void , OSLoadContext, OSContext* context);
+EXPORT_DECL(void, OSLoadContext, OSContext* context);
 EXPORT_DECL(void, DCFlushRange, const void* addr, u32 length);
 EXPORT_DECL(void, DCStoreRange, const void* addr, u32 length);
 EXPORT_DECL(void, ICInvalidateRange, const void* addr, u32 length);
@@ -147,8 +147,8 @@ EXPORT_DECL(void, MEMFreeToFrmHeap, s32 heap, s32 mode);
 EXPORT_DECL(u32, MEMFreeByStateToFrmHeap, s32 heap, u32 tag);
 EXPORT_DECL(u32, MEMRecordStateForFrmHeap, s32 heap, u32 tag);
 EXPORT_DECL(void*, MEMAllocFromExpHeapEx, s32 heap, u32 size, s32 align);
-EXPORT_DECL(s32 , MEMCreateExpHeapEx, void* address, u32 size, unsigned short flags);
-EXPORT_DECL(s32 , MEMCreateFrmHeapEx, void* address, u32 size, unsigned short flags);
+EXPORT_DECL(s32, MEMCreateExpHeapEx, void* address, u32 size, unsigned short flags);
+EXPORT_DECL(s32, MEMCreateFrmHeapEx, void* address, u32 size, unsigned short flags);
 EXPORT_DECL(void*, MEMDestroyExpHeap, s32 heap);
 EXPORT_DECL(void, MEMFreeToExpHeap, s32 heap, void* ptr);
 EXPORT_DECL(void*, OSAllocFromSystem, u32 size, s32 alignment);
@@ -198,13 +198,13 @@ EXPORT_DECL(s32, OSSetScreenCapturePermissionEx, s32 tvEnabled, s32 drcEnabled);
 //! Energy Saver functions
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Burn-in Reduction
-EXPORT_DECL(s32, IMEnableDim,void);
-EXPORT_DECL(s32, IMDisableDim,void);
-EXPORT_DECL(s32, IMIsDimEnabled,s32* result);
+EXPORT_DECL(s32, IMEnableDim, void);
+EXPORT_DECL(s32, IMDisableDim, void);
+EXPORT_DECL(s32, IMIsDimEnabled, s32* result);
 //Auto power down
-EXPORT_DECL(s32, IMEnableAPD,void);
-EXPORT_DECL(s32, IMDisableAPD,void);
-EXPORT_DECL(s32, IMIsAPDEnabled,s32* result);
+EXPORT_DECL(s32, IMEnableAPD, void);
+EXPORT_DECL(s32, IMDisableAPD, void);
+EXPORT_DECL(s32, IMIsAPDEnabled, s32* result);
 EXPORT_DECL(s32, IMIsAPDEnabledBySysSettings, s32* result);
 
 EXPORT_DECL(s32, OSSendAppSwitchRequest, s32 param, void* unknown1, void* unknown2);
