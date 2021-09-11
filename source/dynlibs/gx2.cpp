@@ -44,25 +44,25 @@ EXPORT_DECL(void, GX2CopyColorBufferToScanBuffer, const GX2ColorBuffer* colorBuf
 EXPORT_DECL(void, GX2SwapScanBuffers, void);
 EXPORT_DECL(void, GX2SetTVEnable, s32 enable);
 EXPORT_DECL(void, GX2SetSwapInterval, u32 swapInterval);
-EXPORT_DECL(u32, GX2GetSwapInterval, void);
-EXPORT_DECL(void, GX2GetSwapStatus, u32 *swapCount, u32 *flipCount, OSTime *lastFlip, OSTime *lastVsync);
+EXPORT_DECL(u32,  GX2GetSwapInterval, void);
+EXPORT_DECL(void, GX2GetSwapStatus, u32* swapCount, u32* flipCount, OSTime* lastFlip, OSTime* lastVsync);
 EXPORT_DECL(void, GX2WaitForVsync, void);
 EXPORT_DECL(void, GX2CalcTVSize, s32 tvRenderMode, s32 format, s32 bufferingMode, u32* size, s32* scaleNeeded);
 EXPORT_DECL(void, GX2Invalidate, s32 invalidateType, void* ptr, u32 bufferSize);
 EXPORT_DECL(void, GX2SetTVBuffer, void* buffer, u32 bufferSize, s32 tvRenderMode, s32 format, s32 bufferingMode);
-EXPORT_DECL(void, GX2CalcSurfaceSizeAndAlignment, GX2Surface *surface);
-EXPORT_DECL(void, GX2InitDepthBufferRegs, GX2DepthBuffer *depthBuffer);
-EXPORT_DECL(void, GX2InitColorBufferRegs, GX2ColorBuffer *colorBuffer);
-EXPORT_DECL(void, GX2CalcColorBufferAuxInfo, GX2ColorBuffer *colorBuffer, u32 *size, u32 *align);
-EXPORT_DECL(void, GX2CalcDepthBufferHiZInfo, GX2DepthBuffer *depthBuffer, u32 *size, u32 *align);
-EXPORT_DECL(void, GX2InitDepthBufferHiZEnable, GX2DepthBuffer *depthBuffer, s32 hiZ_enable);
+EXPORT_DECL(void, GX2CalcSurfaceSizeAndAlignment, GX2Surface* surface);
+EXPORT_DECL(void, GX2InitDepthBufferRegs, GX2DepthBuffer* depthBuffer);
+EXPORT_DECL(void, GX2InitColorBufferRegs, GX2ColorBuffer* colorBuffer);
+EXPORT_DECL(void, GX2CalcColorBufferAuxInfo, GX2ColorBuffer* colorBuffer, u32* size, u32* align);
+EXPORT_DECL(void, GX2CalcDepthBufferHiZInfo, GX2DepthBuffer* depthBuffer, u32* size, u32* align);
+EXPORT_DECL(void, GX2InitDepthBufferHiZEnable, GX2DepthBuffer* depthBuffer, s32 hiZ_enable);
 EXPORT_DECL(void, GX2SetupContextStateEx, GX2ContextState* state, s32 enableProfiling);
 EXPORT_DECL(void, GX2SetColorBuffer, const GX2ColorBuffer* colorBuffer, s32 target);
 EXPORT_DECL(void, GX2SetDepthBuffer, const GX2DepthBuffer* depthBuffer);
 EXPORT_DECL(void, GX2SetAttribBuffer, u32 attrIndex, u32 attrSize, u32 stride, const void* attr);
 EXPORT_DECL(void, GX2InitTextureRegs, GX2Texture* texture);
 EXPORT_DECL(void, GX2InitSampler, GX2Sampler* sampler, s32 texClamp, s32 minMagFilter);
-EXPORT_DECL(u32, GX2CalcFetchShaderSizeEx, u32 numAttrib, s32 fetchShaderType, s32 tessellationMode);
+EXPORT_DECL(u32,  GX2CalcFetchShaderSizeEx, u32 numAttrib, s32 fetchShaderType, s32 tessellationMode);
 EXPORT_DECL(void, GX2InitFetchShaderEx, GX2FetchShader* fs, void* fsBuffer, u32 count, const GX2AttribStream* attribs, s32 fetchShaderType, s32 tessellationMode);
 EXPORT_DECL(void, GX2SetFetchShader, const GX2FetchShader* fs);
 EXPORT_DECL(void, GX2SetVertexUniformReg, u32 offset, u32 count, const void* values);
@@ -91,24 +91,24 @@ EXPORT_DECL(void, GX2SetLineWidth, f32 width);
 EXPORT_DECL(void, GX2SetTVGamma, f32 val);
 EXPORT_DECL(void, GX2SetTVScale, u32 x, u32 y);
 EXPORT_DECL(void, GX2SetDRCGamma, f32 gam);
-EXPORT_DECL(s32, GX2GetSystemTVScanMode, void);
-EXPORT_DECL(s32, GX2GetSystemDRCScanMode, void);
-EXPORT_DECL(void, GX2RSetAllocator, void * (* allocFunc)(u32, u32, u32), void (* freeFunc)(u32, void*));
-EXPORT_DECL(void, GX2CopySurface, GX2Surface * srcSurface,u32 srcMip,u32 srcSlice,GX2Surface * dstSurface,u32 dstMip,u32 dstSlice );
+EXPORT_DECL(s32,  GX2GetSystemTVScanMode, void);
+EXPORT_DECL(s32,  GX2GetSystemDRCScanMode, void);
+EXPORT_DECL(void, GX2RSetAllocator, void* (* allocFunc)(u32, u32, u32), void (* freeFunc)(u32, void*));
+EXPORT_DECL(void, GX2CopySurface, GX2Surface* srcSurface,u32 srcMip,u32 srcSlice,GX2Surface* dstSurface,u32 dstMip,u32 dstSlice );
 
-EXPORT_DECL(s32, GX2GetLastFrame, s32 target, GX2Texture * texture);
-EXPORT_DECL(void, GX2BeginDisplayListEx,void * displayList,u32 size,s32 unkwn);
-EXPORT_DECL(u32, GX2EndDisplayList, void * list);
-EXPORT_DECL(void, GX2CallDisplayList, void * list, u32 size);
-EXPORT_DECL(void, GX2ExpandAAColorBuffer,GX2ColorBuffer * buffer);
-EXPORT_DECL(void, GX2ResolveAAColorBuffer, const GX2ColorBuffer * srcBuffer, GX2Surface * dstSurface,u32 dstMip,u32 dstSlice);
-EXPORT_DECL(u32, GX2RCreateBuffer, GX2RBuffer * buffer);
-EXPORT_DECL(void, GX2RDestroyBufferEx, GX2RBuffer * buffer, u32 flags);
-EXPORT_DECL(void *, GX2RLockBufferEx, GX2RBuffer * buffer, u32 flags);
-EXPORT_DECL(void, GX2RUnlockBufferEx, GX2RBuffer * buffer, u32 flags);
-EXPORT_DECL(void, GX2RSetAttributeBuffer, GX2RBuffer * buffer, u32 index, u32 stride, u32 offset);
+EXPORT_DECL(s32,  GX2GetLastFrame, s32 target, GX2Texture* texture);
+EXPORT_DECL(void, GX2BeginDisplayListEx,void* displayList,u32 size,s32 unkwn);
+EXPORT_DECL(u32,  GX2EndDisplayList, void* list);
+EXPORT_DECL(void, GX2CallDisplayList, void* list, u32 size);
+EXPORT_DECL(void, GX2ExpandAAColorBuffer,GX2ColorBuffer* buffer);
+EXPORT_DECL(void, GX2ResolveAAColorBuffer, const GX2ColorBuffer* srcBuffer, GX2Surface* dstSurface,u32 dstMip,u32 dstSlice);
+EXPORT_DECL(u32,  GX2RCreateBuffer, GX2RBuffer* buffer);
+EXPORT_DECL(void, GX2RDestroyBufferEx, GX2RBuffer* buffer, u32 flags);
+EXPORT_DECL(void*, GX2RLockBufferEx, GX2RBuffer* buffer, u32 flags);
+EXPORT_DECL(void, GX2RUnlockBufferEx, GX2RBuffer* buffer, u32 flags);
+EXPORT_DECL(void, GX2RSetAttributeBuffer, GX2RBuffer* buffer, u32 index, u32 stride, u32 offset);
 
-EXPORT_DECL(void, GX2ClearBuffersEx, GX2ColorBuffer * colorBuffer,GX2DepthBuffer * depthBuffer,f32 r, f32 g, f32 b, f32 a,f32 depthValue,u8 stencilValue,s32 clearFlags);
+EXPORT_DECL(void, GX2ClearBuffersEx, GX2ColorBuffer* colorBuffer,GX2DepthBuffer* depthBuffer,f32 r, f32 g, f32 b, f32 a,f32 depthValue,u8 stencilValue,s32 clearFlags);
 
 void InitAcquireGX2(void) {
     if(coreinitHandle == 0) {
@@ -118,7 +118,7 @@ void InitAcquireGX2(void) {
 }
 
 extern "C" void InitGX2FunctionPointers(void) {
-    u32 *funcPointer = 0;
+    u32* funcPointer = 0;
     InitAcquireGX2();
 
     OS_FIND_EXPORT(gx2_handle, GX2Init);

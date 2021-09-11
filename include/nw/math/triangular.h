@@ -56,7 +56,7 @@ inline f32 Idx2Rad(f32 angle) {
 }
 
 inline u32 Rad2Idx(f32 rad) {
-    return static_cast<s64>(rad * (I_HALF_ROUND_IDX / F_PI));
+    return static_cast<s64>(rad*  (I_HALF_ROUND_IDX / F_PI));
 }
 
 inline void SinCosRad(f32* sinVal, f32* cosVal, f32 rad) {

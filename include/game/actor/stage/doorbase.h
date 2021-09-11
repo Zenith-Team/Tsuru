@@ -7,7 +7,7 @@ class DoorBase : public Enemy { // Size: 0x18A8
     SEAD_RTTI_OVERRIDE(DoorBase, Enemy)
 
 public:
-    DoorBase(const ActorBuildInfo *buildInfo);
+    DoorBase(const ActorBuildInfo* buildInfo);
     virtual ~DoorBase();
 
     u32 onCreate() override;

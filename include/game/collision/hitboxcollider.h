@@ -38,10 +38,10 @@ public:
             Node* prev;                // _8
         };
 
-        virtual void insert(Node *, Node *); // _C
-        virtual void remove(Node *);         // _14
-        virtual void insertBack(Node *);     // _1C
-        virtual void insertFront(Node *);    // _24
+        virtual void insert(Node*, Node*); // _C
+        virtual void remove(Node*);         // _14
+        virtual void insertBack(Node*);     // _1C
+        virtual void insertFront(Node*);    // _24
         virtual void clear();                // _2C
 
         Node* first;   // _0
