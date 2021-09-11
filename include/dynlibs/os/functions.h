@@ -210,7 +210,7 @@ extern u32 (*OSScreenPutPixelEx)(u32 bufferNum, u32 posX, u32 posY, u32 color);
 
 typedef unsigned char (*exception_callback)(OSContext* interruptedContext);
 extern void* (*OSSetExceptionCallback)(u8 exceptionType, exception_callback newCallback);
-extern void* (*OSSetExceptionCallbackEx)(s32 unknwn,u8 exceptionType, exception_callback newCallback);
+extern void* (*OSSetExceptionCallbackEx)(s32 unknwn, u8 exceptionType, exception_callback newCallback);
 extern void  (*OSLoadContext)(OSContext* context);
 
 extern void (*DisassemblePPCRange)(void* rangeStart, void* rangeEnd, DisasmReport disasmReport, DisasmGetSym disasmGetSym, u32 disasmOptions);
@@ -293,8 +293,8 @@ extern s32 (*OSSendAppSwitchRequest)(s32 param, void* unknown1, void* unknown2);
 //! IOS functions
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-extern s32 (*IOS_Ioctl)(s32 fd, u32 request, void* inputBuffer,u32 inputBufferLen, void* outputBuffer, u32 outputBufferLen);
-extern s32 (*IOS_IoctlAsync)(s32 fd, u32 request, void* inputBuffer,u32 inputBufferLen, void* outputBuffer, u32 outputBufferLen, void* cb, void* cbarg);
+extern s32 (*IOS_Ioctl)(s32 fd, u32 request, void* inputBuffer, u32 inputBufferLen, void* outputBuffer, u32 outputBufferLen);
+extern s32 (*IOS_IoctlAsync)(s32 fd, u32 request, void* inputBuffer, u32 inputBufferLen, void* outputBuffer, u32 outputBufferLen, void* cb, void* cbarg);
 extern s32 (*IOS_Open)(char* path, u32 mode);
 extern s32 (*IOS_Close)(s32 fd);
 
