@@ -36,7 +36,7 @@ void TsuruSaveMgr::init() {
     }
 
     else if (TsuruSaveMgr::sSaveData.magic != 0xCAFEF00D) { // Savefile is corrupted
-        LOG("sh_savedata.dat is corrupted. Recreating...");
+        LOG("ts_savedata.dat is corrupted. Recreating...");
         TsuruSaveMgr::sSaveData = TsuruSaveMgr::TsuruSaveData();
         TsuruSaveMgr::instance()->write();
         return;
