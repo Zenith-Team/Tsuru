@@ -157,12 +157,12 @@ protected:                                                              \
 private:                                                                \
     class TaskSingleton {                                               \
     public:                                                             \
-        TaskSingleton() : set(false) { }                               \
+        TaskSingleton() : set(false) { }                                \
         ~TaskSingleton() {                                              \
-            if (set) CLASS::sInstance = nullptr;                       \
+            if (set) CLASS::sInstance = nullptr;                        \
         }                                                               \
                                                                         \
-        bool set;                                                      \
+        bool set;                                                       \
     };                                                                  \
                                                                         \
     friend class TaskSingleton;                                         \
@@ -174,7 +174,7 @@ private:                                                                \
         if (CLASS::sInstance)                                           \
             return;                                                     \
         CLASS::sInstance = reinterpret_cast<CLASS*>(task);              \
-        reinterpret_cast<CLASS*>(task)->taskSingleton.set = true;     \
+        reinterpret_cast<CLASS*>(task)->taskSingleton.set = true;       \
     }
 
 #define SEAD_SINGLETON_TASK_IMPL(CLASS)                                 \

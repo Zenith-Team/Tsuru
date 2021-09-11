@@ -113,7 +113,7 @@ typedef struct OSContext_ {
     u32 ex0;
     u32 ex1;
 
-    u32 exception_type;
+    u32 exceptionType;
     u32 reserved;
 
     double fpscr;
