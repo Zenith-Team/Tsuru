@@ -66,14 +66,14 @@ typedef volatile double vf64;
 typedef struct OSThread_ OSThread;
 
 typedef struct OSThreadLink_ {
-    OSThread *next;
-    OSThread *prev;
+    OSThread* next;
+    OSThread* prev;
 }  OSThreadLink;
 
 typedef struct OSThreadQueue_ {
-    OSThread *head;
-    OSThread *tail;
-    void *parentStruct;
+    OSThread* head;
+    OSThread* tail;
+    void* parentStruct;
     u32 reserved;
 } OSThreadQueue;
 
@@ -86,12 +86,12 @@ typedef struct OSMessage_ {
 
 typedef struct OSMessageQueue_ {
     u32 tag;
-    char *name;
+    char* name;
     u32 reserved;
 
     OSThreadQueue sendQueue;
     OSThreadQueue recvQueue;
-    OSMessage *messages;
+    OSMessage* messages;
     int msgCount;
     int firstIndex;
     int usedCount;
@@ -158,7 +158,7 @@ typedef enum OSExceptionType {
     OS_EXCEPTION_TYPE_ICI                  = 14,
 } OSExceptionType;
 
-typedef int (*ThreadFunc)(int argc, void *argv);
+typedef int (*ThreadFunc)(int argc, void* argv);
 
 struct OSThread_ {
     OSContext context;
@@ -174,8 +174,8 @@ struct OSThread_ {
     char _[0x394 - 0x330 - sizeof(OSThreadLink)];
     OSThreadLink linkActive;
 
-    void *stackBase;
-    void *stackEnd;
+    void* stackBase;
+    void* stackEnd;
 
     ThreadFunc entryPoint;
 
@@ -214,7 +214,7 @@ typedef struct _OSMutexLink {
 
 struct _OSMutex {
     u32 txtTag;
-    char *name;
+    char* name;
     u32 reserved;
     OSThreadQueue queue;
     OSThread* thread;
@@ -235,13 +235,13 @@ typedef struct MCPTitleListType {
 } MCPTitleListType;
 
 typedef struct _MEMMemoryLink {
-    void *prev;
-    void *next;
+    void* prev;
+    void* next;
 } MEMMemoryLink;
 
 typedef struct _MEMMemoryList {
-    void *head;
-    void *tail;
+    void* head;
+    void* tail;
     u16 count;
     u16 offsetToMemoryLink;
 } MEMMemoryList;
@@ -250,14 +250,14 @@ typedef struct _MEMHeapHeader {
     u32 tag;
     MEMMemoryLink link;
     MEMMemoryList list;
-    void *dataStart;
-    void *dataEnd;
+    void* dataStart;
+    void* dataEnd;
     OSSpinLock lock;
     u32 flags;
     u8 unk[0x0C];
 } MEMHeapHeader;
 
-typedef MEMHeapHeader *MEMHeapHandle;
+typedef MEMHeapHeader* MEMHeapHandle;
 
 typedef enum MEMBaseHeapType {
     MEM_BASE_HEAP_MEM1   = 0,
