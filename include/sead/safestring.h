@@ -25,7 +25,7 @@ public:
         s32 len = calcLength();
         if (at < 0 || at > len)
             return SafeStringBase<T>::sEmptyString;
-        
+
         return SafeStringBase<T>(stringTop + at);
     }
 

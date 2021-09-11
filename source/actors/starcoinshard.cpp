@@ -50,7 +50,7 @@ u32 StarCoinShard::onCreate() {
 
 u32 StarCoinShard::onExecute() {
     this->model->updateAnimations();
-    
+
     Mtx34 mtx;
     mtx.rotateAndTranslate(this->rotation, this->position);
     this->model->setMtx(mtx);

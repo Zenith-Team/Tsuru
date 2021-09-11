@@ -14,7 +14,7 @@ struct Color4f {
         r(val), g(val), b(val), a(val) { }
     inline Color4f(f32 r, f32 g, f32 b, f32 a) :
         r(r), g(g), b(b), a(a) { }
-    
+
     void set(f32 r, f32 g, f32 b, f32 a) {
         this->r = r;
         this->g = g;

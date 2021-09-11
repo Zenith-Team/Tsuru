@@ -31,7 +31,7 @@ public:
 
 public:
     MovingSoundActor(u32 unk1, u32 unk2);
-    
+
     void setPosition(const Vec2f& position);
 
     f32 _74;

@@ -15,16 +15,16 @@ Profile::Profile(Actor* (*buildFunc)(const ActorBuildInfo*), u32 id, const sead:
         this->actorInfo = actorInfo;
     else
         this->actorInfo = &ActorInfo::sDefault;
-    
+
     this->hasResourcesLoaded = 0;
     this->flags = flags;
 
     if (id < NUM_PROFILES_ORIGINAL)
         profilesOriginal[id] = this;
-    
+
     else if (id < NUM_PROFILES)
         profilesCustom[id - NUM_PROFILES_ORIGINAL] = this;
-    
+
     else
         profilesOriginal[0] = this;
 }
@@ -35,47 +35,47 @@ Profile* Profile::get(u32 id) {
 
     if (id < NUM_PROFILES)
         return profilesCustom[id - NUM_PROFILES_ORIGINAL];
-    
+
     return profilesOriginal[0];
 }
 
 s16 Profile::getPriority(u32 id) {
     if (id < NUM_PROFILES_ORIGINAL)
         return prioritiesOriginal[id];
-    
+
     if (id < NUM_PROFILES)
         return prioritiesCustom[id - NUM_PROFILES_ORIGINAL];
-    
+
     return -1;
 }
 
 u8 Profile::getHasResources(u32 id) {
     if (id < NUM_PROFILES_ORIGINAL)
         return hasResourcesOriginal[id];
-    
+
     if (id < NUM_PROFILES)
         return hasResourcesCustom[id - NUM_PROFILES_ORIGINAL];
-    
+
     return 0;
 }
 
 u8 Profile::getResourceCount(u32 id) {
     if (id < NUM_PROFILES_ORIGINAL)
         return resourceCountOriginal[id];
-    
+
     if (id < NUM_PROFILES)
         return resourceCountCustom[id - NUM_PROFILES_ORIGINAL];
-    
+
     return 0;
 }
 
 const sead::SafeString* Profile::getResourceList(u32 id) {
     if (id < NUM_PROFILES_ORIGINAL)
         return resourceListsOriginal[id];
-    
+
     if (id < NUM_PROFILES)
         return resourceListsCustom[id - NUM_PROFILES_ORIGINAL];
-    
+
     return nullptr;
 }
 

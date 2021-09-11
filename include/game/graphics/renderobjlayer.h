@@ -14,10 +14,10 @@ class RenderObjLayer : public ObjLayer {
 public:
     class Node : public ObjLayer::Node, public sead::IDisposer {
         SEAD_RTTI_OVERRIDE(Node, ObjLayer::Node)
-    
+
     public:
         class Material;
-    
+
     public:
         Node();
         virtual ~Node();

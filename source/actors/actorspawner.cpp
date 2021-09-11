@@ -34,7 +34,7 @@ Actor* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
 u32 ActorSpawner::onCreate() {
     if (!eventID2)
         return 2;
-    
+
     u16 inputID = linkID | ((movementID & 0xF) << 8);
 
     if (movementID & 0x10)

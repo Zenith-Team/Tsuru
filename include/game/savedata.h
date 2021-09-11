@@ -62,7 +62,7 @@ struct SaveData { // Size: 0xB134
         InventoryItem_FireFlower = 0x1,
         InventoryItem_SuperStar  = 0x2,
         InventoryItem_IceFlower  = 0x3,
-        
+
         InventoryItem_Propeller  = 0x5,
         InventoryItem_Mini       = 0x6,
         InventoryItem_Penguin    = 0x7,
@@ -208,7 +208,7 @@ struct SaveData { // Size: 0xB134
         u8 _84[32];
         u32 CRC32;                          // A4
     };
-    
+
     struct CoinEditCoin {
         u8 area;
         u8 zone;

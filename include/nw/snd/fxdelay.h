@@ -14,7 +14,7 @@ public:
             , maxDelay(160.0f)
             , lpf(1.0f)
         { }
-        
+
         f32 delay;
         f32 feedback;
         f32 outGain;

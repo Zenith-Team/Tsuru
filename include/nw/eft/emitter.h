@@ -26,7 +26,7 @@ struct EmitterInstance { // Size: 0x220
     const ComplexEmitterData* GetComplexEmitterData() const {
         if (this->data->type != EmitterTypeComplex)
             return NULL;
-        
+
         return static_cast<const ComplexEmitterData*>(this->data);
     }
 
@@ -37,7 +37,7 @@ struct EmitterInstance { // Size: 0x220
     const ChildData* GetChildData() const {
         if (!HasChild())
             return NULL;
-        
+
         return reinterpret_cast<const ChildData*>(static_cast<const ComplexEmitterData*>(this->data) + 1);
     }
 
@@ -123,7 +123,7 @@ public:
             childPtcl->next = NULL;
             childPtcl->prev = NULL;
         }
-        
+
         else {
             emitter->childParticleHead->prev = childPtcl;
             childPtcl->next = emitter->childParticleHead;

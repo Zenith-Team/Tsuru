@@ -35,6 +35,6 @@ public:
     static void boot();
 
     static TsuruSaveData sSaveData;
-    
+
     bool inited;
 };

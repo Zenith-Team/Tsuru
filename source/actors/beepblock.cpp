@@ -29,7 +29,7 @@ public:
     BeepBlockColor beepBlockType;
 
     static BeepBlockColor CurrentBeepBlockState;
-    
+
     static const ShapedCollider::Info colliderInfo;
 
     DECLARE_STATE(BeepBlock, RedEnabled);
@@ -79,7 +79,7 @@ u32 BeepBlock::onCreate() {
 
 u32 BeepBlock::onExecute() {
     this->model->updateAnimations();
-    
+
     Mtx34 mtx;
     mtx.rotateAndTranslate(this->rotation, this->position);
     this->model->setMtx(mtx);
@@ -107,7 +107,7 @@ void BeepBlock::beginState_RedEnabled() {
 void BeepBlock::executeState_RedEnabled() {
     if (CurrentBeepBlockState == BeepBlockColorBlue)
         this->doStateChange(&StateID_RedDisabled);
-    
+
     this->rectCollider.execute();
 }
 
@@ -139,7 +139,7 @@ void BeepBlock::beginState_BlueEnabled() {
 void BeepBlock::executeState_BlueEnabled() {
     if (CurrentBeepBlockState == BeepBlockColorRed)
         this->doStateChange(&StateID_BlueDisabled);
-    
+
     this->rectCollider.execute();
 }
 

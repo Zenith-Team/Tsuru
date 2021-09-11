@@ -17,7 +17,7 @@ UpdateBeepBlockStates:
     # If it's 240 (4 seconds) then toggle the state
     cmpwi   r4, 240
     beq     ToggleBeepBlockState
-    
+
     # Otherwise increment the timer and return
     addi    r4, r4, 1
     stw     r4, 0x0(r3)
@@ -43,9 +43,9 @@ ToggleBeepBlockState:
     stw     r4, 0x0(r3)
 
     b SafeReturn
-    
+
 ChangeBeepBlockStateToBlue:
     li      r4, 1
     stw     r4, 0x0(r3)
-    
+
     b SafeReturn

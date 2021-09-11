@@ -89,7 +89,7 @@ public:
             u8 _11;                         // _11
             u8 _12;                         // _12
         };
-    
+
     public:
         Sprite* getSprite(u32 id, void*);
         Location* getLocation(Rect* outRect, u8 id);

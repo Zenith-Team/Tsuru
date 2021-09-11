@@ -36,7 +36,7 @@ RandomYoshiColors:
     lwz      r3, sInstance__Q2_4sead12GlobalRandom@l(r3)
     bl       getU32__Q2_4sead6RandomFv
 
-    
+
     li       r4, 0x4
     mulhwu   r4, r3, r4
     mr       r3, r29

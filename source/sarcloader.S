@@ -44,7 +44,7 @@ ResMgr_LoadLevelArchiveWithoutDecompContinue:
     bne       ResMgr_LoadLevelArchiveContinue
     stw       r3, 0x10(r27)
     b         ResMgr_LoadLevelArchiveFail
-    
+
 ResMgr_LoadLevelArchiveContinue:
     stw       r3, 0x10(r27)
     b         ResMgr_LoadLevelArchiveSuccess

@@ -54,7 +54,7 @@ public:
         for (u32 i = 0; i < numPrimitive; i++)
             if (primitives[i] != NULL && index == i)
                 return primitives[i];
-        
+
         return NULL;
     }
 

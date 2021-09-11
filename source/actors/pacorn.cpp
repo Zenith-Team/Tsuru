@@ -93,4 +93,3 @@ u32 PAcorn::vf1C4() {
 void PAcorn::vf1FC() {
     this->doStateChange(&StateID_PowerupState1);
 }
- 

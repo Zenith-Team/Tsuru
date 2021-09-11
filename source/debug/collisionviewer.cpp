@@ -119,7 +119,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
                 SolidOnTopCollider* collider = static_cast<SolidOnTopCollider*>(colliderBase);
                 if (collider->points.size < 2)
                     continue;
-                
+
                 const Vec2f center = Vec2f((*collider->ownerInfo.position).x, (*collider->ownerInfo.position).y) + collider->distToCenter;
 
                 for (u32 i = 0; i < collider->nodes1.size; i++) {
@@ -159,16 +159,16 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
             StageActor* actor = sead::DynamicCast<StageActor, Actor>(actors->startBuffer[i]);
             if (actor == NULL || !actor->isVisible || actor->isDeleted)
                 continue;
-            
+
             ActorPhysicsMgr* actorPhysicsMgr = actor->getActorPhysicsMgr();
             if (actorPhysicsMgr == NULL || actorPhysicsMgr->position == NULL)
                 continue;
-            
+
             for (u32 j = 0; j < 4; j++) {
                 const ActorPhysicsMgr::Sensor* sensor = actorPhysicsMgr->getSensor(j);
                 if (sensor == nullptr)
                     continue;
-                
+
                 f32 p1 = sensor->point1;
                 f32 p2 = sensor->point2;
 

@@ -9,5 +9,5 @@ public:
     RootTask(const sead::TaskConstructArg& arg);
 
     static sead::TaskBase* construct(const sead::TaskConstructArg& arg);
-    
+
 };

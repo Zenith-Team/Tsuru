@@ -11,7 +11,7 @@ struct Vec2 { // size: 0x8
         x(val), y(val) { }
     inline Vec2(T x, T y) :
         x(x), y(y) { }
-    
+
     inline Vec2 operator+(const Vec2& other) const { Vec2 result; add(result, *this, other); return result; }
     inline Vec2& operator+=(const Vec2& other) { add(*this, *this, other); return *this; }
 
@@ -60,7 +60,7 @@ struct Vec3 { // size: 0xC
         x(x), y(y), z(z) { }
     inline Vec3(const Vec2<T>& vec) :
         x(vec.x), y(vec.y), z(0) { }
-    
+
     inline Vec3 operator+(const Vec3& other) const { Vec3 result; add(result, *this, other); return result; }
     inline Vec3& operator+=(const Vec3& other) { add(*this, *this, other); return *this; }
 

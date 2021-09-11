@@ -31,7 +31,7 @@ public:
 class ModelAnimation : public Animation {
 public:
     ModelAnimation();
-    
+
     virtual void calculate() = 0;
 };
 
