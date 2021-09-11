@@ -66,12 +66,12 @@ bool TsuruSaveMgr::write() {
 
     if (!handle.device)
         return false;
-    
+
     device->tryWrite(&bytesWritten, &handle, reinterpret_cast<u8*>(&TsuruSaveMgr::sSaveData), sizeof(TsuruSaveMgr::TsuruSaveData));
 
     if (bytesWritten != sizeof(TsuruSaveMgr::TsuruSaveData))
         return false;
-    
+
     return true;
 }
 

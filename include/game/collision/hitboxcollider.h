@@ -53,7 +53,7 @@ public:
 
     void init(StageActor* owner, const Info*, void** callbackTable);
     void init(StageActor* owner, const Info*, u8* collisionMask, void** callbackTable);
-    
+
     void moveToOnlyCreate(u32);
     void moveToOnlyCreateFromMask(u32);
     bool checkBit(u32) const;
@@ -102,7 +102,7 @@ class HitboxColliderMgr { // Size: 0x40
 public:
     // Constructor is inlined in HitboxCollider::createInstance
     inline HitboxColliderMgr();
-    
+
     virtual ~HitboxColliderMgr();
 
     bool isInActiveList(HitboxCollider*);

@@ -30,7 +30,7 @@ struct VertexShaderKey { // Size: 0x20
             else
                 stripeEmitterCoord = false;
         }
-        
+
         else
             this->stripeEmitterCoord = false;
     }
@@ -313,7 +313,7 @@ class Heap;
 class ParticleShader { // Size: 0x61C
 public:
     ParticleShader();
-    
+
     void Finalize(Heap* heap);
     void InitializeVertexShaderLocation();
     void InitializeFragmentShaderLocation();

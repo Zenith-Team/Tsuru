@@ -17,7 +17,7 @@ public:
     u32 onDraw() override;
 
     ModelWrapper* model;
-    
+
     static const CSHitboxCollider::Info sCollisionInfo;
 };
 

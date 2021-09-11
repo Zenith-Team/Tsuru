@@ -25,7 +25,7 @@ public:
             startEnd.next = &startEnd;
             startEnd.prev = &startEnd;
         }
-    
+
     void pushBack(ListNode* n) {
         startEnd.insertFront_(n);
         count += 1;

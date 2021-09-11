@@ -27,7 +27,7 @@ public:
     bool isDerived(const Interface* typeInfo) const {
         if (this == typeInfo)
             return true;
-        
+
         const RuntimeTypeInfo::Interface* rootTypeInfo = BaseType::getRuntimeTypeInfoStatic();
         return rootTypeInfo->isDerived(typeInfo);
     }

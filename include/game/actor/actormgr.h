@@ -21,7 +21,7 @@ class ActorMgr {
 public:
     Actor* create(ActorBuildInfo* buildInfo, u32 addToActive);
     Actor* instanciateActor(ActorBuildInfo* buildInfo, bool notDefer);
-    
+
     u32 createActor(Actor* actor);  // Calls "create" virtual functions
 
     sead::UnitHeap* playerUnitHeap;

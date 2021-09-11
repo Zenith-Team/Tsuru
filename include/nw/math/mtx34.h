@@ -43,7 +43,7 @@ struct MTX34 {
     static MTX34* Copy(MTX34* dst, const MTX34* src) {
         if (src != dst)
             *dst = *src;
-        
+
         return dst;
     }
 

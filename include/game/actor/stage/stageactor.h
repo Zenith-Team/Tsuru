@@ -47,7 +47,7 @@ public:
 
     u32 beforeExecute() override;
     void afterExecute(u32) override;
-    
+
     u32 beforeDraw() override;
 
     virtual void setPlayerID(s8 id);

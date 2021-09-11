@@ -13,7 +13,7 @@ class FallingChestnut : public Enemy {
 public:
     FallingChestnut(const ActorBuildInfo* buildInfo);
     virtual ~FallingChestnut() { }
-    
+
     static Actor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
@@ -56,7 +56,7 @@ Actor* FallingChestnut::build(const ActorBuildInfo* buildInfo) {
 
 u32 FallingChestnut::onCreate() {
     this->model = ModelWrapper::create("iga_kuribo", "iga_kuribo");
-    
+
     this->hitboxCollider.init(this, &FallingChestnut::collisionInfo, 0);
     this->addHitboxColliders();
 
@@ -98,7 +98,7 @@ void FallingChestnut::executeState_Idle() {
 
     if (this->distanceToPlayer(dist) > -1 && fabs2f(dist.x) < 48.0f)
         this->doStateChange(&StateID_Falling);
-    
+
     else if (this->distanceToPlayer(dist) > -1 && fabs2f(dist.x) < 80.0f)
         ;   // TODO: Shake
 }

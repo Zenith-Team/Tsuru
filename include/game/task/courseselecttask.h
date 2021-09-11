@@ -13,7 +13,7 @@ public:
     virtual ~CourseSelectTask();
 
     void prepare() override;
-    
+
     void enter() override;
     void exit() override;
 

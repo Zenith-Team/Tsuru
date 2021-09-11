@@ -42,11 +42,11 @@ public:
 
     void damageFromUnder() override;
     void vf10C(u8 unk) override;
-    
+
     void vf11C() override;
     void vf124(f32 unk) override;
     u32  vf12C() override;
-    
+
     u32  vf13C() override;
     void vf144(bool unk) override;
 

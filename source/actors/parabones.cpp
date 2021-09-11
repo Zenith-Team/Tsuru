@@ -134,7 +134,7 @@ void ParaBones::executeState_Lowering() {
         speed.y = 0.0f;
         doStateChange(&ParaBones::StateID_IdleLowered);
     }
-    
+
     else
         timerLowering++;
 }

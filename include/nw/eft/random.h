@@ -33,7 +33,7 @@ public:
     void Init(u32 seedX, u32 seedY, u32 seedZ, u32 seedW) {
         if ((seedX | seedY | seedZ | seedW) == 0)   // Seeds must not all be zero
             return Init(0);
-        
+
         this->x = seedX;
         this->y = seedY;
         this->z = seedZ;

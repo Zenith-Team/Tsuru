@@ -32,7 +32,7 @@ private:
         typedef u16 (*CONV16FUNC)(u16);
         typedef u32 (*CONV32FUNC)(u32);
         typedef u64 (*CONV64FUNC)(u64);
-    
+
         CONV8FUNC conv8[2];
         CONV16FUNC conv16[2];
         CONV32FUNC conv32[2];

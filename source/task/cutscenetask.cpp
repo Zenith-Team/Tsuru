@@ -35,13 +35,13 @@ void CutsceneTask::enter() {
 
     this->drawMethodCutscene._18 = 1;
     this->drawMethodCutscene._24 = this;
-    
+
     this->drawMethodCutscene.method = static_cast<agl::lyr::DrawMethod::PTMF>(&CutsceneTask::drawLayerCutscene);
 
     agl::lyr::Layer* layer = agl::lyr::Renderer::instance()->layers.buffer[0];
     if (0xE < agl::lyr::Renderer::instance()->layers.size)
         layer = agl::lyr::Renderer::instance()->layers.buffer[0xE];
-    
+
     layer->pushBackDrawMethod(0, &this->drawMethodCutscene);
 }
 

@@ -14,7 +14,7 @@ public:
             Node* next;            // _4
             Node* prev;            // _8
         };
-    
+
     public:
         virtual void insert(Node* where, Node* node);
         virtual void remove(Node* node);
@@ -34,7 +34,7 @@ public:
             Vec2f point1;  // _0   Position relative to parent's center, Inited to (0, 0)
             Vec2f point2;  // _8   Position relative to parent's center, Inited to (1, 0)
         };
-    
+
     public:
         Node();
 
