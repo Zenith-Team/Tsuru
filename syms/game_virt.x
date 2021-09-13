@@ -228,6 +228,9 @@ SECTIONS {
 	vf9C__16CSSomethingActorFv = 0x2201cf8;
 	vfA4__16CSSomethingActorFv = 0x2201d04;
 
+/* Direction */
+	directionToRotationList__9Direction = 0x10200dd8;
+
 /* DoorBase */
 	__ct__8DoorBaseFPC14ActorBuildInfo = 0x27583f0;
 	__dt__8DoorBaseFv = 0x2759534;
@@ -693,7 +696,6 @@ SECTIONS {
 /* Misc */
 	BLOSDynLoad_Acquire = 0x2A9EF58;
 	BOSDynLoad_FindExport = 0x2A9F418;
-	directionToRotationList = 0x10200dd8;
 	DefaultReverbHiParam = 0x1022d328;
 	DefaultDelayParam = 0x1022d354;
 	moveValueTo__FPUiUiT2 = 0x29e0de8;

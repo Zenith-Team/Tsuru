@@ -2,13 +2,14 @@
 
 #include <types.h>
 
-extern u32 directionToRotationList[];
+class Direction {
+public:
+    enum DirectionType {
+        Right = 0,
+        Left  = 1,
+        Up    = 2,
+        Down  = 3
+    };
 
-namespace Direction { enum Direction {
-    Right = 0,
-    Left  = 1,
-    Up    = 2,
-    Down  = 3
+    static u32 directionToRotationList[];
 };
-
-}
