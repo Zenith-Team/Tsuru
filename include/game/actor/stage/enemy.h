@@ -7,6 +7,19 @@ class Enemy : public MultiStateActor { // size: 0x1880
     SEAD_RTTI_OVERRIDE(Enemy, MultiStateActor)
 
 public:
+    struct DeathInfo {
+        Vec2f speed;
+        f32 maxYSpeed;
+        f32 gavity;
+        StateBase* state;
+        union {
+            u32 _14;
+            s8 _14_2;
+        };
+        bool noRespawn;
+    };
+
+public:
     Enemy(const ActorBuildInfo* buildInfo);
     virtual ~Enemy();
 
@@ -71,17 +84,17 @@ public:
     virtual bool collisionHammer(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     virtual bool collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     virtual bool vf29C(HitboxCollider* hcSelf, HitboxCollider* hcOther);
-    virtual bool vf2A4(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+    virtual bool collisionGlowBabyYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     virtual bool vf2AC(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     virtual bool vf2B4(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     virtual void vf2BC();
     virtual void vf2C4();
     virtual void vf2CC();
     virtual bool isOnGround();
-    virtual void vf2DC();
+    virtual void playFireHitSound();
     virtual void vf2E4();
-    virtual void vf2EC();
-    virtual void vf2F4();
+    virtual void bouncePlayerWhenJumpedOn();
+    virtual void addScoreWhenHit();
     virtual void vf2FC();
     virtual void vf304();
     virtual void vf30C();
@@ -122,36 +135,27 @@ public:
     void killPlayerSpin(StageActor* player);
     void killYoshiStomp(StageActor* player);
 
-    u32 _17C8;                  // _17C8
-    u32 _17CC;                  // _17CC
-    f32 _17D0;                  // _17D0
-    f32 _17D4;                  // _17D4
-    u32 _17D8;                  // _17D8
-    u32 _17DC;                  // _17DC
-    u8  _17E0;                  // _17E0
-    u8  _17E1;                  // _17E1
-    u8  _17E2;                  // _17E2
-    u8  _17E3;                  // _17E3
-    u16 _17E4[0x4];             // _17E4
-    u32 _17EC;                  // _17EC
-    EnemyFreezeMgr freezeMgr;   // _17F0
-    u8  _1840[0x20];            // _1840  //? Possibly BabyYoshiBubbleData
-    Enemy* self;                // _1860
-    void* _1864;                // _1864
-    u8  _1868;                  // _1868
-    u8  _1869;                  // _1869
-    u8  _186A;                  // _186A
-    u8  _186B;                  // _186B
-    u16 _186C;                  // _186C
-    u16 _186E;                  // _186E
-    u32 _1870;                  // _1870
-    u8  _1874;                  // _1874
-    u8  _1875;                  // _1875
-    u8  _1876;                  // _1876
-    u8  _1877;                  // _1877
-    u32 _1878;                  // _1878
-    u8  _187C;                  // _187C
-    u8  _187D;                  // _187D
-    u8  _187E;                  // _187E
-    u8  _187F;                  // _187F
+    DeathInfo deathInfo;            // _17C8
+    u16 _17E4[0x4];                 // _17E4
+    u32 _17EC;                      // _17EC
+    EnemyFreezeMgr freezeMgr;       // _17F0
+    u8 babyYoshiBubbleData[0x20];   // _1840
+    Enemy* self;                    // _1860
+    void* _1864;                    // _1864
+    u8  _1868;                      // _1868
+    u8  _1869;                      // _1869
+    u8  _186A;                      // _186A
+    u8  _186B;                      // _186B
+    u16 _186C;                      // _186C
+    u16 _186E;                      // _186E
+    u32 _1870;                      // _1870
+    u8  _1874;                      // _1874
+    u8  _1875;                      // _1875
+    u8  _1876;                      // _1876
+    u8  _1877;                      // _1877
+    u32 _1878;                      // _1878
+    u8  _187C;                      // _187C
+    u8  _187D;                      // _187D
+    u8  _187E;                      // _187E
+    u8  _187F;                      // _187F
 };
