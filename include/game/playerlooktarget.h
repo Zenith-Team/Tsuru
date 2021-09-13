@@ -13,4 +13,4 @@ class PlayerLookTarget : public sead::IDisposer { // Size: 0x2C
     u32 _28;
 };
 
-static_assert(sizeof(PlayerLookTarget) == 0x2C, "PlayerLookTarget size mismatch")
+static_assert(sizeof(PlayerLookTarget) == 0x2C, "PlayerLookTarget size mismatch");

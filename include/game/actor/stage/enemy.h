@@ -118,7 +118,7 @@ public:
 
     u32 processCollision(HitboxCollider* hcSelf, HitboxCollider* hcOther, u32 unk);
 
-    void killPlayerJump(StageActor* player, const Vec2f& rSpeed, StateBase* state);
+    void killPlayerJump(StageActor* player, const Vec2f& speed, StateBase* state);
     void killPlayerSpin(StageActor* player);
     void killYoshiStomp(StageActor* player);
 
