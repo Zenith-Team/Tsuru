@@ -40,12 +40,12 @@ public:
         s32 integer;
         TaskFactory factory;
         const char* string;
-    } ID;
+    } id;
 };
 
 class TaskUserID {
 public:
-    s32 ID;
+    s32 id;
 };
 
 class TaskBase : public TTreeNode<TaskBase*>, public IDisposer, public INamable {
@@ -104,7 +104,7 @@ public:
     virtual void detachCalcImpl() = 0;
     virtual void detachDrawImpl() = 0;
     virtual const RuntimeTypeInfo::Interface* getCorrespondingMethodTreeMgrTypeInfo() const = 0;
-    virtual MethodTreeNode* getMethodTreeNode(s32 method_type) = 0;
+    virtual MethodTreeNode* getMethodTreeNode(s32 methodType) = 0;
     virtual void onDestroy();                   // deleted
 
     void adjustHeapAll();
