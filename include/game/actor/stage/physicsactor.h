@@ -29,19 +29,19 @@ public:
     void damageFromUnder() override;
 
     virtual void vf10C(u8 unk);
-    virtual u8   vf114();       // deleted
+    virtual u8 vf114();       // deleted
     virtual void vf11C();
     virtual void vf124(f32 unk);
-    virtual u32  vf12C();
-    virtual void vf134();       // deleted
-    virtual u32  vf13C();
+    virtual u32 vf12C();
+    virtual void vf134();      // deleted
+    virtual u32 vf13C();
     virtual void vf144(bool unk);
     virtual void vf14C(StageActor* unk);
     virtual bool vf154();
     virtual void move(Vec2f& dest);
     virtual void setYSpeed(f32 ySpeed);
-    virtual u32  vf16C();
-    virtual u32  vf174();
+    virtual u32 vf16C();
+    virtual u32 vf174();
     virtual void getRect(Rect& rect);
 
     void handleGravity();
