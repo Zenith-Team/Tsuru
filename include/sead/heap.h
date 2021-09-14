@@ -17,8 +17,8 @@ class Context;
 class Heap : public IDisposer, public INamable {
 public:
     enum HeapDirection {
-        cHeapDirection_Forward = 1,
-        cHeapDirection_Reverse = -1
+        HeapDirection_Forward = 1,
+        HeapDirection_Reverse = -1
     };
 
     Heap(const SafeString& name, Heap* parent, void* address, u32 size, HeapDirection direction, bool);

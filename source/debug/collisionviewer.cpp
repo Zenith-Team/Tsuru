@@ -51,7 +51,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
                 Rect rect;
                 hCollider->getRect(rect);
 
-                if (hCollider->colliderInfo.shape == HitboxCollider::ShapeRectangle) {
+                if (hCollider->colliderInfo.shape == HitboxCollider::HitboxShape_Rectangle) {
                     Vec2f point1(rect.left, rect.top);
                     Vec2f point2(rect.right, rect.top);
                     Vec2f point3(rect.right, rect.bottom);
@@ -64,7 +64,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
                     drawLine(point1, point3, sead::colorRed, 1.0f);   // Diagonal line
                 }
 
-                else if (hCollider->colliderInfo.shape == HitboxCollider::ShapeCircle) {
+                else if (hCollider->colliderInfo.shape == HitboxCollider::HitboxShape_Circle) {
                     f32 radius = (rect.right - rect.left) / 2.0f;
 
                     sead::PrimitiveRenderer::instance()->drawCircle32(Vec3f(rect.left + radius, rect.bottom + radius, 4000.0f), radius, sead::colorRed);
@@ -82,7 +82,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
             Rect rect;
             hCollider->getRect(rect);
 
-            if (hCollider->colliderInfo.shape == HitboxCollider::ShapeRectangle) {
+            if (hCollider->colliderInfo.shape == HitboxCollider::HitboxShape_Rectangle) {
                 Vec2f point1(rect.left, rect.top);
                 Vec2f point2(rect.right, rect.top);
                 Vec2f point3(rect.right, rect.bottom);
@@ -95,7 +95,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
                 drawLine(point1, point3, sead::colorRed, 1.0f); // Diagonal line
             }
 
-            else if (hCollider->colliderInfo.shape == HitboxCollider::ShapeCircle) {
+            else if (hCollider->colliderInfo.shape == HitboxCollider::HitboxShape_Circle) {
                 f32 radius = (rect.right - rect.left) / 2.0f;
 
                 sead::PrimitiveRenderer::instance()->drawCircle32(Vec3f(rect.left + radius, rect.bottom + radius, 4000.0f), radius, sead::colorRed);

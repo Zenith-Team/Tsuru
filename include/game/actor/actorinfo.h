@@ -4,10 +4,10 @@
 
 struct ActorInfo {
     enum Flags {
-        FlagIgnoreSpawnRange = 2,
-        FlagUnknown          = 8,
-        FlagGrouped          = 16,
-        FlagUnknown2         = 256
+        Flag_IgnoreSpawnRange = 2,
+        Flag_Unknown          = 8,
+        Flag_Grouped          = 16,
+        Flag_Unknown2         = 256
     };
 
     static ActorInfo sDefault;

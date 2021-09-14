@@ -17,7 +17,7 @@ void TsuruSaveMgr::init() {
     }
 
     sead::FileHandle readHandle;
-    sead::FileDeviceMgr::instance()->tryOpen(&readHandle, "save://ts_savedata.dat", sead::FileDevice::cFileOpenFlagReadOnly, 0);
+    sead::FileDeviceMgr::instance()->tryOpen(&readHandle, "save://ts_savedata.dat", sead::FileDevice::FileOpenFlag_ReadOnly, 0);
 
     u32 bytesRead = readHandle.read(reinterpret_cast<u8*>(&TsuruSaveMgr::sSaveData), sizeof(TsuruSaveMgr::TsuruSaveData));
 
@@ -62,7 +62,7 @@ void TsuruSaveMgr::save() {
 bool TsuruSaveMgr::write() {
     u32 bytesWritten;
     sead::FileHandle handle;
-    sead::FileDevice* device = sead::FileDeviceMgr::instance()->tryOpen(&handle, "save://ts_savedata.dat", sead::FileDevice::cFileOpenFlagCreate, 0);
+    sead::FileDevice* device = sead::FileDeviceMgr::instance()->tryOpen(&handle, "save://ts_savedata.dat", sead::FileDevice::FileOpenFlag_Create, 0);
 
     if (!handle.device)
         return false;

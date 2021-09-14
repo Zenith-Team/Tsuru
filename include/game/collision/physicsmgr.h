@@ -17,11 +17,11 @@ public:
 
 public:
     enum Flags {
-        FlagOnGround        = 1 << 0,
-        FlagOnSlope         = 1 << 1,
-        FlagOnSemiSold      = 1 << 4,
-        FlagCollidedRight   = 1 << 18,
-        FlagCollidedLeft    = 1 << 19
+        Flag_OnGround        = 1 << 0,
+        Flag_OnSlope         = 1 << 1,
+        Flag_OnSemiSold      = 1 << 4,
+        Flag_CollidedRight   = 1 << 18,
+        Flag_CollidedLeft    = 1 << 19
     };
 
 public:
@@ -44,12 +44,12 @@ public:
     const Sensor* getSensor(u32 sensorID) const;
     bool doExplosionAt(const Vec2f& topLeft, const Vec2f& bottomRight);
 
-    inline bool isOnGround()      { return this->output & FlagOnGround;      }
-    inline bool isCollidedRight() { return this->output & FlagCollidedRight; }
-    inline bool isCollidedLeft()  { return this->output & FlagCollidedLeft;  }
+    inline bool isOnGround()      { return this->output & Flag_OnGround;      }
+    inline bool isCollidedRight() { return this->output & Flag_CollidedRight; }
+    inline bool isCollidedLeft()  { return this->output & Flag_CollidedLeft;  }
     inline bool isCollided(u32 direction) {
         if (direction > 1) return false;
-        return this->output & (FlagCollidedRight << direction);
+        return this->output & (Flag_CollidedRight << direction);
     }
 
     u8 _4C[0x844];               // 4C

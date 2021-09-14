@@ -8,14 +8,14 @@ namespace sead {
 class Graphics {
 public:
     enum DevicePosture {
-        cDevicePosture_Same = 0,
-        cDevicePosture_RotateRight = 1,
-        cDevicePosture_RotateLeft = 2,
-        cDevicePosture_RotateHalfAround = 3,
-        cDevicePosture_FlipX = 4,
-        cDevicePosture_FlipY = 5,
-        cDevicePosture_FlipXY = 3,
-        cDevicePosture_Invalid = 4,
+        DevicePosture_Same              = 0,
+        DevicePosture_RotateRight       = 1,
+        DevicePosture_RotateLeft        = 2,
+        DevicePosture_RotateHalfAround  = 3,
+        DevicePosture_FlipX             = 4,
+        DevicePosture_FlipY             = 5,
+        DevicePosture_FlipXY            = 3,
+        DevicePosture_Invalid           = 4,
     };
 };
 
