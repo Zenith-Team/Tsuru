@@ -7,16 +7,16 @@
 class Animation {
 public:
     enum Flags {
-        FlagRepeat = 1 << 0,
-        FlagUnk2   = 1 << 1,
-        FlagIsDone = 1 << 5
+        Flag_Repeat = 1 << 0,
+        Flag_Unk1   = 1 << 1,
+        Flag_IsDone = 1 << 5
     };
 
     void setRepeat(bool repeat);
     void reset();
 
     inline bool isAnimationDone() {
-        return flags & FlagIsDone;
+        return flags & Flag_IsDone;
     }
 
     f32 startFrame;  // 0    Inited to 0.0

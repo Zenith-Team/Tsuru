@@ -5,10 +5,10 @@
 class Direction {
 public:
     enum DirectionType {
-        Right = 0,
-        Left  = 1,
-        Up    = 2,
-        Down  = 3
+        DirectionType_Right = 0,
+        DirectionType_Left  = 1,
+        DirectionType_Up    = 2,
+        DirectionType_Down  = 3
     };
 
     static u32 directionToRotationList[];
