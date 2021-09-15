@@ -14,3 +14,8 @@ Hooks:
     instr: bl
     addr: "218af98" # PhysicsMgr::init()
     func: SetPhysicsMgrOwner
+
+# Embed crash fix into the RPX
+  - type: patch
+    data: "480000E8" # b 0xE8
+    addr: "24D71C4"
