@@ -1,6 +1,9 @@
 #include <game/actor/courseselect/cscollisionactor.h>
+#include <game/csplayermgr.h>
+#include <game/actor/actormgr.h>
 #include <game/graphics/model/model.h>
 #include <game/graphics/drawmgr.h>
+#include <game/csscriptmgr.h>
 #include <log.h>
 
 class CSCustomActor : public CSCollisionActor {
@@ -16,13 +19,17 @@ public:
     u32 onExecute() override;
     u32 onDraw() override;
 
+    void vfA4() override;
+
     ModelWrapper* model;
 
     static const CSHitboxCollider::Info sCollisionInfo;
 };
 
+const Profile CSCustomActorProfile(&CSCustomActor::build, 856, "a", nullptr, 0);
+
 const CSHitboxCollider::Info CSCustomActor::sCollisionInfo = {
-    64.0f,      // Size
+    240.0f,      // Size
     Vec3f(0.0f) // Offset
 };
 
@@ -46,10 +53,17 @@ u32 CSCustomActor::onExecute() {
     // This needs to be in onExecute for the collision check below to work so it's probably not "add"
     CSHitboxColliderMgr::instance()->add(&this->hitboxCollider);
 
-    // Checks if player collided (gets called twice around 1 second after player collision, also causes the player to bounce back and go into a fighting stance)
-    if (CSHitboxColliderMgr::instance()->FUN_21c5894(&this->hitboxCollider) != 0) {
-        this->rotation += 0x5000000;
+    this->FUN_21d4f1c();
+
+    // Checks if player collided
+    if (CSHitboxColliderMgr::instance()->FUN_21c5894(&this->hitboxCollider)) {
         LOG("Player collided");
+
+        // Do a hack to get the colliding player
+        CourseSelectActor* collidingPlayer = reinterpret_cast<CourseSelectActor*>(ActorMgr::instance()->actors.findActorByID(&(CSPlayerMgr::instance()->playerActorID)));
+        
+        // Mess with it
+        //collidingPlayer->position.y += 0.2f;
     }
 
     return 1;
@@ -67,4 +81,15 @@ u32 CSCustomActor::onDraw() {
     DrawMgr::instance()->drawModel(model);
 
     return 1;
+}
+
+void CSCustomActor::vfA4() {
+    CSScript script;
+
+    CSScriptMgr::instance()->getScriptPointer(script);
+
+    // Let's figure out all these types
+    switch(script.priority) {
+        case 4: LOG("Tower level entered"); break;
+    }
 }
