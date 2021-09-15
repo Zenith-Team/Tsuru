@@ -17,11 +17,13 @@ public:
     u32 beforeDraw() override;
     u32 onDraw() override = 0;
 
+    void FUN_21d4f1c(); // World map script related
+    bool FUN_21d4dbc(); // Checks some members on CSScriptMgr and the profile ID
 
     virtual bool vf8C();
     virtual void vf94();
     virtual void vf9C();
-    virtual void vfA4(); // nullsub
+    virtual void vfA4(); // nullsub, world map script related in derived classes
 
     f32 _DC;             // Inited to 1.0
     f32 _E0;             // Inited to 1.0
@@ -33,5 +35,5 @@ public:
     u32 movementID;      // Inited to buildInfo->movementID
     u32 eventID1;        // Inited to buildInfo->eventID1
     u32 _100;            // Inited to 0
-    u8  _104;            // Inited to false
+    bool _104;           // Inited to false
 };

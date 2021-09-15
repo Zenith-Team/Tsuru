@@ -10,10 +10,10 @@ class FileHandle;
 class FileDevice {
 public:
     enum FileOpenFlag {
-        cFileOpenFlagReadOnly   = 0,
-        cFileOpenFlagWriteOnly  = 1,
-        cFileOpenFlagReadWrite  = 2,
-        cFileOpenFlagCreate     = 3
+        FileOpenFlag_ReadOnly   = 0,
+        FileOpenFlag_WriteOnly  = 1,
+        FileOpenFlag_ReadWrite  = 2,
+        FileOpenFlag_Create     = 3
     };
 
     struct LoadArg {

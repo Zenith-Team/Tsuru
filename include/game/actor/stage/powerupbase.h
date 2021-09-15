@@ -9,15 +9,15 @@ class PowerupBase : public MultiStateActor { // Size: 0x1a90
 
 public:
     enum PowerupState {
-        PowerupStateSmall       = 0,
-        PowerupStateBig         = 1,
-        PowerupStateFire        = 2,
-        PowerupStateMini        = 3,
-        PowerupStatePropeller   = 4,
-        PowerupStatePenguin     = 5,
-        PowerupStateIce         = 6,
-        PowerupStateAcorn       = 7,
-        PowerupStatePAcorn      = 8
+        PowerupState_Small       = 0,
+        PowerupState_Big         = 1,
+        PowerupState_Fire        = 2,
+        PowerupState_Mini        = 3,
+        PowerupState_Propeller   = 4,
+        PowerupState_Penguin     = 5,
+        PowerupState_Ice         = 6,
+        PowerupState_Acorn       = 7,
+        PowerupState_PAcorn      = 8
     };
 
 public:

@@ -5,40 +5,40 @@
 
 struct SaveData { // Size: 0xB134
     enum GameCompletionFlag {
-        GameCompletionFlag_Unknown1     = 0x1,
-        GameCompletionFlag_AllLevels    = 0x2,
-        GameCompletionFlag_Unknown2     = 0x4,
-        GameCompletionFlag_AllStarCoins = 0x8,
-        GameCompletionFlag_AllExits     = 0x10
+        GameCompletionFlag_Unknown1                     = 0x1,
+        GameCompletionFlag_AllLevels                    = 0x2,
+        GameCompletionFlag_Unknown2                     = 0x4,
+        GameCompletionFlag_AllStarCoins                 = 0x8,
+        GameCompletionFlag_AllExits                     = 0x10
     };
 
     enum WorldCompletionFlag {
-        WorldCompletionFlag_OpeningCutscenePlayed = 0x1,
-        WorldCompletionFlag_World1Complete        = 0x2,
-        WorldCompletionFlag_World2Complete        = 0x4,
-        WorldCompletionFlag_World3Complete        = 0x8,
-        WorldCompletionFlag_World4Complete        = 0x10,
-        WorldCompletionFlag_World5Complete        = 0x20,
-        WorldCompletionFlag_World6Complete        = 0x40,
-        WorldCompletionFlag_World7Complete        = 0x80,
-        WorldCompletionFlag_World8Complete        = 0x100,
-        WorldCompletionFlag_AllWorldsComplete     = 0x1FF
+        WorldCompletionFlag_OpeningCutscenePlayed       = 0x1,
+        WorldCompletionFlag_World1Complete              = 0x2,
+        WorldCompletionFlag_World2Complete              = 0x4,
+        WorldCompletionFlag_World3Complete              = 0x8,
+        WorldCompletionFlag_World4Complete              = 0x10,
+        WorldCompletionFlag_World5Complete              = 0x20,
+        WorldCompletionFlag_World6Complete              = 0x40,
+        WorldCompletionFlag_World7Complete              = 0x80,
+        WorldCompletionFlag_World8Complete              = 0x100,
+        WorldCompletionFlag_AllWorldsComplete           = 0x1FF
     };
 
     enum BabyYoshisAvailableFlag {
-        BabyYoshisAvailableFlag_World1PinkBabyYoshi = 0x1,
-        BabyYoshisAvailableFlag_World3PinkBabyYoshi = 0x2,
-        BabyYoshisAvailableFlag_World4BlueBabyYoshi = 0x4,
-        BabyYoshisAvailableFlag_World6BlueBabyYoshi = 0x8,
-        BabyYoshisAvailableFlag_AllBabyYoshis       = 0xF
+        BabyYoshisAvailableFlag_World1PinkBabyYoshi     = 0x1,
+        BabyYoshisAvailableFlag_World3PinkBabyYoshi     = 0x2,
+        BabyYoshisAvailableFlag_World4BlueBabyYoshi     = 0x4,
+        BabyYoshisAvailableFlag_World6BlueBabyYoshi     = 0x8,
+        BabyYoshisAvailableFlag_AllBabyYoshis           = 0xF
     };
 
     enum ActiveBabyYoshi {
-        ActiveBabyYoshi_World1PinkBabyYoshi = 0,
-        ActiveBabyYoshi_World3PinkBabyYoshi = 1,
-        ActiveBabyYoshi_World4BlueBabyYoshi = 2,
-        ActiveBabyYoshi_World6BlueBabyYoshi = 3,
-        ActiveBabyYoshi_NoBabyYoshi         = 4
+        ActiveBabyYoshi_World1PinkBabyYoshi             = 0,
+        ActiveBabyYoshi_World3PinkBabyYoshi             = 1,
+        ActiveBabyYoshi_World4BlueBabyYoshi             = 2,
+        ActiveBabyYoshi_World6BlueBabyYoshi             = 3,
+        ActiveBabyYoshi_NoBabyYoshi                     = 4
     };
 
     enum LevelCompletionFlag { // TODO: More research, not all values are here, some are incomplete
@@ -52,22 +52,22 @@ struct SaveData { // Size: 0xB134
     };
 
     enum LevelStarCoinsCollected { // TODO: More research, not all values are here
-        LevelStarCoinsCollected_None = 0x0,
-        LevelStarCoinsCollected_All  = 0x77
+        LevelStarCoinsCollected_None                    = 0x0,
+        LevelStarCoinsCollected_All                     = 0x77
     };
 
     enum InventoryItem { //? The missing 0x4 entry is not a mistake, it doesn't seem to be anything.
-        InventoryItem_Mushroom   = 0x0,
-        InventoryItem_FireFlower = 0x1,
-        InventoryItem_SuperStar  = 0x2,
-        InventoryItem_IceFlower  = 0x3,
+        InventoryItem_Mushroom                          = 0x0,
+        InventoryItem_FireFlower                        = 0x1,
+        InventoryItem_SuperStar                         = 0x2,
+        InventoryItem_IceFlower                         = 0x3,
 
-        InventoryItem_Propeller  = 0x5,
-        InventoryItem_Mini       = 0x6,
-        InventoryItem_Penguin    = 0x7,
-        InventoryItem_Acorn      = 0x8,
-        InventoryItem_PAcorn     = 0x9,
-        InventoryItem_NoItem     = 0xE
+        InventoryItem_Propeller                         = 0x5,
+        InventoryItem_Mini                              = 0x6,
+        InventoryItem_Penguin                           = 0x7,
+        InventoryItem_Acorn                             = 0x8,
+        InventoryItem_PAcorn                            = 0x9,
+        InventoryItem_NoItem                            = 0xE
     };
 
     struct Header {

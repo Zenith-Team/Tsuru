@@ -21,8 +21,8 @@ UpdateBeepBlockStates:
     # Otherwise increment the timer and return
     addi    r4, r4, 1
     stw     r4, 0x0(r3)
-
-    b       SafeReturn
+    RestoreVolatileRegisters
+    blr
 
 ToggleBeepBlockState:
     # Reset the timer
@@ -41,11 +41,11 @@ ToggleBeepBlockState:
     # Otherwise make it red
     li      r4, 0
     stw     r4, 0x0(r3)
-
-    b SafeReturn
+    RestoreVolatileRegisters
+    blr
 
 ChangeBeepBlockStateToBlue:
     li      r4, 1
     stw     r4, 0x0(r3)
-
-    b SafeReturn
+    RestoreVolatileRegisters
+    blr

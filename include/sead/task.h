@@ -28,10 +28,10 @@ typedef TaskBase* (*TaskFactory)(const TaskConstructArg&);
 class TaskClassID {
 public:
     enum Type {
-        cInvalid = 0,
-        cInt     = 1,
-        cFactory = 2,
-        cString  = 3
+        Type_Invalid = 0,
+        Type_Int     = 1,
+        Type_Factory = 2,
+        Type_String  = 3
     };
 
 public:
@@ -53,19 +53,19 @@ class TaskBase : public TTreeNode<TaskBase*>, public IDisposer, public INamable 
 
 public:
     enum State {
-        cCreated     = 0,
-        cPrepare     = 1,
-        cPrepareDone = 2,
-        cSleep       = 3,
-        cRunning     = 4,
-        cDying       = 5,
-        cDestroyable = 6,
-        cDead        = 7
+        State_Created     = 0,
+        State_Prepare     = 1,
+        State_PrepareDone = 2,
+        State_Sleep       = 3,
+        State_Running     = 4,
+        State_Dying       = 5,
+        State_Destroyable = 6,
+        State_Dead        = 7
     };
 
     enum Tag {
-        cSystem  = 0,
-        cApp     = 1
+        Tag_System  = 0,
+        Tag_App     = 1
     };
 
     struct CreateArg {

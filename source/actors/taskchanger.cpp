@@ -27,7 +27,7 @@ Actor* TaskChanger::build(const ActorBuildInfo* buildInfo) {
 
 u32 TaskChanger::onCreate() {
     sead::TaskClassID taskClassID;
-    taskClassID.type = sead::TaskClassID::cFactory;
+    taskClassID.type = sead::TaskClassID::Type_Factory;
     taskClassID.id.factory = &CutsceneTask::construct;
 
     TaskMgr::instance()->changeTask(CourseTask::instance(), taskClassID, 0, 0);

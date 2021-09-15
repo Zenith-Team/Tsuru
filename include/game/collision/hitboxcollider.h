@@ -10,10 +10,10 @@ public:
     typedef void (*Callback)(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 
     enum HitboxShape {
-        ShapeRectangle      = 0,
-        ShapeCircle         = 1,
-        ShapeTrapezoidVert  = 2,
-        ShapeTrapezoidHoriz = 3
+        HitboxShape_Rectangle      = 0,
+        HitboxShape_Circle         = 1,
+        HitboxShape_TrapezoidVert  = 2,
+        HitboxShape_TrapezoidHoriz = 3
     };
 
     struct Info {

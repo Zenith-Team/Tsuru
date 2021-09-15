@@ -176,6 +176,7 @@ SECTIONS {
 	vf94__17CourseSelectActorFv = 0x21d5950;
 	vf9C__17CourseSelectActorFv = 0x21d595c;
 	vfA4__17CourseSelectActorFv = 0x21d5968;
+	FUN_21d4f1c__17CourseSelectActorFv = 0x21d4f1c;
 
 /* CourseSelectTask */
 	sInstance__16CourseSelectTask = 0x101cc96c;
@@ -217,6 +218,10 @@ SECTIONS {
 	sInstance__19CSHitboxColliderMgr = 0x101c9758;
 	add__19CSHitboxColliderMgrFP16CSHitboxCollider = 0x21c5800;
 	FUN_21c5894__19CSHitboxColliderMgrFP16CSHitboxCollider = 0x21c5894;
+
+/* CSScriptMgr */
+	sInstance__11CSScriptMgr = 0x101cbbc4;
+	getScriptPointer__11CSScriptMgrFR8CSScript = 0x21e42fc;
 
 /* CSSomethingActor */
 	__ct__16CSSomethingActorFPC14ActorBuildInfo = 0x2201c04;

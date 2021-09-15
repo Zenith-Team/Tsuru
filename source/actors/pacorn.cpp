@@ -84,7 +84,7 @@ void PAcorn::vf1B4() {
 u32 PAcorn::vf1C4() {
     u32 local;
 
-    if (FUN_25196e8(&local, PowerupStatePAcorn, 1) != 0)
+    if (FUN_25196e8(&local, PowerupState_PAcorn, 1) != 0)
         return FUN_2519580(local, this->_1830);
 
     else return 0;

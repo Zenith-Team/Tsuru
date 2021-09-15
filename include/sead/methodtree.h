@@ -17,10 +17,10 @@ class MethodTreeNode : public TTreeNode<MethodTreeNode*>, INamable, IDisposer {
 
 public:
     enum PauseFlag {
-        cPause_None = 0,
-        cPause_Self = 1,
-        cPause_Child = 2,
-        cPause_Both = 3
+        Pause_None = 0,
+        Pause_Self = 1,
+        Pause_Child = 2,
+        Pause_Both = 3
     };
 
 public:

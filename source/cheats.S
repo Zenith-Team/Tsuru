@@ -98,3 +98,7 @@ Invincibility:
     lwz     r3, 0x8(sp)
     addi    sp, sp, 0x4
     bctr    # 0x2931180
+
+SafeReturn:
+    RestoreVolatileRegisters
+    blr

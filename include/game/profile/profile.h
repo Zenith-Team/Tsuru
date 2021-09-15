@@ -12,7 +12,7 @@ struct ActorBuildInfo;
 class Profile {
 public:
     enum Flags {
-        FlagDontRenderOffScreen = 1 << 1
+        Flag_DontRenderOffScreen = 1 << 1
     };
 
     Profile(Actor* (*buildFunc)(const ActorBuildInfo*), u32 id, const sead::SafeString& name, const ActorInfo* actorInfo, u32 flags);
