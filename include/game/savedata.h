@@ -1,7 +1,6 @@
 #pragma once
 
-#include <types.h>
-#include <custom/utils.h>
+#include <log.h>
 #include "ffl.h"
 
 struct SaveData { // Size: 0xB134
@@ -83,17 +82,23 @@ struct SaveData { // Size: 0xB134
         u32 CRC32;
     };
 
+    static_assert(sizeof(SaveData::Header) == 0x10, "SaveData::Header size mismatch");
+
     struct CSLocation {
         u8 worldNumber;         // 0-indexed
         u8 sectionID;           // Per-world worldmap sections. Used for W5 Haunted section, W8 and W9.
         u8 pathNodeID;          // 0-indexed, does not follow the visible order of paths in-game at all.
     };
 
+    static_assert(sizeof(SaveData::CSLocation) == 0x3, "SaveData::CSLocation size mismatch");
+
     struct AmbushEnemy {
         CSLocation location;
         u8 _3;
         u8 _4;
     };
+
+    static_assert(sizeof(SaveData::AmbushEnemy) == 0x5, "SaveData::AmbushEnemy size mismatch");
 
     struct AmbushData { // TODO: Figure out which specific ambush each entry is
         AmbushEnemy world1Ambush[2];
@@ -105,6 +110,8 @@ struct SaveData { // Size: 0xB134
         u8 _5A[18];
         u8 _6C;
     };
+
+    static_assert(sizeof(SaveData::AmbushData) == 0x6D, "SaveData::AmbushData size mismatch");
 
     struct Statistics {
         u32 coinsCollected;
@@ -122,6 +129,8 @@ struct SaveData { // Size: 0xB134
         u32 fireworksAtGoal;
         u32 lifeMoonsCollected;
     };
+
+    static_assert(sizeof(SaveData::Statistics) == 0x38, "SaveData::Statistics size mismatch");
 
     struct SaveSlot {
         bool isNotEmpty;
@@ -180,6 +189,8 @@ struct SaveData { // Size: 0xB134
         u32 CRC32;
     };
 
+    static_assert(sizeof(SaveData::SaveSlot) == 0x204, "SaveData::SaveSlot size mismatch");
+
     struct Challenge {
         u8 completionState;                 // TODO: check if this is a bool
         u8 completionPlayerUsed;            // TODO: Check which player each value is
@@ -189,6 +200,8 @@ struct SaveData { // Size: 0xB134
         u32 replayCRC32;
     };
 
+    static_assert(sizeof(SaveData::Challenge) == 0x6C, "SaveData::Challenge size mismatch");
+
     struct ChallengeData {
         bool exists;
         u8 categoryMedalsCount[5];          // TODO: Figure out categories
@@ -196,9 +209,11 @@ struct SaveData { // Size: 0xB134
         u8 _7;
         Challenge challenges[80];           // TODO: Map out challenges
         u8 _21C8[0x1440];
-        u32 CRC32; // 3608
+        u32 CRC32;
     };
 
+    static_assert(sizeof(SaveData::ChallengeData) == 0x360C, "SaveData::ChallengeData size mismatch");
+    
     struct BoostRushData {
         u8 _0;
         u8 _1;
@@ -209,6 +224,8 @@ struct SaveData { // Size: 0xB134
         u32 CRC32;                          // A4
     };
 
+    static_assert(sizeof(SaveData::BoostRushData) == 0xA8, "SaveData::BoostRushData size mismatch");
+
     struct CoinEditCoin {
         u8 area;
         u8 zone;
@@ -217,6 +234,8 @@ struct SaveData { // Size: 0xB134
         u16 xPos;
         u16 yPos;
     };
+
+    static_assert(sizeof(SaveData::CoinEditCoin) == 0x8, "SaveData::CoinEditCoin size mismatch");
 
     struct CoinEditStarCoin {
         u8 area;
@@ -227,16 +246,22 @@ struct SaveData { // Size: 0xB134
         f32 yPos;
     };
 
+    static_assert(sizeof(SaveData::CoinEditStarCoin) == 0xC, "SaveData::CoinEditStarCoin size mismatch");
+
     struct CoinEditLevel {
         CoinEditCoin coins[300];
         CoinEditStarCoin starCoins[3];
     };
+
+    static_assert(sizeof(SaveData::CoinEditLevel) == 0x984, "SaveData::CoinEditLevel size mismatch");
 
     struct CoinEditData {
         CoinEditLevel levels[10];
         u8 unlockedLevels[12];
         u32 CRC32;
     };
+
+    static_assert(sizeof(SaveData::CoinEditData) == 0x5F38, "SaveData::CoinEditData size mismatch");
 
     struct TelemetryStatistics {
         u32 secondsPlayed;
@@ -287,21 +312,27 @@ struct SaveData { // Size: 0xB134
         u32 CRC32;
     };
 
-    struct MiiData {
-        u8 entriesCount;
-        FFL::CreateID FFLCreateIDEntries[62];   // Mii ID list
-        u8 padding[3];
-        u32 CRC32;
-    };
+    static_assert(sizeof(SaveData::TelemetryStatistics) == 0x94, "SaveData::TelemetryStatistics size mismatch");
 
-    Header header;                              // 0
-    SaveSlot saveSlots[3];                      // 10
-    SaveSlot nsluSaveSlots[3];                  // 61C
-    SaveSlot quickSaveSlots[3];                 // C28
-    SaveSlot nsluQuickSaveSlots[3];             // 1234
-    ChallengeData challengeData;                // 1840
-    BoostRushData boostRushData;                // 4E4C
-    CoinEditData coinEditData;                  // 4EF4
-    TelemetryStatistics telemetryStats;         // AE2C
-    MiiData miiData;                            // AEC0
+    struct MiiData {
+        u8 entriesCount;                // 0
+        FFL::CreateID miiIDList[62];    // 1    (Total size: 0x26C)
+        u8 padding[3];                  // 26D
+        u32 CRC32;                      // 270
+    } packed aligned(1);
+
+    static_assert(sizeof(SaveData::MiiData) == 0x274, "SaveData::MiiData size mismatch");
+
+    Header header;                      // 0
+    SaveSlot saveSlots[3];              // 10
+    SaveSlot nsluSaveSlots[3];          // 61C
+    SaveSlot quickSaveSlots[3];         // C28
+    SaveSlot nsluQuickSaveSlots[3];     // 1234
+    ChallengeData challengeData;        // 1840
+    BoostRushData boostRushData;        // 4E4C
+    CoinEditData coinEditData;          // 4EF4
+    TelemetryStatistics telemetryStats; // AE2C
+    MiiData miiData;                    // AEC0
 };
+
+static_assert(sizeof(SaveData) == 0xB134, "SaveData size mismatch");
