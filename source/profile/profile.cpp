@@ -818,5 +818,6 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::StarCoinShard,   // 729
     ProfileID::BeepBlock,       // 730
     ProfileID::FallingChestnut, // 731
-    ProfileID::TaskChanger      // 732
+    ProfileID::TaskChanger,     // 732
+    ProfileID::Cataquack        // 733
 };
