@@ -14,6 +14,7 @@ enum ProfileIDType {
     BeepBlock,
     FallingChestnut,
     TaskChanger,
+    Cataquack,
 
     Num
 };
