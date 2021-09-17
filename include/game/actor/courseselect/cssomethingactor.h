@@ -13,7 +13,7 @@ public:
     bool vf8C() override;
     void vf94() override;
     void vf9C() override;
-    void vfA4() override;
+    void onCSScriptCommandUpdate() override;
 
     s32 _108;   // Inited to -1
 };

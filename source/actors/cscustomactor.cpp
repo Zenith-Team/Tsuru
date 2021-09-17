@@ -19,14 +19,14 @@ public:
     u32 onExecute() override;
     u32 onDraw() override;
 
-    void vfA4() override;
+    void onCSScriptCommandUpdate() override;
 
     ModelWrapper* model;
 
     static const CSHitboxCollider::Info sCollisionInfo;
 };
 
-//const Profile CSCustomActorProfile(&CSCustomActor::build, 856, "a", nullptr, 0);
+const Profile CSCustomActorProfile(&CSCustomActor::build, 856, "a", nullptr, 0);
 
 const CSHitboxCollider::Info CSCustomActor::sCollisionInfo = {
     240.0f,      // Size
@@ -53,7 +53,7 @@ u32 CSCustomActor::onExecute() {
     // This needs to be in onExecute for the collision check below to work so it's probably not "add"
     CSHitboxColliderMgr::instance()->add(&this->hitboxCollider);
 
-    this->FUN_21d4f1c();
+    this->updateCSScriptInteractions();
 
     // Checks if player collided
     if (CSHitboxColliderMgr::instance()->FUN_21c5894(&this->hitboxCollider)) {
@@ -83,13 +83,24 @@ u32 CSCustomActor::onDraw() {
     return 1;
 }
 
-void CSCustomActor::vfA4() {
-    CSScript script;
+void CSCustomActor::onCSScriptCommandUpdate() {
+    u32 command;
 
-    CSScriptMgr::instance()->getScriptPointer(script);
+    CSScriptMgr::instance()->getCurrentScriptCommandType(&command);
 
-    // Let's figure out all these types
-    switch(script.priority) {
-        case 4: LOG("Tower level entered"); break;
-    }
+    LOG("%u", command);
 }
+
+/*
+    * 4: Entered castle/tower?
+    * 7: Wait
+    * 36: Level exit (dynamic anim, does a different thing if castle/tower lvl)
+    * 55: Inside sign popup
+    * 56: Exiting sign popup
+    * 65: Inside map view mode
+    * 66: Exiting map view mode
+    * 72: Transition
+    * 111: Flying in the air from pipe cannon
+    * 146: Landing from air from pipe cannon
+    * 181: W6 Switch pressed
+*/
