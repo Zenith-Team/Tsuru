@@ -439,6 +439,9 @@ SECTIONS {
 /* HitboxColliderMgr */
 	sInstance__17HitboxColliderMgr = 0x101c95d8;
 
+/* LevelInfo */
+	sInstance__9LevelInfo = 0x101d18ec;
+
 /* ModelWrapper */
 	__ct__12ModelWrapperFP5ModelUiN42 = 0x24d4798;
 	setup__12ModelWrapperFP10ResArchivePvPQ2_4sead4Heap = 0x24d49a0;

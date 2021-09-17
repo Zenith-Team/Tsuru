@@ -24,6 +24,8 @@ public:
 
     u32 createActor(Actor* actor);  // Calls "create" virtual functions
 
+    void executeActors();
+
     sead::UnitHeap* playerUnitHeap;
     sead::UnitHeap* actorUnitHeap;
     u8 deferredActorCreations[0x5970]; // sead::FixedRingBuffer<ActorBuildInfo, 520>
