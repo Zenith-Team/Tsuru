@@ -17,13 +17,13 @@ public:
     u32 beforeDraw() override;
     u32 onDraw() override = 0;
 
-    void FUN_21d4f1c(); // World map script related
+    void updateCSScriptInteractions(); // TODO: Verify this name
     bool FUN_21d4dbc(); // Checks some members on CSScriptMgr and the profile ID
 
     virtual bool vf8C();
     virtual void vf94();
     virtual void vf9C();
-    virtual void vfA4(); // nullsub, world map script related in derived classes
+    virtual void onCSScriptCommandUpdate(); // nullsub, name may be inaccurate // TODO: Verify this name
 
     f32 _DC;             // Inited to 1.0
     f32 _E0;             // Inited to 1.0

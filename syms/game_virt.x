@@ -176,7 +176,7 @@ SECTIONS {
 	vf94__17CourseSelectActorFv = 0x21d5950;
 	vf9C__17CourseSelectActorFv = 0x21d595c;
 	vfA4__17CourseSelectActorFv = 0x21d5968;
-	FUN_21d4f1c__17CourseSelectActorFv = 0x21d4f1c;
+	updateCSScriptInteractions__17CourseSelectActorFv = 0x21d4f1c;
 
 /* CourseSelectTask */
 	sInstance__16CourseSelectTask = 0x101cc96c;
@@ -221,7 +221,7 @@ SECTIONS {
 
 /* CSScriptMgr */
 	sInstance__11CSScriptMgr = 0x101cbbc4;
-	getScriptPointer__11CSScriptMgrFR8CSScript = 0x21e42fc;
+	getCurrentScriptCommandType__11CSScriptMgrFPUi = 0x21e42fc;
 
 /* CSSomethingActor */
 	__ct__16CSSomethingActorFPC14ActorBuildInfo = 0x2201c04;
