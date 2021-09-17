@@ -11,14 +11,16 @@ public:
             , noClipEnabled(false)
             , invincibilityEnabled(false)
             , collisionViewerEnabled(false)
+            , instantRespawnEnabled(false)
         { }
 
-        u32 magic;                     // _0
-        bool infiniteLivesEnabled;     // _4
-        bool infiniteTimeEnabled;      // _5
-        bool noClipEnabled;            // _6
-        bool invincibilityEnabled;     // _7
-        bool collisionViewerEnabled;   // _8
+        u32 magic;                      // _0
+        bool infiniteLivesEnabled;      // _4
+        bool infiniteTimeEnabled;       // _5
+        bool noClipEnabled;             // _6
+        bool invincibilityEnabled;      // _7
+        bool collisionViewerEnabled;    // _8
+        bool instantRespawnEnabled;     // _9
     };
 
 public:

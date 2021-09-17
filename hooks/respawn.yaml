@@ -1,0 +1,9 @@
+
+---
+Files:
+  - source/respawn.cpp
+Hooks:
+  - type: branch
+    instr: b
+    func: respawn__Fv
+    addr: "24c011c"

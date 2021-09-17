@@ -10,6 +10,7 @@ Modules:
   - hooks/initializer.yaml          # Initializer
   - hooks/misc.yaml                 # Miscellaneous items
   - hooks/profile.yaml              # Extra profile and sprite slots
+  - hooks/respawn.yaml              # Instant respawn after dying
   - hooks/sarcloader.yaml           # Allow loading uncompressed .sarc levels
   - hooks/sead.yaml                 # Patches for the sead library
   - hooks/sizemodifier.yaml         # Scale actors as you wish using nybble 
