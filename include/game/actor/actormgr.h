@@ -15,7 +15,7 @@ public:
     u8  _14;
 };
 
-class ActorMgr {
+class ActorMgr { // Size: 0x6A44
     SEAD_SINGLETON_DISPOSER(ActorMgr)
 
 public:
@@ -36,5 +36,7 @@ public:
     sead::FixedPtrArray<sead::Heap, 520> deletedActorHeaps;
     sead::FixedPtrArray<Actor, 520> finalExecuteList;
     ActorBuffer actors;
-    // ...
+    u32 currentID;
+    bool currentWasNotDeferred;
+    //...
 };

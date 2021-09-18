@@ -4,7 +4,7 @@
 
 SEAD_SINGLETON_DISPOSER_IMPL(TsuruSaveMgr)
 
-TsuruSaveMgr::TsuruSaveData TsuruSaveMgr::sSaveData aligned(sead::FileDevice::cBufferMinAlignment);
+TsuruSaveMgr::TsuruSaveData TsuruSaveMgr::sSaveData aligned(sead::FileDevice::sBufferMinAlignment);
 
 TsuruSaveMgr::TsuruSaveMgr()
     : inited(false)

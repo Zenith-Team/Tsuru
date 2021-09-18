@@ -58,7 +58,7 @@ public:
     bool tryRead(u32* bytesRead, FileHandle* handle, u8* outBuffer, u32 bytesToRead);
     bool tryWrite(u32* bytesWritten, FileHandle* handle, const u8* inBuffer, u32 bytesToWrite);
 
-    static const s32 cBufferMinAlignment = 0x40;
+    static const s32 sBufferMinAlignment = 0x40;
 };
 
 class HandleBase : public IDisposer {
