@@ -4,6 +4,7 @@
 #include "ffl.h"
 
 struct SaveData { // Size: 0xB134
+public:
     enum GameCompletionFlag {
         GameCompletionFlag_Unknown1                     = 0x1,
         GameCompletionFlag_AllLevels                    = 0x2,
@@ -70,6 +71,7 @@ struct SaveData { // Size: 0xB134
         InventoryItem_NoItem                            = 0xE
     };
 
+public:
     struct Header {
         char magic[4];          // RPSD
         u8 versionMajor;        // Always 1
@@ -323,6 +325,7 @@ struct SaveData { // Size: 0xB134
 
     static_assert(sizeof(SaveData::MiiData) == 0x274, "SaveData::MiiData size mismatch");
 
+public:
     Header header;                      // 0
     SaveSlot saveSlots[3];              // 10
     SaveSlot nsluSaveSlots[3];          // 61C
