@@ -615,6 +615,9 @@ SECTIONS {
 	ResMgr_LoadLevelArchiveFail = 0x29D333C;
 	ResMgr_LoadLevelArchiveSuccess = 0x29D3354;
 
+/* SaveMgr */
+	sInstance__7SaveMgr = 0x101e7da4;
+
 /* ShaderAnimation */
 	playTexSrtAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FEE50;
 
