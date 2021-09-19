@@ -42,7 +42,7 @@ public:
     DECLARE_STATE_VIRTUAL(CourseSelectTask, CourseSelectTaskState3);
 
     u8 _C8;                                             // _C8
-    u8 _C9[15];                                         // _C9      //? unknown values
+    u8 _C9[15];                                         // _C9      // Unknown values 1
     StateWrapper<CourseSelectTask> states;              // _D8
     agl::lyr::DrawMethod drawMethodCourseSelect;        // _FC
     agl::lyr::DrawMethod drawMethod2D;                  // _13C
@@ -55,21 +55,21 @@ public:
     agl::lyr::DrawMethod drawMethod3D_DRC;              // _2FC
     agl::lyr::DrawMethod drawMethod2D_DRC;              // _33C
     agl::lyr::DrawMethod drawMethod2D_Pre3D_DRC;        // _37C
-    u8 _3BC[88];                                        // _3BC     //? is class
-    u8 _414[172];                                       // _414     //? is class
-    u8 _4C0[88];                                        // _4C0     //? is class
-    u8 _518[172];                                       // _518     //? is class
-    u8 _5C4[404][4];                                    // _5C4     //? is struct
-    u8 _C14[404];                                       // _C14     //? is class
+    u8 _3BC[88];                                        // _3BC     // Is class
+    u8 _414[172];                                       // _414     // Is class
+    u8 _4C0[88];                                        // _4C0     // Is class
+    u8 _518[172];                                       // _518     // Is class
+    u8 _5C4[404][4];                                    // _5C4     // Is struct
+    u8 _C14[404];                                       // _C14     // Is class
     u32 cameraActorID;                                  // _DA8
     char* _DAC;                                         // _DAC
-    u8 _DB0[16];                                        // _DB0     //? unknown values
+    u8 _DB0[16];                                        // _DB0     // Unknown values 2
     u32 _DC0;                                           // _DC0
-    u8 _DC4[4];                                         // _DC4     //? unknown values
+    u8 _DC4[4];                                         // _DC4     // Unknown values 3
     u8 _DC8;                                            // _DC8
     u8 _DC9;                                            // _DC9
     u8 _DCA;                                            // _DCA
-    u8 _DCB;                                            // _DCB     //? unknown value
+    u8 _DCB;                                            // _DCB     // Unknown value 4
     u8 _DCC;                                            // _DCC
     u8 _DCD;                                            // _DCD
     u8 _DCE;                                            // _DCE
