@@ -3,7 +3,7 @@
 #include <log.h>
 
 void LevelInfo::setTitlescreenThemeEntrance() {
-    switch (SaveMgr::instance()->saveData->saveSlots[SaveMgr::instance()->saveData->header.lastSessionSaveSlot].csPlayerLocation.worldNumber) {
+    switch (SaveMgr::getLastUsedSaveSlot().csPlayerLocation.worldNumber) {
         case 0: this->setDestEntrance(0); return; // Acorn Plains
         case 1: this->setDestEntrance(1); return; // Layer-Cake Desert
         case 2: this->setDestEntrance(2); return; // Sparkling Waters
