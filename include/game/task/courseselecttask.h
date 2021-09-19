@@ -34,8 +34,8 @@ public:
     void spawnCameraActor();
     void doStateChange(StateBase* state);
 
-    // Custom functions
-    void drawLayerDebug(const agl::lyr::RenderInfo& renderInfo);
+    // Custom function
+    void renderCollisions(const agl::lyr::RenderInfo& renderInfo);
 
     DECLARE_STATE_VIRTUAL(CourseSelectTask, CourseSelectTaskState1);
     DECLARE_STATE_VIRTUAL(CourseSelectTask, CourseSelectTaskState2);

@@ -21,4 +21,4 @@ Hooks:
   - type: branch
     instr: b
     addr: "2267704" # CourseSelectTask::drawLayer3D_DRC()
-    func: drawLayerDebug__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo
+    func: renderCollisions__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo
