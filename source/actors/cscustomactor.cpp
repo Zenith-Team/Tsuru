@@ -4,6 +4,7 @@
 #include <game/graphics/model/model.h>
 #include <game/graphics/drawmgr.h>
 #include <game/csscriptmgr.h>
+#include <game/savemgr.h>
 #include <log.h>
 
 class CSCustomActor : public CSCollisionActor {

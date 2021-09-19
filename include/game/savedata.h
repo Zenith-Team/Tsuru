@@ -43,13 +43,13 @@ public:
     };
 
     enum LevelCompletionFlag { // TODO: More research, not all values are here, some are incomplete
-        LevelCompletionFlag_Locked                     = 0x0,
-        LevelCompletionFlag_Unlocked                   = 0x1,
-        LevelCompletionFlag_PlayedOnce                 = 0x2,
-        LevelCompletionFlag_ForeverUnlockedToadHouse   = 0x3,
-        LevelCompletionFlag_AmbushCleared              = 0x42,
-        LevelCompletionFlag_ClearedOrUsedToadHouse     = 0x43,
-        LevelCompletionFlag_ClearedOrSecretExitCleared = 0xC3,
+        LevelCompletionFlag_Locked                      = 0x0,
+        LevelCompletionFlag_Unlocked                    = 0x1,
+        LevelCompletionFlag_PlayedOnce                  = 0x2,
+        LevelCompletionFlag_ForeverUnlockedToadHouse    = 0x3,
+        LevelCompletionFlag_AmbushCleared               = 0x42,
+        LevelCompletionFlag_ClearedOrUsedToadHouse      = 0x43,
+        LevelCompletionFlag_ClearedOrSecretExitCleared  = 0xC3,
     };
 
     enum LevelStarCoinsCollected { // TODO: More research, not all values are here
@@ -138,17 +138,17 @@ public:
         bool isNotEmpty;
         u8 lastSessionPlayerCount;
         u8 coinCount;
-        u8 csActiveW6Switch;            // 0: Red Active, 1: Blue Active
+        u8 csActiveW6Switch;                // 0: Red Active, 1: Blue Active
         CSLocation csPlayerLocation;
-        CSLocation csUnknownLocation;   // TODO: Unknown purpose
+        CSLocation csUnknownLocation;       // TODO: Unknown purpose
         u8 _A;
         u8 _B;
-        u8 playerLifeCount[4];          // Order: Mario, Luigi, Blue Toad, Yellow Toad
-        u8 playerCharacterSelection[4]; // TODO: Verify order
-        u8 playerPowerupState[4];       // Order: Mario, Luigi, Blue Toad, Yellow Toad //* enum = PowerupBase::PowerupState
-        u8 playerGameOverCount[4];      // Order: Mario, Luigi, Blue Toad, Yellow Toad
-        u16 worldCompletionFlag;        //* enum = SaveData::WorldCompletionFlag
-        u8 gameCompletionFlag;          //* enum = SaveData::GameCompletionFlag
+        u8 playerLifeCount[4];              // Order: Mario, Luigi, Blue Toad, Yellow Toad
+        u8 playerCharacterSelection[4];     // TODO: Verify order
+        u8 playerPowerupState[4];           // Order: Mario, Luigi, Blue Toad, Yellow Toad //* enum = PowerupBase::PowerupState
+        u8 playerGameOverCount[4];          // Order: Mario, Luigi, Blue Toad, Yellow Toad
+        u16 worldCompletionFlag;            //* enum = SaveData::WorldCompletionFlag
+        u8 gameCompletionFlag;              //* enum = SaveData::GameCompletionFlag
         u8 _1F;
         Vec3f _20;
         u8 _2C;
@@ -223,7 +223,7 @@ public:
         u8 _3;
         u32 highscores[32];                 // Stored in hundredths of a second
         u8 _84[32];
-        u32 CRC32;                          // A4
+        u32 CRC32;                          // _A4
     };
 
     static_assert(sizeof(SaveData::BoostRushData) == 0xA8, "SaveData::BoostRushData size mismatch");
@@ -317,25 +317,25 @@ public:
     static_assert(sizeof(SaveData::TelemetryStatistics) == 0x94, "SaveData::TelemetryStatistics size mismatch");
 
     struct MiiData {
-        u8 entriesCount;                // 0
-        FFL::CreateID miiIDList[62];    // 1    (Total size: 0x26C)
-        u8 padding[3];                  // 26D
-        u32 CRC32;                      // 270
+        u8 entriesCount;                // _0
+        FFL::CreateID miiIDList[62];    // _1    (Total size: 0x26C)
+        u8 padding[3];                  // _26D
+        u32 CRC32;                      // _270
     } packed aligned(1);
 
     static_assert(sizeof(SaveData::MiiData) == 0x274, "SaveData::MiiData size mismatch");
 
 public:
-    Header header;                      // 0
-    SaveSlot saveSlots[3];              // 10
-    SaveSlot nsluSaveSlots[3];          // 61C
-    SaveSlot quickSaveSlots[3];         // C28
-    SaveSlot nsluQuickSaveSlots[3];     // 1234
-    ChallengeData challengeData;        // 1840
-    BoostRushData boostRushData;        // 4E4C
-    CoinEditData coinEditData;          // 4EF4
-    TelemetryStatistics telemetryStats; // AE2C
-    MiiData miiData;                    // AEC0
+    Header header;                      // _0
+    SaveSlot saveSlots[3];              // _10
+    SaveSlot nsluSaveSlots[3];          // _61C
+    SaveSlot quickSaveSlots[3];         // _C28
+    SaveSlot nsluQuickSaveSlots[3];     // _1234
+    ChallengeData challengeData;        // _1840
+    BoostRushData boostRushData;        // _4E4C
+    CoinEditData coinEditData;          // _4EF4
+    TelemetryStatistics telemetryStats; // _AE2C
+    MiiData miiData;                    // _AEC0
 };
 
 static_assert(sizeof(SaveData) == 0xB134, "SaveData size mismatch");
