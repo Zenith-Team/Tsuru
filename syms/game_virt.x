@@ -441,6 +441,7 @@ SECTIONS {
 
 /* LevelInfo */
 	sInstance__9LevelInfo = 0x101d18ec;
+	setDestEntrance__9LevelInfoFSc = 0x24d2984;
 
 /* ModelWrapper */
 	__ct__12ModelWrapperFP5ModelUiN42 = 0x24d4798;
