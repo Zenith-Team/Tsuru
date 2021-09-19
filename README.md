@@ -45,18 +45,20 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 * Disabled acorns falling on title screen
 * Disabled Miiverse integration *
 * Extra profile slots for up to 64812 new actors
-* Fixed collision conditions for some sprites *
+* Fixed collision conditions for some sprites
 * Indicator for hacks loaded via version string
 * Infinite lives
 * Infinite time
+* Instant respawn
 * NoClip
 * Restored background offset settings functionality *
 * Restored many of sead::PrimitiveRendererCafe's deleted functions
 * Restored sound effect reverb settings
 * RPL library loader
 * SARC level loader
-* Size modifier *
+* Size modifier
 * Space physics
+* Titlescreen theme based on last world saved in
 * Yoshi colors
 
 # Building
