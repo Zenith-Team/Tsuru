@@ -33,7 +33,7 @@ void drawLine(const Vec2f& point1, const Vec2f& point2, const sead::Color4f& col
     drawLine(leftPoint, angle, color, length, lineThickness);
 }
 
-void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
+void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
 
     if (TsuruSaveMgr::sSaveData.collisionViewerEnabled) {
@@ -197,7 +197,7 @@ void AreaTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
     }
 }
 
-void CourseSelectTask::drawLayerDebug(const agl::lyr::RenderInfo& renderInfo) {
+void CourseSelectTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
 
     if (TsuruSaveMgr::sSaveData.collisionViewerEnabled) {

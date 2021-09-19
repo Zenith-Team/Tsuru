@@ -93,9 +93,7 @@ extern void (*GX2SetDRCScale)(u32 width, u32 height);
 extern void (*GX2SetDRCEnable)(s32 enable);
 extern void (*GX2SetPolygonControl)(s32 frontFaceMode, s32 cullFront, s32 cullBack, s32 enableMode, s32 modeFront, s32 modeBack, s32 polyOffsetFront, s32 polyOffsetBack, s32 pointLineOffset);
 extern void (*GX2SetCullOnlyControl)(s32 frontFaceMode, s32 cullFront, s32 cullBack);
-extern void (*GX2SetDepthStencilControl)(s32 enableDepthTest, s32 enableDepthWrite, s32 depthCompFunction,  s32 stencilTestEnable, s32 backStencilEnable,
-        s32 frontStencilFunc, s32 frontStencilZPass, s32 frontStencilZFail, s32 frontStencilFail,
-        s32 backStencilFunc, s32 backStencilZPass, s32 backStencilZFail, s32 backStencilFail);
+extern void (*GX2SetDepthStencilControl)(s32 enableDepthTest, s32 enableDepthWrite, s32 depthCompFunction,  s32 stencilTestEnable, s32 backStencilEnable, s32 frontStencilFunc, s32 frontStencilZPass, s32 frontStencilZFail, s32 frontStencilFail, s32 backStencilFunc, s32 backStencilZPass, s32 backStencilZFail, s32 backStencilFail);
 extern void (*GX2SetStencilMask)(u8 maskFront, u8 writeMaskFront, u8 refFront, u8 maskBack, u8 writeMaskBack, u8 refBack);
 extern void (*GX2SetLineWidth)(f32 width);
 extern void (*GX2SetTVGamma)(f32 val);

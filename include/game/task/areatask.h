@@ -11,7 +11,7 @@ public:
 
     // Custom functions
     void setPhysicsValues();
-    void drawLayerDebug(const agl::lyr::RenderInfo& renderInfo);
+    void renderCollisions(const agl::lyr::RenderInfo& renderInfo);
 
     u8 _C8[1636];
     u32 wrapFlag;
