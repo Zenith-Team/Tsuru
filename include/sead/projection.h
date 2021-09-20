@@ -19,11 +19,12 @@ public:
     };
 };
 
-class Projection {
+class Projection { // Size: 0x94
     SEAD_RTTI_BASE(Projection)
 
 public:
     Projection();
+    Projection(f32, f32, f32, f32, f32, f32);
     virtual ~Projection();
 
     virtual u32 getProjectionType() const = 0;
@@ -42,5 +43,31 @@ public:
     f32 deviceZScale;
     f32 deviceZOffset;
 };
+
+static_assert(sizeof(Projection) == 0x94, "sead::Projection size mismatch");
+
+class OrthoProjection : public Projection { // Size: 0xAC
+    SEAD_RTTI_OVERRIDE(OrthoProjection, Projection)
+
+public:
+    OrthoProjection();
+    virtual ~OrthoProjection();
+
+    u32 getProjectionType() const override;
+    void doUpdateMatrix(Mtx44* mtx) const override;
+
+    void doScreenPosToCameraPosTo(Vec3f*, const Vec3f&) const override; // deleted
+
+    void setTBLR(f32 top, f32 bottom, f32 left, f32 right);
+
+    f32 _94;
+    f32 _98;
+    f32 top;
+    f32 bottom;
+    f32 left;
+    f32 right;
+};
+
+static_assert(sizeof(OrthoProjection) == 0xAC, "sead::OrthoProjection size mismatch");
 
 }

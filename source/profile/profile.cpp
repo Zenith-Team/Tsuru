@@ -819,5 +819,6 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::BeepBlock,       // 730
     ProfileID::FallingChestnut, // 731
     ProfileID::TaskChanger,     // 732
-    ProfileID::Cataquack        // 733
+    ProfileID::Cataquack,       // 733
+    ProfileID::TimeClock        // 734
 };
