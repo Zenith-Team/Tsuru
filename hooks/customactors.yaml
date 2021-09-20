@@ -14,6 +14,7 @@ Files:
   - source/actors/fallingchestnut.cpp
   - source/actors/taskchanger.cpp
   - source/actors/cataquack.cpp
+  - source/actors/timeclock.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:

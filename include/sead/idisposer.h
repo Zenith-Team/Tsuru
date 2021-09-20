@@ -22,7 +22,7 @@ private:
 
 #define SEAD_SINGLETON_DISPOSER(CLASS)                                                                          \
     public:                                                                                                     \
-        static CLASS* instance() { return sInstance; }                                                          \
+        static inline CLASS* instance() { return sInstance; }                                                   \
         static CLASS* createInstance(sead::Heap* heap);                                                         \
         static void deleteInstance();                                                                           \
                                                                                                                 \

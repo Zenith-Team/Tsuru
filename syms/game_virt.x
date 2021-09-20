@@ -83,6 +83,11 @@ SECTIONS {
 	__ct__Q2_4sead9IDisposerFv = 0x2a0a2fc;
 	__dt__Q2_4sead9IDisposerFv = 0x2a0a384;
 
+/* sead::OrthoProjection */
+	__ct__Q2_4sead15OrthoProjectionFv = 0x2a06518;
+	setTBLR__Q2_4sead15OrthoProjectionFfN31 = 0x2a06818;
+	__dt__Q2_4sead15OrthoProjectionFv = 0x2a067c4;
+
 /* sead::PrimitiveRenderer */
 	sInstance__Q2_4sead17PrimitiveRenderer = 0x101e8010;
 	setCamera__Q2_4sead17PrimitiveRendererFRCQ2_4sead6Camera = 0x2a083d0;
@@ -442,6 +447,10 @@ SECTIONS {
 /* LevelInfo */
 	sInstance__9LevelInfo = 0x101d18ec;
 	setDestEntrance__9LevelInfoFSc = 0x24d2984;
+
+/* LevelTimer */
+	sInstance__10LevelTimer = 0x101d15f4;
+	addTime__10LevelTimerFi = 0x24c14c0;
 
 /* ModelWrapper */
 	__ct__12ModelWrapperFP5ModelUiN42 = 0x24d4798;

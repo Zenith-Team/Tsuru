@@ -15,6 +15,7 @@ enum ProfileIDType {
     FallingChestnut,
     TaskChanger,
     Cataquack,
+    TimeClock,
 
     Num
 };

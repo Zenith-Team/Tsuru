@@ -14,9 +14,12 @@ public:
 
     DrawMethod* pushBackDrawMethod(u32, DrawMethod* drawMethod);
 
-    // ...
-
-    u8 _10[0x41C - 0x10];
+    u8 _10[0x44 - 0x10];
+    sead::Camera* camera;
+    sead::Projection* projection;
+    //...
 };
+
+//static_assert(sizeof(Layer) == 0x41C, "agl::lyr::Layer size mismatch");
 
 } }
