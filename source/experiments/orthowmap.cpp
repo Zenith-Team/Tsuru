@@ -1,6 +1,7 @@
 #include <agl/lyr/renderer.h>
 #include <agl/lyr/layer.h>
 #include <sead/projection.h>
+#include <tsuru/tsurusavemgr.h>
 
 u32 makeOrthoWmap() {
     static sead::OrthoProjection orthoProj;
@@ -9,7 +10,8 @@ u32 makeOrthoWmap() {
     orthoProj._98 = 5000000.0f;
     orthoProj.dirty = true;
 
-    agl::lyr::Renderer::instance()->layers.buffer[7]->projection = &orthoProj;
+    if (TsuruSaveMgr::sSaveData.orthographicWorldMapEnabled)
+        agl::lyr::Renderer::instance()->layers.buffer[7]->projection = &orthoProj;
 
     return 1;
 }
