@@ -9,7 +9,7 @@
 
 u32 makeOrthoWmap() {
     if (!TsuruSaveMgr::sSaveData.orthographicWorldMapEnabled)
-        return;
+        return 1;
 
     static sead::OrthoProjection orthoProj;
 
