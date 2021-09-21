@@ -1,9 +1,26 @@
 
 ---
 Files:
-  - source/experiments/orthowmap.cpp
+  - source/experiments/projection.S
+  - source/experiments/projection.cpp
 Hooks:
+# Orthographic projection on World Map
+  # Set the projection in the layer
   - type: branch
     instr: b
     func: makeOrthoWmap__Fv
-    addr: "21b94b0"
+    addr: "21b94b0" # CSCamera::onExecute()
+
+# Perspective projection in levels
+  # Set the projection in the layer
+  - type: branch
+    instr: bl
+    func: MakePerspectiveLevel
+    addr: "24b83e0" # AreaTask::drawLayerGather()
+  # Delete a sead::DynamicCast RTTI check fail to prevent null pointer crash
+  - type: nop
+    addr: "2693324"
+  # Do a thing Wesley said so
+  - type: patch
+    data: "7FE6FB78" # mr r6, r31
+    addr: "2693358"

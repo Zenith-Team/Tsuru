@@ -13,6 +13,7 @@ public:
             , collisionViewerEnabled(false)
             , instantRespawnEnabled(false)
             , orthographicWorldMapEnabled(false)
+            , perspectiveLevelCameraEnabled(false)
         { }
 
         u32 magic;                          // _0
@@ -23,6 +24,7 @@ public:
         bool collisionViewerEnabled;        // _8
         bool instantRespawnEnabled;         // _9
         bool orthographicWorldMapEnabled;   // _10
+        bool perspectiveLevelCameraEnabled; // _11
     };
 
 public:
