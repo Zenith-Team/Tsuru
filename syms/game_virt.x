@@ -88,6 +88,11 @@ SECTIONS {
 	setTBLR__Q2_4sead15OrthoProjectionFfN31 = 0x2a06818;
 	__dt__Q2_4sead15OrthoProjectionFv = 0x2a067c4;
 
+/* sead::PerspectiveProjection */
+	__ct__Q2_4sead21PerspectiveProjectionFv = 0x2a06108;
+	set__Q2_4sead21PerspectiveProjectionFfN31 = 0x2a062ec;
+	__dt__Q2_4sead21PerspectiveProjectionFv = 0x2a06298;
+
 /* sead::PrimitiveRenderer */
 	sInstance__Q2_4sead17PrimitiveRenderer = 0x101e8010;
 	setCamera__Q2_4sead17PrimitiveRendererFRCQ2_4sead6Camera = 0x2a083d0;

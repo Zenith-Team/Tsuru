@@ -60,8 +60,8 @@ public:
 
     void setTBLR(f32 top, f32 bottom, f32 left, f32 right);
 
-    f32 _94;
-    f32 _98;
+    f32 nearClip;
+    f32 farClip;
     f32 top;
     f32 bottom;
     f32 left;
@@ -69,5 +69,31 @@ public:
 };
 
 static_assert(sizeof(OrthoProjection) == 0xAC, "sead::OrthoProjection size mismatch");
+
+class PerspectiveProjection : public Projection { // Size: 0xB8
+    SEAD_RTTI_OVERRIDE(PerspectiveProjection, Projection)
+
+public:
+    PerspectiveProjection();
+    PerspectiveProjection(f32, f32, f32, f32);
+    virtual ~PerspectiveProjection();
+
+    u32 getProjectionType() const override;
+    void doUpdateMatrix(Mtx44* mtx) const override;
+
+    void doScreenPosToCameraPosTo(Vec3f*, const Vec3f&) const override; // deleted
+
+    void set(f32 nearClip, f32 farClip, f32 fov, f32 aspectRatio);
+
+    f32 nearClip;
+    f32 farClip;
+    f32 fov;
+    u8 _A0[0xAC - 0xA0];    // Unknown values
+    f32 aspectRatio;
+    u32 _B0;
+    u32 _B4;
+};
+
+static_assert(sizeof(PerspectiveProjection) == 0xB8, "sead::PerspectiveProjection size mismatch");
 
 }
