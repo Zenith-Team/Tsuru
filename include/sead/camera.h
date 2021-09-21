@@ -18,7 +18,7 @@ public:
 };
 
 class LookAtCamera : public Camera {
-    SEAD_RTTI_OVERRIDE(LookAtCamnera, Camera)
+    SEAD_RTTI_OVERRIDE(LookAtCamera, Camera)
 
 public:
     LookAtCamera(Vec3f& pos, Vec3f& at, Vec3f& up);

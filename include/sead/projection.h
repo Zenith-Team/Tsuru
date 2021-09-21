@@ -60,8 +60,7 @@ public:
 
     void setTBLR(f32 top, f32 bottom, f32 left, f32 right);
 
-    void setNearFarClip(f32 near, f32 far) // probably exists just dunno the official name
-    {
+    void setNearFarClip(f32 near, f32 far) {
         this->nearClip = near;
         this->farClip = far;
         this->dirty = true;

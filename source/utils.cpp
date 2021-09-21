@@ -30,12 +30,3 @@ extern "C" int wcscmp(const wchar_t* str1, const wchar_t* str2) {
 
     return (*str1 - *--str2);
 }
-
-// Implementation for C snprintf
-extern "C" int snprintf(char* buffer, unsigned int length, const char* string, ...) {
-    va_list args;
-    va_start(args, string);
-    int result = vsnprintf(buffer, length, string, args);
-    va_end(args);
-    return result;
-}
