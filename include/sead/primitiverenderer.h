@@ -3,7 +3,7 @@
 #include <sead.h>
 #include <types.h>
 #include <math.h>
-#include <util/mtx.h>
+#include <utils/mtx.h>
 #include <dynlibs/gx2/types.h>
 
 namespace sead {
