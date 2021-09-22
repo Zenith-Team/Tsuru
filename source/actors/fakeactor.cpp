@@ -64,7 +64,7 @@ Actor* FakeActor::build(const ActorBuildInfo* buildInfo) {
     return new FakeActor(buildInfo);
 }
 
-u32 FakeActor::onCreate() {    
+u32 FakeActor::onCreate() {
     switch (this->settings1 & 0xF) { // Nybble 12
         case 0:  doStateChange(&StateID_Checkpoint); break;
         case 1:  doStateChange(&StateID_GoalPole);   break;

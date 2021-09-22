@@ -92,7 +92,7 @@ u32 ParaBones::onExecute() {
 
     modelUpdate();
 
-    return 1; 
+    return 1;
 }
 
 u32 ParaBones::onDraw() {

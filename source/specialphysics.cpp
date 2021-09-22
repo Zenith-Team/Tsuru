@@ -11,7 +11,7 @@ void AreaTask::setPhysicsValues() {
     Level::Area* area = Level::instance()->getArea(LevelInfo::instance()->area);
     Level::Area::Options* areaOptions = reinterpret_cast<Level::Area::Options*>(area->blocks[1]);
 
-    // Wrap flag set to "wrap" 
+    // Wrap flag set to "wrap"
     if (areaOptions->wrapValue & 1) this->wrapFlag = 1;
 
     // Wrap flag set to "low-gravity"

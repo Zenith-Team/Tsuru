@@ -3,7 +3,7 @@
 .rodata
 //TestString: .string "ErrorWindow_BtnIC_OK_00"
 PatchString: .short 0x0077, 0x006F, 0x006D, 0x0061, 0x006E, 0x0020, 0x0063, 0x0075, 0x006D, 0x0000 # Woman Cum
-VersionStringMsbtID: .string "Title_Ver_00" 
+VersionStringMsbtID: .string "Title_Ver_00"
 
 .data
 isVersionString: .word 0 # bool

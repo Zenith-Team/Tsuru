@@ -79,8 +79,8 @@ public:
     virtual bool collisionPipeCannon(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     virtual bool vf26C(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     virtual bool collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther);
-    virtual bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther);            
-    virtual bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther);             
+    virtual bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+    virtual bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     virtual bool collisionHammer(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     virtual bool collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     virtual bool vf29C(HitboxCollider* hcSelf, HitboxCollider* hcOther);

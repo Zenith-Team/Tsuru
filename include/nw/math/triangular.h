@@ -29,7 +29,7 @@ inline void SinCosIdx(f32* sinVal, f32* cosVal, u32 angle) {
 
 inline f32 SinIdx(u32 angle) {
     // Does not match if using SinCosIdx
-    // f32 sinVal; SinCosIdx(&sinVal, NULL, angle); 
+    // f32 sinVal; SinCosIdx(&sinVal, NULL, angle);
     // return sinVal;
 
     u32 idx = (angle >> 24) & 0xFF;

@@ -215,7 +215,7 @@ public:
     };
 
     static_assert(sizeof(SaveData::ChallengeData) == 0x360C, "SaveData::ChallengeData size mismatch");
-    
+
     struct BoostRushData {
         u8 _0;
         u8 _1;

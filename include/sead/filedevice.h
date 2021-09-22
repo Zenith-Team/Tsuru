@@ -63,7 +63,7 @@ public:
 
 class HandleBase : public IDisposer {
 public:
-    HandleBase() 
+    HandleBase()
         : IDisposer()
         , device(nullptr)
         , originalDevice(nullptr)
