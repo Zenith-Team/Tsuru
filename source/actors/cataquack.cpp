@@ -105,7 +105,7 @@ void Cataquack::beginState_Turn() {
 }
 
 void Cataquack::executeState_Turn() {
-    if (moveValueWithOverflowTo(this->rotation.y, Direction::directionToRotationList[this->direction], 0x1800000, this->direction)) {
+    if (moveValueWithOverflowTo(this->rotation.y, Direction::directionToRotationList[this->direction], 0x2000000, this->direction)) {
         doStateChange(&this->StateID_IdleWalking);
     }
 }
