@@ -27,7 +27,7 @@ public:
     static const CSHitboxCollider::Info sCollisionInfo;
 };
 
-const Profile CSCustomActorProfile(&CSCustomActor::build, 856, "a", nullptr, 0);
+//const Profile CSCustomActorProfile(&CSCustomActor::build, 856, "a", nullptr, 0);
 
 const CSHitboxCollider::Info CSCustomActor::sCollisionInfo = {
     240.0f,      // Size
