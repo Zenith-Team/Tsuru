@@ -4,23 +4,7 @@
 #include <game/graphics/drawmgr.h>
 #include <game/util.h>
 #include <log.h>
-
-bool moveValueWithOverflowTo(u32 &value, u32 target, u32 step, bool subtract) {
-    u32 counter = 0;
-    u32 startValue = value;
-    s64 offset = target - startValue;
-    if (offset < 0) offset *= -1;
-    
-    if (counter + step < offset) {
-        if (!subtract) value += step;
-        else value -= step;
-        counter += step;
-        return false;
-    }
-  
-    value = target;
-    return true;
-}
+#include <tsuru/utils.h>
 
 class Cataquack : public Enemy {
 public:
