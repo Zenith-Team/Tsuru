@@ -2,7 +2,7 @@
 
 #include <nw/snd/soundstartable.h>
 
-namespace nw { namespace snd { 
+namespace nw { namespace snd {
 
 namespace internal {
 

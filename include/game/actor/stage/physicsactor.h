@@ -63,7 +63,7 @@ public:
     u32 _27C;                           // _27C
     ActorPhysicsMgr physicsMgr;         // _280
     f32 _1760;                          // _1760 Inited to 0
-    f32 _1764;                          // _1764 Inited to 
+    f32 _1764;                          // _1764 Inited to
     Vec3f* _1768;                       // _1768 Inited to &position
     u8 _176C;                           // _176C Inited to 0
     u8 _176D;                           // _176D Padding

@@ -7,7 +7,7 @@ namespace nw { namespace snd {
 class FxDelay {
 public:
     struct DelayParam {
-        DelayParam() 
+        DelayParam()
             : delay(160.0f)
             , feedback(0.4f)
             , outGain(1.0f)

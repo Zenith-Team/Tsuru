@@ -158,7 +158,7 @@ SECTIONS {
 	drawLayer3D__8AreaTaskFRCQ3_3agl3lyr10RenderInfo = 0x24b84a8;
 
 /* ApplicationTask */
-	sInstance__15ApplicationTask = 0x101e7d40; 
+	sInstance__15ApplicationTask = 0x101e7d40;
 
 /* AudioFx */
 	getReverbHiParam__7AudioFxFv = 0x29b2fd8;

@@ -96,7 +96,7 @@ public:
     f32 fallSpeed;                      // _60      Inited to 0
     f32 gravity;                        // _64      Inited to 0
     f32 xAcceleration;                  // _68      Inited to 0
-    Vec3f position;                     // _6C      
+    Vec3f position;                     // _6C
     Vec3f speed;                        // _78      Inited to 0
     Vec3f maxSpeed;                     // _84      Inited to 0
     Vec3f scale;                        // _90      Inited to 1.0
@@ -105,24 +105,24 @@ public:
     u32 _AC;                            // _AC      Inited to 0
     u32 rotationDelta;                  // _B0      Inited to 0
     Vec2f positionDelta;                // _B4      Inited to 0
-    HitboxCollider hitboxCollider;      // _BC      
+    HitboxCollider hitboxCollider;      // _BC
     Vec2f visibleAreaOffs;              // _1E4     Inited to actorInfo->spawnRangeOffset
     Vec2f visibleAreaSize;              // _1EC     Inited to actorInfo->spawnRangeSize
-    Vec2f size;                         // _1F4     
+    Vec2f size;                         // _1F4
     f32 _1FC;                           // _1FC     Inited to 256.0 + actorInfo->_18
     f32 _200;                           // _200     Inited to 256.0 + actorInfo->_1A
     f32 _204;                           // _204     Inited to 80.0 + actorInfo->_1C
     f32 _208;                           // _208     Inited to 80.0 + actorInfo->_1E
-    u8  zoneID;                         // _20C     
+    u8  zoneID;                         // _20C
     u8  type;                           // _20D     0: Actor, 1: Player, 2: Yoshi, 3: Enemy, 4: Unknown
     bool isActive;                      // _20E     Inited to true
     bool isVisible;                     // _20F     Inited to true
     bool noSpawn;                       // _210     Inited to false
     u8  _211;                           // _211     Inited to 1
     u8  _212;                           // _212     Inited to 0
-    u8  eventID1;                       // _213     
-    u8  eventID2;                       // _214     
-    u8  _215;                           // _215     
+    u8  eventID1;                       // _213
+    u8  eventID2;                       // _214
+    u8  _215;                           // _215
     u16 actorInfoFlags;                 // _216     Inited to actorInfo->flags
     u32 bumpDamageTimer;                // _218     Inited to 0
     u32 _21C;                           // _21C     Inited to 0

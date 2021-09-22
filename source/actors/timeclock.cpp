@@ -24,7 +24,7 @@ public:
 
     ModelWrapper* model;
     u8 timeAmount;
-    
+
     static const HitboxCollider::Info collisionInfo;
 };
 
@@ -55,7 +55,7 @@ u32 TimeClock::onCreate() {
 
 u32 TimeClock::onExecute() {
     this->rotation.y -= 0x3FD27D2;
-    
+
     this->updateModel();
 
     return 1;

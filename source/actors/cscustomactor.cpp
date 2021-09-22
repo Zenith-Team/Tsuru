@@ -34,7 +34,7 @@ const CSHitboxCollider::Info CSCustomActor::sCollisionInfo = {
     Vec3f(0.0f)  // Offset
 };
 
-CSCustomActor::CSCustomActor(const ActorBuildInfo* buildInfo) 
+CSCustomActor::CSCustomActor(const ActorBuildInfo* buildInfo)
     : CSCollisionActor(buildInfo)
 { }
 
@@ -62,7 +62,7 @@ u32 CSCustomActor::onExecute() {
 
         // Do a hack to get the colliding player
         CourseSelectActor* collidingPlayer = reinterpret_cast<CourseSelectActor*>(ActorMgr::instance()->actors.findActorByID(&(CSPlayerMgr::instance()->playerActorID)));
-        
+
         // Mess with it
         //collidingPlayer->position.y += 0.2f;
     }

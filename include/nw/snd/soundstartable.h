@@ -2,7 +2,7 @@
 
 #include <types.h>
 
-namespace nw { namespace snd { 
+namespace nw { namespace snd {
 
 class SoundHandle;
 

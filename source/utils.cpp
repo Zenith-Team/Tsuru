@@ -25,7 +25,7 @@ extern "C" int strcmp(const char* str1, const char* str2) {
 // Compare if two wide strings are equal
 extern "C" int wcscmp(const wchar_t* str1, const wchar_t* str2) {
     while (*str1 == *str2++)
-        if (*str1++ == 0) 
+        if (*str1++ == 0)
             return 0;
 
     return (*str1 - *--str2);
@@ -37,14 +37,14 @@ bool moveValueWithOverflowTo(u32 &value, u32 target, u32 step, bool subtract) {
     u32 startValue = value;
     s64 offset = target - startValue;
     if (offset < 0) offset *= -1;
-    
+
     if (counter + step < offset) {
         if (!subtract) value += step;
         else value -= step;
         counter += step;
         return false;
     }
-  
+
     value = target;
     return true;
 }

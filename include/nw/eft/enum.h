@@ -16,7 +16,7 @@ enum BlendType {
 
 static_assert(sizeof(BlendType) == 4, "BlendType size mismatch");
 
-enum ColorSourceType { 
+enum ColorSourceType {
     ColorSourceTypeFirst = 0,
     ColorSourceTypeRandom = 1,
     ColorSourceType3v4k = 2,
@@ -64,7 +64,7 @@ enum EmitterType {
 
 static_assert(sizeof(EmitterType) == 4, "EmitterType size mismatch");
 
-enum FragmentComposite { 
+enum FragmentComposite {
     FragmentCompositeMul = 0,
     FragmentCompositeAdd = 1,
     FragmentCompositeSub = 2,
@@ -150,7 +150,7 @@ enum TextureFilterMode {
 
 static_assert(sizeof(TextureFilterMode) == 4, "TextureFilterMode size mismatch");
 
-enum TextureResFormat { 
+enum TextureResFormat {
     TextureResFormatInvalid = 0,
     TextureResFormatRGB8Unorm = 1,
     TextureResFormatRGBA8Unorm = 2,
@@ -193,7 +193,7 @@ enum TextureWrapMode {
 
 static_assert(sizeof(TextureWrapMode) == 4, "TextureWrapMode size mismatch");
 
-enum VertexRotationMode { 
+enum VertexRotationMode {
     VertexRotationModeNone = 0,
     VertexRotationModeRotateX = 1,
     VertexRotationModeRotateY = 2,
@@ -204,7 +204,7 @@ enum VertexRotationMode {
 
 static_assert(sizeof(VertexRotationMode) == 4, "VertexRotationMode size mismatch");
 
-enum VertexTransformMode { 
+enum VertexTransformMode {
     VertexTransformModeBillboard = 0,
     VertexTransformModePlateXY = 1,
     VertexTransformModePlateXZ = 2,

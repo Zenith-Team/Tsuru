@@ -4,7 +4,7 @@
 
 class PlayerLookTarget : public sead::IDisposer { // Size: 0x2C
     PlayerLookTarget(u32* ownerID);
-    
+
     u32 ownerID;
     Vec2f _14;
     u32 _1C;
