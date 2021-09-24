@@ -12,7 +12,7 @@ public:
             , invincibilityEnabled(false)
             , collisionViewerEnabled(false)
             , instantRespawnEnabled(false)
-            , orthographicWorldMapEnabled(false)
+            , worldMapPerspective(0)
             , perspectiveLevelCameraEnabled(false)
         { }
 
@@ -23,7 +23,7 @@ public:
         bool invincibilityEnabled;          // _7
         bool collisionViewerEnabled;        // _8
         bool instantRespawnEnabled;         // _9
-        bool orthographicWorldMapEnabled;   // _10
+        u8 worldMapPerspective;             // _10
         bool perspectiveLevelCameraEnabled; // _11
     };
 

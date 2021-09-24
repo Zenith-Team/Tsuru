@@ -8,11 +8,11 @@ Hooks:
   # Set the projection in the layer
   - type: branch
     instr: b
-    func: makeOrthoWmap__Fv
+    func: worldMapProjection__Fv
     addr: "21b94b0" # CSCamera::onExecute()
 
 # Perspective projection in levels
-  # Set the projection in the layer
+  # Set the projection in the draw layer
   - type: branch
     instr: bl
     func: MakePerspectiveLevel
@@ -20,7 +20,12 @@ Hooks:
   # Delete a sead::DynamicCast RTTI check fail to prevent null pointer crash
   - type: nop
     addr: "2693324"
-  # Do a thing Wesley said so
-  - type: patch
-    data: "7FE6FB78" # mr r6, r31
-    addr: "2693358"
+  # Replace ortho projection class with frustum projection
+  - type: branch
+    instr: b
+    func: RedirectToFrustumCtor
+    addr: "2a065ac" # sead::OrthoProjection::OrthoProjection()
+  - type: branch
+    instr: b
+    func: RedirectToFrustumDtor
+    addr: "2a067c4" # sead::OrthoProjection::~OrthoProjection()
