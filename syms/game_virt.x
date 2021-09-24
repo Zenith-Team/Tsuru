@@ -76,6 +76,10 @@ SECTIONS {
 /* sead::FileHandle */
 	read__Q2_4sead10FileHandleFPUcUi = 0x29F81D0;
 
+/* sead::FrustumProjection */
+	__ct__Q2_4sead17FrustumProjectionFfN51 = 0x2a06944;
+	__dt__Q2_4sead17FrustumProjectionFv = 0x2a06a4c;
+
 /* sead::GlobalRandom */
     sInstance__Q2_4sead12GlobalRandom = 0x101e806c;
 

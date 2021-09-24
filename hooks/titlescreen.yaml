@@ -21,7 +21,7 @@ Hooks:
     func: CheckIfShouldPatchString
 
 # Pick the entrance based on the world last saved in
-  - type: branch
-    instr: bl
-    addr: "24d3a74"
-    func: setTitlescreenThemeEntrance__9LevelInfoFv
+#  - type: branch
+#    instr: bl
+#    addr: "24d3a74"
+#    func: setTitlescreenThemeEntrance__9LevelInfoFv

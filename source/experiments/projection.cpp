@@ -7,38 +7,42 @@
 #include <game/playermgr.h>
 #include <math.h>
 
-u32 makeOrthoWmap() {
-    if (!TsuruSaveMgr::sSaveData.orthographicWorldMapEnabled)
-        return 1;
+u32 worldMapProjection() {
+    switch (TsuruSaveMgr::sSaveData.worldMapPerspective) {
+        case 1: {
+            static sead::OrthoProjection projection;
 
-    static sead::OrthoProjection orthoProj;
+            projection.setTBLR(360.0f, -360.0f, -640.0f, 640.0f);
+            projection.setNearFarClip(-1000.0f, 5000000.0f);
 
-    orthoProj.setTBLR(360.0f, -360.0f, -640.0f, 640.0f);
-    orthoProj.setNearFarClip(-1000.0f, 5000000.0f);
+            agl::lyr::Renderer::instance()->layers.buffer[7]->projection = &projection;
 
-    agl::lyr::Renderer::instance()->layers.buffer[7]->projection = &orthoProj;
+            break;
+        }
+
+        case 2: {
+            static sead::FrustumProjection projection(0.1f, 5000000.0f, 360.0f / 2400.0f, -360.0f / 2400.0f, -640.0f / 2400.0f, 640.0f / 2400.0f);
+
+            agl::lyr::Renderer::instance()->layers.buffer[7]->projection = &projection;
+
+            break;
+        }
+
+        default: {
+            break;
+        }
+    }
 
     return 1;
 }
 
 void makePerspectiveLevel() {
     if (!TsuruSaveMgr::sSaveData.perspectiveLevelCameraEnabled)
-        return;
+        ;//return;
 
-    static sead::PerspectiveProjection persProj;
-    persProj.set(0.1f, 5000000.0f, degToRad(16), 1280.0f / 720.0f);
+    sead::OrthoProjection* oldProj = static_cast<sead::OrthoProjection*>(agl::lyr::Renderer::instance()->layers.buffer[9]->projection);
 
-    agl::lyr::Renderer::instance()->layers.buffer[9]->projection = &persProj;
+    static sead::FrustumProjection frustumProj(0.1f, 5000000.0f, oldProj->top / 2000.0f, oldProj->bottom / 2000.0f, oldProj->left / 2000.0f, oldProj->right / 2000.0f);
 
-    sead::LookAtCamera* cam = static_cast<sead::LookAtCamera*>(agl::lyr::Renderer::instance()->layers.buffer[9]->camera);
-
-    cam->pos = PlayerMgr::instance()->players[0]->position;
-    cam->pos.x += 500.0f;
-    cam->pos.z += 10000.0f;
-
-    cam->doUpdateMatrix(&cam->matrix);
-
-    LOG("x %f", cam->pos.x);
-    LOG("y %f", cam->pos.y);
-    LOG("z %f", cam->pos.z);
+    agl::lyr::Renderer::instance()->layers.buffer[9]->projection = &frustumProj;
 }

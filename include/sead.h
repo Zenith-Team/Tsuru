@@ -16,8 +16,10 @@
 #include <sead/methodtree.h>
 #include <sead/new.h>
 #include <sead/primitiverenderer.h>
+#include <sead/projection.h>
 #include <sead/ptrarray.h>
 #include <sead/runtimetypeinfo.h>
 #include <sead/safestring.h>
 #include <sead/task.h>
 #include <sead/tree.h>
+#include <sead/viewport.h>
