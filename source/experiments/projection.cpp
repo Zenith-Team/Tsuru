@@ -42,7 +42,7 @@ void makePerspectiveLevel() {
 
     sead::OrthoProjection* oldProj = static_cast<sead::OrthoProjection*>(agl::lyr::Renderer::instance()->layers.buffer[9]->projection);
 
-    static sead::FrustumProjection frustumProj(0.1f, 5000000.0f, oldProj->top / 2000.0f, oldProj->bottom / 2000.0f, oldProj->left / 2000.0f, oldProj->right / 2000.0f);
+    static sead::FrustumProjection frustumProj(0.1f, 5000000000.0f, 360.0f / 24000.0f, -360.0f / 24000.0f, -640.0f / 24000.0f, 640.0f / 24000.0f);
 
     agl::lyr::Renderer::instance()->layers.buffer[9]->projection = &frustumProj;
 }
