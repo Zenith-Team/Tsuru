@@ -7,6 +7,7 @@ SECTIONS {
 	fmodf__FfT1 = 0x2afd97c;
 	powf__FfT1 = 0x2afdea8;
 	sqrtf__Ff = 0x2afdccc;
+	cSinCosTbl = 0x10191538;
 
 /* new/delete */
 	__nw__FUi = 0x29f1594;

@@ -45,4 +45,10 @@ void makePerspectiveLevel() {
     static sead::FrustumProjection frustumProj(0.1f, 5000000000.0f, 360.0f / 24000.0f, -360.0f / 24000.0f, -640.0f / 24000.0f, 640.0f / 24000.0f);
 
     agl::lyr::Renderer::instance()->layers.buffer[9]->projection = &frustumProj;
+
+    //sead::LookAtCamera* cam = static_cast<sead::LookAtCamera*>(agl::lyr::Renderer::instance()->layers.buffer[9]->camera);
+    //static f32 zPos = 6000.0f;
+    //zPos += 50.0f;
+    //cam->pos.z = zPos;
+    //cam->doUpdateMatrix(&cam->matrix);
 }
