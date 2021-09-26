@@ -67,6 +67,9 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 * Titlescreen theme based on last world saved in
 * Yoshi colors
 
+# Contributing
+No pull requests please. If you would like to contribute a piece of code then just make an issue on the [issues page](https://github.com/Luminyx1/Tsuru/issues) and provide a link to the code along with a short description of the purpose of the code. If you have a suggestion then just drop it by at the issues page and we'll consider making it.
+
 # Building
 This project is meant to be compiled with my fork of shibboleet's fork of the [CafeLoader Project Compiler](https://github.com/Luminyx1/CafeLoader-Compiler) script. A version of this source code that is ready for building will always be available on the [releases](https://github.com/Luminyx1/Tsuru/releases) page which includes additional files required for compiling. Keep in mind that currently this project targets version 1.3.0 of the standalone copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not our top priority.
 
