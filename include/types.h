@@ -58,6 +58,15 @@ typedef void       (*funcPtr)();
 
 // Utility types
 
+struct SinCosSample {
+    f32 sin_val;
+    f32 sin_delta;
+    f32 cos_val;
+    f32 cos_delta;
+};
+
+extern const SinCosSample cSinCosTbl[256 + 1];
+
 #include <utils/vec.h>
 #include <utils/mtx.h>
 #include <utils/rect.h>

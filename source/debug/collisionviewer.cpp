@@ -11,49 +11,7 @@
 #include <agl/lyr/renderinfo.h>
 #include <log.h>
 #include <tsuru/tsurusavemgr.h>
-
-struct SinCosSample {
-    f32 sin_val;
-    f32 sin_delta;
-    f32 cos_val;
-    f32 cos_delta;
-};
-
-extern const SinCosSample cSinCosTbl[256 + 1];
-
-inline void sinCosIdx(f32* pSin, f32* pCos, u32 idx) {
-    u32 index = (idx >> 24) & 0xff;
-    f32 rest = static_cast<f32>(idx & 0xffffff) / 0x1000000;
-    const SinCosSample& sample = cSinCosTbl[index];
-
-    /*if (pSin != NULL)*/ *pSin = sample.sin_val + sample.sin_delta * rest;
-    /*if (pCos != NULL)*/ *pCos = sample.cos_val + sample.cos_delta * rest;
-}
-
-void Mtx34makeSRzxyTIdx(Mtx34& out, const Vec3f& s, const Vec3u& r, const Vec3f& t) {
-    f32 sinV[3];
-    f32 cosV[3];
-
-    sinCosIdx(&sinV[0], &cosV[0], r.x);
-    sinCosIdx(&sinV[1], &cosV[1], r.y);
-    sinCosIdx(&sinV[2], &cosV[2], r.z);
-
-    out.rows[2][2] = s.z * (cosV[0] * cosV[1]);
-    out.rows[0][2] = s.z * (cosV[0] * sinV[1]);
-    out.rows[1][2] = s.z * -sinV[0];
-
-    out.rows[2][0] = s.x * (sinV[1] * cosV[2] - sinV[0] * cosV[1] * sinV[2]);
-    out.rows[0][0] = s.x * (cosV[1] * cosV[2] + sinV[0] * sinV[1] * sinV[2]);
-    out.rows[1][0] = s.x * (cosV[0] * sinV[2]);
-
-    out.rows[2][1] = s.y * (sinV[1] * sinV[2] + sinV[0] * cosV[1] * cosV[2]);
-    out.rows[0][1] = s.y * (cosV[1] * sinV[2] - sinV[0] * sinV[1] * cosV[2]);
-    out.rows[1][1] = s.y * (cosV[0] * cosV[2]);
-
-    out.rows[0][3] = t.x;
-    out.rows[1][3] = t.y;
-    out.rows[2][3] = t.z;
-}
+#include <utils/mtx.h>
 
 void drawLine3D(const Vec3f& position, const u32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
     Vec3f scale(lineLength, lineThickness, lineThickness);
@@ -64,7 +22,7 @@ void drawLine3D(const Vec3f& position, const u32 rotation, const sead::Color4f& 
     Vec3f pos(position.x + (lineLength * rotSin) / 2, position.y, position.z + (lineLength * rotCos) / 2);
 
     Mtx34 mtx;
-    Mtx34makeSRzxyTIdx(mtx, scale, rot, pos);
+    mtx.makeSRzxyTIdx(scale, rot, pos);
     sead::PrimitiveRenderer::instance()->rendererImpl->drawCubeImpl(mtx, color, color);
 }
 
