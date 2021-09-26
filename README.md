@@ -1,11 +1,17 @@
 # Tsuru
 
 #### Let's build a platform for NSMBU custom code hacks
+
+# Our goal
+The goal of this project is to provide a platform for NSMBU custom code hacks for modders with the same toolset that Nintendo developers had when writing the game. Also we have provided a ton of code examples and premade patches for new modders to learn from and for people who would just like to use them in their own personal mods.
+
+#### Old description for reference
 So basically this is just a massive compilation of code hacks for NSMBU made with scalability, accuracy, and integrity in mind. In addition to the code hacks, there is also a multitude of headers included, to minimize the amount of reverse-engineering required for modifying the game for others. Make sure to also grab the assets pack from the releases page when installing the hacks.
 Project started on March 9 2021.
 
 # What's here
 Please note that a rewrite is currently in progress, so not everything listed here is available at the moment. **Items with an asterisk next to the name have not been added after the rewrite yet.**
+< something something about actors and the headers comment from the old desc >
 
 ## Custom Sprites:
 All custom sprites which were not written by me have credits in customsprites.yaml. Also listed there are the sprite/profile IDs of each custom sprite.
@@ -63,6 +69,10 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 
 # Building
 This project is meant to be compiled with my fork of shibboleet's fork of the [CafeLoader Project Compiler](https://github.com/Luminyx1/CafeLoader-Compiler) script. A version of this source code that is ready for building will always be available on the [releases](https://github.com/Luminyx1/Tsuru/releases) page which includes additional files required for compiling. Keep in mind that currently this project targets version 1.3.0 of the standalone copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not our top priority.
+
+# Usage
+If you would like to use the hacks from the Tsuru project in your own mods, all you need to do is to include a link to this repository somewhere in the credits of the mod.
+If you would like to fork the repo and build upon it, just provide a link to this repository and include the Credits section below in the readme.
 
 # Credits
 * [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code, headers, and build system
