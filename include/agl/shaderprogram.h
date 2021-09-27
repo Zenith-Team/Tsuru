@@ -33,10 +33,10 @@ public:
     u8 flags;                           // _0
     u16 _2;                             // _2
     DisplayList displayList;            // _4
-    sead::Buffer<void> _14;             // _14
-    sead::Buffer<void> uniformBlocks;   // _1C
-    sead::Buffer<void> _24;             // _24
-    sead::Buffer<void> samplerBlocks;   // _2C
+    sead::Buffer<u32> _14;              // _14  //? What is the template param for these?
+    sead::Buffer<u32> uniformBlocks;    // _1C  //? What is the template param for these?
+    sead::Buffer<u32> _24;              // _24  //? What is the template param for these?
+    sead::Buffer<u32> samplerBlocks;    // _2C  //? What is the template param for these?
     VertexShader vertexShader;          // _34
     FragmentShader fragmentShader;      // _40
     GeometryShader geometryShader;      // _4C

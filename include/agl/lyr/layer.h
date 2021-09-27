@@ -17,6 +17,19 @@ public:
     Layer();
     virtual ~Layer();
 
+    // TODO: Return types, parameters, names for these:
+    SEAD_RTTI_BASE(Layer)
+    virtual void vf24() = 0;
+    virtual void vf2C() = 0;
+    virtual void vf34();
+    virtual void vf3C();
+    virtual void vf44();
+    virtual void vf4C();
+    virtual void vf54();
+    virtual void vf5C();
+
+    void initialize_(sead::Heap* heap);
+
     DrawMethod* pushBackDrawMethod(u32, DrawMethod* drawMethod);
 
     u8 _10[0x4];

@@ -5,13 +5,15 @@
 #include <sead/projection.h>
 #include <sead/camera.h>
 
-namespace sead { class Viewport; }
+namespace sead { class Viewport; class FrameBuffer; }
 namespace agl { class DisplayList; class RenderBuffer; }
 
 namespace agl { namespace lyr {
 
-class RenderInfo {
+class RenderInfo { // Size: 0x28
 public:
+    // TODO: Two constructors here
+
     u32 renderStepIndex;
     u32 displayType;
     RenderBuffer* frameBuffer;
@@ -23,5 +25,7 @@ public:
     DisplayList* displayList;
     bool _24;
 };
+
+static_assert(sizeof(RenderInfo) == 0x28, "agl::lyr::RenderInfo size mismatch");
 
 } }

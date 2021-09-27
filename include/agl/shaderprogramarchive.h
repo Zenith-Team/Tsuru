@@ -49,8 +49,8 @@ public:
     u16 _2A;
     sead::Buffer<ShaderProgramEx> shaderProgramExBuffer;
     sead::Buffer<ShaderSource> shaderSourceBuffer;
-    sead::Buffer<void> _3C;
-    sead::Buffer<void> _44;
+    sead::Buffer<u32> _3C;  //? What is the template param for these?
+    sead::Buffer<u32> _44;  //? What is the template param for these?
 };
 
 static_assert(sizeof(ShaderProgramArchive) == 0x4C, "agl::ShaderProgramArchive size mismatch");
