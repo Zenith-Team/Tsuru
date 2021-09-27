@@ -4,6 +4,7 @@
 
 #include <agl/attributelocation.h>
 #include <agl/displaylist.h>
+#include <agl/texturedata.h>
 
 // Driver
 #include <agl/driver/gx2resource.h>
