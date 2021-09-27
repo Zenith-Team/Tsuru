@@ -7,10 +7,11 @@
 class Actor { // size: 0x50
     SEAD_RTTI_BASE(Actor)
 
-public:
+protected:
     Actor(const ActorBuildInfo* buildInfo);
     virtual ~Actor();
 
+public:
     virtual u32 beforeCreate();
     virtual u32 onCreate();
     virtual void afterCreate(u32);
@@ -30,6 +31,8 @@ public:
 
     void removeChild(Actor* child);
     u32 getProfileID();
+
+    friend class ActorMgr;
 
     sead::Heap* heap;                       // _0
     u32 id;                                 // _4
