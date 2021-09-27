@@ -6,6 +6,7 @@
 #include <log.h>
 #include <game/playermgr.h>
 #include <math.h>
+#include <game/level/levelinfo.h>
 
 u32 worldMapProjection() {
     switch (TsuruSaveMgr::sSaveData.worldMapPerspective) {
@@ -46,9 +47,16 @@ void makePerspectiveLevel() {
 
     agl::lyr::Renderer::instance()->layers.buffer[9]->projection = &frustumProj;
 
-    //sead::LookAtCamera* cam = static_cast<sead::LookAtCamera*>(agl::lyr::Renderer::instance()->layers.buffer[9]->camera);
-    //static f32 zPos = 6000.0f;
-    //zPos += 50.0f;
-    //cam->pos.z = zPos;
-    //cam->doUpdateMatrix(&cam->matrix);
+    if (LevelInfo::instance()->world != 0 && LevelInfo::instance()->level != 0)
+        return;
+
+    sead::LookAtCamera* cam = static_cast<sead::LookAtCamera*>(agl::lyr::Renderer::instance()->layers.buffer[9]->camera);
+
+    static f32 zPos = 10000.0f;
+    zPos -= 50.0f;
+
+    cam->pos.z = zPos;
+    cam->at.z = -999999.0f;
+
+    cam->doUpdateMatrix(&cam->matrix);
 }
