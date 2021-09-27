@@ -2,21 +2,21 @@
 ---
 Name: SuperHacks
 Modules:
-  - hooks/cheats.yaml               # Cheat menu
-  - hooks/collisionconditions.yaml  # Fixes collision conditions for some actors
-  - hooks/customactors.yaml         # Custom sprites/actors
-  - hooks/cutscenetask.yaml         # Custom cutscene video player
-  - hooks/debug.yaml                # Debugging features
-  - hooks/experiments.yaml          # Experimental things
-  - hooks/initializer.yaml          # Initializer
-  - hooks/misc.yaml                 # Miscellaneous items
-  - hooks/profile.yaml              # Extra profile and sprite slots
-  - hooks/respawn.yaml              # Instant respawn after dying
-  - hooks/sarcloader.yaml           # Allow loading uncompressed .sarc levels
-  - hooks/sead.yaml                 # Patches for the sead library
-  - hooks/sizemodifier.yaml         # Scale actors as you wish using nybble 
-  - hooks/snowparticles.yaml        # Allows changing snow particle colors from spritedata
-  - hooks/sound.yaml                # Patches that affect sound
-  - hooks/titlescreen.yaml          # Title screen patches
-  - hooks/tsurusavemgr.yaml         # Manages the custom savedata file
-  - hooks/yoshicolors.yaml          # Extra colors for Yoshi
+  - modules/cheats.yaml               # Cheat menu
+  - modules/collisionconditions.yaml  # Fixes collision conditions for some actors
+  - modules/customactors.yaml         # Custom sprites/actors
+  - modules/cutscenetask.yaml         # Custom cutscene video player
+  - modules/debug.yaml                # Debugging features
+  - modules/experiments.yaml          # Experimental things
+  - modules/initializer.yaml          # Initializer
+  - modules/misc.yaml                 # Miscellaneous items
+  - modules/profile.yaml              # Extra profile and sprite slots
+  - modules/respawn.yaml              # Instant respawn after dying
+  - modules/sarcloader.yaml           # Allow loading uncompressed .sarc levels
+  - modules/sead.yaml                 # Patches for the sead library
+  - modules/sizemodifier.yaml         # Scale actors as you wish using nybble 
+  - modules/snowparticles.yaml        # Allows changing snow particle colors from spritedata
+  - modules/sound.yaml                # Patches that affect sound
+  - modules/titlescreen.yaml          # Title screen patches
+  - modules/tsurusavemgr.yaml         # Manages the custom savedata file
+  - modules/yoshicolors.yaml          # Extra colors for Yoshi
