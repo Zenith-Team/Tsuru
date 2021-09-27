@@ -41,22 +41,28 @@ void makePerspectiveLevel() {
     if (!TsuruSaveMgr::sSaveData.perspectiveLevelCameraEnabled)
         ;//return;
 
-    sead::OrthoProjection* oldProj = static_cast<sead::OrthoProjection*>(agl::lyr::Renderer::instance()->layers.buffer[9]->projection);
+    if (LevelInfo::instance()->world == 0 && LevelInfo::instance()->level == 0)
+    {
+        sead::OrthoProjection* oldProj = static_cast<sead::OrthoProjection*>(agl::lyr::Renderer::instance()->layers.buffer[9]->projection);
 
-    static sead::FrustumProjection frustumProj(0.1f, 5000000000.0f, 360.0f / 24000.0f, -360.0f / 24000.0f, -640.0f / 24000.0f, 640.0f / 24000.0f);
+        static sead::FrustumProjection frustumProj(0.1f, 5000000000.0f, 360.0f / 24000.0f, -360.0f / 24000.0f, -640.0f / 24000.0f, 640.0f / 24000.0f);
 
-    agl::lyr::Renderer::instance()->layers.buffer[9]->projection = &frustumProj;
+        agl::lyr::Renderer::instance()->layers.buffer[9]->projection = &frustumProj;
 
-    if (LevelInfo::instance()->world != 0 && LevelInfo::instance()->level != 0)
-        return;
+        static u32 timer = 0;
+        timer++;
 
-    sead::LookAtCamera* cam = static_cast<sead::LookAtCamera*>(agl::lyr::Renderer::instance()->layers.buffer[9]->camera);
+        if (timer < 60 * 5)
+            return;
 
-    static f32 zPos = 10000.0f;
-    zPos -= 50.0f;
+        sead::LookAtCamera* cam = static_cast<sead::LookAtCamera*>(agl::lyr::Renderer::instance()->layers.buffer[9]->camera);
 
-    cam->pos.z = zPos;
-    cam->at.z = -999999.0f;
+        static f32 zPos = 10000.0f;
+        zPos -= 50.0f;
 
-    cam->doUpdateMatrix(&cam->matrix);
+        cam->pos.z = zPos;
+        cam->at.z = -999999.0f;
+
+        cam->doUpdateMatrix(&cam->matrix);
+    }
 }
