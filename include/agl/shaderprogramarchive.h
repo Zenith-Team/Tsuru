@@ -42,7 +42,7 @@ public:
 
     ResBinaryShaderArchive resBinarySharc;
     ResShaderArchive resSharc;
-    sead::Buffer<ShaderProgram> shaderProgramBuffer;
+    sead::Buffer<ShaderProgram> programs;
     u32 _20;
     u32 _24;
     u16 _28;
