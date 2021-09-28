@@ -53,12 +53,12 @@ public:
         void add(MaskInfo&, MaskInfo&, MaskInfo&, agl::TextureData& texture, u32, u32);
         void draw(void*, void*);
 
-        u8 _0[0x5110];  // TODO: I'll do this later, I've had enough for tonight
+        u8 _0[0x510C];  // TODO: I'll do this later, I've had enough for tonight
     };
 
 public:
     TileRenderer();
-    virtual ~TileRenderer();
+    ~TileRenderer();
 
     void init(sead::Heap* heap);
     void initSpotlightMaskFrameBuffer();
@@ -67,12 +67,10 @@ public:
 
     void registerTile(u32, void*, u32); // TODO: Verify these params as they are guesses
 
-    void destructMembers(); // Called by the destructor
-
     void drawLayerMasks(agl::lyr::RenderInfo& renderInfo);
     void drawTilesWithMasks(agl::lyr::RenderInfo& renderInfo);
 
-    void renderSingleTile(u32 tileLayer, u32 tileID, sead::OrthoProjection& projection);    // TODO: Confirm function and second parameter name
+    void renderSingleTile(u32 tileLayer, u32 tile, sead::OrthoProjection& projection);    // TODO: Confirm function and second parameter names
 
     void renderLayer0(agl::lyr::RenderInfo& renderInfo);    // Renders editor layer 0, internal layer 2
     void renderLayer1(agl::lyr::RenderInfo& renderInfo);    // Renders editor layer 1, internal layer 0
@@ -173,7 +171,7 @@ public:
     f32 _7984;
     f32 _7988;
     agl::TextureSampler* _798C;
-    u8 _7990[80][4];    // Array of two CLASS_2693534
+    u8 _7990[0x14][4];    // Array of four CLASS_2693534
     u16 _79E0;
     u16 _79E2;
     u16 _79E4;
@@ -187,3 +185,5 @@ public:
     TileMaskList layerMasks;
     TileMaskList lightMasks;
 };
+
+static_assert(sizeof(TileRenderer) == 0x12AFC, "TileRenderer size mismatch");
