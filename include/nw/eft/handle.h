@@ -15,6 +15,6 @@ public:
     u32 createID;
 };
 
-static_assert(sizeof(Handle) == 8, "Handle size mismatch");
+static_assert(sizeof(Handle) == 8, "nw::eft::Handle size mismatch");
 
 } }

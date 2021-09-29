@@ -11,13 +11,13 @@ public:
     { }
 
     virtual void CalcEmitter(EmitterInstance* emitter);
-    virtual PtclType GetPtclType() const { return PtclTypeSimple; }
+    virtual PtclType GetPtclType() const { return PtclType_Simple; }
     virtual u32 CalcParticle(EmitterInstance* emitter, CpuCore core, bool noCalcBehavior, bool noMakePtclAttributeBuffer);
     virtual u32 CalcChildParticle(EmitterInstance* emitter, CpuCore core, bool noCalcBehavior, bool noMakePtclAttributeBuffer);
 
     void EmitSameDistance(const SimpleEmitterData* data, EmitterInstance* emitter);
 };
 
-static_assert(sizeof(EmitterSimpleCalc) == 4, "EmitterSimpleCalc size mismatch");
+static_assert(sizeof(EmitterSimpleCalc) == 4, "nw::eft::EmitterSimpleCalc size mismatch");
 
 } }

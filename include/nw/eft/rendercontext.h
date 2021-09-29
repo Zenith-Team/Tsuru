@@ -26,6 +26,6 @@ public:
     ZBufATestType zBufATestType;
 };
 
-static_assert(sizeof(RenderContext) == 0x20, "RenderContext size mismatch");
+static_assert(sizeof(RenderContext) == 0x20, "nw::eft::RenderContext size mismatch");
 
 } }

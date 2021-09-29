@@ -20,7 +20,7 @@ public:
     EmitterInstance* emitter;
 };
 
-static_assert(sizeof(EmitterController) == 0x14, "EmitterController size mismatch");
+static_assert(sizeof(EmitterController) == 0x14, "nw::eft::EmitterController size mismatch");
 
 class System;
 
@@ -82,6 +82,6 @@ public:
     u8 unusedPad[6];
 };
 
-static_assert(sizeof(EmitterSet) == 0x294, "EmitterSet size mismatch");
+static_assert(sizeof(EmitterSet) == 0x294, "nw::eft::EmitterSet size mismatch");
 
 } }

@@ -12,14 +12,14 @@ struct EmitterStaticUniformBlock { // Size: 0x100
     math::VEC4 pad[0xD]; // Pad the block to 256 bytes for hardware needs
 };
 
-static_assert(sizeof(EmitterStaticUniformBlock) == 0x100, "EmitterStaticUniformBlock size mismatch");
+static_assert(sizeof(EmitterStaticUniformBlock) == 0x100, "nw::eft::EmitterStaticUniformBlock size mismatch");
 
 struct EmitterDynamicUniformBlock { // Size: 0x20
     math::VEC4 emitterColor0;
     math::VEC4 emitterColor1;
 };
 
-static_assert(sizeof(EmitterDynamicUniformBlock) == 0x20, "EmitterDynamicUniformBlock size mismatch");
+static_assert(sizeof(EmitterDynamicUniformBlock) == 0x20, "nw::eft::EmitterDynamicUniformBlock size mismatch");
 
 struct ViewUniformBlock { // Size: 0x110
     math::MTX44 viewMat;
@@ -32,7 +32,7 @@ struct ViewUniformBlock { // Size: 0x110
     math::VEC4 viewParam;
 };
 
-static_assert(sizeof(ViewUniformBlock) == 0x110, "ViewUniformBlock size mismatch");
+static_assert(sizeof(ViewUniformBlock) == 0x110, "nw::eft::ViewUniformBlock size mismatch");
 
 struct PtclAttributeBuffer { // Size: 0xB0
     math::VEC4 wldPos;
@@ -46,7 +46,7 @@ struct PtclAttributeBuffer { // Size: 0xB0
     math::MTX34 emtMat;
 };
 
-static_assert(sizeof(PtclAttributeBuffer) == 0xB0, "PtclAttributeBuffer size mismatch");
+static_assert(sizeof(PtclAttributeBuffer) == 0xB0, "nw::eft::PtclAttributeBuffer size mismatch");
 
 struct StripeUniformBlock { // Size: 0xA0
     math::VEC4 stParam;
@@ -58,7 +58,7 @@ struct StripeUniformBlock { // Size: 0xA0
     math::MTX44 emitterMat;
 };
 
-static_assert(sizeof(StripeUniformBlock) == 0xA0, "StripeUniformBlock size mismatch");
+static_assert(sizeof(StripeUniformBlock) == 0xA0, "nw::eft::StripeUniformBlock size mismatch");
 
 struct StripeVertexBuffer { // Size: 0x40
     math::VEC4 pos;
@@ -67,6 +67,6 @@ struct StripeVertexBuffer { // Size: 0x40
     math::VEC4 dir;
 };
 
-static_assert(sizeof(StripeVertexBuffer) == 0x40, "StripeVertexBuffer size mismatch");
+static_assert(sizeof(StripeVertexBuffer) == 0x40, "nw::eft::StripeVertexBuffer size mismatch");
 
 } }
