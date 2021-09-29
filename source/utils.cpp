@@ -32,7 +32,7 @@ extern "C" int wcscmp(const wchar_t* str1, const wchar_t* str2) {
 }
 
 // Modified version of moveValueTo which supports overflowing/underflowing the value, used for smooth rotations.
-bool moveValueWithOverflowTo(u32 &value, u32 target, u32 step, bool subtract) {
+bool moveValueWithOverflowTo(u32& value, u32 target, u32 step, bool subtract) {
     u32 counter = 0;
     u32 startValue = value;
     s64 offset = target - startValue;
