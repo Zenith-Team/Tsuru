@@ -736,41 +736,4 @@ SECTIONS {
 	SFXReverbPlyJump_1 = 0x101e7d20;
 	nullterminator = 0x1018A56D;
 	moveFloatTo__FRffT2 = 0x2027984;
-
-/* I'm too sleepy to sort these */
-	__ct__12TileRendererFv = 0x268f034;
-	__dt__12TileRendererFv = 0x268f4a8;
-	init__12TileRendererFPQ2_4sead4Heap = 0x268f7f0;
-	init__Q2_12TileRenderer12TileMaskListFPQ2_4sead4Heap = 0x269a614;
-	
-	searchShaderProgramIndex__Q2_3agl20ShaderProgramArchiveFRQ2_4sead23SafeStringBase__tm__2_c = 0x2a245a8;
-	initialize___Q2_3agl11TextureDataFUiN41bT1 = 0x2a24d14;
-	applyTextureData__Q2_3agl17RenderTargetColorFRQ2_3agl11TextureData = 0x24d6070;
-	bind__Q2_4sead11FrameBufferCFv = 0x2a058f0;
-	__ct__Q2_4sead18GraphicsContextMRTFv = 0x2a07e70;
-	apply__Q2_4sead18GraphicsContextMRTFv = 0x2a07f90;
-	clear__Q2_3agl12RenderBufferCFUiT1RQ2_4sead7Color4ffT1 = 0x2a1e644;
-	__ct__Q2_4sead15GraphicsContextFv = 0x2a07bbc;
-	apply__Q2_4sead15GraphicsContextFv = 0x2a07cb0;
-	getDeviceProjectionMatrix__Q2_4sead10ProjectionCFv = 0x2a05a9c;
-	draw__Q2_12TileRenderer12TileMaskListFRCQ2_4sead6CameraRC5Mtx44 = 0x269ab9c;
-	invalidateGPUCache__Q2_3agl17RenderTargetColorCFv = 0x2a1f088;
-	invalidateGPUCache__Q2_3agl11TextureDataFv = 0x2a24a64;
-	drawTilesWithSpotlightMasks__12TileRendererFRCQ3_3agl3lyr10RenderInfo = 0x269222c;
-	renderTileLayer__12TileRendererFRQ2_4sead8ViewportRQ2_4sead15OrthoProjectionUi = 0x2691368;
-	freeTexture__12TileRendererSFPPQ2_3agl11TextureData = 0x2691820;
-	initSpotlightMaskFrameBuffer__12TileRendererFRCQ3_3agl3lyr10RenderInfo = 0x26920b0;
-	initShaders__12TileRendererSFRQ2_3agl20ShaderProgramArchivePQ2_4sead4Heap = 0x268f5fc;
-	createUniformBlock__Q2_3agl13ShaderProgramFUiPQ2_4sead4Heap = 0x2a21720;
-	setUniformBlockName__Q2_3agl13ShaderProgramFUiRCQ2_4sead23SafeStringBase__tm__2_c = 0x2a21908;
-	createSamplerBlock__Q2_3agl13ShaderProgramFUiPQ2_4sead4Heap = 0x2a21b68;
-	setSamplerBlockName__Q2_3agl13ShaderProgramFUiRCQ2_4sead23SafeStringBase__tm__2_c = 0x2a21980;
-	__ct__Q2_3agl11TextureDataFv = 0x2a249a0;
-	__ct__Q2_3agl17RenderTargetColorFv = 0x2a1efdc;
-	__ct__Q2_3agl12RenderBufferFR13Vec2__tm__2_ffN32 = 0x2a1eadc;
-	__ct__Q2_12TileRenderer12TileMaskListFv = 0x269a3f8;
-	__dt__Q2_12TileRenderer12TileMaskListFv = 0x269a490;
-	__dt__Q2_3agl12RenderBufferFv = 0x2a1e33c;
-
-
 }
