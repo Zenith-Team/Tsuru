@@ -5,6 +5,7 @@ Files:
   - source/misc.S
   - source/dynlibs/os.cpp
   - source/dynlibs/gx2.cpp
+  - source/dynlibs/h264.cpp
   - source/hitboxcollider.cpp
   - source/utils.cpp
   - source/profileres.cpp
