@@ -7,7 +7,7 @@ Modules:
   - modules/customactors.yaml         # Custom sprites/actors
   - modules/cutscenetask.yaml         # Custom cutscene video player
   - modules/debug.yaml                # Debugging features
-  - modules/experiments.yaml          # Experimental things
+# - modules/experiments.yaml          # Experimental things (WARNING: Do not use in releases)
   - modules/initializer.yaml          # Initializer
   - modules/misc.yaml                 # Miscellaneous items
   - modules/profile.yaml              # Extra profile and sprite slots
