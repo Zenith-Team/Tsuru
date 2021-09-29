@@ -16,9 +16,9 @@ public:
 
     u32 renderStepIndex;
     u32 displayType;
-    RenderBuffer* frameBuffer;
+    RenderBuffer* renderBuffer;
     u32 _C;
-    Layer* parentLayer;
+    Layer* layer;
     sead::Camera* camera;
     sead::Projection* projection;
     sead::Viewport* viewport;

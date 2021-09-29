@@ -4,8 +4,6 @@
 #include <dynlibs/gx2/functions.h>
 #include <sead.h>
 
-#include <game/graphics/tilerenderer.h>
-
 // staticInit array
 extern "C" funcPtr _ctors[];
 
@@ -37,8 +35,6 @@ void initialize() {
     // Init RPL libraries
     InitOSFunctionPointers();
     InitGX2FunctionPointers();
-
-    LOG("%x", offsetof(TileRenderer, _7BC0));
 
     LOG("OSDynLoad_Acquire address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_Acquire);
     LOG("OSDynLoad_FindExport address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_FindExport);

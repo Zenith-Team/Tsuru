@@ -40,6 +40,8 @@ public:
     ShaderProgramArchive();
     virtual ~ShaderProgramArchive();
 
+    u32 searchShaderProgramIndex(sead::SafeString& programName);
+
     ResBinaryShaderArchive resBinarySharc;
     ResShaderArchive resSharc;
     sead::Buffer<ShaderProgram> programs;
