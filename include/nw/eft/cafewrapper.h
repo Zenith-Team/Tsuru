@@ -10,9 +10,9 @@ class Heap;
 class Shader { // Size: 0x278
 public:
     enum VertexFormat {
-        VertexFormatU32 = GX2_ATTRIB_FORMAT_32_UINT,
-        VertexFormatVEC3 = GX2_ATTRIB_FORMAT_32_32_32_FLOAT,
-        VertexFormatVEC4 = GX2_ATTRIB_FORMAT_32_32_32_32_FLOAT
+        VertexFormat_U32 = GX2_ATTRIB_FORMAT_32_UINT,
+        VertexFormat_VEC3 = GX2_ATTRIB_FORMAT_32_32_32_FLOAT,
+        VertexFormat_VEC4 = GX2_ATTRIB_FORMAT_32_32_32_32_FLOAT
     };
 
 public:
@@ -37,7 +37,7 @@ public:
     bool initialized;
 };
 
-static_assert(sizeof(Shader) == 0x278, "Shader size mismatch");
+static_assert(sizeof(Shader) == 0x278, "nw::eft::Shader size mismatch");
 
 class TextureSampler { // Size: 0xC
 public:
@@ -50,15 +50,15 @@ public:
     GX2Sampler sampler;
 };
 
-static_assert(sizeof(TextureSampler) == 0xC, "TextureSampler size mismatch");
+static_assert(sizeof(TextureSampler) == 0xC, "nw::eft::TextureSampler size mismatch");
 
 class UniformBlock { // Size: 0x10
 public:
     enum ShaderStage {
-        ShaderStageVertex   = 0,
-        ShaderStageFragment = 1,
-        ShaderStageGeometry = 2,
-        ShaderStageMax      = 3
+        ShaderStage_Vertex   = 0,
+        ShaderStage_Fragment = 1,
+        ShaderStage_Geometry = 2,
+        ShaderStage_Max      = 3
     };
 
 public:
@@ -67,7 +67,7 @@ public:
         this->blockNotExist = false;
         this->bufferSize = 0;
         this->location = 0;
-        this->shaderStage = ShaderStageMax;
+        this->shaderStage = ShaderStage_Max;
     }
 
     bool InitializeVertexUniformBlock(Shader* shader, const char* name, u32);
@@ -81,7 +81,7 @@ public:
     ShaderStage shaderStage;
 };
 
-static_assert(sizeof(UniformBlock) == 0x10, "UniformBlock size mismatch");
+static_assert(sizeof(UniformBlock) == 0x10, "nw::eft::UniformBlock size mismatch");
 
 class VertexBuffer { // Size: 0x10
 public:
@@ -100,7 +100,7 @@ public:
     void* buffer;
 };
 
-static_assert(sizeof(VertexBuffer) == 0x10, "VertexBuffer size mismatch");
+static_assert(sizeof(VertexBuffer) == 0x10, "nw::eft::VertexBuffer size mismatch");
 
 } }
 

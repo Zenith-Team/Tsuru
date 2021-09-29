@@ -10,19 +10,19 @@ namespace nw { namespace eft {
 struct VertexShaderKey { // Size: 0x20
     void InitializeSimple(const SimpleEmitterData* data) {
         this->transformMode = data->vertexTransformMode;
-        this->rotationMode = (u8)(data->rotationMode != VertexRotationModeNone);
+        this->rotationMode = (u8)(data->rotationMode != VertexRotationMode_None);
         this->shaderUserSetting = data->shaderUserSetting;
         this->shaderUserFlag = data->shaderUserFlag;
         this->shaderUserSwitchFlag = data->shaderUserSwitchFlag;
         this->stripeType = 0;
         //this->stripeEmitterCoord = false; <-- Nintendo forgot to do this
-        this->isPrimitive = data->meshType == MeshTypePrimitive;
+        this->isPrimitive = data->meshType == MeshType_Primitive;
     }
 
     void InitializeComplex(const ComplexEmitterData* cdata) {
         InitializeSimple(cdata);
 
-        if (cdata->vertexTransformMode == VertexTransformModeStripe || cdata->vertexTransformMode == VertexTransformModeComplexStripe) {
+        if (cdata->vertexTransformMode == VertexTransformMode_Stripe || cdata->vertexTransformMode == VertexTransformMode_ComplexStripe) {
             this->stripeType = reinterpret_cast<const StripeData*>((u32)cdata + cdata->stripeDataOffs)->type;
 
             if (cdata->stripeFlags & 1)
@@ -36,7 +36,7 @@ struct VertexShaderKey { // Size: 0x20
     }
 
     void Initialize(const SimpleEmitterData* data) {
-        if (data->type == EmitterTypeComplex)
+        if (data->type == EmitterType_Complex)
             InitializeComplex(static_cast<const ComplexEmitterData*>(data));
         else
             InitializeSimple(data);
@@ -45,7 +45,7 @@ struct VertexShaderKey { // Size: 0x20
     }
 
     void Initialize(const SimpleEmitterData* data, const char* userMacro) {
-        if (data->type == EmitterTypeComplex)
+        if (data->type == EmitterType_Complex)
             InitializeComplex(static_cast<const ComplexEmitterData*>(data));
         else
             InitializeSimple(data);
@@ -58,13 +58,13 @@ struct VertexShaderKey { // Size: 0x20
 
     void InitializeChild(const ChildData* data) {
         this->transformMode = data->vertexTransformMode;
-        this->rotationMode = (u8)(data->rotationMode != VertexRotationModeNone);
+        this->rotationMode = (u8)(data->rotationMode != VertexRotationMode_None);
         this->shaderUserSetting = data->shaderUserSetting;
         this->shaderUserFlag = data->shaderUserFlag;
         this->shaderUserSwitchFlag = data->shaderUserSwitchFlag;
         this->stripeType = 3;
         //this->stripeEmitterCoord = false; <-- Nintendo forgot to do this
-        this->isPrimitive = data->meshType == MeshTypePrimitive;
+        this->isPrimitive = data->meshType == MeshType_Primitive;
     }
 
     void Initialize(const ChildData* data) {
@@ -104,7 +104,7 @@ struct VertexShaderKey { // Size: 0x20
     char shaderUserMacro[16];
 };
 
-static_assert(sizeof(VertexShaderKey) == 0x20, "VertexShaderKey size mismatch");
+static_assert(sizeof(VertexShaderKey) == 0x20, "nw::eft::VertexShaderKey size mismatch");
 
 struct FragmentShaderKey {
     void InitializeSimple(const SimpleEmitterData* data) {
@@ -117,30 +117,30 @@ struct FragmentShaderKey {
         this->shaderUserFlag       = data->shaderUserFlag;
         this->shaderUserSwitchFlag = data->shaderUserSwitchFlag;
         this->refractionApplyAlpha = data->refractionApplyAlpha;
-        this->isPrimitive          = data->meshType == MeshTypePrimitive;
+        this->isPrimitive          = data->meshType == MeshType_Primitive;
 
         switch (data->textureColorBlend) {
-            case FragmentCompositeMul: this->textureColorBlend = 0; break;
-            case FragmentCompositeAdd: this->textureColorBlend = 1; break;
-            case FragmentCompositeSub: this->textureColorBlend = 2; break;
+            case FragmentComposite_Mul: this->textureColorBlend = 0; break;
+            case FragmentComposite_Add: this->textureColorBlend = 1; break;
+            case FragmentComposite_Sub: this->textureColorBlend = 2; break;
         }
 
         switch (data->textureAlphaBlend) {
-            case FragmentCompositeMul: this->textureAlphaBlend = 0; break;
-            case FragmentCompositeAdd: this->textureAlphaBlend = 1; break;
-            case FragmentCompositeSub: this->textureAlphaBlend = 2; break;
+            case FragmentComposite_Mul: this->textureAlphaBlend = 0; break;
+            case FragmentComposite_Add: this->textureAlphaBlend = 1; break;
+            case FragmentComposite_Sub: this->textureAlphaBlend = 2; break;
         }
 
         switch (data->primitiveColorBlend) {
-            case FragmentCompositeMul: this->primitiveColorBlend = 0; break;
-            case FragmentCompositeAdd: this->primitiveColorBlend = 1; break;
-            case FragmentCompositeSub: this->primitiveColorBlend = 2; break;
+            case FragmentComposite_Mul: this->primitiveColorBlend = 0; break;
+            case FragmentComposite_Add: this->primitiveColorBlend = 1; break;
+            case FragmentComposite_Sub: this->primitiveColorBlend = 2; break;
         }
 
         switch (data->primitiveAlphaBlend) {
-            case FragmentCompositeMul: this->primitiveAlphaBlend = 0; break;
-            case FragmentCompositeAdd: this->primitiveAlphaBlend = 1; break;
-            case FragmentCompositeSub: this->primitiveAlphaBlend = 2; break;
+            case FragmentComposite_Mul: this->primitiveAlphaBlend = 0; break;
+            case FragmentComposite_Add: this->primitiveAlphaBlend = 1; break;
+            case FragmentComposite_Sub: this->primitiveAlphaBlend = 2; break;
         }
 
         this->texture0ColorSrc  = data->flags >> 11 & 1;
@@ -180,18 +180,18 @@ struct FragmentShaderKey {
         this->refractionApplyAlpha = data->refractionApplyAlpha;
         this->textureColorBlend    = 0;
         this->textureAlphaBlend    = 0;
-        this->isPrimitive          = data->meshType == MeshTypePrimitive;
+        this->isPrimitive          = data->meshType == MeshType_Primitive;
 
         switch (data->primitiveColorBlend) {
-            case FragmentCompositeMul: this->primitiveColorBlend = 0; break;
-            case FragmentCompositeAdd: this->primitiveColorBlend = 1; break;
-            case FragmentCompositeSub: this->primitiveColorBlend = 2; break;
+            case FragmentComposite_Mul: this->primitiveColorBlend = 0; break;
+            case FragmentComposite_Add: this->primitiveColorBlend = 1; break;
+            case FragmentComposite_Sub: this->primitiveColorBlend = 2; break;
         }
 
         switch (data->primitiveAlphaBlend) {
-            case FragmentCompositeMul: this->primitiveAlphaBlend = 0; break;
-            case FragmentCompositeAdd: this->primitiveAlphaBlend = 1; break;
-            case FragmentCompositeSub: this->primitiveAlphaBlend = 2; break;
+            case FragmentComposite_Mul: this->primitiveAlphaBlend = 0; break;
+            case FragmentComposite_Add: this->primitiveAlphaBlend = 1; break;
+            case FragmentComposite_Sub: this->primitiveAlphaBlend = 2; break;
         }
 
         this->texture0ColorSrc  = childFlags >> 17 & 1;
@@ -269,13 +269,13 @@ struct FragmentShaderKey {
     //u8 pad[2];
 };
 
-static_assert(sizeof(FragmentShaderKey) == 0x30, "FragmentShaderKey size mismatch");
+static_assert(sizeof(FragmentShaderKey) == 0x30, "nw::eft::FragmentShaderKey size mismatch");
 
 struct GeometryShaderKey { // Size: 0x4
     u8 unused[4];
 };
 
-static_assert(sizeof(GeometryShaderKey) == 4, "GeometryShaderKey size mismatch");
+static_assert(sizeof(GeometryShaderKey) == 4, "nw::eft::GeometryShaderKey size mismatch");
 
 struct ShaderTable { // Size: 0x10
     u32 numShaderProg;
@@ -284,7 +284,7 @@ struct ShaderTable { // Size: 0x10
     u32 shaderProgOffs;
 };
 
-static_assert(sizeof(ShaderTable) == 0x10, "ShaderTable size mismatch");
+static_assert(sizeof(ShaderTable) == 0x10, "nw::eft::ShaderTable size mismatch");
 
 struct ShaderProgram { // Size: 0x5C
     VertexShaderKey vertexShaderKey;
@@ -294,19 +294,19 @@ struct ShaderProgram { // Size: 0x5C
     u32 binOffs;
 };
 
-static_assert(sizeof(ShaderProgram) == 0x5C, "ShaderProgram size mismatch");
+static_assert(sizeof(ShaderProgram) == 0x5C, "nw::eft::ShaderProgram size mismatch");
 
 struct VertexTextureLocation { // Size: 0x4
     u32 location;
 };
 
-static_assert(sizeof(VertexTextureLocation) == 4, "VertexTextureLocation size mismatch");
+static_assert(sizeof(VertexTextureLocation) == 4, "nw::eft::VertexTextureLocation size mismatch");
 
 struct FragmentTextureLocation { // Size: 0x4
     u32 location;
 };
 
-static_assert(sizeof(FragmentTextureLocation) == 4, "FragmentTextureLocation size mismatch");
+static_assert(sizeof(FragmentTextureLocation) == 4, "nw::eft::FragmentTextureLocation size mismatch");
 
 class Heap;
 
@@ -371,6 +371,6 @@ public:
     FragmentTextureLocation fragmentUserSamplerLocations[8];
 };
 
-static_assert(sizeof(ParticleShader) == 0x61C, "ParticleShader size mismatch");
+static_assert(sizeof(ParticleShader) == 0x61C, "nw::eft::ParticleShader size mismatch");
 
 } }

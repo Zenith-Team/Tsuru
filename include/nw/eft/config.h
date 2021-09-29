@@ -37,6 +37,6 @@ public:
     u32 doubleBufferSize;
 };
 
-static_assert(sizeof(Config) == 0x20, "Config size mismatch");
+static_assert(sizeof(Config) == 0x20, "nw::eft::Config size mismatch");
 
 } }

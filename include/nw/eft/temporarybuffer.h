@@ -81,6 +81,6 @@ struct TemporaryBuffer { // Size: 0x18
     void* buffer[2];
 };
 
-static_assert(sizeof(TemporaryBuffer) == 0x18, "TemporaryBuffer size mismatch");
+static_assert(sizeof(TemporaryBuffer) == 0x18, "nw::eft::TemporaryBuffer size mismatch");
 
 } }

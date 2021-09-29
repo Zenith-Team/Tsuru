@@ -14,7 +14,7 @@ struct AlphaAnim { // Size: 0x10
     s32 time2;
 };
 
-static_assert(sizeof(AlphaAnim) == 0x10, "AlphaAnim size mismatch");
+static_assert(sizeof(AlphaAnim) == 0x10, "nw::eft::AlphaAnim size mismatch");
 
 struct ScaleAnim { // Size: 0x18
     math::VEC2 startDiff;
@@ -23,7 +23,7 @@ struct ScaleAnim { // Size: 0x18
     s32 time2;
 };
 
-static_assert(sizeof(ScaleAnim) == 0x18, "ScaleAnim size mismatch");
+static_assert(sizeof(ScaleAnim) == 0x18, "nw::eft::ScaleAnim size mismatch");
 
 struct TexUVParam { // Size: 0x1C
     f32 rotate;
@@ -32,7 +32,7 @@ struct TexUVParam { // Size: 0x1C
     math::VEC2 scale;
 };
 
-static_assert(sizeof(TexUVParam) == 0x1C, "TexUVParam size mismatch");
+static_assert(sizeof(TexUVParam) == 0x1C, "nw::eft::TexUVParam size mismatch");
 
 struct EmitterInstance;
 struct PtclAttributeBuffer;
@@ -83,7 +83,7 @@ struct PtclInstance { // Size: 0x180
     u8 unusedPad[0x180 - 0x16C];
 };
 
-static_assert(sizeof(PtclInstance) == 0x180, "PtclInstance size mismatch");
+static_assert(sizeof(PtclInstance) == 0x180, "nw::eft::PtclInstance size mismatch");
 
 struct PtclStripeSliceHistory { // Size: 0x58
     math::VEC3 pos;
@@ -93,7 +93,7 @@ struct PtclStripeSliceHistory { // Size: 0x58
     math::VEC3 dir;
 };
 
-static_assert(sizeof(PtclStripeSliceHistory) == 0x58, "PtclStripSliceHistory size mismatch");
+static_assert(sizeof(PtclStripeSliceHistory) == 0x58, "nw::eft::PtclStripSliceHistory size mismatch");
 
 struct ComplexEmitterData;
 
@@ -116,6 +116,6 @@ struct PtclStripe { // Size: 0x5880
     u32 numDraw;
 };
 
-static_assert(sizeof(PtclStripe) == 0x5880, "PtclStripe size mismatch");
+static_assert(sizeof(PtclStripe) == 0x5880, "nw::eft::PtclStripe size mismatch");
 
 } }

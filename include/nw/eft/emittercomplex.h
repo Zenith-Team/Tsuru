@@ -11,7 +11,7 @@ public:
     { }
 
     virtual void CalcEmitter(EmitterInstance* emitter) { EmitterSimpleCalc::CalcEmitter(emitter); }
-    virtual PtclType GetPtclType() const { return PtclTypeComplex; }
+    virtual PtclType GetPtclType() const { return PtclType_Complex; }
     virtual u32 CalcParticle(EmitterInstance* emitter, CpuCore core, bool noCalcBehavior, bool noMakePtclAttributeBuffer);
     virtual u32 CalcChildParticle(EmitterInstance* emitter, CpuCore core, bool noCalcBehavior, bool noMakePtclAttributeBuffer);
 
@@ -22,6 +22,6 @@ public:
     static void CalcComplex(EmitterInstance* emitter, PtclInstance* ptcl, CpuCore core);
 };
 
-static_assert(sizeof(EmitterComplexCalc) == 4, "EmitterComplexCalc size mismatch");
+static_assert(sizeof(EmitterComplexCalc) == 4, "nw::eft::EmitterComplexCalc size mismatch");
 
 } }

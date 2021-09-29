@@ -27,7 +27,7 @@ public:
         u32 idx;
     };
 
-    static_assert(sizeof(PtclViewZ) == 0xC, "PtclViewZ size mismatch");
+    static_assert(sizeof(PtclViewZ) == 0xC, "nw::eft::Renderer::PtclViewZ size mismatch");
 
     static s32 ComparePtclViewZ(const void* a, const void* b);
 

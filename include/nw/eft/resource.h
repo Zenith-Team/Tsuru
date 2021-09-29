@@ -34,7 +34,7 @@ public:
         u32 numPrimitive;
     };
 
-    static_assert(sizeof(EmitterSet) == 0x38, "EmitterSet size mismatch");
+    static_assert(sizeof(EmitterSet) == 0x38, "nw::eft::Resource::EmitterSet size mismatch");
 
 public:
     Resource(Heap* heap, void* resource, u32 resourceID, System* system);
@@ -71,6 +71,6 @@ public:
     u32 numPrimitive;
 };
 
-static_assert(sizeof(Resource) == 0x30, "Resource size mismatch");
+static_assert(sizeof(Resource) == 0x30, "nw::eft::Resource size mismatch");
 
 } }

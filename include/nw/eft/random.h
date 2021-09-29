@@ -76,7 +76,7 @@ private:
     u32 w;
 };
 
-static_assert(sizeof(Random) == 0x10, "Random size mismatch");
+static_assert(sizeof(Random) == 0x10, "nw::eft::Random size mismatch");
 
 class Heap;
 
@@ -141,6 +141,6 @@ public:
     u32 val;
 };
 
-static_assert(sizeof(PtclRandom) == 8, "PtclRandom size mismatch");
+static_assert(sizeof(PtclRandom) == 8, "nw::eft::PtclRandom size mismatch");
 
 } }

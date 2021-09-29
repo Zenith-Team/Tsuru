@@ -32,7 +32,7 @@ struct TextureRes { // Size: 0x114
     GX2Texture GX2Texture;
 };
 
-static_assert(sizeof(TextureRes) == 0x114, "TextureRes size mismatch");
+static_assert(sizeof(TextureRes) == 0x114, "nw::eft::TextureRes size mismatch");
 
 struct EmitterData { // Size: 0x280
     EmitterType type;
@@ -51,7 +51,7 @@ struct EmitterData { // Size: 0x280
     u32 primitiveIdx;
 };
 
-static_assert(sizeof(EmitterData) == 0x280, "EmitterData size mismatch");
+static_assert(sizeof(EmitterData) == 0x280, "nw::eft::EmitterData size mismatch");
 
 struct TextureEmitterData { // Size: 0x78
     bool hasTexPtnAnim;
@@ -78,7 +78,7 @@ struct TextureEmitterData { // Size: 0x78
     f32 texInitRotateRandom;
 };
 
-static_assert(sizeof(TextureEmitterData) == 0x78, "TextureEmitterData size mismatch");
+static_assert(sizeof(TextureEmitterData) == 0x78, "nw::eft::TextureEmitterData size mismatch");
 
 struct anim3v4Key { // Size: 0x14
     f32 startValue;
@@ -88,7 +88,7 @@ struct anim3v4Key { // Size: 0x14
     s32 time2;
 };
 
-static_assert(sizeof(anim3v4Key) == 0x14, "anim3v4Key size mismatch");
+static_assert(sizeof(anim3v4Key) == 0x14, "nw::eft::anim3v4Key size mismatch");
 
 struct SimpleEmitterData : EmitterData { // Size: 0x6F4
     u8 unused0[3];
@@ -194,7 +194,7 @@ struct SimpleEmitterData : EmitterData { // Size: 0x6F4
     u8 unusedPad[0x6F4 - 0x674];
 };
 
-static_assert(sizeof(SimpleEmitterData) == 0x6F4, "SimpleEmitterData size mismatch");
+static_assert(sizeof(SimpleEmitterData) == 0x6F4, "nw::eft::SimpleEmitterData size mismatch");
 
 struct ComplexEmitterData : SimpleEmitterData { // Size: 0x70C
     u32 childFlags;
@@ -209,7 +209,7 @@ struct ComplexEmitterData : SimpleEmitterData { // Size: 0x70C
     u32 dataSize;
 };
 
-static_assert(sizeof(ComplexEmitterData) == 0x70C, "ComplexEmitterData size mismatch");
+static_assert(sizeof(ComplexEmitterData) == 0x70C, "nw::eft::ComplexEmitterData size mismatch");
 
 struct ChildData { // Size: 0x2FC
     s32 numChildParticles;
@@ -276,14 +276,14 @@ struct ChildData { // Size: 0x2FC
     u8 unusedPad2[0x80]; // 27C
 };
 
-static_assert(sizeof(ChildData) == 0x2FC, "ChildData size mismatch");
+static_assert(sizeof(ChildData) == 0x2FC, "nw::eft::ChildData size mismatch");
 
 struct FieldRandomData { // Size: 0x10
     s32 period;
     math::VEC3 randomVelScale;
 };
 
-static_assert(sizeof(FieldRandomData) == 0x10, "FieldRandomData size mismatch");
+static_assert(sizeof(FieldRandomData) == 0x10, "nw::eft::FieldRandomData size mismatch");
 
 struct FieldMagnetData { // Size: 0x14
     f32 strength;
@@ -291,7 +291,7 @@ struct FieldMagnetData { // Size: 0x14
     u32 flags;
 };
 
-static_assert(sizeof(FieldMagnetData) == 0x14, "FieldMagnetData size mismatch");
+static_assert(sizeof(FieldMagnetData) == 0x14, "nw::eft::FieldMagnetData size mismatch");
 
 struct FieldSpinData { // Size: 0xC
     s32 angle;
@@ -299,7 +299,7 @@ struct FieldSpinData { // Size: 0xC
     f32 diffusionVel;
 };
 
-static_assert(sizeof(FieldSpinData) == 0xC, "FieldSpinData size mismatch");
+static_assert(sizeof(FieldSpinData) == 0xC, "nw::eft::FieldSpinData size mismatch");
 
 struct FieldCollisionData { // SizeL 0xC
     u16 collisionType;
@@ -308,20 +308,20 @@ struct FieldCollisionData { // SizeL 0xC
     f32 friction;
 };
 
-static_assert(sizeof(FieldCollisionData) == 0xC, "FieldCollisionData size mismatch");
+static_assert(sizeof(FieldCollisionData) == 0xC, "nw::eft::FieldCollisionData size mismatch");
 
 struct FieldConvergenceData { // Size: 0x10
     math::VEC3 pos;
     f32 strength;
 };
 
-static_assert(sizeof(FieldConvergenceData) == 0x10, "FieldConvergenceData size mismatch");
+static_assert(sizeof(FieldConvergenceData) == 0x10, "nw::eft::FieldConvergenceData size mismatch");
 
 struct FieldPosAddData { // Size: 0xC
     math::VEC3 posAdd;
 };
 
-static_assert(sizeof(FieldPosAddData) == 0xC, "FieldPosAddData size mismatch");
+static_assert(sizeof(FieldPosAddData) == 0xC, "nw::eft::FieldPosAddData size mismatch");
 
 struct FluctuationData {
     f32 amplitude;
@@ -329,7 +329,7 @@ struct FluctuationData {
     u32 enableRandom;
 };
 
-static_assert(sizeof(FluctuationData) == 0xC, "FluctuationData size mismatch");
+static_assert(sizeof(FluctuationData) == 0xC, "nw::eft::FluctuationData size mismatch");
 
 struct StripeData {
     u32 type;
@@ -346,14 +346,14 @@ struct StripeData {
     f32 dirInterpolation;
 };
 
-static_assert(sizeof(StripeData) == 0x34, "StripeData size mismatch");
+static_assert(sizeof(StripeData) == 0x34, "nw::eft::StripeData size mismatch");
 
 struct EmitterTblData { // Size: 0x8
     u32 dataOffs;
     EmitterData* data;
 };
 
-static_assert(sizeof(EmitterTblData) == 8, "EmitterTblData size mismatch");
+static_assert(sizeof(EmitterTblData) == 8, "nw::eft::EmitterTblData size mismatch");
 
 struct EmitterSetData { // Size: 0x1C
     u32 userData;
@@ -365,7 +365,7 @@ struct EmitterSetData { // Size: 0x1C
     EmitterTblData* emitterRef;
 };
 
-static_assert(sizeof(EmitterSetData) == 0x1C, "EmitterSetData size mismatch");
+static_assert(sizeof(EmitterSetData) == 0x1C, "nw::eft::EmitterSetData size mismatch");
 
 struct Header { // Size: 0x40
     char magic[4];
@@ -384,7 +384,7 @@ struct Header { // Size: 0x40
     u8  unusedPad1[12];
 };
 
-static_assert(sizeof(Header) == 0x40, "Header size mismatch");
+static_assert(sizeof(Header) == 0x40, "nw::eft::Header size mismatch");
 
 struct PrimitiveAttrib { // Size: 0x10
     u32 count;
@@ -393,7 +393,7 @@ struct PrimitiveAttrib { // Size: 0x10
     u32 bufferSize;
 };
 
-static_assert(sizeof(PrimitiveAttrib) == 0x10, "PrimitiveAttrib size mismatch");
+static_assert(sizeof(PrimitiveAttrib) == 0x10, "nw::eft::PrimitiveAttrib size mismatch");
 
 struct PrimitiveData { // Size: 0x50
     PrimitiveAttrib pos;
@@ -403,7 +403,7 @@ struct PrimitiveData { // Size: 0x50
     PrimitiveAttrib index;
 };
 
-static_assert(sizeof(PrimitiveData) == 0x50, "PrimitiveData size mismatch");
+static_assert(sizeof(PrimitiveData) == 0x50, "nw::eft::PrimitiveData size mismatch");
 
 struct PrimitiveTable { // Size: 0xC
     u32 numPrimitive;
@@ -411,7 +411,7 @@ struct PrimitiveTable { // Size: 0xC
     u32 primitiveOffs;
 };
 
-static_assert(sizeof(PrimitiveTable) == 0xC, "PrimitiveTable size mismatch");
+static_assert(sizeof(PrimitiveTable) == 0xC, "nw::eft::PrimitiveTable size mismatch");
 
 struct KeyFrameAnimArray {
     char magic[4];

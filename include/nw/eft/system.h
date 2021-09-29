@@ -13,25 +13,25 @@ struct EmitterPreCalcArg {
     EmitterInstance* emitter;
 };
 
-static_assert(sizeof(EmitterPreCalcArg) == 4, "EmitterPreCalcArg size mismatch");
+static_assert(sizeof(EmitterPreCalcArg) == 4, "nw::eft::EmitterPreCalcArg size mismatch");
 
 struct EmitterPostCalcArg {
     EmitterInstance* emitter;
 };
 
-static_assert(sizeof(EmitterPostCalcArg) == 4, "EmitterPostCalcArg size mismatch");
+static_assert(sizeof(EmitterPostCalcArg) == 4, "nw::eft::EmitterPostCalcArg size mismatch");
 
 struct ParticleEmitArg {
     PtclInstance* ptcl;
 };
 
-static_assert(sizeof(ParticleEmitArg) == 4, "ParticleEmitArg size mismatch");
+static_assert(sizeof(ParticleEmitArg) == 4, "nw::eft::ParticleEmitArg size mismatch");
 
 struct ParticleRemoveArg {
     PtclInstance* ptcl;
 };
 
-static_assert(sizeof(ParticleRemoveArg) == 4, "ParticleRemoveArg size mismatch");
+static_assert(sizeof(ParticleRemoveArg) == 4, "nw::eft::ParticleRemoveArg size mismatch");
 
 struct ParticleCalcArg {
     EmitterInstance* emitter;
@@ -40,7 +40,7 @@ struct ParticleCalcArg {
     bool noCalcBehavior;
 };
 
-static_assert(sizeof(ParticleCalcArg) == 0x10, "ParticleCalcArg size mismatch");
+static_assert(sizeof(ParticleCalcArg) == 0x10, "nw::eft::ParticleCalcArg size mismatch");
 
 struct ParticleMakeAttrArg {
     EmitterInstance* emitter;
@@ -49,7 +49,7 @@ struct ParticleMakeAttrArg {
     bool noCalcBehavior;
 };
 
-static_assert(sizeof(ParticleMakeAttrArg) == 0x10, "ParticleMakeAttrArg size mismatch");
+static_assert(sizeof(ParticleMakeAttrArg) == 0x10, "nw::eft::ParticleMakeAttrArg size mismatch");
 
 struct EmitterDrawOverrideArg {
     const EmitterInstance* emitter;
@@ -58,7 +58,7 @@ struct EmitterDrawOverrideArg {
     void* argData;
 };
 
-static_assert(sizeof(EmitterDrawOverrideArg) == 0x10, "EmitterDrawOverrideArg size mismatch");
+static_assert(sizeof(EmitterDrawOverrideArg) == 0x10, "nw::eft::EmitterDrawOverrideArg size mismatch");
 
 struct ShaderEmitterPostCalcArg {
     EmitterInstance* emitter;
@@ -66,7 +66,7 @@ struct ShaderEmitterPostCalcArg {
     bool childParticle;
 };
 
-static_assert(sizeof(ShaderEmitterPostCalcArg) == 8, "ShaderEmitterPostCalcArg size mismatch");
+static_assert(sizeof(ShaderEmitterPostCalcArg) == 8, "nw::eft::ShaderEmitterPostCalcArg size mismatch");
 
 struct ShaderDrawOverrideArg {
     const EmitterInstance* emitter;
@@ -75,7 +75,7 @@ struct ShaderDrawOverrideArg {
     void* argData;
 };
 
-static_assert(sizeof(ShaderDrawOverrideArg) == 0x10, "ShaderDrawOverrideArg size mismatch");
+static_assert(sizeof(ShaderDrawOverrideArg) == 0x10, "nw::eft::ShaderDrawOverrideArg size mismatch");
 
 struct RenderStateSetArg {
     const EmitterInstance* emitter;
@@ -84,7 +84,7 @@ struct RenderStateSetArg {
     void* argData;
 };
 
-static_assert(sizeof(RenderStateSetArg) == 0x10, "RenderStateSetArg size mismatch");
+static_assert(sizeof(RenderStateSetArg) == 0x10, "nw::eft::RenderStateSetArg size mismatch");
 
 typedef void (*CustomActionEmitterPreCalcCallback)(EmitterPreCalcArg& arg);
 typedef void (*CustomActionEmitterPostCalcCallback)(EmitterPostCalcArg& arg);
@@ -116,7 +116,7 @@ public:
         u32 z;
     };
 
-    static_assert(sizeof(PtclViewZ) == 8, "PtclViewZ size mismatch");
+    static_assert(sizeof(PtclViewZ) == 8, "nw::eft::System::PtclViewZ size mismatch");
 
 public:
     System(const Config& config);
@@ -181,7 +181,7 @@ public:
     EmitterSet* emitterSets;
     s32 numEmitterSetMax;
     s32 numEmitterSetMaxMask;
-    math::MTX44 view[CpuCoreMax];
+    math::MTX44 view[CpuCore_Max];
     EmitterInstance* emitterGroups[64];  // Maximum of 64 groups
     EmitterSet* emitterSetGroupHead[64]; // Maximum of 64 groups
     EmitterSet* emitterSetGroupTail[64]; // Maximum of 64 groups
@@ -193,10 +193,10 @@ public:
     s32 currentParticleIdx;
     AlphaAnim* alphaAnim;
     ScaleAnim* scaleAnim;
-    PtclInstance** childParticles[CpuCoreMax];
-    s32 numChildParticle[CpuCoreMax];
-    PtclInstance** particlesToRemove[CpuCoreMax];
-    s32 numParticleToRemove[CpuCoreMax];
+    PtclInstance** childParticles[CpuCore_Max];
+    s32 numChildParticle[CpuCore_Max];
+    PtclInstance** particlesToRemove[CpuCore_Max];
+    s32 numParticleToRemove[CpuCore_Max];
     PtclStripe* stripes;
     PtclStripe* stripeGroups[64]; // Maximum of 64 groups
     u32 unused0;
@@ -214,34 +214,34 @@ public:
     u32 numEmittedParticle;
     u32 numCalcStripe;
     u64 activeGroupsFlg;
-    u32 unusedFlags[CpuCoreMax][64]; // Maximum of 64 groups
-    Renderer* renderers[CpuCoreMax];
+    u32 unusedFlags[CpuCore_Max][64]; // Maximum of 64 groups
+    Renderer* renderers[CpuCore_Max];
     u32 currentEmitterSetCreateID;
-    EmitterCalc* emitterCalc[EmitterTypeMax];
+    EmitterCalc* emitterCalc[EmitterType_Max];
     void* resourceWork;
     void* emitterSetWork;
-    void* rendererWork[CpuCoreMax];
+    void* rendererWork[CpuCore_Max];
     void* emitterSimpleCalcWork;
     void* emitterComplexCalcWork;
     u8 unusedPad[4];
     s32 unkCallbackVal; // When not equal to -1, currentCallbackID must be valid
     CustomActionCallBackID currentCallbackID;
-    CustomActionEmitterPreCalcCallback customActionEmitterPreCalcCallback[CustomActionCallBackIDMax];
-    CustomActionParticleEmitCallback customActionParticleEmitCallback[CustomActionCallBackIDMax];
-    CustomActionParticleRemoveCallback customActionParticleRemoveCallback[CustomActionCallBackIDMax];
-    CustomActionParticleCalcCallback customActionParticleCalcCallback[CustomActionCallBackIDMax];
-    CustomActionParticleMakeAttributeCallback customActionParticleMakeAttributeCallback[CustomActionCallBackIDMax];
-    CustomActionEmitterPostCalcCallback customActionEmitterPostCalcCallback[CustomActionCallBackIDMax];
-    CustomActionEmitterDrawOverrideCallback customActionEmitterDrawOverrideCallback[CustomActionCallBackIDMax];
-    CustomShaderEmitterPostCalcCallback customShaderEmitterPostCalcCallback[CustomShaderCallBackIDMax];
-    CustomShaderDrawOverrideCallback customShaderDrawOverrideCallback[CustomShaderCallBackIDMax];
-    CustomShaderRenderStateSetCallback customShaderRenderStateSetCallback[CustomShaderCallBackIDMax];
-    PtclViewZ* sortedEmitterSets[CpuCoreMax];
-    u32 numSortedEmitterSets[CpuCoreMax];
-    u32 _unused1[CpuCoreMax];
+    CustomActionEmitterPreCalcCallback customActionEmitterPreCalcCallback[CustomActionCallBackID_Max];
+    CustomActionParticleEmitCallback customActionParticleEmitCallback[CustomActionCallBackID_Max];
+    CustomActionParticleRemoveCallback customActionParticleRemoveCallback[CustomActionCallBackID_Max];
+    CustomActionParticleCalcCallback customActionParticleCalcCallback[CustomActionCallBackID_Max];
+    CustomActionParticleMakeAttributeCallback customActionParticleMakeAttributeCallback[CustomActionCallBackID_Max];
+    CustomActionEmitterPostCalcCallback customActionEmitterPostCalcCallback[CustomActionCallBackID_Max];
+    CustomActionEmitterDrawOverrideCallback customActionEmitterDrawOverrideCallback[CustomActionCallBackID_Max];
+    CustomShaderEmitterPostCalcCallback customShaderEmitterPostCalcCallback[CustomShaderCallBackID_Max];
+    CustomShaderDrawOverrideCallback customShaderDrawOverrideCallback[CustomShaderCallBackID_Max];
+    CustomShaderRenderStateSetCallback customShaderRenderStateSetCallback[CustomShaderCallBackID_Max];
+    PtclViewZ* sortedEmitterSets[CpuCore_Max];
+    u32 numSortedEmitterSets[CpuCore_Max];
+    u32 _unused1[CpuCore_Max];
     u32 doubleBufferSwapped;
 };
 
-static_assert(sizeof(System) == 0xA28, "System size mismatch");
+static_assert(sizeof(System) == 0xA28, "nw::eft::System size mismatch");
 
 } }

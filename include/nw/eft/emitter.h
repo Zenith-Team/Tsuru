@@ -24,14 +24,14 @@ struct EmitterInstance { // Size: 0x220
     void UpdateResInfo();
 
     const ComplexEmitterData* GetComplexEmitterData() const {
-        if (this->data->type != EmitterTypeComplex)
+        if (this->data->type != EmitterType_Complex)
             return NULL;
 
         return static_cast<const ComplexEmitterData*>(this->data);
     }
 
     bool HasChild() const {
-        return this->data->type != EmitterTypeSimple && (static_cast<const ComplexEmitterData*>(this->data)->childFlags & 1);
+        return this->data->type != EmitterType_Simple && (static_cast<const ComplexEmitterData*>(this->data)->childFlags & 1);
     }
 
     const ChildData* GetChildData() const {
@@ -73,8 +73,8 @@ struct EmitterInstance { // Size: 0x220
     PtclInstance* childParticleHead;
     PtclInstance* particleTail;
     PtclInstance* childParticleTail;
-    ParticleShader* shader[ShaderTypeMax];
-    ParticleShader* childShader[ShaderTypeMax];
+    ParticleShader* shader[ShaderType_Max];
+    ParticleShader* childShader[ShaderType_Max];
     Primitive* primitive;
     Primitive* childPrimitive;
     KeyFrameAnimArray* animArray;
@@ -100,7 +100,7 @@ struct EmitterInstance { // Size: 0x220
     EmitterDynamicUniformBlock* childEmitterDynamicUniformBlock;
 };
 
-static_assert(sizeof(EmitterInstance) == 0x220, "EmitterInstance size mismatch");
+static_assert(sizeof(EmitterInstance) == 0x220, "nw::eft::EmitterInstance size mismatch");
 
 class System;
 
@@ -200,7 +200,7 @@ public:
     static EmitFunction emitFunctions[];
 };
 
-static_assert(sizeof(EmitterCalc) == 4, "EmitterCalc size mismatch");
+static_assert(sizeof(EmitterCalc) == 4, "nw::eft::EmitterCalc size mismatch");
 
 
 
