@@ -3,75 +3,29 @@
 Files:
   - source/experiments/projection.S
   - source/experiments/projection.cpp
-  - source/experiments/revealmask.cpp
 Hooks:
-## Orthographic projection on World Map
-#  # Set the projection in the layer
-#  - type: branch
-#    instr: b
-#    func: worldMapProjection__Fv
-#    addr: "21b94b0" # CSCamera::onExecute()
-#
-## Perspective projection in levels
-#  # Set the projection in the draw layer
-#  - type: branch
-#    instr: bl
-#    func: MakePerspectiveLevel
-#    addr: "24b83e0" # AreaTask::drawLayerGather()
-#  # Delete a sead::DynamicCast RTTI check fail to prevent null pointer crash
-#  - type: nop
-#    addr: "2693324"
-#  # Replace ortho projection class with frustum projection
-#  - type: branch
-#    instr: b
-#    func: RedirectToFrustumCtor
-#    addr: "2a065ac" # sead::OrthoProjection::OrthoProjection()
-#  - type: branch
-#    instr: b
-#    func: RedirectToFrustumDtor
-#    addr: "2a067c4" # sead::OrthoProjection::~OrthoProjection()
+# Orthographic projection on World Map
+  # Set the projection in the layer
+  - type: branch
+    instr: b
+    func: worldMapProjection__Fv
+    addr: "21b94b0" # CSCamera::onExecute()
 
-# Layer 1 reveal masks
-  # Patch new() allocation to be 0x18094 bytes
-  - type: patch
-    data: "0002"
-    addr: "268f450" # TileRenderer::createInstance()
-  - type: patch
-    data: "8094"
-    addr: "268f458" # TileRenderer::createInstance()
-  # Hijack methods
+# Perspective projection in levels
+  # Set the projection in the draw layer
   - type: branch
     instr: bl
-    func: __ct__17TsuruTileRendererFv
-    addr: "268F488"
-  - type: branch
-    instr: bl
-    func: init__17TsuruTileRendererFPQ2_4sead4Heap
-    addr: "24be254"
-  - type: branch
-    instr: bl
-    func: initShaders__17TsuruTileRendererSFRQ2_3agl20ShaderProgramArchivePQ2_4sead4Heap
-    addr: "24fe2f8"
-  - type: branch
-    instr: bl
-    func: initLayer1FrameBuffer__17TsuruTileRendererFRCQ3_3agl3lyr10RenderInfo
-    addr: "24b3e60"
-  - type: branch
-    instr: bl
-    func: renderLayer1__17TsuruTileRendererFRCQ3_3agl3lyr10RenderInfo
-    addr: "24b406c"
-  - type: branch
-    instr: bl
-    func: revealMaskRenderStep__17TsuruTileRendererFRCQ3_3agl3lyr10RenderInfo
-    addr: "24b3f40"
-  # We moved renderLayer1
+    func: MakePerspectiveLevel
+    addr: "24b83e0" # AreaTask::drawLayerGather()
+  # Delete a sead::DynamicCast RTTI check fail to prevent null pointer crash
   - type: nop
-    addr: "24b41d4"
-  # We're using the function that draws layer 0 tiles with spotlight masks to draw layer 1 tiles with reveal masks. To do this, we're replacing the layer and mask texture data pointers by our own. This function frees those textures however. Since we're not allocating our texture data with agl::utl::DynamicTextureAllocator we don't want to free it.
-  - type: nop
-    addr: 26926f0
-  # Free it here instead
+    addr: "2693324"
+  # Replace ortho projection class with frustum projection
   - type: branch
-    instr: bl
-    addr: 26926f8
-    func: freeLayerMaskTextureData
+    instr: b
+    func: RedirectToFrustumCtor
+    addr: "2a065ac" # sead::OrthoProjection::OrthoProjection()
+  - type: branch
+    instr: b
+    func: RedirectToFrustumDtor
+    addr: "2a067c4" # sead::OrthoProjection::~OrthoProjection()
