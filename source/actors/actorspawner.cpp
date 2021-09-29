@@ -71,7 +71,7 @@ u32 ActorSpawner::onExecute() {
             buildInfo.position = position;
             buildInfo.eventID1 = eventID1 & 0xF;
             buildInfo.eventID2 = (eventID1 >> 4) & 0xF;
-            ActorMgr::instance()->create(&buildInfo, 0);
+            ActorMgr::instance()->create(buildInfo, 0);
 
             spawned = true;
         }

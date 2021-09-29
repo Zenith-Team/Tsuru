@@ -77,7 +77,7 @@ void StarCoinShard::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hc
         starCoinBuildInfo.profile = Profile::get(426);
         starCoinBuildInfo.position = hcSelf->owner->position;
 
-        ActorMgr::instance()->create(&starCoinBuildInfo, 0);
+        ActorMgr::instance()->create(starCoinBuildInfo, 0);
     }
 
     hcSelf->owner->isDeleted = true;

@@ -19,8 +19,8 @@ class ActorMgr { // Size: 0x6A44
     SEAD_SINGLETON_DISPOSER(ActorMgr)
 
 public:
-    Actor* create(ActorBuildInfo* buildInfo, u32 addToActive);
-    Actor* instanciateActor(ActorBuildInfo* buildInfo, bool notDefer);
+    Actor* create(ActorBuildInfo& buildInfo, u32 addToActive);
+    Actor* instanciateActor(ActorBuildInfo& buildInfo, bool dontDefer);
 
     u32 createActor(Actor* actor);  // Calls "create" virtual functions
 
