@@ -4,6 +4,7 @@
 class TsuruSaveMgr {
 public:
     struct TsuruSaveData {
+    private:
         TsuruSaveData()
             : magic(0xCAFEF00D)
             , infiniteLivesEnabled(false)
@@ -12,7 +13,11 @@ public:
             , invincibilityEnabled(false)
             , collisionViewerEnabled(false)
             , instantRespawnEnabled(false)
+            , actorLoggingEnabled(false)
         { }
+
+    public:
+        friend class TsuruSaveMgr;
 
         u32 magic;                          // _0
         bool infiniteLivesEnabled;          // _4
@@ -21,6 +26,7 @@ public:
         bool invincibilityEnabled;          // _7
         bool collisionViewerEnabled;        // _8
         bool instantRespawnEnabled;         // _9
+        bool actorLoggingEnabled;           // _10
     };
 
 public:

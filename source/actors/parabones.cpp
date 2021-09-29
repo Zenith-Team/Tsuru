@@ -208,7 +208,7 @@ void ParaBones::beginState_Die() {
     ActorBuildInfo DryBones = { 0 };
     DryBones.profile = Profile::get(Profile::spriteToProfileList[137]);
     DryBones.position += posKillFix;
-    ActorMgr::instance()->create(&DryBones, 0);
+    ActorMgr::instance()->create(DryBones, 0);
     this->isDeleted = true;
 }
 

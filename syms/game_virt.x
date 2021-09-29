@@ -148,7 +148,7 @@ SECTIONS {
 
 /* ActorMgr */
 	sInstance__8ActorMgr = 0x101c30c8;
-	create__8ActorMgrFP14ActorBuildInfoUi = 0x2009a58;
+	create__8ActorMgrFR14ActorBuildInfoUi = 0x2009a58;
 	findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP5Actor = 0x2009b6c;
 
 /* Animation */
