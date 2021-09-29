@@ -79,9 +79,9 @@ inline VEC3 operator*(f32 a, const VEC3& rhs) {
 
 VEC3* VEC3::CrossProduct(VEC3* dst, const VEC3* a, const VEC3* b) {
     VEC3 tmp = {
-        .x =  a->y * b->z - a->z * b->y,
-        .y =  a->z * b->x - a->x * b->z,
-        .z =  a->x * b->y - a->y * b->x,
+        a->y * b->z - a->z * b->y,
+        a->z * b->x - a->x * b->z,
+        a->x * b->y - a->y * b->x,
     };
 
     *dst = tmp;
