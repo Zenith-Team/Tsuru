@@ -10,8 +10,9 @@ public:
 
     virtual void vfC(); // deleted
 
-    void initializeFromSurface(const GX2Surface& surface);
+    void initialize_(u32 textureType, u32 textureFormat, u32 width, u32 height, u32 depth, bool mipLevelNum, u32 multiSampleType);
     void initializeSize_(u32, u32, u32);
+    void initializeFromSurface(const GX2Surface& surface);
 
     void invalidateGPUCache();
 

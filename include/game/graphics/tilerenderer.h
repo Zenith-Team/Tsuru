@@ -51,7 +51,7 @@ public:
 
         void init(sead::Heap* heap);
         void add(MaskInfo&, MaskInfo&, MaskInfo&, agl::TextureData& texture, u32, u32);
-        void draw(void*, void*);
+        void draw(const sead::Camera& camera, const Mtx44& cameraMatrix);
 
         u8 _0[0x510C];  // TODO: I'll do this later, I've had enough for tonight
     };
@@ -61,20 +61,20 @@ public:
     ~TileRenderer();
 
     void init(sead::Heap* heap);
-    void initSpotlightMaskFrameBuffer();
+    void initSpotlightMaskFrameBuffer(const agl::lyr::RenderInfo& renderInfo);
 
     void update();
 
     void registerTile(u32, void*, u32); // TODO: Verify these params as they are guesses
 
-    void drawLayerMasks(agl::lyr::RenderInfo& renderInfo);
-    void drawTilesWithMasks(agl::lyr::RenderInfo& renderInfo);
+    void drawSpotlightMasks(const agl::lyr::RenderInfo& renderInfo);
+    void drawTilesWithSpotlightMasks(const agl::lyr::RenderInfo& renderInfo);
 
     void renderSingleTile(u32 tileLayer, u32 tile, sead::OrthoProjection& projection);    // TODO: Confirm function and second parameter names
 
-    void renderLayer0(agl::lyr::RenderInfo& renderInfo);    // Renders editor layer 0, internal layer 2
-    void renderLayer1(agl::lyr::RenderInfo& renderInfo);    // Renders editor layer 1, internal layer 0
-    void renderLayer2(agl::lyr::RenderInfo& renderInfo);    // Renders editor layer 2, internal layer 1
+    void renderLayer0(const agl::lyr::RenderInfo& renderInfo);    // Renders editor layer 0, internal layer 2
+    void renderLayer1(const agl::lyr::RenderInfo& renderInfo);    // Renders editor layer 1, internal layer 0
+    void renderLayer2(const agl::lyr::RenderInfo& renderInfo);    // Renders editor layer 2, internal layer 1
 
     void renderTileLayer(sead::Viewport& viewport, sead::OrthoProjection& projection, u32 tileLayer);
 
@@ -100,7 +100,7 @@ public:
     agl::VertexAttribute _64E4;
     agl::IndexStream _65D8;
     agl::TextureSampler* _65F0;
-    agl::ShaderProgram* tileMaskShader;
+    agl::ShaderProgram* spotlightMaskShader;
     u32 _65F8;
     u8 _65FC[0x6600 - 0x65FC];  // Unknown values
     f32 _6600;
@@ -134,13 +134,13 @@ public:
     agl::TextureSampler* _6938;
     agl::TextureSampler* _693C;
     agl::TextureSampler* _6940;
-    agl::TextureData* frontLayerTextureData;
-    agl::RenderTargetColor frontLayerTextureTargetColor;
-    agl::TextureData* layerbufferTextureData;
+    agl::TextureData* layer0TextureData;
+    agl::RenderTargetColor layer0TextureTargetColor;
+    agl::TextureData* layerBufferTextureData;
     agl::RenderTargetColor layerBufferTargetColor;
     agl::TextureData* layerDepthTextureData;
     agl::RenderTargetDepth layerRenderTargetDepth;
-    agl::RenderBuffer frontLayerRenderBuffer;
+    agl::RenderBuffer layer0RenderBuffer;
     agl::RenderTargetColor _6DA8;
     agl::RenderTargetDepth _6EFC;
     agl::TextureData* maskTextureData;
@@ -182,8 +182,8 @@ public:
     agl::VertexAttribute _7BC0;
     agl::IndexStream _7CB4;
     u8 _7CCC[0xC10];    // Is class at 24db424
-    TileMaskList layerMasks;
-    TileMaskList lightMasks;
+    TileMaskList tileMasks;
+    TileMaskList spotlightMasks;
 };
 
 static_assert(sizeof(TileRenderer) == 0x12AFC, "TileRenderer size mismatch");
