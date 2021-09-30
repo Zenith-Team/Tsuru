@@ -705,9 +705,6 @@ SECTIONS {
 	startLevel__7TaskMgrFPQ2_4sead8TaskBaseUcT2 = 0x29941d0;
 	changeTask__7TaskMgrFPQ2_4sead8TaskBaseRQ2_4sead11TaskClassIDUiT3 = 0x2994164;
 
-/* TileRenderer */
-	sInstance__12TileRenderer = 0x101dafe8;
-
 /* WindGenerator */
 	__dt__13WindGeneratorFv = 0x288efa0;
 	checkDerivedRuntimeTypeInfo__13WindGeneratorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x288eefc;

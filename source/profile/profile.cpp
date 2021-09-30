@@ -820,6 +820,5 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::FallingChestnut, // 731
     ProfileID::TaskChanger,     // 732
     ProfileID::Cataquack,       // 733
-    ProfileID::TimeClock,       // 734
-    ProfileID::TileCorruptor
+    ProfileID::TimeClock        // 734
 };
