@@ -16,6 +16,7 @@ enum ProfileIDType {
     TaskChanger,
     Cataquack,
     TimeClock,
+    TileCorruptor,
 
     Num
 };
