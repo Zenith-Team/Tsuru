@@ -299,7 +299,7 @@ SECTIONS {
 	sInstance__11DRCModeTask = 0x101d1904;
 
 /* Effect */
-	spawn__6EffectSF12EffectIDTypePC13Vec3__tm__2_fPC14Vec3__tm__3_UiT2 = 0x22ab080;
+	spawn__6EffectSFUiPC13Vec3__tm__2_fPC14Vec3__tm__3_UiT2 = 0x22ab080;
 
 /* Enemy */
 	__ct__5EnemyFPC14ActorBuildInfo = 0x2328494;
