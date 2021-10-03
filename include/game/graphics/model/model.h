@@ -1,7 +1,7 @@
 #pragma once
 
 #include <game/container/resarchive.h>
-#include <game/graphics/renderobjlayer.h>
+#include <game/graphics/layer/renderobjlayer.h>
 #include <game/graphics/model/animation.h>
 
 class Model : public RenderObjLayer::Node {
