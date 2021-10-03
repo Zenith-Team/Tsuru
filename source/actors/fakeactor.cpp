@@ -28,7 +28,7 @@ public:
     static void goalpoleCollisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     static const HitboxCollider::Info sCheckpointCollisionInfo;
     static const HitboxCollider::Info sGoalpoleCollisionInfo;
-    static const HitboxCollider::Info sStarcoinCollisionInfo;
+    static const HitboxCollider::Info sStarCoinCollisionInfo;
 
     RectCollider rectCollider;
 
@@ -187,13 +187,13 @@ void FakeActor::endState_GoalPole() {}
 
 /* STATE: StarCoin */
 
-const HitboxCollider::Info FakeActor::sStarcoinCollisionInfo = {
+const HitboxCollider::Info FakeActor::sStarCoinCollisionInfo = {
     Vec2f(0.0f, -3.0f), Vec2f(12.0f, 15.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &FakeActor::collisionCallback
 };
 
 void FakeActor::beginState_StarCoin() {
     this->model = ModelWrapper::create("star_coin", "star_coinA", 0);
-    this->hitboxCollider.init(this, &FakeActor::sStarcoinCollisionInfo, nullptr);
+    this->hitboxCollider.init(this, &FakeActor::sStarCoinCollisionInfo, nullptr);
     this->addHitboxColliders();
 
     this->effectOffset = Vec3f(0.0f, -24.0f, 0.0f);
