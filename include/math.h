@@ -33,7 +33,7 @@ inline f32 pow2f(f32 x) {
     return x * x;
 }
 
-inline f32 fabs2f(f32 x) {
+inline f32 fabsf(f32 x) {
     return (x < 0.0f) ? -x : x;
 }
 

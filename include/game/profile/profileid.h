@@ -17,6 +17,7 @@ enum ProfileIDType {
     Cataquack,
     TimeClock,
     EffectSpawner,
+    AngrySun,
 
     Num
 };

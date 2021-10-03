@@ -447,6 +447,9 @@ SECTIONS {
 	move__5EnemyFR13Vec2__tm__2_f = 0x232a67c;
 	getRect__5EnemyFR4Rect = 0x232a6a8;
 
+/* EnemyFreezeMgr */
+	setFlags__14EnemyFreezeMgrFRCQ2_14EnemyFreezeMgr5Flags = 0x237cb94;
+
 /* ErrorViewerTask */
 	sInstance__15ErrorViewerTask = 0x101d1904;
 
@@ -470,6 +473,18 @@ SECTIONS {
 /* LevelTimer */
 	sInstance__10LevelTimer = 0x101d15f4;
 	addTime__10LevelTimerFi = 0x24c14c0;
+
+/* LightMask */
+	__ct__9LightMaskFv = 0x2815c9c;
+	init__9LightMaskFPQ2_4sead4HeapUi = 0x2815d20;
+	update__9LightMaskFv = 0x2815dcc;
+	draw__9LightMaskFv = 0x28160c8;
+
+/* LightSource */
+	__ct__11LightSourceFv = 0x24e24bc;
+	update__11LightSourceFP13Vec3__tm__2_fPfN22PQ2_4sead7Color4fN22 = 0x24e25f4;
+	__dt__11LightSourceFv = 0x24e2580;
+	update__11LightSourceFUiP13Vec3__tm__2_fPUiPfT4PQ2_4sead7Color4fN24 = 0x24e26bc;
 
 /* ModelWrapper */
 	__ct__12ModelWrapperFP5ModelUiN42 = 0x24d4798;

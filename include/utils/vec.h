@@ -24,6 +24,8 @@ struct Vec2 { // size: 0x8
     inline Vec2 operator/(const T val) const { return operator*(1 / val); }
     inline Vec2& operator/=(const T val) { return operator*=(1 / val); }
 
+    inline void set(T val) { this->x = val; this->y = val; }
+
 private:
     static inline Vec2& add(Vec2& out, const Vec2& a, const Vec2& b) {
         out.x = a.x + b.x;
@@ -72,6 +74,8 @@ struct Vec3 { // size: 0xC
 
     inline Vec3 operator/(const T val) const { return operator*(1 / val); }
     inline Vec3& operator/=(const T val) { return operator*=(1 / val); }
+
+    inline void set(T val) { this->x = val; this->y = val; this->z = val; }
 
 private:
     static inline Vec3& add(Vec3& out, const Vec3& a, const Vec3& b) {
