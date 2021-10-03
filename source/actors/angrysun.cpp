@@ -45,6 +45,8 @@ public:
 
     f32 wiggleX;
 
+    bool isMoon;
+
     static const HitboxCollider::Info collisionInfo;
 
     DECLARE_STATE(AngrySun, Stationary);
@@ -64,7 +66,11 @@ const HitboxCollider::Info AngrySun::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::HitboxShape_Circle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback
 };
 
-const Profile AngrySunProfile(&AngrySun::build, ProfileID::AngrySun, "AngrySun", nullptr, 0);
+const Profile AngrySunProfile(&AngrySun::build, ProfileID::AngrySun, "AngrySun");
+const Profile AngryMoonProfile(&AngrySun::build, ProfileID::AngryMoon, "AngryMoon");
+
+PROFILE_RESOURCES(ProfileID::AngrySun, "star_coin");
+PROFILE_RESOURCES(ProfileID::AngryMoon, "star_coin");
 
 AngrySun::AngrySun(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)
@@ -73,6 +79,7 @@ AngrySun::AngrySun(const ActorBuildInfo* buildInfo)
     , lightColor(1.0f, 0.55f, 0.0f, 1.0f)
     , lightMask()
     , lightAttenuationRadius(12.0f)
+    , isMoon(false)
 { }
 
 Actor* AngrySun::build(const ActorBuildInfo* buildInfo) {
@@ -80,10 +87,15 @@ Actor* AngrySun::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 AngrySun::onCreate() {
+    switch (this->profile->id) {
+        case ProfileID::AngrySun: this->isMoon = false; break;
+        case ProfileID::AngryMoon: this->isMoon = true; this->lightColor.set(0.0f, 0.53f, 1.0f, 1.0f); break;
+    }
+
     EnemyFreezeMgr::Flags flags = { 1, 1, 1 };
     this->freezeMgr.setFlags(flags);
 
-    this->model = ModelWrapper::create("star_coin", "star_coinA");
+    this->model = this->isMoon ? ModelWrapper::create("star_coin", "star_coinB") : ModelWrapper::create("star_coin", "star_coinA");
 
     this->lightSource.update(0, &this->position, nullptr, &this->lightAttenuationRadius, nullptr, &this->lightColor);
 
@@ -297,7 +309,7 @@ void AngrySun::executeState_Spit() {
         StageActor* fireball;
 
         ActorBuildInfo projectileBuildInfo = { 0 };
-        projectileBuildInfo.profile = Profile::get(477); // Piranha Plant fireball
+        projectileBuildInfo.profile = this->isMoon ? Profile::get(475) : Profile::get(477); // Piranha Plant iceball / fireball
         projectileBuildInfo.position = this->position;
         projectileBuildInfo.parentID = this->id;
 

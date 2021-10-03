@@ -18,6 +18,7 @@ enum ProfileIDType {
     TimeClock,
     EffectSpawner,
     AngrySun,
+    AngryMoon,
 
     Num
 };

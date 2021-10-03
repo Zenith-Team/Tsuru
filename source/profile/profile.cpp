@@ -822,5 +822,6 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::Cataquack,       // 733
     ProfileID::TimeClock,       // 734
     ProfileID::EffectSpawner,   // 735
-    ProfileID::AngrySun         // 736
+    ProfileID::AngrySun,        // 736
+    ProfileID::AngryMoon        // 737
 };
