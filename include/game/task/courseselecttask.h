@@ -5,12 +5,14 @@
 #include <agl/lyr/renderinfo.h>
 #include <agl/lyr/drawmethod.h>
 
-class CourseSelectTask : public sead::CalculateTask {
+class CourseSelectTask : public sead::CalculateTask { // Size: 0xDD0
     SEAD_RTTI_OVERRIDE(CourseSelectTask, sead::CalculateTask)
     SEAD_SINGLETON_TASK(CourseSelectTask)
 
 public:
     virtual ~CourseSelectTask();
+
+    static sead::TaskBase* construct(const sead::TaskConstructArg& arg);
 
     void prepare() override;
 
@@ -75,3 +77,5 @@ public:
     u8 _DCE;                                            // _DCE
     u8 _DCF;                                            // _DCF
 };
+
+//static_assert(sizeof(CourseSelectTask) == 0xDD0, "CourseSelectTask size mismatch");

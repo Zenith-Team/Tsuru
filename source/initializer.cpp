@@ -2,7 +2,6 @@
 #include <types.h>
 #include <dynlibs/os/functions.h>
 #include <dynlibs/gx2/functions.h>
-#include <sead.h>
 
 // staticInit array
 extern "C" funcPtr _ctors[];
@@ -15,8 +14,7 @@ extern u32 BOSDynLoad_FindExport;
 void initialize() {
     // Duplicate call check
     static bool initialized = false;
-    if (initialized)
-        return;
+    if (initialized) return;
     initialized = true;
 
     // Call staticInit functions from _ctors array

@@ -109,17 +109,19 @@ public:
 
     void adjustHeapAll();
 
-    TaskParameter* parameter;  // _2C
-    BitFlag32 internalFlag;    // _30
-    ListNode taskListNode;     // _34
-    HeapArray heapArray;       // _44
-    TaskMgr* taskMgr;          // _5C
-    State state;               // _60
-    Tag tag;                   // _64
-    TaskClassID classID;       // _68
+    TaskParameter* parameter;               // _2C
+    BitFlag32 internalFlag;                 // _30
+    TListNode<TaskBase*> taskListNode;      // _34
+    HeapArray heapArray;                    // _44
+    TaskMgr* taskMgr;                       // _5C
+    State state;                            // _60
+    Tag tag;                                // _64
+    TaskClassID classID;                    // _68
 };
 
-class CalculateTask : public TaskBase {
+static_assert(sizeof(TaskBase) == 0x74, "sead::TaskBase size mismatch");
+
+class CalculateTask : public TaskBase { // Size: 0xC8
     SEAD_RTTI_OVERRIDE(CalculateTask, TaskBase)
 
 public:
@@ -143,6 +145,8 @@ public:
 
     MethodTreeNode calcNode;
 };
+
+static_assert(sizeof(CalculateTask) == 0xC8, "sead::CalculateTask size mismatch");
 
 }
 

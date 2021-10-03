@@ -151,6 +151,9 @@ SECTIONS {
 	create__8ActorMgrFR14ActorBuildInfoUi = 0x2009a58;
 	findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP5Actor = 0x2009b6c;
 
+/* AreaTask */
+	sInstance__8AreaTask = 0x101d1598;
+
 /* Animation */
 	setRepeat__9AnimationFb = 0x24deed4;
 	reset__9AnimationFv = 0x24deeac;
@@ -168,6 +171,11 @@ SECTIONS {
 /* AudioFx */
 	getReverbHiParam__7AudioFxFv = 0x29b2fd8;
 	getDelayParam__7AudioFxFv = 0x29b2fe0;
+
+/* BasicSoundActor */
+	GlobalBasicSoundActorA__15BasicSoundActor = 0x101c63cc;
+	GlobalBasicSoundActorB__15BasicSoundActor = 0x101c63d0;
+	playSound__15BasicSoundActorFPCcP13Vec2__tm__2_fUi = 0x29bed48;
 
 /* ColliderBase */
 	__ct__Q2_12ColliderBase4NodeFv = 0x21a1acc;
@@ -196,6 +204,7 @@ SECTIONS {
 /* CourseSelectTask */
 	sInstance__16CourseSelectTask = 0x101cc96c;
 	drawLayer3D__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo = 0x22676a4;
+	construct__16CourseSelectTaskSFRCQ2_4sead16TaskConstructArg = 0x202b870;
 
 /* CSPlayerMgr */
 	sInstance__11CSPlayerMgr = 0x101cc30c;
@@ -736,4 +745,6 @@ SECTIONS {
 	SFXReverbPlyJump_1 = 0x101e7d20;
 	nullterminator = 0x1018A56D;
 	moveFloatTo__FRffT2 = 0x2027984;
+	sfxArray = 0x1018393c;
+	mapPositionToScreen__FR13Vec2__tm__2_fRC13Vec2__tm__2_f = 0x2029368;
 }

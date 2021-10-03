@@ -11,7 +11,7 @@ extern const char** sfxArray[1040];
 inline void playSound(const char* label, const Vec2f& position) {
     Vec2f screenPos;
     mapPositionToScreen(screenPos, position);
-    BasicSoundActor::instance()->playSound(label, &screenPos, 0);
+    BasicSoundActor::GlobalBasicSoundActorB->playSound(label, &screenPos, 0);
 }
 
 /*
