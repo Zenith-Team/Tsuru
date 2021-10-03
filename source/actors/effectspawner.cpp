@@ -2,6 +2,7 @@
 #include <game/profile/profileid.h>
 #include <game/eventmgr.h>
 #include <game/effect/effect.h>
+#include <game/sound.h>
 #include <log.h>
 
 class EffectSpawner : public StageActor {
@@ -15,6 +16,8 @@ public:
 
     u32 onCreate() override;
     u32 onExecute() override;
+
+    bool played;
 };
 
 const Profile EffectSpawnerProfile(&EffectSpawner::build, ProfileID::EffectSpawner, "EffectSpawner", nullptr, 0);
@@ -35,10 +38,40 @@ u32 EffectSpawner::onCreate() {
 }
 
 u32 EffectSpawner::onExecute() {
-    if (EventMgr::instance()->isActive(this->eventID2-1)) {
-        LOG("fx %x", this->settings1);
-        Vec3f effectPos(this->position.x, this->position.y, 4500.0f);
-        Effect::spawn(this->settings1, &effectPos);
+    if (EventMgr::instance()->isActive(this->eventID2-1) && !this->played) {
+        this->played = true;
+        
+        switch (this->initialStateFlag) {
+            case 0: { // Logging mode
+                LOG("Particle effect: %x", this->settings1);
+                LOG("Sound effect: %s", *sfxArray[this->settings2]);
+
+                break;
+            }
+
+            case 1: { // Particle effect mode
+                Vec3f effectPos(this->position.x, this->position.y, 4500.0f);
+                Effect::spawn(this->settings1, &effectPos);
+            
+                break;
+            }
+
+            case 2: { // Sound effect mode
+                playSound(*sfxArray[this->settings2], Vec2f(this->position.x, this->position.y));
+            
+                break;
+            }
+
+            case 3: { // Hybrid mode
+                Vec3f effectPos(this->position.x, this->position.y, 4500.0f);
+                Effect::spawn(this->settings1, &effectPos);
+
+                playSound(*sfxArray[this->settings2], Vec2f(this->position.x, this->position.y));
+            
+                break;
+            }
+        }
+
         return 2;
     }
 
