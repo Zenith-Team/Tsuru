@@ -20,7 +20,7 @@ public:
     bool played;
 };
 
-const Profile EffectSpawnerProfile(&EffectSpawner::build, ProfileID::EffectSpawner, "EffectSpawner", nullptr, 0);
+const Profile EffectSpawnerProfile(&EffectSpawner::build, ProfileID::EffectSpawner);
 
 EffectSpawner::EffectSpawner(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)

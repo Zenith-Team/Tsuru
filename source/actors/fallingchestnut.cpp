@@ -35,7 +35,7 @@ CREATE_STATE(FallingChestnut, Idle);
 CREATE_STATE(FallingChestnut, Falling);
 CREATE_STATE(FallingChestnut, OnGround);
 
-const Profile FallingChestnutProfile(&FallingChestnut::build, ProfileID::FallingChestnut, "FallingChestnut", nullptr, 0);
+const Profile FallingChestnutProfile(&FallingChestnut::build, ProfileID::FallingChestnut);
 PROFILE_RESOURCES(ProfileID::FallingChestnut, "iga_kuribo");
 
 const HitboxCollider::Info FallingChestnut::collisionInfo = {

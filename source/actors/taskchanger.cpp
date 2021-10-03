@@ -17,7 +17,7 @@ public:
     u32 onCreate() override;
 };
 
-const Profile TaskChangerProfile(&TaskChanger::build, ProfileID::TaskChanger, "TaskChanger", nullptr, 0);
+const Profile TaskChangerProfile(&TaskChanger::build, ProfileID::TaskChanger);
 
 TaskChanger::TaskChanger(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)

@@ -23,7 +23,7 @@ public:
     ModelWrapper* model;
 };
 
-const Profile StarCoinShardProfile(&StarCoinShard::build, ProfileID::StarCoinShard, "StarCoinShard", nullptr, 0);
+const Profile StarCoinShardProfile(&StarCoinShard::build, ProfileID::StarCoinShard);
 
 const HitboxCollider::Info StarCoinShard::sCollisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &StarCoinShard::collisionCallback
