@@ -66,8 +66,8 @@ const HitboxCollider::Info AngrySun::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::HitboxShape_Circle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback
 };
 
-const Profile AngrySunProfile(&AngrySun::build, ProfileID::AngrySun, "AngrySun");
-const Profile AngryMoonProfile(&AngrySun::build, ProfileID::AngryMoon, "AngryMoon");
+const Profile AngrySunProfile(&AngrySun::build, ProfileID::AngrySun);
+const Profile AngryMoonProfile(&AngrySun::build, ProfileID::AngryMoon);
 
 PROFILE_RESOURCES(ProfileID::AngrySun, "star_coin");
 PROFILE_RESOURCES(ProfileID::AngryMoon, "star_coin");

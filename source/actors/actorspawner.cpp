@@ -20,7 +20,7 @@ public:
     bool spawned;
 };
 
-const Profile ActorSpawnerProfile(&ActorSpawner::build, ProfileID::ActorSpawner, "ActorSpawner", nullptr, 0);
+const Profile ActorSpawnerProfile(&ActorSpawner::build, ProfileID::ActorSpawner);
 
 ActorSpawner::ActorSpawner(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
