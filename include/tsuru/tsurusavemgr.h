@@ -13,7 +13,6 @@ public:
             , invincibilityEnabled(false)
             , collisionViewerEnabled(false)
             , instantRespawnEnabled(false)
-            , actorLoggingEnabled(false)
         { }
 
     public:
@@ -26,7 +25,6 @@ public:
         bool invincibilityEnabled;          // _7
         bool collisionViewerEnabled;        // _8
         bool instantRespawnEnabled;         // _9
-        bool actorLoggingEnabled;           // _10
     };
 
 public:
