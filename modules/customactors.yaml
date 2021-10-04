@@ -17,6 +17,7 @@ Files:
   - source/actors/timeclock.cpp
   - source/actors/effectspawner.cpp
   - source/actors/angrysun.cpp
+  - source/actors/rainbowlight.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:
