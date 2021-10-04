@@ -191,7 +191,8 @@ void AngrySun::executeState_Follow() {
     }
 
     this->position.x += this->speed.x;
-    
+    this->rotation.z = fixDeg(this->speed.x * 2);
+
     // Handle state switching
 
     this->timer++;
