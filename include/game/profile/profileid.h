@@ -21,6 +21,7 @@ enum ProfileIDType {
     EffectSpawner,
     AngrySun,
     AngryMoon,
+    RainbowLight,
 
     Num
 };
