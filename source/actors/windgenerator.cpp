@@ -13,7 +13,7 @@ public:
     u32 onExecute() override;
 };
 
-const Profile FixedWindGeneratorProfile(&FixedWindGenerator::build, 793, "FixedWindGenerator", nullptr, 0);
+const Profile FixedWindGeneratorProfile(&FixedWindGenerator::build, 793);
 
 const u32 affectedActors[] = {
     467, 469, 512, 515, 381, 676, 517, 505, 447, 448, 449

@@ -28,7 +28,7 @@ public:
     static const HitboxCollider::Info collisionInfo;
 };
 
-const Profile TimeClockProfile(&TimeClock::build, ProfileID::TimeClock, "TimeClock", nullptr, 0);
+const Profile TimeClockProfile(&TimeClock::build, ProfileID::TimeClock);
 
 const HitboxCollider::Info TimeClock::collisionInfo = {
     Vec2f(0.0f, -3.0f), Vec2f(12.0f, 15.0f), HitboxCollider::HitboxShape_Rectangle, 0, 0, 0x824F, 0x20208, 0, &TimeClock::collisionCallback

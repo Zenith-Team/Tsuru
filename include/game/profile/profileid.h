@@ -5,6 +5,8 @@ namespace ProfileID {
 enum ProfileIDType {
     NumOriginal = 913,
 
+    // Start of custom entries
+
     ActorSpawner = NumOriginal,
     ParaBones,
     CustomDoor,
@@ -17,6 +19,9 @@ enum ProfileIDType {
     Cataquack,
     TimeClock,
     EffectSpawner,
+    AngrySun,
+    AngryMoon,
+    RainbowLight,
 
     Num
 };

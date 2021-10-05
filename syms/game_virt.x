@@ -151,6 +151,9 @@ SECTIONS {
 	create__8ActorMgrFR14ActorBuildInfoUi = 0x2009a58;
 	findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP5Actor = 0x2009b6c;
 
+/* AreaTask */
+	sInstance__8AreaTask = 0x101d1598;
+
 /* Animation */
 	setRepeat__9AnimationFb = 0x24deed4;
 	reset__9AnimationFv = 0x24deeac;
@@ -168,6 +171,11 @@ SECTIONS {
 /* AudioFx */
 	getReverbHiParam__7AudioFxFv = 0x29b2fd8;
 	getDelayParam__7AudioFxFv = 0x29b2fe0;
+
+/* BasicSoundActor */
+	GlobalBasicSoundActorA__15BasicSoundActor = 0x101c63cc;
+	GlobalBasicSoundActorB__15BasicSoundActor = 0x101c63d0;
+	playSound__15BasicSoundActorFPCcP13Vec2__tm__2_fUi = 0x29bed48;
 
 /* ColliderBase */
 	__ct__Q2_12ColliderBase4NodeFv = 0x21a1acc;
@@ -196,6 +204,7 @@ SECTIONS {
 /* CourseSelectTask */
 	sInstance__16CourseSelectTask = 0x101cc96c;
 	drawLayer3D__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo = 0x22676a4;
+	construct__16CourseSelectTaskSFRCQ2_4sead16TaskConstructArg = 0x202b870;
 
 /* CSPlayerMgr */
 	sInstance__11CSPlayerMgr = 0x101cc30c;
@@ -438,6 +447,9 @@ SECTIONS {
 	move__5EnemyFR13Vec2__tm__2_f = 0x232a67c;
 	getRect__5EnemyFR4Rect = 0x232a6a8;
 
+/* EnemyFreezeMgr */
+	setFlags__14EnemyFreezeMgrFRCQ2_14EnemyFreezeMgr5Flags = 0x237cb94;
+
 /* ErrorViewerTask */
 	sInstance__15ErrorViewerTask = 0x101d1904;
 
@@ -461,6 +473,18 @@ SECTIONS {
 /* LevelTimer */
 	sInstance__10LevelTimer = 0x101d15f4;
 	addTime__10LevelTimerFi = 0x24c14c0;
+
+/* LightMask */
+	__ct__9LightMaskFv = 0x2815c9c;
+	init__9LightMaskFPQ2_4sead4HeapUi = 0x2815d20;
+	update__9LightMaskFv = 0x2815dcc;
+	draw__9LightMaskFv = 0x28160c8;
+
+/* LightSource */
+	__ct__11LightSourceFv = 0x24e24bc;
+	update__11LightSourceFP13Vec3__tm__2_fPfN22PQ2_4sead7Color4fN22 = 0x24e25f4;
+	__dt__11LightSourceFv = 0x24e2580;
+	update__11LightSourceFUiP13Vec3__tm__2_fPUiPfT4PQ2_4sead7Color4fN24 = 0x24e26bc;
 
 /* ModelWrapper */
 	__ct__12ModelWrapperFP5ModelUiN42 = 0x24d4798;
@@ -736,4 +760,6 @@ SECTIONS {
 	SFXReverbPlyJump_1 = 0x101e7d20;
 	nullterminator = 0x1018A56D;
 	moveFloatTo__FRffT2 = 0x2027984;
+	sfxArray = 0x1018393c;
+	mapPositionToScreen__FR13Vec2__tm__2_fRC13Vec2__tm__2_f = 0x2029368;
 }

@@ -44,7 +44,7 @@ CREATE_STATE(ParaBones, IdleRaised);
 CREATE_STATE(ParaBones, Die);
 
 const ActorInfo ParaBonesActorInfo = { Vec2i(8, -16), Vec2i(0, 16), Vec2i(8, 16), 0, 0, 0, 0, 0 };
-const Profile ParaBonesProfile(&ParaBones::build, ProfileID::ParaBones, "ParaBones", &ParaBonesActorInfo, 0);
+const Profile ParaBonesProfile(&ParaBones::build, ProfileID::ParaBones, "ParaBones", &ParaBonesActorInfo);
 PROFILE_RESOURCES(ProfileID::ParaBones, "nokonokoB");
 
 const HitboxCollider::Info ParaBones::sCollisionInfo = {

@@ -24,10 +24,11 @@ struct Color4f {
 };
 
 static const Color4f colorRed(1.0f, 0.0f, 0.0f, 1.0f);
-static const Color4f colorGreen(0.0f, 1.0f, 0.0f, 1.0f);
-static const Color4f colorBlue(0.0f, 0.0f, 1.0f, 1.0f);
-static const Color4f colorCyan(0.0f, 1.0f, 1.0f, 1.0f);
+static const Color4f colorOrange(1.0f, 0.647f, 0.0f, 1.0f);
 static const Color4f colorYellow(1.0f, 1.0f, 0.0f, 1.0f);
+static const Color4f colorGreen(0.0f, 1.0f, 0.0f, 1.0f);
+static const Color4f colorCyan(0.0f, 1.0f, 1.0f, 1.0f);
+static const Color4f colorBlue(0.0f, 0.0f, 1.0f, 1.0f);
 static const Color4f colorMagenta(1.0f, 0.0f, 1.0f, 1.0f);
 static const Color4f colorBlack(0.0f, 0.0f, 0.0f, 1.0f);
 static const Color4f colorWhite(1.0f, 1.0f, 1.0f, 1.0f);

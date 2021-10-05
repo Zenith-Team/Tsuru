@@ -17,11 +17,12 @@ Please note that a rewrite is currently in progress, so not everything listed he
 All custom sprites which were not written by me have credits in customsprites.yaml. Also listed there are the sprite/profile IDs of each custom sprite.
 
 * Actor Spawner
-* Angry Sun *
+* Angry Sun
 * Beep Block
 * Bomb Bro *
+* Cataquack
 * Death Foo *
-* Effect Spawner *
+* Effect Spawner
 * Elemental Thwomp *
 * Example World Map Actor
 * Fake Actor
@@ -33,12 +34,14 @@ All custom sprites which were not written by me have credits in customsprites.ya
 * P-Acorn
 * Para-Bones
 * Poison Mushroom *
+* Rainbow Light
 * Star Coin Shard
-* Time Clock *
+* Task Changer
+* Time Clock
 * Triple Block *
 * Water Waves *
 * Water Waves Platform *
-* Wind generator
+* Wind Generator
 
 ## Patches:
 Miscellaneous hacks/patches are listed here. Most of the game-changing patches are toggleable in the config file located in /include/
@@ -57,6 +60,7 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 * Infinite time
 * Instant respawn
 * NoClip
+* Projection settings for World Map and Level
 * Restored background offset settings functionality *
 * Restored many of sead::PrimitiveRendererCafe's deleted functions
 * Restored sound effect reverb settings
