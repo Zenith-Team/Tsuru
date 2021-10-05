@@ -33,7 +33,7 @@ inline f32 pow2f(f32 x) {
     return x * x;
 }
 
-inline f32 fabs2f(f32 x) {
+inline f32 fabs(f32 x) {
     return (x < 0.0f) ? -x : x;
 }
 
@@ -61,7 +61,7 @@ inline u32 fixDeg(f32 val) {
     return val * 11930465.0f;
 }
 
-inline f32 unfixDef(u32 val) {
+inline f32 unfixDeg(u32 val) {
     return (val / 11930465.0f);
 }
 
