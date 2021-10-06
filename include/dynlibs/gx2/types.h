@@ -756,7 +756,7 @@ typedef struct _GX2ColorF32 {
 } GX2ColorF32;
 
 typedef void* (* GX2RAllocFunction) (u32, u32, u32);
-typedef void (* GX2RFreeFunction) (u32, void* );
+typedef void (* GX2RFreeFunction) (u32, void*);
 
 #ifdef __cplusplus
 }
