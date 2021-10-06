@@ -102,7 +102,7 @@ extern void (*GX2SetDRCGamma)(f32 val);
 extern s32  (*GX2GetSystemTVScanMode)(void);
 extern s32  (*GX2GetSystemDRCScanMode)(void);
 extern void (*GX2RSetAllocator)(void* (*allocFunc)(u32, u32, u32), void (*freeFunc)(u32, void*));
-extern void (*GX2CopySurface)(GX2Surface* srcSurface, u32 srcMip, u32 srcSlice, GX2Surface* dstSurface, u32 dstMip, u32 dstSlice );
+extern void (*GX2CopySurface)(GX2Surface* srcSurface, u32 srcMip, u32 srcSlice, GX2Surface* dstSurface, u32 dstMip, u32 dstSlice);
 extern void (*GX2ClearBuffersEx)(GX2ColorBuffer* colorBuffer, GX2DepthBuffer* depthBuffer, f32 r, f32 g, f32 b, f32 a, f32 depthValue, u8 stencilValue, s32 clearFlags);
 extern s32  (*GX2GetLastFrame)(s32 target, GX2Texture* texture);
 extern void (*GX2BeginDisplayListEx)(void* displayList, u32 size, s32 unkwn);
