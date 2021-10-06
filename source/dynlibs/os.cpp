@@ -221,7 +221,7 @@ EXPORT_DECL(s32, IOS_Close, s32 fd);
 void _os_find_export(u32 handle, const char* funcName, void* funcPointer) {
     OSDynLoad_FindExport(handle, 0, funcName, funcPointer);
 
-    if(!*(u32*)funcPointer) {
+    if (!*(u32*)funcPointer) {
         /*
          * This is effectively OSFatal("Function %s is NULL", funcName),
          * but we can't rely on any library functions like snprintf or
