@@ -40,7 +40,7 @@ u32 EffectSpawner::onCreate() {
 u32 EffectSpawner::onExecute() {
     if (EventMgr::instance()->isActive(this->eventID2-1) && !this->played) {
         this->played = true;
-        
+
         switch (this->initialStateFlag) {
             case 0: { // Logging mode
                 LOG("Particle effect: %x", this->settings1);
@@ -52,13 +52,13 @@ u32 EffectSpawner::onExecute() {
             case 1: { // Particle effect mode
                 Vec3f effectPos(this->position.x, this->position.y, 4500.0f);
                 Effect::spawn(this->settings1, &effectPos);
-            
+
                 break;
             }
 
             case 2: { // Sound effect mode
                 playSound(*sfxArray[this->settings2], Vec2f(this->position.x, this->position.y));
-            
+
                 break;
             }
 
@@ -67,7 +67,7 @@ u32 EffectSpawner::onExecute() {
                 Effect::spawn(this->settings1, &effectPos);
 
                 playSound(*sfxArray[this->settings2], Vec2f(this->position.x, this->position.y));
-            
+
                 break;
             }
         }

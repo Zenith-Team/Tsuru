@@ -44,7 +44,7 @@ public:
             f32 transparency;
             Vec2f texCoords;
         };
-    
+
     public:
         TileMaskList();
         virtual ~TileMaskList();

@@ -26,7 +26,7 @@ public:
     void updateModel();
 
     ModelWrapper* model;
-    
+
     LightSource lightSource;
     sead::Color4f lightColor;
     LightMask lightMask;
@@ -303,7 +303,7 @@ void AngrySun::executeState_Spit() {
     if (this->timer == 32) {
         Vec2f target;
         this->distanceToPlayer(target);
-        
+
         f32 angle = atan2f(target.y, target.x);
 
         StageActor* fireball;

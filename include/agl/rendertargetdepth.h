@@ -5,7 +5,7 @@
 namespace agl {
 
 class RenderTargetDepth { // Size: 0x160
-public: 
+public:
     RenderTargetDepth();
 
     void initRegs_() const;
