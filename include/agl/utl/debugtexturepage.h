@@ -5,7 +5,7 @@
 namespace agl { namespace utl {
 
 class DebugTexturePage : public sead::IDisposer { // Size: 0x1DC
-public: 
+public:
     u8 _0[0x1DC - 0x10];   // TODO: I'll do this later
 };
 

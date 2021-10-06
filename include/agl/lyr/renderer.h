@@ -18,7 +18,7 @@ public:
         T* layer = new T();
 
         this->initLayer_(layer, layerID, layerName, displayType, heap);
-        
+
         return layer;
     }
 

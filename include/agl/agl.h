@@ -40,7 +40,7 @@
 #include <agl/utl/parameterbase.h>
 
 namespace agl {
-    
+
 void Initialize(InitArg& arg);
 void ModifyEndianU32(bool, void*, u32);
 
