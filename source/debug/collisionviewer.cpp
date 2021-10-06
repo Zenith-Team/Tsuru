@@ -141,7 +141,7 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                 }
             }
 
-            else if(sead::IsDerivedFrom<ShapedCollider, ColliderBase>(colliderBase)) {
+            else if (sead::IsDerivedFrom<ShapedCollider, ColliderBase>(colliderBase)) {
                 ShapedCollider* collider = static_cast<ShapedCollider*>(colliderBase);
                 if (collider->points.size < 2)
                     continue;

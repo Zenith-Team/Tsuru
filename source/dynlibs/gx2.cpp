@@ -111,7 +111,7 @@ EXPORT_DECL(void, GX2RSetAttributeBuffer, GX2RBuffer* buffer, u32 index, u32 str
 EXPORT_DECL(void, GX2ClearBuffersEx, GX2ColorBuffer* colorBuffer, GX2DepthBuffer* depthBuffer, f32 r, f32 g, f32 b, f32 a, f32 depthValue, u8 stencilValue, s32 clearFlags);
 
 void InitAcquireGX2(void) {
-    if(coreinitHandle == 0)
+    if (coreinitHandle == 0)
         InitAcquireOS();
 
     OSDynLoad_Acquire("gx2.rpl", &gx2Handle);
