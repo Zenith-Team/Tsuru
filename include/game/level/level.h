@@ -12,7 +12,7 @@ public:
             u32 eventBits32;                // _0
             u32 eventBits64;                // _4
             u16 wrapValue;                  // _8
-            u16 timelimit;                  // _A
+            u16 timeLimit;                  // _A
             u8 _C;                          // _C
             u8 _D;                          // _D
             u8 _E;                          // _E
@@ -21,8 +21,8 @@ public:
             u8 _11;                         // _11
             u8 _12;                         // _12
             u8 startEntranceCoinBoost;      // _13
-            u16 timelimit2;                 // _14
-            u16 timelimit3;                 // _16
+            u16 timeLimit2;                 // _14
+            u16 timeLimit3;                 // _16
         };
 
         struct Sprite {
