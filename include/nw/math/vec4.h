@@ -7,7 +7,7 @@ namespace nw { namespace math {
 
 struct VEC4 {
     f32 MagnitudeSquare() const {
-        return x*x + y*y + z*z + w*w;
+        return x * x + y * y + z * z + w * w;
     }
 
     f32 Magnitude() const {

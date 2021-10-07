@@ -64,7 +64,6 @@ void PAcorn::playBlockReleaseUpAnim() {
     this->model->playSklAnim("out", 1);
 }
 
-
 void PAcorn::playBlockReleaseDownAnim() {
     this->model->playSklAnim("out3", 3);
 }

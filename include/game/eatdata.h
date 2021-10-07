@@ -2,7 +2,7 @@
 
 #include <types.h>
 
-class YoshiEatData {  // size: 0x20
+class YoshiEatData {  // Size: 0x20
 public:
     YoshiEatData(u32& id);
 
@@ -26,7 +26,7 @@ public:
     u32 _1C;        // 1C
 };
 
-class BabyYoshiEatData {  // size: 0x20
+class BabyYoshiEatData {  // Size: 0x20
 public:
     BabyYoshiEatData(u32& id);
 

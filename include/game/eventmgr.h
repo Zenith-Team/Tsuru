@@ -2,7 +2,7 @@
 
 #include <sead.h>
 
-class EventMgr { // size: 0x940
+class EventMgr { // Size: 0x940
     SEAD_SINGLETON_DISPOSER(EventMgr)
 
 public:

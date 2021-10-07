@@ -141,7 +141,6 @@ void ParaBones::executeState_Lowering() {
 
 void ParaBones::endState_Lowering() { }
 
-
 // IdleLowered state
 
 void ParaBones::beginState_IdleLowered() {
@@ -158,7 +157,6 @@ void ParaBones::executeState_IdleLowered() {
 }
 
 void ParaBones::endState_IdleLowered() { }
-
 
 // Rising state
 
@@ -180,7 +178,6 @@ void ParaBones::executeState_Rising() {
 
 void ParaBones::endState_Rising() { }
 
-
 // IdleRaised state
 
 void ParaBones::beginState_IdleRaised() {
@@ -197,7 +194,6 @@ void ParaBones::executeState_IdleRaised() {
 }
 
 void ParaBones::endState_IdleRaised() { }
-
 
 // Die state
 

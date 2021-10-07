@@ -41,7 +41,6 @@ extern "C" {
 #define MEM_BASE                    (0x00800000)
 #endif
 
-
 #define OS_FIRMWARE                 (*(volatile u32*)(MEM_BASE + 0x1400 + 0x04))
 
 #endif
@@ -84,7 +83,7 @@ typedef void* (*DisasmGetSym)(u32 addr, u8* symbolName, u32 nameBufSize);
 #define MILLISECS_TO_TICKS(msec)        (SECS_TO_TICKS(msec) / 1000)
 #define MICROSECS_TO_TICKS(usec)        (SECS_TO_TICKS(usec) / 1000000)
 
-//To avoid conflicts with the unistd.h
+// To avoid conflicts with the unistd.h
 #define os_usleep(usecs)                OSSleepTicks(MICROSECS_TO_TICKS(usecs))
 #define os_sleep(secs)                  OSSleepTicks(SECS_TO_TICKS(secs))
 
@@ -93,7 +92,6 @@ typedef void* (*DisasmGetSym)(u32 addr, u8* symbolName, u32 nameBufSize);
 
 #define EXPORT_DECL(res, func, ...)     res (* func)(__VA_ARGS__) = 0;
 #define EXPORT_VAR(type, var)           type var;
-
 
 #define EXPORT_FUNC_WRITE(func, val)    *(u32*)(((u32)&func) + 0) = (u32)val
 

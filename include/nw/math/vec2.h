@@ -11,7 +11,7 @@ struct VEC2 {
     }
 
     f32 MagnitudeSquare() const {
-        return x*x + y*y;
+        return x * x + y * y;
     }
 
     f32 Magnitude() const {
@@ -26,8 +26,6 @@ struct VEC2 {
 
     f32 x;
     f32 y;
-
-
 };
 
 inline VEC2& operator+=(VEC2& lhs, const VEC2& rhs) { lhs.x += rhs.x; lhs.y += rhs.y; return lhs; }

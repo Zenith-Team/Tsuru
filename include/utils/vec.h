@@ -3,7 +3,7 @@
 #include <types.h>
 
 template <typename T>
-struct Vec2 { // size: 0x8
+struct Vec2 { // Size: 0x8
     T x;  // _0
     T y;  // _4
 
@@ -51,7 +51,7 @@ typedef Vec2<u32> Vec2u;
 typedef Vec2<s32> Vec2i;
 
 template <typename T>
-struct Vec3 { // size: 0xC
+struct Vec3 { // Size: 0xC
     T x;  // _0
     T y;  // _4
     T z;  // _8

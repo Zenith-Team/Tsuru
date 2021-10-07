@@ -27,7 +27,7 @@ private:
 };
 
 template <class TOwner>
-class State : public StateBase { //size: 0x20
+class State : public StateBase { // Size: 0x20
     typedef void (TOwner::*PTMF)();
 
 public:

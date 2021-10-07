@@ -38,5 +38,5 @@ public:
     ActorBuffer actors;
     u32 currentID;
     bool currentWasNotDeferred;
-    //...
+    // ...
 };

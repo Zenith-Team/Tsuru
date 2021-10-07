@@ -28,7 +28,6 @@ public:
     void* shaderParam;            // 3C
 };
 
-
 class EffectWrapper : public sead::IDisposer, public Effect, public sead::TListNode<EffectWrapper*> {
 public:
     EffectWrapper();

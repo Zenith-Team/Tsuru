@@ -40,7 +40,7 @@ extern void (*GX2Init)(u32* initAttribs);
 extern void (*GX2Shutdown)(void);
 extern void (*GX2Flush)(void);
 extern void (*GX2ResetGPU)(u32);
-extern s32  (*GX2GetMainCoreId)(void) ;
+extern s32  (*GX2GetMainCoreId)(void);
 extern s32  (*GX2DrawDone)(void);
 extern void (*GX2ClearColor)(GX2ColorBuffer* colorBuffer, f32 r, f32 g, f32 b, f32 a);
 extern void (*GX2SetViewport)(f32 x, f32 y, f32 w, f32 h, f32 nearZ, f32 farZ);
@@ -156,14 +156,14 @@ static inline void GX2InitColorBuffer(GX2ColorBuffer* colorBuffer, s32 dimension
     colorBuffer->surface.align = 0;
     colorBuffer->surface.pitch = 0;
     u32 i;
-    for(i = 0; i < 13; i++)
+    for (i = 0; i < 13; i++)
         colorBuffer->surface.mipOffset[i] = 0;
     colorBuffer->viewMip = 0;
     colorBuffer->viewFirstSlice = 0;
     colorBuffer->viewSlicesCount = depth;
     colorBuffer->auxData = NULL;
     colorBuffer->auxSize = 0;
-    for(i = 0; i < 5; i++)
+    for (i = 0; i < 5; i++)
         colorBuffer->regs[i] = 0;
 
     GX2CalcSurfaceSizeAndAlignment(&colorBuffer->surface);
@@ -177,7 +177,7 @@ static inline void GX2InitAttribStream(GX2AttribStream* attr, u32 location, u32 
     attr->format = format;
     attr->indexType = 0;
     attr->divisor = 0;
-    attr->destinationSelector = attributeDestCompSelector[format & 0xff];
+    attr->destinationSelector = attributeDestCompSelector[format & 0xFF];
     attr->endianSwap  = GX2_ENDIANSWAP_DEFAULT;
 }
 
@@ -199,14 +199,14 @@ static inline void GX2InitTexture(GX2Texture* tex, u32 width, u32 height, u32 de
     tex->surface.align = 0;
     tex->surface.pitch = 0;
     u32 i;
-    for(i = 0; i < 13; i++)
+    for (i = 0; i < 13; i++)
         tex->surface.mipOffset[i] = 0;
     tex->viewFirstMip = 0;
     tex->viewMipsCount = numMips;
     tex->viewFirstSlice = 0;
     tex->viewSlicesCount = depth;
-    tex->componentSelector = textureCompSelector[format & 0x3f];
-    for(i = 0; i < 5; i++)
+    tex->componentSelector = textureCompSelector[format & 0x3F];
+    for (i = 0; i < 5; i++)
         tex->regs[i] = 0;
 
     GX2CalcSurfaceSizeAndAlignment(&tex->surface);

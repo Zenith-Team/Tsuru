@@ -18,5 +18,5 @@ public:
 	f32 cameraTop;          // 7C
 	f32 cameraCenterY;      // 80
 	f32 cameraBottom;       // 84
-    //...
+    // ...
 };

@@ -2,7 +2,7 @@
 
 #include <types.h>
 
-struct Rect { // size: 0x10
+struct Rect { // Size: 0x10
     inline static bool RectsOverlap(Rect& thisRect, Rect& otherRect) {
         if (thisRect.left < otherRect.right && thisRect.right > otherRect.left && thisRect.bottom < otherRect.top && thisRect.top > otherRect.bottom)
             return true;

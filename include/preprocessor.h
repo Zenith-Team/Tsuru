@@ -11,7 +11,6 @@
 // Stringizes the value of x
 #define PP_STR_VAL(x) PP_STR(x)
 
-
 #define TOKENPASTE(x, y) \
     x ## y
 
@@ -36,14 +35,12 @@
     14, 13, 12, 11, 10,  9,  8,  7,  6,  5, \
      4,  3,  2,  1,  0
 
-
 // Returns number of arguments (range: 0-64)
 #define PP_NARG(...) \
     PP_NARG_(0, ## __VA_ARGS__, PP_RSEQ)
 
 #define PP_NARG_(...) \
     PP_ARG_N(__VA_ARGS__)
-
 
 // foreach for specific argument counts
 #define PP_FOR_EACH_0(M, X, ...)

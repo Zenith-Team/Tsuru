@@ -161,7 +161,7 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
             }
 
             else {
-                //// LOG("Found unknown collider for actor with id: 0x%x, and profile id: 0x%x\n", colliderBase->owner->ID, colliderBase->owner->profile->ID);
+                // LOG("Found unknown collider for actor with id: 0x%x, and profile id: 0x%x\n", colliderBase->owner->ID, colliderBase->owner->profile->ID);
             }
 
             node = node->next;
@@ -231,7 +231,6 @@ void CourseSelectTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) 
 
             sead::PrimitiveRenderer::instance()->drawCube(actor->position + cshCollider->info.offset, cshCollider->info.size, sead::colorYellow);
         }
-
 
         for (u32 i = 0; i < CSHitboxColliderMgr::instance()->array2.ptrNum; i++) {
             CSHitboxCollider* cshCollider = static_cast<CSHitboxCollider*>(CSHitboxColliderMgr::instance()->array2.ptrs[i]);

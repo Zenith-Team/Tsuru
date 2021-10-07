@@ -95,7 +95,7 @@ struct MTX34 {
     union {
         f32  m[3][4];
         VEC4 v[3];
-        f32  a[3*4];
+        f32  a[3 * 4];
     };
 };
 

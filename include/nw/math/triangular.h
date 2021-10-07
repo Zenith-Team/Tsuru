@@ -12,7 +12,7 @@ struct SinCosSample {
     f32 cosDelta;
 };
 
-extern const SinCosSample globalSinCosTbl[0x100+1];
+extern const SinCosSample globalSinCosTbl[0x100 + 1];
 
 }
 
