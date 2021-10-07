@@ -13,7 +13,7 @@ struct VEC3 {
     }
 
     f32 MagnitudeSquare() const {
-        return x*x + y*y + z*z;
+        return x * x + y * y + z * z;
     }
 
     f32 Magnitude() const {

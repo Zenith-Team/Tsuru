@@ -277,7 +277,6 @@ extern "C" {
 //!-----------------------------------------------------------------------------------------------------------------------
 #define GX2_SAMPLER_TYPE_2D                             1
 
-
 //!-----------------------------------------------------------------------------------------------------------------------
 //! GX2 index formats
 //!-----------------------------------------------------------------------------------------------------------------------
@@ -313,16 +312,16 @@ extern "C" {
 #define GX2_SURFACE_FORMAT_TCD_R16_UNORM                0x00000005
 #define GX2_SURFACE_FORMAT_TC_R8_G8_UNORM               0x00000007
 #define GX2_SURFACE_FORMAT_TCS_R5_G6_B5_UNORM           0x00000008
-#define GX2_SURFACE_FORMAT_TC_R5_G5_B5_A1_UNORM         0x0000000a
-#define GX2_SURFACE_FORMAT_TC_R4_G4_B4_A4_UNORM         0x0000000b
-#define GX2_SURFACE_FORMAT_TC_A1_B5_G5_R5_UNORM         0x0000000c
-#define GX2_SURFACE_FORMAT_TC_R16_G16_UNORM             0x0000000f
+#define GX2_SURFACE_FORMAT_TC_R5_G5_B5_A1_UNORM         0x0000000A
+#define GX2_SURFACE_FORMAT_TC_R4_G4_B4_A4_UNORM         0x0000000B
+#define GX2_SURFACE_FORMAT_TC_A1_B5_G5_R5_UNORM         0x0000000C
+#define GX2_SURFACE_FORMAT_TC_R16_G16_UNORM             0x0000000F
 #define GX2_SURFACE_FORMAT_D_D24_S8_UNORM               0x00000011
 #define GX2_SURFACE_FORMAT_T_R24_UNORM_X8               0x00000011
 #define GX2_SURFACE_FORMAT_TCS_R10_G10_B10_A2_UNORM     0x00000019
-#define GX2_SURFACE_FORMAT_TCS_R8_G8_B8_A8_UNORM        0x0000001a
-#define GX2_SURFACE_FORMAT_TCS_A2_B10_G10_R10_UNORM     0x0000001b
-#define GX2_SURFACE_FORMAT_TC_R16_G16_B16_A16_UNORM     0x0000001f
+#define GX2_SURFACE_FORMAT_TCS_R8_G8_B8_A8_UNORM        0x0000001A
+#define GX2_SURFACE_FORMAT_TCS_A2_B10_G10_R10_UNORM     0x0000001B
+#define GX2_SURFACE_FORMAT_TC_R16_G16_B16_A16_UNORM     0x0000001F
 #define GX2_SURFACE_FORMAT_T_BC1_UNORM                  0x00000031
 #define GX2_SURFACE_FORMAT_T_BC2_UNORM                  0x00000032
 #define GX2_SURFACE_FORMAT_T_BC3_UNORM                  0x00000033
@@ -333,52 +332,52 @@ extern "C" {
 #define GX2_SURFACE_FORMAT_TC_R8_UINT                   0x00000101
 #define GX2_SURFACE_FORMAT_TC_R16_UINT                  0x00000105
 #define GX2_SURFACE_FORMAT_TC_R8_G8_UINT                0x00000107
-#define GX2_SURFACE_FORMAT_TC_R32_UINT                  0x0000010d
-#define GX2_SURFACE_FORMAT_TC_R16_G16_UINT              0x0000010f
+#define GX2_SURFACE_FORMAT_TC_R32_UINT                  0x0000010D
+#define GX2_SURFACE_FORMAT_TC_R16_G16_UINT              0x0000010F
 #define GX2_SURFACE_FORMAT_T_X24_G8_UINT                0x00000111
 #define GX2_SURFACE_FORMAT_TC_R10_G10_B10_A2_UINT       0x00000119
-#define GX2_SURFACE_FORMAT_TC_R8_G8_B8_A8_UINT          0x0000011a
-#define GX2_SURFACE_FORMAT_TC_A2_B10_G10_R10_UINT       0x0000011b
-#define GX2_SURFACE_FORMAT_T_X32_G8_UINT_X24            0x0000011c
-#define GX2_SURFACE_FORMAT_TC_R32_G32_UINT              0x0000011d
-#define GX2_SURFACE_FORMAT_TC_R16_G16_B16_A16_UINT      0x0000011f
+#define GX2_SURFACE_FORMAT_TC_R8_G8_B8_A8_UINT          0x0000011A
+#define GX2_SURFACE_FORMAT_TC_A2_B10_G10_R10_UINT       0x0000011B
+#define GX2_SURFACE_FORMAT_T_X32_G8_UINT_X24            0x0000011C
+#define GX2_SURFACE_FORMAT_TC_R32_G32_UINT              0x0000011D
+#define GX2_SURFACE_FORMAT_TC_R16_G16_B16_A16_UINT      0x0000011F
 #define GX2_SURFACE_FORMAT_TC_R32_G32_B32_A32_UINT      0x00000122
 
 #define GX2_SURFACE_FORMAT_TC_R8_SNORM                  0x00000201
 #define GX2_SURFACE_FORMAT_TC_R16_SNORM                 0x00000205
 #define GX2_SURFACE_FORMAT_TC_R8_G8_SNORM               0x00000207
-#define GX2_SURFACE_FORMAT_TC_R16_G16_SNORM             0x0000020f
+#define GX2_SURFACE_FORMAT_TC_R16_G16_SNORM             0x0000020F
 #define GX2_SURFACE_FORMAT_T_R10_G10_B10_A2_SNORM       0x00000219
 #define GX2_SURFACE_FORMAT_TC_R10_G10_B10_A2_SNORM      0x00000219
-#define GX2_SURFACE_FORMAT_TC_R8_G8_B8_A8_SNORM         0x0000021a
-#define GX2_SURFACE_FORMAT_TC_R16_G16_B16_A16_SNORM     0x0000021f
+#define GX2_SURFACE_FORMAT_TC_R8_G8_B8_A8_SNORM         0x0000021A
+#define GX2_SURFACE_FORMAT_TC_R16_G16_B16_A16_SNORM     0x0000021F
 #define GX2_SURFACE_FORMAT_T_BC4_SNORM                  0x00000234
 #define GX2_SURFACE_FORMAT_T_BC5_SNORM                  0x00000235
 
 #define GX2_SURFACE_FORMAT_TC_R8_SINT                   0x00000301
 #define GX2_SURFACE_FORMAT_TC_R16_SINT                  0x00000305
 #define GX2_SURFACE_FORMAT_TC_R8_G8_SINT                0x00000307
-#define GX2_SURFACE_FORMAT_TC_R32_SINT                  0x0000030d
-#define GX2_SURFACE_FORMAT_TC_R16_G16_SINT              0x0000030f
+#define GX2_SURFACE_FORMAT_TC_R32_SINT                  0x0000030D
+#define GX2_SURFACE_FORMAT_TC_R16_G16_SINT              0x0000030F
 #define GX2_SURFACE_FORMAT_TC_R10_G10_B10_A2_SINT       0x00000319
-#define GX2_SURFACE_FORMAT_TC_R8_G8_B8_A8_SINT          0x0000031a
-#define GX2_SURFACE_FORMAT_TC_R32_G32_SINT              0x0000031d
-#define GX2_SURFACE_FORMAT_TC_R16_G16_B16_A16_SINT      0x0000031f
+#define GX2_SURFACE_FORMAT_TC_R8_G8_B8_A8_SINT          0x0000031A
+#define GX2_SURFACE_FORMAT_TC_R32_G32_SINT              0x0000031D
+#define GX2_SURFACE_FORMAT_TC_R16_G16_B16_A16_SINT      0x0000031F
 #define GX2_SURFACE_FORMAT_TC_R32_G32_B32_A32_SINT      0x00000322
 
-#define GX2_SURFACE_FORMAT_TCS_R8_G8_B8_A8_SRGB         0x0000041a
+#define GX2_SURFACE_FORMAT_TCS_R8_G8_B8_A8_SRGB         0x0000041A
 #define GX2_SURFACE_FORMAT_T_BC1_SRGB                   0x00000431
 #define GX2_SURFACE_FORMAT_T_BC2_SRGB                   0x00000432
 #define GX2_SURFACE_FORMAT_T_BC3_SRGB                   0x00000433
 
 #define GX2_SURFACE_FORMAT_TC_R16_FLOAT                 0x00000806
-#define GX2_SURFACE_FORMAT_TCD_R32_FLOAT                0x0000080e
+#define GX2_SURFACE_FORMAT_TCD_R32_FLOAT                0x0000080E
 #define GX2_SURFACE_FORMAT_TC_R16_G16_FLOAT             0x00000810
 #define GX2_SURFACE_FORMAT_D_D24_S8_FLOAT               0x00000811
 #define GX2_SURFACE_FORMAT_TC_R11_G11_B10_FLOAT         0x00000816
-#define GX2_SURFACE_FORMAT_D_D32_FLOAT_S8_UINT_X24      0x0000081c
-#define GX2_SURFACE_FORMAT_T_R32_FLOAT_X8_X24           0x0000081c
-#define GX2_SURFACE_FORMAT_TC_R32_G32_FLOAT             0x0000081e
+#define GX2_SURFACE_FORMAT_D_D32_FLOAT_S8_UINT_X24      0x0000081C
+#define GX2_SURFACE_FORMAT_T_R32_FLOAT_X8_X24           0x0000081C
+#define GX2_SURFACE_FORMAT_TC_R32_G32_FLOAT             0x0000081E
 #define GX2_SURFACE_FORMAT_TC_R16_G16_B16_A16_FLOAT     0x00000820
 #define GX2_SURFACE_FORMAT_TC_R32_G32_B32_A32_FLOAT     0x00000823
 
@@ -543,7 +542,6 @@ extern "C" {
 #define GX2R_RESOURCE_GX2R_ALLOCATED                    1 << 29
 #define GX2R_RESOURCE_LOCKED                            1 << 30
 
-
 typedef struct _GX2RBuffer {
     u32 flags;
     u32 elemSize;
@@ -597,7 +595,6 @@ typedef struct _GX2DepthBuffer {
     u32 regs[7];
 } GX2DepthBuffer;
 
-
 typedef struct _GX2Texture {
     GX2Surface surface;
     u32 viewFirstMip;
@@ -607,7 +604,6 @@ typedef struct _GX2Texture {
     u32 componentSelector;
     u32 regs[5];
 } GX2Texture;
-
 
 typedef struct _GX2Sampler {
     u32 regs[3];
@@ -639,7 +635,6 @@ typedef struct _GX2AttribVar {
     u32 arrayCount;
     u32 location;
 } GX2AttribVar;
-
 
 typedef struct _GX2UniformBlock {
     const char* name;
@@ -704,7 +699,6 @@ typedef struct _GX2PixelShader {
     GX2SamplerVar* samplerVar;
     GX2RBuffer shaderProgramBuffer;
 } GX2PixelShader;
-
 
 typedef struct _GX2GeometryShader {
     u32 regs[19];

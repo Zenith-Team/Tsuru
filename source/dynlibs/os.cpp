@@ -159,7 +159,6 @@ EXPORT_DECL(s32, OSGetMemBound, s32 type, u32* startAddress, u32* size);
 EXPORT_DECL(void*, OSBlockMove, void* dst, const void* src, size_t n, u32 flush);
 EXPORT_DECL(void*, OSBlockSet, void* dst, u8 value, size_t n);
 
-
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //! MCP functions
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -192,7 +191,6 @@ EXPORT_DECL(s32, OSDynLoad_GetModuleName, s32 handle, char* nameBuffer, s32* nam
 EXPORT_DECL(s32, OSIsHomeButtonMenuEnabled, void);
 EXPORT_DECL(void, OSEnableHomeButtonMenu, s32);
 EXPORT_DECL(s32, OSSetScreenCapturePermissionEx, s32 tvEnabled, s32 drcEnabled);
-
 
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //! Energy Saver functions

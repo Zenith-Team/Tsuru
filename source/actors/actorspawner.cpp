@@ -49,7 +49,7 @@ u32 ActorSpawner::onCreate() {
 u32 ActorSpawner::onExecute() {
     Actor* child = (childList.begin() != childList.end()) ? childList.begin().ptr : nullptr;
 
-    if (EventMgr::instance()->isActive(eventID2-1)) {
+    if (EventMgr::instance()->isActive(eventID2 - 1)) {
         if (initialStateFlag == 2 && child) {
             StageActor* actor = sead::DynamicCast<StageActor, Actor>(child);
 

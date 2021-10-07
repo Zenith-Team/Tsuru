@@ -43,7 +43,7 @@ public:
         }
 
         iterator& operator++() {
-            ++PPtr;
+            PPtr++;
             return *this;
         }
 
@@ -74,7 +74,7 @@ public:
         : PtrArray<T>(N, reinterpret_cast<T**>(work))
     { }
 
-    u8 work[N*sizeof(void*)];
+    u8 work[N * sizeof(void*)];
 };
 
 }

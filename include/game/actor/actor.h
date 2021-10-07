@@ -4,7 +4,7 @@
 #include <game/actor/actorinfo.h>
 #include <game/actor/actorbuildinfo.h>
 
-class Actor { // size: 0x50
+class Actor { // Size: 0x50
     SEAD_RTTI_BASE(Actor)
 
 protected:

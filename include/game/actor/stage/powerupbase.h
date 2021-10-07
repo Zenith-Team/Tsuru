@@ -4,7 +4,7 @@
 #include <game/graphics/model/model.h>
 #include <game/actor/stage/multistateactor.h>
 
-class PowerupBase : public MultiStateActor { // Size: 0x1a90
+class PowerupBase : public MultiStateActor { // Size: 0x1A90
     SEAD_RTTI_OVERRIDE(PowerupBase, MultiStateActor)
 
 public:

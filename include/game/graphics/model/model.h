@@ -52,9 +52,9 @@ public:
     void setScale(const Vec3f& scale) override;
     const Vec3f& getScale() const override;
 
-    // Determines if there are any shapes that can be drawn by draw*Shapes1()
+    // Determines if there are any shapes that can be drawn by draw * Shapes1()
     bool hasShapesFlag1() const override;
-    // Determines if there are any shapes that can be drawn by draw*Shapes2()
+    // Determines if there are any shapes that can be drawn by draw * Shapes2()
     bool hasShapesFlag2() const override;
 
     s32 getBoneIdx(const sead::SafeString& name) const override;

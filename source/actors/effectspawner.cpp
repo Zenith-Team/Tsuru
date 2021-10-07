@@ -38,7 +38,7 @@ u32 EffectSpawner::onCreate() {
 }
 
 u32 EffectSpawner::onExecute() {
-    if (EventMgr::instance()->isActive(this->eventID2-1) && !this->played) {
+    if (EventMgr::instance()->isActive(this->eventID2 - 1) && !this->played) {
         this->played = true;
 
         switch (this->initialStateFlag) {

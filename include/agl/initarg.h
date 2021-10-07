@@ -10,7 +10,7 @@ struct InitArg { // Size: 0x140
             SubStruct2();   // TODO: This is inlined, I'll do it later
 
             u32 _0;         // _0   // Inited to SubStruct1->_C
-            void* _4;       // _4   // Inited to 0x101a484c
+            void* _4;       // _4   // Inited to 0x101A484C
             u32 _8;         // _8   // Inited to 0x100
         };
 

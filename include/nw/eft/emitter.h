@@ -202,6 +202,4 @@ public:
 
 static_assert(sizeof(EmitterCalc) == 4, "nw::eft::EmitterCalc size mismatch");
 
-
-
 } }

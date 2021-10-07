@@ -77,7 +77,7 @@ u32 FakeActor::onCreate() {
 u32 FakeActor::onExecute() {
     this->updateModel();
     this->states.execute();
-    //if (this->states.currentState()->isEqual(&StateID_StarCoin)) {};
+    //if (this->states.currentState()->isEqual(&StateID_StarCoin)) { };
     return 1;
 }
 
@@ -146,8 +146,8 @@ void FakeActor::beginState_Checkpoint() {
     this->updateModel();
 }
 
-void FakeActor::executeState_Checkpoint() {}
-void FakeActor::endState_Checkpoint() {}
+void FakeActor::executeState_Checkpoint() { }
+void FakeActor::endState_Checkpoint() { }
 
 /* STATE: GoalPole */
 
@@ -183,7 +183,7 @@ void FakeActor::executeState_GoalPole() {
     this->rectCollider.execute();
 }
 
-void FakeActor::endState_GoalPole() {}
+void FakeActor::endState_GoalPole() { }
 
 /* STATE: StarCoin */
 
@@ -204,4 +204,4 @@ void FakeActor::executeState_StarCoin() {
     this->rotation.y += 0x3FD27D2;
 }
 
-void FakeActor::endState_StarCoin() {}
+void FakeActor::endState_StarCoin() { }

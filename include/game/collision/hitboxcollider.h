@@ -5,7 +5,7 @@
 
 class StageActor;
 
-class HitboxCollider : public sead::IDisposer { // size: 0x128
+class HitboxCollider : public sead::IDisposer { // Size: 0x128
 public:
     typedef void (*Callback)(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 

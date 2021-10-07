@@ -40,7 +40,6 @@ public:
     s32 count;
 };
 
-
 template <typename T>
 class TList : public ListImpl {
 public:
@@ -61,7 +60,7 @@ public:
 
         iterator operator++(int) {
             const iterator it(*this);
-            (void)++*this;
+            (void)*this++;
             return it;
         }
 
@@ -72,7 +71,7 @@ public:
 
         iterator operator--(int) {
             const iterator it(*this);
-            (void)--*this;
+            (void)*this--;
             return it;
         }
 
