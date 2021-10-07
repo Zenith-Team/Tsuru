@@ -38,11 +38,11 @@ public:
             Node* prev;                // _8
         };
 
-        virtual void insert(Node*, Node*); // _C
+        virtual void insert(Node*, Node*);  // _C
         virtual void remove(Node*);         // _14
         virtual void insertBack(Node*);     // _1C
         virtual void insertFront(Node*);    // _24
-        virtual void clear();                // _2C
+        virtual void clear();               // _2C
 
         Node* first;   // _0
         Node* last;    // _4
@@ -114,8 +114,8 @@ public:
     void removeFromCreateList(HitboxCollider*);
     void removeFromList3(HitboxCollider*);
 
-    HitboxCollider::List activeList; // _10
-    HitboxCollider::List createList; // _1C
-    HitboxCollider::List _28;         // _28
-    HitboxCollider::List _34;         // _34
+    HitboxCollider::List activeList;    // _10
+    HitboxCollider::List createList;    // _1C
+    HitboxCollider::List _28;           // _28
+    HitboxCollider::List _34;           // _34
 };

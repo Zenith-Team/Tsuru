@@ -36,7 +36,8 @@ public:
 public:
     void updateColliders();
     void add(CSHitboxCollider* cshc);
-    s32 FUN_21c5894(CSHitboxCollider* cshc);    // Return type unknown
+    // Return type unknown
+    s32 FUN_21c5894(CSHitboxCollider* cshc);
 
     UnknownStruct array1;
     UnknownStruct array2;

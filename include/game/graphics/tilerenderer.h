@@ -70,13 +70,15 @@ public:
     void drawSpotlightMasks(const agl::lyr::RenderInfo& renderInfo);
     void drawTilesWithSpotlightMasks(const agl::lyr::RenderInfo& renderInfo);
 
-    void renderSingleTile(u32 tileLayer, u32 tile, sead::OrthoProjection& projection);    // TODO: Confirm function and second parameter names
-
-    void renderLayer0(const agl::lyr::RenderInfo& renderInfo);    // Renders editor layer 0, internal layer 2
-    void renderLayer1(const agl::lyr::RenderInfo& renderInfo);    // Renders editor layer 1, internal layer 0
-    void renderLayer2(const agl::lyr::RenderInfo& renderInfo);    // Renders editor layer 2, internal layer 1
+    // Renders editor layer 0, internal layer 2
+    void renderLayer0(const agl::lyr::RenderInfo& renderInfo);
+    // Renders editor layer 1, internal layer 0
+    void renderLayer1(const agl::lyr::RenderInfo& renderInfo);
+    // Renders editor layer 2, internal layer 1
+    void renderLayer2(const agl::lyr::RenderInfo& renderInfo);
 
     void renderTileLayer(sead::Viewport& viewport, sead::OrthoProjection& projection, u32 tileLayer);
+    void doRenderTileLayer(u32 tileLayer, u32 loop, sead::OrthoProjection& projection);    // TODO: Second parameter name
 
     static void freeTexture(agl::TextureData** textureData);
 

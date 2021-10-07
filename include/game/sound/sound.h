@@ -6,7 +6,16 @@
 #include <game/sound/soundactor.h>
 #include <game/sound/soundsystem.h>
 
-extern const char** sfxArray[1040];
+// Array of all vocal sound effect names
+extern const char** SE_VOC[1040];
+
+extern nw::snd::FxReverbHi::ReverbHiParam DefaultReverbHiParam;
+extern nw::snd::FxDelay::DelayParam DefaultDelayParam;
+
+extern f32 SFXReverb_0;
+extern f32 SFXReverb_1;
+extern f32 SFXReverbPlyJump_0;
+extern f32 SFXReverbPlyJump_1;
 
 inline void playSound(const char* label, const Vec2f& position) {
     Vec2f screenPos;
@@ -16,8 +25,7 @@ inline void playSound(const char* label, const Vec2f& position) {
 
 /*
 
-    * The following is a list of all(?) sound effects in the game.
-    * Refer to this list when unsure of what a sound is called
+    * The following is a list of all vocals in the game.
 
     SE_VOC_MA_PLAYER_JOIN
     SE_VOC_MA_PJ_JUMP

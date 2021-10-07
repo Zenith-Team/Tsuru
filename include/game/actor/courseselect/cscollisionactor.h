@@ -14,9 +14,9 @@ public:
     bool vf8C() override;
     void vf94() override;
     void vf9C() override;
-    void vfA4() override; // nullsub
+    void onCSScriptCommandUpdate() override; // nullsub
 
-    // Custom functions
+    // Custom function
     inline void doStateChange(StateBase* state) { this->states.changeState(state); }
 
     virtual void vfAC(); // nullsub
@@ -28,11 +28,13 @@ public:
     virtual void vfDC();
     virtual u8 vfE4();
     virtual u8 vfEC();
-    virtual void vfF4(Vec3f* position); // Player collision related? (spawns effect RP_CSelect_HitNormal)
+    // Player collision related? (spawns effect RP_CSelect_HitNormal)
+    virtual void vfF4(Vec3f* position);
     virtual void vfFC();
     virtual void vf104(u32);
     virtual void vf10C();
-    virtual void vf114();   // Death related? (spawns effect RP_CSelect_EnemyBurst)
+    // Death related? (spawns effect RP_CSelect_EnemyBurst)
+    virtual void vf114();
     virtual void vf11C();
     virtual void vf124();
 

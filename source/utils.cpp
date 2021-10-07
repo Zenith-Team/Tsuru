@@ -28,7 +28,7 @@ extern "C" int wcscmp(const wchar_t* str1, const wchar_t* str2) {
         if (*str1++ == 0)
             return 0;
 
-    return (*str1 - *str2--);
+    return (*str1 - *--str2);
 }
 
 // Modified version of moveValueTo which supports overflowing/underflowing the value, used for smooth rotations.

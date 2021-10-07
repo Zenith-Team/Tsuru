@@ -66,7 +66,7 @@ public:
 
     bool isOnGround() override;
 
-    void vf2F4() override;
+    void addScoreWhenHit() override;
 
     DECLARE_STATE_OVERRIDE(Boss, DieFumi);
 
@@ -162,19 +162,19 @@ public:
     virtual void initHitsToDamage();
     virtual u32 init();
 
-    u32 hitsToDeath;    // Hits until boss dies
-    u32 hitsToDamage;   // Fireball hits until boss takes damage
-    u32 _1888;          // Some type of timer, related to stomp?
+    u32 hitsToDeath;        // Hits until boss dies
+    u32 hitsToDamage;       // Fireball hits until boss takes damage
+    u32 _1888;              // Some type of timer, related to stomp?
     bool isRumbling;
     bool isCutscene;
-    u8 _188E[18];       //? unknown values
-    u8 soundActor[0x11C]; // MovingSoundActor, but we don't have the pure overrides yet so we can't instanciate it
+    u8 _188E[18];           // Unknown values
+    u8 soundActor[0x11C];   // MovingSoundActor, but we don't have the pure overrides yet so we can't instanciate it
     u16 _19BC;
-    u8 _19BE[2];        //? unknown values
+    u8 _19BE[2];            // Unknown values
     PlayerLookTarget lookTarget;
     Vec3f _19EC;
     f32 _19F8;
-    u8 _19FC[4];        //? unknown values
+    u8 _19FC[4];            // Unknown values
     u32 _1A00;
     Boss* self;
     void* _1A08;

@@ -1,6 +1,6 @@
 #include <game/actor/stage/enemy.h>
 #include <game/graphics/model/model.h>
-#include <game/sound.h>
+#include <game/sound/sound.h>
 #include <game/collision/actorphysicsmgr.h>
 #include <game/graphics/drawmgr.h>
 #include <game/effect/effect.h>
@@ -69,7 +69,7 @@ u32 FallingChestnut::onCreate() {
 
 u32 FallingChestnut::onExecute() {
     Vec3f posOffset(0.0f, -16.0f, 0.0f);
-    Vec3u rotOffset(0x40000000, 0, 0);
+    Vec3u rotOffset(fixDeg(90.0f), 0, 0);
 
     Mtx34 mtx;
     mtx.rotateAndTranslate(this->rotation + rotOffset, this->position + posOffset);

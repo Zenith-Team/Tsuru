@@ -2,7 +2,7 @@
 #include <game/profile/profileid.h>
 #include <game/eventmgr.h>
 #include <game/effect/effect.h>
-#include <game/sound.h>
+#include <game/sound/sound.h>
 #include <log.h>
 
 class EffectSpawner : public StageActor {
@@ -44,7 +44,7 @@ u32 EffectSpawner::onExecute() {
         switch (this->initialStateFlag) {
             case 0: { // Logging mode
                 LOG("Particle effect: %x", this->settings1);
-                LOG("Sound effect: %s", *sfxArray[this->settings2]);
+                LOG("Sound effect: %s", *SE_VOC[this->settings2]);
 
                 break;
             }
@@ -57,7 +57,7 @@ u32 EffectSpawner::onExecute() {
             }
 
             case 2: { // Sound effect mode
-                playSound(*sfxArray[this->settings2], Vec2f(this->position.x, this->position.y));
+                playSound(*SE_VOC[this->settings2], Vec2f(this->position.x, this->position.y));
 
                 break;
             }
@@ -66,7 +66,7 @@ u32 EffectSpawner::onExecute() {
                 Vec3f effectPos(this->position.x, this->position.y, 4500.0f);
                 Effect::spawn(this->settings1, &effectPos);
 
-                playSound(*sfxArray[this->settings2], Vec2f(this->position.x, this->position.y));
+                playSound(*SE_VOC[this->settings2], Vec2f(this->position.x, this->position.y));
 
                 break;
             }

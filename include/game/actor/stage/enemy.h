@@ -52,19 +52,30 @@ public:
     virtual void vf18C();
     virtual void damagePlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     virtual bool vf19C();
-    virtual void freeze();                                                                      // creates ice actors
-    virtual void vf1AC();                                                                       // called on freeze
-    virtual void vf1B4();                                                                       // called on freeze break
-    virtual void vf1BC();                                                                       // called on freeze break, decides next state
+    // Creates ice actors
+    virtual void freeze();
+    // Called on freeze
+    virtual void vf1AC();
+    // Called on freeze break
+    virtual void vf1B4();
+    // Called on freeze break, decides next state
+    virtual void vf1BC();
     virtual void vf1C4();
     virtual void vf1CC();
-    virtual bool vf1D4(HitboxCollider* hcSelf, HitboxCollider* hcOther);                        // pre collision enemy 2
-    virtual bool vf1DC(HitboxCollider* hcSelf, HitboxCollider* hcOther);                        // pre collision player
-    virtual bool vf1E4(bool& unk, HitboxCollider* hcSelf, HitboxCollider* hcOther);             // pre collision enemy
-    virtual void vf1EC(HitboxCollider* hcSelf, HitboxCollider* hcOther);                        // pre collision yoshi related
-    virtual bool vf1F4(HitboxCollider* hcSelf, HitboxCollider* hcOther);                        // pre collision yoshi
-    virtual bool vf1FC(HitboxCollider* hcSelf, HitboxCollider* hcOther);                        // pre collision unk
-    virtual bool vf204(HitboxCollider* hcSelf, HitboxCollider* hcOther);                        // pre collision actor
+    // Pre collision enemy 2
+    virtual bool vf1D4(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+    // Pre collision player
+    virtual bool vf1DC(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+    // Pre collision enemy
+    virtual bool vf1E4(bool& unk, HitboxCollider* hcSelf, HitboxCollider* hcOther);
+    // Pre collision yoshi related
+    virtual void vf1EC(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+    // Pre collision yoshi
+    virtual bool vf1F4(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+    // Pre collision unk
+    virtual bool vf1FC(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+    // Pre collision actor
+    virtual bool vf204(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     virtual void collisionEnemy(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     virtual void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     virtual void collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther);
