@@ -43,7 +43,7 @@ public:
         }
 
         iterator& operator++() {
-            PPtr++;
+            ++PPtr;
             return *this;
         }
 
