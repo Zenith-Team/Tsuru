@@ -32,8 +32,6 @@ public:
     u32  vf174() override;
     void getRect(Rect& rect) override;
 
-    virtual void doStateChange(StateBase* state);
-
     StateWrapper<StateActor> states;    // _17A0
     u8 _17C4[4];                        // Unknown values
 };

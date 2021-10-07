@@ -17,8 +17,11 @@ public:
     u32 beforeDraw() override;
     u32 onDraw() override = 0;
 
-    void updateCSScriptInteractions(); // TODO: Verify this name
-    bool FUN_21d4dbc(); // Checks some members on CSScriptMgr and the profile ID
+    // TODO: Verify this name
+    void updateCSScriptInteractions();
+
+    // Checks some members on CSScriptMgr and the profile ID
+    bool FUN_21d4dbc();
 
     virtual bool vf8C();
     virtual void vf94();

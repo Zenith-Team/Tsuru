@@ -65,7 +65,8 @@ public:
     virtual void playFloatAnim();               // nullsub
     virtual void vf1B4();                       // nullsub
     virtual void vf1BC();
-    virtual u32  vf1C4();                       // Player collision
+    // Player collision
+    virtual u32  vf1C4();
     virtual void vf1CC();
     virtual void vf1D4();
     virtual void vf1DC();
@@ -83,30 +84,38 @@ public:
 
     DECLARE_STATE(PowerupBase, BlockReleaseUp);
     DECLARE_STATE(PowerupBase, BlockReleaseDown);
-    DECLARE_STATE(PowerupBase, PowerupBaseState3);  // unknown state
+    DECLARE_STATE(PowerupBase, PowerupBaseState3);          // unknown state
     DECLARE_STATE(PowerupBase, RingRewardRelease);
-    DECLARE_STATE(PowerupBase, PowerupBaseState5);  // unknown state
-    DECLARE_STATE(PowerupBase, PowerupBaseState6);  // unknown state
-    DECLARE_STATE(PowerupBase, PowerupBaseState7);  // unknown state
-    DECLARE_STATE(PowerupBase, PowerupBaseState8);  // unknown state
-    DECLARE_STATE(PowerupBase, PowerupBaseState9);  // unknown state
+    DECLARE_STATE(PowerupBase, PowerupBaseState5);          // unknown state
+    DECLARE_STATE(PowerupBase, PowerupBaseState6);          // unknown state
+    DECLARE_STATE(PowerupBase, PowerupBaseState7);          // unknown state
+    DECLARE_STATE(PowerupBase, PowerupBaseState8);          // unknown state
+    DECLARE_STATE(PowerupBase, PowerupBaseState9);          // unknown state
     DECLARE_STATE(PowerupBase, BeforeYoshiYongue);
     DECLARE_STATE(PowerupBase, InYoshiTongue);
 
-    void spawnMethod();                                         // Spawns the powerup in different ways depending on nybble 6
-    void spawnDustParticles();                                  // Spawns dust particles based on colliding tile type
-    void setupActor();                                          // Sets some physics and position values
-    void updateModel();                                         // Updates model animations and sets some position/rotation values on it
-    void FUN_2518f94();                                         // Yoshi eating related stuff
-    void FUN_25183ac();                                         // Sets this->_185F and this->_1828 to 0
-    u32 FUN_25196e8(void*, PowerupState setPowerupState, u32);  // Related to player collision (gives powerup state)
-    u32 FUN_2519580(u32 unk1, u32 unk2);                        // Related to player collision (plays get sound?)
+    // Spawns the powerup in different ways depending on nybble 6
+    void spawnMethod();
+    // Spawns dust particles based on colliding tile type
+    void spawnDustParticles();
+    // Sets some physics and position values
+    void setupActor();
+    // Updates model animations and sets some position/rotation values on it
+    void updateModel();
+    // Yoshi eating related stuff
+    void FUN_2518f94();
+    // Sets this->_185F and this->_1828 to 0
+    void FUN_25183ac();
+    // Related to player collision (gives powerup state)
+    u32 FUN_25196e8(void*, PowerupState setPowerupState, u32);
+    // Related to player collision (plays get sound?)
+    u32 FUN_2519580(u32 unk1, u32 unk2);
 
     u8  unk1[8];
     u32 _17D0;
     u32 _17D4;
     u32 _17D8;
-    u8  unk2[36];
+    u8  _17DC[36];
     ModelWrapper* model;
     TextureAnimation* texAnim;
     u32 _1808;
@@ -122,7 +131,7 @@ public:
     bool _1827;
     u8  _1828;
     u8  _1829;
-    u8  unk3[2];
+    u8  _182A[2];
     u32 _182C;
     s32 _1830;
     u32 _1834;
@@ -144,9 +153,9 @@ public:
     u8  _1861;
     u8  _1862;
     u8  _1863;
-    u8  unk5[52];
+    u8  _1864[52];
     f32 _1898;
-    u8  unk6[4];
+    u8  _189C[4];
     u32 _18A0;
     PowerupBase* self;
     void* _18A8;
@@ -175,6 +184,6 @@ public:
     u8  _1A7C;
     u8  _1A7D;
     u8  _1A7E;
-    u8  unk10[0xD];
+    u8  _1A7F[0xD];
     void* _1A8C;
 };

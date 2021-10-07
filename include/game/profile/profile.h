@@ -11,11 +11,15 @@ struct ActorBuildInfo;
 
 class Profile {
 public:
+    typedef Actor* (*buildFunction)(const ActorBuildInfo*);
+
+public:
     enum Flags {
         Flag_DontRenderOffScreen = 1 << 1
     };
 
-    Profile(Actor* (*buildFunc)(const ActorBuildInfo*), u32 id, const sead::SafeString& name = "", const ActorInfo* actorInfo = nullptr, u32 flags = 0);
+public:
+    Profile(buildFunction, u32 id, const sead::SafeString& name = "", const ActorInfo* actorInfo = nullptr, u32 flags = 0);
 
     static Profile* get(u32 id);
     static s16 getPriority(u32 id);
@@ -27,7 +31,7 @@ public:
 
     static u32 spriteToProfileList[];
 
-    Actor* (*buildFunc)(const ActorBuildInfo*);
+    buildFunction buildFunc;
     u32 id;
     const ActorInfo* actorInfo;
     u8 hasResourcesLoaded;

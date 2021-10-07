@@ -71,7 +71,7 @@ public:
 
         iterator operator--(int) {
             const iterator it(*this);
-            (void)*this--;
+            (void)--*this;
             return it;
         }
 

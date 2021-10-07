@@ -1,17 +1,16 @@
 #pragma once
 
-#include <sead.h>
+#include <sead/runtimetypeinfo.h>
 #include <game/actor/actorinfo.h>
 #include <game/actor/actorbuildinfo.h>
 
 class Actor { // Size: 0x50
     SEAD_RTTI_BASE(Actor)
 
-protected:
+public:
     Actor(const ActorBuildInfo* buildInfo);
     virtual ~Actor();
 
-public:
     virtual u32 beforeCreate();
     virtual u32 onCreate();
     virtual void afterCreate(u32);
@@ -31,8 +30,6 @@ public:
 
     void removeChild(Actor* child);
     u32 getProfileID();
-
-    friend class ActorMgr;
 
     sead::Heap* heap;                       // _0
     u32 id;                                 // _4
@@ -74,5 +71,5 @@ public:
     Actor* parent;                          // _34
     sead::ListNode actorListNode;           // _38
     sead::ListNode drawListNode;            // _40
-    u32 flags;                             // _48
+    u32 flags;                              // _48
 };

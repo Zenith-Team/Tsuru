@@ -22,7 +22,8 @@ public:
     Actor* create(ActorBuildInfo& buildInfo, u32 addToActive);
     Actor* instanciateActor(ActorBuildInfo& buildInfo, bool dontDefer);
 
-    u32 createActor(Actor* actor);  // Calls "create" virtual functions
+    // Calls "create" virtual functions
+    u32 createActor(Actor* actor);
 
     void executeActors();
 

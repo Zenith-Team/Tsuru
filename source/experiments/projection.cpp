@@ -59,11 +59,11 @@ void makePerspectiveLevel() {
     sead::LookAtCamera* cam = static_cast<sead::LookAtCamera*>(agl::lyr::Renderer::instance()->layers.buffer[9]->camera);
 
     static f32 timer = 0.0f;
-    timer += 0.03f;
+    timer += 0.003f;
 
     const f32 radius = 10000.0f;
-    cam->pos.x = sin(timer) * radius;
-    cam->pos.z = cos(timer) * radius;
+    cam->pos.x = sinf(timer) * radius;
+    cam->pos.z = cosf(timer) * radius;
 
     cam->doUpdateMatrix(&cam->matrix);
 }
