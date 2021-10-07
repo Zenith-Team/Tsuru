@@ -749,17 +749,17 @@ SECTIONS {
     formatBufferedString = 0x2A0F308;
 
 /* Misc */
-    BLOSDynLoad_Acquire = 0x2A9EF58;
-    BOSDynLoad_FindExport = 0x2A9F418;
-    DefaultReverbHiParam = 0x1022D328;
-    DefaultDelayParam = 0x1022D354;
-    moveValueTo__FPUiUiT2 = 0x29E0DE8;
-    SFXReverb_0 = 0x101E7D14;
-    SFXReverb_1 = 0x101E7D18;
-    SFXReverbPlyJump_0 = 0x101E7D1C;
-    SFXReverbPlyJump_1 = 0x101E7D20;
-    nullterminator = 0x1018A56D;
-    moveFloatTo__FRffT2 = 0x2027984;
-    sfxArray = 0x1018393C;
-    mapPositionToScreen__FR13Vec2__tm__2_fRC13Vec2__tm__2_f = 0x2029368;
+	BLOSDynLoad_Acquire = 0x2A9EF58;
+	BOSDynLoad_FindExport = 0x2A9F418;
+	DefaultReverbHiParam = 0x1022D328;
+	DefaultDelayParam = 0x1022D354;
+	moveValueTo__FPUiUiT2 = 0x29E0DE8;
+	SFXReverb_0 = 0x101E7D14;
+	SFXReverb_1 = 0x101E7D18;
+	SFXReverbPlyJump_0 = 0x101E7D1C;
+	SFXReverbPlyJump_1 = 0x101E7D20;
+	nullterminator = 0x1018A56D;
+	moveFloatTo__FRffT2 = 0x2027984;
+	SE_VOC = 0x1018393C;
+	mapPositionToScreen__FR13Vec2__tm__2_fRC13Vec2__tm__2_f = 0x2029368;
 }
