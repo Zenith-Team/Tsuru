@@ -162,11 +162,11 @@ public:
         return wrapper;
     }
 
-	Model* model;                                       // 0
-	ResArchive* archive;                                // 4
-	sead::Buffer<SkeletalAnimation*> sklAnims;          // 8
-	sead::Buffer<TextureAnimation*> texPatternAnims;    // 10
-	sead::Buffer<ShaderAnimation*> texSrtAnims;         // 18
-	sead::Buffer<VisibilityAnimation*> visAnims;        // 20
-	sead::Buffer<ShapeAnimation*> shaAnims;             // 28
+    Model* model;                                       // 0
+    ResArchive* archive;                                // 4
+    sead::Buffer<SkeletalAnimation*> sklAnims;          // 8
+    sead::Buffer<TextureAnimation*> texPatternAnims;    // 10
+    sead::Buffer<ShaderAnimation*> texSrtAnims;         // 18
+    sead::Buffer<VisibilityAnimation*> visAnims;        // 20
+    sead::Buffer<ShapeAnimation*> shaAnims;             // 28
 };

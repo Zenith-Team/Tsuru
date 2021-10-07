@@ -239,16 +239,16 @@ void AngrySun::beginState_Swoop() {
     f32 y1, y2, y3;
 
     x1 = -targetOffset.x;
-	x2 = 0.0f;
-	x3 = -x1;
+    x2 = 0.0f;
+    x3 = -x1;
 
-	y1 = -targetOffset.y;
-	y2 = 0.0f;
+    y1 = -targetOffset.y;
+    y2 = 0.0f;
     y3 = y1;
 
     f32 denom    = (x1 - x2) * (x1 - x3) * (x2 - x3);
     this->swoopA = (x3 * (y2 - y1) + x2 * (y1 - y3) + x1 * (y3 - y2)) / denom;
-	this->swoopB = (x3 * x3 * (y1 - y2) + x2 * x2 * (y3 - y1) + x1 * x1 * (y2 - y3)) / denom;
+    this->swoopB = (x3 * x3 * (y1 - y2) + x2 * x2 * (y3 - y1) + x1 * x1 * (y2 - y3)) / denom;
     this->swoopC = (x2 * x3 * (x2 - x3) * y1 + x3 * x1 * (x3 - x1) * y2 + x1 * x2 * (x1 - x2) * y3) / denom;
 
     this->speed.x = x3 * 0.025f;
