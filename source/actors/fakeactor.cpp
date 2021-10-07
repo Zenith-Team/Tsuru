@@ -119,15 +119,14 @@ void FakeActor::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
 /*bool FUN_02902b08(StageActor* actor);
 
 void FakeActor::goalpoleCollisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-  StageActor* actor = hcOther->owner;
+    StageActor* actor = hcOther->owner;
 
-  if (actor->type == 1 || actor->type == 2 && FUN_02902b08(actor)) {
-    u32 unknown = 0;
+    if (actor->type == 1 || actor->type == 2 && FUN_02902b08(actor)) {
+        u32 unknown = 0;
+        if (actor->type == 2) unknown = 2;
 
-    if (actor->type == 2) unknown = 2;
-
-    actor->position.x = actor->position.x - hcSelf->_B0[unknown];
-  }
+        actor->position.x = actor->position.x - hcSelf->_B0[unknown];
+    }
 }*/
 
 /* STATE: Checkpoint */
