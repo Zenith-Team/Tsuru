@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-void __DCBZ(void*, u32);
+void __DCBZ(void*, s32);
 #define __dcbz __DCBZ
 
 #ifdef __cplusplus

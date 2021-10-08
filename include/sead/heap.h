@@ -37,7 +37,7 @@ public:
     virtual u32 getEndAddress() const = 0;
     virtual u32 getSize() const = 0;
     virtual u32 getFreeSize() const = 0;
-    virtual u32 getMaxAllocatableSize(u32) const = 0;
+    virtual u32 getMaxAllocatableSize(s32) const = 0;
     virtual bool isInclude(const void*) const = 0;
     virtual bool isFreeable() const = 0;
     virtual bool isResizable() const = 0;
@@ -90,7 +90,7 @@ public:
     virtual u32 getEndAddress() const;
     virtual u32 getSize() const;
     virtual u32 getFreeSize() const;
-    virtual u32 getMaxAllocatableSize(u32) const;
+    virtual u32 getMaxAllocatableSize(s32) const;
     virtual bool isInclude(const void*) const;
     virtual bool isFreeable() const;
     virtual bool isResizable() const;
