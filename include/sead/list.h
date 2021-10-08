@@ -58,7 +58,7 @@ public:
             return *this;
         }
 
-        iterator operator++(int) {
+        iterator operator++(s32) {
             const iterator it(*this);
             (void)++*this;
             return it;
@@ -69,7 +69,7 @@ public:
             return *this;
         }
 
-        iterator operator--(int) {
+        iterator operator--(s32) {
             const iterator it(*this);
             (void)--*this;
             return it;

@@ -172,7 +172,7 @@ public:
     CustomShaderRenderStateSetCallback GetCustomShaderRenderStateSetCallback(CustomShaderCallBackID callbackID);
 
     // For qsort
-    static int ComparePtclViewZ(const void* a, const void* b);
+    static u32 ComparePtclViewZ(const void* a, const void* b);
 
     bool initialized;
     Heap* heap;

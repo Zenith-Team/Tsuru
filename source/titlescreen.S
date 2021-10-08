@@ -33,7 +33,7 @@ CheckIfShouldPatchString:
     lwz r4, 0x0(r29)
     lis r3, VersionStringMsbtID@h
     ori r3, r3, VersionStringMsbtID@l
-    SafeBranch strcmp
+    SafeBranch __ghs_strcmp
     cmpwi r3, 0x0
     bne CheckIfShouldPatchStringReturn
     lis r3, isVersionString@h

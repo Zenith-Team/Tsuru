@@ -1,3 +1,5 @@
+#include <types.h>
+
 #ifndef __OS_DEFS_H_
 #define __OS_DEFS_H_
 
@@ -6,20 +8,20 @@ extern "C" {
 #endif
 
 typedef struct _OsSpecifics {
-    unsigned int addr_OSDynLoad_Acquire;
-    unsigned int addr_OSDynLoad_FindExport;
-    unsigned int addr_OSTitle_main_entry;
+    u32 addr_OSDynLoad_Acquire;
+    u32 addr_OSDynLoad_FindExport;
+    u32 addr_OSTitle_main_entry;
 
-    unsigned int addr_KernSyscallTbl1;
-    unsigned int addr_KernSyscallTbl2;
-    unsigned int addr_KernSyscallTbl3;
-    unsigned int addr_KernSyscallTbl4;
-    unsigned int addr_KernSyscallTbl5;
+    u32 addr_KernSyscallTbl1;
+    u32 addr_KernSyscallTbl2;
+    u32 addr_KernSyscallTbl3;
+    u32 addr_KernSyscallTbl4;
+    u32 addr_KernSyscallTbl5;
 } OsSpecifics;
 
 typedef struct _s_mem_area {
-    unsigned int        address;
-    unsigned int        size;
+    u32        address;
+    u32        size;
     struct _s_mem_area* next;
 } s_mem_area;
 

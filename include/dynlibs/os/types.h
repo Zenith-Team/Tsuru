@@ -92,9 +92,9 @@ typedef struct OSMessageQueue_ {
     OSThreadQueue sendQueue;
     OSThreadQueue recvQueue;
     OSMessage* messages;
-    int msgCount;
-    int firstIndex;
-    int usedCount;
+    u32 msgCount;
+    u32 firstIndex;
+    u32 usedCount;
 } OSMessageQueue;
 
 typedef struct OSContext_ {
@@ -116,15 +116,15 @@ typedef struct OSContext_ {
     u32 exceptionType;
     u32 reserved;
 
-    double fpscr;
-    double fpr[32];
+    f64 fpscr;
+    f64 fpr[32];
 
     u16 spinLockCount;
     u16 state;
 
     u32 gqr[8];
     u32 pir;
-    double psf[32];
+    f64 psf[32];
 
     u64 coretime[3];
     u64 starttime;
@@ -158,7 +158,7 @@ typedef enum OSExceptionType {
     OS_EXCEPTION_TYPE_ICI                  = 14,
 } OSExceptionType;
 
-typedef int (*ThreadFunc)(int argc, void* argv);
+typedef u32 (*ThreadFunc)(u32 argc, void* argv);
 
 struct OSThread_ {
     OSContext context;
@@ -167,9 +167,9 @@ struct OSThread_ {
     u8 state;
     u8 attr;
 
-    short threadID;
-    int suspend;
-    int priority;
+    u16 threadID;
+    u32 suspend;
+    u32 priority;
 
     char _[0x394 - 0x330 - sizeof(OSThreadLink)];
     OSThreadLink linkActive;
@@ -185,16 +185,16 @@ struct OSThread_ {
 typedef s64 OSTime;
 
 typedef struct _OSCalendarTime {
-    int sec;
-    int min;
-    int hour;
-    int mday;
-    int mon;
-    int year;
-    int wday;
-    int yday;
-    int msec;
-    int usec;
+    u32 sec;
+    u32 min;
+    u32 hour;
+    u32 mday;
+    u32 mon;
+    u32 year;
+    u32 wday;
+    u32 yday;
+    u32 msec;
+    u32 usec;
 } OSCalendarTime;
 
 typedef struct _OSSpinLock {

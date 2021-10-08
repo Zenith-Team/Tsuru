@@ -124,7 +124,7 @@ EXPORT_DECL(void, DisassemblePPCRange, void*, void*, DisasmReport, DisasmGetSym,
 EXPORT_DECL(bool, DisassemblePPCOpcode, u32*, char*, u32, DisasmGetSym, u32);
 EXPORT_DECL(void*, OSGetSymbolName, u32, u8*, u32);
 EXPORT_DECL(void*, OSGetSymbolNameEx, u32, u8*, u32);
-EXPORT_DECL(int, OSIsDebuggerInitialized, void);
+EXPORT_DECL(u32, OSIsDebuggerInitialized, void);
 
 EXPORT_DECL(bool, OSGetSharedData, u32 type, u32 unkR4, u8* addr, u32* size);
 
@@ -147,8 +147,8 @@ EXPORT_DECL(void, MEMFreeToFrmHeap, s32 heap, s32 mode);
 EXPORT_DECL(u32, MEMFreeByStateToFrmHeap, s32 heap, u32 tag);
 EXPORT_DECL(u32, MEMRecordStateForFrmHeap, s32 heap, u32 tag);
 EXPORT_DECL(void*, MEMAllocFromExpHeapEx, s32 heap, u32 size, s32 align);
-EXPORT_DECL(s32, MEMCreateExpHeapEx, void* address, u32 size, unsigned short flags);
-EXPORT_DECL(s32, MEMCreateFrmHeapEx, void* address, u32 size, unsigned short flags);
+EXPORT_DECL(s32, MEMCreateExpHeapEx, void* address, u32 size, u16 flags);
+EXPORT_DECL(s32, MEMCreateFrmHeapEx, void* address, u32 size, u16 flags);
 EXPORT_DECL(void*, MEMDestroyExpHeap, s32 heap);
 EXPORT_DECL(void, MEMFreeToExpHeap, s32 heap, void* ptr);
 EXPORT_DECL(void*, OSAllocFromSystem, u32 size, s32 alignment);
@@ -229,7 +229,7 @@ void _os_find_export(u32 handle, const char* funcName, void* funcPointer) {
          */
         char buf[256], *bufp = buf;
         const char a[] = "Function ", b[] = " is NULL", *p;
-        unsigned int i;
+        u32 i;
 
         for (i = 0; i < sizeof(a) - 1; i++)
             *bufp++ = a[i];
