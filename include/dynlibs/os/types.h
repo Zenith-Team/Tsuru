@@ -11,22 +11,22 @@ extern "C" {
 #include <stdint.h>
 
 /*+----------------------------------------------------------------------------------------------+*/
-typedef uint8_t u8;                  ///< 8bit unsigned integer
+typedef uint8_t  u8;                 ///< 8bit unsigned integer
 typedef uint16_t u16;                ///< 16bit unsigned integer
 typedef uint32_t u32;                ///< 32bit unsigned integer
 typedef uint64_t u64;                ///< 64bit unsigned integer
 /*+----------------------------------------------------------------------------------------------+*/
-typedef int8_t s8;                   ///< 8bit signed integer
+typedef int8_t  s8;                  ///< 8bit signed integer
 typedef int16_t s16;                 ///< 16bit signed integer
 typedef int32_t s32;                 ///< 32bit signed integer
 typedef int64_t s64;                 ///< 64bit signed integer
 /*+----------------------------------------------------------------------------------------------+*/
-typedef volatile u8 vu8;             ///< 8bit unsigned volatile integer
+typedef volatile u8  vu8;            ///< 8bit unsigned volatile integer
 typedef volatile u16 vu16;           ///< 16bit unsigned volatile integer
 typedef volatile u32 vu32;           ///< 32bit unsigned volatile integer
 typedef volatile u64 vu64;           ///< 64bit unsigned volatile integer
 /*+----------------------------------------------------------------------------------------------+*/
-typedef volatile s8 vs8;             ///< 8bit signed volatile integer
+typedef volatile s8  vs8;            ///< 8bit signed volatile integer
 typedef volatile s16 vs16;           ///< 16bit signed volatile integer
 typedef volatile s32 vs32;           ///< 32bit signed volatile integer
 typedef volatile s64 vs64;           ///< 64bit signed volatile integer
@@ -37,10 +37,10 @@ typedef s32 sfp32;                   ///< signed 20:8 fixed point
 typedef u16 ufp16;                   ///< unsigned 8:8 fixed point
 typedef u32 ufp32;                   ///< unsigned 24:8 fixed point
 /*+----------------------------------------------------------------------------------------------+*/
-typedef float f32;
+typedef float  f32;
 typedef double f64;
 /*+----------------------------------------------------------------------------------------------+*/
-typedef volatile float vf32;
+typedef volatile float  vf32;
 typedef volatile double vf64;
 /*+----------------------------------------------------------------------------------------------+*/
 
@@ -92,9 +92,9 @@ typedef struct OSMessageQueue_ {
     OSThreadQueue sendQueue;
     OSThreadQueue recvQueue;
     OSMessage* messages;
-    u32 msgCount;
-    u32 firstIndex;
-    u32 usedCount;
+    s32 msgCount;
+    s32 firstIndex;
+    s32 usedCount;
 } OSMessageQueue;
 
 typedef struct OSContext_ {
@@ -158,7 +158,7 @@ typedef enum OSExceptionType {
     OS_EXCEPTION_TYPE_ICI                  = 14,
 } OSExceptionType;
 
-typedef u32 (*ThreadFunc)(u32 argc, void* argv);
+typedef s32 (*ThreadFunc)(u32 argc, void* argv);
 
 struct OSThread_ {
     OSContext context;
@@ -167,9 +167,9 @@ struct OSThread_ {
     u8 state;
     u8 attr;
 
-    u16 threadID;
-    u32 suspend;
-    u32 priority;
+    s16 threadID;
+    s32 suspend;
+    s32 priority;
 
     char _[0x394 - 0x330 - sizeof(OSThreadLink)];
     OSThreadLink linkActive;
@@ -185,16 +185,16 @@ struct OSThread_ {
 typedef s64 OSTime;
 
 typedef struct _OSCalendarTime {
-    u32 sec;
-    u32 min;
-    u32 hour;
-    u32 mday;
-    u32 mon;
-    u32 year;
-    u32 wday;
-    u32 yday;
-    u32 msec;
-    u32 usec;
+    s32 sec;
+    s32 min;
+    s32 hour;
+    s32 mday;
+    s32 mon;
+    s32 year;
+    s32 wday;
+    s32 yday;
+    s32 msec;
+    s32 usec;
 } OSCalendarTime;
 
 typedef struct _OSSpinLock {

@@ -10,7 +10,7 @@
 // Compare if two strings are equal //! Use __ghs_strcmp
 
 // Compare if two wide strings are equal
-extern "C" u32 wcscmp(const wchar_t* str1, const wchar_t* str2) {
+extern "C" s32 wcscmp(const wchar_t* str1, const wchar_t* str2) {
     while (*str1 == *str2++)
         if (*str1++ == 0)
             return 0;

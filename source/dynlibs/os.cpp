@@ -124,7 +124,7 @@ EXPORT_DECL(void, DisassemblePPCRange, void*, void*, DisasmReport, DisasmGetSym,
 EXPORT_DECL(bool, DisassemblePPCOpcode, u32*, char*, u32, DisasmGetSym, u32);
 EXPORT_DECL(void*, OSGetSymbolName, u32, u8*, u32);
 EXPORT_DECL(void*, OSGetSymbolNameEx, u32, u8*, u32);
-EXPORT_DECL(u32, OSIsDebuggerInitialized, void);
+EXPORT_DECL(s32, OSIsDebuggerInitialized, void);
 
 EXPORT_DECL(bool, OSGetSharedData, u32 type, u32 unkR4, u8* addr, u32* size);
 

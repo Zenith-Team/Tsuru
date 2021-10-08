@@ -215,7 +215,7 @@ extern void (*DisassemblePPCRange)(void* rangeStart, void* rangeEnd, DisasmRepor
 extern bool (*DisassemblePPCOpcode)(u32* opcode, char* outputBuffer, u32 bufferSize, DisasmGetSym disasmGetSym, u32 disasmOptions);
 extern void* (*OSGetSymbolName)(u32 addr, u8* symbolName, u32 nameBufSize);
 extern void* (*OSGetSymbolNameEx)(u32 addr, u8* symbolName, u32 nameBufSize);
-extern u32 (*OSIsDebuggerInitialized)(void);
+extern s32 (*OSIsDebuggerInitialized)(void);
 
 extern bool (*OSGetSharedData)(u32 type, u32 unkR4, u8* addr, u32* size);
 
