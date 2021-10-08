@@ -215,7 +215,7 @@ extern void (*DisassemblePPCRange)(void* rangeStart, void* rangeEnd, DisasmRepor
 extern bool (*DisassemblePPCOpcode)(u32* opcode, char* outputBuffer, u32 bufferSize, DisasmGetSym disasmGetSym, u32 disasmOptions);
 extern void* (*OSGetSymbolName)(u32 addr, u8* symbolName, u32 nameBufSize);
 extern void* (*OSGetSymbolNameEx)(u32 addr, u8* symbolName, u32 nameBufSize);
-extern int (*OSIsDebuggerInitialized)(void);
+extern u32 (*OSIsDebuggerInitialized)(void);
 
 extern bool (*OSGetSharedData)(u32 type, u32 unkR4, u8* addr, u32* size);
 
@@ -241,8 +241,8 @@ extern void (*MEMFreeToFrmHeap)(s32 heap, s32 mode);
 extern u32 (*MEMFreeByStateToFrmHeap)(s32 heap, u32 tag);
 extern u32 (*MEMRecordStateForFrmHeap)(s32 heap, u32 tag);
 extern void* (*MEMAllocFromExpHeapEx)(s32 heap, u32 size, s32 align);
-extern s32 (*MEMCreateExpHeapEx)(void* address, u32 size, unsigned short flags);
-extern s32 (*MEMCreateFrmHeapEx)(void* address, u32 size, unsigned short flags);
+extern s32 (*MEMCreateExpHeapEx)(void* address, u32 size, u16 flags);
+extern s32 (*MEMCreateFrmHeapEx)(void* address, u32 size, u16 flags);
 extern void* (*MEMDestroyExpHeap)(s32 heap);
 extern void (*MEMFreeToExpHeap)(s32 heap, void* ptr);
 extern void* (*OSAllocFromSystem)(u32 size, s32 alignment);

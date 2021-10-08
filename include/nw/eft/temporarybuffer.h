@@ -7,14 +7,14 @@
 extern "C" {
 #endif
 
-void __DCBZ(void*, int);
+void __DCBZ(void*, u32);
 #define __dcbz __DCBZ
 
 #ifdef __cplusplus
 }
 #endif
 
-namespace nw { namespace eft{
+namespace nw { namespace eft {
 
 struct TemporaryBuffer { // Size: 0x18
     inline void Initialize(Heap* heap, u32 size) {
