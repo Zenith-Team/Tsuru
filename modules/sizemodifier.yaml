@@ -3,19 +3,30 @@
 Files:
   - source/sizemodifier.S
 Hooks:
+# Setting to toggle size modification
+  # Increase CourseTask allocation size
+  - type: patch
+    data: "386005A8" # li r3, 0x5A8
+    addr: "24bcabc"  # CourseTask::CourseTask()
+  # Init the extra value to be 0
+  - type: branch
+    instr: b
+    addr: "24bce84"
+    func: CourseTaskCtorExtension
+
 # Modify actor size
   # Modify the scale member of the actor
   - type: branch
     instr: b
-    addr: "2000FE4" # StageActor::afterCreate
+    addr: "2000FE4"  # StageActor::afterCreate
     func: ScaleActor
   # Modify the HitboxCollider info of the actor
   - type: branch
     instr: bl
-    addr: "219AF58" # HitboxCollider::init
+    addr: "219AF58"  # HitboxCollider::init
     func: ScaleHitboxCollider
   # Modify the PhysicsMgr sensor of the actor
   - type: branch
     instr: b
-    addr: "218AF50" # PhysicsMgr::setSensor
+    addr: "218AF50"  # PhysicsMgr::setSensor
     func: ScalePhysicsMgr
