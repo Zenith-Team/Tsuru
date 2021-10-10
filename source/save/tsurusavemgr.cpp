@@ -1,5 +1,5 @@
 #include <tsuru/save/tsurusavemgr.h>
-#include <log.h>
+#include <tsuru/save/savemgrsystem.h>
 
 SEAD_SINGLETON_DISPOSER_IMPL(TsuruSaveMgr)
 
@@ -16,3 +16,5 @@ u32 TsuruSaveMgr::getSaveDataSize() {
 void TsuruSaveMgr::remakeSaveData() {
     TsuruSaveMgr::sSaveData = TsuruSaveData();
 }
+
+SAVEMGR_SYSTEM_ENTRY(TsuruSaveMgr);
