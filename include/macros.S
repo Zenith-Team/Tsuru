@@ -1,5 +1,5 @@
 .macro SaveVolatileRegisters
-    stwu sp,  -0x38(sp)
+    stwu sp, -0x38(sp)
     stw  r0,  0x08(sp)
     stw  r3,  0x0C(sp)
     stw  r4,  0x10(sp)

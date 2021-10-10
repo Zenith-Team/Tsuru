@@ -168,8 +168,8 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
         }
 
         ActorBuffer* actors = &ActorMgr::instance()->actors;
-        for (u32 i = 0; i < actors->startBuffer.size; i++) {
-            StageActor* actor = sead::DynamicCast<StageActor, Actor>(actors->startBuffer[i]);
+        for (u32 i = 0; i < actors->start.size; i++) {
+            StageActor* actor = sead::DynamicCast<StageActor, Actor>(actors->start[i]);
             if (actor == NULL || !actor->isVisible || actor->isDeleted)
                 continue;
 
@@ -246,8 +246,8 @@ void CourseSelectTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) 
             sead::PrimitiveRenderer::instance()->drawCube(actor->position + cshCollider->info.offset, cshCollider->info.size, sead::colorRed);
         }
 
-        Actor** current = ActorMgr::instance()->actors.startBuffer.buffer;
-        while (current < ActorMgr::instance()->actors.endBuffer.buffer) {
+        Actor** current = ActorMgr::instance()->actors.start.buffer;
+        while (current < ActorMgr::instance()->actors.end.buffer) {
             Actor* actor = *current;
             if (actor) {
                 CourseSelectActor* csactor = static_cast<CourseSelectActor*>(actor);
