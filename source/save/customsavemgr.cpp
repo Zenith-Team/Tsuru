@@ -1,31 +1,13 @@
 #include <tsuru/save/customsavemgr.h>
-
-// Include your class header here
-#include <tsuru/save/tsurusavemgr.h>
-
-// TODO: Automate this somehow with a list of managers so devs don't have to manually add managers to these functions
-
-void initManagers() {
-    // Init your manager here
-    TsuruSaveMgr::createInstance(nullptr)->init();
-
-    LOG("Custom save managers inited!");
-}
-
-void saveManagers() {
-    // Save your manager's data here
-    TsuruSaveMgr::instance()->save();
-
-    LOG("Custom save data saved!");
-}
-
-// Base class definitions
+#include <tsuru/save/savemgrsystem.h>
 
 CustomSaveMgr::CustomSaveMgr(const sead::SafeString& filepath, CustomSaveData* savestruct)
     : filepath(filepath)
     , inited(false)
     , savestruct(savestruct)
-{ }
+{
+    SaveMgrSystem::instance()->addToList(this);
+}
 
 bool CustomSaveMgr::write() {
     u32 bytesWritten;
