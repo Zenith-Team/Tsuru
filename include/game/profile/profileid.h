@@ -22,7 +22,6 @@ enum ProfileIDType {
     AngrySun,
     AngryMoon,
     RainbowLight,
-    PoisonGeyser,
 
     Num
 };
