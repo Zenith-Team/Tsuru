@@ -10,7 +10,7 @@
 #include <game/collision/cshitboxcollider.h>
 #include <agl/lyr/renderinfo.h>
 #include <log.h>
-#include <tsuru/tsurusavemgr.h>
+#include <tsuru/save/tsurusavemgr.h>
 #include <utils/mtx.h>
 
 void drawLine3D(const Vec3f& position, const u32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {

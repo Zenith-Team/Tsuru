@@ -1,16 +1,19 @@
 
 ---
 Files:
-  - source/tsurusavemgr.cpp
+# Base manager
+  - source/save/customsavemgr.cpp
+# Custom managers
+  - source/save/tsurusavemgr.cpp
 Hooks:
 # Initialize TsuruSaveMgr
   - type: branch
     instr: b
     addr: "29d5b68" # RootTask::prepare()
-    func: boot__12TsuruSaveMgrSFv
+    func: initManagers__Fv
 
 # Save custom savedata with original savedata
   - type: branch
     instr: b
     addr: "29d97b8"
-    func: save__12TsuruSaveMgrFv
+    func: saveManagers__Fv

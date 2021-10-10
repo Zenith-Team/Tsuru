@@ -1,12 +1,12 @@
-#include <types.h>
-#include <sead.h>
+#include <tsuru/save/customsavemgr.h>
+#include <sead/idisposer.h>
 
-class TsuruSaveMgr {
+class TsuruSaveMgr : public CustomSaveMgr {
 public:
-    struct TsuruSaveData {
+    struct TsuruSaveData : CustomSaveData {
     private:
         TsuruSaveData()
-            : magic(0xCAFEF00D)
+            : CustomSaveData()
             , infiniteLivesEnabled(false)
             , infiniteTimeEnabled(false)
             , noClipEnabled(false)
@@ -18,7 +18,6 @@ public:
     public:
         friend class TsuruSaveMgr;
 
-        u32 magic;                          // _0
         bool infiniteLivesEnabled;          // _4
         bool infiniteTimeEnabled;           // _5
         bool noClipEnabled;                 // _6
@@ -33,14 +32,8 @@ public:
 public:
     TsuruSaveMgr();
 
-    void init();
-    void save();
-
-    bool write();
-
-    static void boot();
+    u32 getSaveDataSize() override;
+    void remakeSaveData() override;
 
     static TsuruSaveData sSaveData;
-
-    bool inited;
 };
