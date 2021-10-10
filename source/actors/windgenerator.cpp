@@ -36,8 +36,8 @@ u32 FixedWindGenerator::onExecute() {
     }
 
     // Blow actors
-    Actor** current = ActorMgr::instance()->actors.startBuffer.buffer;
-    while (current < ActorMgr::instance()->actors.endBuffer.buffer) {
+    Actor** current = ActorMgr::instance()->actors.start.buffer;
+    while (current < ActorMgr::instance()->actors.end.buffer) {
         Actor* actor = *current;
         if (actor) {
             u32 profileID = actor->getProfileID();

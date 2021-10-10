@@ -97,7 +97,7 @@ public:
 class ModelWrapper {
 public:
     ModelWrapper(Model* model, u32 numSklAnims, u32 numTexPatternAnims, u32 numTexSrtAnims, u32 numVisAnims, u32 numShaAnims);
-    void setup(ResArchive* archive, void* unk, sead::Heap* heap);
+    void setup(ResArchive* archive, void* unk = nullptr, sead::Heap* heap = nullptr);
     void updateModel();
     void updateAnimations();
 
@@ -151,14 +151,14 @@ public:
         ResArchive* archive = ResArchiveMgr::instance()->get(archiveIdentifier);
         Model* model = archive->getModel(modelIdentifier, numSklAnims, numTexPatternAnims, numTexSrtAnims, numVisAnims, numShaAnims, unk2, nullptr);
         ModelWrapper* wrapper = new ModelWrapper(model, numSklAnims, numTexPatternAnims, numTexSrtAnims, numVisAnims, numShaAnims);
-        wrapper->setup(archive, nullptr, nullptr);
+        wrapper->setup(archive);
         return wrapper;
     }
 
     static inline ModelWrapper* create(ResArchive* archive, const sead::SafeString& modelIdentifier, u32 numSklAnims = 0, u32 numTexPatternAnims = 0, u32 numTexSrtAnims = 0, u32 numVisAnims = 0, u32 numShaAnims = 0, bool unk2 = false) {
         Model* model = archive->getModel(modelIdentifier, numSklAnims, numTexPatternAnims, numTexSrtAnims, numVisAnims, numShaAnims, unk2, nullptr);
         ModelWrapper* wrapper = new ModelWrapper(model, numSklAnims, numTexPatternAnims, numTexSrtAnims, numVisAnims, numShaAnims);
-        wrapper->setup(archive, nullptr, nullptr);
+        wrapper->setup(archive);
         return wrapper;
     }
 
