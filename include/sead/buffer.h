@@ -9,7 +9,7 @@ class Buffer {
 public:
     Buffer()
         : size(0)
-        , buffer(NULL)
+        , buffer(nullptr)
     { }
 
     void setBuffer(s32 size, T* bufferptr) {
