@@ -13,10 +13,10 @@ Modules:
   - modules/profile.yaml              # Extra profile and sprite slots
   - modules/respawn.yaml              # Instant respawn after dying
   - modules/sarcloader.yaml           # Allow loading uncompressed .sarc levels
+  - modules/savemgr.yaml              # Manages the custom savedata files
   - modules/sead.yaml                 # Patches for the sead library
   - modules/sizemodifier.yaml         # Scale actors as you wish using nybble 
   - modules/snowparticles.yaml        # Allows changing snow particle colors from spritedata
   - modules/sound.yaml                # Patches that affect sound
   - modules/titlescreen.yaml          # Title screen patches
-  - modules/tsurusavemgr.yaml         # Manages the custom savedata file
   - modules/yoshicolors.yaml          # Extra colors for Yoshi
