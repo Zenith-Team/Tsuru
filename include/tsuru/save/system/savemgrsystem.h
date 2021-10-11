@@ -2,7 +2,7 @@
 
 #include <tsuru/minipointerlist.h>
 
-#define SAVEMGR_SYSTEM_COUNT 0x100
+#define SAVEMGR_SYSTEM_LIMIT 0x100 // The maximum amount of Save Managers that the system can hold
 
 class CustomSaveMgr;
 
@@ -17,10 +17,10 @@ public:
     static void saveSystem();
 
     // Array of function pointers to createInstance
-    static MiniPointerList<CustomSaveMgr* (*)(sead::Heap* heap), SAVEMGR_SYSTEM_COUNT> ciList;
+    static MiniPointerList<CustomSaveMgr* (*)(sead::Heap* heap), SAVEMGR_SYSTEM_LIMIT> ciList;
     
     // Array of pointers to manager instances
-    static MiniPointerList<CustomSaveMgr*, SAVEMGR_SYSTEM_COUNT> managers;
+    static MiniPointerList<CustomSaveMgr*, SAVEMGR_SYSTEM_LIMIT> managers;
 };
 
 // Enters a save manager into the global save manager system
