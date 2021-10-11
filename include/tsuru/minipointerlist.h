@@ -37,5 +37,9 @@ public:
         }
     }
 
+    T& operator[](u32 index) {
+        return this->data[index];
+    }
+
     T data[N];
 };
