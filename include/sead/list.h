@@ -21,10 +21,12 @@ public:
 class ListImpl {
 public:
     forceinline ListImpl()
-        : startEnd(), count(0) {
-            startEnd.next = &startEnd;
-            startEnd.prev = &startEnd;
-        }
+        : startEnd()
+        , count(0)
+    {
+        startEnd.next = &startEnd;
+        startEnd.prev = &startEnd;
+    }
 
     void pushBack(ListNode* n) {
         startEnd.insertFront_(n);
@@ -122,7 +124,7 @@ public:
     { }
 
     void erase() {
-        TList<T>* list = list;
+        TList<T>* list = this->list;
         if (list != NULL)
             list->erase(this);
     }

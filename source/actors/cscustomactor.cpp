@@ -61,7 +61,7 @@ u32 CSCustomActor::onExecute() {
         LOG("Player collided");
 
         // Do a hack to get the colliding player
-        CourseSelectActor* collidingPlayer = reinterpret_cast<CourseSelectActor*>(ActorMgr::instance()->actors.findActorByID(&(CSPlayerMgr::instance()->playerActorID)));
+        CourseSelectActor* collidingPlayer = reinterpret_cast<CourseSelectActor*>(ActorMgr::instance()->actors.findActorByID(CSPlayerMgr::instance()->playerActorID));
 
         // Mess with it
         //collidingPlayer->position.y += 0.2f;

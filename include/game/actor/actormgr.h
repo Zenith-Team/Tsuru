@@ -7,7 +7,7 @@ class ActorBuffer { // Size: 0x18
 public:
     ActorBuffer();
 
-    Actor* findActorByID(u32* id);
+    Actor* findActorByID(const u32& id);
 
     sead::Buffer<Actor*> start;
     sead::Buffer<Actor*> end;
@@ -19,7 +19,10 @@ class ActorMgr { // Size: 0x6A44
     SEAD_SINGLETON_DISPOSER(ActorMgr)
 
 public:
+    // Spawns an actor in the current level
     Actor* create(ActorBuildInfo& buildInfo, u32 addToActive);
+
+    // Creates an instance of an actor class using the build info
     Actor* instanciateActor(ActorBuildInfo& buildInfo, bool dontDefer);
 
     // Calls "create" virtual functions

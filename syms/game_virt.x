@@ -141,7 +141,7 @@ SECTIONS {
     getProfileID__5ActorFv = 0x2002C80;
 
 /* ActorBuffer */
-    findActorByID__11ActorBufferFPUi = 0x200A5C8;
+    findActorByID__11ActorBufferFRCUi = 0x200A5C8;
 
 /* ActorInfo */
     sDefault__9ActorInfo = 0x100018F4;

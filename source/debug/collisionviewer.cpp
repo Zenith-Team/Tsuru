@@ -10,7 +10,7 @@
 #include <game/collision/cshitboxcollider.h>
 #include <agl/lyr/renderinfo.h>
 #include <log.h>
-#include <tsuru/save/tsurusavemgr.h>
+#include <tsuru/save/managers/tsurusavemgr.h>
 #include <utils/mtx.h>
 
 void drawLine3D(const Vec3f& position, const u32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
@@ -224,7 +224,7 @@ void CourseSelectTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) 
             if (!cshCollider)
                 continue;
 
-            CourseSelectActor* actor = reinterpret_cast<CourseSelectActor*>(ActorMgr::instance()->actors.findActorByID(&cshCollider->ownerID));
+            CourseSelectActor* actor = reinterpret_cast<CourseSelectActor*>(ActorMgr::instance()->actors.findActorByID(cshCollider->ownerID));
 
             if (!actor)
                 continue;
@@ -238,7 +238,7 @@ void CourseSelectTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) 
             if (!cshCollider)
                 continue;
 
-            CourseSelectActor* actor = reinterpret_cast<CourseSelectActor*>(ActorMgr::instance()->actors.findActorByID(&cshCollider->ownerID));
+            CourseSelectActor* actor = reinterpret_cast<CourseSelectActor*>(ActorMgr::instance()->actors.findActorByID(cshCollider->ownerID));
 
             if (!actor)
                 continue;
