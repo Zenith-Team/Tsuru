@@ -70,7 +70,7 @@ SECTIONS {
     tryWrite__Q2_4sead10FileDeviceFPUiPQ2_4sead10FileHandlePCUcUi = 0x29F7AE8;
 
 /* sead::FileDeviceMgr */
-    sInstance__Q2_4sead13FileDeviceMgr = 0x101E7F18
+    sInstance__Q2_4sead13FileDeviceMgr = 0x101E7F18;
     tryLoad__Q2_4sead13FileDeviceMgrFRQ3_4sead10FileDevice7LoadArg = 0x29F8BBC;
     tryOpen__Q2_4sead13FileDeviceMgrFPQ2_4sead10FileHandleRCQ2_4sead23SafeStringBase__tm__2_cQ3_4sead10FileDevice12FileOpenFlagUi = 0x29F8B0C;
 
