@@ -36,7 +36,7 @@ void CustomSaveMgr::init() {
     u32 bytesRead = readHandle.read(reinterpret_cast<u8*>(this->savestruct), this->getSaveDataSize());
 
     if (!readHandle.device) {
-        LOG("Custom save file does not exist. Creating...");
+        LOG("Custom save file at %s does not exist. Creating...", this->filepath.stringTop);
 
         if (!this->write()) {
             LOG("Write failed.");
@@ -45,14 +45,14 @@ void CustomSaveMgr::init() {
     }
 
     else if (bytesRead != this->getSaveDataSize()) {
-        LOG("Read size mismatch, read size: 0x%x, expected size: 0x%x", bytesRead, this->getSaveDataSize());
+        LOG("Manager %s had a read size mismatch, read size: 0x%x, expected size: 0x%x", this->filepath.stringTop, bytesRead, this->getSaveDataSize());
         this->remakeSaveData();
         this->write();
         return;
     } 
 
     else if (this->savestruct->magic != 0xCAFEF00D) {
-        LOG("Custom save file is corrupted. Recreating...");
+        LOG("Custom save file at %s is corrupted. Recreating...", this->filepath.stringTop);
         this->remakeSaveData();
         this->write();
         return;
@@ -61,7 +61,7 @@ void CustomSaveMgr::init() {
 
 void CustomSaveMgr::save() {
     if (!this->inited){
-        LOG("Save manager at %x was not inited before saving. Returning...", this);
+        LOG("Save manager at %s was not inited before saving. Returning...", this->filepath.stringTop);
         return;
     }
     

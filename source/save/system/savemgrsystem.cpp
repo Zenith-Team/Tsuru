@@ -24,7 +24,11 @@ void SaveMgrSystem::initSystem() {
         SaveMgrSystem::managers[i]->init();
     }
 
-    LOG("%u save managers were inited", SaveMgrSystem::managers.count());
+    if (SaveMgrSystem::managers.count() > 1) {
+        LOG("%u save managers were inited", SaveMgrSystem::managers.count());
+    } else {
+        LOG("1 save manager was inited");
+    }
 }
 
 void SaveMgrSystem::saveSystem() {
