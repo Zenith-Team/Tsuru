@@ -1,6 +1,6 @@
 
 ---
-Name: SuperHacks
+Name: Tsuru
 Modules:
   - modules/cheats.yaml               # Cheat menu
   - modules/collisionconditions.yaml  # Fixes collision conditions for some actors
