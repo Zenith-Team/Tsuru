@@ -19,6 +19,9 @@ public:
     void initialize(u32, Heap* heap);
     void initializeDefault(Heap* heap);
 
+    // TODO: Figure out how to use this class
+    u32 getControlDevice(u32 deviceID);
+
     static TaskBase* construct(const TaskConstructArg& arg);
 };
 

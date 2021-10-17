@@ -63,7 +63,7 @@ public:
 static_assert(sizeof(ControllerBase) == 0x130, "sead::ControllerBase size mismatch");
 
 class Controller : public ControllerBase { // Size: 0x15C
-    SEAD_RTTI_OVERRIDE(Controller, ControllerInlineBase)
+    SEAD_RTTI_BASE(Controller)
 
 public:
     Controller(ControllerMgr* manager);
@@ -91,8 +91,8 @@ public:
     struct TouchPanelInfo { // Size: 0xC
         TouchPanelInfo();
 
-        f32* _0;    // Points to x of a Vec2f which seems to be related to default pointer positions
-        f32* _4;    // Points to y of a Vec2f which seems to be related to default pointer positions
+        f32* _0;    // Points to x of a Vec2f which seems to be related to default pointer positions; touchX?
+        f32* _4;    // Points to y of a Vec2f which seems to be related to default pointer positions; touchY?
         u32 _8;     // Inited to 0
     };
 
@@ -137,7 +137,7 @@ public:
 static_assert(sizeof(CafeRemoteController) == 0x164, "sead::CafeRemoteController size mismatch");
 
 class CafeDebugController : public Controller { // Size: 0x164
-    SEAD_RTTI_OVERRIDE(CafeDebugController, ControllerBase)
+    SEAD_RTTI_OVERRIDE(CafeDebugController, Controller)
 
 public:
     CafeDebugController(ControllerMgr* manager, u32 _15C);
