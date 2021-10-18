@@ -10,6 +10,8 @@ public:
     CSPlayerMgr();
 
     void spawnPlayer();
+
+    // @return Pointer to CS player actor
     CSPlayerBase* getPlayer();
 
     u8 _10; // class

@@ -23,6 +23,7 @@ public:
     CustomSaveMgr(const sead::SafeString& filepath, CustomSaveData* savestruct);
 
     // Override this to return sizeof the inherited custom save data 
+    // @return The size of the custom save data structure
     virtual u32 getSaveDataSize() = 0;
     
     // Override this to set the custom save data to the struct constructor again

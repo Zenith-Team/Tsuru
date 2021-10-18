@@ -4,10 +4,10 @@
 #include <tsuru/save/system/savemgrsystem.h>
 
 // Array of function pointers to createInstance
-MiniPointerList<CustomSaveMgr* (*)(sead::Heap* heap), SAVEMGR_SYSTEM_LIMIT> SaveMgrSystem::ciList;
+MiniPointerList<CustomSaveMgr* (*)(sead::Heap* heap), SAVEMGR_SYSTEM_MAX> SaveMgrSystem::ciList;
 
 // Array of pointers to manager instances
-MiniPointerList<CustomSaveMgr*, SAVEMGR_SYSTEM_LIMIT> SaveMgrSystem::managers;
+MiniPointerList<CustomSaveMgr*, SAVEMGR_SYSTEM_MAX> SaveMgrSystem::managers;
 
 SaveMgrSystem::SaveMgrSystem(CustomSaveMgr* (*createInstance)(sead::Heap* heap)) {
     SaveMgrSystem::ciList.append(createInstance);

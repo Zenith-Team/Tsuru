@@ -28,7 +28,10 @@ public:
     virtual u32 onDelete();
     virtual void afterDelete(u32);
 
+    // Removes child actor from the childList
     void removeChild(Actor* child);
+    
+    // @return Profile ID of this actor
     u32 getProfileID();
 
     sead::Heap* heap;                       // _0

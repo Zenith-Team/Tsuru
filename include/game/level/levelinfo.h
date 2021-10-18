@@ -8,12 +8,23 @@ class LevelInfo { // Size: 0x24
 public:
     LevelInfo();
 
+    // Sets the destination area to switch to
+    // @param area Target area number
     void setDestArea(u8 area);
+    // Sets the destination entrance to go to
+    // @param entrance Target entrance number
     void setDestEntrance(s8 entrance);
+    // Sets the destination level to switch to
+    // @param level Target level number
     void setDestLevel(u8 level);
+    // Sets the destination world to switch to
+    // @param world Target world number
     void setDestWorld(u8 world);
+    // Sets the destination zpne to switch to
+    // @param zone Target zone number
     void setDestZone(u32 zone);
 
+    // Sets destinations to the title screen level (1-39)
     void setTitlescreenDestination();
 
     // Custom function

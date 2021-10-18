@@ -28,17 +28,19 @@ public:
 
     void damageFromUnder() override;
 
-    virtual void vf10C(u8 unk);
+    virtual void vf10C(u8);
     virtual u8 vf114();       // deleted
     virtual void vf11C();
-    virtual void vf124(f32 unk);
+    virtual void vf124(f32);
     virtual u32 vf12C();
     virtual void vf134();      // deleted
     virtual u32 vf13C();
-    virtual void vf144(bool unk);
-    virtual void vf14C(StageActor* unk);
+    virtual void vf144(bool);
+    virtual void vf14C(StageActor*);
     virtual bool vf154();
+    // @param dest Destination position
     virtual void move(Vec2f& dest);
+    // @param ySpeed Target Y speed to be set to
     virtual void setYSpeed(f32 ySpeed);
     virtual u32 vf16C();
     virtual u32 vf174();
@@ -47,6 +49,15 @@ public:
     void handleGravity();
     void handleSpeed();
 
+    inline void handlePhysics() {
+        this->handleGravity();
+        this->handleSpeed();
+    }
+
+    // Checks if ground below is suitable for walking. Useful for walking enemies
+    // @param xOffset X offset of position to be evaluated
+    // @param yOffset Y offset of position to be evaluated
+    // @return Whether or not the ground below is suitable for walking
     inline bool checkForSuitableGround(f32 xOffset, f32 yOffset) {
         TileChecker::Param checkParam = { 0 };
         checkParam._2 = this->layer;

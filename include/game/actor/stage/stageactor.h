@@ -53,6 +53,7 @@ public:
     virtual void setPlayerID(s8 id);
     virtual void removeHitboxColliders();
     virtual void addHitboxColliders();
+    // @return Pointer to the ActorPhysicsMgr instance for this actor
     virtual ActorPhysicsMgr* getActorPhysicsMgr();
     virtual void vfAC();
     virtual bool vfB4();

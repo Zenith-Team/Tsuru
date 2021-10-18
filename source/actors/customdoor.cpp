@@ -59,21 +59,21 @@ void CustomDoor::loadModel() {
     this->model->playSklAnim("obj_doorA", 0);
     SkeletalAnimation* sklAnim = this->model->sklAnims[0];
     sklAnim->speed = -1.0f;
-    sklAnim->setRepeat(false);
+    sklAnim->shouldLoop(false);
 }
 
 void CustomDoor::playOpenDoorAnim() {
     SkeletalAnimation* sklAnim = this->model->sklAnims[0];
     sklAnim->speed = 1.0f;
     sklAnim->reset();
-    sklAnim->setRepeat(false);
+    sklAnim->shouldLoop(false);
 };
 
 void CustomDoor::playCloseDoorAnim() {
     SkeletalAnimation* sklAnim = this->model->sklAnims[0];
     sklAnim->speed = -1.0f;
     sklAnim->reset();
-    sklAnim->setRepeat(false);
+    sklAnim->shouldLoop(false);
 };
 
 // Broken override

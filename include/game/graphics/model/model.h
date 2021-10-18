@@ -17,26 +17,24 @@ public:
     // Calculates the drawing resources for the view
     void CalcView(s32 viewIndex, const Mtx34& cameraMtx, const Mtx44& deviceProjectionMtx, ObjLayerRenderer* renderer) override;
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     // Notes:
     // 1. Shadow-only or reflection-only shapes are always invisible
     // 2. Shadow casting for a shape is automatically enabled if "shadow_cast" is not present in its material's render info
+    
+    void vf2C(s32 viewIndex, const Mtx34& cameraMtx, const Mtx44& deviceProjectionMtx, ObjLayerRenderer* renderer) override; // nullsub
 
-    void vf2C(s32 viewIndex, const Mtx34& cameraMtx, const Mtx44& deviceProjectionMtx, ObjLayerRenderer* renderer) override; // always a nullsub
-
-    // These two do not draw shadow-only or reflection-only shapes
+    // Does not draw shadow-only or reflection-only shapes
     void drawAllShapes1(s32 viewIndex, const Mtx34& cameraMtx, const Mtx44& deviceProjectionMtx, ObjLayerRenderer* renderer) override;
+    // Does not draw shadow-only or reflection-only shapes
     void drawAllShapes2(s32 viewIndex, const Mtx34& cameraMtx, const Mtx44& deviceProjectionMtx, ObjLayerRenderer* renderer) override;
 
     // I think this just draws the shadow of shadow-casting shapes
     void drawShadowCastShapes(s32 viewIndex, const Mtx34& cameraMtx, const Mtx44& deviceProjectionMtx, ObjLayerRenderer* renderer) override;
 
-    // These two do not draw reflection-only shapes
+    // Does not draw reflection-only shapes
     void drawReflectionShapes1(s32 viewIndex, const Mtx34& cameraMtx, const Mtx44& deviceProjectionMtx, ObjLayerRenderer* renderer) override;
+    // Does not draw reflection-only shapes
     void drawReflectionShapes2(s32 viewIndex, const Mtx34& cameraMtx, const Mtx44& deviceProjectionMtx, ObjLayerRenderer* renderer) override;
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     bool hasShadowCastShapes() const override;
 
@@ -45,11 +43,18 @@ public:
     void updateAnimations() override;
     void updateModel() override;
 
-    // Rotation + Translation matrix
+    // Sets the model matrix (Rotation + Translation)
+    // @param mtxRT Matrix to set
     void setMtx(const Mtx34& mtxRT) override;
+    // Gets the model matrix
+    // @return Reference to the gotten matrix
     const Mtx34& getMtx() const override;
 
+    // Sets the scale of the model
+    // @param scale Target scale to be set
     void setScale(const Vec3f& scale) override;
+    // Gets the scale of the model
+    // @return Reference to the gotten scale
     const Vec3f& getScale() const override;
 
     // Determines if there are any shapes that can be drawn by draw * Shapes1()

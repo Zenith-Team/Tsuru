@@ -1,13 +1,16 @@
 #pragma once
 
+#include <sead/heap.h>
 #include <tsuru/minipointerlist.h>
 
-#define SAVEMGR_SYSTEM_LIMIT 0x100 // The maximum amount of Save Managers that the system can hold
+#define SAVEMGR_SYSTEM_MAX 0x100 // The maximum amount of Save Managers that the system can hold
 
 class CustomSaveMgr;
 
 class SaveMgrSystem { // This class handles initializing and saving all custom save managers
 public:
+    // Instanciating this class will enter the class instance pointed to by the parameter into the system list
+    // @param createInstance Pointer to the createInstance function of the target manager
     SaveMgrSystem(CustomSaveMgr* (*createInstance)(sead::Heap* heap));
 
     // Creates all instances from the instances funcptr array and calls init() on each of them
@@ -17,10 +20,10 @@ public:
     static void saveSystem();
 
     // Array of function pointers to createInstance
-    static MiniPointerList<CustomSaveMgr* (*)(sead::Heap* heap), SAVEMGR_SYSTEM_LIMIT> ciList;
+    static MiniPointerList<CustomSaveMgr* (*)(sead::Heap* heap), SAVEMGR_SYSTEM_MAX> ciList;
     
     // Array of pointers to manager instances
-    static MiniPointerList<CustomSaveMgr*, SAVEMGR_SYSTEM_LIMIT> managers;
+    static MiniPointerList<CustomSaveMgr*, SAVEMGR_SYSTEM_MAX> managers;
 };
 
 // Enters a save manager into the global save manager system

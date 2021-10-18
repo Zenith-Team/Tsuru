@@ -1,14 +1,15 @@
 #pragma once
 
 #include <types.h>
+#include <nw/math/triangular.h>
 
 inline void sinCosIdx(f32* pSin, f32* pCos, u32 idx) {
     u32 index = (idx >> 24) & 0xFF;
     f32 rest = static_cast<f32>(idx & 0xFFFFFF) / 0x1000000;
-    const SinCosSample& sample = cSinCosTbl[index];
+    const nw::math::internal::SinCosSample& sample = nw::math::internal::globalSinCosTbl[index];
 
-    *pSin = sample.sin_val + sample.sin_delta * rest;
-    *pCos = sample.cos_val + sample.cos_delta * rest;
+    *pSin = sample.sinVal + sample.sinDelta * rest;
+    *pCos = sample.cosVal + sample.cosDelta * rest;
 }
 
 class Mtx34 {

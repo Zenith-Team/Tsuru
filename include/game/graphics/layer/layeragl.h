@@ -2,7 +2,7 @@
 
 #include <agl/lyr/layer.h>
 
-class LayerAgl : public agl::lyr::Layer {
+class LayerAgl : public agl::lyr::Layer { // Base class for all game layer classes
 public:
     class Node {
         SEAD_RTTI_BASE(Node)

@@ -12,9 +12,14 @@ public:
         Flag_IsDone = 1 << 5
     };
 
-    void setRepeat(bool repeat);
+    // Sets if the animation should loop
+    // @param repeat Whether or not the animation should loop
+    void shouldLoop(bool loop);
+    // Resets the animation
     void reset();
 
+    // Checks if the animation has completed playback
+    // @return Whether or not the animation has completed playback
     inline bool isAnimationDone() {
         return flags & Flag_IsDone;
     }

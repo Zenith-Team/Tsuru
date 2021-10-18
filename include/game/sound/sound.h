@@ -6,7 +6,7 @@
 #include <game/sound/soundactor.h>
 #include <game/sound/soundsystem.h>
 
-// Array of all vocal sound effect names
+// Array of all vocal sound effect names?
 extern const char** SE_VOC[1040];
 
 extern nw::snd::FxReverbHi::ReverbHiParam DefaultReverbHiParam;
@@ -17,6 +17,9 @@ extern f32 SFXReverb_1;
 extern f32 SFXReverbPlyJump_0;
 extern f32 SFXReverbPlyJump_1;
 
+// Plays a sound at a position
+// @param label Name of the sound to be played
+// @param position Position to play the sound at
 inline void playSound(const char* label, const Vec2f& position) {
     Vec2f screenPos;
     mapPositionToScreen(screenPos, position);

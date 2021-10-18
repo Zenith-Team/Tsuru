@@ -18,7 +18,8 @@ public:
 
     void setGeometryShaderRingBuffer() const;
 
-    void setShaderMode(u32 shaderMode, const void* shaderOptimizeInfo) const;   // Second parameter is actually const agl::ShaderOptimizeInfo&
+    // @param shaderOptimizeInfo This is actually [const agl::ShaderOptimizeInfo&]
+    void setShaderMode(u32 shaderMode, const void* shaderOptimizeInfo) const;
     void setShaderMode(u32 shaderMode) const;
 
     u32 _10;

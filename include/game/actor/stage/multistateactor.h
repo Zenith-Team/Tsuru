@@ -32,6 +32,8 @@ public:
     u32  vf174() override;
     void getRect(Rect& rect) override;
 
+    // Changes the current state to a new target state
+    // @param state Pointer to target state
     virtual void doStateChange(StateBase* state);
 
     MultiStateWrapper<MultiStateActor> states; // _17A0

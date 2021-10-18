@@ -49,8 +49,14 @@ public:
         TileMaskList();
         virtual ~TileMaskList();
 
+        // Initializes the tile mask list
+        // @param heap Heap to allocate to
         void init(sead::Heap* heap);
+        // Adds a mask to the list
         void add(MaskInfo&, MaskInfo&, MaskInfo&, agl::TextureData& texture, u32, u32);
+        // Draws tile masks
+        // @param camera Camera to draw to
+        // @param cameraMatrix Matrix for the target camera
         void draw(const sead::Camera& camera, const Mtx44& cameraMatrix);
 
         u8 _0[0x510C];  // TODO: I'll do this later, I've had enough for tonight
@@ -60,31 +66,62 @@ public:
     TileRenderer();
     ~TileRenderer();
 
+    // Initializes the tile renderer
+    // @param heap Heap to allocate to
     void init(sead::Heap* heap);
+    // Initializes frame buffer for spotlight masks
+    // @param renderInfo Render info for drawing
     void initSpotlightMaskFrameBuffer(const agl::lyr::RenderInfo& renderInfo);
 
+    // Updates rendering
     void update();
 
     void registerTile(u32, void*, u32); // TODO: Verify these params as they are guesses
 
+    // Draws spotlight masks
+    // @param renderInfo Render info for drawing
     void drawSpotlightMasks(const agl::lyr::RenderInfo& renderInfo);
+    // Draws tiles with spotlight masks
+    // @param renderInfo Render info for drawing
     void drawTilesWithSpotlightMasks(const agl::lyr::RenderInfo& renderInfo);
 
     // Renders editor layer 0, internal layer 2
+    // @param renderInfo Render info for drawing
     void renderLayer0(const agl::lyr::RenderInfo& renderInfo);
     // Renders editor layer 1, internal layer 0
+    // @param renderInfo Render info for drawing
     void renderLayer1(const agl::lyr::RenderInfo& renderInfo);
     // Renders editor layer 2, internal layer 1
+    // @param renderInfo Render info for drawing
     void renderLayer2(const agl::lyr::RenderInfo& renderInfo);
 
+    // Renders an entire tile layer based on the layer number
+    // @param viewport Viewport for rendering to
+    // @param projection Projection for rendering accurately
+    // @param tileLayer Layer to draw, use EditorTileLayer enum for this
     void renderTileLayer(sead::Viewport& viewport, sead::OrthoProjection& projection, u32 tileLayer);
+    // Implementation of rendering a tile layer, called by renderTileLayer
+    // @param tileLayer Layer to draw, use EditorTileLayer enum for this
+    // @param loop
+    // @param projection Projection for rendering accurately
     void doRenderTileLayer(u32 tileLayer, u32 loop, sead::OrthoProjection& projection);    // TODO: Second parameter name
 
+    // Frees the memory allocated to texture data
+    // @param textureData The data to be freed
     static void freeTexture(agl::TextureData** textureData);
 
+    // Allocates memory for a texture
+    // @param name Name of the texture
+    // @return Pointer to the allocated texture data
     static agl::TextureData* allocTexture(sead::SafeString& name, void**);
+    // Allocates memory for a depth texture
+    // @param name Name of the depth texture
+    // @return Pointer to the allocated texture data
     static agl::TextureData* allocDepthTexture(sead::SafeString& name, void**);
 
+    // Initializes shaders for the tile renderer
+    // @param archive The shader program archive to initialize from
+    // @param heap Heap to allocate to
     static void initShaders(agl::ShaderProgramArchive& archive, sead::Heap* heap);
 
     u32 _10;

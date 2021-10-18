@@ -30,6 +30,9 @@ public:
 public:
     IParameterObj();
 
+    //! Temporarily here just to force the compiler to generate a vtable pointer
+    virtual void forceVtablePtr() { }
+
     void pushBackListNode(agl::utl::ParameterBase*);
 
     SubStruct1 _0;
@@ -38,7 +41,6 @@ public:
     s32 _60;
     u32 _64;
     u32 _68;
-    void* vtable;   //! Temporary as padding until virtual functions are added
 };
 
 } }

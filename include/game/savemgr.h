@@ -9,7 +9,8 @@ class SaveMgr { // Size: 0x50
 public:
     SaveMgr(sead::Heap* heap);
 
-    static inline SaveData::SaveSlot getLastUsedSaveSlot() { return SaveMgr::instance()->saveData->saveSlots[SaveMgr::instance()->saveData->header.lastSessionSaveSlot]; }
+    // @return Reference to the last used savefile slot
+    static inline SaveData::SaveSlot& getLastUsedSaveSlot() { return SaveMgr::instance()->saveData->saveSlots[SaveMgr::instance()->saveData->header.lastSessionSaveSlot]; }
 
     void* thread;           // sead::DelegateThread*
     u32 _14;
