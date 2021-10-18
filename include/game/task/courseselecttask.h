@@ -21,19 +21,45 @@ public:
 
     void calc() override;
 
+    // Draws the layer "CourseSelect"
+    // @param renderInfo Render info for drawing
     void drawLayerCourseSelect(const agl::lyr::RenderInfo& renderInfo);
+    // Draws the layer "2D"
+    // @param renderInfo Render info for drawing
     void drawLayer2D(const agl::lyr::RenderInfo& renderInfo);
+    // Draws the layer "3D"
+    // @param renderInfo Render info for drawing
     void drawLayer3D(const agl::lyr::RenderInfo& renderInfo);
+    // Draws the layer "3D_World"
+    // @param renderInfo Render info for drawing
     void drawLayer3D_World(const agl::lyr::RenderInfo& renderInfo);
+    // Draws the layer "2D_Menu"
+    // @param renderInfo Render info for drawing
     void drawLayer2D_Menu(const agl::lyr::RenderInfo& renderInfo);
+    // Draws the layer "2D_TV"
+    // @param renderInfo Render info for drawing
     void drawLayer2D_TV(const agl::lyr::RenderInfo& renderInfo);
+    // Draws the layer "2D_Pre3D"
+    // @param renderInfo Render info for drawing
     void drawLayer2D_Pre3D(const agl::lyr::RenderInfo& renderInfo);
+    // Draws the layer "CourseSelectDRC"
+    // @param renderInfo Render info for drawing
     void drawLayerCourseSelectDRC(const agl::lyr::RenderInfo& renderInfo);
+    // Draws the layer "3D_DRC"
+    // @param renderInfo Render info for drawing
     void drawLayer3D_DRC(const agl::lyr::RenderInfo& renderInfo);
+    // Draws the layer "2D_DRC"
+    // @param renderInfo Render info for drawing
     void drawLayer2D_DRC(const agl::lyr::RenderInfo& renderInfo);
+    // Draws the layer "2D_Pre3D_DRC"
+    // @param renderInfo Render info for drawing
     void drawLayer2D_Pre3D_DRC(const agl::lyr::RenderInfo& renderInfo);
 
+    // Spawns the world map camera actor
     void spawnCameraActor();
+
+    // Switches state to a new target state
+    // @param state Pointer to target state
     void doStateChange(StateBase* state);
 
     // Custom function

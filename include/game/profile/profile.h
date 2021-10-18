@@ -21,6 +21,9 @@ public:
 public:
     Profile(buildFunction, u32 id, const sead::SafeString& name = "", const ActorInfo* actorInfo = nullptr, u32 flags = 0);
 
+    // Locates and gets a profile based on the ID
+    // @param id Target profile ID
+    // @return Pointer to gotten profile
     static Profile* get(u32 id);
     static s16 getPriority(u32 id);
     static u8 getHasResources(u32 id);
@@ -31,9 +34,9 @@ public:
 
     static u32 spriteToProfileList[];
 
-    buildFunction buildFunc;
-    u32 id;
-    const ActorInfo* actorInfo;
+    buildFunction buildFunc;    // Pointer to build function of the target actor
+    u32 id;                     // Profile ID
+    const ActorInfo* actorInfo; // Pointer to actor info to build with
     u8 hasResourcesLoaded;
     u32 flags;
 

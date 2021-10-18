@@ -51,8 +51,14 @@ public:
     HitboxCollider();
     virtual ~HitboxCollider();
 
-    void init(StageActor* owner, const Info*, void** callbackTable);
-    void init(StageActor* owner, const Info*, u8* collisionMask, void** callbackTable);
+    // Initializes the collider
+    // @param owner Pointer to owner of the collider
+    // @param info Pointer to collider info struct
+    void init(StageActor* owner, const Info* info, void** callbackTable);
+    // Initializes the collider
+    // @param owner Pointer to owner of the collider
+    // @param info Pointer to collider info struct
+    void init(StageActor* owner, const Info* info, u8* collisionMask, void** callbackTable);
 
     void moveToOnlyCreate(u32);
     void moveToOnlyCreateFromMask(u32);

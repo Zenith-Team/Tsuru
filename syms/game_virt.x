@@ -7,7 +7,7 @@ SECTIONS {
     fmodf__FfT1 = 0x2AFD97C;
     powf__FfT1 = 0x2AFDEA8;
     sqrtf__Ff = 0x2AFDCCC;
-    cSinCosTbl = 0x10191538;
+    globalSinCosTbl__Q3_2nw4math8internal = 0x10191538;
 
 /* new/delete */
     __nw__FUi = 0x29F1594;
@@ -155,7 +155,7 @@ SECTIONS {
     sInstance__8AreaTask = 0x101D1598;
 
 /* Animation */
-    setRepeat__9AnimationFb = 0x24DEED4;
+    shouldLoop__9AnimationFb = 0x24DEED4;
     reset__9AnimationFv = 0x24DEEAC;
 
 /* AreaRumbleMgr */

@@ -14,9 +14,11 @@ public:
     bool vf8C() override;
     void vf94() override;
     void vf9C() override;
-    void onCSScriptCommandUpdate() override; // nullsub
+    // Nullsub
+    void onCSScriptCommandUpdate() override;
 
     // Custom function
+    // @param state Pointer to state to switch to
     inline void doStateChange(StateBase* state) { this->states.changeState(state); }
 
     virtual void vfAC(); // nullsub

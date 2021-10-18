@@ -2,6 +2,7 @@
 
 #include <sead/idisposer.h>
 #include <sead/framebuffer.h>
+#include <sead/color.h>
 #include <agl/rendertargetcolor.h>
 #include <agl/rendertargetdepth.h>
 

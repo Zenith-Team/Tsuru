@@ -14,6 +14,7 @@ public:
     void setTime(s32 seconds);
     void addTime(s32 seconds);
 
+    // @return Remaining time limit in seconds
     s32 getTimeLimitSeconds() const;
 
     s32 freezeTimer;        // _10

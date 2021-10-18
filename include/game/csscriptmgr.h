@@ -10,12 +10,20 @@ class CSScriptMgr { // Size: 0x570
 public:
     CSScriptMgr();
 
+    // @return Whether or not the game is currently running a world map script
     bool isRunningScript();
 
+    // @return The arg of the currently running command
     u32 getCurrentCommandArg();
+    // Gets the currently running script ID
+    // @param out Pointer to output variable
     void getCurrentScriptID(u32* out);
+    // Gets the currently running script command type
+    // @param out Pointer to output variable
     void getCurrentScriptCommandType(u32* out);
 
+    // @param tableIndex Index of script in CSScriptsTable
+    // @return Priority of target script
     u32 getScriptPriority(u32& tableIndex);
 
     // Locates an actor from ID at this->_56C and returns a pointer to it

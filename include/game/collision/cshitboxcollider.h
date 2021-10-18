@@ -18,6 +18,9 @@ public:
     CSHitboxCollider();
     virtual ~CSHitboxCollider();
 
+    // Initializes the collider
+    // @param owner Pointer to owner of the hitbox
+    // @param info Pointer to collider info struct
     void init(CSCollisionActor* owner, const Info* info);
 
     u32 ownerID;
@@ -34,6 +37,7 @@ public:
     };
 
 public:
+    // Updates all currently active colliders
     void updateColliders();
     void add(CSHitboxCollider* cshc);
     // Return type unknown

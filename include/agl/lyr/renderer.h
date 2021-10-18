@@ -13,6 +13,12 @@ public:
     Renderer();
     virtual ~Renderer();
 
+    // Creates and initializes a layer + binds it to the renderer
+    // @param layerID Target ID of the created layer
+    // @param layerName Name of the created layer
+    // @param displayType Display type of the layer
+    // @param heap Heap to allocate to
+    // @return Pointer to the created layer
     template <class T>
     T* createLayer(u32 layerID, const sead::SafeString& layerName, u32 displayType, sead::Heap* heap) {
         T* layer = new T();

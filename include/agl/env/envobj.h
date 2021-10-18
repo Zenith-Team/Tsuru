@@ -7,7 +7,7 @@ namespace agl { namespace env {
 
 // TODO: This class has a lot more to it
 
-class EnvObj : public IParameterObj, INamedObj { // Size: 0x108
+class EnvObj : public utl::IParameterObj, utl::INamedObj { // Size: 0x108
 public:
     class Index;
     class MetaInfo { };
@@ -15,7 +15,7 @@ public:
 public:
     EnvObj();
 
-    void* registClass(const sead::SafeString&, const sead::SafeStringBase&, EnvObj* (*)(sead::Heap*), agl::env::EnvObj::MetaInfo, u32)
+    void* registClass(const sead::SafeString&, const sead::SafeStringBase&, EnvObj* (*)(sead::Heap*), agl::env::EnvObj::MetaInfo, u32);
 
     u32 _74;
     u16 _78;

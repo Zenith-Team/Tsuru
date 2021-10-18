@@ -107,9 +107,12 @@ public:
     // Sets this->_185F and this->_1828 to 0
     void FUN_25183ac();
     // Related to player collision (gives powerup state)
+    // @param void* Unknown (Colliding player?)
+    // @param setPowerupState Powerup state to set the colliding player to
+    // @param u32 Unknown
     u32 FUN_25196e8(void*, PowerupState setPowerupState, u32);
     // Related to player collision (plays get sound?)
-    u32 FUN_2519580(u32 unk1, u32 unk2);
+    u32 FUN_2519580(u32, u32);
 
     u8  unk1[8];
     u32 _17D0;
