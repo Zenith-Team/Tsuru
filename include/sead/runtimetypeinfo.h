@@ -35,20 +35,24 @@ public:
 
 }
 
+// Checks if an object derives from another class
+// @param obj Object to be evaluated
+// @return Whether or not the object derives
 template <typename DerivedType, typename Type>
-inline bool
-IsDerivedFrom(const Type* obj) {
+inline bool IsDerivedFrom(const Type* obj) {
     const RuntimeTypeInfo::Interface* typeInfo = DerivedType::getRuntimeTypeInfoStatic();
-    return obj != NULL && obj->checkDerivedRuntimeTypeInfo(typeInfo);
+    return obj != nullptr && obj->checkDerivedRuntimeTypeInfo(typeInfo);
 }
 
+// Casts between derived classes
+// @param obj Object to be casted
+// @return Casted object
 template<typename DerivedType, typename Type>
-inline DerivedType*
-DynamicCast(Type* obj) {
+inline DerivedType* DynamicCast(Type* obj) {
     if (IsDerivedFrom<DerivedType, Type>(obj))
         return static_cast<DerivedType*>(obj);
 
-    return NULL;
+    return nullptr;
 }
 
 }

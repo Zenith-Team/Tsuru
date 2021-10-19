@@ -3,6 +3,7 @@
 Files:
   - source/debug/collisionviewer.S
   - source/debug/collisionviewer.cpp
+  - source/debug/exceptions.cpp
 Hooks:
 # Draw debug layer for levels
   # Hijack funcptr of AreaTask::drawLayer3D to point to a custom function
@@ -22,3 +23,15 @@ Hooks:
     instr: b
     addr: "2267704" # CourseSelectTask::drawLayer3D_DRC()
     func: renderCollisions__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo
+
+# Handle wrong calls
+  # __pure_virtual_called
+  - type: branch
+    instr: b
+    addr: "2afa554"
+    func: handlePVC__Fv
+  # __deleted_virtual_called
+  - type: branch
+    instr: b
+    addr: "2afa5e8"
+    func: handleDVC__Fv
