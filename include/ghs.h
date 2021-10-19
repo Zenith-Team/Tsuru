@@ -24,10 +24,11 @@ void _Exit(int status);
 
 // Replaces pure virtual functions in vtable entries. Causes the game to hang by default.
 //* Hacked in Tsuru to have different functionality (see /debug/exceptions.cpp)
-void __pure_virtual_called();
+void __pure_virtual_called(void);
+
 // Replaces deleted virtual functions in vtable entries (usually). Causes the game to hang by default.
 //* Hacked in Tsuru to have different functionality (see /debug/exceptions.cpp)
-void __deleted_virtual_called();
+void __deleted_virtual_called(void);
 
 // Clears memory at ptr
 // @param ptr Pointer to memory to be cleared
@@ -83,7 +84,7 @@ void __vec_new(void* output, unsigned int entryCount, unsigned int entrySize, vo
 // @param entryCount Number of entries in the array
 // @param entrySize Size of each array entry
 // @param entryDtor Pointer to entry destructor
-void __vec_delete(void* input, unsigned int entryCount, unsigned int entrySize, void (*entryDtor)(), unsigned int, unsigned int);
+void __vec_delete(void* input, unsigned int entryCount, unsigned int entrySize, void (*entryDtor)(), int, int);
 
 // Called when a static object has been constructed to register a destruction that must be done at program termination
 // @param ptr Pointer to needed destruction entry that is to be added to the front of a list of needed destructions that this routine keeps
