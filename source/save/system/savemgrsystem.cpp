@@ -15,14 +15,12 @@ SaveMgrSystem::SaveMgrSystem(CustomSaveMgr* (*createInstance)(sead::Heap* heap))
 
 void SaveMgrSystem::initSystem() {
     // Create each instance using the function pointer given in the ctor
-    for (u32 i = 0; i < SaveMgrSystem::ciList.count(); i++) {
+    for (u32 i = 0; i < SaveMgrSystem::ciList.count(); i++)
         SaveMgrSystem::managers.append((SaveMgrSystem::ciList[i])(nullptr));
-    }
 
     // Call init() on each of the managers that we just created
-    for (u32 i = 0; i < SaveMgrSystem::managers.count(); i++) {
+    for (u32 i = 0; i < SaveMgrSystem::managers.count(); i++)
         SaveMgrSystem::managers[i]->init();
-    }
 
     if (SaveMgrSystem::managers.count() > 1) {
         LOG("%u save managers were inited", SaveMgrSystem::managers.count());
@@ -32,9 +30,12 @@ void SaveMgrSystem::initSystem() {
 }
 
 void SaveMgrSystem::saveSystem() {
-    for (u32 i = 0; i < SaveMgrSystem::managers.count(); i++) {
+    for (u32 i = 0; i < SaveMgrSystem::managers.count(); i++)
         SaveMgrSystem::managers[i]->save();
-    }
 
-    LOG("%u save managers were written to disk", SaveMgrSystem::managers.count());
+    if (SaveMgrSystem::managers.count() > 1) {
+        LOG("%u save managers were written to disk", SaveMgrSystem::managers.count());
+    } else {
+        LOG("1 save manager was inited");
+    }
 }
