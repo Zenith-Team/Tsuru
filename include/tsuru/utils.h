@@ -2,8 +2,6 @@
 
 #include <types.h>
 
-// Compare if two strings are equal //! Use __ghs_strcmp
-
 // Compare if two wide strings are equal
 // @param str1 The first string to compare
 // @param str2 The second string to compare
