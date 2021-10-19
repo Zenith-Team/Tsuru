@@ -206,6 +206,12 @@ extern s32 (*OSScreenPutFontEx)(u32 bufferNum, u32 posX, u32 posY, const char* b
 extern s32 (*OSScreenEnableEx)(u32 bufferNum, s32 enable);
 extern u32 (*OSScreenPutPixelEx)(u32 bufferNum, u32 posX, u32 posY, u32 color);
 
+#define OSScreenSetBuffers(addr) OSScreenSetBufferEx(0, (void*)addr); OSScreenSetBufferEx(1, (void*)(addr + OSScreenGetBufferSizeEx(0)))
+#define OSScreenClearBuffer(temp) OSScreenClearBufferEx(0, temp); OSScreenClearBufferEx(1, temp)
+#define OSScreenFlipBuffers() OSScreenFlipBuffersEx(0); OSScreenFlipBuffersEx(1)
+#define OSScreenPutFont(x, y, buf) OSScreenPutFontEx(0, x, y, buf); OSScreenPutFontEx(1, x, y, buf)
+#define OSScreenEnable(enable) OSScreenEnableEx(0, enable); OSScreenEnableEx(1, enable)
+
 typedef unsigned char (*exception_callback)(OSContext* interruptedContext);
 extern void* (*OSSetExceptionCallback)(u8 exceptionType, exception_callback newCallback);
 extern void* (*OSSetExceptionCallbackEx)(s32 unknwn, u8 exceptionType, exception_callback newCallback);
