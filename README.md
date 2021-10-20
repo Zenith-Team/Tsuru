@@ -31,7 +31,7 @@ All custom sprites which were not written by me have credits in customsprites.ya
 * Magic Platform *
 * Mini-only door
 * Model Loader *
-* P-Acorn
+* P-Acorn (as an in-game actor)
 * Para-Bones
 * Poison Mushroom *
 * Rainbow Light
@@ -44,10 +44,11 @@ All custom sprites which were not written by me have credits in customsprites.ya
 * Wind Generator
 
 ## Patches:
-Miscellaneous hacks/patches are listed here. Most of the game-changing patches are toggleable in the config file located in /include/
+Miscellaneous hacks/patches are listed here. Most of the game-changing patches are toggleable in the savefile by hex editing or disabling them in project.yaml
 * Add archive links for some unused actors to allow adding models *
 * Cheat menu to activate cheats and debug settings
-* Custom save data manager
+* Custom cutscene player
+* Custom save data manager API with an example
 * Customizable snow particle colors
 * Customizable world map scripts *
 * Debug collision viewer for levels and world map
@@ -55,6 +56,7 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 * Disabled Miiverse integration *
 * Extra profile slots for up to 64812 new actors
 * Fixed collision conditions for some sprites
+* Handle some exceptions/errors
 * Indicator for hacks loaded via version string
 * Infinite lives
 * Infinite time
@@ -69,6 +71,7 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 * Size modifier
 * Space physics
 * Titlescreen theme based on last world saved in
+* World-based titlescreen level theme
 * Yoshi colors
 
 # Contributing

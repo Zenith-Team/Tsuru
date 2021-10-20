@@ -1,13 +1,6 @@
 // Misc. utility C++ functions
 
-#include <stdio.h>
-#include <string.h>
-#include <cstdarg>
-
-#include <dynlibs/os/functions.h>
 #include <types.h>
-
-// Compare if two strings are equal //! Use __ghs_strcmp
 
 // Compare if two wide strings are equal
 extern "C" s32 wcscmp(const wchar_t* str1, const wchar_t* str2) {
