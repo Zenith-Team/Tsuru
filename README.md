@@ -3,10 +3,7 @@
 #### Let's build a platform for NSMBU custom code hacks
 
 # Our goal
-The goal of this project is to provide a platform for NSMBU custom code hacks for modders with the same toolset that Nintendo developers had when writing the game. Also we have provided a ton of code examples and premade patches for new modders to learn from and for people who would just like to use them in their own personal mods.
-
-#### Old description for reference
-So basically this is just a massive compilation of code hacks for NSMBU made with scalability, accuracy, and integrity in mind. In addition to the code hacks, there is also a multitude of headers included, to minimize the amount of reverse-engineering required for modifying the game for others. Make sure to also grab the assets pack from the releases page when installing the hacks.
+The goal of this project is to provide a platform for NSMBU custom code hacks for modders with the same toolset that Nintendo developers had when writing the game. We also have provided a ton of code examples and premade patches for new modders to learn from and for people who would just like to use them in their own personal mods.
 Project started on March 9 2021.
 
 # What's here
