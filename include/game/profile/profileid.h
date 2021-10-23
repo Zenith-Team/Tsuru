@@ -22,6 +22,7 @@ enum ProfileIDType {
     AngrySun,
     AngryMoon,
     RainbowLight,
+    WavePlatform,
 
     Num
 };
