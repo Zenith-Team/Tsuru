@@ -51,7 +51,7 @@ public:
     void setSensor(const Sensor* sensor, u32 sensorID);
     // Gets a sensor
     // @param sensorID ID which determines which sensor to get
-    // @return Pointer to gotten sensor
+    // @return Pointer to retrieved sensor
     const Sensor* getSensor(u32 sensorID) const;
     bool doExplosionAt(const Vec2f& topLeft, const Vec2f& bottomRight);
 

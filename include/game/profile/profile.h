@@ -23,7 +23,7 @@ public:
 
     // Locates and gets a profile based on the ID
     // @param id Target profile ID
-    // @return Pointer to gotten profile
+    // @return Pointer to retrieved profile
     static Profile* get(u32 id);
     static s16 getPriority(u32 id);
     static u8 getHasResources(u32 id);
