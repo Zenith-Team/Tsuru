@@ -17,3 +17,15 @@ extern "C" s32 wcscmp(const wchar_t* str1, const wchar_t* str2);
 // @param subtract Whether or not to subtract from the variable
 // @return Whether or not the variable has reached the target
 bool moveValueWithOverflowTo(u32& value, u32 target, u32 step, bool subtract);
+
+// Returns the nth bit of an integer from the right
+// @param val The integer to be evaluated
+// @param nth The bit index from the right (1 indexed)
+// @return The value of the retrieved bit
+inline bool nthBitRight(u32 val, u32 nth) { return (val >> (nth - 1)) & 1; }
+
+// Returns the nth bit of an integer from the left
+// @param val The integer to be evaluated
+// @param nth The bit index from the left (1 indexed)
+// @return The value of the retrieved bit
+inline u32 nthBitLeft(u32 val, u32 nth) { return (val << (nth - 1)) & 1; }

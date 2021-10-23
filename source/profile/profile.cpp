@@ -825,5 +825,6 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::AngrySun,        // 736
     ProfileID::AngryMoon,       // 737
     ProfileID::RainbowLight,    // 738
-    ProfileID::WavePlatform     // 739
+    ProfileID::WavePlatform,    // 739
+    ProfileID::DebugActor       // 740
 };

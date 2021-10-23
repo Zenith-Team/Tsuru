@@ -2,6 +2,12 @@
 
 .text
 
+# Enum
+.set wave_lava,      1
+.set wave_water,     2
+.set wave_poison,    3
+.set wave_quicksand, 4
+
 .global SetWaterWaveValues
 SetWaterWaveValues:
     SaveVolatileRegisters
@@ -18,17 +24,17 @@ SetWaterWaveValues:
 WaveCollision_r4: # r4 is TileMgr::instance()->waveType
     # Check for lava waves
     li    r3, 4 # Return value
-    cmpwi r4, 1 # Lava wave
+    cmpwi r4, wave_lava
     beqlr
 
     # Check for water waves
     li    r3, 1 # Return value
-    cmpwi r4, 2 # Water wave
+    cmpwi r4, wave_water
     beqlr
 
     # Check for poison waves
     li    r3, 5 # Return value
-    cmpwi r4, 3
+    cmpwi r4, wave_poison
     beqlr
 
     # Must be quicksand waves
@@ -39,17 +45,17 @@ WaveCollision_r4: # r4 is TileMgr::instance()->waveType
 WaveCollision_r12: # r12 is TileMgr::instance()->waveType
     # Check for lava waves
     li    r3,  4 # Return value
-    cmpwi r12, 1 # Lava wave
+    cmpwi r12, wave_lava
     beqlr
 
     # Check for water waves
     li    r3,  1 # Return value
-    cmpwi r12, 2 # Water wave
+    cmpwi r12, wave_water
     beqlr
 
     # Check for poison waves
     li    r3, 5 # Return value
-    cmpwi r12, 3
+    cmpwi r12, wave_poison
     beqlr
 
     # Must be quicksand waves
