@@ -1,0 +1,26 @@
+
+---
+Files:
+  - source/waves.S
+  - source/waves.cpp
+Hooks:
+# Set wave values
+  # Water
+  - type: branch
+    instr: bl
+    addr: "26f9444"
+    func: SetWaterWaveValues
+  # Poison
+  - type: funcptr
+    addr: "100fdddc" # vtable entry for Poison::onExecute
+    func: Poison_onExecute__FP10EnvTerrain
+  
+# Apply proper collision to waves
+  - type: branch
+    instr: bl
+    addr: "218f150"
+    func: WaveCollision_r4
+  - type: branch
+    instr: bl
+    addr: "218f884"
+    func: WaveCollision_r12
