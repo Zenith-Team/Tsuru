@@ -28,3 +28,13 @@ bool moveValueWithOverflowTo(u32& value, u32 target, u32 step, bool subtract) {
     value = target;
     return true;
 }
+
+// Inline function static implementation for branching to from asm
+
+bool nthBitRight(u32 val, u32 nth) {
+    return (val >> (nth - 1)) & 1;
+}
+
+bool nthBitLeft(u32 val, u32 nth) {
+    return (val << (nth - 1)) & 1;
+}
