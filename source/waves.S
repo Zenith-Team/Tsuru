@@ -15,7 +15,7 @@ SetWaterWaveValues:
     blr
 
 .global WaveCollision_r4
-WaveCollision_r4:
+WaveCollision_r4: # r4 is TileMgr::instance()->waveType
     # Check for lava waves
     li    r3, 4 # Return value
     cmpwi r4, 1 # Lava wave
@@ -26,12 +26,17 @@ WaveCollision_r4:
     cmpwi r4, 2 # Water wave
     beqlr
 
-    # Must be poison waves
+    # Check for poison waves
     li    r3, 5 # Return value
+    cmpwi r4, 3
+    beqlr
+
+    # Must be quicksand waves
+    li    r3, 2
     blr
 
 .global WaveCollision_r12
-WaveCollision_r12:
+WaveCollision_r12: # r12 is TileMgr::instance()->waveType
     # Check for lava waves
     li    r3,  4 # Return value
     cmpwi r12, 1 # Lava wave
@@ -43,5 +48,10 @@ WaveCollision_r12:
     beqlr
 
     # Check for poison waves
-    li    r3,  5 # Return value
+    li    r3, 5 # Return value
+    cmpwi r12, 3
+    beqlr
+
+    # Must be quicksand waves
+    li    r3, 2
     blr
