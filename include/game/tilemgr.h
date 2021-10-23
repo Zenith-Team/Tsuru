@@ -19,7 +19,7 @@ public:
 	f32 liquidTop2;
 	f32 waveFloats[0x500][2];
 	u8 waveType;
-	u8 hasWaves;
+	bool hasWaves;
 	u8 _281E;
 	u8 _281F;
 	u32 liquidType;

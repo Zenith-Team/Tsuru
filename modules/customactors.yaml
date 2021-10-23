@@ -18,6 +18,7 @@ Files:
   - source/actors/effectspawner.cpp
   - source/actors/angrysun.cpp
   - source/actors/rainbowlight.cpp
+  - source/actors/waveplatform.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:

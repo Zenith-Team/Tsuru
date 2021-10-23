@@ -469,6 +469,9 @@ SECTIONS {
 /* HitboxColliderMgr */
     sInstance__17HitboxColliderMgr = 0x101C95D8;
 
+/* LevelCamera */
+    sInstance__11LevelCamera = 0x101e7c54;
+
 /* LevelInfo */
     sInstance__9LevelInfo = 0x101D18EC;
     setDestEntrance__9LevelInfoFSc = 0x24D2984;
@@ -552,6 +555,11 @@ SECTIONS {
     getSensor__10PhysicsMgrCFUi = 0x218CE74;
     setSensor__10PhysicsMgrFPCQ2_10PhysicsMgr6SensorUi = 0x218AEFC;
     processCollisions__10PhysicsMgrFv = 0x218D954;
+
+/* PlatformModel */
+    init__13PlatformModelFv = 0x27be110;
+    update__13PlatformModelFR13Vec3__tm__2_ff = 0x27be428;
+    draw__13PlatformModelFv = 0x27be4fc;
 
 /* PlayerInput */
     isUpHeld__11PlayerInputCFv = 0x2916114;
@@ -769,6 +777,7 @@ SECTIONS {
     SFXReverbPlyJump_1 = 0x101E7D20;
     nullterminator = 0x1018A56D;
     moveFloatTo__FRffT2 = 0x2027984;
+    moveValueTo__FRUiUiT2 = 0x29e0de8;
     SE_VOC = 0x1018393C;
     mapPositionToScreen__FR13Vec2__tm__2_fRC13Vec2__tm__2_f = 0x2029368;
 }
