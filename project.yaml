@@ -19,4 +19,5 @@ Modules:
   - modules/snowparticles.yaml        # Allows changing snow particle colors from spritedata
   - modules/sound.yaml                # Patches that affect sound
   - modules/titlescreen.yaml          # Title screen patches
+  - modules/waves.yaml                # Wavy liquids
   - modules/yoshicolors.yaml          # Extra colors for Yoshi

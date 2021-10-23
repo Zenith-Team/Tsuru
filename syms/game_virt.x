@@ -450,6 +450,9 @@ SECTIONS {
 /* EnemyFreezeMgr */
     setFlags__14EnemyFreezeMgrFRCQ2_14EnemyFreezeMgr5Flags = 0x237CB94;
 
+/* EnvTerrain */
+    onExecute__10EnvTerrainFv = 0x26f0e9c;
+
 /* ErrorViewerTask */
     sInstance__15ErrorViewerTask = 0x101D1904;
 
@@ -728,6 +731,12 @@ SECTIONS {
     sInstance__7TaskMgr = 0x101E7B28;
     startLevel__7TaskMgrFPQ2_4sead8TaskBaseUcT2 = 0x29941D0;
     changeTask__7TaskMgrFPQ2_4sead8TaskBaseRQ2_4sead11TaskClassIDUiT3 = 0x2994164;
+
+/* TerrainEffects */
+    updateWaveCollisions__14TerrainEffectsFv = 0x28B8D5C;
+
+/* TileMgr */
+    sInstance__7TileMgr = 0x101dab94;
 
 /* WindGenerator */
     __dt__13WindGeneratorFv = 0x288EFA0;
