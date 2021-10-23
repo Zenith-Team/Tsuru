@@ -47,14 +47,14 @@ public:
     // @param mtxRT Matrix to set
     void setMtx(const Mtx34& mtxRT) override;
     // Gets the model matrix
-    // @return Reference to the gotten matrix
+    // @return Reference to the retrieved matrix
     const Mtx34& getMtx() const override;
 
     // Sets the scale of the model
     // @param scale Target scale to be set
     void setScale(const Vec3f& scale) override;
     // Gets the scale of the model
-    // @return Reference to the gotten scale
+    // @return Reference to the retrieved scale
     const Vec3f& getScale() const override;
 
     // Determines if there are any shapes that can be drawn by draw * Shapes1()
