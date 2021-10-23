@@ -7,10 +7,11 @@ class TileMgr { // Size: 0x9B88
 
 public:
 	enum WaveType {
-		WaveType_None = 0,
-		WaveType_Lava = 1,
-		WaveType_Water = 2,
-		WaveType_Poison = 3
+		WaveType_None 	   = 0,
+		WaveType_Lava 	   = 1,
+		WaveType_Water 	   = 2,
+		WaveType_Poison    = 3,
+		WaveType_Quicksand = 4
 	};
 
 public:

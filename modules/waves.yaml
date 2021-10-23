@@ -14,6 +14,10 @@ Hooks:
   - type: funcptr
     addr: "100fdddc" # vtable entry for Poison::onExecute
     func: Poison_onExecute__FP10EnvTerrain
+  # Quicksand
+  - type: funcptr
+    addr: "100fe19c"
+    func: Quicksand_onExecute__FP10EnvTerrain
   
 # Apply proper collision to waves through TileMgr waveType member
 #* Due to the fact that it uses a global member there can only be one type of wave active per level
