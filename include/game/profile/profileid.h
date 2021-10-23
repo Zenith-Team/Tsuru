@@ -6,7 +6,6 @@ enum ProfileIDType {
     NumOriginal = 913,
 
     // Start of custom entries
-
     ActorSpawner = NumOriginal,
     ParaBones,
     CustomDoor,
@@ -23,6 +22,7 @@ enum ProfileIDType {
     AngryMoon,
     RainbowLight,
     WavePlatform,
+    DebugActor,
 
     Num
 };

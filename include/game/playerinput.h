@@ -1,29 +1,29 @@
 #pragma once
 
-#include <types.h>
-
-// TODO: finish this
+#include <sead/bitflag.h>
+#include <tsuru/utils.h>
 
 class PlayerInput {
 public:
-    // @return Whether or not the owner player is currently pressing the Up button
-    bool isUpPressed() const;
-    // @return Whether or not the owner player is currently pressing the Down button
-    bool isDownPressed() const;
+    PlayerInput();
 
-    // @return Whether or not the owner player is currently holding the Up button
-    bool isUpHeld() const;
-    // @return Whether or not the owner player is currently holding the Down button
-    bool isDownHeld() const;
-    // @return Whether or not the owner player is currently holding the Left button
-    bool isLeftHeld() const;
-    // @return Whether or not the owner player is currently holding the Right button
-    bool isRightHeld() const;
+    inline bool getButtonRight() { return nthBitRight(this->buttons.bits, 8); }
+    inline bool getButtonLeft() { return nthBitRight(this->buttons.bits, 7); }
+    inline bool getButtonDown() { return nthBitRight(this->buttons.bits, 6); }
+    inline bool getButtonUp() { return nthBitRight(this->buttons.bits, 5); }
+    inline bool getButtonJump() { return (nthBitRight(this->buttons.bits, 1) && nthBitRight(this->buttons.bits, 12)); }
+    inline bool getButtonDash() { return (nthBitRight(this->buttons.bits, 3) && nthBitRight(this->buttons.bits, 2)); }
 
-    // @return Whether or not the owner player is currently holding only the Up button
-    bool isOnlyUpHeld() const;
-    // @return Whether or not the owner player is currently holding only the Down button
-    bool isOnlyDownHeld() const;
-
-    u8 _0[0x94];
+    u32 _0;
+    u32 _4; // Shake?
+    sead::BitFlag32 buttons;
+    sead::BitFlag32 _C;
+    u8 _10[0x38]; // Inlined struct
+    u8 _48[0x38]; // Inlined struct
+    sead::BitFlag32 _80;
+    sead::BitFlag32 _84;
+    u8 _88;
+    u8 _89;
+    u32 _8C;
+    u32 _90;
 };

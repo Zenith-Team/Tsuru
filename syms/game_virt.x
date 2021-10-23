@@ -65,6 +65,9 @@ SECTIONS {
     getCorrespondingMethodTreeMgrTypeInfo__Q2_4sead13CalculateTaskCFv = __deleted_virtual_called;
     getMethodTreeNode__Q2_4sead13CalculateTaskFi = 0x29FC4F0;
 
+/* sead::ControllerMgr */
+    sInstance__Q2_4sead13ControllerMgr = 0x101e7efc;
+
 /* sead::FileDevice */
     tryClose__Q2_4sead10FileDeviceFPQ2_4sead10FileHandle = 0x29F78C0;
     tryWrite__Q2_4sead10FileDeviceFPUiPQ2_4sead10FileHandlePCUcUi = 0x29F7AE8;
@@ -122,7 +125,12 @@ SECTIONS {
     adjustHeapAll__Q2_4sead8TaskBaseFv = 0x29FF9DC;
 
 /* Actor */
+    __ct__5ActorFPC14ActorBuildInfo = 0x2002ce0;
+    __dt__5ActorFv = 0x2002e68;
     __vtbl__5Actor = 0x100006C0;
+    checkDerivedRuntimeTypeInfo__5ActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x2002f40;
+    getRuntimeTypeInfo__5ActorCFv = __deleted_virtual_called;
+    onCreate__5ActorFv = 0x2002f84;
     __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__5ActorSFv = 0x101E9CC4;
     typeInfo__L0__getRuntimeTypeInfoStatic__5ActorSFv = 0x101E9CC8;
     removeChild__5ActorFP5Actor = 0x2002C8C;

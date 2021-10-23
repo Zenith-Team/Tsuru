@@ -19,6 +19,7 @@ Files:
   - source/actors/angrysun.cpp
   - source/actors/rainbowlight.cpp
   - source/actors/waveplatform.cpp
+  - source/actors/debugactor.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:
