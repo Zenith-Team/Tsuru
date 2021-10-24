@@ -7,12 +7,12 @@ class PlayerInput {
 public:
     PlayerInput();
 
-    inline bool getButtonRight() { return nthBitRight(this->buttons.bits, 8); }
-    inline bool getButtonLeft() { return nthBitRight(this->buttons.bits, 7); }
-    inline bool getButtonDown() { return nthBitRight(this->buttons.bits, 6); }
-    inline bool getButtonUp() { return nthBitRight(this->buttons.bits, 5); }
-    inline bool getButtonJump() { return (nthBitRight(this->buttons.bits, 1) && nthBitRight(this->buttons.bits, 12)); }
-    inline bool getButtonDash() { return (nthBitRight(this->buttons.bits, 3) && nthBitRight(this->buttons.bits, 2)); }
+    inline bool getButtonRight() { return nthBit32Right(this->buttons.bits, 8); }
+    inline bool getButtonLeft() { return nthBit32Right(this->buttons.bits, 7); }
+    inline bool getButtonDown() { return nthBit32Right(this->buttons.bits, 6); }
+    inline bool getButtonUp() { return nthBit32Right(this->buttons.bits, 5); }
+    inline bool getButtonJump() { return (nthBit32Right(this->buttons.bits, 1) && nthBit32Right(this->buttons.bits, 12)); }
+    inline bool getButtonDash() { return (nthBit32Right(this->buttons.bits, 3) && nthBit32Right(this->buttons.bits, 2)); }
 
     u32 _0;
     u32 _4; // Shake?

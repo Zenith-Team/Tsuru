@@ -20,8 +20,11 @@ bool moveValueWithOverflowTo(u32& value, u32 target, u32 step, bool subtract) {
     if (offset < 0) offset *= -1;
 
     if (counter + step < offset) {
-        if (!subtract) value += step;
-        else value -= step;
+        if (!subtract)
+            value += step;
+        else
+            value -= step;
+
         counter += step;
         return false;
     }
