@@ -3,10 +3,16 @@
 .text
 
 # Enum
-.set wave_lava,      1
-.set wave_water,     2
-.set wave_poison,    3
-.set wave_quicksand, 4
+.set WaveType_Lava, 1
+.set WaveType_Water, 2
+.set WaveType_Poison, 3
+.set WaveType_Quicksand, 4
+
+# Enum
+.set WaveCollision_Lava, 4
+.set WaveCollision_Water, 1
+.set WaveCollision_Poison, 5
+.set WaveCollision_Quicksand, 2
 
 .global SetWaterWaveValues
 SetWaterWaveValues:
@@ -23,41 +29,41 @@ SetWaterWaveValues:
 .global WaveCollision_r4
 WaveCollision_r4: # r4 is TileMgr::instance()->waveType
     # Check for lava waves
-    li    r3, 4 # Return value
-    cmpwi r4, wave_lava
+    li    r3, WaveCollision_Lava # Return value
+    cmpwi r4, WaveType_Lava
     beqlr
 
     # Check for water waves
-    li    r3, 1 # Return value
-    cmpwi r4, wave_water
+    li    r3, WaveCollision_Water # Return value
+    cmpwi r4, WaveType_Water
     beqlr
 
     # Check for poison waves
-    li    r3, 5 # Return value
-    cmpwi r4, wave_poison
+    li    r3, WaveCollision_Poison # Return value
+    cmpwi r4, WaveType_Poison
     beqlr
 
     # Must be quicksand waves
-    li    r3, 2
+    li    r3, WaveCollision_Quicksand
     blr
 
 .global WaveCollision_r12
 WaveCollision_r12: # r12 is TileMgr::instance()->waveType
     # Check for lava waves
-    li    r3,  4 # Return value
-    cmpwi r12, wave_lava
+    li    r3,  WaveCollision_Lava # Return value
+    cmpwi r12, WaveType_Lava
     beqlr
 
     # Check for water waves
-    li    r3,  1 # Return value
-    cmpwi r12, wave_water
+    li    r3,  WaveCollision_Water # Return value
+    cmpwi r12, WaveType_Water
     beqlr
 
     # Check for poison waves
-    li    r3, 5 # Return value
-    cmpwi r12, wave_poison
+    li    r3, WaveCollision_Poison # Return value
+    cmpwi r12, WaveType_Poison
     beqlr
 
     # Must be quicksand waves
-    li    r3, 2
+    li    r3, WaveCollision_Quicksand
     blr
