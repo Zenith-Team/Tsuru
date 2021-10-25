@@ -60,7 +60,7 @@ WaveCollision_r12: # r12 is TileMgr::instance()->waveType
     beqlr
 
     # Check for poison waves
-    li    r3, WaveCollision_Poison # Return value
+    li    r3,  WaveCollision_Poison # Return value
     cmpwi r12, WaveType_Poison
     beqlr
 

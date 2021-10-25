@@ -2,7 +2,7 @@
 #include <game/collision/solid/solidontopcollider.h>
 #include <game/graphics/model/platformmodel.h>
 #include <game/graphics/drawmgr.h>
-#include <math.h>
+#include <math/functions.h>
 #include <game/util.h>
 #include <game/level/levelcamera.h>
 #include <game/tilemgr.h>

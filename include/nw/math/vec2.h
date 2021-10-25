@@ -1,6 +1,6 @@
 #pragma once
 
-#include <math.h>
+#include <math/functions.h>
 
 namespace nw { namespace math {
 
