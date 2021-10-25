@@ -12,6 +12,7 @@
 #include <log.h>
 #include <tsuru/save/managers/tsurusavemgr.h>
 #include <utils/mtx.h>
+#include <math/functions.h>
 
 void drawLine3D(const Vec3f& position, const u32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
     Vec3f scale(lineLength, lineThickness, lineThickness);

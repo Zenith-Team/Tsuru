@@ -1,11 +1,11 @@
 #include <agl/lyr/renderer.h>
 #include <agl/lyr/layer.h>
 #include <sead/projection.h>
-#include <tsuru/tsurusavemgr.h>
+#include <tsuru/save/managers/tsurusavemgr.h>
 #include <sead/camera.h>
 #include <log.h>
 #include <game/playermgr.h>
-#include <math.h>
+#include <math/functions.h>
 #include <game/level/levelinfo.h>
 
 u32 worldMapProjection() {

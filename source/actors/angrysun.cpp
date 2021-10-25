@@ -6,7 +6,7 @@
 #include <game/actor/actormgr.h>
 #include <game/direction.h>
 #include <sead/random.h>
-#include <math.h>
+#include <math/functions.h>
 
 class AngrySun : public Enemy { // Angry Sun miniboss from Newer Wii, written by Bent, ported by Luminyx, for Mixed SMBU
     SEAD_RTTI_OVERRIDE_IMPL(AngrySun, Enemy)

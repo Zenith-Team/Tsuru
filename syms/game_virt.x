@@ -5,6 +5,7 @@ SECTIONS {
     cosf__Ff = 0x2AFE528;
     atan2f__FfT1 = 0x2AFE670;
     fmodf__FfT1 = 0x2AFD97C;
+    fmodf = 0x2AFD97C;
     powf__FfT1 = 0x2AFDEA8;
     sqrtf__Ff = 0x2AFDCCC;
     globalSinCosTbl__Q3_2nw4math8internal = 0x10191538;
