@@ -10,12 +10,12 @@ bool CustomSaveMgr::write() {
     u32 bytesWritten;
     sead::FileHandle handle;
     sead::FileDevice* device = sead::FileDeviceMgr::instance()->tryOpen(&handle, this->filepath, sead::FileDevice::FileOpenFlag_Create, 0);
-    
+
     if (!handle.device) {
         LOG("Handle device was null.");
         return false;
     }
-    
+
     device->tryWrite(&bytesWritten, &handle, reinterpret_cast<u8*>(this->savestruct), this->getSaveDataSize());
 
     if (bytesWritten != this->getSaveDataSize()) {
@@ -29,7 +29,7 @@ bool CustomSaveMgr::write() {
 void CustomSaveMgr::init() {
     if (this->inited)
         return;
-    
+
     sead::FileHandle readHandle;
     sead::FileDeviceMgr::instance()->tryOpen(&readHandle, this->filepath, sead::FileDevice::FileOpenFlag_ReadOnly, 0);
 
@@ -49,7 +49,7 @@ void CustomSaveMgr::init() {
         this->remakeSaveData();
         this->write();
         return;
-    } 
+    }
 
     else if (this->savestruct->magic != 0xCAFEF00D) {
         LOG("Custom save file at %s is corrupted. Recreating...", this->filepath.stringTop);
@@ -64,6 +64,6 @@ void CustomSaveMgr::save() {
         LOG("Save manager at %s was not inited before saving. Returning...", this->filepath.stringTop);
         return;
     }
-    
+
     this->write();
 }

@@ -77,13 +77,13 @@ u32 WavePlatform::onExecute() {
     }
 
     this->updateModel();
-    
+
     return 1;
 }
 
 u32 WavePlatform::onDraw() {
     this->model.draw();
-    
+
     return 1;
 }
 

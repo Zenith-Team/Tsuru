@@ -20,7 +20,7 @@ public:
     // Notes:
     // 1. Shadow-only or reflection-only shapes are always invisible
     // 2. Shadow casting for a shape is automatically enabled if "shadow_cast" is not present in its material's render info
-    
+
     void vf2C(s32 viewIndex, const Mtx34& cameraMtx, const Mtx44& deviceProjectionMtx, ObjLayerRenderer* renderer) override; // nullsub
 
     // Does not draw shadow-only or reflection-only shapes

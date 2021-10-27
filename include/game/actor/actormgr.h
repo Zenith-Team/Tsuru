@@ -6,7 +6,7 @@
 class ActorBuffer { // Size: 0x18
 public:
     ActorBuffer();
-    
+
     // Locates an actor by the Actor ID
     // @param id Actor ID of the intended target actor
     // @return Pointer to located actor

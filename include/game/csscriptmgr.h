@@ -28,7 +28,7 @@ public:
 
     // Locates an actor from ID at this->_56C and returns a pointer to it
     Actor* FUN_21e4d8c();
-    
+
     u32 FUN_21e4710(void*);
     u32 FUN_21e4e28(void*);
 
