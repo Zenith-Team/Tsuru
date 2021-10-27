@@ -38,7 +38,7 @@ public:
         }
     }
 
-    // Gets the value from the array at index 
+    // Gets the value from the array at index
     // @param index Array index to get from
     T& operator[](u32 index) {
         return this->data[index];

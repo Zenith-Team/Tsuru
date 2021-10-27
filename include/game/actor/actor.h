@@ -30,7 +30,7 @@ public:
 
     // Removes child actor from the childList
     void removeChild(Actor* child);
-    
+
     // @return Profile ID of this actor
     u32 getProfileID();
 

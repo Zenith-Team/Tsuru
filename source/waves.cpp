@@ -3,7 +3,7 @@
 
 void setWaterWaveValues(EnvTerrain* _this) {
     // Wave values
-    if (_this->settings2 >> 0x8 & 0x1) { // Nybble 18 
+    if (_this->settings2 >> 0x8 & 0x1) { // Nybble 18
         _this->effects.waveRippleSpeed      = 0x10;
         _this->effects.waveHorizontalSpeed  = 0xFFFFFF;
         _this->effects.waveWidth            = 0x1AFFFF0;
@@ -36,7 +36,7 @@ u32 Poison_onExecute(EnvTerrain* _this) { // Replaces poison water onExecute()
     TileMgr::instance()->hasWaves = true;
     TileMgr::instance()->waveType = TileMgr::WaveType_Poison;
     _this->effects.updateWaveCollisions();
-    
+
     return etox(_this);
 }
 

@@ -30,7 +30,7 @@ public:
     inline void create(u32 type, u32 width) {
         Vec3i nv3i(0);
         Vec3f nv3f(0);
-        
+
         this->type = type;
         this->width = width;
         this->rotation = nv3i;

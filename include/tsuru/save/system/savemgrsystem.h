@@ -22,7 +22,7 @@ private:
 
     // Array of function pointers to createInstance
     static MiniPointerList<CustomSaveMgr* (*)(sead::Heap* heap), SAVEMGR_SYSTEM_MAX> ciList;
-    
+
     // Array of pointers to manager instances
     static MiniPointerList<CustomSaveMgr*, SAVEMGR_SYSTEM_MAX> managers;
 };

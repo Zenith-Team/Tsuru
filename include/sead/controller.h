@@ -10,9 +10,9 @@ class ListNode;
 
 class ControllerInlineBase { // Size: 0x14
                              // This structure appears at the start of multiple controller class constructors and seems to be an inlined base class
-    SEAD_RTTI_BASE(ControllerInlineBase)    
+    SEAD_RTTI_BASE(ControllerInlineBase)
 
-public: 
+public:
     virtual void vf20(); // deleted
 
     u32 _0;
@@ -69,7 +69,7 @@ public:
     Controller(ControllerMgr* manager);
 
     virtual void calc();
-    
+
     virtual bool isConnected();
     virtual void calcImpl_() = 0;
 
@@ -155,7 +155,7 @@ static_assert(sizeof(CafeDebugController) == 0x164, "sead::CafeDebugController s
 class ControllerWrapperBase : public ControllerBase { // Size: 0x174
     SEAD_RTTI_BASE(ControllerWrapperBase)
 
-public: 
+public:
     ControllerWrapperBase();
     virtual ~ControllerWrapperBase();
 

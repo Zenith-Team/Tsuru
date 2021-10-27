@@ -17,7 +17,7 @@ public:
 
 private:
     inline u64 mask(u8 id) { return 1ULL << id; }
-    
+
     u64 events;            // _10
     u8 _18[0x928];         // _18
 };
