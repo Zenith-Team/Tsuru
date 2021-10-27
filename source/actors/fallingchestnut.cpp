@@ -4,7 +4,7 @@
 #include <game/collision/actorphysicsmgr.h>
 #include <game/graphics/drawmgr.h>
 #include <game/effect/effect.h>
-#include <math/functions.h>
+#include <math.h>
 #include <sead.h>
 
 class FallingChestnut : public Enemy {
