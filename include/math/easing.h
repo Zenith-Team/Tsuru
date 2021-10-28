@@ -1,5 +1,4 @@
 #pragma once
-#warning The "easing.h" header requires the currently unmapped symbol "__gh_float_scanf" to use.
 
 #include <log.h>
 #include <types.h>
@@ -23,7 +22,30 @@ public:
         this->iteration = 0;
     }
 
-    // Thank you https://easings.net very cool
+    // Sets the parameters used for the easing operation, can be called multiple times for multi-use cases
+    void init(f32 min, f32 max, f32 stepPercent) {
+        this->min = min;
+        this->max = max;
+        this->step = valueFromPercent(stepPercent, min, max) - min;
+    }
+
+    // Eases the value towards the target value
+    // @param value Reference to the current value to be eased
+    // @return True if the value has reached the target value, false otherwise
+    bool ease(f32& value) {
+        this->iteration++;
+        f32 next = this->func(percentFromValue(this->min * this->iteration + this->step, this->min, this->max) / 100) * (this->max - this->min) + this->min;
+
+        if (next < this->max) {
+            value = next;
+            return false;
+        };
+
+        value = this->max;
+        return true;
+    }
+
+    // https://easings.net
 
     static f32 SineIn(f32 x)     { return 1.0f - cosf((x * M_PI) / 2.0f); }
     static f32 SineOut(f32 x)    { return sinf((x * M_PI) / 2.0f); }
@@ -52,27 +74,6 @@ public:
     static f32 CircIn(f32 x)     { return 1.0f - sqrtf(1.0f - powf(x, 2.0f)); }
     static f32 CircOut(f32 x)    { return sqrtf(1.0f - powf(x - 1.0f, 2.0f)); }
     static f32 CircInOut(f32 x)  { return x < 0.5f ? (1.0f - sqrtf(1.0f - powf(2.0f * x, 2.0f))) / 2.0f : (sqrtf(1.0f - powf(-2.0f * x + 2.0f, 2.0f)) + 1.0f) / 2.0f; }
-
-    void init(f32 min, f32 max, f32 stepPercent) {
-        this->min = min;
-        this->max = max;
-        this->step = valueFromPercent(stepPercent, min, max) - min;
-    }
-
-    bool ease(f32& value) {
-        this->iteration++;
-        f32 next = this->func(percentFromValue(this->min * this->iteration + this->step, this->min, this->max) / 100) * (this->max - this->min) + this->min;
-
-        //LOG("%i: %f -> %f", this->iteration, value, next);
-
-        if (next < this->max) {
-            value = next;
-            return false;
-        };
-
-        value = this->max;
-        return true;
-    }
 
 private:
     f32 min;
