@@ -16,3 +16,4 @@ objs
 *.elf
 *.rpx
 include/**config*
+include/sead2
