@@ -1,17 +1,27 @@
 .include "macros.S"
 
+.macro CheckSaveMember offset
+    # Load SHSaveMgr::sSaveData.offset
+    lis   r3, sSaveData__12TsuruSaveMgr@ha
+    addi  r3, r3, sSaveData__12TsuruSaveMgr@l
+    lbz   r4, offset(r3)
+
+    # If it's on then restore registers and return false
+    cmpwi r4, 1
+    beq   SafeReturn
+.endm
+
+# Enum of the save data members
+.set infiniteLivesEnabled, 0x4
+.set infiniteTimeEnabled,  0x5
+.set noClipEnabled,        0x6
+.set invincibilityEnabled, 0x7
+
 .global InfiniteLives
 InfiniteLives:
     SaveVolatileRegisters
 
-    # Load SHSaveMgr::sSaveData.infiniteLivesEnabled
-    lis     r3, sSaveData__12TsuruSaveMgr@ha
-    addi    r3, r3, sSaveData__12TsuruSaveMgr@l
-    lbz     r4, 0x4(r3)
-
-    # If it's on then restore registers and return false
-    cmpwi   r4, 1
-    beq     SafeReturn
+    CheckSaveMember infiniteLivesEnabled
 
     # Otherwise restore replaced instruction and continue the function
     RestoreVolatileRegisters
@@ -29,14 +39,7 @@ InfiniteLives:
 InfiniteTime:
     SaveVolatileRegisters
 
-    # Load SHSaveMgr::sSaveData.infiniteTimeEnabled
-    lis     r3, sSaveData__12TsuruSaveMgr@ha
-    addi    r3, r3, sSaveData__12TsuruSaveMgr@l
-    lbz     r4, 0x5(r3)
-
-    # If it's on then restore registers and return false
-    cmpwi   r4, 1
-    beq     SafeReturn
+    CheckSaveMember infiniteTimeEnabled
 
     # Otherwise restore replaced instruction and continue the function
     RestoreVolatileRegisters
@@ -54,14 +57,7 @@ InfiniteTime:
 NoClip:
     SaveVolatileRegisters
 
-    # Load SHSaveMgr::sSaveData.noClipEnabled
-    lis     r3, sSaveData__12TsuruSaveMgr@ha
-    addi    r3, r3, sSaveData__12TsuruSaveMgr@l
-    lbz     r4, 0x6(r3)
-
-    # If it's on then skip setting the sensor
-    cmpwi   r4, 1
-    beq     SafeReturn
+    CheckSaveMember noClipEnabled
 
     # Otherwise continue to set the sensor
     RestoreVolatileRegisters
@@ -78,14 +74,7 @@ NoClip:
 Invincibility:
     SaveVolatileRegisters
 
-    # Load SHSaveMgr::sSaveData.invincibilityEnabled
-    lis     r3, sSaveData__12TsuruSaveMgr@ha
-    addi    r3, r3, sSaveData__12TsuruSaveMgr@l
-    lbz     r4, 0x7(r3)
-
-    # If it's on then restore registers and return false
-    cmpwi   r4, 1
-    beq     SafeReturn
+    CheckSaveMember invincibilityEnabled
 
     # Otherwise restore replaced instruction and continue the function
     RestoreVolatileRegisters

@@ -70,7 +70,6 @@ void __ghsLock(void);
 void __ghsUnlock(void);
 
 void __gh_memclr32(void*, int);
-void __gh_memclr32(void);
 
 // Initializes and allocates an array
 // @param output Pointer to memory to allocate to
