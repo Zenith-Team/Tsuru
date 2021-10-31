@@ -2,6 +2,7 @@
 
 #include <types.h>
 #include <nw/math/triangular.h>
+#include <cafe/math/mtx.h>
 
 inline void sinCosIdx(f32* pSin, f32* pCos, u32 idx) {
     u32 index = (idx >> 24) & 0xFF;
@@ -54,10 +55,7 @@ public:
     };
 };
 
-// TODO: Do this properly(?)
-extern "C" void ASM_MTXConcat(const Mtx34* p1, const Mtx34* p2, Mtx34* out);
-
-inline Mtx34* MTX34MULT(Mtx34* out, const Mtx34* p1, const Mtx34* p2) {
+inline Mtx34* MTX34MULT(Mtx34* out, Mtx34* p1, Mtx34* p2) {
     ASM_MTXConcat(p1, p2, out);
     return out;
 }

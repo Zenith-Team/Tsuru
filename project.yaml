@@ -6,6 +6,7 @@ Modules:
   - modules/collisionconditions.yaml  # Fixes collision conditions for some actors
   - modules/customactors.yaml         # Custom sprites/actors
   - modules/cutscenetask.yaml         # Custom cutscene video player
+  - modules/deathfoo.yaml             # Toxic cloud foo patch
   - modules/debug.yaml                # Debugging features
 # - modules/experiments.yaml          # Experimental things (WARNING: Do not use in releases)
   - modules/initializer.yaml          # Initializer

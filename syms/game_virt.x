@@ -36,6 +36,7 @@ SECTIONS {
 
 /* Cafe SDK Static */
     ASM_MTXConcat = 0x2AF98A0;
+    ASM_VECDistance = 0x2af9718;
     GFDGetPixelShaderCount = 0x2AF8C10;
     GFDGetPixelShaderHeaderSize = 0x2AF8D10;
     GFDGetPixelShaderProgramSize = 0x2AF8D40;
