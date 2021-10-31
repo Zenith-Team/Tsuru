@@ -1,0 +1,40 @@
+
+---
+Files:
+  - source/deathfoo.S
+Hooks:
+# Add the ability to spawn deathfoo clouds from Foo
+  # Temp patch: set type to spawned by death foo in onCreate
+  - type: patch
+    addr: "23b4f4c"
+    data: "3BA000B0" # li r29, 0xB0
+  # Temp patch: set type to spawned by death foo executeState_BreathIn
+  - type: patch
+    addr: "23b5b5c"
+    data: "3BA000B0" # li r29, 0xB0
+# Add custom deathfoo cloud type
+  # Redirect the custom cloud type to call the foo type function, we can patch it there
+  - type: branch
+    instr: bl
+    addr: "230011c" # Cloud::onExecute()
+    func: RedirectCloudType
+  # Set the cloud texture
+  - type: branch
+    instr: bl
+    addr: "22FA520"
+    func: SetCloudTexture
+  # Set the dark color
+  - type: branch
+    instr: bl
+    addr: "22FAE50"
+    func: SetCloudDarkColor
+  # Set the light color
+  - type: branch
+    instr: bl
+    addr: "22FBBD8"
+    func: SetCloudLightColor
+  # Apply collision
+  - type: branch
+    instr: bl
+    addr: "22fba68"
+    func: CloudCollision
