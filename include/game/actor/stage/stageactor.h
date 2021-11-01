@@ -87,6 +87,29 @@ public:
     void actorCBCallback3(ColliderBase*, Vec2f*);
     void actorCBCallback4(ColliderBase*, Vec2f*);
 
+    inline void getRect(Rect& out) const {
+        f32 XPos1 = position.x - 16.0f;
+        f32 XPos2 = position.x + 16.0f;
+        f32 YPos1 = position.y;
+        f32 YPos2 = position.y + 32.0f;
+
+        if (XPos1 > XPos2) {
+            out.right = XPos1;
+            out.left = XPos2;
+        } else {
+            out.right = XPos2;
+            out.left = XPos1;
+        }
+
+        if (YPos1 > YPos2) {
+            out.top = YPos1;
+            out.bottom = YPos2;
+        } else {
+            out.top = YPos2;
+            out.bottom = YPos1;
+        }
+    }
+
     u32 direction;                      // _50      Inited to 0
     s8  playerID;                       // _54      Inited to -1
     s8  controllerPlayerID;             // _55      Inited to -1

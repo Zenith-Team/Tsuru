@@ -53,6 +53,7 @@ public:
 public:
     void setCamera(const Camera& camera);
     void setProjection(const Projection& projection);
+    void setModelMatrix(const Mtx34& modelToWorldMtx);
 
     void begin();
     void end();

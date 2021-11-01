@@ -25,5 +25,5 @@ bool HitboxCollider::sCollidersOverlap(HitboxCollider* hcSelf, HitboxCollider* h
     Rect otherRect;
     hcOther->getRect(thisRect);
 
-    return Rect::RectsOverlap(thisRect, otherRect);
+    return Rect::intersects(thisRect, otherRect);
 }

@@ -28,5 +28,5 @@ public:
     };
 
 public:
-    void evalDamage(u32, u32 damageType);   //! This is a pure virtual override
+    void damage(u32, u32 damageType);   //! This is a pure virtual override
 };

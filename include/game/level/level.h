@@ -91,20 +91,19 @@ public:
         };
 
     public:
-        // Locates and gets a sprite based on the ID
         // @param id Target sprite ID
         // @return Pointer to the retrieved sprite
         Sprite* getSprite(u32 id, void*);
-        // Locates and gets a location based on the ID
+
         // @param outRect Output rect which represents the location
         // @param id Target location ID
         // @return Pointer to the retrieved location
         Location* getLocation(Rect& outRect, u8 id);
-        // Locates and gets a path based on the ID
+        
         // @param id Target path ID
         // @return Pointer to the retrieved path
         Path* getPath(u8 id);
-        // Locates and gets a path node based on the ID
+        
         // @param id Target path node ID
         // @return Pointer to the retrieved path node
         PathNode* getPathNodes(u32 id);
@@ -119,7 +118,7 @@ public:
     };
 
 public:
-    // Locates and gets an area based on the ID
+
     // @param id Target area ID
     // @return Pointer to the retrieved area
     Area* getArea(u32 id);
