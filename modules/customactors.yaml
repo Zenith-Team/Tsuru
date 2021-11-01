@@ -20,6 +20,7 @@ Files:
   - source/actors/rainbowlight.cpp
   - source/actors/waveplatform.cpp
   - source/actors/debugactor.cpp
+  - source/actors/liquidoverlay.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:

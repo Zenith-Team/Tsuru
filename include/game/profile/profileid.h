@@ -23,6 +23,7 @@ enum ProfileIDType {
     RainbowLight,
     WavePlatform,
     DebugActor,
+    LiquidOverlay,
 
     Num
 };

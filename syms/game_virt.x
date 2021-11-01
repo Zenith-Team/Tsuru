@@ -479,6 +479,13 @@ SECTIONS {
 /* HitboxColliderMgr */
     sInstance__17HitboxColliderMgr = 0x101C95D8;
 
+/* Level */
+    sInstance__5Level = 0x101db048;
+
+/* Level::Area */
+    getArea__5LevelFUi = 0x269a2dc;
+    getLocation__Q2_5Level4AreaFR4RectUc = 0x269a020;
+
 /* LevelCamera */
     sInstance__11LevelCamera = 0x101e7c54;
 
@@ -570,6 +577,9 @@ SECTIONS {
     init__13PlatformModelFv = 0x27be110;
     update__13PlatformModelFR13Vec3__tm__2_ff = 0x27be428;
     draw__13PlatformModelFv = 0x27be4fc;
+
+/* Player */
+    damage__6PlayerFUiT1 = 0x2930858;
 
 /* PlayerInput */
     isUpHeld__11PlayerInputCFv = 0x2916114;

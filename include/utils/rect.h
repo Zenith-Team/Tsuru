@@ -3,14 +3,14 @@
 #include <types.h>
 
 struct Rect { // Size: 0x10
-    inline static bool RectsOverlap(Rect& thisRect, Rect& otherRect) {
+    static inline bool intersects(Rect& thisRect, Rect& otherRect) {
         if (thisRect.left < otherRect.right && thisRect.right > otherRect.left && thisRect.bottom < otherRect.top && thisRect.top > otherRect.bottom)
             return true;
         else
             return false;
     }
 
-    inline static bool PointInside(Rect& thisRect, Vec2f& point) {
+    static inline bool pointInside(Rect& thisRect, Vec2f& point) {
         if (point.x >= thisRect.left && point.x <= thisRect.right && point.y >= thisRect.bottom && point.y <= thisRect.top)
             return true;
         else
