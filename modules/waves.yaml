@@ -14,9 +14,9 @@ Hooks:
   - type: funcptr
     addr: "100fdddc" # vtable entry for Poison::onExecute
     func: Poison_onExecute__FP10EnvTerrain
-  # Quicksand
+  # Quicksand xd
   - type: funcptr
-    addr: "100fe19c"
+    addr: "100fe19c" # vtable entry for Quicksand::onExecute
     func: Quicksand_onExecute__FP10EnvTerrain
   
 # Apply proper collision to waves through TileMgr waveType member

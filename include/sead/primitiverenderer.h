@@ -99,7 +99,7 @@ public:
     void drawQuadImpl(const Mtx34& modelMtx, const Texture& texture, const Color4f& colorL, const Color4f& colorR, const Vec2f& uvSrc, const Vec2f& uvSize) override;
     void drawBoxImpl(const Mtx34& modelMtx, const Color4f& colorL, const Color4f& colorR) override;
     void drawCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) override;
-    void drawWireCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) override;    // restored
+    void drawWireCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) override; // restored
     void drawLineImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) override;
     void drawSphere4x8Impl(const Mtx34& modelMtx, const Color4f& north, const Color4f& south) override;
     void drawSphere8x16Impl(const Mtx34& modelMtx, const Color4f& north, const Color4f& south) override;
