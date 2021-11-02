@@ -7,7 +7,9 @@ class MiniPointerList { // A mini pointer array with convenience functions
 public:
     MiniPointerList()
         : data()
-    { }
+    {
+        this->clear();
+    }
 
     // Appends given data to the first empty member
     // @param data Data to be entered into the array
@@ -41,7 +43,10 @@ public:
     // Gets the value from the array at index
     // @param index Array index to get from
     T& operator[](u32 index) {
-        return this->data[index];
+        if (index >= N)
+            return this->data[0];
+        else
+            return this->data[index];
     }
 
     T data[N];

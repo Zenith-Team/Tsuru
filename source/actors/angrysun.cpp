@@ -233,7 +233,7 @@ void AngrySun::beginState_Swoop() {
         return;
     }
 
-    this->swoopTarget = Vec2f(this->position.x, this->position.y) + targetOffset;
+    this->swoopTarget = this->get2DPosition() + targetOffset;
 
     f32 x1, x2, x3;
     f32 y1, y2, y3;

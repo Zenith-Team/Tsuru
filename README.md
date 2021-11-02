@@ -18,13 +18,15 @@ All custom sprites which were not written by me have credits in customsprites.ya
 * Beep Block
 * Bomb Bro *
 * Cataquack
-* Death Foo *
+* Death Foo
+* Debug Helper
 * Effect Spawner
 * Elemental Thwomp *
 * Example World Map Actor
 * Fake Actor
 * Falling Chestnut
 * Flipblock *
+* Liquid Collision Overlay
 * Magic Platform *
 * Mini-only door
 * Model Loader *
@@ -36,7 +38,7 @@ All custom sprites which were not written by me have credits in customsprites.ya
 * Task Changer
 * Time Clock
 * Triple Block *
-* Water Waves *
+* Water Waves
 * Water Waves Platform *
 * Wind Generator
 

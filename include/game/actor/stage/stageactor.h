@@ -87,6 +87,10 @@ public:
     void actorCBCallback3(ColliderBase*, Vec2f*);
     void actorCBCallback4(ColliderBase*, Vec2f*);
 
+    inline Vec2f get2DPosition() const {
+        return Vec2f(this->position.x, this->position.y);
+    }
+
     inline void getRect(Rect& out) const {
         f32 XPos1 = position.x - 16.0f;
         f32 XPos2 = position.x + 16.0f;
