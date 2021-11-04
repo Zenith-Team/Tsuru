@@ -30,17 +30,17 @@ public:
     void updateUniformBlockLocation() const;
     void updateUniformLocation() const;
 
-    u8 flags;                           // _0
-    u16 _2;                             // _2
-    DisplayList displayList;            // _4
-    sead::Buffer<u32> _14;              // _14  //? What is the template param for these?
-    sead::Buffer<u32> uniformBlocks;    // _1C  //? What is the template param for these?
-    sead::Buffer<u32> _24;              // _24  //? What is the template param for these?
-    sead::Buffer<u32> samplerBlocks;    // _2C  //? What is the template param for these?
-    VertexShader vertexShader;          // _34
-    FragmentShader fragmentShader;      // _40
-    GeometryShader geometryShader;      // _4C
-    u32 info;                           // _58
+    u8 flags;                           // 0
+    u16 _2;                             // 2
+    DisplayList displayList;            // 4
+    sead::Buffer<u32> _14;              // 14  //? What is the template param for these?
+    sead::Buffer<u32> uniformBlocks;    // 1C  //? What is the template param for these?
+    sead::Buffer<u32> _24;              // 24  //? What is the template param for these?
+    sead::Buffer<u32> samplerBlocks;    // 2C  //? What is the template param for these?
+    VertexShader vertexShader;          // 34
+    FragmentShader fragmentShader;      // 40
+    GeometryShader geometryShader;      // 4C
+    u32 info;                           // 58
 };
 
 static_assert(sizeof(ShaderProgram) == 0x60, "agl::ShaderProgram size mismatch");

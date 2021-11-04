@@ -71,29 +71,29 @@ public:
         return tileChecker.check(nullptr, a, b, 8);
     }
 
-    u32 _27C;                           // _27C
-    ActorPhysicsMgr physicsMgr;         // _280
-    f32 _1760;                          // _1760 Inited to 0
-    f32 _1764;                          // _1764 Inited to
-    Vec3f* _1768;                       // _1768 Inited to &position
-    u8 _176C;                           // _176C Inited to 0
-    u8 _176D;                           // _176D Padding
-    u8 _176E;                           // _176E Padding
-    u8 _176F;                           // _176F Padding
-    u32 _1770;                          // _1770 Inited to 0
-    f32 _1774;                          // _1774 Inited to 1.0
-    Vec2f _1778;                        // _1778 Inited to 0
-    Vec2f _1780;                        // _1780 Inited to 0
-    f32 maxYSpeed;                      // _1788 Inited to 1.5
-    f32 minYSpeed;                      // _178C Inited to -1.5
-    f32 _1790;                          // _1790 Inited to -0.0625
-    u8 _1794;                           // _1794 Inited to 0
-    u8 _1795;                           // _1795 Inited to 0
-    u8 _1796;                           // _1796 Inited to 0
-    u8 _1797;                           // _1797 Inited to 0
-    u8 _1798;                           // _1798 Inited to 0
-    u8 _1799;                           // _1799 Inited to 0
-    u8 _179A;                           // _179A Inited to 0
-    u8 _179B;                           // _179B Inited to 0
-    u32 _179C;                          // _179C Inited to 0
+    u32 _27C;                           // 27C
+    ActorPhysicsMgr physicsMgr;         // 280
+    f32 _1760;                          // 1760 Inited to 0
+    f32 _1764;                          // 1764 Inited to
+    Vec3f* _1768;                       // 1768 Inited to &position
+    u8 _176C;                           // 176C Inited to 0
+    u8 _176D;                           // 176D Padding
+    u8 _176E;                           // 176E Padding
+    u8 _176F;                           // 176F Padding
+    u32 _1770;                          // 1770 Inited to 0
+    f32 _1774;                          // 1774 Inited to 1.0
+    Vec2f _1778;                        // 1778 Inited to 0
+    Vec2f _1780;                        // 1780 Inited to 0
+    f32 maxYSpeed;                      // 1788 Inited to 1.5
+    f32 minYSpeed;                      // 178C Inited to -1.5
+    f32 _1790;                          // 1790 Inited to -0.0625
+    u8 _1794;                           // 1794 Inited to 0
+    u8 _1795;                           // 1795 Inited to 0
+    u8 _1796;                           // 1796 Inited to 0
+    u8 _1797;                           // 1797 Inited to 0
+    u8 _1798;                           // 1798 Inited to 0
+    u8 _1799;                           // 1799 Inited to 0
+    u8 _179A;                           // 179A Inited to 0
+    u8 _179B;                           // 179B Inited to 0
+    u32 _179C;                          // 179C Inited to 0
 };

@@ -19,8 +19,8 @@ struct Rect { // Size: 0x10
 
     static Rect sZero;
 
-    f32 left;       // _0
-    f32 bottom;     // _4
-    f32 right;      // _8
-    f32 top;        // _C
+    f32 left;       // 0
+    f32 bottom;     // 4
+    f32 right;      // 8
+    f32 top;        // C
 };

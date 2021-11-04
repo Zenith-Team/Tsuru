@@ -109,14 +109,14 @@ public:
 
     void adjustHeapAll();
 
-    TaskParameter* parameter;               // _2C
-    BitFlag32 internalFlag;                 // _30
-    TListNode<TaskBase*> taskListNode;      // _34
-    HeapArray heapArray;                    // _44
-    TaskMgr* taskMgr;                       // _5C
-    State state;                            // _60
-    Tag tag;                                // _64
-    TaskClassID classID;                    // _68
+    TaskParameter* parameter;               // 2C
+    BitFlag32 internalFlag;                 // 30
+    TListNode<TaskBase*> taskListNode;      // 34
+    HeapArray heapArray;                    // 44
+    TaskMgr* taskMgr;                       // 5C
+    State state;                            // 60
+    Tag tag;                                // 64
+    TaskClassID classID;                    // 68
 };
 
 static_assert(sizeof(TaskBase) == 0x74, "sead::TaskBase size mismatch");

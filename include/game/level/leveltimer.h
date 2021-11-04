@@ -17,10 +17,10 @@ public:
     // @return Remaining time limit in seconds
     s32 getTimeLimitSeconds() const;
 
-    s32 freezeTimer;        // _10
-    s32 timeLimit;          // _14
-    s32 startTimeLimit;     // _18
-    bool isHurryUp;         // _1C
-    u8 flags;               // _1D
-    u16 _1E;                // _1E
+    s32 freezeTimer;        // 10
+    s32 timeLimit;          // 14
+    s32 startTimeLimit;     // 18
+    bool isHurryUp;         // 1C
+    u8 flags;               // 1D
+    u16 _1E;                // 1E
 };

@@ -223,7 +223,7 @@ public:
         u8 _3;
         u32 highscores[32];                 // Stored in hundredths of a second
         u8 _84[32];
-        u32 CRC32;                          // _A4
+        u32 CRC32;                          // A4
     };
 
     static_assert(sizeof(SaveData::BoostRushData) == 0xA8, "SaveData::BoostRushData size mismatch");
@@ -317,25 +317,25 @@ public:
     static_assert(sizeof(SaveData::TelemetryStatistics) == 0x94, "SaveData::TelemetryStatistics size mismatch");
 
     struct MiiData {
-        u8 entriesCount;                // _0
-        FFL::CreateID miiIDList[62];    // _1    (Total size: 0x26C)
-        u8 padding[3];                  // _26D
-        u32 CRC32;                      // _270
+        u8 entriesCount;                // 0
+        FFL::CreateID miiIDList[62];    // 1    (Total size: 0x26C)
+        u8 padding[3];                  // 26D
+        u32 CRC32;                      // 270
     } packed aligned(1);
 
     static_assert(sizeof(SaveData::MiiData) == 0x274, "SaveData::MiiData size mismatch");
 
 public:
-    Header header;                      // _0
-    SaveSlot saveSlots[3];              // _10
-    SaveSlot nsluSaveSlots[3];          // _61C
-    SaveSlot quickSaveSlots[3];         // _C28
-    SaveSlot nsluQuickSaveSlots[3];     // _1234
-    ChallengeData challengeData;        // _1840
-    BoostRushData boostRushData;        // _4E4C
-    CoinEditData coinEditData;          // _4EF4
-    TelemetryStatistics telemetryStats; // _AE2C
-    MiiData miiData;                    // _AEC0
+    Header header;                      // 0
+    SaveSlot saveSlots[3];              // 10
+    SaveSlot nsluSaveSlots[3];          // 61C
+    SaveSlot quickSaveSlots[3];         // C28
+    SaveSlot nsluQuickSaveSlots[3];     // 1234
+    ChallengeData challengeData;        // 1840
+    BoostRushData boostRushData;        // 4E4C
+    CoinEditData coinEditData;          // 4EF4
+    TelemetryStatistics telemetryStats; // AE2C
+    MiiData miiData;                    // AEC0
 };
 
 static_assert(sizeof(SaveData) == 0xB134, "SaveData size mismatch");

@@ -10,9 +10,9 @@ public:
     class List {
     public:
         struct Node {
-            ColliderBase* owner;   // _0
-            Node* next;            // _4
-            Node* prev;            // _8
+            ColliderBase* owner;   // 0
+            Node* next;            // 4
+            Node* prev;            // 8
         };
 
     public:
@@ -22,8 +22,8 @@ public:
         virtual void insertFront(Node* node);
         virtual void clear();
 
-        Node* first;   // _0
-        Node* last;    // _4
+        Node* first;   // 0
+        Node* last;    // 4
     };
 
     class Node {
@@ -31,39 +31,39 @@ public:
         struct Sensor {
             Sensor();
 
-            Vec2f point1;  // _0   Position relative to parent's center, Inited to (0, 0)
-            Vec2f point2;  // _8   Position relative to parent's center, Inited to (1, 0)
+            Vec2f point1;  // 0   Position relative to parent's center, Inited to (0, 0)
+            Vec2f point2;  // 8   Position relative to parent's center, Inited to (1, 0)
         };
 
     public:
         Node();
 
-        u8 _0;              // _0   Inited to 8
-        u8 _1;              // _1   Inited to 0
-        u8 _2;              // _2   Inited to 0
-        u8 _3;              // _3   Inited to 0
-        Sensor sensor;      // _4
-        u32 _14;            // _14  Inited to 0
-        u32 flags;          // _18  Inited to 0
-        u32 _1C;            // _1C  Inited to 0
+        u8 _0;              // 0   Inited to 8
+        u8 _1;              // 1   Inited to 0
+        u8 _2;              // 2   Inited to 0
+        u8 _3;              // 3   Inited to 0
+        Sensor sensor;      // 4
+        u32 _14;            // 14  Inited to 0
+        u32 flags;          // 18  Inited to 0
+        u32 _1C;            // 1C  Inited to 0
     };
 
     class Node2 : public Node {
     public:
-        ColliderBase* owner;    // _20
-        u8  _24[4];             // _24
-        u32 flags2;             // _28
-        u32 _2C;                // _2C
-        u32 _30;                // _30
-        u32 _34;                // _34
+        ColliderBase* owner;    // 20
+        u8  _24[4];             // 24
+        u32 flags2;             // 28
+        u32 _2C;                // 2C
+        u32 _30;                // 30
+        u32 _34;                // 34
     };
 
     struct OwnerInfo {
-        Vec3f* position;   // _0
-        Vec3f* _4;         // _4
-        u8* layer;         // _8
-        u8* _C;            // _C
-        s8* playerID;      // _10
+        Vec3f* position;   // 0
+        Vec3f* _4;         // 4
+        u8* layer;         // 8
+        u8* _C;            // C
+        s8* playerID;      // 10
     };
 
     enum Type {

@@ -36,9 +36,9 @@ public:
     { }
 
 protected:
-    PTMF begin;     // _8
-    PTMF execute;   // _10
-    PTMF end;       // _18
+    PTMF begin;     // 8
+    PTMF execute;   // 10
+    PTMF end;       // 18
 };
 
 template <class TOwner>
@@ -76,8 +76,8 @@ public:
     StateBase* getCurrentState() override;
     void execute() override;
 
-    TOwner* owner;                 // _4
-    State<TOwner>* currentState;   // _8
+    TOwner* owner;                 // 4
+    State<TOwner>* currentState;   // 8
 };
 
 class StateExecutorBase {

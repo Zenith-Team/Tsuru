@@ -43,7 +43,7 @@ public:
     static const SafeStringBase sEmptyString;
     static const s32 sMaximumLength = 0x40000;
 
-    const T* stringTop; // _4
+    const T* stringTop; // 4
 };
 
 typedef SafeStringBase<char> SafeString;

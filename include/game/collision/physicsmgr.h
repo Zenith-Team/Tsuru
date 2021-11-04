@@ -10,9 +10,9 @@ class PhysicsMgr : public TileChecker { // Size: 0x14DC
 
 public:
     struct Sensor {
-        f32 point1;             // _0
-        f32 point2;             // _4
-        f32 distanceFromCenter; // _8
+        f32 point1;             // 0
+        f32 point2;             // 4
+        f32 distanceFromCenter; // 8
     };
 
 public:
