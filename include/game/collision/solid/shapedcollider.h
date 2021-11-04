@@ -7,12 +7,12 @@ class ShapedCollider : public ColliderBase {
 
 public:
     struct Info {
-        Vec2f distToCenter;    // _0
-        f32 _8;                // _8
-        f32 _C;                // _C
-        Vec2f topLeft;         // _10
-        Vec2f bottomRight;     // _18
-        u32 rotation;          // _20
+        Vec2f distToCenter;    // 0
+        f32 _8;                // 8
+        f32 _C;                // C
+        Vec2f topLeft;         // 10
+        Vec2f bottomRight;     // 18
+        u32 rotation;          // 20
     };
 
 public:

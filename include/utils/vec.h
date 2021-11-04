@@ -4,8 +4,8 @@
 
 template <typename T>
 struct Vec2 { // Size: 0x8
-    T x;  // _0
-    T y;  // _4
+    T x;  // 0
+    T y;  // 4
 
     inline Vec2(T val = 0) :
         x(val), y(val) { }
@@ -52,9 +52,9 @@ typedef Vec2<s32> Vec2i;
 
 template <typename T>
 struct Vec3 { // Size: 0xC
-    T x;  // _0
-    T y;  // _4
-    T z;  // _8
+    T x;  // 0
+    T y;  // 4
+    T z;  // 8
 
     inline Vec3(T val = 0) :
         x(val), y(val), z(val) { }

@@ -24,13 +24,13 @@ public:
 
     void damageFromUnder() override;
 
-    f32 finalWindStrength;      // _27C
-    f32 windStrength;           // _280
-    f32 _284;                   // _284
-    f32 _288;                   // _288
-    u8  _28C[4];                // _28C
-    u32 _290;                   // _290
-    u32 _294;                   // _294
-    u32 _298;                   // _298
-    u32 _29C;                   // _29C
+    f32 finalWindStrength;      // 27C
+    f32 windStrength;           // 280
+    f32 _284;                   // 284
+    f32 _288;                   // 288
+    u8  _28C[4];                // 28C
+    u32 _290;                   // 290
+    u32 _294;                   // 294
+    u32 _298;                   // 298
+    u32 _29C;                   // 29C
 };

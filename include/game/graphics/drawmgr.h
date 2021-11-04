@@ -13,9 +13,9 @@ public:
     // @param modelWrapper pointer to the model wrapper to draw
     void drawModel(ModelWrapper* modelWrapper);
     // Draws a tile to the screen
-    // @param tile Tile to be drawn
+    // @param u16 Tile to be drawn (index? id?)
     // @param position Position to draw the tile at
     // @param rotation Rotation to be applied to the tile
     // @param scale Scale to be applied to the tile
-    void drawTile(u16 tile, const Vec3f& position, const u32& rotation, const Vec3f& scale);
+    void drawTile(u16, const Vec3f& position, const u32& rotation, const Vec3f& scale);
 };

@@ -34,45 +34,45 @@ public:
     // @return Profile ID of this actor
     u32 getProfileID();
 
-    sead::Heap* heap;                       // _0
-    u32 id;                                 // _4
-    Profile* profile;                       // _8
-    bool wasNotDeferred;                    // _C
-    bool isSprite;                          // _D
-    bool isCreated;                         // _E
-    bool isDeleted;                         // _F
-    union { u32 settings1;                  // _10
-        struct {                            // _10
-            u32 nybble12 : 4;               // _10
-            u32 nybble11 : 4;               // _10
-            u32 nybble10 : 4;               // _10
-            u32 nybble9  : 4;               // _10
-            u32 nybble8  : 4;               // _10
-            u32 nybble7  : 4;               // _10
-            u32 nybble6  : 4;               // _10
-            u32 nybble5  : 4;               // _10
-        };                                  // _10
-    };                                      // _10
-    union { u32 settings2;                  // _14
-        struct {                            // _14
-            u32 nybble20 : 4;               // _14
-            u32 nybble19 : 4;               // _14
-            u32 nybble18 : 4;               // _14
-            u32 nybble17 : 4;               // _14
-            u32 nybble16 : 4;               // _14
-            u32 nybble15 : 4;               // _14
-            u32 nybble14 : 4;               // _14
-            u32 nybble13 : 4;               // _14
-        };                                  // _14
-    };                                      // _14
-    u8 movementID;                          // _18
-    u8 linkID;                              // _19
-    u8 initialStateFlag;                    // _1A
-    u8 _1B;                                 // _1B     //? Padding
-    sead::OffsetList<Actor> childList;      // _1C
-    sead::ListNode childNode;               // _2C
-    Actor* parent;                          // _34
-    sead::ListNode actorListNode;           // _38
-    sead::ListNode drawListNode;            // _40
-    u32 flags;                              // _48
+    sead::Heap* heap;                       // 0
+    u32 id;                                 // 4
+    Profile* profile;                       // 8
+    bool wasNotDeferred;                    // C
+    bool isSprite;                          // D
+    bool isCreated;                         // E
+    bool isDeleted;                         // F
+    union { u32 settings1;                  // 10
+        struct {                            // 10
+            u32 nybble12 : 4;               // 10
+            u32 nybble11 : 4;               // 10
+            u32 nybble10 : 4;               // 10
+            u32 nybble9  : 4;               // 10
+            u32 nybble8  : 4;               // 10
+            u32 nybble7  : 4;               // 10
+            u32 nybble6  : 4;               // 10
+            u32 nybble5  : 4;               // 10
+        };                                  // 10
+    };                                      // 10
+    union { u32 settings2;                  // 14
+        struct {                            // 14
+            u32 nybble20 : 4;               // 14
+            u32 nybble19 : 4;               // 14
+            u32 nybble18 : 4;               // 14
+            u32 nybble17 : 4;               // 14
+            u32 nybble16 : 4;               // 14
+            u32 nybble15 : 4;               // 14
+            u32 nybble14 : 4;               // 14
+            u32 nybble13 : 4;               // 14
+        };                                  // 14
+    };                                      // 14
+    u8 movementID;                          // 18
+    u8 linkID;                              // 19
+    u8 initialStateFlag;                    // 1A
+    u8 _1B;                                 // 1B     //? Padding
+    sead::OffsetList<Actor> childList;      // 1C
+    sead::ListNode childNode;               // 2C
+    Actor* parent;                          // 34
+    sead::ListNode actorListNode;           // 38
+    sead::ListNode drawListNode;            // 40
+    u32 flags;                              // 48
 };

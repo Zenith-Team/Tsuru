@@ -69,39 +69,39 @@ public:
     DECLARE_STATE_VIRTUAL(CourseSelectTask, CourseSelectTaskState2);
     DECLARE_STATE_VIRTUAL(CourseSelectTask, CourseSelectTaskState3);
 
-    u8 _C8;                                             // _C8
-    u8 _C9[15];                                         // _C9      // Unknown values 1
-    StateWrapper<CourseSelectTask> states;              // _D8
-    agl::lyr::DrawMethod drawMethodCourseSelect;        // _FC
-    agl::lyr::DrawMethod drawMethod2D;                  // _13C
-    agl::lyr::DrawMethod drawMethod3D;                  // _17C
-    agl::lyr::DrawMethod drawMethod3D_World;            // _1BC
-    agl::lyr::DrawMethod drawMethod2D_Menu;             // _1FC
-    agl::lyr::DrawMethod drawMethod2D_TV;               // _23C
-    agl::lyr::DrawMethod drawMethod2D_Pre3D;            // _27C
-    agl::lyr::DrawMethod drawMethodCourseSelectDRC;     // _2BC
-    agl::lyr::DrawMethod drawMethod3D_DRC;              // _2FC
-    agl::lyr::DrawMethod drawMethod2D_DRC;              // _33C
-    agl::lyr::DrawMethod drawMethod2D_Pre3D_DRC;        // _37C
-    u8 _3BC[88];                                        // _3BC     // Is class
-    u8 _414[172];                                       // _414     // Is class
-    u8 _4C0[88];                                        // _4C0     // Is class
-    u8 _518[172];                                       // _518     // Is class
-    u8 _5C4[404][4];                                    // _5C4     // Is struct
-    u8 _C14[404];                                       // _C14     // Is class
-    u32 cameraActorID;                                  // _DA8
-    char* _DAC;                                         // _DAC
-    u8 _DB0[16];                                        // _DB0     // Unknown values 2
-    u32 _DC0;                                           // _DC0
-    u8 _DC4[4];                                         // _DC4     // Unknown values 3
-    u8 _DC8;                                            // _DC8
-    u8 _DC9;                                            // _DC9
-    u8 _DCA;                                            // _DCA
-    u8 _DCB;                                            // _DCB     // Unknown value 4
-    u8 _DCC;                                            // _DCC
-    u8 _DCD;                                            // _DCD
-    u8 _DCE;                                            // _DCE
-    u8 _DCF;                                            // _DCF
+    u8 _C8;                                             // C8
+    u8 _C9[15];                                         // C9      // Unknown values 1
+    StateWrapper<CourseSelectTask> states;              // D8
+    agl::lyr::DrawMethod drawMethodCourseSelect;        // FC
+    agl::lyr::DrawMethod drawMethod2D;                  // 13C
+    agl::lyr::DrawMethod drawMethod3D;                  // 17C
+    agl::lyr::DrawMethod drawMethod3D_World;            // 1BC
+    agl::lyr::DrawMethod drawMethod2D_Menu;             // 1FC
+    agl::lyr::DrawMethod drawMethod2D_TV;               // 23C
+    agl::lyr::DrawMethod drawMethod2D_Pre3D;            // 27C
+    agl::lyr::DrawMethod drawMethodCourseSelectDRC;     // 2BC
+    agl::lyr::DrawMethod drawMethod3D_DRC;              // 2FC
+    agl::lyr::DrawMethod drawMethod2D_DRC;              // 33C
+    agl::lyr::DrawMethod drawMethod2D_Pre3D_DRC;        // 37C
+    u8 _3BC[88];                                        // 3BC     // Is class
+    u8 _414[172];                                       // 414     // Is class
+    u8 _4C0[88];                                        // 4C0     // Is class
+    u8 _518[172];                                       // 518     // Is class
+    u8 _5C4[404][4];                                    // 5C4     // Is struct
+    u8 _C14[404];                                       // C14     // Is class
+    u32 cameraActorID;                                  // DA8
+    char* _DAC;                                         // DAC
+    u8 _DB0[16];                                        // DB0     // Unknown values 2
+    u32 _DC0;                                           // DC0
+    u8 _DC4[4];                                         // DC4     // Unknown values 3
+    u8 _DC8;                                            // DC8
+    u8 _DC9;                                            // DC9
+    u8 _DCA;                                            // DCA
+    u8 _DCB;                                            // DCB     // Unknown value 4
+    u8 _DCC;                                            // DCC
+    u8 _DCD;                                            // DCD
+    u8 _DCE;                                            // DCE
+    u8 _DCF;                                            // DCF
 };
 
 //static_assert(sizeof(CourseSelectTask) == 0xDD0, "CourseSelectTask size mismatch");

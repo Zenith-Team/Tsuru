@@ -36,5 +36,5 @@ public:
     // @param state Pointer to target state
     virtual void doStateChange(StateBase* state);
 
-    MultiStateWrapper<MultiStateActor> states; // _17A0
+    MultiStateWrapper<MultiStateActor> states; // 17A0
 };

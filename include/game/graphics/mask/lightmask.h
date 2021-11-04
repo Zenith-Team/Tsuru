@@ -3,6 +3,8 @@
 #include <game/graphics/mask/mask.h>
 
 class LightMask : public Mask { // Size: 0x28
+    // This class allows an actor to display visibility around it in darkness areas
+    // Typically used in conjunction with LightSource to create light emitting actors
 public:
     LightMask();
 

@@ -9,85 +9,85 @@ public:
     class Area {
     public:
         struct Options {
-            u32 eventBits32;                // _0
-            u32 eventBits64;                // _4
-            u16 wrapValue;                  // _8
-            u16 timeLimit;                  // _A
-            u8 _C;                          // _C
-            u8 _D;                          // _D
-            u8 _E;                          // _E
-            u8 _F;                          // _F
-            u8 startEntrance;               // _10
-            u8 _11;                         // _11
-            u8 _12;                         // _12
-            u8 startEntranceCoinBoost;      // _13
-            u16 timeLimit2;                 // _14
-            u16 timeLimit3;                 // _16
+            u32 eventBits32;                // 0
+            u32 eventBits64;                // 4
+            u16 wrapValue;                  // 8
+            u16 timeLimit;                  // A
+            u8 _C;                          // C
+            u8 _D;                          // D
+            u8 _E;                          // E
+            u8 _F;                          // F
+            u8 startEntrance;               // 10
+            u8 _11;                         // 11
+            u8 _12;                         // 12
+            u8 startEntranceCoinBoost;      // 13
+            u16 timeLimit2;                 // 14
+            u16 timeLimit3;                 // 16
         };
 
         struct Sprite {
-            u16 type;                       // _0
-            u16 x;                          // _2
-            u16 y;                          // _4
-            u16 eventID1_2;                 // _6
-            union { u32 settings1;          // _8
-                struct {                    // _8
-                    u32 nybble12 : 4;       // _8
-                    u32 nybble11 : 4;       // _8
-                    u32 nybble10 : 4;       // _8
-                    u32 nybble9  : 4;       // _8
-                    u32 nybble8  : 4;       // _8
-                    u32 nybble7  : 4;       // _8
-                    u32 nybble6  : 4;       // _8
-                    u32 nybble5  : 4;       // _8
-                };                          // _8
-            };                              // _8
-            union { u32 settings2;          // _C
-                struct {                    // _C
-                    u32 nybble20 : 4;       // _C
-                    u32 nybble19 : 4;       // _C
-                    u32 nybble18 : 4;       // _C
-                    u32 nybble17 : 4;       // _C
-                    u32 nybble16 : 4;       // _C
-                    u32 nybble15 : 4;       // _C
-                    u32 nybble14 : 4;       // _C
-                    u32 nybble13 : 4;       // _C
-                };                          // _C
-            };                              // _C
-            u8 zoneID;                      // _10
-            u8 layer;                       // _11
-            u8 movementID;                  // _12
-            u8 linkID;                      // _13
-            u8 initialStateFlag;            // _14
+            u16 type;                       // 0
+            u16 x;                          // 2
+            u16 y;                          // 4
+            u16 eventID1_2;                 // 6
+            union { u32 settings1;          // 8
+                struct {                    // 8
+                    u32 nybble12 : 4;       // 8
+                    u32 nybble11 : 4;       // 8
+                    u32 nybble10 : 4;       // 8
+                    u32 nybble9  : 4;       // 8
+                    u32 nybble8  : 4;       // 8
+                    u32 nybble7  : 4;       // 8
+                    u32 nybble6  : 4;       // 8
+                    u32 nybble5  : 4;       // 8
+                };                          // 8
+            };                              // 8
+            union { u32 settings2;          // C
+                struct {                    // C
+                    u32 nybble20 : 4;       // C
+                    u32 nybble19 : 4;       // C
+                    u32 nybble18 : 4;       // C
+                    u32 nybble17 : 4;       // C
+                    u32 nybble16 : 4;       // C
+                    u32 nybble15 : 4;       // C
+                    u32 nybble14 : 4;       // C
+                    u32 nybble13 : 4;       // C
+                };                          // C
+            };                              // C
+            u8 zoneID;                      // 10
+            u8 layer;                       // 11
+            u8 movementID;                  // 12
+            u8 linkID;                      // 13
+            u8 initialStateFlag;            // 14
         };
 
         struct Location {
-            u16 x;                          // _0
-            u16 y;                          // _2
-            u16 w;                          // _4
-            u16 h;                          // _6
-            u8 id;                          // _8
+            u16 x;                          // 0
+            u16 y;                          // 2
+            u16 w;                          // 4
+            u16 h;                          // 6
+            u8 id;                          // 8
         };
 
         struct Path {
-            u8 id;                          // _0
-            s8 _1;                          // _1
-            u16 startNodeIdx;               // _2
-            u16 nodeCount;                  // _4
-            u16 flags;                      // _6 (0b10 -> loops)
-            u32 _8;                         // _8
+            u8 id;                          // 0
+            s8 _1;                          // 1
+            u16 startNodeIdx;               // 2
+            u16 nodeCount;                  // 4
+            u16 flags;                      // 6 (0b10 -> loops)
+            u32 _8;                         // 8
         };
 
         struct PathNode {
-            u16 x;                          // _0
-            u16 y;                          // _2
-            f32 speed;                      // _4
-            f32 accel;                      // _8
-            s16 delay;                      // _C
-            u16 _E;                         // _E
-            u8 _10;                         // _10
-            u8 _11;                         // _11
-            u8 _12;                         // _12
+            u16 x;                          // 0
+            u16 y;                          // 2
+            f32 speed;                      // 4
+            f32 accel;                      // 8
+            s16 delay;                      // C
+            u16 _E;                         // E
+            u8 _10;                         // 10
+            u8 _11;                         // 11
+            u8 _12;                         // 12
         };
 
     public:

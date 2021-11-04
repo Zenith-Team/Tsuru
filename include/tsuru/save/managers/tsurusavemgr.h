@@ -18,12 +18,12 @@ public:
     public:
         friend class TsuruSaveMgr;
 
-        bool infiniteLivesEnabled;          // _4
-        bool infiniteTimeEnabled;           // _5
-        bool noClipEnabled;                 // _6
-        bool invincibilityEnabled;          // _7
-        bool collisionViewerEnabled;        // _8
-        bool instantRespawnEnabled;         // _9
+        bool infiniteLivesEnabled;          // 4
+        bool infiniteTimeEnabled;           // 5
+        bool noClipEnabled;                 // 6
+        bool invincibilityEnabled;          // 7
+        bool collisionViewerEnabled;        // 8
+        bool instantRespawnEnabled;         // 9
     };
 
 public:

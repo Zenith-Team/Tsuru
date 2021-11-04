@@ -7,16 +7,16 @@ class Enemy;
 class EnemyFreezeMgr {
 public:
     struct Info {
-        u32 settings;       // _0
-        Vec3f position;     // _4
-        Vec3f scale;        // _10
-        u32 _1C;            // _1C
+        u32 settings;       // 0
+        Vec3f position;     // 4
+        Vec3f scale;        // 10
+        u32 _1C;            // 1C
     };
 
     struct Flags {
-        u8 breakTime;       // _0   Stored in _34
-        u8 _1;              // _1   Stored in _35
-        u8 _2;              // _2   Stored in _36
+        u8 breakTime;       // 0   Stored in _34
+        u8 _1;              // 1   Stored in _35
+        u8 _2;              // 2   Stored in _36
     };
 
 public:

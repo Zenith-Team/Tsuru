@@ -54,6 +54,8 @@ public:
 public:
     YoshiModel(TexColor color);
 
+    static sead::SafeString texArray[4];
+
     u32 _F0;
     u8 _F4[0x40]; // Is class
     u32 _134;

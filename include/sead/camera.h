@@ -31,4 +31,8 @@ public:
     Vec3f up;
 };
 
+class OrthoCamera : public LookAtCamera {
+    SEAD_RTTI_OVERRIDE(OrthoCamera, LookAtCamera)
+};
+
 }

@@ -20,20 +20,20 @@ public:
     };
 
 public:
-    u8 _27C[0x2C];                        // _27C
-    PlayerInput input;                    // _2A8
-    u8 _33C[0x1C4];                       // _33C
-    PowerupState powerupState;            // _500
-    u8 _504[0x4];                         // _504
-    ActorPhysicsMgr playerPhysicsMgr;     // _508
-    u8 _19E8[0xC0];                       // _19E8
-    PhysicsMgr::Sensor sensorID2;         // _1AA8
-    PhysicsMgr::Sensor sensorID3;         // _1AB4
-    PhysicsMgr::Sensor sensorID0_1;       // _1AC0
-    u8 _1ACC[0xEC];                       // _1ACC
-    HitboxCollider playerHitboxCollider1; // _1BB8
-    HitboxCollider playerHitboxCollider2; // _1CE0
-    HitboxCollider playerHitboxCollider3; // _1E08
-    HitboxCollider playerHitboxCollider4; // _1F30
-    u8 _2058[0x6F8];                      // _2058
+    u8 _27C[0x2C];                        // 27C
+    PlayerInput input;                    // 2A8
+    u8 _33C[0x1C4];                       // 33C
+    PowerupState powerupState;            // 500
+    u8 _504[0x4];                         // 504
+    ActorPhysicsMgr playerPhysicsMgr;     // 508
+    u8 _19E8[0xC0];                       // 19E8
+    PhysicsMgr::Sensor sensorID2;         // 1AA8
+    PhysicsMgr::Sensor sensorID3;         // 1AB4
+    PhysicsMgr::Sensor sensorID0_1;       // 1AC0
+    u8 _1ACC[0xEC];                       // 1ACC
+    HitboxCollider playerHitboxCollider1; // 1BB8
+    HitboxCollider playerHitboxCollider2; // 1CE0
+    HitboxCollider playerHitboxCollider3; // 1E08
+    HitboxCollider playerHitboxCollider4; // 1F30
+    u8 _2058[0x6F8];                      // 2058
 };
