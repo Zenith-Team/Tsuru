@@ -8,7 +8,7 @@ Hooks:
   # Water
   - type: branch
     instr: bl
-    addr: "26f9444"
+    addr: "26f9444" # Water::onExecute()
     func: SetWaterWaveValues
   # Poison
   - type: funcptr

@@ -21,20 +21,20 @@ Hooks:
   # Set the cloud texture
   - type: branch
     instr: bl
-    addr: "22FA520"
+    addr: "22FA520" # Cloud::onCreate()
     func: SetCloudTexture
   # Set the dark color
   - type: branch
     instr: bl
-    addr: "22FAE50"
+    addr: "22FAE50" # Cloud::onExecute_SpawnedByFoo()
     func: SetCloudDarkColor
   # Set the light color
   - type: branch
     instr: bl
-    addr: "22FBBD8"
+    addr: "22FBBD8" # Cloud::onExecute_SpawnedByFoo()
     func: SetCloudLightColor
   # Apply collision
   - type: branch
     instr: bl
-    addr: "22fba68"
+    addr: "22fba68" # Cloud::onExecute_SpawnedByFoo()
     func: CloudCollision

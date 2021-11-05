@@ -2,6 +2,7 @@
 
 namespace ProfileID {
 
+// Remember to add your new profile to the profile array in profile.cpp as well as the end of the list below
 enum ProfileIDType {
     NumOriginal = 913,
 
