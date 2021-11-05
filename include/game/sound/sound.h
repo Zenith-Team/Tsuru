@@ -7,6 +7,7 @@
 #include <game/sound/soundsystem.h>
 
 // Array of all vocal sound effect names?
+// TODO
 extern const char** SE_VOC[1040];
 
 extern nw::snd::FxReverbHi::ReverbHiParam DefaultReverbHiParam;

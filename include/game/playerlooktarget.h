@@ -4,6 +4,7 @@
 
 class PlayerLookTarget : public sead::IDisposer { // Size: 0x2C
     PlayerLookTarget(u32* ownerID);
+    virtual ~PlayerLookTarget();
 
     u32 ownerID;    // Actor ID of owner
     Vec2f _14;
