@@ -2,14 +2,15 @@
 ---
 Files:
   - source/yoshicolors.S
+  - source/yoshicolors.cpp
 Hooks:
-# Patch resource array to add custom colors
+# Redirect the YoshiModel constructor to use the custom array instead of the default one
   - type: branch
     instr: bl
-    addr: "2969B38" # Yoshi::resourceStaticInit()
-    func: PatchYoshiColors
+    addr: "2967ae8" # YoshiModel::YoshiModel()
+    func: RedirectToCustomYoshiTexArray
 
-# Randomize nybble 12
+# Randomize nybble 12 (color)
   - type: branch
     instr: bl
     addr: "295DF50" # Yoshi::Yoshi()

@@ -1,27 +1,9 @@
-.rodata
-YoshiTexPink:       .string "Yoshi_TexPink"
-YoshiTexLightBlue:  .string "Yoshi_TexLightBlue"
-YoshiTexYellow:     .string "Yoshi_TexYellow"
-
 .text
 
-.global PatchYoshiColors
-PatchYoshiColors:
-    # Array entry 2: Yoshi_TexPink
-    lis      r0, YoshiTexPink@h
-    ori      r0, r0, YoshiTexPink@l
-    stw      r0, 0x8(r12)
-
-    # Array entry 3: Yoshi_TexLightBlue
-    lis      r0, YoshiTexLightBlue@h
-    ori      r0, r0, YoshiTexLightBlue@l
-    stw      r0, 0x10(r12)
-
-    # Array entry 4: Yoshi_TexYellow
-    lis      r0, YoshiTexYellow@h
-    ori      r0, r0, YoshiTexYellow@l
-    stw      r0, 0x18(r12)
-
+.global RedirectToCustomYoshiTexArray
+RedirectToCustomYoshiTexArray:
+    lis      r4, YoshiTexArray@ha
+    addi     r4, r4, YoshiTexArray@l
     blr
 
 .global RandomYoshiColors
@@ -36,8 +18,8 @@ RandomYoshiColors:
     lwz      r3, sInstance__Q2_4sead12GlobalRandom@l(r3)
     bl       getU32__Q2_4sead6RandomFv
 
-
-    li       r4, 0x4
+    lis      r4, YoshiTexNum@ha
+    lwz      r4, YoshiTexNum@l(r4)
     mulhwu   r4, r3, r4
     mr       r3, r29
 
