@@ -546,6 +546,9 @@ SECTIONS {
     getRect__15MultiStateActorFR4Rect = 0x200AC20;
     doStateChange__15MultiStateActorFP9StateBase = 0x200B090;
 
+/* MusicPlayer */
+    shouldHurryUp__11MusicPlayerFv = 0x29b83d8;
+
 /* PhysicsActor */
     __vtbl__12PhysicsActor = 0x1000084C;
     __ct__12PhysicsActorFPC14ActorBuildInfo = 0x2002FB8;

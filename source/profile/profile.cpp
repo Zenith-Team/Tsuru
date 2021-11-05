@@ -83,6 +83,8 @@ u32 Profile::getNumProfiles() {
     return NUM_PROFILES;
 }
 
+// Remember to add the new profile to the ProfileID enum in profileid.h and to the end of this list
+
 u32 Profile::spriteToProfileList[] = {
     467,    //   0
     469,    //   1
