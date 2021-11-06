@@ -47,7 +47,8 @@ SECTIONS {
     GFDGetVertexShader = 0x2AF8E3C;
 
 /* agl::lyr::Layer */
-    pushBackDrawMethod__Q3_3agl3lyr5LayerFUiPQ3_3agl3lyr10DrawMethod = 0x2A376B8;
+    pushBackDrawMethod__Q3_3agl3lyr5LayerFUiPQ3_3agl3lyr10DrawMethod = 0x2a376b8;
+    pushBackDrawMethod__Q3_3agl3lyr5LayerFPQ3_3agl3lyr10DrawMethod = 0x2a37710;
 
 /* agl::lyr::Renderer */
     sInstance__Q3_3agl3lyr8Renderer = 0x101E8A2C;

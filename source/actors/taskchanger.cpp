@@ -1,13 +1,11 @@
 #include <game/task/coursetask.h>
-#include <game/task/courseselecttask.h>
+#include <tsuru/task/cutscenetask.h>
 #include <game/actor/stage/stageactor.h>
 #include <game/task/taskmgr.h>
 #include <tsuru/task/cutscenetask.h>
 #include <log.h>
 
 class TaskChanger : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(TaskChanger, StageActor)
-
 public:
     TaskChanger(const ActorBuildInfo* buildInfo);
     virtual ~TaskChanger() { }
@@ -28,13 +26,15 @@ Actor* TaskChanger::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 TaskChanger::onCreate() {
-    LOG("Changing task... %x", sizeof(CourseSelectTask));
+    LOG("Changing task... ");
 
     sead::TaskClassID taskClassID;
     taskClassID.type = sead::TaskClassID::Type_Factory;
-    taskClassID.id.factory = &CourseSelectTask::construct;
+    taskClassID.id.factory = &CutsceneTask::construct;
 
-    TaskMgr::instance()->changeTask(CourseTask::instance(), taskClassID, 0, 0);
+    bool t = TaskMgr::instance()->changeTask(CourseTask::instance(), taskClassID, 0, 0);
+
+    LOG("TaskMgr says: %u", t);
 
     return 0;
 }

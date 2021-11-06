@@ -18,10 +18,10 @@ Hooks:
   # Replace call to getStrmName to call our custom one
   - type: branch
     instr: bl
-    addr: F57862C
+    addr: 29b862c
     func: getStrmName__11MusicPlayerFi
   # Replace call to getSeqName to call our custom one
   - type: branch
     instr: bl
-    addr: F57863C
+    addr: 29b863c
     func: getSeqName__11MusicPlayerFi
