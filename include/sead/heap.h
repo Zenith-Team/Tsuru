@@ -96,6 +96,16 @@ public:
     virtual bool isResizable() const;
     virtual bool isAdjustable() const;
 
+    // Creates a heap with the specified parameters
+    // @param blockSize The size of each block in the heap
+    // @param blockNum The number of blocks to create
+    // @param name The name of the heap
+    // @param s32 Unknown. Possibly alignment?
+    // @param parent The parent heap to create the heap in
+    // @param bool Set to false if unsure
+    // @return A pointer to the created heap
+    static UnitHeap* tryCreateWithBlockNum(u32 blockSize, u32 blockNum, const SafeString& name, s32, Heap* parent, bool enableLock);
+
     u32 blockSize;
     void* areaStart;
     u32 areaSize;

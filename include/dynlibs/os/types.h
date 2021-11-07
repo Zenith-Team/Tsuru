@@ -53,14 +53,14 @@ typedef volatile double vf64;
 #define OS_EXCEPTION_MODE_THREAD 1
 #define OS_EXCEPTION_MODE_GLOBAL_ALL_CORES 4
 
-#define OS_THREAD_ATTR_AFFINITY_NONE    0x0007u        // affinity to run on every core
-#define OS_THREAD_ATTR_AFFINITY_CORE0   0x0001u        // run only on core0
-#define OS_THREAD_ATTR_AFFINITY_CORE1   0x0002u        // run only on core1
-#define OS_THREAD_ATTR_AFFINITY_CORE2   0x0004u        // run only on core2
-#define OS_THREAD_ATTR_DETACH           0x0008u        // detached
-#define OS_THREAD_ATTR_PINNED_AFFINITY  0x0010u        // pinned (affinitized) to a single core
-#define OS_THREAD_ATTR_CHECK_STACK_USE  0x0040u        // check for stack usage
-#define OS_THREAD_ATTR_NAME_SENT        0x0080u        // debugger has seen the name
+#define OS_THREAD_ATTR_AFFINITY_NONE    0x0007U        // affinity to run on every core
+#define OS_THREAD_ATTR_AFFINITY_CORE0   0x0001U        // run only on core0
+#define OS_THREAD_ATTR_AFFINITY_CORE1   0x0002U        // run only on core1
+#define OS_THREAD_ATTR_AFFINITY_CORE2   0x0004U        // run only on core2
+#define OS_THREAD_ATTR_DETACH           0x0008U        // detached
+#define OS_THREAD_ATTR_PINNED_AFFINITY  0x0010U        // pinned (affinitized) to a single core
+#define OS_THREAD_ATTR_CHECK_STACK_USE  0x0040U        // check for stack usage
+#define OS_THREAD_ATTR_NAME_SENT        0x0080U        // debugger has seen the name
 #define OS_THREAD_ATTR_LAST (OS_THREAD_ATTR_DETACH | OS_THREAD_ATTR_PINNED_AFFINITY | OS_THREAD_ATTR_AFFINITY_NONE)
 
 typedef struct OSThread_ OSThread;
