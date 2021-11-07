@@ -3,6 +3,8 @@
 #include <agl/lyr/renderer.h>
 #include <agl/lyr/layer.h>
 #include <log.h>
+#include <sead/filedevice.h>
+#include <sead/filedevicemgr.h>
 
 template <>
 const char sead::SafeString::sNullChar = '\0';
@@ -10,30 +12,27 @@ const char sead::SafeString::sNullChar = '\0';
 SEAD_SINGLETON_TASK_IMPL(CutsceneTask)
 
 sead::TaskBase* CutsceneTask::construct(const sead::TaskConstructArg& arg) {
-    LOG("cutscene task construct");
-
     return new(arg.heapArray->heaps[arg.heapArray->primaryIndex], 4) CutsceneTask(arg);
 }
 
 CutsceneTask::CutsceneTask(const sead::TaskConstructArg& arg)
     : CalculateTask(arg, "CutsceneTask")
     , drawMethodCutscene()
-{
-    LOG("cutscene task ctor");
-}
+    , frame(0)
+{ }
 
 void CutsceneTask::prepare() {
-    LOG("cutscene task prepare");
     this->adjustHeapAll();
 }
 
 void CutsceneTask::enter() {
     LOG("cutscene task enter");
 
-    // Most of this is a copy of GameOverScene's behavior
+    // TODO: Make a macro for this
     this->drawMethodCutscene.name = "Cutscene";
 
     this->drawMethodCutscene._18 = 1;
+    this->drawMethodCutscene._20 = 0x10177234;
     this->drawMethodCutscene._24 = this;
 
     this->drawMethodCutscene.method = static_cast<agl::lyr::DrawMethod::PTMF>(&CutsceneTask::drawLayerCutscene);
@@ -50,5 +49,7 @@ void CutsceneTask::calc() {
 }
 
 void CutsceneTask::drawLayerCutscene(const agl::lyr::RenderInfo& renderInfo) {
-    LOG("cutscene tasking successfully");
+    LOG("Drawing frame %u", this->frame); frame++;
+
+    
 }

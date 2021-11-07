@@ -18,5 +18,5 @@ Hooks:
 
 # Embed crash fix into the RPX
   - type: patch
-    data: "480000E8" # b 0xE8
+    data: "480000E8" # b +0xE8
     addr: "24D71C4"

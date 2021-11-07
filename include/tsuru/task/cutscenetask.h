@@ -1,5 +1,8 @@
 #pragma once
 
+#include "log.h"
+#include "dynlibs/h264/functions.h"
+#include "dynlibs/os/functions.h"
 #include <agl/lyr/drawmethod.h>
 #include <sead.h>
 
@@ -20,4 +23,6 @@ public:
     void drawLayerCutscene(const agl::lyr::RenderInfo& renderInfo);
 
     agl::lyr::DrawMethod drawMethodCutscene;
+    u32 frame;
+    const char* videoFile;
 };
