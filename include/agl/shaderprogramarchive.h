@@ -42,6 +42,9 @@ public:
 
     u32 searchShaderProgramIndex(sead::SafeString& programName);
 
+    // Probably ShaderProgramArchive::ShaderSource::initialize() or ShaderProgramArchive::ShaderProgramEx::initialize()
+    void FUN_2A23f1C(u8* filedata, u32*, u32, sead::Heap* heap);
+
     ResBinaryShaderArchive resBinarySharc;
     ResShaderArchive resSharc;
     sead::Buffer<ShaderProgram> programs;

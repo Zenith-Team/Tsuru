@@ -2,7 +2,9 @@
 
 #include <agl/lyr/layer.h>
 
-class LayerAgl : public agl::lyr::Layer { // Base class for all game layer classes
+class LayerAgl : public agl::lyr::Layer {
+    SEAD_RTTI_OVERRIDE(LayerAgl, agl::lyr::Layer)
+    // Base class for all game layer classes
 public:
     class Node {
         SEAD_RTTI_BASE(Node)
@@ -14,6 +16,13 @@ public:
 public:
     LayerAgl();
     virtual ~LayerAgl();
+
+    void vf34(sead::Heap* heap) override;
+    void vf3C() override;
+    void vf44() override;
+    void vf4C() override;
+    bool vf54(u32) override;
+    u32 vf5C() override;
 
     u8 _41C[0x420 - 0x41C];
 };

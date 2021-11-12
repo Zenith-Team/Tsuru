@@ -14,7 +14,7 @@ class RenderInfo { // Size: 0x28
 public:
     // TODO: Two constructors here
 
-    u32 renderStepIndex;
+    s32 renderStepIndex;
     u32 displayType;
     RenderBuffer* renderBuffer;
     u32 _C;

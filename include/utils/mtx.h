@@ -15,13 +15,24 @@ inline void sinCosIdx(f32* pSin, f32* pCos, u32 idx) {
 
 class Mtx34 {
 public:
-    static Mtx34* sIdentity;
+    static const Mtx34* sIdentity;
 
     union {
         f32 rows[3][4];
         f32 cells[12];
     };
 
+    void makeIdentity() {
+        for (u32 i = 0; i < 3; i++) {
+            for (u32 j = 0; j < 4; j++) {
+                if (i == j) {
+                    rows[i][j] = 1.0f;
+                } else {
+                    rows[i][j] = 0.0f;
+                }
+            }
+        }
+    }
     void rotateAndTranslate(const Vec3u& rotation, const Vec3f& translation);
     static void makeST(Mtx34& mtx, const Vec3f& scale, const Vec3f& translation);
     static void makeSRT(Mtx34& mtx, const Vec3f& scale, const Vec3f& rotation, const Vec3f& translation);

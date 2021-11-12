@@ -9,7 +9,10 @@ class Camera {
     SEAD_RTTI_BASE(Camera)
 
 public:
-    Camera();
+    inline Camera() {
+        this->matrix.makeIdentity();
+    }
+
     virtual ~Camera();
 
     virtual void doUpdateMatrix(Mtx34* mtx) const = 0;
@@ -21,7 +24,12 @@ class LookAtCamera : public Camera {
     SEAD_RTTI_OVERRIDE(LookAtCamera, Camera)
 
 public:
-    LookAtCamera(Vec3f& pos, Vec3f& at, Vec3f& up);
+    inline LookAtCamera(Vec3f& pos, Vec3f& at, Vec3f& up) {
+        this->pos = pos;
+        this->at = at;
+        this->up = up;
+    }
+
     virtual ~LookAtCamera();
 
     void doUpdateMatrix(Mtx34* mtx) const override;
@@ -33,6 +41,9 @@ public:
 
 class OrthoCamera : public LookAtCamera {
     SEAD_RTTI_OVERRIDE(OrthoCamera, LookAtCamera)
+
+public:
+    OrthoCamera();
 };
 
 }

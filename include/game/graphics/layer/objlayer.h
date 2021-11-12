@@ -6,6 +6,8 @@
 class ObjLayerRenderer;
 
 class ObjLayer : public LayerAgl {
+    SEAD_RTTI_OVERRIDE(ObjLayer, LayerAgl)
+
 public:
     class Node : public LayerAgl::Node {
         SEAD_RTTI_OVERRIDE(Node, LayerAgl::Node)
@@ -25,7 +27,16 @@ public:
     ObjLayer();
     virtual ~ObjLayer();
 
-    // ...
+    void vf34(sead::Heap* heap) override;
+    void vf3C() override;
 
-    u8 _420[0x42C - 0x420];
+    bool vf54(u32) override;
+    u32 vf5C() override;
+
+    // Calls GX2SetPolygonOffset()
+    virtual void vf64(u32);
+
+    u32 _420;
+    s32 _424;
+    Mtx44* _428;
 };

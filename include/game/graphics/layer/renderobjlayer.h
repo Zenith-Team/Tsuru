@@ -71,7 +71,16 @@ public:
     RenderObjLayer();
     virtual ~RenderObjLayer();
 
-    // ...
+    u32 vf24() override;
+    void vf2C(void*, u32) override;
+    void vf34(sead::Heap* heap) override;
 
-    u8 _42C[0x478 - 0x42C];
+    bool vf54(u32) override;
+
+    void vf64(u32) override;
+
+    Mtx44 _42C;
+    u8 _46C;
+    f32 _470;
+    f32 _474;
 };
