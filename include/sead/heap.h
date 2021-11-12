@@ -37,7 +37,7 @@ public:
     virtual u32 getEndAddress() const = 0;
     virtual u32 getSize() const = 0;
     virtual u32 getFreeSize() const = 0;
-    virtual u32 getMaxAllocatableSize(s32) const = 0;
+    virtual u32 getMaxAllocatableSize(s32 alignment) const = 0;
     virtual bool isInclude(const void*) const = 0;
     virtual bool isFreeable() const = 0;
     virtual bool isResizable() const = 0;
@@ -50,10 +50,6 @@ public:
     void appendDisposer_(IDisposer* disposer);
     void removeDisposer_(IDisposer* disposer);
     Heap* findContainHeap_(const void* ptr);
-
-    inline void* alloc(size_t size, s32 alignment) {
-        return tryAlloc(size, alignment);
-    }
 
     void* start;
     size_t size;

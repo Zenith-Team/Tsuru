@@ -19,14 +19,14 @@ public:
 
     // TODO: Return types, parameters, names for these:
     SEAD_RTTI_BASE(Layer)
-    virtual void vf24() = 0;
-    virtual void vf2C() = 0;
-    virtual void vf34();
+    virtual u32 vf24() = 0;
+    virtual void vf2C(void*, u32) = 0;
+    virtual void vf34(sead::Heap* heap);
     virtual void vf3C();
-    virtual void vf44();
-    virtual void vf4C();
-    virtual void vf54();
-    virtual void vf5C();
+    virtual void vf44(); // Called before draw
+    virtual void vf4C(); // Called after draw
+    virtual bool vf54(u32);
+    virtual u32 vf5C();
 
     void initialize_(sead::Heap* heap);
 

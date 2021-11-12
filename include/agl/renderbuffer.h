@@ -17,10 +17,12 @@ public:
     RenderBuffer(Vec2f& size, f32, f32, f32 sizeX, f32 sizeY);
     virtual ~RenderBuffer();
 
-    void clear(u32, u32 flags, sead::Color4f& color, f32 depthValue, u32 stencilValue) const;
+    SEAD_RTTI_BASE(RenderBuffer)
+    virtual void copyToDisplayerBuffer(void* displayBuffer);
+    virtual void clear(u32, u32 flags, sead::Color4f& color, f32 depthValue, u32 stencilValue) const;
+    virtual void bindImpl_();
 
     sead::FrameBuffer frameBuffer; //* Remove this if it *does* inherit sead::FrameBuffer
-    u32 temp_padding;
     agl::RenderTargetColor* targetColors[8];
     agl::RenderTargetDepth* targetDepth;
 };

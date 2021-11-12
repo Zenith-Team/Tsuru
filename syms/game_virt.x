@@ -46,12 +46,27 @@ SECTIONS {
     GFDGetVertexShaderProgramSize = 0x2AF8D40;
     GFDGetVertexShader = 0x2AF8E3C;
 
+/* agl::RenderBuffer */
+    __ct__Q2_3agl12RenderBufferFR13Vec2__tm__2_ffN32 = 0x2a1eadc;
+    __dt__Q2_3agl12RenderBufferFv = 0x2a1e33c;
+
+/* agl::RenderTargetColor */
+    __ct__Q2_3agl17RenderTargetColorFv = 0x2a1efdc;
+
+/* agl::ShaderProgramArchive */
+    __ct__Q2_3agl20ShaderProgramArchiveFv = 0x2a22934;
+    FUN_2A23f1C__Q2_3agl20ShaderProgramArchiveFPUcRCUiUiPQ2_4sead4Heap = 0x2A23f1C;
+
+/* agl::TextureData */
+    __ct__Q2_3agl11TextureDataFv = 0x2a249a0;
+
 /* agl::lyr::Layer */
     pushBackDrawMethod__Q3_3agl3lyr5LayerFUiPQ3_3agl3lyr10DrawMethod = 0x2a376b8;
     pushBackDrawMethod__Q3_3agl3lyr5LayerFPQ3_3agl3lyr10DrawMethod = 0x2a37710;
 
 /* agl::lyr::Renderer */
     sInstance__Q3_3agl3lyr8Renderer = 0x101E8A2C;
+    initLayer___Q3_3agl3lyr8RendererFPQ3_3agl3lyr5LayerUiRCQ2_4sead23SafeStringBase__tm__2_cT2PQ2_4sead4Heap = 0x2a3aee8;
 
 /* sead::CalculateTask */
     __ct__Q2_4sead13CalculateTaskFRCQ2_4sead16TaskConstructArgPCc = 0x29FC508;
@@ -67,6 +82,9 @@ SECTIONS {
     detachDrawImpl__Q2_4sead13CalculateTaskFv = 0x29FC858;
     getCorrespondingMethodTreeMgrTypeInfo__Q2_4sead13CalculateTaskCFv = __deleted_virtual_called;
     getMethodTreeNode__Q2_4sead13CalculateTaskFi = 0x29FC4F0;
+
+/* sead::Camera */
+    __vtbl__Q2_4sead6Camera = 0x10190824;
 
 /* sead::ControllerMgr */
     sInstance__Q2_4sead13ControllerMgr = 0x101e7efc;
@@ -90,9 +108,26 @@ SECTIONS {
 /* sead::GlobalRandom */
     sInstance__Q2_4sead12GlobalRandom = 0x101E806C;
 
+/* sead::GraphicsContext */
+    __ct__Q2_4sead15GraphicsContextFv = 0x2a07bbc;
+    apply__Q2_4sead15GraphicsContextFv = 0x2a07cb0;
+
+/* sead::HeapMgr */
+    sRootHeaps__Q2_4sead7HeapMgr = 0x105ea148;
+    sInstancePtr__Q2_4sead7HeapMgr = 0x101e8040;
+    getCurrentHeap__Q2_4sead7HeapMgrFv = 0x2a0d554;
+
 /* sead::IDisposer */
     __ct__Q2_4sead9IDisposerFv = 0x2A0A2FC;
     __dt__Q2_4sead9IDisposerFv = 0x2A0A384;
+
+/* sead::LookAtCamera */
+    __dt__Q2_4sead12LookAtCameraFv = 0x2a04b94;
+    __vtbl__Q2_4sead12LookAtCamera = 0x1019084c;
+    doUpdateMatrix__Q2_4sead12LookAtCameraCFP5Mtx34 = 0x2a04be8;
+
+/* sead::OrthoCamera */
+    __ct__Q2_4sead11OrthoCameraFv = 0x2a04d54;
 
 /* sead::OrthoProjection */
     __ct__Q2_4sead15OrthoProjectionFv = 0x2A06518;
@@ -101,6 +136,7 @@ SECTIONS {
 
 /* sead::PerspectiveProjection */
     __ct__Q2_4sead21PerspectiveProjectionFv = 0x2A06108;
+    __ct__Q2_4sead21PerspectiveProjectionFfN31 = 0x2a061ac;
     set__Q2_4sead21PerspectiveProjectionFfN31 = 0x2A062EC;
     __dt__Q2_4sead21PerspectiveProjectionFv = 0x2A06298;
 
@@ -108,6 +144,7 @@ SECTIONS {
     sInstance__Q2_4sead17PrimitiveRenderer = 0x101E8010;
     setCamera__Q2_4sead17PrimitiveRendererFRCQ2_4sead6Camera = 0x2A083D0;
     setProjection__Q2_4sead17PrimitiveRendererFRCQ2_4sead10Projection = 0x2A083E4;
+    setModelMatrix__Q2_4sead17PrimitiveRendererFRC5Mtx34 = 0x2a083f8;
     begin__Q2_4sead17PrimitiveRendererFv = 0x2A08408;
     end__Q2_4sead17PrimitiveRendererFv = 0x2A0841C;
 
@@ -116,6 +153,9 @@ SECTIONS {
 
 /* sead::Random */
     getU32__Q2_4sead6RandomFv = 0x2A13780;
+
+/* sead::SafeStringBase */
+    sNullChar__Q2_4sead23SafeStringBase__tm__2_c = 0x1011bf6b;
 
 /* sead::TaskBase */
     pauseCalcChild__Q2_4sead8TaskBaseFb = __deleted_virtual_called;
@@ -126,6 +166,9 @@ SECTIONS {
     onDestroy__Q2_4sead8TaskBaseFv = __deleted_virtual_called;
     enterCommon__Q2_4sead8TaskBaseFv = 0x29FF818;
     adjustHeapAll__Q2_4sead8TaskBaseFv = 0x29FF9DC;
+
+/* sead::Viewport */
+    __ct__Q2_4sead8ViewportFfN31 = 0x2a072fc;
 
 /* Actor */
     __ct__5ActorFPC14ActorBuildInfo = 0x2002ce0;
@@ -161,6 +204,10 @@ SECTIONS {
     sInstance__8ActorMgr = 0x101C30C8;
     create__8ActorMgrFR14ActorBuildInfoUi = 0x2009A58;
     findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP5Actor = 0x2009B6C;
+    createInstance__8ActorMgrSFPQ2_4sead4Heap = 0x2008cb4;
+    createHeaps__8ActorMgrFPQ2_4sead4Heap = 0x200959c;
+    executeActors__8ActorMgrFv = 0x2009d58;
+    drawActors__8ActorMgrFv = 0x2009ecc;
 
 /* AreaTask */
     sInstance__8AreaTask = 0x101D1598;
@@ -480,6 +527,10 @@ SECTIONS {
 /* HitboxColliderMgr */
     sInstance__17HitboxColliderMgr = 0x101C95D8;
 
+/* LayerAGL */
+    vf44__8LayerAglFv = 0x24f9340;
+    vf4C__8LayerAglFv = 0x24f9344;
+
 /* Level */
     sInstance__5Level = 0x101db048;
 
@@ -549,6 +600,12 @@ SECTIONS {
 
 /* MusicPlayer */
     shouldHurryUp__11MusicPlayerFv = 0x29b83d8;
+
+/* ObjLayer */
+    checkDerivedRuntimeTypeInfo__8ObjLayerCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x24fcf4c;
+    getRuntimeTypeInfo__8ObjLayerCFv = __deleted_virtual_called;
+    vf3C__8ObjLayerFv = 0x24fd0e8;
+    vf5C__8ObjLayerFv = 0x24fd0f4;
 
 /* PhysicsActor */
     __vtbl__12PhysicsActor = 0x1000084C;
@@ -682,6 +739,15 @@ SECTIONS {
 /* RectCollider */
     __vtbl__12RectCollider = 0x100FB820;
 
+/* RenderObjLayer */
+    __ct__14RenderObjLayerFv = 0x24fca6c;
+    __dt__14RenderObjLayerFv = 0x24fcb18
+    vf24__14RenderObjLayerFv = 0x24fd00c;
+    vf2C__14RenderObjLayerFPvUi = 0x24fcb6c;
+    vf34__14RenderObjLayerFPQ2_4sead4Heap = 0x24fcbcc;
+    vf54__14RenderObjLayerFUi = 0x24fd014;
+    vf64__14RenderObjLayerFUi = 0x24fce18;
+
 /* ResArchive */
     getModel__10ResArchiveFRCQ2_4sead23SafeStringBase__tm__2_cUiN42bPQ2_4sead4Heap = 0x24EE440;
 
@@ -783,6 +849,11 @@ SECTIONS {
     vfC4__13WindGeneratorFv = 0x288EF94;
     vfCC__13WindGeneratorFv = 0x288EF98;
     damageFromUnder__13WindGeneratorFv = 0x288EF9C;
+
+/* WrappedController */
+    __ct__17WrappedControllerFv = 0x2514150;
+    init__17WrappedControllerFUi = 0x25141b0;
+    __dt__17WrappedControllerFv = 0x25140e8;
 
 /* Unknown Class */
     FUN_02902b08__FP10StageActor = 0x2902B08;

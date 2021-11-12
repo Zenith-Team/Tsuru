@@ -10,14 +10,24 @@
 namespace sead {
 
 class FrameBuffer { // Inherits sead::LogicalFrameBuffer
+    SEAD_RTTI_BASE(FrameBuffer)
+
 public:
     ~FrameBuffer();
 
+    virtual void vf1C(); // deleted
+	virtual void copyToDisplayBuffer(void* displayBuffer);
+	virtual void clear(u32 flags, Color4f* color, u32 stencilValue, f32 depthValue);
+	virtual void vf34(); // deleted
+	virtual void bindImpl_();
+
     void bind() const;
 
-    u8 _0[0x18];
+    Vec2f virtualSize;
+    BoundBox2<f32> physicalArea;
 };
 
-static_assert(sizeof(FrameBuffer) == 0x18, "sead::FrameBuffer size mismatch");
+// TODO: Verify this size
+static_assert(sizeof(FrameBuffer) == 0x1C, "sead::FrameBuffer size mismatch");
 
 }

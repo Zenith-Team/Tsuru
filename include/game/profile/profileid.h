@@ -26,6 +26,9 @@ enum ProfileIDType {
     DebugActor,
     LiquidOverlay,
 
+    // Atlys profiles
+    AtlysCamera,
+
     Num
 };
 

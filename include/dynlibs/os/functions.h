@@ -232,7 +232,7 @@ extern u32* MEMAllocFromDefaultHeapExPtr;
 extern u32* MEMAllocFromDefaultHeapPtr;
 extern u32* MEMFreeToDefaultHeapPtr;
 
-#define MEMAllocFromDefaultHeapEx ((void* (*)(size_t, int))(*MEMAllocFromDefaultHeapExPtr))
+#define MEMAllocFromDefaultHeapEx ((void* (*)(size_t size, int align))(*MEMAllocFromDefaultHeapExPtr))
 #define MEMAllocFromDefaultHeap ((void* (*)(size_t))(*MEMAllocFromDefaultHeapPtr))
 #define MEMFreeToDefaultHeap ((void (*)(void*))(*MEMFreeToDefaultHeapPtr))
 

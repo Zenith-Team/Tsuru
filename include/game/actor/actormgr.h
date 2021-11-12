@@ -32,7 +32,6 @@ public:
     // @return Pointer to created actor
     Actor* instanciateActor(ActorBuildInfo& buildInfo, bool dontDefer);
 
-private:
     // Creates and set player and actor unit heaps via sead::UnitHeap::tryCreateWithBlockNum
     void createHeaps(sead::Heap* heap);
 
@@ -43,7 +42,9 @@ private:
     // Calls "execute" virtual functions
     void executeActors();
 
-public:
+    // Callc "draw" virtual functions
+    void drawActors();
+
     sead::UnitHeap* playerUnitHeap;
     sead::UnitHeap* actorUnitHeap;
     u8 deferredActorCreations[0x5970]; // sead::FixedRingBuffer<ActorBuildInfo, 520>
