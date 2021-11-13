@@ -4,13 +4,11 @@
 
 // Game
 #include "game/actor/actormgr.h"
+#include "game/task/taskmgr.h"
 
 // AGL
 #include "agl/lyr/renderer.h"
 #include "agl/lyr/renderinfo.h"
-
-// SEAD
-#include "sead/primitiverenderer.h"
 
 SEAD_SINGLETON_TASK_IMPL(Atlys::Scene)
 
@@ -20,7 +18,6 @@ Atlys::Scene::Scene(const sead::TaskConstructArg& arg)
     , drawMethodActors()
     , controllers()
     , camera(nullptr)
-    , renderer()
 { }
 
 sead::TaskBase* Atlys::Scene::construct(const sead::TaskConstructArg& arg) {
@@ -34,8 +31,12 @@ void Atlys::Scene::prepare() {
     ActorMgr::createInstance(nullptr)->createHeaps(nullptr);
 
     // Create layers
+    // These are also required for levels because it will crash when it tries to access layers with these IDs, since it assumes CourseSelectTask made them
     agl::lyr::Renderer::instance()->createLayer<Atlys::Scene::RenderLayer>(LayerID_Map, "Map", 0, nullptr);
     agl::lyr::Renderer::instance()->createLayer<Atlys::Scene::RenderLayer>(LayerID_Actors, "Actors", 0, nullptr);
+
+    // Init controller input
+    this->controllers.init();
 
     this->adjustHeapAll();
 
@@ -49,35 +50,27 @@ void Atlys::Scene::enter() {
     MAKE_DRAW_METHOD(drawMethodMap, "Map", &Atlys::Scene::drawLayerMap, LayerID_Map);
     MAKE_DRAW_METHOD(drawMethodActors, "Actors", &Atlys::Scene::drawLayerActors, LayerID_Actors);
 
-    ActorBuildInfo camBuildInfo = { 0 };
-    camBuildInfo.profile = Profile::get(ProfileID::AtlysCamera);
-    
-    this->camera = (Atlys::Camera*) ActorMgr::instance()->create(camBuildInfo, 0);
+    ActorBuildInfo cameraBuildInfo = { 0 };
+    ActorBuildInfo playerBuildInfo = { 0 };
 
-    this->renderer.initShaders();
+    cameraBuildInfo.profile = Profile::get(ProfileID::AtlysCamera);
+    playerBuildInfo.profile = Profile::get(ProfileID::AtlysPlayer);
+
+    this->camera = (Atlys::Camera*) ActorMgr::instance()->create(cameraBuildInfo, 0);
+    this->player = (Atlys::Player*) ActorMgr::instance()->create(playerBuildInfo, 0);
 
     LOG("Done!");
 }
 
 void Atlys::Scene::calc() {
-    LOG("Atlys calc");
+    this->player->updateControllerInput(this->controllers);
+
     ActorMgr::instance()->executeActors();
 }
 
 void Atlys::Scene::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
-    LOG("Drawing map layer");
-
-    sead::PrimitiveRenderer::instance()->setCamera(this->camera->camera);
-    sead::PrimitiveRenderer::instance()->setProjection(this->camera->projection);
-    sead::PrimitiveRenderer::instance()->setModelMatrix(this->camera->camera.matrix);
-    sead::PrimitiveRenderer::instance()->drawCube(Vec3f(-999.0f), 999999999999999999999999999999999.0f, sead::colorRed);
-    sead::PrimitiveRenderer::instance()->end();
-
-    LOG("Camera: %x, Display Type: %u, Layer: %x, Projection: %x, Render Buffer: %x", renderInfo.camera, renderInfo.displayType, renderInfo.layer, renderInfo.projection, renderInfo.renderBuffer);
 }
 
 void Atlys::Scene::drawLayerActors(const agl::lyr::RenderInfo& renderInfo) {
-    LOG("Drawing actors layer");
-
     ActorMgr::instance()->drawActors();
 }
