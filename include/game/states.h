@@ -35,7 +35,6 @@ public:
         : begin(begin), execute(execute), end(end)
     { }
 
-protected:
     PTMF begin;     // 8
     PTMF execute;   // 10
     PTMF end;       // 18
@@ -65,7 +64,7 @@ private:
 
 class StateMethodExecutorBase {
 public:
-    virtual ~StateMethodExecutorBase();
+    virtual ~StateMethodExecutorBase() { }
     virtual StateBase* getCurrentState() = 0;
     virtual void execute() = 0;
 };
@@ -73,8 +72,20 @@ public:
 template <class TOwner>
 class StateMethodExecutor : public StateMethodExecutorBase {
 public:
-    StateBase* getCurrentState() override;
-    void execute() override;
+    StateMethodExecutor(TOwner* owner)
+        : owner(owner)
+        , currentState(nullptr)
+    { }
+
+    virtual ~StateMethodExecutor() { }
+
+    StateBase* getCurrentState() override {
+        return this->currentState;
+    }
+
+    void execute() override {
+        (this->owner->*(this->currentState->execute))();
+    }
 
     TOwner* owner;                 // 4
     State<TOwner>* currentState;   // 8
@@ -82,21 +93,49 @@ public:
 
 class StateExecutorBase {
 public:
+    virtual ~StateExecutorBase() { }
     virtual StateMethodExecutorBase* begin(StateBase* nextState) = 0;
     virtual void end(StateMethodExecutorBase* methodExecutor) = 0;
     virtual StateMethodExecutorBase* setState(StateBase* state) = 0;
     virtual void resetState(StateMethodExecutorBase* methodExecutor) = 0;
-    virtual StateMethodExecutorBase* callBegin(StateMethodExecutorBase* methodExecutor) = 0;
+    virtual void callBegin(StateMethodExecutorBase* methodExecutor) = 0;
 };
 
 template <class TOwner>
 class StateExecutor : public StateExecutorBase {
 public:
-    StateMethodExecutorBase* begin(StateBase* nextState) override;
-    void end(StateMethodExecutorBase* methodExecutor) override;
-    StateMethodExecutorBase* setState(StateBase* state) override;
-    void resetState(StateMethodExecutorBase* methodExecutor) override;
-    StateMethodExecutorBase* callBegin(StateMethodExecutorBase* methodExecutor) override;
+    StateExecutor(TOwner* owner)
+        : methodExecutor(owner)
+    { }
+
+    virtual ~StateExecutor() { }
+
+    StateMethodExecutorBase* begin(StateBase* nextState) override {
+        this->methodExecutor.currentState = (State<TOwner>*) nextState;
+        (this->methodExecutor.owner->*(this->methodExecutor.currentState)->begin)();
+
+        return &this->methodExecutor;
+    }
+
+    void end(StateMethodExecutorBase* exec) override {
+        (this->methodExecutor.owner->*(this->methodExecutor.currentState)->end)();
+        this->methodExecutor.currentState = nullptr;
+        /* *((u32*) exec) = 0; */ // Compiler generated thing but it's not required
+    }
+
+    StateMethodExecutorBase* setState(StateBase* state) override {
+        this->methodExecutor.currentState = (State<TOwner>*) state;
+        return &this->methodExecutor;
+    }
+
+    void resetState(StateMethodExecutorBase* exec) override {
+        this->methodExecutor.currentState = nullptr;
+        /* *((u32*) exec) = 0; */ // Compiler generated thing but it's not required
+    }
+
+    void callBegin(StateMethodExecutorBase* exec) override {
+        (this->methodExecutor.owner->*((State<TOwner>*) this->methodExecutor.currentState)->begin)();
+    }
 
     StateMethodExecutor<TOwner> methodExecutor;
 };
@@ -118,6 +157,11 @@ public:
 template <class TOwner>
 class StateWrapper {
 public:
+    StateWrapper(TOwner* owner)
+        : executor(owner)
+        , manager(&this->executor)
+    { }
+
     virtual ~StateWrapper() { }
 
     StateExecutor<TOwner> executor;
@@ -143,6 +187,12 @@ public:
 template <class TOwner>
 class MultiStateWrapper {
 public:
+    MultiStateWrapper(TOwner* owner)
+        : executor(owner)
+        , manager(&this->executor)
+        , _20(nullptr)
+    { }
+
     virtual ~MultiStateWrapper() { }
 
     StateExecutor<TOwner> executor;
