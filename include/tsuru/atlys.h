@@ -17,6 +17,8 @@
 #include "sead/camera.h"
 #include "sead/viewport.h"
 #include "sead/projection.h"
+#include "game/states.h"
+#include "game/graphics/model/model.h"
 #include "agl/lyr/renderinfo.h"
 #include "agl/lyr/drawmethod.h"
 #include "agl/lyr/renderer.h"
@@ -28,8 +30,7 @@
 #include "tsuru/inputcontrollers.h"
 
 class Atlys { // Holder class for all Atlys components
-private:
-    // Don't instanciate this class :)
+private: // Don't instanciate this class :)
     Atlys() { }
 
 public:
@@ -60,6 +61,27 @@ public:
         sead::OrthoProjection projection;
     };
 
+    class Player : public Atlys::Actor {
+    public:
+        Player(const ActorBuildInfo* buildInfo);
+
+        static ::Actor* build(const ActorBuildInfo* buildInfo);
+
+        u32 onCreate() override;
+        u32 onExecute() override;
+
+        void updateControllerInput(const InputControllers& controllers);
+
+    private:
+        bool walkToNode(Vec3f* target);
+
+        DECLARE_STATE(Player, Idle);
+        DECLARE_STATE(Player, Walking);
+
+        MultiStateWrapper<Player> states;
+        ModelWrapper* model;
+    };
+
 public:
     class Scene : public sead::CalculateTask { // Main map scene
         SEAD_RTTI_OVERRIDE_IMPL(Scene, sead::CalculateTask)
@@ -82,21 +104,6 @@ public:
 
             friend class agl::lyr::Renderer;
         };
-
-        class Renderer {
-        private:
-            Renderer();
-            ~Renderer();
-
-        public:
-            void init();
-
-            friend class Scene;
-
-            agl::TextureData backgroundTextureData;
-            agl::RenderTargetColor backgroundTargetColor;
-            agl::RenderBuffer backgroundRenderBuffer;
-        };
     
     public:
         Scene(const sead::TaskConstructArg& arg);
@@ -115,6 +122,6 @@ public:
         agl::lyr::DrawMethod drawMethodActors;
         InputControllers controllers;
         Atlys::Camera* camera;
-        Renderer renderer;
+        Atlys::Player* player;
     };
 };

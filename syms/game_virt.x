@@ -820,8 +820,10 @@ SECTIONS {
 
 /* StateBase */
     sCurrentID__9StateBase = 0x101E9F04;
+    sNullState__9StateBase = 0x1022d390;
 
 /* StateMgr */
+    __ct__8StateMgrFP17StateExecutorBaseP9StateBase = 0x29c4a08;
     execute__8StateMgrFv = 0x29C4A80;
     changeState__8StateMgrFP9StateBase = 0x29C4AF0;
 
