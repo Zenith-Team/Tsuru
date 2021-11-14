@@ -169,6 +169,7 @@ SECTIONS {
 
 /* sead::Viewport */
     __ct__Q2_4sead8ViewportFfN31 = 0x2a072fc;
+    apply__Q2_4sead8ViewportFPv = 0x2a0783c;
 
 /* Actor */
     __ct__5ActorFPC14ActorBuildInfo = 0x2002ce0;
