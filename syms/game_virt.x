@@ -61,7 +61,7 @@ SECTIONS {
     __ct__Q2_3agl11TextureDataFv = 0x2a249a0;
 
 /* agl::lyr::Layer */
-    pushBackDrawMethod__Q3_3agl3lyr5LayerFUiPQ3_3agl3lyr10DrawMethod = 0x2a376b8;
+    pushBackDrawMethod__Q3_3agl3lyr5LayerFUiPQ3_3agl3lyr18DrawMethodImplBase = 0x2a376b8;
     pushBackDrawMethod__Q3_3agl3lyr5LayerFPQ3_3agl3lyr10DrawMethod = 0x2a37710;
 
 /* agl::lyr::Renderer */
@@ -120,6 +120,9 @@ SECTIONS {
 /* sead::IDisposer */
     __ct__Q2_4sead9IDisposerFv = 0x2A0A2FC;
     __dt__Q2_4sead9IDisposerFv = 0x2A0A384;
+
+/* sead::LogicalFrameBuffer */
+    bind__Q2_4sead18LogicalFrameBufferCFv = 0x2a058f0;
 
 /* sead::LookAtCamera */
     __dt__Q2_4sead12LookAtCameraFv = 0x2a04b94;

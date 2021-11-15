@@ -2,8 +2,7 @@
 ---
 Files:
   - source/atlys/scene.cpp
-  - source/atlys/actors/camera.cpp
-  - source/atlys/actors/player.cpp
+  - source/atlys/renderer.cpp
 Hooks:
 # Entry point
   - type: branch
