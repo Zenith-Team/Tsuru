@@ -81,7 +81,7 @@ class PerspectiveProjection : public Projection { // Size: 0xB8
 
 public:
     PerspectiveProjection();
-    PerspectiveProjection(f32, f32, f32, f32);
+    PerspectiveProjection(f32 nearClip, f32 farClip, f32 fov, f32 aspectRatio);
     virtual ~PerspectiveProjection();
 
     u32 getProjectionType() const override;
