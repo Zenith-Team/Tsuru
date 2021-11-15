@@ -30,8 +30,8 @@ public:
 
     void initialize_(sead::Heap* heap);
 
-    DrawMethod* pushBackDrawMethod(u32, DrawMethod* drawMethod);
-    DrawMethod* pushBackDrawMethod(DrawMethod* drawMethod);
+    DrawMethodImplBase* pushBackDrawMethod(u32, DrawMethodImplBase* drawMethod);
+    DrawMethodImplBase* pushBackDrawMethod(DrawMethodImplBase* drawMethod);
 
     u8 _10[0x4];
     sead::Viewport _14;

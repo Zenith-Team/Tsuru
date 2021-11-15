@@ -22,7 +22,7 @@ public:
 
     void drawLayerCutscene(const agl::lyr::RenderInfo& renderInfo);
 
-    agl::lyr::DrawMethod drawMethodCutscene;
+    agl::lyr::DrawMethodImpl<CutsceneTask> drawMethodCutscene;
     u32 frame;
     const char* videoFile;
 };
