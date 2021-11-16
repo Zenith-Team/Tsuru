@@ -44,18 +44,15 @@ public:
         : code((level << NN_RESULT_SHIFT_LEVEL) & NN_RESULT_MASK_LEVEL | (module << NN_RESULT_SHIFT_MODULE) & NN_RESULT_MASK_MODULE | description & NN_RESULT_MASK_DESCRIPTION)
     { }
 
-    inline u32 getDescription() const { return this->getCodeBits(NN_RESULT_MASK_DESCRIPTION, NN_RESULT_SHIFT_DESCRIPTION); }
-    inline u32 getModule() const { return this->getCodeBits(NN_RESULT_MASK_MODULE, NN_RESULT_SHIFT_MODULE); }
-    inline u32 getLevel() const { return this->getCodeBits(NN_RESULT_MASK_LEVEL, NN_RESULT_SHIFT_LEVEL); }
+    inline u32 getDescription() const { return (this->code & NN_RESULT_MASK_DESCRIPTION) >> NN_RESULT_SHIFT_DESCRIPTION; }
+    inline u32 getModule() const { return (this->code & NN_RESULT_MASK_MODULE) >> NN_RESULT_SHIFT_MODULE; }
+    inline u32 getLevel() const { return (this->code & NN_RESULT_MASK_LEVEL) >> NN_RESULT_SHIFT_LEVEL; }
 
     inline bool isFailure() const { return (this->code & NN_RESULT_MASK_FAILURE) != 0; }
     inline bool isSuccess() const { return !this->isFailure(); }
 
     bool operator==(const Result& rhs) const { return this->code == rhs.code; }
     bool operator!=(const Result& rhs) const { return this->code != rhs.code; }
-
-private:
-    inline u32 getCodeBits(u32 mask, s32 shift) const { return (this->code & mask) >> shift; }
 
     u32 code;
 };
