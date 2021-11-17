@@ -75,7 +75,7 @@ private:
         };
 
         struct Layer {
-            u32 index;
+            s32 index;
             char gtxName[16];
         };
 
