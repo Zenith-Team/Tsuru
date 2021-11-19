@@ -1,11 +1,7 @@
 #pragma once
 
-#include "types.h"
-#include "sead/filedevice.h"
 #include "sead/filedevicemgr.h"
 #include "dynlibs/gx2/types.h"
-#include "sead/heapmgr.h"
-#include "log.h"
 #include "sead/color.h"
 
 namespace Atlys {
@@ -117,48 +113,13 @@ public:
             : exits(0)
             , starCoins(0)
             , allCompleted(false)
-            , valid(true)
         { }
-
-        void fillData(const Data::Node& data) {
-            this->id = data.id;
-            this->worldID = data.worldID;
-            this->position = data.position;
-            this->speed = data.speed;
-            this->type = data.type;
-
-            // Copy connections
-            for (u32 i = 0; i < 4; i++)
-                this->connections[i] = data.connections[i];
-
-            // Copy union data
-
-            if (data.type == Type_Normal && this->type == Type_Normal) {
-                this->stop = data.stop;
-            }
-            
-            else if (data.type == Type_Level && this->type == Type_Level) {
-                this->world          = data.world;
-                this->level          = data.level;
-                this->unlocksWorld   = data.unlocksWorld;
-                this->unlocksWorldID = data.unlocksWorldID;
-                this->hasSecretExit  = data.hasSecretExit;
-            }
-            
-            else if (data.type == Type_Transition && this->type == Type_Transition) {
-                this->transition = data.transition;
-                this->targetNode = data.targetNode;
-            }
-            
-            else // If we reach this point the the nodes are of different types
-                this->valid = false;
-        }
 
         bool anyExitDone() {
             if (this->type == Data::Node::Type_Level) {
                 if (this->exits & Exit_Normal)
                     return true;
-                if (this->exits & Exit_Secret)
+                if (this->hasSecretExit && (this->exits & Exit_Secret))
                     return true;
             }
 
@@ -166,7 +127,7 @@ public:
         }
 
         void checkExitCompletion() {
-            if (this->type == Data::Node::Type_Level && this->exits & Exit_Normal) {
+            if (this->type == Data::Node::Type_Level && (this->exits & Exit_Normal)) {
                 if (!(this->hasSecretExit && (this->exits & Exit_Secret)))
                     return;
                 
@@ -195,7 +156,6 @@ public:
         u32 exits;
         u8 starCoins;
         bool allCompleted;
-        bool valid;
     };
 
     struct WorldInfo : Data::WorldInfo {
@@ -206,16 +166,10 @@ public:
             , allCompleted(false)
         { }
 
-        void fillData(const Data::WorldInfo& data) {
-            this->id = data.id;
-            for (u32 i = 0; i < 32; i++)
-                this->name[i] = data.name[i];
-            this->accent = data.accent;
-        }
-
         void checkLevels(Node* nodes, Data::Header* header) {
             for (u32 i = 0; i < header->nodeCount; i++) {
                 if (nodes[i].type == Data::Node::Type_Level && nodes[i].world == this->id) {
+                    nodes[i].checkExitCompletion();
                     if (nodes[i].anyExitDone())
                         continue;
                     else {
@@ -231,6 +185,7 @@ public:
         void checkExits(Node* nodes, Data::Header* header) {
             for (u32 i = 0; i < header->nodeCount; i++) {
                 if (nodes[i].type == Data::Node::Type_Level && nodes[i].world == this->id) {
+                    nodes[i].checkExitCompletion();
                     if (nodes[i].exits & Node::Exits_All)
                         continue;
                     else {
@@ -243,9 +198,26 @@ public:
             this->allExitsCompleted = true;
         }
 
+        void checkStarCoins(Node* nodes, Data::Header* header) {
+            for (u32 i = 0; i < header->nodeCount; i++) {
+                if (nodes[i].type == Data::Node::Type_Level && nodes[i].world == this->id) {
+                    nodes[i].checkStarCoinCompletion();
+                    if (nodes[i].starCoins & Node::StarCoins_All)
+                        continue;
+                    else {
+                        this->allStarCoinsCompleted = false;
+                        return;
+                    }
+                }
+            }
+
+            this->allStarCoinsCompleted = true;
+        }
+
         void checkAll(Node* nodes, Data::Header* header) {
             for (u32 i = 0; i < header->nodeCount; i++) {
                 if (nodes[i].type == Data::Node::Type_Level && nodes[i].world == this->id) {
+                    nodes[i].checkCompletion();
                     if (nodes[i].allCompleted)
                         continue;
                     else {
@@ -263,6 +235,7 @@ public:
         // So we don't have to check every time
         bool allLevelsCompleted;
         bool allExitsCompleted;
+        bool allStarCoinsCompleted;
         bool allCompleted; // All exits and star coins
     };
 

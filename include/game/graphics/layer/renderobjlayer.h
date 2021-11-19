@@ -73,7 +73,7 @@ public:
 
     u32 vf24() override;
     void vf2C(void*, u32) override;
-    void vf34(sead::Heap* heap) override;
+    void doInitialize(sead::Heap* heap) override;
 
     bool vf54(u32) override;
 
@@ -84,3 +84,5 @@ public:
     f32 _470;
     f32 _474;
 };
+
+static_assert(sizeof(RenderObjLayer) == 0x478, "RenderObjLayer size mismatch");

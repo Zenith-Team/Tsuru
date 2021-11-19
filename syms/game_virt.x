@@ -18,7 +18,7 @@ SECTIONS {
     __dl__FPv = 0x29F1748;
     __dla__FPv = 0x29F17D0;
 
-/* GHS C++ Functions */
+/* GHS */
     __pure_virtual_called = 0x2AFA554;
     __deleted_virtual_called = 0x2AFA5E8;
     __vec_new = 0x2AFA350;
@@ -30,9 +30,9 @@ SECTIONS {
     __ghs_strcmp = 0x2AFA60C;
     __memzero = 0x2AFA55C;
     vsnprintf = 0x2AFBD54;
-
-/* GHS C Functions */
     _f_ftoll = 0x2AFEBFC;
+    __array_new_prefix_size = 0x101e9338;
+    __placement_array_new = 0x2afa30c;
 
 /* Cafe SDK Static */
     ASM_MTXConcat = 0x2AF98A0;
@@ -92,6 +92,7 @@ SECTIONS {
 /* sead::FileDevice */
     tryClose__Q2_4sead10FileDeviceFPQ2_4sead10FileHandle = 0x29F78C0;
     tryWrite__Q2_4sead10FileDeviceFPUiPQ2_4sead10FileHandlePCUcUi = 0x29F7AE8;
+    __CPR84__trySeek__Q2_4sead10FileDeviceFPQ2_J12J10FileHandleiQ3_J12JJ17J10SeekOrigin = 0x29f7b98;
 
 /* sead::FileDeviceMgr */
     sInstance__Q2_4sead13FileDeviceMgr = 0x101E7F18;
@@ -748,7 +749,7 @@ SECTIONS {
     __dt__14RenderObjLayerFv = 0x24fcb18
     vf24__14RenderObjLayerFv = 0x24fd00c;
     vf2C__14RenderObjLayerFPvUi = 0x24fcb6c;
-    vf34__14RenderObjLayerFPQ2_4sead4Heap = 0x24fcbcc;
+    doInitialize__14RenderObjLayerFPQ2_4sead4Heap = 0x24fcbcc;
     vf54__14RenderObjLayerFUi = 0x24fd014;
     vf64__14RenderObjLayerFUi = 0x24fce18;
 

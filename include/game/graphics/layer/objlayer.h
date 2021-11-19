@@ -27,7 +27,7 @@ public:
     ObjLayer();
     virtual ~ObjLayer();
 
-    void vf34(sead::Heap* heap) override;
+    void doInitialize(sead::Heap* heap) override;
     void vf3C() override;
 
     bool vf54(u32) override;

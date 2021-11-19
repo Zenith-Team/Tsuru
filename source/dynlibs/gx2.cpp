@@ -79,7 +79,6 @@ EXPORT_DECL(void, GX2SetVertexSampler, const GX2Sampler* sampler, u32 samplerHwL
 EXPORT_DECL(void, GX2SetVertexSamplerBorderColor, u32 samplerUnitNumber, f32 r, f32 g, f32 b, f32 a);
 EXPORT_DECL(void, GX2SetPixelShader, const GX2PixelShader* pixelShader);
 EXPORT_DECL(void, GX2SetVertexShader, const GX2VertexShader* vertexShader);
-EXPORT_DECL(void, GX2InitSamplerZMFilter, GX2Sampler* sampler, s32 zFilter, s32 mipFilter);
 EXPORT_DECL(void, GX2SetColorControl, s32 lop, u8 blendEnableMask, s32 enableMultiWrite, s32 enableColorBuffer);
 EXPORT_DECL(void, GX2SetDepthOnlyControl, s32 enableDepth, s32 enableDepthWrite, s32 depthCompFunction);
 EXPORT_DECL(void, GX2SetBlendControl, s32 target, s32 colorSrcBlend, s32 colorDstBlend, s32 colorCombine, s32 separateAlphaBlend, s32 alphaSrcBlend, s32 alphaDstBlend, s32 alphaCombine);
