@@ -17,7 +17,7 @@ public:
     LayerAgl();
     virtual ~LayerAgl();
 
-    void vf34(sead::Heap* heap) override;
+    void doInitialize(sead::Heap* heap) override;
     void vf3C() override;
     void vf44() override;
     void vf4C() override;

@@ -4,12 +4,8 @@
 
 namespace sead {
 
-struct Color4f {
-    f32 r;
-    f32 g;
-    f32 b;
-    f32 a;
-
+class Color4f {
+public:
     inline Color4f(f32 val = 0.0f) :
         r(val), g(val), b(val), a(val) { }
     inline Color4f(f32 r, f32 g, f32 b, f32 a) :
@@ -21,6 +17,11 @@ struct Color4f {
         this->b = b;
         this->a = a;
     }
+
+    f32 r;
+    f32 g;
+    f32 b;
+    f32 a;
 };
 
 static const Color4f colorRed(1.0f, 0.0f, 0.0f, 1.0f);

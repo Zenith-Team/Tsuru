@@ -21,7 +21,7 @@ public:
     SEAD_RTTI_BASE(Layer)
     virtual u32 vf24() = 0;
     virtual void vf2C(void*, u32) = 0;
-    virtual void vf34(sead::Heap* heap);
+    virtual void doInitialize(sead::Heap* heap);
     virtual void vf3C();
     virtual void vf44(); // Called before draw
     virtual void vf4C(); // Called after draw

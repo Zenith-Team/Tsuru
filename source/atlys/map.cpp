@@ -1,5 +1,8 @@
 #include "tsuru/atlys/map.h"
 #include "dynlibs/os/functions.h"
+#include "sead/heapmgr.h"
+#include "sead/heap.h"
+#include "log.h"
 
 Atlys::Map::Data::Data(const sead::SafeString& path)
     : header(nullptr)
@@ -12,57 +15,64 @@ Atlys::Map::Data::Data(const sead::SafeString& path)
     // TODO: Concatenate path with .atlys
     const sead::SafeString& file = path;
 
-    u32 bytesRead = 0;
     sead::FileHandle handle;
-    sead::FileDevice* device = sead::FileDeviceMgr::instance()->tryOpen(&handle, file, sead::FileDevice::FileOpenFlag_ReadOnly, 0);
+    sead::FileDeviceMgr::instance()->tryOpen(&handle, file, sead::FileDevice::FileOpenFlag_ReadWrite, 0);
 
-    // Header
-    Header* header = new Header();
-    bytesRead = handle.read((u8*) header, sizeof(Header));
+    LOG("Reading header");
+    this->header = new(nullptr, sead::FileDevice::sBufferMinAlignment) Header;
+    u32 bytesRead = handle.read((u8*) this->header, sizeof(Header));
+
+    if (!handle.device) {
+        LOG("File does not exist");
+        return;
+    }
 
     if (bytesRead != sizeof(Header)) {
-        LOG("Atlys header read size mismatch, reading file at: %s, expected size: %x, read size: %x", file.cstr(), sizeof(Header), bytesRead);
+        LOG("Header size mismatch, read size: 0x%x, expected size: 0x%x", bytesRead, sizeof(Header));
         return;
     }
 
-    if (header->magic[0] != 'A' || header->magic[1] != 'T' || header->magic[2] != 'L' || header->magic[3] != 'S') {
-        LOG("Atlys header magic mismatch, reading file at: %s, expected: ATLS, read: %c%c%c%c", file.cstr(), header->magic[0], header->magic[1], header->magic[2], header->magic[3]);
+    LOG("Reading %u worlds", this->header->worldCount);
+
+    void* worldBuffer = new(nullptr, sead::FileDevice::sBufferMinAlignment) u8[sizeof(WorldInfo) * this->header->worldCount];
+    this->worlds = (WorldInfo*) worldBuffer;
+    bytesRead = handle.read((u8*) this->worlds, sizeof(WorldInfo) * this->header->worldCount);
+
+    if (bytesRead != sizeof(WorldInfo) * this->header->worldCount) {
+        LOG("World info size mismatch, read size: 0x%x, expected size: 0x%x", bytesRead, sizeof(WorldInfo) * this->header->worldCount);
         return;
     }
 
-    // Worlds
-    WorldInfo* worlds = new WorldInfo[header->nodeCount];
-    bytesRead = handle.read((u8*) worlds, sizeof(WorldInfo) * header->nodeCount);
+    LOG("Reading %u nodes", this->header->nodeCount);
 
-    if (bytesRead != sizeof(WorldInfo) * header->nodeCount) {
-        LOG("Atlys world read size mismatch, reading file at: %s, expected size: %x, read size: %x", file.cstr(), sizeof(WorldInfo) * header->worldCount, bytesRead);
+    void* nodeBuffer = new(nullptr, sead::FileDevice::sBufferMinAlignment) u8[sizeof(Node) * this->header->nodeCount];
+    this->nodes = (Node*) nodeBuffer;
+    bytesRead = handle.read((u8*) this->nodes, sizeof(Node) * this->header->nodeCount);
+
+    if (bytesRead != sizeof(Node) * this->header->nodeCount) {
+        LOG("Node size mismatch, read size: 0x%x, expected size: 0x%x", bytesRead, sizeof(Node) * this->header->nodeCount);
         return;
     }
 
-    // Nodes
-    Node* nodes = new Node[header->nodeCount];
-    bytesRead = handle.read((u8*) nodes, sizeof(Node) * header->nodeCount);
+    LOG("Reading %u layers", this->header->layerCount);
 
-    if (bytesRead != sizeof(Node) * header->nodeCount) {
-        LOG("Atlys node read size mismatch, reading file at: %s, expected size: %x, read size: %x", file.cstr(), sizeof(Node) * header->nodeCount, bytesRead);
+    void* layerBuffer = new(nullptr, sead::FileDevice::sBufferMinAlignment) u8[sizeof(Layer) * this->header->layerCount];
+    this->layers = (Layer*) layerBuffer;
+    bytesRead = handle.read((u8*) this->layers, sizeof(Layer) * this->header->layerCount);
+
+    if (bytesRead != sizeof(Layer) * this->header->layerCount) {
+        LOG("Layer size mismatch, read size: 0x%x, expected size: 0x%x", bytesRead, sizeof(Layer) * this->header->layerCount);
         return;
     }
 
-    // Layers
-    Layer* layers = new Layer[header->layerCount];
-    bytesRead = handle.read((u8*) layers, sizeof(Layer) * header->layerCount);
+    LOG("Reading %u sprites", this->header->spriteCount);
 
-    if (bytesRead != sizeof(Layer) * header->layerCount) {
-        LOG("Atlys layer read size mismatch, reading file at: %s, expected size: %x, read size: %x", file.cstr(), sizeof(Layer) * header->layerCount, bytesRead);
-        return;
-    }
+    void* spriteBuffer = new(nullptr, sead::FileDevice::sBufferMinAlignment) u8[sizeof(Sprite) * this->header->spriteCount];
+    this->sprites = (Sprite*) spriteBuffer;
+    bytesRead = handle.read((u8*) this->sprites, sizeof(Sprite) * this->header->spriteCount);
 
-    // Sprites
-    Sprite* sprites = new Sprite[header->spriteCount];
-    bytesRead = handle.read((u8*) sprites, sizeof(Sprite) * header->spriteCount);
-
-    if (bytesRead != sizeof(Sprite) * header->spriteCount) {
-        LOG("Atlys sprite read size mismatch, reading file at: %s, expected size: %x, read size: %x", file.cstr(), sizeof(Sprite) * header->spriteCount, bytesRead);
+    if (bytesRead != sizeof(Sprite) * this->header->spriteCount) {
+        LOG("Sprite size mismatch, read size: 0x%x, expected size: 0x%x", bytesRead, sizeof(Sprite) * this->header->spriteCount);
         return;
     }
 
@@ -70,11 +80,11 @@ Atlys::Map::Data::Data(const sead::SafeString& path)
 }
 
 Atlys::Map::Data::~Data() {
-    delete header;  this->header  = nullptr;
-    delete worlds;  this->worlds  = nullptr;
-    delete nodes;   this->nodes   = nullptr;
-    delete layers;  this->layers  = nullptr;
-    delete sprites; this->sprites = nullptr;
+    delete this->header;  this->header  = nullptr;
+    delete this->worlds;  this->worlds  = nullptr;
+    delete this->nodes;   this->nodes   = nullptr;
+    delete this->layers;  this->layers  = nullptr;
+    delete this->sprites; this->sprites = nullptr;
 }
 
 Atlys::Map::Map(const sead::SafeString& path)
@@ -84,6 +94,7 @@ Atlys::Map::Map(const sead::SafeString& path)
     , layers(nullptr)
     , sprites(nullptr)
 {
+    LOG("Loading map: %s", path.cstr());
     Data data(path);
     
     if (!data.loaded) {
@@ -91,19 +102,25 @@ Atlys::Map::Map(const sead::SafeString& path)
         return;
     }
 
+    LOG("Loaded map file, dynamicizing... (If we crash here then the file is not a valid map)");
+
     // Allocate
-    this->info    = new Data::Header;
-    this->worlds  = new WorldInfo[data.header->worldCount];
-    this->nodes   = new Node[data.header->nodeCount];
-    this->layers  = new Layer[data.header->layerCount];
-    this->sprites = new Data::Sprite[data.header->spriteCount];
+    this->info = new Data::Header;
+    if (data.header->worldCount > 0) this->worlds = new WorldInfo[data.header->worldCount];
+    if (data.header->nodeCount  > 0) this->nodes  = new Node[data.header->nodeCount];
+    if (data.header->layerCount > 0) this->layers = new Layer[data.header->layerCount];
+    if (data.header->spriteCount > 0) this->sprites = new Data::Sprite[data.header->spriteCount];
+
+    LOG("Allocated dynamic data");
 
     // Copy
-    OSBlockMove(this->info, data.header, sizeof(Data::Header), 0);                                                                // Header
-    for (u32 i = 0; i < data.header->worldCount; i++) this->worlds[i].fillData(data.worlds[i]);                                   // Worlds
-    for (u32 i = 0; i < data.header->nodeCount; i++) this->nodes[i].fillData(data.nodes[i]);                                      // Nodes
-    for (u32 i = 0; i < data.header->layerCount; i++) this->layers[i].fillData(data.layers[i]);                                   // Layers
-    for (u32 i = 0; i < data.header->spriteCount; i++) OSBlockMove(&this->sprites[i], &data.sprites[i], sizeof(Data::Sprite), 0); // Sprites
+    OSBlockMove(this->info, data.header, sizeof(Data::Header), 0);                                                                   // Header
+    for (u32 i = 0; i < data.header->worldCount; i++)  OSBlockMove(&this->worlds[i],  &data.worlds[i],  sizeof(Data::WorldInfo), 0); // Worlds
+    for (u32 i = 0; i < data.header->nodeCount; i++)   OSBlockMove(&this->nodes[i],   &data.nodes[i],   sizeof(Data::Node), 0);      // Nodes
+    for (u32 i = 0; i < data.header->layerCount; i++)  OSBlockMove(&this->layers[i],  &data.layers[i],  sizeof(Data::Layer), 0);     // Layers
+    for (u32 i = 0; i < data.header->spriteCount; i++) OSBlockMove(&this->sprites[i], &data.sprites[i], sizeof(Data::Sprite), 0);    // Sprites
+
+    LOG("Map \"%s\" loaded and ready to go!", path.cstr());
 }
 
 Atlys::Map::~Map() {

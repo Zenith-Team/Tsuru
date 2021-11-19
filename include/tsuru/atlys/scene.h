@@ -5,6 +5,7 @@
 #include "tsuru/inputcontrollers.h"
 #include "game/profile/profileid.h"
 #include "tsuru/atlys/actor.h"
+#include "tsuru/atlys/map.h"
 
 namespace Atlys {
 
@@ -27,6 +28,7 @@ private:
 
     Renderer renderer;
     InputControllers controllers;
+    Map* map;
 };
 
 }

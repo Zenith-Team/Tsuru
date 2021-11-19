@@ -20,16 +20,13 @@ public:
 
     void setMipLevelNum(u32 mip);
 
-    u32 _0;
+    u32 aglFormat;
     GX2Surface surface;
     u32 width;
     u32 height;
     u32 depth;
     u32 size;
-    u32 _88;
-    u32 _8C;
-    u32 _90;
-    u32 _94;
+    u32 compSel[4];
 };
 
 static_assert(sizeof(TextureData) == 0x9C, "agl::TextureData size mismatch");

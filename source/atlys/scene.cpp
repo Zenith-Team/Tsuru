@@ -8,6 +8,7 @@ Atlys::Scene::Scene(const sead::TaskConstructArg& arg)
     : CalculateTask(arg, "AtlysScene")
     , renderer()
     , controllers()
+    , map(nullptr)
 { }
 
 sead::TaskBase* Atlys::Scene::construct(const sead::TaskConstructArg& arg) {
@@ -24,6 +25,10 @@ void Atlys::Scene::prepare() {
     // Initialize controller input
     this->controllers.init();
 
+    // Load map file
+    this->map = new Map("tsuru/map.atlys");
+
+    // This has to go last
     this->adjustHeapAll();
 }
 
