@@ -3,6 +3,7 @@
 #include "sead/filedevicemgr.h"
 #include "dynlibs/gx2/types.h"
 #include "sead/color.h"
+#include "log.h"
 
 namespace Atlys {
 
@@ -27,9 +28,9 @@ private:
 
         struct Node {
             enum Type {
-                Type_Normal,                     // Player just walks to it
-                Type_Level,                      // Level node
-                Type_Transition,                 // Mode to a new node with a transition
+                Type_Normal,                // Player just walks to it
+                Type_Level,                 // Level node
+                Type_Transition,            // Mode to a new node with a transition
             };
 
             struct Connection {
@@ -99,14 +100,14 @@ public:
         enum ExitFlags {
             Exit_Normal   = 1 << 0,
             Exit_Secret   = 1 << 1,
-            Exits_All     = 1 << 2
+            Exits_All     = 1 << 2  // Does not have to be *both*, just all that are available on this node
         };
 
         enum StarCoinFlags {
             StarCoin_1    = 1 << 0,
             StarCoin_2    = 1 << 1,
             StarCoin_3    = 1 << 2,
-            StarCoins_All = 1 << 3
+            StarCoins_All = (StarCoin_1 | StarCoin_2 | StarCoin_3)
         };
 
         Node()
@@ -126,24 +127,19 @@ public:
             return false;
         }
 
-        void checkExitCompletion() {
+        bool checkExitCompletion() {
             if (this->type == Data::Node::Type_Level && (this->exits & Exit_Normal)) {
                 if (!(this->hasSecretExit && (this->exits & Exit_Secret)))
                     return;
                 
                 this->exits |= Exits_All;
             }
+
+            return this->exits & Exits_All;
         };
 
-        void checkStarCoinCompletion() {
-            if (this->type == Data::Node::Type_Level && (this->starCoins & StarCoin_1) && (this->starCoins & StarCoin_2) && (this->starCoins & StarCoin_3)) {
-                this->starCoins |= StarCoins_All;
-            }
-        }
-
-        void checkCompletion() {
+        bool checkCompletion() {
             this->checkExitCompletion();
-            this->checkStarCoinCompletion();
         
             if (this->type == Data::Node::Type_Level) {
                 if ((this->exits & Exits_All) && (this->starCoins & StarCoins_All))
@@ -151,8 +147,11 @@ public:
                 else
                     this->allCompleted = false;
             }
+
+            return this->allCompleted;
         }
         
+        // Level node only
         u32 exits;
         u8 starCoins;
         bool allCompleted;
@@ -185,8 +184,7 @@ public:
         void checkExits(Node* nodes, Data::Header* header) {
             for (u32 i = 0; i < header->nodeCount; i++) {
                 if (nodes[i].type == Data::Node::Type_Level && nodes[i].world == this->id) {
-                    nodes[i].checkExitCompletion();
-                    if (nodes[i].exits & Node::Exits_All)
+                    if (nodes[i].checkExitCompletion())
                         continue;
                     else {
                         this->allExitsCompleted = false;
@@ -201,7 +199,6 @@ public:
         void checkStarCoins(Node* nodes, Data::Header* header) {
             for (u32 i = 0; i < header->nodeCount; i++) {
                 if (nodes[i].type == Data::Node::Type_Level && nodes[i].world == this->id) {
-                    nodes[i].checkStarCoinCompletion();
                     if (nodes[i].starCoins & Node::StarCoins_All)
                         continue;
                     else {
@@ -217,8 +214,7 @@ public:
         void checkAll(Node* nodes, Data::Header* header) {
             for (u32 i = 0; i < header->nodeCount; i++) {
                 if (nodes[i].type == Data::Node::Type_Level && nodes[i].world == this->id) {
-                    nodes[i].checkCompletion();
-                    if (nodes[i].allCompleted)
+                    if (nodes[i].checkCompletion())
                         continue;
                     else {
                         this->allCompleted = false;
@@ -244,18 +240,14 @@ public:
             : gtx(nullptr)
         { }
 
-        void fillData(const Data::Layer& data) {
-            this->index = data.index;
-            for (u32 i = 0; i < 16; i++)
-                this->gtxName[i] = data.gtxName[i];
-        }
-
         GX2Texture* gtx;
     };
 
 public:
     Map(const sead::SafeString& path);
     ~Map();
+
+    Node* findNodeByID(u32 id);
 
     Data::Header* info;
     WorldInfo* worlds;

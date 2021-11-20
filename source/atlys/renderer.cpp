@@ -20,7 +20,7 @@ void Atlys::Renderer::makeDrawMethods() {
 }
 
 void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
-    
+
 }
 
 void Atlys::Renderer::drawLayerActors(const agl::lyr::RenderInfo& renderInfo) {
