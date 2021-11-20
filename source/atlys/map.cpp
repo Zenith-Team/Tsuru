@@ -130,3 +130,13 @@ Atlys::Map::~Map() {
     delete this->layers;  this->layers  = nullptr;
     delete this->sprites; this->sprites = nullptr;
 }
+
+Atlys::Map::Node* Atlys::Map::findNodeByID(u32 id) {
+    for (u32 i = 0; i < this->info->nodeCount; i++) {
+        if (this->nodes[i].id == id)
+            return &this->nodes[i];
+    }
+
+    // Couldn't find node :(
+    return nullptr;
+}

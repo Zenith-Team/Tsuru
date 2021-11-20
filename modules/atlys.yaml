@@ -4,10 +4,9 @@ Files:
   - source/atlys/scene.cpp
   - source/atlys/renderer.cpp
   - source/atlys/map.cpp
-Hooks: []
+Hooks:
 # Entry point
-#  - type: branch
-#    instr: b
-#    addr: "202b86c" # CourseSelectTask::construct()
-#    func: construct__Q2_5Atlys5SceneSFRCQ2_4sead16TaskConstructArg
-#
+  - type: branch
+    instr: b
+    addr: "202b86c" # CourseSelectTask::construct()
+    func: construct__Q2_5Atlys5SceneSFRCQ2_4sead16TaskConstructArg

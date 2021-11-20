@@ -3,6 +3,7 @@
 #include "game/graphics/layer/renderobjlayer.h"
 #include "agl/lyr/drawmethod.h"
 #include "agl/lyr/renderer.h"
+#include "agl/rendertargetcolor.h"
 
 namespace Atlys {
 
