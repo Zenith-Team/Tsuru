@@ -30,7 +30,7 @@ private:
             enum Type {
                 Type_Normal,                // Player just walks to it
                 Type_Level,                 // Level node
-                Type_Transition,            // Mode to a new node with a transition
+                Type_Transition,            // Teleport to a new node with a transition
             };
 
             struct Connection {
@@ -60,13 +60,13 @@ private:
                     u8 world;
                     u8 level;
                     bool unlocksWorld;
-                    u8 unlocksWorldID;
+                    u32 unlocksWorldID;
                     bool hasSecretExit;
                 };
 
                 struct { // Transition
                     u32 transition;
-                    u8 targetNode;
+                    u32 targetNodeID;
                 };
             };
         };
@@ -96,7 +96,8 @@ private:
     };
 
 public:
-    struct Node : Data::Node {
+    class Node : public Data::Node {
+    public:
         enum ExitFlags {
             Exit_Normal   = 1 << 0,
             Exit_Secret   = 1 << 1,
@@ -110,6 +111,7 @@ public:
             StarCoins_All = (StarCoin_1 | StarCoin_2 | StarCoin_3)
         };
 
+    public:
         Node()
             : exits(0)
             , starCoins(0)
@@ -130,7 +132,7 @@ public:
         bool checkExitCompletion() {
             if (this->type == Data::Node::Type_Level && (this->exits & Exit_Normal)) {
                 if (!(this->hasSecretExit && (this->exits & Exit_Secret)))
-                    return;
+                    return false;
                 
                 this->exits |= Exits_All;
             }
@@ -157,7 +159,8 @@ public:
         bool allCompleted;
     };
 
-    struct WorldInfo : Data::WorldInfo {
+    class WorldInfo : public Data::WorldInfo {
+    public:
         WorldInfo()
             : unlocked(false)
             , allLevelsCompleted(false)
@@ -235,10 +238,18 @@ public:
         bool allCompleted; // All exits and star coins
     };
 
-    struct Layer : Data::Layer {
+    class Layer : public Data::Layer {
+    public:
         Layer()
             : gtx(nullptr)
         { }
+
+        ~Layer() {
+            if (this->gtx)
+                delete this->gtx;
+            
+            this->gtx = nullptr;
+        }
 
         GX2Texture* gtx;
     };

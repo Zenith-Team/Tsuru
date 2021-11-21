@@ -80,11 +80,11 @@ Atlys::Map::Data::Data(const sead::SafeString& path)
 }
 
 Atlys::Map::Data::~Data() {
-    delete this->header;  this->header  = nullptr;
-    delete this->worlds;  this->worlds  = nullptr;
-    delete this->nodes;   this->nodes   = nullptr;
-    delete this->layers;  this->layers  = nullptr;
-    delete this->sprites; this->sprites = nullptr;
+    delete this->header;    this->header  = nullptr;
+    delete[] this->worlds;  this->worlds  = nullptr;
+    delete[] this->nodes;   this->nodes   = nullptr;
+    delete[] this->layers;  this->layers  = nullptr;
+    delete[] this->sprites; this->sprites = nullptr;
 }
 
 Atlys::Map::Map(const sead::SafeString& path)
@@ -125,10 +125,10 @@ Atlys::Map::Map(const sead::SafeString& path)
 
 Atlys::Map::~Map() {
     delete this->info;    this->info    = nullptr;
-    delete this->worlds;  this->worlds  = nullptr;
-    delete this->nodes;   this->nodes   = nullptr;
-    delete this->layers;  this->layers  = nullptr;
-    delete this->sprites; this->sprites = nullptr;
+    delete[] this->worlds;  this->worlds  = nullptr;
+    delete[] this->nodes;   this->nodes   = nullptr;
+    delete[] this->layers;  this->layers  = nullptr;
+    delete[] this->sprites; this->sprites = nullptr;
 }
 
 Atlys::Map::Node* Atlys::Map::findNodeByID(u32 id) {
