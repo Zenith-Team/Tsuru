@@ -29,7 +29,6 @@ public:
     static u8 getHasResources(u32 id);
     static u8 getResourceCount(u32 id);
     static const sead::SafeString* getResourceList(u32 id);
-
     static u32 getNumProfiles();
 
     static u32 spriteToProfileList[];
