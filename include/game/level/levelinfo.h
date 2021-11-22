@@ -20,7 +20,7 @@ public:
     // Sets the destination world to switch to
     // @param world Target world number
     void setDestWorld(u8 world);
-    // Sets the destination zpne to switch to
+    // Sets the destination zone to switch to
     // @param zone Target zone number
     void setDestZone(u32 zone);
 

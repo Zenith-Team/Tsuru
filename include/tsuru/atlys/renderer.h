@@ -3,7 +3,8 @@
 #include "game/graphics/layer/renderobjlayer.h"
 #include "agl/lyr/drawmethod.h"
 #include "agl/lyr/renderer.h"
-#include "agl/rendertargetcolor.h"
+#include "agl/renderbuffer.h"
+#include "sead/graphicscontext.h"
 
 namespace Atlys {
 
@@ -28,10 +29,14 @@ private:
 
 private:
     Renderer();
-    ~Renderer() { }
+    ~Renderer();
 
     void makeLayers();
     void makeDrawMethods();
+
+    void initRendering();
+
+    void initBackgroundBuffer();
 
     // Draw methods
     void drawLayerMap(const agl::lyr::RenderInfo& renderInfo);
@@ -41,6 +46,12 @@ private:
 
     agl::lyr::DrawMethodImpl<Renderer> drawMethodMap;
     agl::lyr::DrawMethodImpl<Renderer> drawMethodActors;
+
+    // Background
+    agl::RenderBuffer backgroundBuffer;
+    agl::RenderTargetColor backgroundColor;
+    sead::GraphicsContext backgroundContext;
+    void* backgroundImageData;
 };
 
 }

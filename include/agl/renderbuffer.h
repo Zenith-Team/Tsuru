@@ -18,6 +18,9 @@ public:
     virtual void clear(u32, u32, const sead::Color4f& color, f32 depthValue, u32 stencilValue);
     virtual void bindImpl_();
 
+    void initialize();
+    void setRenderTargetColorNullAll();
+
     agl::RenderTargetColor* targetColors[8];
     agl::RenderTargetDepth* targetDepth;
 };

@@ -48,7 +48,10 @@ SECTIONS {
 
 /* agl::RenderBuffer */
     __ct__Q2_3agl12RenderBufferFR13Vec2__tm__2_ffN32 = 0x2a1eadc;
+    __ct__Q2_3agl12RenderBufferFv = 0x2a1e9dc;
     __dt__Q2_3agl12RenderBufferFv = 0x2a1e33c;
+    clear__Q2_3agl12RenderBufferFUiT1RCQ2_4sead7Color4ffT1 = 0x2a1e644;
+    initialize__Q2_3agl12RenderBufferFv = 0x2a1e9b4;
 
 /* agl::RenderTargetColor */
     __ct__Q2_3agl17RenderTargetColorFv = 0x2a1efdc;
@@ -59,6 +62,10 @@ SECTIONS {
 
 /* agl::TextureData */
     __ct__Q2_3agl11TextureDataFv = 0x2a249a0;
+
+/* agl::driver::GX2Resource */
+    sInstance__Q3_3agl6driver11GX2Resource = 0x101e88c4;
+    restoreContextState__Q3_3agl6driver11GX2ResourceFv = 0x2a283c4;
 
 /* agl::lyr::Layer */
     pushBackDrawMethod__Q3_3agl3lyr5LayerFUiPQ3_3agl3lyr18DrawMethodImplBase = 0x2a376b8;

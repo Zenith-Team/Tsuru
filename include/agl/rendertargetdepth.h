@@ -14,7 +14,7 @@ public:
 
     // Begin inlined struct
     agl::TextureData base;
-    u32 _9C;
+    bool dirty;
     u32 viewMip;
     u32 viewFirstSlice;
     // End inlined struct
