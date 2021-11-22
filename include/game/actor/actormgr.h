@@ -24,6 +24,7 @@ class ActorMgr { // Size: 0x6A44
 public:
     // Spawns an actor in the current level
     // @param buildInfo ActorBuildInfo to build the actor with
+    // @param addToActive 0: Add to actorsToCreate, 1: add to activeActors and drawableActors, Else: Don't add to any list
     // @return Pointer to created actor
     Actor* create(ActorBuildInfo& buildInfo, u32 addToActive);
 

@@ -16,6 +16,8 @@ sead::TaskBase* Atlys::Scene::construct(const sead::TaskConstructArg& arg) {
 }
 
 void Atlys::Scene::prepare() {
+    LOG("Preparing");
+
     // Initialize singletons
     ActorMgr::createInstance(nullptr)->createHeaps(nullptr);
 
@@ -26,13 +28,17 @@ void Atlys::Scene::prepare() {
     this->controllers.init();
 
     // Load map file
-    this->map = new Map("tsuru/map.atlys");
+    //! TODO: THIS BREAKS THE ENTIRE TASK, WTF HOW
+    //this->map = new Map("tsuru/map.atlys");
+    this->renderer.initRendering();
 
     // This has to go last
     this->adjustHeapAll();
 }
 
 void Atlys::Scene::enter() {
+    LOG("Enter");
+
     // Make draw methods and bind to the corresponding layers
     this->renderer.makeDrawMethods();
 }

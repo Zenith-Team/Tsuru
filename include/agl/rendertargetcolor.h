@@ -12,12 +12,11 @@ public:
     void invalidateGPUCache() const;
     void onApplyTextureData_();
 
-    // This function does not appear in the MK8 AGL symbols, is it real?
-    void applyTextureData(TextureData& textureData);
+    void applyTextureData(const TextureData& textureData);
 
     // Begin inlined struct
     TextureData base;
-    u32 _9C;
+    bool dirty;
     u32 viewMip;
     u32 viewFirstSlice;
     // End inlined struct
