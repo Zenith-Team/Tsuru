@@ -12,6 +12,7 @@ Modules:
 # - modules/experiments.yaml          # Experimental things (WARNING: Do not use in releases)
   - modules/initializer.yaml          # Initializer
   - modules/misc.yaml                 # Miscellaneous items
+  - modules/powerup.yaml              # Custom powerups
   - modules/profile.yaml              # Extra profile and sprite slots
   - modules/respawn.yaml              # Instant respawn after dying
   - modules/sarcloader.yaml           # Allow loading uncompressed .sarc levels

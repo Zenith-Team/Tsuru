@@ -1,6 +1,7 @@
 #pragma once
 
 #include <sead.h>
+#include "agl/lyr/displaytype.h"
 
 namespace agl { namespace lyr {
 
@@ -20,7 +21,7 @@ public:
     // @param heap Heap to allocate to
     // @return Pointer to the created layer
     template <class T>
-    T* createLayer(u32 layerID, const sead::SafeString& layerName, u32 displayType, sead::Heap* heap) {
+    T* createLayer(u32 layerID, const sead::SafeString& layerName, DisplayType displayType, sead::Heap* heap) {
         T* layer = new T();
 
         this->initLayer_(layer, layerID, layerName, displayType, heap);

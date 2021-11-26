@@ -1,0 +1,48 @@
+
+---
+Files:
+  - source/powerup.S
+Hooks:
+# Projectile
+  # Spawn the custom projectile
+  - type: branch
+    instr: bl
+    addr: "293ade0"
+    func: ProjectileProfileIDs
+  # Allow checking if we can throw projectile from custom type
+  - type: branch
+    instr: b
+    addr: "293acc0"
+    func: ShouldThrowProjectile
+  # Allow throwing projectile from custom type
+  - type: branch
+    instr: bl
+    addr: "293b148"
+    func: AllowThrowingProjectile
+  # Another one
+  - type: branch
+    instr: bl
+    addr: "293abc8"
+    func: AnotherProjectilePowerupCheck
+  # Yet another
+  - type: branch
+    instr: b
+    addr: "293ac38"
+    func: ShouldThrowProjectile_2
+  # Continue spawning if it's custom type
+  - type: branch
+    instr: bl
+    addr: "293adbc"
+    func: ProjectileExtraTypes
+
+# Extend tables
+  # Tall type
+  - type: branch
+    instr: b
+    addr: "2925128"
+    func: UseCustomTallTypeTable
+  # Sensor sizes
+  - type: branch
+    instr: bl
+    addr: "28f73e0"
+    func: UseCustomSensorSizeTable

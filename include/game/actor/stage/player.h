@@ -27,6 +27,12 @@ public:
         DamageType_InstaKill_2
     };
 
+    enum TallType {
+        TallType_Mini,
+        TallType_Small,
+        TallType_Normal
+    };
+
 public:
     void damage(u32, u32 damageType);   //! This is a pure virtual override
 };

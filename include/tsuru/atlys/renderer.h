@@ -16,20 +16,8 @@ public:
     };
 
 private:
-    class Layer : public RenderObjLayer {
-        SEAD_RTTI_OVERRIDE_IMPL(Layer, RenderObjLayer)
-
-    private:
-        inline Layer()
-            : RenderObjLayer()
-        { }
-
-        friend class agl::lyr::Renderer;
-    };
-
-private:
     Renderer();
-    ~Renderer();
+    ~Renderer() { }
 
     void makeLayers();
     void makeDrawMethods();
@@ -46,12 +34,6 @@ private:
 
     agl::lyr::DrawMethodImpl<Renderer> drawMethodMap;
     agl::lyr::DrawMethodImpl<Renderer> drawMethodActors;
-
-    // Background
-    agl::RenderBuffer backgroundBuffer;
-    agl::RenderTargetColor backgroundColor;
-    sead::GraphicsContext backgroundContext;
-    void* backgroundImageData;
 };
 
 }
