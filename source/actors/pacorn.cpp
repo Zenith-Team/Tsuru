@@ -79,14 +79,21 @@ void PAcorn::playFloatAnim() {
 void PAcorn::vf1B4() {
     this->model->playSklAnim("out2", 2);
 }
-
+#include "game/playermgr.h"
+#include "game/effect/effect.h"
 u32 PAcorn::vf1C4() {
     u32 local;
 
-    if (FUN_25196e8(&local, PowerupState_PAcorn, 1) != 0)
-        return FUN_2519580(local, this->_1830);
+    for (u32 i = 0; i < 4; i++) {
+        Player* player = PlayerMgr::instance()->players[i];
+        if (player) player->powerupState = (Player::PowerupState) 9;
+        this->isDeleted = true;
+    }
 
-    else return 0;
+    //if (FUN_25196e8(&local, PowerupState_PAcorn, 1) != 0)
+        //return FUN_2519580(local, this->_1830);
+
+    return 0;
 }
 
 void PAcorn::vf1FC() {

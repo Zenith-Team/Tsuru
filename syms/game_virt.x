@@ -653,6 +653,8 @@ SECTIONS {
 
 /* Player */
     damage__6PlayerFUiT1 = 0x2930858;
+    throwProjectile__6Player__PowerupStateNotFire = 0x293ae28;
+    FUN_0293b080__6Player__IsProjectilePowerup = 0x293b198;
 
 /* PlayerInput */
     isUpHeld__11PlayerInputCFv = 0x2916114;
@@ -889,4 +891,5 @@ SECTIONS {
     moveValueTo__FRUiUiT2 = 0x29e0de8;
     SE_VOC = 0x1018393C;
     mapPositionToScreen__FR13Vec2__tm__2_fRC13Vec2__tm__2_f = 0x2029368;
+    DAT_101c30d0 = 0x101c30d0;
 }
