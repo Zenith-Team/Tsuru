@@ -30,6 +30,7 @@ void Atlys::Scene::prepare() {
     // Load map file
     //! TODO: THIS BREAKS THE ENTIRE TASK, WTF HOW
     //this->map = new Map("tsuru/map.atlys");
+    this->renderer.loadbg();
 
     // This has to go last
     this->adjustHeapAll();
@@ -38,8 +39,9 @@ void Atlys::Scene::prepare() {
 void Atlys::Scene::enter() {
     LOG("Enter");
 
-    // Make draw methods and bind to the corresponding layers
-    this->renderer.makeDrawMethods();
+    // Init renderer
+    // It will be automatically managed from now on
+    this->renderer.init();
 }
 
 void Atlys::Scene::calc() {

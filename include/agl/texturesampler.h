@@ -30,35 +30,29 @@ public:
     u32 magFilter;
     u32 minFilter;
     u32 mipFilter;
-    u32 clampX;
-    u32 clampY;
-    u32 clampZ;
-    f32 samplerUnitNumber;
-    f32 red;
-    f32 green;
-    f32 blue;
+    u32 wrapX;
+    u32 wrapY;
+    u32 wrapZ;
+    sead::Color4f borderColor;
     f32 minLOD;
     f32 maxLOD;
     f32 LODBias;
     u32 maxAnisoRatio;
-    u8 _D4;
-    u32 _D8;
-    u32 _DC;
-    u32 _E0;
-    u32 _E4;
-    u8 _E8;
+    bool overrideCompSel;
+    u32 redComp;
+    u32 greenComp;
+    u32 blueComp;
+    u32 alphaComp;
+    bool isTexValid;
     u8 _E9;
     u8 _EA;
     u32 depthCompare;
     GX2Sampler sampler;
-    GX2Texture* texturePtr;
-    u8 _100[32]; // Unknown values
-    void* imagePtr;
-    u8 _124[4]; // Unknown values
-    void* mipPtr;
-    u8 _12C[84]; // Unknown values
+    GX2Texture texture;
     bool hasBorder;
-    s8 _199;
+    sead::BitFlag8 flags;
 };
+
+static_assert(sizeof(TextureSampler) == 0x1A0, "agl::TextureSampler size mismatch");
 
 }

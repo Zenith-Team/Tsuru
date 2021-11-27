@@ -16,8 +16,6 @@ public:
 
     void invalidateGPUCache();
 
-    void loadGTX(void* data, u32);
-
     void setMipLevelNum(u32 mip);
 
     u32 aglFormat;

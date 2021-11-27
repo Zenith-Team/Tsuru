@@ -62,6 +62,12 @@ SECTIONS {
 
 /* agl::TextureData */
     __ct__Q2_3agl11TextureDataFv = 0x2a249a0;
+    initializeFromSurface__Q2_3agl11TextureDataFRC11_GX2Surface = 0x2a24e80;
+
+/* agl::TextureSampler */
+    __ct__Q2_3agl14TextureSamplerFv = 0x2a2587c;
+    __dt__Q2_3agl14TextureSamplerFv = 0x2a25c60;
+    applyTextureData___Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2a25990;
 
 /* agl::driver::GX2Resource */
     sInstance__Q3_3agl6driver11GX2Resource = 0x101e88c4;
@@ -75,6 +81,9 @@ SECTIONS {
     draw__Q3_3agl3lyr8RendererCFQ3_3agl3lyr11DisplayType = 0x2a3ab90;
     sInstance__Q3_3agl3lyr8Renderer = 0x101E8A2C;
     initLayer___Q3_3agl3lyr8RendererFPQ3_3agl3lyr5LayerUiRCQ2_4sead23SafeStringBase__tm__2_cT2PQ2_4sead4Heap = 0x2a3aee8;
+
+/* agl::utl::ImageFilter2D */
+    drawTextureMSAA__Q3_3agl3utl13ImageFilter2DSFRCQ2_3agl14TextureSamplerRCQ2_4sead8ViewportRC13Vec2__tm__2_fT3Ui = 0x2a533ec;
 
 /* sead::CalculateTask */
     __ct__Q2_4sead13CalculateTaskFRCQ2_4sead16TaskConstructArgPCc = 0x29FC508;
