@@ -17,13 +17,35 @@ public:
 
     void applyTextureData_(const TextureData& data);
 
+    void applyTextureData(const TextureData& data)
+{
+    if (!this->isTexValid ||
+            this->textureData.surface.dimension != data.surface.dimension ||
+            this->textureData.surface.width != data.surface.width ||
+            this->textureData.surface.height != data.surface.height ||
+            this->textureData.surface.depth != data.surface.depth ||
+            this->textureData.surface.numMips != data.surface.numMips ||
+            this->textureData.surface.format != data.surface.format ||
+            this->textureData.surface.swizzle != data.surface.swizzle ||
+            this->textureData.surface.tile != data.surface.tile ||
+            this->textureData.surface.aa != data.surface.aa) {
+        applyTextureData_(data);
+    } else {
+        this->textureData.surface.imageData = data.surface.imageData;
+        this->textureData.surface.mipData   = data.surface.mipData;
+
+        this->texture.surface.imageData = this->textureData.surface.imageData;
+        this->texture.surface.mipData   = this->textureData.surface.mipData;
+    }
+}
+
     void initBorderColor_() const;
     void initDepthComp_() const;
     void initFilter_() const;
     void initMipParam_() const;
     void initTexture_() const;
     void initWrap_() const;
-    
+
     void initRegs_() const;
 
     TextureData textureData;

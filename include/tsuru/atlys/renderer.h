@@ -39,7 +39,6 @@ private:
 
     //! Temp
     agl::TextureSampler bgsampler;
-    GX2Surface bgsurface;
     agl::TextureData bgtexture;
     u8* bgtexdata;
     u32 bgtexsize;

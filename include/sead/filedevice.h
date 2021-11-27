@@ -132,6 +132,7 @@ public:
     }
 
     u32 read(u8* outBuffer, u32 bytesToRead);
+    u32 getFileSize();
 
     s32 divSize;
 };
