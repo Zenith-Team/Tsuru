@@ -72,6 +72,7 @@ SECTIONS {
     pushBackDrawMethod__Q3_3agl3lyr5LayerFPQ3_3agl3lyr10DrawMethod = 0x2a37710;
 
 /* agl::lyr::Renderer */
+    draw__Q3_3agl3lyr8RendererCFQ3_3agl3lyr11DisplayType = 0x2a3ab90;
     sInstance__Q3_3agl3lyr8Renderer = 0x101E8A2C;
     initLayer___Q3_3agl3lyr8RendererFPQ3_3agl3lyr5LayerUiRCQ2_4sead23SafeStringBase__tm__2_cT2PQ2_4sead4Heap = 0x2a3aee8;
 
@@ -109,6 +110,9 @@ SECTIONS {
 /* sead::FileHandle */
     read__Q2_4sead10FileHandleFPUcUi = 0x29F81D0;
 
+/* sead::FrameBuffer */
+    bind__Q2_4sead11FrameBufferCFv = 0x2a058f0;
+
 /* sead::FrustumProjection */
     __ct__Q2_4sead17FrustumProjectionFfN51 = 0x2A06944;
     __dt__Q2_4sead17FrustumProjectionFv = 0x2A06A4C;
@@ -128,9 +132,6 @@ SECTIONS {
 /* sead::IDisposer */
     __ct__Q2_4sead9IDisposerFv = 0x2A0A2FC;
     __dt__Q2_4sead9IDisposerFv = 0x2A0A384;
-
-/* sead::LogicalFrameBuffer */
-    bind__Q2_4sead18LogicalFrameBufferCFv = 0x2a058f0;
 
 /* sead::LookAtCamera */
     __dt__Q2_4sead12LookAtCameraFv = 0x2a04b94;
@@ -180,7 +181,8 @@ SECTIONS {
 
 /* sead::Viewport */
     __ct__Q2_4sead8ViewportFfN31 = 0x2a072fc;
-    apply__Q2_4sead8ViewportFPv = 0x2a0783c;
+    __ct__Q2_4sead8ViewportFRCQ2_4sead18LogicalFrameBuffer = 0x2a074c8;
+    apply__Q2_4sead8ViewportCFRCQ2_4sead18LogicalFrameBuffer = 0x2a0783c;
 
 /* Actor */
     __ct__5ActorFPC14ActorBuildInfo = 0x2002ce0;
@@ -618,6 +620,11 @@ SECTIONS {
     getRuntimeTypeInfo__8ObjLayerCFv = __deleted_virtual_called;
     vf3C__8ObjLayerFv = 0x24fd0e8;
     vf5C__8ObjLayerFv = 0x24fd0f4;
+
+/* ObjLayerRenderer */
+    __dt__16ObjLayerRendererFv = 0x24fb0ac;
+    __ct__16ObjLayerRendererFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24faf58;
+    init__16ObjLayerRendererFUiN31PQ2_4sead4Heap = 0x24fb128;
 
 /* PhysicsActor */
     __vtbl__12PhysicsActor = 0x1000084C;

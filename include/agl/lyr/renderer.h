@@ -2,6 +2,8 @@
 
 #include <sead.h>
 #include "agl/lyr/displaytype.h"
+#include "agl/renderbuffer.h"
+#include "sead/controller.h"
 
 namespace agl { namespace lyr {
 
@@ -31,31 +33,36 @@ public:
 
     void initLayer_(Layer* layer, u32 layerID, const sead::SafeString& layerName, u32 displayType, sead::Heap* heap);
 
-    u32 _10;
-    u32 _14;
-    u8 _18[0x6C4][2];           // Array of two CLASS_2a618c0
-    u8 _DA0[0x8];               // Unknown values
-    sead::Buffer<Layer*> layers;
-    u16 _DB0;
-    u8 _DB2[0x2];               // Unknown values
+    bool draw(DisplayType displayType) const;
+    
+    // Custom functions
+    bool drawCustomTV(DisplayType displayType) const;
+    bool drawCustomDRC(DisplayType displayType) const;
+
+    u32 isDisplayList;
+    u32 multiSampleType; // agl::MultiSampleType
+    u8 renderDisplays[DisplayType_Num][0x6C4]; // agl::lyr::RenderDisplay[DisplayType_Num]
+    RenderBuffer* renderBuffers[DisplayType_Num];
+    sead::Buffer<agl::lyr::Layer*> layers;
+    mutable sead::BitFlag16 flags;
     f32 _DB4;
-    u8 _DB8[0x10];              // Unknown values
-    sead::CriticalSection _DC8;
-    u8 _E04[0x64][2];           // Array of two CLASS_2affb68
-    u8 _ECC[0xC][2];            // Array of two CLASS_2a3b27c
+    u8 _DB8[16];
+    sead::CriticalSection cs;
+    u8 jobQueues[2][0x64]; // sead::FixedSizeJQ[2]
+    sead::PtrArrayImpl renderDisplayJobs[DisplayType_Num]; // sead::PtrArray<agl::lyr::RenderDisplay::Job>[DisplayType_Num]
     u32 _EE4;
     u32 _EE8;
-    u32 _EEC;
-    u32 _EF0;
+    s32 _EEC;
+    sead::Controller* debugController; // sead::Controller*
     f32 _EF4;
     Vec2f _EF8;
     u32 _F00;
-    u8 _F04[0x58];              // CLASS_2a638c0
-    u32 _F5C;
-    u32 _F60;
+    u8 renderDLBuffer[0x58]; // agl::lyr::RenderDLBuffer
+    u32 gpuCounter;
+    u32 gpuCounterPeriod;
     u32 _F64;
-    u32 _F68;
-    u32 _F6C;
+    s32 colorBufferSwizzle;
+    s32 depthBufferSwizzle;
     f32 _F70;
 };
 

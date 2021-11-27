@@ -11,6 +11,32 @@ public:
         : bits(0)
     { }
 
+    forceinline BitFlag(T t)
+        : bits(t)
+    { }
+
+    T getMask(T mask) const { return this->bits & mask; }
+    static T makeMask(s32 bit) { return T(1) << bit; }
+
+    bool isOn(T mask) const { return (this->bits & mask) != 0; }
+    bool isOff(T mask) const { return !this->isOn(mask); }
+
+    bool isOnBit(s32 bit) const { return this->isOn(makeMask(bit)); }
+    bool isOffBit(s32 bit) const { return this->isOff(makeMask(bit)); }
+
+    void set(T mask) { this->bits |= mask; }
+    void reset(T mask) { this->bits &= ~mask; }
+    void toggle(T mask) { this->bits ^= mask; }
+    void change(T mask, bool b) { b ? set(mask) : reset(mask); }
+
+    void setBit(s32 bit) { this->set(makeMask(bit)); }
+    void resetBit(s32 bit) { this->reset(makeMask(bit)); }
+    void changeBit(s32 bit, bool b) { this->change(makeMask(bit), b); }
+    void toggleBit(s32 bit) { this->toggle(makeMask(bit)); }
+
+    void makeAllZero() { this->bits = 0; }
+    void makeAllOne() { this->bits = -1; }
+
     bool operator==(const BitFlag<T>& rhs) const { return this->bits == rhs.bits; }
     bool operator!=(const BitFlag<T>& rhs) const { return this->bits != rhs.bits; }
 

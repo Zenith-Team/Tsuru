@@ -6,6 +6,11 @@ namespace sead {
 
 template <typename T>
 struct BoundBox2 {
+    BoundBox2(T t)
+        : min(t)
+        , max(t)
+    { }
+
     Vec2<T> min;
     Vec2<T> max;
 

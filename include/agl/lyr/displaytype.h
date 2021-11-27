@@ -3,9 +3,10 @@
 namespace agl { namespace lyr {
 
 enum DisplayType {
-    Top_TV,
-    Bottom_DRC,
-    Invalid
+    DisplayType_TopTV,
+    DisplayType_BottomDRC,
+    DisplayType_Num,
+    DisplayType_Invalid = 0xFFFFFFFF
 };
 
 } }
