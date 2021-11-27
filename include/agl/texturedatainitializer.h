@@ -4,10 +4,9 @@
 
 namespace agl {
 
-class TextureDataInitializerGTX
-{
+class TextureDataInitializerGTX {
 public:
-    static void initialize(agl::TextureData* textureData, void* pFile, u32 imageIdx);
+    static void initialize(agl::TextureData* textureData, void* fileData, u32 imageIdx);
 };
 
 }
