@@ -1,12 +1,11 @@
 #pragma once
 
-#include <types.h>
 #include <agl/lyr/layer.h>
 #include <sead/projection.h>
 #include <sead/camera.h>
 
 namespace sead { class Viewport; class FrameBuffer; }
-namespace agl { class DisplayList; class RenderBuffer; }
+namespace agl { class DisplayList; }
 
 namespace agl { namespace lyr {
 
@@ -16,7 +15,7 @@ public:
 
     s32 renderStepIndex;
     u32 displayType;
-    RenderBuffer* renderBuffer;
+    sead::FrameBuffer* renderBuffer;
     u32 _C;
     Layer* layer;
     sead::Camera* camera;

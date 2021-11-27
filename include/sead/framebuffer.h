@@ -1,30 +1,48 @@
 #pragma once
 
-#include <sead/boundbox.h>
-#include <sead/runtimetypeinfo.h>
-#include <sead/color.h>
+#include "sead/runtimetypeinfo.h"
+#include "sead/boundbox.h"
 
 namespace sead {
 
-class DisplayBuffer;
-
-class LogicalFrameBuffer { // Size: 0x1C
+class LogicalFrameBuffer {
     SEAD_RTTI_BASE(LogicalFrameBuffer)
 
 public:
-    virtual void vf1C(); // deleted
-	virtual void copyToDisplayBuffer(const DisplayBuffer* displayBuffer);
-	virtual void clear(u32, u32, const Color4f& color, f32 depthValue, u32 stencilValue);
-	virtual void vf34(); // deleted
-	virtual void bindImpl_();
+    LogicalFrameBuffer()
+        : virtualSize(0.0f)
+        , physicalArea(0.0f)
+    { }
 
-    void bind() const;
+    LogicalFrameBuffer(const Vec2f& virtualSize, const BoundBox2<f32>& physicalArea)
+        : virtualSize(virtualSize)
+        , physicalArea(physicalArea)
+    { }
+
+    virtual ~LogicalFrameBuffer() { }
 
     Vec2f virtualSize;
     BoundBox2<f32> physicalArea;
 };
 
-class FrameBuffer : public LogicalFrameBuffer { // Size: 0x1C
+static_assert(sizeof(LogicalFrameBuffer) == 0x1C, "sead::LogicalFrameBuffer size mismatch");
+
+class DisplayBuffer;
+
+class FrameBuffer : public LogicalFrameBuffer {
+    SEAD_RTTI_OVERRIDE(FrameBuffer, LogicalFrameBuffer)
+
+public:
+    FrameBuffer(const Vec2f& virtualSize, const BoundBox2<f32>& physicalArea)
+        : LogicalFrameBuffer(virtualSize, physicalArea)
+    { }
+
+    virtual void copyToDisplayBuffer(const DisplayBuffer* displayBuffer) const { }
+    virtual void clear(u32 clearFlag, const Color4f& color, f32 depth, u32 stencil) const { }
+    virtual void clearMRT(u32 target, const Color4f& color) const { }
+    virtual void bindImpl_() const { }
+
+    void bind() const;
 };
 
 static_assert(sizeof(FrameBuffer) == 0x1C, "sead::FrameBuffer size mismatch");

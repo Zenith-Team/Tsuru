@@ -1,6 +1,7 @@
 #pragma once
 
 #include "game/graphics/layer/renderobjlayer.h"
+#include "game/graphics/layer/objlayerrenderer.h"
 #include "agl/lyr/drawmethod.h"
 #include "agl/lyr/renderer.h"
 #include "agl/renderbuffer.h"
@@ -22,16 +23,13 @@ private:
     void makeLayers();
     void makeDrawMethods();
 
-    void initRendering();
-
-    void initBackgroundBuffer();
-
     // Draw methods
     void drawLayerMap(const agl::lyr::RenderInfo& renderInfo);
     void drawLayerActors(const agl::lyr::RenderInfo& renderInfo);
 
     friend class Scene;
 
+    ObjLayerRenderer layerRenderer;
     agl::lyr::DrawMethodImpl<Renderer> drawMethodMap;
     agl::lyr::DrawMethodImpl<Renderer> drawMethodActors;
 };
