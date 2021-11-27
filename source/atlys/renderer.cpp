@@ -5,6 +5,7 @@
 #include "game/graphics/drawmgr.h"
 #include "agl/utl/imagefilter2d.h"
 #include "agl/lyr/renderinfo.h"
+#include "agl/texturedatainitializer.h"
 #include "sead/filedevicemgr.h"
 #include "sead/filedevice.h"
 #include "sead/new.h"
@@ -14,14 +15,14 @@ Atlys::Renderer::Renderer()
     , drawMethodMap()
     , drawMethodActors()
     , bgsampler()
-    , bgsurface()
     , bgtexture()
     , bgtexdata(nullptr)
-    , bgtexsize(245760) 
+    , bgtexsize(0)
 { }
 
 Atlys::Renderer::~Renderer() {
-    delete this->bgtexdata; this->bgtexdata = nullptr;
+    delete[] this->bgtexdata;
+    this->bgtexdata = nullptr;
 }
 
 void Atlys::Renderer::makeLayers() {
@@ -33,36 +34,30 @@ void Atlys::Renderer::makeLayers() {
 }
 
 void Atlys::Renderer::loadbg() {
-    //! --- Surface ---
+    //! --- File Data ---
     sead::FileHandle handle;
-    sead::FileDeviceMgr::instance()->tryOpen(&handle, "tsuru/tex.bin", sead::FileDevice::FileOpenFlag_ReadOnly, 0);
-    this->bgtexdata = new(nullptr, 2048) u8[this->bgtexsize];
-    u32 bytesread = handle.read(this->bgtexdata, this->bgtexsize);
-    if (bytesread != this->bgtexsize)
-        LOG("no");
+    if (!sead::FileDeviceMgr::instance()->tryOpen(&handle, "tsuru/tex.gtx", sead::FileDevice::FileOpenFlag_ReadOnly, 0)) {
+        LOG("File does not exist?");
+    }
 
-    bgsurface.dimension = GX2_SURFACE_DIM_2D;
-    bgsurface.width = 225;
-    bgsurface.height = 225;
-    bgsurface.depth = 1;
-    bgsurface.numMips = 1;
-    bgsurface.format = GX2_SURFACE_FORMAT_TCS_R8_G8_B8_A8_UNORM;
-    bgsurface.aa = GX2_AA_MODE_1X;
-    bgsurface.use = GX2_SURFACE_USE_TEXTURE;
-    bgsurface.imageSize = this->bgtexsize;
-    bgsurface.imageData = this->bgtexdata;
-    bgsurface.mipSize = 0;
-    bgsurface.mipData = nullptr;
-    bgsurface.tile = GX2_TILE_MODE_2D_THIN1;
-    bgsurface.swizzle = 0xD0000;
-    bgsurface.align = 2048;
-    bgsurface.pitch = 256;
+    this->bgtexsize = handle.getFileSize();
+    if (this->bgtexsize == 0) {
+        LOG("Filesize is 0");
+    }
+
+    //! --- Surface ---
+    this->bgtexdata = new(nullptr, 0x2000) u8[this->bgtexsize];
+    u32 bytesread = handle.read(this->bgtexdata, this->bgtexsize);
+    if (bytesread != this->bgtexsize) {
+        LOG("no");
+    }
 
     //! --- TextureData ---
-    this->bgtexture.initializeFromSurface(this->bgsurface);
-    
+    agl::TextureDataInitializerGTX::initialize(&this->bgtexture, this->bgtexdata, 0);
+    this->bgtexture.invalidateGPUCache();
+
     //! --- TextureSampler ---
-    this->bgsampler.applyTextureData_(this->bgtexture);
+    this->bgsampler.applyTextureData(this->bgtexture);
 }
 
 void Atlys::Renderer::init() {
@@ -75,7 +70,8 @@ void Atlys::Renderer::makeDrawMethods() {
 }
 
 void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
-    agl::utl::ImageFilter2D::drawTextureMSAA(this->bgsampler, *renderInfo.viewport, Vec2f(2.0f), Vec2f(0.0f), 3);
+    if (this->bgsampler.isTexValid)
+        agl::utl::ImageFilter2D::drawTextureMSAA(this->bgsampler, *renderInfo.viewport, Vec2f(1.0f), Vec2f(0.0f), 3);
 }
 
 void Atlys::Renderer::drawLayerActors(const agl::lyr::RenderInfo& renderInfo) {

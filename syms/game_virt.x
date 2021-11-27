@@ -61,8 +61,12 @@ SECTIONS {
     FUN_2A23f1C__Q2_3agl20ShaderProgramArchiveFPUcRCUiUiPQ2_4sead4Heap = 0x2A23f1C;
 
 /* agl::TextureData */
-    __ct__Q2_3agl11TextureDataFv = 0x2a249a0;
-    initializeFromSurface__Q2_3agl11TextureDataFRC11_GX2Surface = 0x2a24e80;
+    __ct__Q2_3agl11TextureDataFv = 0x2A249A0;
+    invalidateGPUCache__Q2_3agl11TextureDataFv = 0x2A24A64;
+    initializeFromSurface__Q2_3agl11TextureDataFRC11_GX2Surface = 0x2A24E80;
+
+/* agl::TextureDataInitializerGTX */
+    initialize__Q2_3agl25TextureDataInitializerGTXSFPQ2_3agl11TextureDataPvUi = 0x2A24F38;
 
 /* agl::TextureSampler */
     __ct__Q2_3agl14TextureSamplerFv = 0x2a2587c;
@@ -118,6 +122,7 @@ SECTIONS {
 
 /* sead::FileHandle */
     read__Q2_4sead10FileHandleFPUcUi = 0x29F81D0;
+    getFileSize__Q2_4sead10FileHandleFv = 0x29F8368;
 
 /* sead::FrameBuffer */
     bind__Q2_4sead11FrameBufferCFv = 0x2a058f0;
