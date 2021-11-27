@@ -18,7 +18,7 @@ public:
 
 private:
     Renderer();
-    ~Renderer() { }
+    ~Renderer();
 
     void init();
 

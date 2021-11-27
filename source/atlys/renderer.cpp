@@ -20,6 +20,10 @@ Atlys::Renderer::Renderer()
     , bgtexsize(245760) 
 { }
 
+Atlys::Renderer::~Renderer() {
+    delete this->bgtexdata; this->bgtexdata = nullptr;
+}
+
 void Atlys::Renderer::makeLayers() {
     this->layerRenderer.init(2, 512, 5, 5, nullptr);
 
@@ -71,7 +75,7 @@ void Atlys::Renderer::makeDrawMethods() {
 }
 
 void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
-    agl::utl::ImageFilter2D::drawTextureMSAA(this->bgsampler, *renderInfo.viewport, Vec2f(10.0f), Vec2f(0.0f), 3);
+    agl::utl::ImageFilter2D::drawTextureMSAA(this->bgsampler, *renderInfo.viewport, Vec2f(2.0f), Vec2f(0.0f), 3);
 }
 
 void Atlys::Renderer::drawLayerActors(const agl::lyr::RenderInfo& renderInfo) {
