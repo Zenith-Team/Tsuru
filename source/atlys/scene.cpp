@@ -30,7 +30,9 @@ void Atlys::Scene::prepare() {
     // Load map file
     //! TODO: THIS BREAKS THE ENTIRE TASK, WTF HOW
     //this->map = new Map("tsuru/map.atlys");
-    this->renderer.loadbg();
+    
+    // Load the textures
+    this->renderer.loadMapLayers();
 
     // This has to go last
     this->adjustHeapAll();

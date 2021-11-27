@@ -25,7 +25,7 @@ private:
     void makeLayers();
     void makeDrawMethods();
 
-    void loadbg();
+    void loadMapLayers();
 
     // Draw methods
     void drawLayerMap(const agl::lyr::RenderInfo& renderInfo);
@@ -38,11 +38,9 @@ private:
     agl::lyr::DrawMethodImpl<Renderer> drawMethodActors;
 
     //! Temp
-    agl::TextureSampler bgsampler;
-    GX2Surface bgsurface;
-    agl::TextureData bgtexture;
-    u8* bgtexdata;
-    u32 bgtexsize;
+    agl::TextureSampler background;
+    agl::TextureData backgroundTexture;
+    u8* backgroundRaw;
 };
 
 }
