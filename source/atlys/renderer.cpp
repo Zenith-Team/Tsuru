@@ -8,7 +8,6 @@
 #include "sead/filedevicemgr.h"
 #include "sead/filedevice.h"
 #include "sead/new.h"
-#include "sead/primitiverenderer.h"
 
 Atlys::Renderer::Renderer()
     : layerRenderer("Atlys")
@@ -76,11 +75,7 @@ void Atlys::Renderer::makeDrawMethods() {
 }
 
 void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
-    sead::PrimitiveRenderer::instance()->setCamera(*renderInfo.camera);
-    sead::PrimitiveRenderer::instance()->setProjection(*renderInfo.projection);
-    sead::PrimitiveRenderer::instance()->begin();
-    sead::PrimitiveRenderer::instance()->drawCube(Vec3f(0.0f), 0.25, sead::colorMagenta);
-    sead::PrimitiveRenderer::instance()->end();
+    agl::utl::ImageFilter2D::drawTextureMSAA(this->bgsampler, *renderInfo.viewport, Vec2f(2.0f), Vec2f(0.0f), 3);
 }
 
 void Atlys::Renderer::drawLayerActors(const agl::lyr::RenderInfo& renderInfo) {

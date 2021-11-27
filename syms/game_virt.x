@@ -172,9 +172,6 @@ SECTIONS {
 /* sead::PrimitiveRendererCafe */
     drawTriangles___Q2_4sead21PrimitiveRendererCafeFRC5Mtx34RCQ2_4sead7Color4fT2PQ3_4sead21PrimitiveRendererUtil6VertexUiPUsT5PC11_GX2Texture = 0x2A0A190;
 
-/* sead::Projection */
-    getDeviceProjectionMatrix__Q2_4sead10ProjectionCFv = 0x2a05a9c;
-
 /* sead::Random */
     getU32__Q2_4sead6RandomFv = 0x2A13780;
 
