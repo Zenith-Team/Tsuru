@@ -25,26 +25,27 @@ void Atlys::Renderer::makeLayers() {
     agl::lyr::Renderer::instance()->createLayer<RenderObjLayer>(Atlys::Renderer::LayerID_Actor, "Actors", agl::lyr::DisplayType_TopTV, nullptr);
 }
 
-void Atlys::Renderer::loadMapTextures() {
+void Atlys::Renderer::init() {
     for (u32 i = 0; i < Atlys::Scene::instance()->map->info->layerCount; i++) {
-        sead::SafeString texture = Atlys::Scene::instance()->map->layers[i].gtxName;
-        Atlys::Scene::instance()->map->layers[i].load(texture);
+        sead::SafeString tex = Atlys::Scene::instance()->map->layers[i].gtxName;
+        Atlys::Scene::instance()->map->layers[i].load(tex);
     }
 }
 
-void Atlys::Renderer::init() {
-    this->makeDrawMethods();
+void Atlys::Renderer::activate() {
+    this->bindDrawMethods();
 }
 
-void Atlys::Renderer::makeDrawMethods() {
-    MAKE_DRAW_METHOD(drawMethodMap, "Map", &Atlys::Renderer::drawLayerMap, Atlys::Renderer::LayerID_Map);
-    MAKE_DRAW_METHOD(drawMethodActors, "Actors", &Atlys::Renderer::drawLayerActors, Atlys::Renderer::LayerID_Actor);
+void Atlys::Renderer::bindDrawMethods() {
+    BIND_DRAW_METHOD(drawMethodMap, "Map", &Atlys::Renderer::drawLayerMap, Atlys::Renderer::LayerID_Map);
+    BIND_DRAW_METHOD(drawMethodActors, "Actors", &Atlys::Renderer::drawLayerActors, Atlys::Renderer::LayerID_Actor);
 }
 
 void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
     for (u32 i = 0; i < Atlys::Scene::instance()->map->info->layerCount; i++) {
-        if (Atlys::Scene::instance()->map->layers[i].sampler.isTexValid)
-            agl::utl::ImageFilter2D::drawTextureMSAA(Atlys::Scene::instance()->map->layers[i].sampler, *renderInfo.viewport, Vec2f(1.0f), Vec2f(), 3);
+        f32 f = 1;
+        f /= (i + 1);
+        agl::utl::ImageFilter2D::drawTextureMSAA(Atlys::Scene::instance()->map->layers[i].sampler, *renderInfo.viewport, Vec2f(f), Vec2f(0.0f), 3);
     }
 }
 

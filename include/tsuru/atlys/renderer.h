@@ -21,11 +21,12 @@ private:
     ~Renderer() { }
 
     void init();
+    void activate();
+
+// Don't call anything below here
 
     void makeLayers();
-    void makeDrawMethods();
-
-    void loadMapTextures();
+    void bindDrawMethods();
 
     // Draw methods
     void drawLayerMap(const agl::lyr::RenderInfo& renderInfo);

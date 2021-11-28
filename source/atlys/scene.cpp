@@ -9,7 +9,9 @@ Atlys::Scene::Scene(const sead::TaskConstructArg& arg)
     , renderer()
     , controllers()
     , map(nullptr)
-{ }
+{
+    this->sInstance = this;
+}
 
 Atlys::Scene::~Scene() {
     delete this->map; this->map = nullptr;
@@ -20,8 +22,6 @@ sead::TaskBase* Atlys::Scene::construct(const sead::TaskConstructArg& arg) {
 }
 
 void Atlys::Scene::prepare() {
-    LOG("Preparing");
-
     // Initialize singletons
     ActorMgr::createInstance(nullptr)->createHeaps(nullptr);
 
@@ -33,19 +33,20 @@ void Atlys::Scene::prepare() {
 
     // Load map file
     this->map = new Map("tsuru/map.atlys");
-    
-    this->renderer.loadMapTextures();
 
-    // This has to go last
+    // Init the renderer
+    this->renderer.init();
+
+    // This has to go last!
     this->adjustHeapAll();
+
+    // Cannot allocate anything else to the task heap from this point on...
 }
 
 void Atlys::Scene::enter() {
-    LOG("Enter");
-
-    // Init renderer
-    // It will be automatically managed from now on
-    this->renderer.init();
+    // Activate renderer
+    // It will be managed by the game from now on
+    this->renderer.activate();
 }
 
 void Atlys::Scene::calc() {

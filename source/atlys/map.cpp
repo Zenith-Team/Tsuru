@@ -80,11 +80,11 @@ Atlys::Map::Data::Data(const sead::SafeString& path)
 }
 
 Atlys::Map::Data::~Data() {
-    delete this->header;    this->header  = nullptr;
-    delete[] this->worlds;  this->worlds  = nullptr;
-    delete[] this->nodes;   this->nodes   = nullptr;
-    delete[] this->layers;  this->layers  = nullptr;
-    delete[] this->sprites; this->sprites = nullptr;
+    if (this->header)  delete this->header; this->header = nullptr;
+    if (this->worlds)  delete[] (u8*) this->worlds; this->header = nullptr;
+    if (this->nodes)   delete[] (u8*) this->nodes; this->header = nullptr;
+    if (this->layers)  delete[] (u8*) this->layers; this-> header = nullptr;
+    if (this->sprites) delete[] (u8*) this->sprites; this->header = nullptr;
 }
 
 Atlys::Map::Map(const sead::SafeString& path)
@@ -124,12 +124,11 @@ Atlys::Map::Map(const sead::SafeString& path)
 }
 
 Atlys::Map::~Map() {
-    delete this->info;    this->info    = nullptr;
-    delete[] this->worlds;  this->worlds  = nullptr;
-    delete[] this->nodes;   this->nodes   = nullptr;
-    delete[] this->layers;  this->layers  = nullptr;
-    delete[] this->sprites; this->sprites = nullptr;
-}
+    if (this->info)    delete this->info;      this->info    = nullptr;
+    if (this->worlds)  delete[] this->worlds;  this->worlds  = nullptr;
+    if (this->nodes)   delete[] this->nodes;   this->nodes   = nullptr;
+    if (this->layers)  delete[] this->layers;  this->layers  = nullptr;
+    if (this->sprites) delete[] this->sprites; this->sprites = nullptr;}
 
 Atlys::Map::Node* Atlys::Map::findNodeByID(u32 id) {
     for (u32 i = 0; i < this->info->nodeCount; i++) {
