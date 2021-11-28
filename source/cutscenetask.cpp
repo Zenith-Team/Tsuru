@@ -25,7 +25,7 @@ void CutsceneTask::prepare() {
 void CutsceneTask::enter() {
     LOG("cutscene task enter");
 
-    MAKE_DRAW_METHOD(drawMethodCutscene, "Cutscene", &CutsceneTask::drawLayerCutscene, 0xE);
+    BIND_DRAW_METHOD(drawMethodCutscene, "Cutscene", &CutsceneTask::drawLayerCutscene, 0xE);
 }
 
 void CutsceneTask::calc() {

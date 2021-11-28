@@ -37,7 +37,7 @@ static_assert(sizeof(DrawMethod) == 0x40, "agl::lyr::DrawMethod size mismatch");
 
 } }
 
-#define MAKE_DRAW_METHOD(MEMBER, NAME, METHOD, LAYERNUM)                            \
+#define BIND_DRAW_METHOD(MEMBER, NAME, METHOD, LAYERNUM)                            \
     this-> ## MEMBER ## .INamableName = NAME ## ;                                   \
     this-> ## MEMBER ## ._18 = 1;                                                   \
     this-> ## MEMBER ## ._20 = 0x10177234; /* Stolen vtable from GameOverScene */   \
