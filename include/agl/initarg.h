@@ -20,20 +20,20 @@ struct InitArg { // Size: 0x140
         u8 _C[0x10C - 0xC]; // C   // Unknown values
     };
 
-    u32 _0;                 // 0
-    u32 _4;                 // 4
-    u32 _8;                 // 8
-    u32 _C;                 // C
-    u32 _10;                // 10
-    u32 _14;                // 14
-    u32 _18;                // 18
-    u32 _1C;                // 1C
-    u32 _20;                // 20
-    u32 _24;                // 24
-    u32 _28;                // 28
-    u32 _2C;                // 2C
-    SubStruct1 _30;         // 30
-    u8 _13C;                // 13C
+    sead::Heap* _0;                             // 0
+    u32 privateResourceWorkHeapSize;            // 4
+    sead::Heap* _8;                             // 8
+    u32 privateResourceShaderCompileHeapSize;   // C
+    u32 _10;                                    // 10
+    u32 allocatableSize;                        // 14
+    u32 _18;                                    // 18
+    u32 _1C;                                    // 1C
+    u32 _20;                                    // 20
+    u32 _24;                                    // 24
+    u32 _28;                                    // 28
+    u32 _2C;                                    // 2C
+    SubStruct1 _30;                             // 30
+    u8 _13C;                                    // 13C
 };
 
 static_assert(sizeof(InitArg) == 0x140, "agl::InitArg size mismatch");

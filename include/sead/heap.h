@@ -62,6 +62,17 @@ public:
     BitFlag<u32> flag;
 };
 
+class ExpHeap : public Heap {
+public:
+    ExpHeap(const SafeString& name, Heap* parent, void* start, u32 size, HeapDirection direction, bool enableLock);
+
+    void doCreate();
+    void createMaxSizeFreeMemBlock_();
+
+    static ExpHeap* tryCreate(void* address, u32 size, const SafeString& name, bool enableLock);
+    static ExpHeap* tryCreate(u32 size, const SafeString& name, Heap* parent, HeapDirection direction, bool enableLock);
+};
+
 class FreeList {
 public:
     void* free;
