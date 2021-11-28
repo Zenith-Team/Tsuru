@@ -913,4 +913,8 @@ SECTIONS {
     SE_VOC = 0x1018393C;
     mapPositionToScreen__FR13Vec2__tm__2_fRC13Vec2__tm__2_f = 0x2029368;
     DAT_101c30d0 = 0x101c30d0;
+	PlayerJumpArc = 0x1016A800;
+	MiniPlayerJumpArc = 0x1016A848;
+	PlayerJumpMax = 0x10166E68;
+	PlayerDescentRate = 0x10166E74;
 }

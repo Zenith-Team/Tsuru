@@ -25,6 +25,7 @@ enum ProfileIDType {
     WavePlatform,
     DebugActor,
     LiquidOverlay,
+    PhysicsModifier,
 
     // Atlys profiles
     AtlysCamera,

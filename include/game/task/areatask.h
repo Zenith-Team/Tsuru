@@ -11,8 +11,6 @@ public:
     // @param renderInfo Render info for drawing
     void drawLayer3D(const agl::lyr::RenderInfo& renderInfo);
 
-    // Custom function, sets custom physics values based on the wrap flag
-    void setPhysicsValues();
     // Custom function, renders collisions for debugging
     // @param renderInfo Render info for drawing
     void renderCollisions(const agl::lyr::RenderInfo& renderInfo);
