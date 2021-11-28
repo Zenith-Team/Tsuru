@@ -21,6 +21,7 @@ Files:
   - source/actors/waveplatform.cpp
   - source/actors/debugactor.cpp
   - source/actors/liquidoverlay.cpp
+  - source/actors/physicsmodifier.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:
