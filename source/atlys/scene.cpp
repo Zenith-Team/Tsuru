@@ -9,9 +9,7 @@ Atlys::Scene::Scene(const sead::TaskConstructArg& arg)
     , renderer()
     , controllers()
     , map(nullptr)
-{
-    this->setInstance(this);
-}
+{ }
 
 Atlys::Scene::~Scene() {
     delete this->map; this->map = nullptr;
