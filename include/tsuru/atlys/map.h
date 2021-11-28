@@ -44,13 +44,14 @@ private:
 
                 u32 node;                   // Connected node ID
                 u32 flags;                  // Flags
+                f32 speed;                  // Walking speed
+                bool unlocked;              //! This is for dynamic data, but we put it here so it's inside Connection
             };
 
             u32 id;                         // Node ID
             u32 worldID;                    // Parent world ID
             Connection connections[4];      // Node IDs of the nodes connected to this one
             Vec3f position;                 // Position
-            f32 speed;                      // Speed when walking to this node
             Type type;                      // Node type for union occupancy
             union {
                 struct { // Normal
