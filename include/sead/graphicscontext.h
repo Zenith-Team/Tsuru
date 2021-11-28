@@ -2,28 +2,20 @@
 
 #include "sead/bitflag.h"
 #include "sead/color.h"
+#include "sead/graphics.h"
 
 namespace sead {
 
-struct BlendExpression { // Size: 0x18
-    inline BlendExpression()
-        : colorSrcBlend(4)
-        , colorCombine(0)
-        , colorDstBlend(5)
-        , alphaSrcBlend(4)
-        , alphaDstBlend(5)
-        , alphaCombine(0)
-    { }
-
-    u32 colorSrcBlend;
-    u32 alphaSrcBlend;
-    u32 colorDstBlend;
-    u32 alphaDstBlend;
-    u32 colorCombine;
-    u32 alphaCombine;
-};
-
 class GraphicsContext { // Size: 0x74
+public:
+    struct RenderState {
+        u32 polygonModeFront;
+        u32 polygonModeBack;
+        u8 polyOffsetFrontEnable;
+        u8 polyOffsetBackEnable;
+        u8 polyLineOffsetEnable;
+    };
+
 public:
     GraphicsContext();
 
@@ -31,37 +23,57 @@ public:
 
     void apply();
 
-    bool depthEnable;                       // 0
-    bool depthWriteEnable;                  // 1
-    u32 depthFunc;                          // 4
-    u32 _8;                                 // 8
-    bool blendEnable;                       // C
-    BlendExpression blendExpression;        // D
-    Color4f blendColor;                     // 28
-    bool alphaTestEnable;                   // 38
-    u32 alphaFunc;                          // 3C
-    f32 ref;                                // 40
-    u8 _44;                                 // 44
-    u8 _45;                                 // 45
-    u8 _46;                                 // 46
-    u8 _47;                                 // 47
-    bool stencilEnable;                     // 48
-    u32 stencilFunc;                        // 4C
-    u32 writeMask;                          // 50
-    s32 preMask;                            // 54
-    u32 stencilFail;                        // 58
-    u32 stencilZFail;                       // 5C
-    u32 stencilZPass;                       // 60
-    u32 polygonModeFront;                   // 64
-    u32 polygonModeBack;                    // 68
-    bool polyOffsetFrontEnable;             // 6C
-    bool polyOffsetBackEnable;              // 6D
-    bool polyLineOffsetEnable;              // 6E
+    bool depthTestEnable;
+    bool depthWriteEnable;
+    Graphics::DepthFunc depthFunc;
+    Graphics::CullingMode cullingMode;
+    bool blendEnable;
+    Graphics::BlendFactor blendFactorSrcRGB;
+    Graphics::BlendFactor blendFactorSrcA;
+    Graphics::BlendFactor blendFactorDstRGB;
+    Graphics::BlendFactor blendFactorDstA;
+    Graphics::BlendEquation blendEquationRGB;
+    Graphics::BlendEquation blendEquationA;
+    sead::Color4f blendConstantColor;
+    bool alphaTestEnable;
+    Graphics::AlphaFunc alphaTestFunc;
+    f32 alphaTestRef;
+    bool colorMaskR;
+    bool colorMaskG;
+    bool colorMaskB;
+    bool colorMaskA;
+    bool stencilTestEnable;
+    Graphics::StencilFunc stencilTestFunc;
+    u32 stencilTestRef;
+    u32 stencilTestMask;
+    Graphics::StencilOp stencilOpFail;
+    Graphics::StencilOp stencilOpZFail;
+    Graphics::StencilOp stencilOpZPass;
+    RenderState renderState;
 };
 
 static_assert(sizeof(GraphicsContext) == 0x74, "sead::GraphicsContext size mismatch");
 
 class GraphicsContextMRT { // Size: 0x11C
+public:
+    struct BlendExpression { // Size: 0x18
+        inline BlendExpression()
+            : colorSrcBlend(4)
+            , colorCombine(0)
+            , colorDstBlend(5)
+            , alphaSrcBlend(4)
+            , alphaDstBlend(5)
+            , alphaCombine(0)
+        { }
+
+        u32 colorSrcBlend;
+        u32 alphaSrcBlend;
+        u32 colorDstBlend;
+        u32 alphaDstBlend;
+        u32 colorCombine;
+        u32 alphaCombine;
+    };
+
 public:
     GraphicsContextMRT();
 
