@@ -26,6 +26,8 @@ public:
 private:
     inline Atlys::Actor* spawnSystemActor(ProfileID::ProfileIDType id);
 
+    friend class Renderer;
+
     Renderer renderer;
     InputControllers controllers;
     Map* map;
