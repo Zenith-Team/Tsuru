@@ -10,3 +10,8 @@ Hooks:
     instr: b
     addr: "202b86c" # CourseSelectTask::construct()
     func: construct__Q2_5Atlys5SceneSFRCQ2_4sead16TaskConstructArg
+# Set instance
+  - type: branch
+    instr: b
+    addr: "22656c0"
+    func: setInstance__Q2_5Atlys5SceneSFPQ2_4sead8TaskBase
