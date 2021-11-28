@@ -18,14 +18,14 @@ public:
 
 private:
     Renderer();
-    ~Renderer();
+    ~Renderer() { }
 
     void init();
 
     void makeLayers();
     void makeDrawMethods();
 
-    void loadbg();
+    void loadMapTextures();
 
     // Draw methods
     void drawLayerMap(const agl::lyr::RenderInfo& renderInfo);
@@ -36,12 +36,6 @@ private:
     ObjLayerRenderer layerRenderer;
     agl::lyr::DrawMethodImpl<Renderer> drawMethodMap;
     agl::lyr::DrawMethodImpl<Renderer> drawMethodActors;
-
-    //! Temp
-    agl::TextureSampler bgsampler;
-    agl::TextureData bgtexture;
-    u8* bgtexdata;
-    u32 bgtexsize;
 };
 
 }

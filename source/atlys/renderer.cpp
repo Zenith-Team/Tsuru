@@ -1,5 +1,6 @@
 #include "tsuru/atlys/renderer.h"
 #include "tsuru/atlys/scene.h"
+#include "tsuru/atlys/map.h"
 #include "log.h"
 #include "game/actor/actormgr.h"
 #include "game/graphics/drawmgr.h"
@@ -14,16 +15,7 @@ Atlys::Renderer::Renderer()
     : layerRenderer("Atlys")
     , drawMethodMap()
     , drawMethodActors()
-    , bgsampler()
-    , bgtexture()
-    , bgtexdata(nullptr)
-    , bgtexsize(0)
 { }
-
-Atlys::Renderer::~Renderer() {
-    delete[] this->bgtexdata;
-    this->bgtexdata = nullptr;
-}
 
 void Atlys::Renderer::makeLayers() {
     this->layerRenderer.init(2, 512, 5, 5, nullptr);
@@ -33,31 +25,11 @@ void Atlys::Renderer::makeLayers() {
     agl::lyr::Renderer::instance()->createLayer<RenderObjLayer>(Atlys::Renderer::LayerID_Actor, "Actors", agl::lyr::DisplayType_TopTV, nullptr);
 }
 
-void Atlys::Renderer::loadbg() {
-    //! --- File Data ---
-    sead::FileHandle handle;
-    if (!sead::FileDeviceMgr::instance()->tryOpen(&handle, "tsuru/tex.gtx", sead::FileDevice::FileOpenFlag_ReadOnly, 0)) {
-        LOG("File does not exist?");
+void Atlys::Renderer::loadMapTextures() {
+    for (u32 i = 0; i < Atlys::Scene::instance()->map->info->layerCount; i++) {
+        sead::SafeString texture = Atlys::Scene::instance()->map->layers[i].gtxName;
+        Atlys::Scene::instance()->map->layers[i].load(texture);
     }
-
-    this->bgtexsize = handle.getFileSize();
-    if (this->bgtexsize == 0) {
-        LOG("Filesize is 0");
-    }
-
-    //! --- Surface ---
-    this->bgtexdata = new(nullptr, 0x2000) u8[this->bgtexsize];
-    u32 bytesread = handle.read(this->bgtexdata, this->bgtexsize);
-    if (bytesread != this->bgtexsize) {
-        LOG("no");
-    }
-
-    //! --- TextureData ---
-    agl::TextureDataInitializerGTX::initialize(&this->bgtexture, this->bgtexdata, 0);
-    this->bgtexture.invalidateGPUCache();
-
-    //! --- TextureSampler ---
-    this->bgsampler.applyTextureData(this->bgtexture);
 }
 
 void Atlys::Renderer::init() {
@@ -70,8 +42,10 @@ void Atlys::Renderer::makeDrawMethods() {
 }
 
 void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
-    if (this->bgsampler.isTexValid)
-        agl::utl::ImageFilter2D::drawTextureMSAA(this->bgsampler, *renderInfo.viewport, Vec2f(1.0f), Vec2f(0.0f), 3);
+    for (u32 i = 0; i < Atlys::Scene::instance()->map->info->layerCount; i++) {
+        if (Atlys::Scene::instance()->map->layers[i].sampler.isTexValid)
+            agl::utl::ImageFilter2D::drawTextureMSAA(Atlys::Scene::instance()->map->layers[i].sampler, *renderInfo.viewport, Vec2f(1.0f), Vec2f(), 3);
+    }
 }
 
 void Atlys::Renderer::drawLayerActors(const agl::lyr::RenderInfo& renderInfo) {
