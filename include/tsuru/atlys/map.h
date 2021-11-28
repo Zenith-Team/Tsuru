@@ -247,7 +247,7 @@ public:
 
         ~Layer() {
             if (this->textureRaw)
-                delete this->textureRaw;
+                delete[] this->textureRaw;
             
             this->textureRaw = nullptr;
         }
@@ -259,15 +259,17 @@ public:
                 return false;
             }
 
-            if (handle.getFileSize() == 0) {
+            u32 filesize = handle.getFileSize();
+
+            if (filesize == 0) {
                 LOG("Layer texture at %s is empty", path.cstr());
                 return false;
             }
 
-            this->textureRaw = new(nullptr, 0x2000) u8[handle.getFileSize()];
+            this->textureRaw = new(nullptr, 0x2000) u8[filesize];
 
-            u32 bytesRead = handle.read(this->textureRaw, handle.getFileSize());
-            if (bytesRead != handle.getFileSize()) {
+            u32 bytesRead = handle.read(this->textureRaw, filesize);
+            if (bytesRead != filesize) {
                 LOG("Failed to read layer texture at %s", path.cstr());
                 return false;
             }

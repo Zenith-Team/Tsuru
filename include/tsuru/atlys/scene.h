@@ -15,7 +15,7 @@ class Scene : public sead::CalculateTask {
 
 public:
     Scene(const sead::TaskConstructArg& arg);
-    virtual ~Scene() { }
+    virtual ~Scene();
 
     static sead::TaskBase* construct(const sead::TaskConstructArg& arg);
 
