@@ -22,7 +22,7 @@ bool Renderer::drawCustomTV(DisplayType displayType) const {
             sead::Viewport viewport(*tvBuffer);
             viewport.apply(*tvBuffer);
 
-            tvBuffer->clear(clearFlags, sead::colorRed, 1.0f, 0);
+            tvBuffer->clear(clearFlags, sead::colorBlack, 1.0f, 0);
         }
 
         this->flags.resetBit(8);
@@ -48,7 +48,7 @@ bool Renderer::drawCustomDRC(DisplayType displayType) const {
             sead::Viewport viewport(*drcBuffer);
             viewport.apply(*drcBuffer);
 
-            drcBuffer->clear(clearFlags, sead::colorRed, 1.0f, 0);
+            drcBuffer->clear(clearFlags, sead::colorBlack, 1.0f, 0);
         }
 
         this->flags.resetBit(8);
