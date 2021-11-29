@@ -120,6 +120,14 @@ Atlys::Map::Map(const sead::SafeString& path)
     for (u32 i = 0; i < data.header->layerCount; i++)  OSBlockMove(&this->layers[i],  &data.layers[i],  sizeof(Data::Layer), 0);     // Layers
     for (u32 i = 0; i < data.header->spriteCount; i++) OSBlockMove(&this->sprites[i], &data.sprites[i], sizeof(Data::Sprite), 0);    // Sprites
 
+    // Additional setup
+    for (u32 i = 0; i < data.header->nodeCount; i++) {
+        for (u32 j = 0; j < 4; j++) {
+            if (this->nodes[i].connections[j].flags & Node::Connection::Flag_AlwaysUnlocked)
+                this->nodes[i].connections[j].unlocked = true;
+        }
+    }
+
     LOG("Map \"%s\" loaded and ready to go!", path.cstr());
 }
 
