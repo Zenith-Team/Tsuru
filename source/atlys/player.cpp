@@ -46,7 +46,7 @@ u32 Atlys::Player::onDraw() {
 }
 
 void Atlys::Player::findTargetNode(Direction::DirectionType direction) {
-    if (this->currentNode->connections[direction].node != 0xFFFFFFFF) {
+    if (this->currentNode->connections[direction].unlocked && this->currentNode->connections[direction].node != 0xFFFFFFFF) {
         this->targetNode = Atlys::Scene::instance()->map->findNodeByID(this->currentNode->connections[direction].node);
         this->walkingSpeed = this->currentNode->connections[direction].speed;
         this->states.changeState(&Atlys::Player::StateID_Walking);
