@@ -4,6 +4,7 @@ Files:
   - source/atlys/scene.cpp
   - source/atlys/renderer.cpp
   - source/atlys/map.cpp
+  - source/atlys/player.cpp
 Hooks:
 # Entry point
   - type: branch

@@ -6,6 +6,7 @@
 #include "game/profile/profileid.h"
 #include "tsuru/atlys/actor.h"
 #include "tsuru/atlys/map.h"
+#include "tsuru/atlys/player.h"
 
 namespace Atlys {
 
@@ -24,13 +25,16 @@ public:
     void calc() override;
 
 private:
-    inline Atlys::Actor* spawnSystemActor(ProfileID::ProfileIDType id);
+    static inline Atlys::Actor* spawnSystemActor(ProfileID::ProfileIDType id);
 
     friend class Renderer;
 
     Renderer renderer;
     InputControllers controllers;
+
+public:
     Map* map;
+    Player* player;
 };
 
 }

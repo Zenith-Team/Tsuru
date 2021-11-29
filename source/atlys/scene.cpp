@@ -1,5 +1,6 @@
 #include "tsuru/atlys/scene.h"
 #include "game/actor/actormgr.h"
+#include "game/profile/profile.h"
 #include "log.h"
 
 SEAD_SINGLETON_TASK_IMPL(Atlys::Scene)
@@ -35,10 +36,16 @@ void Atlys::Scene::prepare() {
     // Init the renderer
     this->renderer.init();
 
-    // This has to go last!
-    this->adjustHeapAll();
+    // Load the resources for profiles
+    Profile::loadProfileResources(Profile::LoadResourcesAt_CourseSelect, nullptr);
 
-    // Cannot allocate anything else to the task heap from this point on...
+    this->player = (Atlys::Player*) Scene::spawnSystemActor(ProfileID::AtlysPlayer);
+    player->tex.load("tsuru/player.gtx");
+
+    //! This has to go last!
+    //this->adjustHeapAll();
+
+    //* Cannot allocate anything else to the task heap from this point on...
 }
 
 void Atlys::Scene::enter() {
