@@ -29,6 +29,7 @@ public:
 
     // D-Pad
 
+    // TODO: Use sead::BitFlag functions instead of our own
     inline bool buttonUp(ControllerID controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x5); }
     inline bool buttonDown(ControllerID controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x6); }
     inline bool buttonLeft(ControllerID controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x7); }
