@@ -6,6 +6,8 @@
 #include "game/graphics/model/model.h"
 #include "tsuru/gtx.h"
 #include "game/states.h"
+#include "tsuru/atlys/map.h"
+#include "game/direction.h"
 
 namespace Atlys {
 
@@ -22,8 +24,19 @@ public:
     u32 onExecute() override;
     u32 onDraw() override;
 
+private:
+    void findTargetNode(Direction::DirectionType direction);
+
+public:
+    DECLARE_STATE(Player, Idle);
+    DECLARE_STATE(Player, Walking);
+
     MultiStateWrapper<Atlys::Player> states;
     ModelWrapper* model;
+    Map::Node* currentNode;
+    Map::Node* targetNode;
+    f32 walkingSpeed;
+
     GTX tex; //! Temp
 };
 

@@ -30,11 +30,11 @@ private:
     friend class Renderer;
 
     Renderer renderer;
-    InputControllers controllers;
 
 public:
     Map* map;
     Player* player;
+    InputControllers controllers;
 };
 
 }
