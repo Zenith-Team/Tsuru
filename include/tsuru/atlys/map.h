@@ -1,8 +1,6 @@
 #pragma once
 
-#include "sead/filedevicemgr.h"
-#include "agl/texturesampler.h"
-#include "agl/texturedatainitializer.h"
+#include "tsuru/gtx.h"
 #include "sead/color.h"
 #include "log.h"
 
@@ -242,52 +240,12 @@ public:
     class Layer : public Data::Layer {
     public:
         Layer()
-            : textureRaw(nullptr)
+            : gtx()
         { }
+        
+        ~Layer() { }
 
-        ~Layer() {
-            if (this->textureRaw)
-                delete[] this->textureRaw;
-            
-            this->textureRaw = nullptr;
-        }
-
-        bool load(const sead::SafeString& path) {
-            sead::FileHandle handle;
-            if (!sead::FileDeviceMgr::instance()->tryOpen(&handle, path, sead::FileDevice::FileOpenFlag_ReadOnly, 0)) {
-                LOG("Layer texture at %s does not exist", path.cstr());
-                return false;
-            }
-
-            u32 filesize = handle.getFileSize();
-
-            if (filesize == 0) {
-                LOG("Layer texture at %s is empty", path.cstr());
-                return false;
-            }
-
-            this->textureRaw = new(nullptr, 0x2000) u8[filesize];
-
-            u32 bytesRead = handle.read(this->textureRaw, filesize);
-            if (bytesRead != filesize) {
-                LOG("Failed to read layer texture at %s", path.cstr());
-                return false;
-            }
-
-            agl::TextureDataInitializerGTX::initialize(&this->texture, this->textureRaw, 0);
-            this->texture.invalidateGPUCache();
-
-            this->sampler.applyTextureData(this->texture);
-
-            return true;
-        }
-
-    private:
-        agl::TextureData texture;
-        u8* textureRaw;
-
-    public:
-        agl::TextureSampler sampler;
+        GTX gtx;
     };
 
 public:

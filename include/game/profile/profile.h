@@ -18,6 +18,12 @@ public:
         Flag_DontRenderOffScreen = 1 << 1
     };
 
+    enum LoadResourcesAt {
+        LoadResourcesAt_Boot,
+        LoadResourcesAt_Course,
+        LoadResourcesAt_CourseSelect
+    };
+
 public:
     Profile(buildFunction, u32 id, const sead::SafeString& name = "", const ActorInfo* actorInfo = nullptr, u32 flags = 0);
 
@@ -30,6 +36,7 @@ public:
     static u8 getResourceCount(u32 id);
     static const sead::SafeString* getResourceList(u32 id);
     static u32 getNumProfiles();
+    static void loadProfileResources(LoadResourcesAt, sead::Heap* heap);
 
     static u32 spriteToProfileList[];
 
