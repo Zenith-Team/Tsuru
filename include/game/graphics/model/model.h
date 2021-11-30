@@ -1,6 +1,6 @@
 #pragma once
 
-#include <game/container/resarchive.h>
+#include <game/resource/resarchive.h>
 #include <game/graphics/layer/renderobjlayer.h>
 #include <game/graphics/model/animation.h>
 

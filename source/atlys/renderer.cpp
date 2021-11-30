@@ -60,5 +60,13 @@ void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
 }
 
 void Atlys::Renderer::drawLayerActors(const agl::lyr::RenderInfo& renderInfo) {
+    agl::lyr::Layer* layer = agl::lyr::Renderer::instance()->layers.buffer[0];
+    if (Atlys::Renderer::LayerID_Actor < agl::lyr::Renderer::instance()->layers.size)
+        layer = agl::lyr::Renderer::instance()->layers.buffer[Atlys::Renderer::LayerID_Actor];
+
+    DrawMgr::instance()->setTargetLayer(layer, 1);
+
     ActorMgr::instance()->drawActors();
+
+    DrawMgr::instance()->resetTargetLayer();
 }

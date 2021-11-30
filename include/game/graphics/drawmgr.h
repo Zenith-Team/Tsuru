@@ -1,6 +1,7 @@
 #pragma once
 
 #include <game/graphics/model/model.h>
+#include "agl/lyr/layer.h"
 
 class DrawMgr {
     SEAD_SINGLETON_DISPOSER(DrawMgr)
@@ -18,4 +19,7 @@ public:
     // @param rotation Rotation to be applied to the tile
     // @param scale Scale to be applied to the tile
     void drawTile(u16, const Vec3f& position, const u32& rotation, const Vec3f& scale);
+
+    void setTargetLayer(agl::lyr::Layer* layer, u32);
+    void resetTargetLayer();
 };

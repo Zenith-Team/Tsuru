@@ -2,6 +2,8 @@
 #include "game/actor/actormgr.h"
 #include "game/profile/profile.h"
 #include "log.h"
+#include "game/resource/resarchive.h"
+#include "game/resource/resmgr.h"
 
 SEAD_SINGLETON_TASK_IMPL(Atlys::Scene)
 
@@ -41,6 +43,10 @@ void Atlys::Scene::prepare() {
 
     this->player = (Atlys::Player*) Scene::spawnSystemActor(ProfileID::AtlysPlayer);
     player->tex.load("tsuru/player.gtx");
+
+    ResMgr::instance()->loadRes("kanibo", "actor/kanibo.szs", nullptr, true);
+    ResArchiveMgr::instance()->loadResArchive("kanibo", "kanibo", nullptr);
+    player->model = ModelWrapper::create("kanibo", "kanibo");
 
     //! This has to go last!
     //this->adjustHeapAll();
