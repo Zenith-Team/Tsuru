@@ -2,7 +2,7 @@
 
 #include <sead.h>
 #include <types.h>
-#include <game/container/resarchive.h>
+#include <game/resource/resarchive.h>
 
 class Animation {
 public:

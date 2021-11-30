@@ -18,6 +18,7 @@ class ResArchiveMgr {
 
 public:
     ResArchive* get(const sead::SafeString& identifier);
+    bool loadResArchive(const sead::SafeString& archiveName, const sead::SafeString& resName, sead::Heap* heap);
 };
 
 bool loadActorResArchive(const sead::SafeString& name, sead::Heap* heap);

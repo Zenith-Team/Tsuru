@@ -41,6 +41,7 @@ u32 Atlys::Player::onExecute() {
 }
 
 u32 Atlys::Player::onDraw() {
+    DrawMgr::instance()->drawModel(this->model);
 
     return 1;
 }
@@ -57,10 +58,8 @@ void Atlys::Player::findTargetNode(Direction::DirectionType direction) {
     else if (this->currentNode->type == Map::Node::Type_Level && this->currentNode->Level_connections[direction].node != ATLYS_NODE_INVALID)
         target = Atlys::Scene::instance()->map->findNodeByID(this->currentNode->Level_connections[direction].node);
 
-    if (!target) {
-        LOG("Target is nullptr");
+    if (!target)
         return;
-    }
 
     if (this->currentNode->type == Map::Node::Type_Normal && this->currentNode->Normal_connections[direction].node != ATLYS_NODE_INVALID)
         this->walkingSpeed = this->currentNode->Normal_connections[direction].speed;

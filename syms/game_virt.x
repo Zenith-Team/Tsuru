@@ -390,6 +390,8 @@ SECTIONS {
     drawModel__7DrawMgrFP5Model = 0x24FAB58;
     drawModel__7DrawMgrFP12ModelWrapper = 0x24FAC98;
     drawTile__7DrawMgrFUsRC4Vec3RCUiT2 = 0x24FAD28;
+    setTargetLayer__7DrawMgrFPQ3_3agl3lyr5LayerUi = 0x24faa50;
+    resetTargetLayer__7DrawMgrFv = 0x24fab4c;
 
 /* DRCModeTask */
     sInstance__11DRCModeTask = 0x101D1904;
@@ -791,8 +793,11 @@ SECTIONS {
 /* ResArchiveMgr */
     sInstance__13ResArchiveMgr = 0x101D2D50;
     get__13ResArchiveMgrFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24F60EC;
+    loadResArchive__13ResArchiveMgrFRCQ2_4sead23SafeStringBase__tm__2_cT1PQ2_4sead4Heap = 0x24f6140;
 
 /* ResMgr */
+    sInstance__6ResMgr = 0x101e7d94;
+    loadRes__6ResMgrFRCQ2_4sead23SafeStringBase__tm__2_cT1PQ2_4sead4Heapb = 0x29d34a8;
     ResMgr_LoadLevelResource = 0x29D2A20;
     ResMgr_LoadLevelArchiveFail = 0x29D333C;
     ResMgr_LoadLevelArchiveSuccess = 0x29D3354;
