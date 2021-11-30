@@ -80,11 +80,11 @@ Atlys::Map::Data::Data(const sead::SafeString& path)
 }
 
 Atlys::Map::Data::~Data() {
-    if (this->header)  delete this->header; this->header = nullptr;
-    if (this->worlds)  delete[] (u8*) this->worlds; this->header = nullptr;
-    if (this->nodes)   delete[] (u8*) this->nodes; this->header = nullptr;
-    if (this->layers)  delete[] (u8*) this->layers; this-> header = nullptr;
-    if (this->sprites) delete[] (u8*) this->sprites; this->header = nullptr;
+    if (this->header)  delete         this->header;  this->header = nullptr;
+    if (this->worlds)  delete[] (u8*) this->worlds;  this->worlds = nullptr;
+    if (this->nodes)   delete[] (u8*) this->nodes;   this->nodes = nullptr;
+    if (this->layers)  delete[] (u8*) this->layers;  this->layers = nullptr;
+    if (this->sprites) delete[] (u8*) this->sprites; this->sprites = nullptr;
 }
 
 Atlys::Map::Map(const sead::SafeString& path)
@@ -123,8 +123,13 @@ Atlys::Map::Map(const sead::SafeString& path)
     // Additional setup
     for (u32 i = 0; i < data.header->nodeCount; i++) {
         for (u32 j = 0; j < 4; j++) {
-            if (this->nodes[i].connections[j].flags & Node::Connection::Flag_AlwaysUnlocked)
-                this->nodes[i].connections[j].unlocked = true;
+            if (this->nodes[i].type == Node::Type_Normal) {
+                if (this->nodes[i].Normal_connections[j].flags & Node::Connection::Flag_AlwaysUnlocked)
+                    this->nodes[i].unlocked = true;
+            } else if (this->nodes[i].type == Node::Type_Level) {
+                if (this->nodes[i].Level_connections[j].flags & Node::Connection::Flag_AlwaysUnlocked)
+                    this->nodes[i].unlocked = true;
+            }
         }
     }
 

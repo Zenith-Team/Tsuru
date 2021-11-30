@@ -70,6 +70,7 @@ SECTIONS {
 
 /* agl::TextureSampler */
     __ct__Q2_3agl14TextureSamplerFv = 0x2a2587c;
+    __ct__Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2a25a64;
     __dt__Q2_3agl14TextureSamplerFv = 0x2a25c60;
     applyTextureData___Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2a25990;
 

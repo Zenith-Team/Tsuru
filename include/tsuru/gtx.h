@@ -6,6 +6,7 @@
 #include "agl/texturedatainitializer.h"
 
 // Wrapper around agl::TextureSampler for .GTX files
+// TODO: Split this to GTX and GTXSampler
 class GTX {
 public:
     GTX()

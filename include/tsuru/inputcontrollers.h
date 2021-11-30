@@ -34,6 +34,7 @@ public:
     inline bool buttonDown(ControllerID controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x6); }
     inline bool buttonLeft(ControllerID controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x7); }
     inline bool buttonRight(ControllerID controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x8); }
+    inline bool buttonA(ControllerID controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x1) && nthBit32Right(this->controllers[controller].padHold.bits, 0xE); }
 
     // Gamepad specific
 
