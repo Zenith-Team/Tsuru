@@ -78,17 +78,14 @@ void Atlys::Player::beginState_Idle() { }
 void Atlys::Player::executeState_Idle() {
     const InputControllers& controllers = Atlys::Scene::instance()->controllers;
 
-    // TODO: Get the active controller from game (gamepad or wiimote1)
-    InputControllers::ControllerID activeController = InputControllers::ControllerID_Gamepad;
-
-    if (controllers.buttonA(activeController) && this->currentNode->type == Map::Node::Type_Level)
+    if (controllers.buttonA(Atlys::Scene::instance()->activeController) && this->currentNode->type == Map::Node::Type_Level)
         TaskMgr::instance()->startLevel(Atlys::Scene::instance(), this->currentNode->world, this->currentNode->level);
 
     // Find the target node
-    if (controllers.buttonRight(activeController))      this->findTargetNode(Direction::Right);
-    else if (controllers.buttonLeft(activeController))  this->findTargetNode(Direction::Left);
-    else if (controllers.buttonUp(activeController))    this->findTargetNode(Direction::Up);
-    else if (controllers.buttonDown(activeController))  this->findTargetNode(Direction::Down);
+    if (controllers.buttonRight(Atlys::Scene::instance()->activeController))      this->findTargetNode(Direction::Right);
+    else if (controllers.buttonLeft(Atlys::Scene::instance()->activeController))  this->findTargetNode(Direction::Left);
+    else if (controllers.buttonUp(Atlys::Scene::instance()->activeController))    this->findTargetNode(Direction::Up);
+    else if (controllers.buttonDown(Atlys::Scene::instance()->activeController))  this->findTargetNode(Direction::Down);
 }
 
 void Atlys::Player::endState_Idle() { }

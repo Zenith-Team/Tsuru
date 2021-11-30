@@ -7,6 +7,7 @@
 #include "tsuru/atlys/actor.h"
 #include "tsuru/atlys/map.h"
 #include "tsuru/atlys/player.h"
+#include "game/states.h"
 
 namespace Atlys {
 
@@ -29,12 +30,18 @@ private:
 
     friend class Renderer;
 
+    DECLARE_STATE(Scene, Active);
+    DECLARE_STATE(Scene, Paused);
+
+    MultiStateWrapper<Scene> states;
     Renderer renderer;
 
 public:
+    InputControllers controllers;
+    InputControllers::ControllerID activeController;
+
     Map* map;
     Player* player;
-    InputControllers controllers;
 };
 
 }
