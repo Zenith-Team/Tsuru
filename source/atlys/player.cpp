@@ -119,7 +119,7 @@ void Atlys::Player::executeState_Walking() {
     f32 distance = sqrtf(powf(this->targetNode->position.x - this->position.x, 2) + powf(this->targetNode->position.y - this->position.y, 2));
     f32 fullDistance = sqrtf(powf(this->targetNode->position.x - this->currentNode->position.x, 2) + powf(this->targetNode->position.y - this->currentNode->position.y, 2));
 
-    if (distance > 1.0f) {
+    if (distance > 1.0f) { // Not at the target node yet, move towards it
         // TODO: Use normalized vector instead
         this->position.x += (this->targetNode->position.x - this->position.x) / distance * this->walkingSpeed;
         this->position.y += (this->targetNode->position.y - this->position.y) / distance * this->walkingSpeed;
@@ -145,18 +145,34 @@ void Atlys::Player::executeState_Walking() {
         }
     } else { // Reached target
         this->position = this->targetNode->position;
-        
-        if (this->targetNode->type == Map::Node::Type_Passthrough) {
-            // If we reached the target and the type is passthrough, instead of stopping change target to the next node
-            if (this->targetNode->Passthrough_connections[0].node == this->currentNode->id)
-                this->targetNode = Atlys::Scene::instance()->map->findNodeByID(this->targetNode->Passthrough_connections[1].node);
-            else
-                this->targetNode = Atlys::Scene::instance()->map->findNodeByID(this->targetNode->Passthrough_connections[0].node);
 
-            this->updateTargetRotation();
-        } else {
-            LOG("Reached target node");
-            this->states.changeState(&Atlys::Player::StateID_Idle);
+        switch (this->targetNode->type) {
+            case Map::Node::Type_Passthrough: {
+                // If we reached the target and the type is passthrough, instead of stopping change target to the next node
+                if (this->targetNode->Passthrough_connections[0].node == this->currentNode->id)
+                    this->targetNode = Atlys::Scene::instance()->map->findNodeByID(this->targetNode->Passthrough_connections[1].node);
+                else
+                    this->targetNode = Atlys::Scene::instance()->map->findNodeByID(this->targetNode->Passthrough_connections[0].node);
+
+                this->updateTargetRotation();
+                break;
+            }
+
+            case Map::Node::Type_Transition: {
+                // If we reached the target and the type is transition, teleport to the target node
+
+                // TODO: Wait for transition to finish
+
+                this->targetNode = Atlys::Scene::instance()->map->findNodeByID(this->targetNode->targetNodeID);
+                this->states.changeState(&Atlys::Player::StateID_Idle);
+                break;
+            }
+
+            default: {
+                LOG("Reached target node");
+                this->states.changeState(&Atlys::Player::StateID_Idle);
+                break;
+            }
         }
     }
 }
