@@ -132,7 +132,14 @@ void Atlys::Player::executeState_Walking() {
              || (this->direction == Direction::Left  && controllers.buttonRight(Atlys::Scene::instance()->activeController))
              || (this->direction == Direction::Up    && controllers.buttonDown(Atlys::Scene::instance()->activeController))
              || (this->direction == Direction::Down  && controllers.buttonUp(Atlys::Scene::instance()->activeController))) {
+                // Swap target and current nodes
+                const Map::Node* temp = this->targetNode;
                 this->targetNode = this->currentNode;
+                this->currentNode = temp;
+
+                // Swap direction
+                this->direction = Direction::opposite(this->direction);
+
                 this->updateTargetRotation();
             }
         }
