@@ -637,6 +637,7 @@ SECTIONS {
     getRuntimeTypeInfo__8ObjLayerCFv = __deleted_virtual_called;
     vf3C__8ObjLayerFv = 0x24fd0e8;
     vf5C__8ObjLayerFv = 0x24fd0f4;
+    setParentRenderer__8ObjLayerFP16ObjLayerRenderer = 0x24fca24;
 
 /* ObjLayerRenderer */
     __dt__16ObjLayerRendererFv = 0x24fb0ac;

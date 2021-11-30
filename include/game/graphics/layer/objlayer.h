@@ -2,6 +2,7 @@
 
 #include <utils/mtx.h>
 #include <game/graphics/layer/layeragl.h>
+#include "game/graphics/layer/objlayerrenderer.h"
 
 class ObjLayerRenderer;
 
@@ -35,6 +36,8 @@ public:
 
     // Calls GX2SetPolygonOffset()
     virtual void vf64(u32);
+
+    void setParentRenderer(ObjLayerRenderer* renderer);
 
     u32 _420;
     s32 _424;
