@@ -128,14 +128,13 @@ void Atlys::Player::executeState_Walking() {
         if (distance < (fullDistance / 2)) {
             const InputControllers& controllers = Atlys::Scene::instance()->controllers;
 
-            if (this->direction == Direction::Right && controllers.buttonLeft(Atlys::Scene::instance()->activeController))
+            if ((this->direction == Direction::Right && controllers.buttonLeft(Atlys::Scene::instance()->activeController))
+             || (this->direction == Direction::Left  && controllers.buttonRight(Atlys::Scene::instance()->activeController))
+             || (this->direction == Direction::Up    && controllers.buttonDown(Atlys::Scene::instance()->activeController))
+             || (this->direction == Direction::Down  && controllers.buttonUp(Atlys::Scene::instance()->activeController))) {
                 this->targetNode = this->currentNode;
-            else if (this->direction == Direction::Left && controllers.buttonRight(Atlys::Scene::instance()->activeController))
-                this->targetNode = this->currentNode;
-            else if (this->direction == Direction::Up && controllers.buttonDown(Atlys::Scene::instance()->activeController))
-                this->targetNode = this->currentNode;
-            else if (this->direction == Direction::Down && controllers.buttonUp(Atlys::Scene::instance()->activeController))
-                this->targetNode = this->currentNode;
+                this->updateTargetRotation();
+            }
         }
     } else { // Reached target
         this->position = this->targetNode->position;
