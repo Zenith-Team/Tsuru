@@ -4,6 +4,8 @@
 #include "sead/color.h"
 #include "log.h"
 
+#define ATLYS_NODE_INVALID 0xFFFFFFFF
+
 namespace Atlys {
 
 class Map { // Represents a map file with dynamic data, can contain multiple worlds
@@ -28,6 +30,7 @@ private:
         struct Node {
             enum Type {
                 Type_Normal,                // Player just walks to it
+                Type_Passthrough,           // Player walks through it
                 Type_Level,                 // Level node
                 Type_Transition,            // Teleport to a new node with a transition
             };
@@ -43,25 +46,28 @@ private:
                 u32 node;                   // Connected node ID
                 u32 flags;                  // Flags
                 f32 speed;                  // Walking speed
-                bool unlocked;              //! This is for dynamic data, but we put it here so it's inside Connection
             };
 
             u32 id;                         // Node ID
             u32 worldID;                    // Parent world ID
-            Connection connections[4];      // Node IDs of the nodes connected to this one
-            Vec3f position;                 // Position
+            Vec2f position;                 // Position
             Type type;                      // Node type for union occupancy
             union {
                 struct { // Normal
-                    bool stop;
+                    Connection Normal_connections[4];
+                };
+
+                struct { // Passthrough
+                    Connection Passthrough_connections[2];
                 };
 
                 struct { // Level
+                    Connection Level_connections[4];
                     u8 world;
                     u8 level;
                     bool unlocksWorld;
-                    u32 unlocksWorldID;
                     bool hasSecretExit;
+                    u32 unlocksWorldID;
                 };
 
                 struct { // Transition
@@ -72,14 +78,14 @@ private:
         };
 
         struct Layer {
-            char gtxName[16];
+            char gtxName[32];
         };
 
         struct Sprite {
             u32 id;
             u32 settings1;
             u32 settings2;
-            Vec3f position;
+            Vec2f position;
         };
 
     public:
@@ -152,6 +158,8 @@ public:
             return this->allCompleted;
         }
         
+        bool unlocked;
+
         // Level node only
         u32 exits;
         u8 starCoins;

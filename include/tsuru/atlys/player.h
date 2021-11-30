@@ -26,6 +26,7 @@ public:
 
 private:
     void findTargetNode(Direction::DirectionType direction);
+    void updateTargetRotation();
 
 public:
     DECLARE_STATE(Player, Idle);
@@ -33,9 +34,10 @@ public:
 
     MultiStateWrapper<Atlys::Player> states;
     ModelWrapper* model;
-    Map::Node* currentNode;
-    Map::Node* targetNode;
+    const Map::Node* currentNode;
+    const Map::Node* targetNode;
     f32 walkingSpeed;
+    f32 targetRotation;
 
     GTX tex; //! Temp
 };
