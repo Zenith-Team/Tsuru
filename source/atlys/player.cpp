@@ -16,8 +16,15 @@ Atlys::Player::Player(const ActorBuildInfo* buildInfo)
     , model(nullptr)
     , currentNode(nullptr)
     , targetNode(nullptr)
+    , walkingSpeed(0.0f)
+    , targetRotation(0.0f)
+    , direction(Direction::Right)
     , tex()
 { }
+
+Atlys::Player::~Player() {
+    if (this->model) delete this->model; this->model = nullptr;
+}
 
 Actor* Atlys::Player::build(const ActorBuildInfo* buildInfo) {
     return new Atlys::Player(buildInfo);
@@ -34,8 +41,8 @@ u32 Atlys::Player::onCreate() {
 u32 Atlys::Player::onExecute() {
     this->states.execute();
 
-    if (this->rotation != this->targetRotation)
-        moveFloatTo(this->rotation, this->targetRotation, 0.1f);
+    if (this->rotation.y != this->targetRotation)
+        moveFloatTo(this->rotation.y, this->targetRotation, 0.1f);
 
     return 1;
 }
@@ -66,7 +73,8 @@ void Atlys::Player::findTargetNode(Direction::DirectionType direction) {
     else if (this->currentNode->type == Map::Node::Type_Level && this->currentNode->Level_connections[direction].node != ATLYS_NODE_INVALID)
         this->walkingSpeed = this->currentNode->Level_connections[direction].speed;
 
-    this->targetNode = target;    
+    this->direction = direction;
+    this->targetNode = target; 
     this->states.changeState(&Atlys::Player::StateID_Walking);
     this->updateTargetRotation();
 }
@@ -109,11 +117,26 @@ void Atlys::Player::executeState_Walking() {
     
     // Pythagorean theorem
     f32 distance = sqrtf(powf(this->targetNode->position.x - this->position.x, 2) + powf(this->targetNode->position.y - this->position.y, 2));
+    f32 fullDistance = sqrtf(powf(this->targetNode->position.x - this->currentNode->position.x, 2) + powf(this->targetNode->position.y - this->currentNode->position.y, 2));
 
     if (distance > 1.0f) {
         // TODO: Use normalized vector instead
         this->position.x += (this->targetNode->position.x - this->position.x) / distance * this->walkingSpeed;
         this->position.y += (this->targetNode->position.y - this->position.y) / distance * this->walkingSpeed;
+
+        // We are halfway to target, do we want to go back?
+        if (distance < (fullDistance / 2)) {
+            const InputControllers& controllers = Atlys::Scene::instance()->controllers;
+
+            if (this->direction == Direction::Right && controllers.buttonLeft(Atlys::Scene::instance()->activeController))
+                this->targetNode = this->currentNode;
+            else if (this->direction == Direction::Left && controllers.buttonRight(Atlys::Scene::instance()->activeController))
+                this->targetNode = this->currentNode;
+            else if (this->direction == Direction::Up && controllers.buttonDown(Atlys::Scene::instance()->activeController))
+                this->targetNode = this->currentNode;
+            else if (this->direction == Direction::Down && controllers.buttonUp(Atlys::Scene::instance()->activeController))
+                this->targetNode = this->currentNode;
+        }
     } else { // Reached target
         this->position = this->targetNode->position;
         
