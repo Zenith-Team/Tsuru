@@ -125,10 +125,10 @@ Atlys::Map::Map(const sead::SafeString& path)
         for (u32 j = 0; j < 4; j++) {
             if (this->nodes[i].type == Node::Type_Normal) {
                 if (this->nodes[i].Normal_connections[j].flags & Node::Connection::Flag_AlwaysUnlocked)
-                    this->nodes[i].unlocked = true;
+                    this->findNodeByID(this->nodes[i].Normal_connections[j].node)->unlocked = true;
             } else if (this->nodes[i].type == Node::Type_Level) {
                 if (this->nodes[i].Level_connections[j].flags & Node::Connection::Flag_AlwaysUnlocked)
-                    this->nodes[i].unlocked = true;
+                    this->findNodeByID(this->nodes[i].Level_connections[j].node)->unlocked = true;
             }
         }
     }
@@ -141,7 +141,8 @@ Atlys::Map::~Map() {
     if (this->worlds)  delete[] this->worlds;  this->worlds  = nullptr;
     if (this->nodes)   delete[] this->nodes;   this->nodes   = nullptr;
     if (this->layers)  delete[] this->layers;  this->layers  = nullptr;
-    if (this->sprites) delete[] this->sprites; this->sprites = nullptr;}
+    if (this->sprites) delete[] this->sprites; this->sprites = nullptr;
+}
 
 Atlys::Map::Node* Atlys::Map::findNodeByID(u32 id) {
     for (u32 i = 0; i < this->info->nodeCount; i++) {
