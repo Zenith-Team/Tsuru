@@ -15,7 +15,7 @@ public:
     { }
 
     Vec3f position;
-    f32 rotation;
+    Vec3f rotation;
 };
 
 }

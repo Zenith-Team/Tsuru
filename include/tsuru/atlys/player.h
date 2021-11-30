@@ -16,7 +16,7 @@ class Player : public Atlys::Actor {
 
 public:
     Player(const ActorBuildInfo* buildInfo);
-    virtual ~Player() { }
+    virtual ~Player();
 
     static ::Actor* build(const ActorBuildInfo* buildInfo);
 
@@ -25,7 +25,11 @@ public:
     u32 onDraw() override;
 
 private:
+    // Sets the target node from the current node's connections based on the direction
+    // @param direction The direction to search
     void findTargetNode(Direction::DirectionType direction);
+
+    // Sets the target rotation based on the target node's position to make the player face towards it
     void updateTargetRotation();
 
 public:
@@ -37,7 +41,8 @@ public:
     const Map::Node* currentNode;
     const Map::Node* targetNode;
     f32 walkingSpeed;
-    f32 targetRotation;
+    f32 targetRotation; // Y axis
+    Direction::DirectionType direction;
 
     GTX tex; //! Temp
 };

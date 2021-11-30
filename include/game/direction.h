@@ -12,4 +12,17 @@ public:
     };
 
     static u32 directionToRotationList[];
+
+    static DirectionType opposite(DirectionType direction) {
+        switch (direction) {
+            case Right:
+                return Left;
+            case Left:
+                return Right;
+            case Up:
+                return Down;
+            case Down: default:
+                return Up;
+        }
+    }
 };
