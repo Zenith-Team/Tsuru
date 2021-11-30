@@ -7,11 +7,17 @@
 
 SEAD_SINGLETON_TASK_IMPL(Atlys::Scene)
 
+CREATE_STATE(Atlys::Scene, Active);
+CREATE_STATE(Atlys::Scene, Paused);
+
 Atlys::Scene::Scene(const sead::TaskConstructArg& arg)
     : CalculateTask(arg, "AtlysScene")
+    , states(this)
     , renderer()
     , controllers()
+    , activeController(InputControllers::ControllerID_Gamepad)
     , map(nullptr)
+    , player(nullptr)
 { }
 
 Atlys::Scene::~Scene() {
@@ -58,10 +64,12 @@ void Atlys::Scene::enter() {
     // Activate renderer
     // It will be managed by the game from now on
     this->renderer.activate();
+
+    this->states.changeState(&Atlys::Scene::StateID_Active);
 }
 
 void Atlys::Scene::calc() {
-    ActorMgr::instance()->executeActors();
+    this->states.execute();
 }
 
 Atlys::Actor* Atlys::Scene::spawnSystemActor(ProfileID::ProfileIDType id) {
@@ -69,3 +77,31 @@ Atlys::Actor* Atlys::Scene::spawnSystemActor(ProfileID::ProfileIDType id) {
     buildInfo.profile = Profile::get(id);
     return (Atlys::Actor*) ActorMgr::instance()->create(buildInfo, 0);
 }
+
+/* STATE: Active */
+
+void Atlys::Scene::beginState_Active() { }
+
+void Atlys::Scene::executeState_Active() {
+    ActorMgr::instance()->executeActors();
+
+    if (this->controllers.buttonPlus(this->activeController)) {
+        LOG("Pausing");
+        this->states.changeState(&Atlys::Scene::StateID_Paused);
+    }
+}
+
+void Atlys::Scene::endState_Active() { }
+
+/* STATE: Paused */
+
+void Atlys::Scene::beginState_Paused() { }
+
+void Atlys::Scene::executeState_Paused() {
+    if (this->controllers.buttonA(this->activeController)) {
+        LOG("Unpausing");
+        this->states.changeState(&Atlys::Scene::StateID_Active);
+    }
+}
+
+void Atlys::Scene::endState_Paused() { }

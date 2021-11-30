@@ -26,21 +26,22 @@ public:
         controllers[3].init(ControllerID_Wiimote4);
         controllers[4].init(ControllerID_Gamepad);
     }
+    
+    // TODO: Use sead::BitFlag functions instead of our own
 
     // D-Pad
-
-    // TODO: Use sead::BitFlag functions instead of our own
     inline bool buttonUp(ControllerID controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x5); }
     inline bool buttonDown(ControllerID controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x6); }
     inline bool buttonLeft(ControllerID controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x7); }
     inline bool buttonRight(ControllerID controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x8); }
     inline bool buttonA(ControllerID controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x1) && nthBit32Right(this->controllers[controller].padHold.bits, 0xE); }
 
+    // Buttons
+    inline bool buttonPlus(ControllerID controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0xC); }
+
     // Gamepad specific
 
     inline bool tap() const { return nthBit32Right(this->controllers[ControllerID_Gamepad].padHold.bits, 0xD); }
-
-    // TODO: There's more we can do here
 
     WrappedController controllers[5];
 };
