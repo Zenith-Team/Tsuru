@@ -23,7 +23,7 @@ void Atlys::Renderer::makeLayers() {
 
     // These are also required for levels because it will crash when it tries to access layers with these IDs, since it assumes CourseSelectTask made them
     agl::lyr::Renderer::instance()->createLayer<RenderObjLayer>(Atlys::Renderer::LayerID_Map, "Map", agl::lyr::DisplayType_TopTV, nullptr);
-    agl::lyr::Renderer::instance()->createLayer<RenderObjLayer>(Atlys::Renderer::LayerID_Actor, "Actors", agl::lyr::DisplayType_TopTV, nullptr);
+    agl::lyr::Renderer::instance()->createLayer<RenderObjLayer>(Atlys::Renderer::LayerID_Actor, "Actors", agl::lyr::DisplayType_TopTV, nullptr)->setParentRenderer(&this->layerRenderer);
 }
 
 void Atlys::Renderer::init() {

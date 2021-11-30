@@ -13,8 +13,8 @@ namespace Atlys {
 class Renderer {
 public:
     enum LayerID {
-        LayerID_Map = 0x7,
-        LayerID_Actor = 0x9
+        LayerID_Map = 0x9,
+        LayerID_Actor = 0x7
     };
 
 private:
