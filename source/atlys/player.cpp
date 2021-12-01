@@ -3,6 +3,8 @@
 #include "math/functions.h"
 #include "game/util.h"
 #include "game/task/taskmgr.h"
+#include "game/level/levelinfo.h"
+#include "game/task/coursetask.h"
 
 CREATE_STATE(Atlys::Player, Idle);
 CREATE_STATE(Atlys::Player, Walking);
@@ -124,8 +126,8 @@ void Atlys::Player::executeState_Walking() {
         this->position.x += (this->targetNode->position.x - this->position.x) / distance * this->walkingSpeed;
         this->position.y += (this->targetNode->position.y - this->position.y) / distance * this->walkingSpeed;
 
-        // We are halfway to target, do we want to go back?
-        if (distance < (fullDistance / 2)) {
+        // We are 66% to target, do we want to go back?
+        if (distance < (fullDistance / 3.0f)) {
             const InputControllers& controllers = Atlys::Scene::instance()->controllers;
 
             if ((this->direction == Direction::Right && controllers.buttonLeft(Atlys::Scene::instance()->activeController))

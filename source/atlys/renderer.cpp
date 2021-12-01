@@ -26,10 +26,13 @@ void Atlys::Renderer::makeLayers() {
     agl::lyr::Renderer::instance()->createLayer<RenderObjLayer>(Atlys::Renderer::LayerID_Actor, "Actors", agl::lyr::DisplayType_TopTV, nullptr)->setParentRenderer(&this->layerRenderer);
 }
 
-void Atlys::Renderer::init() {
+void Atlys::Renderer::init(Atlys::Camera* camera) {
     for (u32 i = 0; i < Atlys::Scene::instance()->map->info->layerCount; i++) {
         Atlys::Scene::instance()->map->layers[i].gtx.load(Atlys::Scene::instance()->map->layers[i].gtxName);
     }
+
+    agl::lyr::Renderer::instance()->layers[Atlys::Renderer::LayerID_Map]->camera = &camera->camera;
+    agl::lyr::Renderer::instance()->layers[Atlys::Renderer::LayerID_Map]->projection = &camera->projection;
 }
 
 void Atlys::Renderer::activate() {

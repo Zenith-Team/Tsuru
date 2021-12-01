@@ -35,7 +35,7 @@ public:
 
     u8 _10[0x4];
     sead::Viewport _14;
-    sead::Viewport _2C;
+    sead::Viewport scissor;
     sead::Camera* camera;
     sead::Projection* projection;
     u32 _4C;

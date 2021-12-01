@@ -3,6 +3,7 @@
 #include <utils/mtx.h>
 #include <sead/runtimetypeinfo.h>
 #include "sead/graphics.h"
+#include "sead/viewport.h"
 
 namespace sead {
 
@@ -38,6 +39,7 @@ class OrthoProjection : public Projection { // Size: 0xAC
 
 public:
     OrthoProjection();
+    OrthoProjection(f32 near, f32 far, const Viewport& viewport);
     virtual ~OrthoProjection();
 
     u32 getProjectionType() const override;
@@ -108,6 +110,12 @@ public:
     f32 getOffsetX();
     f32 getOffsetY();
     void getOffset(Vec2f& out);
+
+    inline Vec2f getOffset() {
+        Vec2f out;
+        this->getOffset(out);
+        return out;
+    }
 
     f32 nearClip;
     f32 farClip;
