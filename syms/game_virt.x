@@ -158,6 +158,7 @@ SECTIONS {
 
 /* sead::OrthoProjection */
     __ct__Q2_4sead15OrthoProjectionFv = 0x2A06518;
+    __ct__Q2_4sead15OrthoProjectionFfT1RCQ2_4sead8Viewport = 0x2a066b4;
     setTBLR__Q2_4sead15OrthoProjectionFfN31 = 0x2A06818;
     __dt__Q2_4sead15OrthoProjectionFv = 0x2A067C4;
 
@@ -274,6 +275,7 @@ SECTIONS {
 
 /* CourseTask */
     sInstance__10CourseTask = 0x101D15F0;
+    construct__10CourseTaskSFRCQ2_4sead16TaskConstructArg = 0x202b4c8;
 
 /* CourseSelectActor */
     __ct__17CourseSelectActorFPC14ActorBuildInfo = 0x21D4CB4;
@@ -575,6 +577,10 @@ SECTIONS {
 /* LevelInfo */
     sInstance__9LevelInfo = 0x101D18EC;
     setDestEntrance__9LevelInfoFSc = 0x24D2984;
+    setDestWorld__9LevelInfoFUc = 0x24d293c;
+    setDestLevel__9LevelInfoFUc = 0x24d2954;
+    setDestArea__9LevelInfoFUc = 0x24d296c;
+    setDestZone__9LevelInfoFUi = 0x24d299c;
 
 /* LevelTimer */
     sInstance__10LevelTimer = 0x101D15F4;

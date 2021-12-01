@@ -18,6 +18,7 @@ Atlys::Scene::Scene(const sead::TaskConstructArg& arg)
     , activeController(InputControllers::ControllerID_Gamepad)
     , map(nullptr)
     , player(nullptr)
+    , camera(nullptr)
 { }
 
 Atlys::Scene::~Scene() {
@@ -41,13 +42,16 @@ void Atlys::Scene::prepare() {
     // Load map file
     this->map = new Map("tsuru/map.atlys");
 
-    // Init the renderer
-    this->renderer.init();
-
     // Load the resources for profiles
     Profile::loadProfileResources(Profile::LoadResourcesAt_CourseSelect, nullptr);
 
+    // Spawn system actors
     this->player = (Atlys::Player*) Scene::spawnSystemActor(ProfileID::AtlysPlayer);
+    this->camera = (Atlys::Camera*) Scene::spawnSystemActor(ProfileID::AtlysCamera);
+
+    // Init the renderer
+    this->renderer.init(this->camera);
+
     player->tex.load("tsuru/player.gtx");
 
     ResMgr::instance()->loadRes("kanibo", "actor/kanibo.szs", nullptr, true);

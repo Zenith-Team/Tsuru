@@ -8,6 +8,7 @@
 #include "tsuru/atlys/map.h"
 #include "tsuru/atlys/player.h"
 #include "game/states.h"
+#include "tsuru/atlys/camera.h"
 
 namespace Atlys {
 
@@ -42,6 +43,7 @@ public:
 
     Map* map;
     Player* player;
+    Camera* camera;
 };
 
 }

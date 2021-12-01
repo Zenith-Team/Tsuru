@@ -7,6 +7,7 @@
 #include "agl/renderbuffer.h"
 #include "sead/graphicscontext.h"
 #include "tsuru/gtx.h"
+#include "tsuru/atlys/camera.h"
 
 namespace Atlys {
 
@@ -21,7 +22,7 @@ private:
     Renderer();
     ~Renderer() { }
 
-    void init();
+    void init(Atlys::Camera* camera);
     void activate();
 
 // Don't call anything below here

@@ -15,7 +15,5 @@ public:
     // Changes the current game task to a new target one
     // @param currentTask A pointer to the instance of the currently running task
     // @param taskClassID A reference to a taskClassID structure representing the new task
-    // @param u32 Unknown. Set to 0 if unsure
-    // @param u32 Unknown. Set to 0 if unsure
-    bool changeTask(sead::TaskBase* currentTask, sead::TaskClassID& taskClassID, u32, u32);
+    bool changeTask(sead::TaskBase* currentTask, sead::TaskClassID& taskClassID, u32 = 0, u32 = 0);
 };
