@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/task.h"
+#include "sead/framework/seadTaskBase.h"
 #include "tsuru/atlys/renderer.h"
 #include "tsuru/inputcontrollers.h"
 #include "game/profile/profileid.h"

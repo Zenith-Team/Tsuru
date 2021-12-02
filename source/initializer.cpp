@@ -1,7 +1,7 @@
-#include <log.h>
-#include <types.h>
-#include <dynlibs/os/functions.h>
-#include <dynlibs/gx2/functions.h>
+#include "log.h"
+#include "types.h"
+#include "dynlibs/os/functions.h"
+#include "dynlibs/gx2/functions.h"
 
 // staticInit array
 extern "C" funcPtr _ctors[];

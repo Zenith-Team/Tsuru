@@ -1,6 +1,6 @@
 #pragma once
 
-#include <game/resource/resarchive.h>
+#include "game/resource/resarchive.h"
 
 class CharacterModel : public sead::IDisposer { // Size: 0xF0
 public:

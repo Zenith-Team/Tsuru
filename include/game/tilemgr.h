@@ -1,6 +1,6 @@
 #pragma once
 
-#include <sead/idisposer.h>
+#include "sead/idisposer.h"
 
 class TileMgr { // Size: 0x9B88
     SEAD_SINGLETON_DISPOSER(TileMgr)

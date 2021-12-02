@@ -1,6 +1,6 @@
 #pragma once
 
-#include <nw/snd.h>
+#include "nw/snd.h"
 
 class AudioFx {
 public:

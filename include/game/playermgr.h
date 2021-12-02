@@ -1,7 +1,7 @@
 #pragma once
 
-#include <sead.h>
-#include <game/actor/stage/player.h>
+#include "sead.h"
+#include "game/actor/stage/player.h"
 
 class PlayerMgr {
     SEAD_SINGLETON_DISPOSER(PlayerMgr)

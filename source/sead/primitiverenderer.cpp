@@ -1,6 +1,6 @@
-#include <sead.h>
-#include <utils/mtx.h>
-#include <dynlibs/gx2/functions.h>
+#include "sead.h"
+#include "utils/mtx.h"
+#include "dynlibs/gx2/functions.h"
 
 namespace sead {
 

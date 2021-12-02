@@ -1,12 +1,12 @@
-#include <game/actor/stage/enemy.h>
-#include <game/graphics/model/model.h>
-#include <game/graphics/drawmgr.h>
-#include <game/graphics/lightsource.h>
-#include <game/graphics/mask/lightmask.h>
-#include <game/actor/actormgr.h>
-#include <game/direction.h>
-#include <sead/random.h>
-#include <math/functions.h>
+#include "game/actor/stage/enemy.h"
+#include "game/graphics/model/model.h"
+#include "game/graphics/drawmgr.h"
+#include "game/graphics/lightsource.h"
+#include "game/graphics/mask/lightmask.h"
+#include "game/actor/actormgr.h"
+#include "game/direction.h"
+#include "sead/random.h"
+#include "math/functions.h"
 
 class AngrySun : public Enemy { // Angry Sun miniboss from Newer Wii, written by Bent, ported by Luminyx, for Mixed SMBU
     SEAD_RTTI_OVERRIDE_IMPL(AngrySun, Enemy)

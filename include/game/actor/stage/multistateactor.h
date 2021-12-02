@@ -1,7 +1,7 @@
 #pragma once
 
-#include <game/states.h>
-#include <game/actor/stage/physicsactor.h>
+#include "game/states.h"
+#include "game/actor/stage/physicsactor.h"
 
 class MultiStateActor : public PhysicsActor { // Size: 0x17C8
     SEAD_RTTI_OVERRIDE(MultiStateActor, PhysicsActor)

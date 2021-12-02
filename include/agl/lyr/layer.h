@@ -1,9 +1,6 @@
 #pragma once
 
-#include <sead.h>
-#include <types.h>
-
-#include "drawmethod.h"
+#include "agl/lyr/drawmethod.h"
 
 namespace agl { namespace lyr {
 

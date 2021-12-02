@@ -1,7 +1,7 @@
 #pragma once
 
-#include <sead.h>
-#include <game/actor/courseselect/csplayerbase.h>
+#include "sead.h"
+#include "game/actor/courseselect/csplayerbase.h"
 
 class CSPlayerMgr { // Size: 0x34
     SEAD_SINGLETON_DISPOSER(CSPlayerMgr)

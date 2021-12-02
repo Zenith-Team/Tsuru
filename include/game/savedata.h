@@ -1,6 +1,6 @@
 #pragma once
 
-#include <log.h>
+#include "log.h"
 #include "ffl.h"
 
 struct SaveData { // Size: 0xB134

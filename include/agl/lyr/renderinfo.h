@@ -1,8 +1,8 @@
 #pragma once
 
-#include <agl/lyr/layer.h>
-#include <sead/projection.h>
-#include <sead/camera.h>
+#include "agl/lyr/layer.h"
+#include "sead/projection.h"
+#include "sead/camera.h"
 
 namespace sead { class Viewport; class FrameBuffer; }
 namespace agl { class DisplayList; }

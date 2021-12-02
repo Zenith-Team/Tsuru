@@ -24,8 +24,8 @@
 #ifndef __OS_FUNCTIONS_H_
 #define __OS_FUNCTIONS_H_
 
-#include <dynlibs/os/types.h>
-#include <dynlibs/os/defs.h>
+#include "dynlibs/os/types.h"
+#include "dynlibs/os/defs.h"
 
 #ifdef __cplusplus
 extern "C" {

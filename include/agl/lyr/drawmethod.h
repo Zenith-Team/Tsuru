@@ -1,7 +1,7 @@
 #pragma once
 
-#include <sead.h>
-#include <types.h>
+#include "sead/prim/seadNamable.h"
+#include "sead/heap/seadDisposer.h"
 
 //! -----------------------------------------------------
 //! THIS IS NOT AN OFFICIAL IMPLEMENTATION OF DRAWMETHOD.

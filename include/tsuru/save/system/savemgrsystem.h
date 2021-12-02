@@ -1,7 +1,7 @@
 #pragma once
 
-#include <sead/heap.h>
-#include <tsuru/minipointerlist.h>
+#include "sead/heap.h"
+#include "tsuru/minipointerlist.h"
 
 #define SAVEMGR_SYSTEM_MAX 0x100 // The maximum amount of Save Managers that the system can hold
 

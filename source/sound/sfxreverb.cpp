@@ -1,4 +1,4 @@
-#include <game/sound/sound.h>
+#include "game/sound/sound.h"
 
 void SetFxReverbHiAndDelay(void*, u32 sfxMode) {
     nw::snd::FxReverbHi::ReverbHiParam &reverbHiParam = SoundSystem::instance()->getAudioFx()->getReverbHiParam();
