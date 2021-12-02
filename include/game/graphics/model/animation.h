@@ -1,8 +1,8 @@
 #pragma once
 
-#include "sead.h"
-#include "types.h"
-#include "game/resource/resarchive.h"
+#include <sead.h>
+#include <types.h>
+#include <game/resource/resarchive.h>
 
 class Animation {
 public:

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead.h"
+#include <sead.h>
 #include "agl/lyr/displaytype.h"
 #include "agl/renderbuffer.h"
 #include "sead/controller.h"

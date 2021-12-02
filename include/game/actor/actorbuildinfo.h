@@ -1,7 +1,7 @@
 #pragma once
 
-#include "types.h"
-#include "game/profile/profile.h"
+#include <types.h>
+#include <game/profile/profile.h>
 
 struct ActorBuildInfo {
     union { u32 settings1;      // 0

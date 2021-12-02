@@ -1,9 +1,9 @@
 #pragma once
 
-#include "agl/displaylist.h"
-#include "agl/shader.h"
-#include "sead/buffer.h"
-#include "sead/safestring.h"
+#include <agl/displaylist.h>
+#include <agl/shader.h>
+#include <sead/buffer.h>
+#include <sead/safestring.h>
 
 namespace agl {
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead/idisposer.h"
-#include "sead/criticalsection.h"
+#include <sead/idisposer.h>
+#include <sead/criticalsection.h>
 
 namespace agl { namespace driver {
 

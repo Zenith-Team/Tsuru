@@ -1,7 +1,7 @@
 #pragma once
 
-#include "agl/utl/iparameterobj.h"
-#include "agl/utl/inamedobj.h"
+#include <agl/utl/iparameterobj.h>
+#include <agl/utl/inamedobj.h>
 
 namespace agl { namespace env {
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead/camera.h"
-#include "sead/controller.h"
+#include <sead/camera.h>
+#include <sead/controller.h>
 
 namespace agl { namespace utl {
 

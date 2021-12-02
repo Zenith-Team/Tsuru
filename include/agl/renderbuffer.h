@@ -1,9 +1,9 @@
 #pragma once
 
-#include "sead/idisposer.h"
-#include "sead/framebuffer.h"
-#include "agl/rendertargetcolor.h"
-#include "agl/rendertargetdepth.h"
+#include <sead/idisposer.h>
+#include <sead/framebuffer.h>
+#include <agl/rendertargetcolor.h>
+#include <agl/rendertargetdepth.h>
 
 namespace agl {
 

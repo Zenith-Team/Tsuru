@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/task.h"
+#include <sead/task.h>
 
 class RootTask : public sead::CalculateTask {
     SEAD_SINGLETON_TASK(RootTask)

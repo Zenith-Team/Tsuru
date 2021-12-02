@@ -1,7 +1,7 @@
 #pragma once
 
-#include "types.h"
-#include "agl/texturedata.h"
+#include <types.h>
+#include <agl/texturedata.h>
 #include "sead/color.h"
 #include "sead/bitflag.h"
 

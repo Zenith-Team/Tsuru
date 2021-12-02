@@ -1,9 +1,9 @@
-#include "game/actor/stage/stageactor.h"
-#include "game/graphics/model/model.h"
-#include "game/effect/effect.h"
-#include "game/sound/sound.h"
-#include "game/level/leveltimer.h"
-#include "game/graphics/drawmgr.h"
+#include <game/actor/stage/stageactor.h>
+#include <game/graphics/model/model.h>
+#include <game/effect/effect.h>
+#include <game/sound/sound.h>
+#include <game/level/leveltimer.h>
+#include <game/graphics/drawmgr.h>
 
 class TimeClock : public StageActor {
     SEAD_RTTI_OVERRIDE_IMPL(TimeClock, StageActor)

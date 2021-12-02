@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/heap.h"
+#include <sead/heap.h>
 
 class Mask { // Size: 0x4
 public:

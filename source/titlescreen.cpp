@@ -1,6 +1,6 @@
-#include "game/level/levelinfo.h"
-#include "game/savemgr.h"
-#include "log.h"
+#include <game/level/levelinfo.h>
+#include <game/savemgr.h>
+#include <log.h>
 
 void LevelInfo::setTitlescreenThemeEntrance() {
     switch (SaveMgr::getLastUsedSaveSlot().csPlayerLocation.worldNumber) {

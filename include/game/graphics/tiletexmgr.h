@@ -1,13 +1,13 @@
 #pragma once
 
-#include "sead/idisposer.h"
-#include "agl/texturedata.h"
-#include "agl/renderbuffer.h"
-#include "agl/rendertargetcolor.h"
-#include "sead/camera.h"
-#include "sead/projection.h"
-#include "sead/bitflag.h"
-#include "agl/utl/debugtexturepage.h"
+#include <sead/idisposer.h>
+#include <agl/texturedata.h>
+#include <agl/renderbuffer.h>
+#include <agl/rendertargetcolor.h>
+#include <sead/camera.h>
+#include <sead/projection.h>
+#include <sead/bitflag.h>
+#include <agl/utl/debugtexturepage.h>
 
 class TileTexMgr {
     SEAD_SINGLETON_DISPOSER(TileTexMgr)

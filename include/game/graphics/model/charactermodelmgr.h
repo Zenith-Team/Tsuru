@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game/graphics/model/charactermodel.h"
+#include <game/graphics/model/charactermodel.h>
 
 class YoshiModel;
 

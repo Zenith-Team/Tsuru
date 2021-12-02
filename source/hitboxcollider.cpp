@@ -6,8 +6,8 @@
     * as it requires recursive inclusion of header files.
 */
 
-#include "game/actor/stage/stageactor.h"
-#include "game/collision/hitboxcollider.h"
+#include <game/actor/stage/stageactor.h>
+#include <game/collision/hitboxcollider.h>
 
 void HitboxCollider::getRect(Rect& outRect) {
     Vec3f* ownerPos = &this->owner->position;

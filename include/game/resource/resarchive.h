@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead.h"
-#include "nw/g3d.h"
+#include <sead.h>
+#include <nw/g3d.h>
 
 class Model;
 

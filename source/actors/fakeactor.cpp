@@ -1,8 +1,8 @@
-#include "game/graphics/drawmgr.h"
-#include "game/collision/collidermgr.h"
-#include "game/actor/stage/multistateactor.h"
-#include "game/collision/solid/rectcollider.h"
-#include "game/effect/effect.h"
+#include <game/graphics/drawmgr.h>
+#include <game/collision/collidermgr.h>
+#include <game/actor/stage/multistateactor.h>
+#include <game/collision/solid/rectcollider.h>
+#include <game/effect/effect.h>
 
 class FakeActor : public MultiStateActor {
     SEAD_RTTI_OVERRIDE_IMPL(FakeActor, MultiStateActor)

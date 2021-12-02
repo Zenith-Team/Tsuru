@@ -1,5 +1,5 @@
-#include "tsuru/save/managers/tsurusavemgr.h"
-#include "tsuru/save/system/savemgrsystem.h"
+#include <tsuru/save/managers/tsurusavemgr.h>
+#include <tsuru/save/system/savemgrsystem.h>
 
 SEAD_SINGLETON_DISPOSER_IMPL(TsuruSaveMgr)
 

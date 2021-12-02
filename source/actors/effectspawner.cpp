@@ -1,9 +1,9 @@
-#include "game/actor/stage/stageactor.h"
-#include "game/profile/profileid.h"
-#include "game/eventmgr.h"
-#include "game/effect/effect.h"
-#include "game/sound/sound.h"
-#include "log.h"
+#include <game/actor/stage/stageactor.h>
+#include <game/profile/profileid.h>
+#include <game/eventmgr.h>
+#include <game/effect/effect.h>
+#include <game/sound/sound.h>
+#include <log.h>
 
 class EffectSpawner : public StageActor {
     SEAD_RTTI_OVERRIDE_IMPL(EffectSpawner, StageActor)

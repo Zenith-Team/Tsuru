@@ -1,7 +1,7 @@
 #pragma once
 
-#include "nw/eft/cafewrapper.h"
-#include "nw/eft/enum.h"
+#include <nw/eft/cafewrapper.h>
+#include <nw/eft/enum.h>
 
 namespace nw { namespace eft {
 

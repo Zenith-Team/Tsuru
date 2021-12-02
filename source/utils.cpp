@@ -1,6 +1,6 @@
 // Misc. utility C++ functions
 
-#include "types.h"
+#include <types.h>
 
 // Compare if two wide strings are equal
 extern "C" s32 wcscmp(const wchar_t* str1, const wchar_t* str2) {

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "nw/math/vec4.h"
-#include "nw/math/triangular.h"
+#include <nw/math/vec4.h>
+#include <nw/math/triangular.h>
 
 namespace nw { namespace math {
 

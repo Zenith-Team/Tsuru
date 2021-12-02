@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game/graphics/model/model.h"
+#include <game/graphics/model/model.h>
 #include "agl/lyr/layer.h"
 
 class DrawMgr {

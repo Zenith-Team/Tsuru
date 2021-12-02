@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead/task.h"
-#include "agl/lyr/renderinfo.h"
+#include <sead/task.h>
+#include <agl/lyr/renderinfo.h>
 
 class AreaTask : public sead::CalculateTask { // Task which manages Zones (class name is official)
     SEAD_SINGLETON_TASK(AreaTask)

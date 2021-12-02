@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead.h"
+#include <sead.h>
 
 class LevelInfo { // Size: 0x24
     SEAD_SINGLETON_DISPOSER(LevelInfo)

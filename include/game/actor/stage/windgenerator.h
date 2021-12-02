@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game/actor/stage/stageactor.h"
+#include <game/actor/stage/stageactor.h>
 
 class WindGenerator : public StageActor { // Size: 0x2A0
     SEAD_RTTI_OVERRIDE(WindGenerator, StageActor)

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead.h"
-#include "game/collision/physicsmgr.h"
+#include <sead.h>
+#include <game/collision/physicsmgr.h>
 
 class ColliderBase : public sead::IDisposer {
 public:

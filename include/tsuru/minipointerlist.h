@@ -1,6 +1,6 @@
 #pragma once
 
-#include "types.h"
+#include <types.h>
 
 template <typename T, u32 N>
 class MiniPointerList { // A mini pointer array with convenience functions

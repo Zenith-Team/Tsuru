@@ -1,5 +1,5 @@
-#include "tsuru/save/system/customsavemgr.h"
-#include "sead/idisposer.h"
+#include <tsuru/save/system/customsavemgr.h>
+#include <sead/idisposer.h>
 
 class TsuruSaveMgr : public CustomSaveMgr {
 public:

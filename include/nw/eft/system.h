@@ -1,7 +1,7 @@
 #pragma once
 
-#include "nw/math/mtx44.h"
-#include "nw/eft/enum.h"
+#include <nw/math/mtx44.h>
+#include <nw/eft/enum.h>
 
 namespace nw { namespace eft {
 

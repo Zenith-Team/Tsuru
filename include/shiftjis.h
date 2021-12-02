@@ -1,6 +1,6 @@
 #pragma once
 
-#include "stdarg.h"
+#include <stdarg.h>
 
 // https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h
 

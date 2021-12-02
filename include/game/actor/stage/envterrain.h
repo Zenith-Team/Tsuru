@@ -1,8 +1,8 @@
 #pragma once
 
-#include "game/terraineffects.h"
-#include "game/actor/stage/multistateactor.h"
-#include "game/collision/solid/shapedcollider.h"
+#include <game/terraineffects.h>
+#include <game/actor/stage/multistateactor.h>
+#include <game/collision/solid/shapedcollider.h>
 
 class EnvTerrain : public MultiStateActor { // Size: 0x11A78
     // Base class for Zone-Wide-Effect actors such as liquids

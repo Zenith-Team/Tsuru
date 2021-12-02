@@ -1,7 +1,7 @@
-#include "game/actor/stage/windgenerator.h"
-#include "game/playermgr.h"
-#include "game/actor/actormgr.h"
-#include "log.h"
+#include <game/actor/stage/windgenerator.h>
+#include <game/playermgr.h>
+#include <game/actor/actormgr.h>
+#include <log.h>
 
 class FixedWindGenerator : public WindGenerator {
 public:

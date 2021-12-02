@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead.h"
+#include <sead.h>
 
 class EventMgr { // Size: 0x940
     SEAD_SINGLETON_DISPOSER(EventMgr)

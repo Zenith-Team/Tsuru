@@ -3,8 +3,8 @@
 #include "log.h"
 #include "dynlibs/h264/functions.h"
 #include "dynlibs/os/functions.h"
-#include "agl/lyr/drawmethod.h"
-#include "sead.h"
+#include <agl/lyr/drawmethod.h>
+#include <sead.h>
 
 class CutsceneTask : public sead::CalculateTask {
     SEAD_RTTI_OVERRIDE_IMPL(CutsceneTask, sead::CalculateTask)

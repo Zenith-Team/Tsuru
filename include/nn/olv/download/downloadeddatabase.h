@@ -1,7 +1,7 @@
 #pragma once
 
-#include "ffl.h"
-#include "nn/types.h"
+#include <ffl.h>
+#include <nn/types.h>
 
 namespace nn { namespace olv {
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead/math/seadMatrix.h"
-#include "game/graphics/layer/layeragl.h"
+#include <utils/mtx.h>
+#include <game/graphics/layer/layeragl.h>
 #include "game/graphics/layer/objlayerrenderer.h"
 
 class ObjLayerRenderer;
@@ -41,5 +41,5 @@ public:
 
     u32 _420;
     s32 _424;
-    sead::Matrix44f* _428;
+    Mtx44* _428;
 };

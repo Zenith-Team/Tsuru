@@ -1,4 +1,4 @@
-#include "tsuru/save/system/customsavemgr.h"
+#include <tsuru/save/system/customsavemgr.h>
 
 CustomSaveMgr::CustomSaveMgr(const sead::SafeString& filepath, CustomSaveData* savestruct)
     : filepath(filepath)

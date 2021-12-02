@@ -1,7 +1,7 @@
 #pragma once
 
-#include "game/actor/stage/stageactor.h"
-#include "game/playerinput.h"
+#include <game/actor/stage/stageactor.h>
+#include <game/playerinput.h>
 
 // TODO: finish this
 

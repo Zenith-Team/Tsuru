@@ -1,6 +1,6 @@
 #pragma once
 
-#include "nw/snd/soundstartable.h"
+#include <nw/snd/soundstartable.h>
 
 namespace nw { namespace snd {
 

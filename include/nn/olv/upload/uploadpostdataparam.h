@@ -1,6 +1,6 @@
 #pragma once
 
-#include "nn/types.h"
+#include <nn/types.h>
 
 namespace nn { namespace olv {
 

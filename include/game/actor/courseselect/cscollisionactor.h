@@ -1,8 +1,8 @@
 #pragma once
 
-#include "game/states.h"
-#include "game/collision/cshitboxcollider.h"
-#include "game/actor/courseselect/courseselectactor.h"
+#include <game/states.h>
+#include <game/collision/cshitboxcollider.h>
+#include <game/actor/courseselect/courseselectactor.h>
 
 class CSCollisionActor : public CourseSelectActor {
     SEAD_RTTI_OVERRIDE(CSCollisionActor, CourseSelectActor)

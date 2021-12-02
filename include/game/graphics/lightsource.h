@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead/idisposer.h"
-#include "sead/color.h"
+#include <sead/idisposer.h>
+#include <sead/color.h>
 
 class LightSource : public sead::IDisposer { // Size: 0x48
 public:

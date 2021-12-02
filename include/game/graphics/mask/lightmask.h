@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game/graphics/mask/mask.h"
+#include <game/graphics/mask/mask.h>
 
 class LightMask : public Mask { // Size: 0x28
     // This class allows an actor to display visibility around it in darkness areas

@@ -1,5 +1,5 @@
-#include "dynlibs/os/functions.h"
-#include "dynlibs/h264/functions.h"
+#include <dynlibs/os/functions.h>
+#include <dynlibs/h264/functions.h>
 
 u32 h264Handle = 0;
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "types.h"
+#include <types.h>
 
 // Maps a position to the screen
 // @param out Output Vec2f variable

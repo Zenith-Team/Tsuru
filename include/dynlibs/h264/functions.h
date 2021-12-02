@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include "dynlibs/h264/types.h"
+#include <dynlibs/h264/types.h>
 
 void InitH264FunctionPointers(void);
 void InitAcquireH264(void);

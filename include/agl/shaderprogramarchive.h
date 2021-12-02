@@ -1,10 +1,10 @@
 #pragma once
 
-#include "sead/idisposer.h"
-#include "agl/resbinaryshaderarchive.h"
-#include "agl/resshaderarchive.h"
-#include "sead/buffer.h"
-#include "agl/shaderprogram.h"
+#include <sead/idisposer.h>
+#include <agl/resbinaryshaderarchive.h>
+#include <agl/resshaderarchive.h>
+#include <sead/buffer.h>
+#include <agl/shaderprogram.h>
 
 namespace agl {
 

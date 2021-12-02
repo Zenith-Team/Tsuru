@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dynlibs/gx2/types.h"
+#include <dynlibs/gx2/types.h>
 
 namespace agl {
 
