@@ -70,7 +70,6 @@ extern void (*GX2SetupContextStateEx)(GX2ContextState* state, s32 enableProfilin
 extern void (*GX2SetColorBuffer)(const GX2ColorBuffer* colorBuffer, s32 target);
 extern void (*GX2SetDepthBuffer)(const GX2DepthBuffer* depthBuffer);
 extern void (*GX2SetAttribBuffer)(u32 attrIndex, u32 attrSize, u32 stride, const void* attr);
-extern void (*GX2SetShaderModeEx)(s32 shaderMode, u32 numVsGpr,u32 numVsStackEntries,u32 numGsGpr,u32 numGsStackEntries,u32 numPsGpr,u32 numPsStackEntries);
 extern void (*GX2InitTextureRegs)(GX2Texture* texture);
 extern void (*GX2InitSampler)(GX2Sampler* sampler, s32 texClamp, s32 minMagFilter);
 extern void (*GX2InitSamplerClamping)(GX2Sampler* sampler, s32 clampX, s32 clampY, s32 clampZ);
