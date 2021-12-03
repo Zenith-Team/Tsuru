@@ -3,8 +3,9 @@
 typedef unsigned int u32;
 class Mtx34;
 class Mtx44;
-namespace sead { template <typename T> class Vector3; }
-typedef sead::Vector3<float> Vec3f;
+template <typename T>
+class Vec3;
+typedef Vec3<float> Vec3f;
 
 extern "C" {
 

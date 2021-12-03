@@ -4,8 +4,8 @@
 
 namespace sead {
 
-void PrimitiveRenderer::drawCube(const sead::Vec3f& position, f32 size, const Color4f& color) {
-    sead::Vec3f scale(size);
+void PrimitiveRenderer::drawCube(const Vec3f& position, f32 size, const Color4f& color) {
+    Vec3f scale(size);
 
     Mtx34 mtx;
     Mtx34::makeST(mtx, scale, position);
@@ -16,8 +16,8 @@ void PrimitiveRenderer::drawCube(const sead::Vec3f& position, f32 size, const Co
     this->rendererImpl->drawCubeImpl(outMtx, color, color);
 }
 
-void PrimitiveRenderer::drawWireCube(const sead::Vec3f& position, f32 size, const Color4f& color) {
-    sead::Vec3f scale(size);
+void PrimitiveRenderer::drawWireCube(const Vec3f& position, f32 size, const Color4f& color) {
+    Vec3f scale(size);
 
     Mtx34 mtx;
     Mtx34::makeST(mtx, scale, position);
@@ -28,9 +28,9 @@ void PrimitiveRenderer::drawWireCube(const sead::Vec3f& position, f32 size, cons
     this->rendererImpl->drawWireCubeImpl(outMtx, color, color);
 }
 
-void PrimitiveRenderer::drawCircle16(const sead::Vec3f& position, f32 radius, const Color4f& color) {
+void PrimitiveRenderer::drawCircle16(const Vec3f& position, f32 radius, const Color4f& color) {
     f32 diameter = radius + radius;
-    sead::Vec3f scale(diameter);
+    Vec3f scale(diameter);
 
     Mtx34 mtx;
     Mtx34::makeST(mtx, scale, position);
@@ -41,9 +41,9 @@ void PrimitiveRenderer::drawCircle16(const sead::Vec3f& position, f32 radius, co
     this->rendererImpl->drawCircle16Impl(outMtx, color);
 }
 
-void PrimitiveRenderer::drawCircle32(const sead::Vec3f& position, f32 radius, const Color4f& color) {
+void PrimitiveRenderer::drawCircle32(const Vec3f& position, f32 radius, const Color4f& color) {
     f32 diameter = radius + radius;
-    sead::Vec3f scale(diameter);
+    Vec3f scale(diameter);
 
     Mtx34 mtx;
     Mtx34::makeST(mtx, scale, position);

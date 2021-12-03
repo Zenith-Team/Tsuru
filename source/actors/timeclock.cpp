@@ -31,7 +31,7 @@ public:
 const Profile TimeClockProfile(&TimeClock::build, ProfileID::TimeClock);
 
 const HitboxCollider::Info TimeClock::collisionInfo = {
-    sead::Vec2f(0.0f, -3.0f), sead::Vec2f(12.0f, 15.0f), HitboxCollider::HitboxShape_Rectangle, 0, 0, 0x824F, 0x20208, 0, &TimeClock::collisionCallback
+    Vec2f(0.0f, -3.0f), Vec2f(12.0f, 15.0f), HitboxCollider::HitboxShape_Rectangle, 0, 0, 0x824F, 0x20208, 0, &TimeClock::collisionCallback
 };
 
 TimeClock::TimeClock(const ActorBuildInfo* buildInfo)
@@ -80,7 +80,7 @@ void TimeClock::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
     if (hcOther->owner->type == 1) {
         TimeClock* self = reinterpret_cast<TimeClock*>(hcSelf->owner);
 
-        sead::Vec3f effectPos(self->position.x, self->position.y - 18.0f, 4500.0f);
+        Vec3f effectPos(self->position.x, self->position.y - 18.0f, 4500.0f);
         Effect::spawn(RP_FlagPass_1, &effectPos, nullptr, nullptr);
         LevelTimer::instance()->addTime(self->timeAmount);
 

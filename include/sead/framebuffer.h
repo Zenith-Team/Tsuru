@@ -14,14 +14,14 @@ public:
         , physicalArea(0.0f)
     { }
 
-    LogicalFrameBuffer(const sead::Vec2f& virtualSize, const BoundBox2<f32>& physicalArea)
+    LogicalFrameBuffer(const Vec2f& virtualSize, const BoundBox2<f32>& physicalArea)
         : virtualSize(virtualSize)
         , physicalArea(physicalArea)
     { }
 
     virtual ~LogicalFrameBuffer() { }
 
-    sead::Vec2f virtualSize;
+    Vec2f virtualSize;
     BoundBox2<f32> physicalArea;
 };
 
@@ -33,7 +33,7 @@ class FrameBuffer : public LogicalFrameBuffer {
     SEAD_RTTI_OVERRIDE(FrameBuffer, LogicalFrameBuffer)
 
 public:
-    FrameBuffer(const sead::Vec2f& virtualSize, const BoundBox2<f32>& physicalArea)
+    FrameBuffer(const Vec2f& virtualSize, const BoundBox2<f32>& physicalArea)
         : LogicalFrameBuffer(virtualSize, physicalArea)
     { }
 

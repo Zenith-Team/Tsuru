@@ -35,10 +35,10 @@ public:
     void vfC4() override;
     void vfCC() override;
     void killAtGoal() override;
-    void splashWater(sead::Vec3f*) override;
-    void splashLava(sead::Vec3f*) override;
-    void splashLavaWave(sead::Vec3f*) override;
-    void splashPoison(sead::Vec3f*) override;
+    void splashWater(Vec3f*) override;
+    void splashLava(Vec3f*) override;
+    void splashLavaWave(Vec3f*) override;
+    void splashPoison(Vec3f*) override;
 
     void damageFromUnder() override;
     void vf10C(u8 unk) override;
@@ -51,7 +51,7 @@ public:
     void vf144(bool unk) override;
 
     bool vf154() override;
-    void move(sead::Vec2f& dest) override;
+    void move(Vec2f& dest) override;
     void setYSpeed(f32 ySpeed) override;
     u32  vf16C() override;
     u32  vf174() override;

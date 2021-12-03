@@ -26,7 +26,7 @@ public:
     u32  vf12C() override;
 
     bool vf154() override;
-    void move(sead::Vec2f& dest) override;
+    void move(Vec2f& dest) override;
     void setYSpeed(f32) override;
     u32  vf16C() override;
     u32  vf174() override;

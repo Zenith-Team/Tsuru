@@ -28,7 +28,7 @@ public:
     ControllerBase(u32 padBitMax, u32 leftStickCrossStartBit, u32 rightStickCrossStartBit, u32 touchKeyBit);
 
     u32 createStickCrossMask_();
-    u32 getStickHold_(u32, const sead::Vec2f&, f32, u32); //? Is this static? It doesn't use the this pointer at all
+    u32 getStickHold_(u32, const Vec2f&, f32, u32); //? Is this static? It doesn't use the this pointer at all
     u32 isIdleBase_();
     void setIdleBase_();
     void setPadRepeat(u32, u8 delays, u8 pulses);
@@ -38,7 +38,7 @@ public:
     BitFlag32 padRelease;
     BitFlag32 padRepeat;
     BitFlag32 pointerFlag;
-    sead::Vec2i pointerS32;
+    Vec2i pointerS32;
     u8 pointerBound[16]; //? Is this a sead::BoundBox?
     u32 padHoldCounts[32];
     u8 padRepeatDelays[32];
@@ -53,9 +53,9 @@ public:
     u32 touchKeyBit;
     u32 idleFrame;
     BitFlag32 padHold;
-    sead::Vec2f pointer;
-    sead::Vec2f leftStick;
-    sead::Vec2f rightStick;
+    Vec2f pointer;
+    Vec2f leftStick;
+    Vec2f rightStick;
     f32 leftAnalogTrigger;
     f32 rightAnalogTrigger;
 };
@@ -91,8 +91,8 @@ public:
     struct TouchPanelInfo { // Size: 0xC
         TouchPanelInfo();
 
-        f32* _0;    // Points to x of a sead::Vec2f which seems to be related to default pointer positions; touchX?
-        f32* _4;    // Points to y of a sead::Vec2f which seems to be related to default pointer positions; touchY?
+        f32* _0;    // Points to x of a Vec2f which seems to be related to default pointer positions; touchX?
+        f32* _4;    // Points to y of a Vec2f which seems to be related to default pointer positions; touchY?
         u32 _8;     // Inited to 0
     };
 

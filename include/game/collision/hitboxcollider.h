@@ -19,8 +19,8 @@ public:
     struct Info {
         static Info sDefault;
 
-        sead::Vec2f distToCenter;     // 0
-        sead::Vec2f distToEdge;       // 8
+        Vec2f distToCenter;     // 0
+        Vec2f distToEdge;       // 8
         HitboxShape shape;      // 10
         u32 _14;                // 14
         u32 _18;                // 18
@@ -82,8 +82,8 @@ public:
     StageActor* owner;          // 40
     u32 _44;                    // 44
     u32 _48;                    // 48
-    sead::Vec2f _4C;                  // 4C
-    sead::Vec2f _54;                  // 54
+    Vec2f _4C;                  // 4C
+    Vec2f _54;                  // 54
     u32 _5C;                    // 5C
     u32 _60;                    // 60
     u32 _64;                    // 64

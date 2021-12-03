@@ -29,7 +29,7 @@ public:
 };
 
 const ActorInfo actorInfo = {
-    sead::Vec2i(0, 0), sead::Vec2i(0, 0), sead::Vec2i(0, 0), 0, 0, 0, 2, 0
+    Vec2i(0, 0), Vec2i(0, 0), Vec2i(0, 0), 0, 0, 0, 2, 0
 };
 
 const Profile WavePlatformProfile(&WavePlatform::build, ProfileID::WavePlatform, "WavePlatform", &actorInfo);
@@ -123,7 +123,7 @@ bool WavePlatform::updateWaveTargets() {
 }
 
 void WavePlatform::updateModel() {
-    sead::Vec3f modelPos(this->position.x - this->width * 8.0f, this->position.y, this->position.z);
+    Vec3f modelPos(this->position.x - this->width * 8.0f, this->position.y, this->position.z);
     this->model.rotation.z = this->rotation.z;
     this->model.update(modelPos, this->width * 16.0f);
 }

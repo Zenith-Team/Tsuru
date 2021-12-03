@@ -39,7 +39,7 @@ const Profile FallingChestnutProfile(&FallingChestnut::build, ProfileID::Falling
 PROFILE_RESOURCES(ProfileID::FallingChestnut, "iga_kuribo");
 
 const HitboxCollider::Info FallingChestnut::collisionInfo = {
-    sead::Vec2f(0.0f, -3.0f), sead::Vec2f(12.0f, 15.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &FallingChestnut::collisionCallback
+    Vec2f(0.0f, -3.0f), Vec2f(12.0f, 15.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &FallingChestnut::collisionCallback
 };
 
 const ActorPhysicsMgr::Sensor FallingChestnut::belowSensor = {
@@ -68,8 +68,8 @@ u32 FallingChestnut::onCreate() {
 }
 
 u32 FallingChestnut::onExecute() {
-    sead::Vec3f posOffset(0.0f, -16.0f, 0.0f);
-    sead::Vec3u rotOffset(fixDeg(90.0f), 0, 0);
+    Vec3f posOffset(0.0f, -16.0f, 0.0f);
+    Vec3u rotOffset(fixDeg(90.0f), 0, 0);
 
     Mtx34 mtx;
     mtx.rotateAndTranslate(this->rotation + rotOffset, this->position + posOffset);
@@ -94,7 +94,7 @@ u32 FallingChestnut::onDraw() {
 void FallingChestnut::beginState_Idle() { }
 
 void FallingChestnut::executeState_Idle() {
-    sead::Vec2f dist;
+    Vec2f dist;
 
     if (this->distanceToPlayer(dist) > -1 && fabs(dist.x) < 48.0f)
         this->doStateChange(&StateID_Falling);
@@ -134,7 +134,7 @@ void FallingChestnut::executeState_OnGround() {
     this->despawnDelay++;
 
     if (this->despawnDelay >= 60) {
-        sead::Vec3f effectPos(this->position.x, this->position.y - 18.0f, 4500.0f);
+        Vec3f effectPos(this->position.x, this->position.y - 18.0f, 4500.0f);
         Effect::spawn(RP_ObakeDoor_Disapp, &effectPos);
 
         this->isDeleted = true;

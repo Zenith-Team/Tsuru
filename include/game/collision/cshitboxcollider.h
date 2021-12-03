@@ -11,7 +11,7 @@ class CSHitboxCollider {
 public:
     struct Info {
         f32 size;
-        sead::Vec3f offset;
+        Vec3f offset;
     };
 
 public:

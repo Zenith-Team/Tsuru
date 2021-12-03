@@ -50,7 +50,7 @@ private:
 
             u32 id;                         // Node ID
             u32 worldID;                    // Parent world ID
-            sead::Vec2f position;                 // Position
+            Vec2f position;                 // Position
             Type type;                      // Node type for union occupancy
             union {
                 struct { // Normal
@@ -85,7 +85,7 @@ private:
             u32 id;
             u32 settings1;
             u32 settings2;
-            sead::Vec2f position;
+            Vec2f position;
         };
 
     public:

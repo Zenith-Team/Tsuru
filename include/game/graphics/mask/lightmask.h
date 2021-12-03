@@ -14,7 +14,7 @@ public:
 
     f32 radius;
     f32 _8;
-    sead::Vec3f position;
+    Vec3f position;
     void* _18;
     u32 _1C;
     u32 type;

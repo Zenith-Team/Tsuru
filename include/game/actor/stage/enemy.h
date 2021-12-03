@@ -8,7 +8,7 @@ class Enemy : public MultiStateActor { // Size: 0x1880
 
 public:
     struct DeathInfo {
-        sead::Vec2f speed;
+        Vec2f speed;
         f32 maxYSpeed;
         f32 gavity;
         StateBase* state;
@@ -42,7 +42,7 @@ public:
     u32 vf12C() override;
 
     bool vf154() override;
-    void move(sead::Vec2f& dest) override;
+    void move(Vec2f& dest) override;
     void setYSpeed(f32) override;
     u32 vf16C() override;
     u32 vf174() override;
@@ -213,7 +213,7 @@ public:
     // @param player Colliding player
     // @param speed Speed to apply to player for bounce
     // @param state Pointer to state to switch to after bouncing player
-    void killPlayerJump(StageActor* player, const sead::Vec2f& speed, StateBase* state);
+    void killPlayerJump(StageActor* player, const Vec2f& speed, StateBase* state);
     // @param player Colliding player
     void killPlayerSpin(StageActor* player);
     // @param player Colliding player

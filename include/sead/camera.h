@@ -24,7 +24,7 @@ class LookAtCamera : public Camera {
     SEAD_RTTI_OVERRIDE(LookAtCamera, Camera)
 
 public:
-    inline LookAtCamera(sead::Vec3f& pos, sead::Vec3f& at, sead::Vec3f& up) {
+    inline LookAtCamera(Vec3f& pos, Vec3f& at, Vec3f& up) {
         this->pos = pos;
         this->at = at;
         this->up = up;
@@ -34,9 +34,9 @@ public:
 
     void doUpdateMatrix(Mtx34* mtx) const override;
 
-    sead::Vec3f pos;
-    sead::Vec3f at;
-    sead::Vec3f up;
+    Vec3f pos;
+    Vec3f at;
+    Vec3f up;
 };
 
 class OrthoCamera : public LookAtCamera {

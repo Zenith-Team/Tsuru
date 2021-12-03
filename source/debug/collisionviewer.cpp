@@ -14,34 +14,34 @@
 #include <utils/mtx.h>
 #include <math/functions.h>
 
-void drawLine3D(const sead::Vec3f& position, const u32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
-    sead::Vec3f scale(lineLength, lineThickness, lineThickness);
-    sead::Vec3u rot(0x80000000, (rotation + 0x40000000) * -1, 0x00000000);
+void drawLine3D(const Vec3f& position, const u32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
+    Vec3f scale(lineLength, lineThickness, lineThickness);
+    Vec3u rot(0x80000000, (rotation + 0x40000000) * -1, 0x00000000);
     f32 rotSin;
     f32 rotCos;
     sinCosIdx(&rotSin, &rotCos, rotation);
-    sead::Vec3f pos(position.x + (lineLength * rotSin) / 2, position.y, position.z + (lineLength * rotCos) / 2);
+    Vec3f pos(position.x + (lineLength * rotSin) / 2, position.y, position.z + (lineLength * rotCos) / 2);
 
     Mtx34 mtx;
     mtx.makeSRzxyTIdx(scale, rot, pos);
     sead::PrimitiveRenderer::instance()->rendererImpl->drawCubeImpl(mtx, color, color);
 }
 
-void drawLine(const sead::Vec2f& position, const f32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
-    sead::Vec3f scale(lineLength, lineThickness, 1.0f);
-    sead::Vec3f rot(0.0f, 0.0f, rotation);
-    sead::Vec3f pos(position.x + (lineLength * cosf(rotation)) / 2, position.y + (lineLength * sinf(rotation)) / 2, 4000.0f);
+void drawLine(const Vec2f& position, const f32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
+    Vec3f scale(lineLength, lineThickness, 1.0f);
+    Vec3f rot(0.0f, 0.0f, rotation);
+    Vec3f pos(position.x + (lineLength * cosf(rotation)) / 2, position.y + (lineLength * sinf(rotation)) / 2, 4000.0f);
 
     Mtx34 mtx;
     Mtx34::makeSRT(mtx, scale, rot, pos);
     sead::PrimitiveRenderer::instance()->rendererImpl->drawQuadImpl(mtx, color, color);
 }
 
-void drawLine(const sead::Vec2f& point1, const sead::Vec2f& point2, const sead::Color4f& color, const f32 lineThickness) {
+void drawLine(const Vec2f& point1, const Vec2f& point2, const sead::Color4f& color, const f32 lineThickness) {
     f32 length = sqrtf(powf(point1.x - point2.x, 2) + powf(point1.y - point2.y, 2));
 
-    const sead::Vec2f& leftPoint = (point1.x < point2.x) ? point1 : point2;
-    const sead::Vec2f& rightPoint = (&leftPoint == &point1) ? point2 : point1;
+    const Vec2f& leftPoint = (point1.x < point2.x) ? point1 : point2;
+    const Vec2f& rightPoint = (&leftPoint == &point1) ? point2 : point1;
     f32 angle = atan2f(rightPoint.y - leftPoint.y, rightPoint.x - leftPoint.x);
 
     drawLine(leftPoint, angle, color, length, lineThickness);
@@ -66,10 +66,10 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                 hCollider->getRect(rect);
 
                 if (hCollider->colliderInfo.shape == HitboxCollider::HitboxShape_Rectangle) {
-                    sead::Vec2f point1(rect.left, rect.top);
-                    sead::Vec2f point2(rect.right, rect.top);
-                    sead::Vec2f point3(rect.right, rect.bottom);
-                    sead::Vec2f point4(rect.left, rect.bottom);
+                    Vec2f point1(rect.left, rect.top);
+                    Vec2f point2(rect.right, rect.top);
+                    Vec2f point3(rect.right, rect.bottom);
+                    Vec2f point4(rect.left, rect.bottom);
 
                     drawLine(point1, point2, sead::colorRed, 1.0f);
                     drawLine(point2, point3, sead::colorRed, 1.0f);
@@ -81,7 +81,7 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                 else if (hCollider->colliderInfo.shape == HitboxCollider::HitboxShape_Circle) {
                     f32 radius = (rect.right - rect.left) / 2.0f;
 
-                    sead::PrimitiveRenderer::instance()->drawCircle32(sead::Vec3f(rect.left + radius, rect.bottom + radius, 4000.0f), radius, sead::colorRed);
+                    sead::PrimitiveRenderer::instance()->drawCircle32(Vec3f(rect.left + radius, rect.bottom + radius, 4000.0f), radius, sead::colorRed);
                 }
             }
 
@@ -97,10 +97,10 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
             hCollider->getRect(rect);
 
             if (hCollider->colliderInfo.shape == HitboxCollider::HitboxShape_Rectangle) {
-                sead::Vec2f point1(rect.left, rect.top);
-                sead::Vec2f point2(rect.right, rect.top);
-                sead::Vec2f point3(rect.right, rect.bottom);
-                sead::Vec2f point4(rect.left, rect.bottom);
+                Vec2f point1(rect.left, rect.top);
+                Vec2f point2(rect.right, rect.top);
+                Vec2f point3(rect.right, rect.bottom);
+                Vec2f point4(rect.left, rect.bottom);
 
                 drawLine(point1, point2, sead::colorRed, 1.0f);
                 drawLine(point2, point3, sead::colorRed, 1.0f);
@@ -112,7 +112,7 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
             else if (hCollider->colliderInfo.shape == HitboxCollider::HitboxShape_Circle) {
                 f32 radius = (rect.right - rect.left) / 2.0f;
 
-                sead::PrimitiveRenderer::instance()->drawCircle32(sead::Vec3f(rect.left + radius, rect.bottom + radius, 4000.0f), radius, sead::colorRed);
+                sead::PrimitiveRenderer::instance()->drawCircle32(Vec3f(rect.left + radius, rect.bottom + radius, 4000.0f), radius, sead::colorRed);
             }
 
             hColliderNode = hColliderNode->next;
@@ -126,7 +126,7 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
             if (sead::IsDerivedFrom<CircularCollider, ColliderBase>(colliderBase)) {
                 CircularCollider* collider = static_cast<CircularCollider*>(colliderBase);
 
-                sead::PrimitiveRenderer::instance()->drawCircle32(sead::Vec3f(collider->ownerInfo.position->x + collider->distToCenter.x + collider->_160.x, collider->ownerInfo.position->y + collider->distToCenter.y + collider->_160.y, 4000.f), collider->radius, sead::colorBlue);
+                sead::PrimitiveRenderer::instance()->drawCircle32(Vec3f(collider->ownerInfo.position->x + collider->distToCenter.x + collider->_160.x, collider->ownerInfo.position->y + collider->distToCenter.y + collider->_160.y, 4000.f), collider->radius, sead::colorBlue);
             }
 
             else if (sead::IsDerivedFrom<SolidOnTopCollider, ColliderBase>(colliderBase)) {
@@ -134,7 +134,7 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                 if (collider->points.size < 2)
                     continue;
 
-                const sead::Vec2f center = sead::Vec2f((*collider->ownerInfo.position).x, (*collider->ownerInfo.position).y) + collider->distToCenter;
+                const Vec2f center = Vec2f((*collider->ownerInfo.position).x, (*collider->ownerInfo.position).y) + collider->distToCenter;
 
                 for (u32 i = 0; i < collider->nodes1.size; i++) {
                     const ColliderBase::Node& node = collider->nodes1[i];
@@ -147,7 +147,7 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                 if (collider->points.size < 2)
                     continue;
 
-                const sead::Vec2f center = sead::Vec2f((*collider->ownerInfo.position).x, (*collider->ownerInfo.position).y) + collider->distToCenter;
+                const Vec2f center = Vec2f((*collider->ownerInfo.position).x, (*collider->ownerInfo.position).y) + collider->distToCenter;
 
                 for (u32 i = 0; i < collider->nodes1.size; i++) {
                     const ColliderBase::Node& node = collider->nodes1[i];
@@ -192,15 +192,15 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                 }
 
                 if (j < 2) {
-                    sead::Vec2f point1(actorPhysicsMgr->position->x + sensor->distanceFromCenter, actorPhysicsMgr->position->y + p1);
-                    sead::Vec2f point2(actorPhysicsMgr->position->x + sensor->distanceFromCenter, actorPhysicsMgr->position->y + p2);
+                    Vec2f point1(actorPhysicsMgr->position->x + sensor->distanceFromCenter, actorPhysicsMgr->position->y + p1);
+                    Vec2f point2(actorPhysicsMgr->position->x + sensor->distanceFromCenter, actorPhysicsMgr->position->y + p2);
 
                     drawLine(point1, point2, sead::colorYellow, 1.0f);
                 }
 
                 else {
-                    sead::Vec2f point1(actorPhysicsMgr->position->x + p1, actorPhysicsMgr->position->y + sensor->distanceFromCenter);
-                    sead::Vec2f point2(actorPhysicsMgr->position->x + p2, actorPhysicsMgr->position->y + sensor->distanceFromCenter);
+                    Vec2f point1(actorPhysicsMgr->position->x + p1, actorPhysicsMgr->position->y + sensor->distanceFromCenter);
+                    Vec2f point2(actorPhysicsMgr->position->x + p2, actorPhysicsMgr->position->y + sensor->distanceFromCenter);
 
                     drawLine(point1, point2, (j == 2) ? sead::colorWhite : sead::colorCyan, 1.0f);
                 }

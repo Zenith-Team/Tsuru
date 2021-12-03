@@ -18,7 +18,7 @@ public:
     // @param position Position to draw the tile at
     // @param rotation Rotation to be applied to the tile
     // @param scale Scale to be applied to the tile
-    void drawTile(u16, const sead::Vec3f& position, const u32& rotation, const sead::Vec3f& scale);
+    void drawTile(u16, const Vec3f& position, const u32& rotation, const Vec3f& scale);
 
     void setTargetLayer(agl::lyr::Layer* layer, u32);
     void resetTargetLayer();

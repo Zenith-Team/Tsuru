@@ -43,12 +43,12 @@ CREATE_STATE(ParaBones, Rising);
 CREATE_STATE(ParaBones, IdleRaised);
 CREATE_STATE(ParaBones, Die);
 
-const ActorInfo ParaBonesActorInfo = { sead::Vec2i(8, -16), sead::Vec2i(0, 16), sead::Vec2i(8, 16), 0, 0, 0, 0, 0 };
+const ActorInfo ParaBonesActorInfo = { Vec2i(8, -16), Vec2i(0, 16), Vec2i(8, 16), 0, 0, 0, 0, 0 };
 const Profile ParaBonesProfile(&ParaBones::build, ProfileID::ParaBones, "ParaBones", &ParaBonesActorInfo);
 PROFILE_RESOURCES(ProfileID::ParaBones, "nokonokoB");
 
 const HitboxCollider::Info ParaBones::sCollisionInfo = {
-    sead::Vec2f(0.0f, 0.0f), sead::Vec2f(16.0f, 16.0f), HitboxCollider::HitboxShape_Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::HitboxShape_Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback
 };
 
 ParaBones::ParaBones(const ActorBuildInfo* buildInfo)
@@ -60,7 +60,7 @@ Actor* ParaBones::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 ParaBones::onCreate() {
-    sead::Vec3u rotationOffset(0, 1000, 0);
+    Vec3u rotationOffset(0, 1000, 0);
     this->rotation.y = Direction::directionToRotationList[Direction::Left];
 
     model = ModelWrapper::create("nokonokoB", "nokonokoB", 10);
@@ -199,7 +199,7 @@ void ParaBones::endState_IdleRaised() { }
 
 void ParaBones::beginState_Die() {
     removeHitboxColliders();
-    sead::Vec3f posKillFix(0.0f, -8.0f, 0.0f);
+    Vec3f posKillFix(0.0f, -8.0f, 0.0f);
 
     ActorBuildInfo DryBones = { 0 };
     DryBones.profile = Profile::get(Profile::spriteToProfileList[137]);

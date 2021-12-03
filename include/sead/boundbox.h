@@ -11,16 +11,16 @@ struct BoundBox2 {
         , max(t)
     { }
 
-    Vector2<T> min;
-    Vector2<T> max;
+    Vec2<T> min;
+    Vec2<T> max;
 
     static const BoundBox2<T> sUndefined;
 };
 
 template <typename T>
 struct BoundBox3 {
-    Vector3<T> min;
-    Vector3<T> max;
+    Vec3<T> min;
+    Vec3<T> max;
 
     static const BoundBox3<T> sUndefined;
 };

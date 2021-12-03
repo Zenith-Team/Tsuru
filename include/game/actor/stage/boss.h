@@ -36,7 +36,7 @@ public:
     u32 vf12C() override;
 
     bool vf154() override;
-    void move(sead::Vec2f& dest) override;
+    void move(Vec2f& dest) override;
     void setYSpeed(f32 ySpeed) override;
     u32 vf16C() override;
     u32 vf174() override;
@@ -172,7 +172,7 @@ public:
     u16 _19BC;
     u8 _19BE[2];            // Unknown values
     PlayerLookTarget lookTarget;
-    sead::Vec3f _19EC;
+    Vec3f _19EC;
     f32 _19F8;
     u8 _19FC[4];            // Unknown values
     u32 _1A00;
@@ -180,10 +180,10 @@ public:
     void* _1A08;
     HitboxCollider hitboxCollider;
     void* _1B34;
-    sead::Vec3f _1B38;
-    sead::Vec3f _1B44;
-    sead::Vec3f _1B50;
-    sead::Vec3f _1B5C;
+    Vec3f _1B38;
+    Vec3f _1B44;
+    Vec3f _1B50;
+    Vec3f _1B5C;
     f32 _1B68;
     f32 _1B6C;
     u32 _1B70;

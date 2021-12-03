@@ -150,7 +150,7 @@ public:
         u16 worldCompletionFlag;            //* enum = SaveData::WorldCompletionFlag
         u8 gameCompletionFlag;              //* enum = SaveData::GameCompletionFlag
         u8 _1F;
-        sead::Vec3f _20;
+        Vec3f _20;
         u8 _2C;
         u8 _2D;
         u8 _2E;

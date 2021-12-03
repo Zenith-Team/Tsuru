@@ -10,7 +10,7 @@ struct Rect { // Size: 0x10
             return false;
     }
 
-    static inline bool pointInside(Rect& thisRect, sead::Vec2f& point) {
+    static inline bool pointInside(Rect& thisRect, Vec2f& point) {
         if (point.x >= thisRect.left && point.x <= thisRect.right && point.y >= thisRect.bottom && point.y <= thisRect.top)
             return true;
         else

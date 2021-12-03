@@ -39,7 +39,7 @@ public:
     virtual void vf14C(StageActor*);
     virtual bool vf154();
     // @param dest Destination position
-    virtual void move(sead::Vec2f& dest);
+    virtual void move(Vec2f& dest);
     // @param ySpeed Target Y speed to be set to
     virtual void setYSpeed(f32 ySpeed);
     virtual u32 vf16C();
@@ -65,8 +65,8 @@ public:
 
         TileChecker tileChecker(checkParam);
 
-        sead::Vec2f a(this->position.x, this->position.y);
-        sead::Vec2f b(this->position.x + xOffset, this->position.y + yOffset);
+        Vec2f a(this->position.x, this->position.y);
+        Vec2f b(this->position.x + xOffset, this->position.y + yOffset);
 
         return tileChecker.check(nullptr, a, b, 8);
     }
@@ -75,15 +75,15 @@ public:
     ActorPhysicsMgr physicsMgr;         // 280
     f32 _1760;                          // 1760 Inited to 0
     f32 _1764;                          // 1764 Inited to
-    sead::Vec3f* _1768;                       // 1768 Inited to &position
+    Vec3f* _1768;                       // 1768 Inited to &position
     u8 _176C;                           // 176C Inited to 0
     u8 _176D;                           // 176D Padding
     u8 _176E;                           // 176E Padding
     u8 _176F;                           // 176F Padding
     u32 _1770;                          // 1770 Inited to 0
     f32 _1774;                          // 1774 Inited to 1.0
-    sead::Vec2f _1778;                        // 1778 Inited to 0
-    sead::Vec2f _1780;                        // 1780 Inited to 0
+    Vec2f _1778;                        // 1778 Inited to 0
+    Vec2f _1780;                        // 1780 Inited to 0
     f32 maxYSpeed;                      // 1788 Inited to 1.5
     f32 minYSpeed;                      // 178C Inited to -1.5
     f32 _1790;                          // 1790 Inited to -0.0625

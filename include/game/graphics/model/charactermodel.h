@@ -18,8 +18,8 @@ public:
     u32 _28;
     u8 _2C[0x30]; // new thing
     u8 _5C[0x30]; // new thing
-    sead::Vec3f _8C;
-    sead::Vec3f _98;
+    Vec3f _8C;
+    Vec3f _98;
     u32 _A4;
     u32 _A8;
     u32 _AC;

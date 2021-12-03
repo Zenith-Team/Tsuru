@@ -55,7 +55,7 @@ public:
     s32 _EEC;
     sead::Controller* debugController; // sead::Controller*
     f32 _EF4;
-    sead::Vec2f _EF8;
+    Vec2f _EF8;
     u32 _F00;
     u8 renderDLBuffer[0x58]; // agl::lyr::RenderDLBuffer
     u32 gpuCounter;

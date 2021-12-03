@@ -20,7 +20,7 @@ public:
     virtual void beginImpl() = 0;
     virtual void endImpl() = 0;
     virtual void drawQuadImpl(const Mtx34& modelMtx, const Color4f& colorL, const Color4f& colorR) = 0;
-    virtual void drawQuadImpl(const Mtx34& modelMtx, const Texture& texture, const Color4f& colorL, const Color4f& colorR, const sead::Vec2f& uvSrc, const sead::Vec2f& uvSize) = 0;
+    virtual void drawQuadImpl(const Mtx34& modelMtx, const Texture& texture, const Color4f& colorL, const Color4f& colorR, const Vec2f& uvSrc, const Vec2f& uvSize) = 0;
     virtual void drawBoxImpl(const Mtx34& modelMtx, const Color4f& colorL, const Color4f& colorR) = 0;
     virtual void drawCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) = 0;
     virtual void drawWireCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) = 0;
@@ -43,8 +43,8 @@ public:
     public:
         QuadArg();
 
-        sead::Vec3f center;
-        sead::Vec2f size;
+        Vec3f center;
+        Vec2f size;
         Color4f color0;
         Color4f color1;
         bool horizontal;
@@ -59,10 +59,10 @@ public:
     void end();
 
     void drawQuad(const QuadArg& arg);
-    void drawCube(const sead::Vec3f& position, f32 size, const Color4f& color);
-    void drawWireCube(const sead::Vec3f& position, f32 size, const Color4f& color);
-    void drawCircle16(const sead::Vec3f& position, f32 radius, const Color4f& color);
-    void drawCircle32(const sead::Vec3f& position, f32 radius, const Color4f& color);
+    void drawCube(const Vec3f& position, f32 size, const Color4f& color);
+    void drawWireCube(const Vec3f& position, f32 size, const Color4f& color);
+    void drawCircle16(const Vec3f& position, f32 radius, const Color4f& color);
+    void drawCircle32(const Vec3f& position, f32 radius, const Color4f& color);
 
     PrimitiveRendererBase* rendererImpl;
     Mtx34 modelMtx;
@@ -72,14 +72,14 @@ namespace PrimitiveRendererUtil {
 
 class Vertex {
 public:
-    Vertex(const sead::Vec3f& pos, const sead::Vec2f& uv, const Color4f& color)
+    Vertex(const Vec3f& pos, const Vec2f& uv, const Color4f& color)
         : pos(pos)
         , UV(uv)
         , color(color)
     { }
 
-    sead::Vec3f pos;
-    sead::Vec3f UV;
+    Vec3f pos;
+    Vec3f UV;
     Color4f color;
 };
 
@@ -96,7 +96,7 @@ public:
     void beginImpl() override;
     void endImpl() override;
     void drawQuadImpl(const Mtx34& modelMtx, const Color4f& colorL, const Color4f& colorR) override;
-    void drawQuadImpl(const Mtx34& modelMtx, const Texture& texture, const Color4f& colorL, const Color4f& colorR, const sead::Vec2f& uvSrc, const sead::Vec2f& uvSize) override;
+    void drawQuadImpl(const Mtx34& modelMtx, const Texture& texture, const Color4f& colorL, const Color4f& colorR, const Vec2f& uvSrc, const Vec2f& uvSize) override;
     void drawBoxImpl(const Mtx34& modelMtx, const Color4f& colorL, const Color4f& colorR) override;
     void drawCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) override;
     void drawWireCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) override; // restored

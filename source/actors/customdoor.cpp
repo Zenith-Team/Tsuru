@@ -21,7 +21,7 @@ public:
 };
 
 const ActorInfo CustomDoorActorInfo = {
-    sead::Vec2i(16, -48), sead::Vec2i(0, 24), sead::Vec2i(16, 24), 64, 64, 0, 0, 0
+    Vec2i(16, -48), Vec2i(0, 24), Vec2i(16, 24), 64, 64, 0, 0, 0
 };
 
 const Profile CustomDoorProfile(&CustomDoor::build, ProfileID::CustomDoor, "CustomDoor", &CustomDoorActorInfo, Profile::Flag_DontRenderOffScreen);
@@ -39,7 +39,7 @@ Actor* CustomDoor::build(const ActorBuildInfo* buildInfo) {
 }
 
 const HitboxCollider::Info CustomDoor::sCollisionInfo = {
-    sead::Vec2f(0.0f, 20.0f), sead::Vec2f(12.0f, 20.0f), HitboxCollider::HitboxShape_Rectangle, 3, 0, 1, 0, 0, &DoorBase::collisionCallback
+    Vec2f(0.0f, 20.0f), Vec2f(12.0f, 20.0f), HitboxCollider::HitboxShape_Rectangle, 3, 0, 1, 0, 0, &DoorBase::collisionCallback
 };
 
 void CustomDoor::initHitboxCollider() {
