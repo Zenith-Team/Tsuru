@@ -4,34 +4,34 @@
 #include <types.h>
 
 // @return Sine value of the given param
-extern f32 sinf(f32 x);
+f32 sinf(f32 x);
 // @return Cosine value of the given param
-extern f32 cosf(f32 x);
+f32 cosf(f32 x);
 // @return Tangent value of the given param
-extern f32 tanf(f32 x);
+f32 tanf(f32 x);
 // @return Arcsine value of the given param
-extern f32 asinf(f32 x);
+f32 asinf(f32 x);
 // @return Arccosine value of the given param
-extern f32 acosf(f32 x);
+f32 acosf(f32 x);
 // @return Arctangent2 value of the given params
-extern f32 atan2f(f32 x, f32 y);
+f32 atan2f(f32 x, f32 y);
 // @return Exponent value of the given param raised to e
-extern f32 expf(f32 x);
+f32 expf(f32 x);
 // @return Logarithm value of the given param
-extern f32 logf(f32 x);
+f32 logf(f32 x);
 // @param x Number to be exponentiated
 // @param y Value to raise the power to
 // @return Value of the given param raised to the power param
-extern f32 powf(f32 x, f32 y);
+f32 powf(f32 x, f32 y);
 // @return Square root of the given param
-extern f32 sqrtf(f32 x);
-extern f32 fmodf(f32 x, f32 y);
+f32 sqrtf(f32 x);
+f32 fmodf(f32 x, f32 y);
 
 // @return Square of the given param
 inline f32 pow2f(f32 x) { return x * x; }
 
 // @return The given param without a sign
-inline f32 fabs(f32 x) { return (x < 0.0f) ? -x : x; }
+inline f32 fabsf(f32 x) { return (x < 0.0f) ? -x : x; }
 
 inline f32 degToRad(f32 deg) { return (deg * M_PI) / 180.0f; }
 
