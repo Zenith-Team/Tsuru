@@ -9,6 +9,8 @@ Files:
   - source/hitboxcollider.cpp
   - source/utils.cpp
   - source/profileres.cpp
+  - source/shader.cpp
+  - source/gfd.cpp
 Hooks:
 # Sets PhysicsMgr->owner before doing anything else so that functions there have access to the actor pointer
   - type: branch

@@ -45,6 +45,9 @@ SECTIONS {
     GFDGetVertexShaderHeaderSize = 0x2AF8D00;
     GFDGetVertexShaderProgramSize = 0x2AF8D40;
     GFDGetVertexShader = 0x2AF8E3C;
+    _GFDCheckHeaderVersions = 0x02af8a18;
+    _GFDCheckBlockHeaderMagicVersions = 0x02af8abc;
+    _GFDRelocateBlock = 0x02af8e04;
 
 /* agl::RenderBuffer */
     __ct__Q2_3agl12RenderBufferFR13Vec2__tm__2_ffN32 = 0x2a1eadc;
