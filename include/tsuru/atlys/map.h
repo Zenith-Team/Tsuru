@@ -138,7 +138,7 @@ public:
             if (this->type == Data::Node::Type_Level && (this->exits & Exit_Normal)) {
                 if (!(this->hasSecretExit && (this->exits & Exit_Secret)))
                     return false;
-                
+
                 this->exits |= Exits_All;
             }
 
@@ -147,7 +147,7 @@ public:
 
         bool checkCompletion() {
             this->checkExitCompletion();
-        
+
             if (this->type == Data::Node::Type_Level) {
                 if ((this->exits & Exits_All) && (this->starCoins & StarCoins_All))
                     this->allCompleted = true;
@@ -157,7 +157,7 @@ public:
 
             return this->allCompleted;
         }
-        
+
         bool unlocked;
 
         // Level node only
@@ -250,7 +250,7 @@ public:
         Layer()
             : gtx()
         { }
-        
+
         ~Layer() { }
 
         GTX gtx;

@@ -144,7 +144,7 @@ ProjectileExtraTypes:
     beqlr
 
     # Extra types here
-    
+
     # Kamek Hat
     cmpwi r0, 9
     blr

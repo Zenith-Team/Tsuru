@@ -35,5 +35,5 @@ void CutsceneTask::calc() {
 void CutsceneTask::drawLayerCutscene(const agl::lyr::RenderInfo& renderInfo) {
     LOG("Drawing frame %u", this->frame); frame++;
 
-    
+
 }

@@ -21,7 +21,7 @@ const char* MusicPlayer::getStrmName(s32 strmID) {
 const char* MusicPlayer::getSeqName(s32 seqID) {
     if (!this->isValidStrmID(seqID))
         return nullptr;
-    
+
     const char* seqName;
 
     if (this->shouldHurryUp())
