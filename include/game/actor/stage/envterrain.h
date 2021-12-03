@@ -14,11 +14,11 @@ public:
     u32 onExecute() override;
 
     u8 _17C8[8]; // Unknown values
-    Vec3f _17D0;
-    Vec3f _17DC;
+    sead::Vec3f _17D0;
+    sead::Vec3f _17DC;
     u8 _17E8[0x290]; // Inlined struct
     ShapedCollider::Info colliderInfo;
-    Vec2f _1A9C;
+    sead::Vec2f _1A9C;
     u32 _1AA4;
     u32 _1AA8;
     f32 _1AAC;

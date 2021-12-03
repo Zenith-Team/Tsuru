@@ -10,7 +10,7 @@ namespace agl {
 class RenderBuffer : public sead::IDisposer, public sead::FrameBuffer { // Size: 0x50
 public:
     RenderBuffer();
-    RenderBuffer(const Vec2f& virtualSsize, f32 physicalX, f32 physicalY, f32 physicalW, f32 physicalH);
+    RenderBuffer(const sead::Vec2f& virtualSsize, f32 physicalX, f32 physicalY, f32 physicalW, f32 physicalH);
     virtual ~RenderBuffer();
 
     SEAD_RTTI_OVERRIDE(RenderBuffer, sead::FrameBuffer)

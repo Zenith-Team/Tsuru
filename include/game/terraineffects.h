@@ -27,9 +27,9 @@ public:
 
     TerrainEffectsRenderer* renderer;
     u8 _4[4]; // Unknown values
-    Vec3f _8;
+    sead::Vec3f _8;
     u8 _14[12];
-    Vec3f _20;
+    sead::Vec3f _20;
     u8 _2C[48];
     u8 _5C[48];
     u8 _8C[4]; // Unknown values

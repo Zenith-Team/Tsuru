@@ -30,7 +30,7 @@ struct ActorBuildInfo {
     };                          // 4
     u32 parentID;               // 8
     Profile* profile;           // C
-    Vec3f position;             // 10
+    sead::Vec3f position;             // 10
     u32 rotation;               // 1C
     u8 layer;                   // 20
     u8 eventID1;                // 21

@@ -35,9 +35,9 @@ public:
     f32 baseline;
     u32 timer;
 
-    Vec2f spinCenter;
+    sead::Vec2f spinCenter;
 
-    Vec2f swoopTarget;
+    sead::Vec2f swoopTarget;
     f32 swoopA;
     f32 swoopB;
     f32 swoopC;
@@ -62,7 +62,7 @@ CREATE_STATE(AngrySun, AttackSpin);
 CREATE_STATE(AngrySun, Spit);
 
 const HitboxCollider::Info AngrySun::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::HitboxShape_Circle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback
+    sead::Vec2f(0.0f, 0.0f), sead::Vec2f(16.0f, 16.0f), HitboxCollider::HitboxShape_Circle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback
 };
 
 const Profile AngrySunProfile(&AngrySun::build, ProfileID::AngrySun);
@@ -197,7 +197,7 @@ void AngrySun::executeState_Follow() {
     this->timer++;
 
     if (this->timer > 200) {
-        Vec2f distance;
+        sead::Vec2f distance;
         if (this->distanceToPlayer(distance) < 0) {
             this->timer = 0;
             return;
@@ -227,7 +227,7 @@ void AngrySun::endState_Follow() { }
 /* STATE: Swoop */
 
 void AngrySun::beginState_Swoop() {
-    Vec2f targetOffset;
+    sead::Vec2f targetOffset;
     if (this->distanceToPlayer(targetOffset) < 0) {
         this->doStateChange(&AngrySun::StateID_Follow);
         return;
@@ -272,7 +272,7 @@ void AngrySun::endState_Swoop() { }
 
 void AngrySun::beginState_AttackSpin() {
     this->timer = 0;
-    this->spinCenter = Vec2f(this->position.x, this->position.y);
+    this->spinCenter = sead::Vec2f(this->position.x, this->position.y);
     this->direction = this->directionToPlayerH(this->position);
 }
 
@@ -301,7 +301,7 @@ void AngrySun::executeState_Spit() {
         this->position.x = this->wiggleX + sinf(this->timer * (M_PI / 4.0f)) * 1.5f;
 
     if (this->timer == 32) {
-        Vec2f target;
+        sead::Vec2f target;
         this->distanceToPlayer(target);
 
         f32 angle = atan2f(target.y, target.x);

@@ -22,7 +22,7 @@ public:
     u32 _4;         // 4
     u32 state;      // 8
     u32 spitType;   // C
-    Vec3f scale;    // 10
+    sead::Vec3f scale;    // 10
     u32 _1C;        // 1C
 };
 
@@ -40,7 +40,7 @@ public:
 
     u32 ownerID;        // 0
     u32 _4;             // 4
-    Vec3f scale;        // 8
+    sead::Vec3f scale;        // 8
     u32 _14;            // 14
     u32 isActive;       // 18
     u32 scoreReward;    // 1C

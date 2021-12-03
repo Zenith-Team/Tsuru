@@ -49,7 +49,7 @@ CREATE_STATE(BeepBlock, BlueDisabled);
 const Profile BeepBlockProfile(&BeepBlock::build, ProfileID::BeepBlock);
 
 const ShapedCollider::Info BeepBlock::colliderInfo = {
-    Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-16.0f, 8.0f), Vec2f(16.0f, -8.0f), 0
+    sead::Vec2f(0.0f, 0.0f), 0.0f, 0.0f, sead::Vec2f(-16.0f, 8.0f), sead::Vec2f(16.0f, -8.0f), 0
 };
 
 BeepBlock::BeepBlockColor BeepBlock::CurrentBeepBlockState = BeepBlock::BeepBlockColor_Blue;

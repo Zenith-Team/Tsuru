@@ -30,7 +30,7 @@ public:
     TileChecker(const Param&);
 
     void init(const Param&);
-    bool check(Result*, const Vec2f&, const Vec2f&, u32);
+    bool check(Result*, const sead::Vec2f&, const sead::Vec2f&, u32);
 
     u8  _0;
     u8  _1;

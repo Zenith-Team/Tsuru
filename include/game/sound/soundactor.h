@@ -13,7 +13,7 @@ public:
 
 class BasicSoundActor : public SoundActor {
 public:
-    void* playSound(const char* label, Vec2f* screenPos, u32 unk);
+    void* playSound(const char* label, sead::Vec2f* screenPos, u32 unk);
 
     static BasicSoundActor* GlobalBasicSoundActorA;
     static BasicSoundActor* GlobalBasicSoundActorB;
@@ -30,12 +30,12 @@ public:
 public:
     MovingSoundActor(u32 unk1, u32 unk2);
 
-    void setPosition(const Vec2f& position);
+    void setPosition(const sead::Vec2f& position);
 
     f32 _74;
     u32 _78;
     f32 _7C;
     f32 _80;
     Handle handles[6];
-    Vec2f _114;
+    sead::Vec2f _114;
 };

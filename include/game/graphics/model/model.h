@@ -52,10 +52,10 @@ public:
 
     // Sets the scale of the model
     // @param scale Target scale to be set
-    void setScale(const Vec3f& scale) override;
+    void setScale(const sead::Vec3f& scale) override;
     // Gets the scale of the model
     // @return Reference to the retrieved scale
-    const Vec3f& getScale() const override;
+    const sead::Vec3f& getScale() const override;
 
     // Determines if there are any shapes that can be drawn by draw * Shapes1()
     bool hasShapesFlag1() const override;
@@ -65,8 +65,8 @@ public:
     s32 getBoneIdx(const sead::SafeString& name) const override;
     const char* getBoneName(u32 idx) const override;
     u32 getBoneCount() const override;
-    void setBoneSRT(u32 idx, const Mtx34& mtxRT, const Vec3f& scale) override;
-    void getBoneSRT(u32 idx, Mtx34* mtxRT = NULL, Vec3f* scale = NULL) override;
+    void setBoneSRT(u32 idx, const Mtx34& mtxRT, const sead::Vec3f& scale) override;
+    void getBoneSRT(u32 idx, Mtx34* mtxRT = NULL, sead::Vec3f* scale = NULL) override;
     // World matrix for bone
     void setBoneTransform(u32 idx, const Mtx34& transform) override;
     void getBoneTransform(u32 idx, Mtx34& transform) override;
@@ -114,11 +114,11 @@ public:
         return this->model->getMtx();
     }
 
-    inline void setScale(const Vec3f& scale) {
+    inline void setScale(const sead::Vec3f& scale) {
         this->model->setScale(scale);
     }
 
-    inline const Vec3f& getScale() const {
+    inline const sead::Vec3f& getScale() const {
         return this->model->getScale();
     }
 

@@ -28,7 +28,7 @@ CREATE_STATE(Cataquack, IdleWalking);
 CREATE_STATE(Cataquack, Turn);
 
 const ActorInfo CataquackActorInfo = {
-    Vec2i(8, -8), Vec2i(8, -8), Vec2i(32, 32), 0, 0, 0, 0, 0
+    sead::Vec2i(8, -8), sead::Vec2i(8, -8), sead::Vec2i(32, 32), 0, 0, 0, 0, 0
 };
 const Profile CataquackProfile(&Cataquack::build, ProfileID::Cataquack, "Cataquack", &CataquackActorInfo, Profile::Flag_DontRenderOffScreen);
 PROFILE_RESOURCES(ProfileID::Cataquack, "poihana");
@@ -71,7 +71,7 @@ u32 Cataquack::onDraw() {
 
 void Cataquack::updateModel() {
     Mtx34 mtx;
-    mtx.rotateAndTranslate(this->rotation, this->position + Vec3f(0.0f, 20.0f, 0.0f));
+    mtx.rotateAndTranslate(this->rotation, this->position + sead::Vec3f(0.0f, 20.0f, 0.0f));
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
     this->model->updateAnimations();

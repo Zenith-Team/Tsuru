@@ -51,7 +51,7 @@ public:
     f32 _74;
     f32 _78;
     f32 _7C;
-    Vec2i _80;
+    sead::Vec2i _80;
     u32 _88;
     DebugInfo debugInfo;
 };

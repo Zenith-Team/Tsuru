@@ -14,8 +14,8 @@ public:
         , rotation(0.0f)
     { }
 
-    Vec3f position;
-    Vec3f rotation;
+    sead::Vec3f position;
+    sead::Vec3f rotation;
 };
 
 }

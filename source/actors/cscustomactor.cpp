@@ -31,7 +31,7 @@ public:
 
 const CSHitboxCollider::Info CSCustomActor::sCollisionInfo = {
     240.0f,      // Size
-    Vec3f(0.0f)  // Offset
+    sead::Vec3f(0.0f)  // Offset
 };
 
 CSCustomActor::CSCustomActor(const ActorBuildInfo* buildInfo)

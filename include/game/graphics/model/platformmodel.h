@@ -24,12 +24,12 @@ public:
     }
 
     void init();
-    void update(Vec3f& pos, f32 width);
+    void update(sead::Vec3f& pos, f32 width);
     void draw();
 
     inline void create(u32 type, u32 width) {
-        Vec3i nv3i(0);
-        Vec3f nv3f(0);
+        sead::Vec3i nv3i(0);
+        sead::Vec3f nv3f(0);
 
         this->type = type;
         this->width = width;
@@ -41,12 +41,12 @@ public:
     ResArchive* archive;
     ModelWrapper* models[3];
     ModelWrapper* models2[30];
-    Vec3f position;
-    Vec3f _94;
-    Vec3f _A0;
-    Vec3f _AC;
-    Vec3f _B8;
-    Vec3i rotation;
+    sead::Vec3f position;
+    sead::Vec3f _94;
+    sead::Vec3f _A0;
+    sead::Vec3f _AC;
+    sead::Vec3f _B8;
+    sead::Vec3i rotation;
     f32 fwidth;
     f32 fwidth2;
     f32 _D8;

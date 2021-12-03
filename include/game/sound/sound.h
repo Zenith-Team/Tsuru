@@ -21,8 +21,8 @@ extern f32 SFXReverbPlyJump_1;
 // Plays a sound at a position
 // @param label Name of the sound to be played
 // @param position Position to play the sound at
-inline void playSound(const char* label, const Vec2f& position) {
-    Vec2f screenPos;
+inline void playSound(const char* label, const sead::Vec2f& position) {
+    sead::Vec2f screenPos;
     mapPositionToScreen(screenPos, position);
     BasicSoundActor::GlobalBasicSoundActorB->playSound(label, &screenPos, 0);
 }

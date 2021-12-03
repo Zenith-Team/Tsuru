@@ -3,9 +3,9 @@
 #include <types.h>
 
 // Maps a position to the screen
-// @param out Output Vec2f variable
+// @param out Output sead::Vec2f variable
 // @param position Position to be mapped
-void mapPositionToScreen(Vec2f& out, const Vec2f& position);
+void mapPositionToScreen(sead::Vec2f& out, const sead::Vec2f& position);
 
 // Smoothly moves an integer variable towards a target value
 // @param out Reference to variable which will be modified

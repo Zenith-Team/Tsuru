@@ -12,14 +12,14 @@ public:
     u32 beforeExecute() override;
     u32 beforeDraw() override;
 
-    Vec3f position;     // Inited to buildInfo->position
-    Vec3f position2;    // Inited to buildInfo->position
-    Vec3f _68;          // Inited to 0.0, 0.0, 0.0
-    Vec3f _74;          // Inited to 0.0, 0.0, 0.0
-    Vec3f scale;        // Inited to 1.0, 1.0, 1.0
-    Vec3f _8C;
-    Vec3f _98;
-    Vec3f _A4;
+    sead::Vec3f position;     // Inited to buildInfo->position
+    sead::Vec3f position2;    // Inited to buildInfo->position
+    sead::Vec3f _68;          // Inited to 0.0, 0.0, 0.0
+    sead::Vec3f _74;          // Inited to 0.0, 0.0, 0.0
+    sead::Vec3f scale;        // Inited to 1.0, 1.0, 1.0
+    sead::Vec3f _8C;
+    sead::Vec3f _98;
+    sead::Vec3f _A4;
     u32 _B0;            // Inited to 0
     u32 rotation;       // Inited to buildInfo->rotation
     u32 _B8;            // Inited to 0

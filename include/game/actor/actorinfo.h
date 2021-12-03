@@ -12,9 +12,9 @@ struct ActorInfo {
 
     static ActorInfo sDefault;
 
-    Vec2i spawnOffset;          // 0
-    Vec2i spawnRangeOffset;     // 8
-    Vec2i spawnRangeSize;       // 10
+    sead::Vec2i spawnOffset;          // 0
+    sead::Vec2i spawnRangeOffset;     // 8
+    sead::Vec2i spawnRangeSize;       // 10
     u16 _18;                    // 18
     u16 _1A;                    // 1A
     u16 _1C;                    // 1C

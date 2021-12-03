@@ -8,8 +8,8 @@ class EnemyFreezeMgr {
 public:
     struct Info {
         u32 settings;       // 0
-        Vec3f position;     // 4
-        Vec3f scale;        // 10
+        sead::Vec3f position;     // 4
+        sead::Vec3f scale;        // 10
         u32 _1C;            // 1C
     };
 

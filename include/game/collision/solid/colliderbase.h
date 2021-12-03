@@ -31,8 +31,8 @@ public:
         struct Sensor {
             Sensor();
 
-            Vec2f point1;  // 0   Position relative to parent's center, Inited to (0, 0)
-            Vec2f point2;  // 8   Position relative to parent's center, Inited to (1, 0)
+            sead::Vec2f point1;  // 0   Position relative to parent's center, Inited to (0, 0)
+            sead::Vec2f point2;  // 8   Position relative to parent's center, Inited to (1, 0)
         };
 
     public:
@@ -59,8 +59,8 @@ public:
     };
 
     struct OwnerInfo {
-        Vec3f* position;   // 0
-        Vec3f* _4;         // 4
+        sead::Vec3f* position;   // 0
+        sead::Vec3f* _4;         // 4
         u8* layer;         // 8
         u8* _C;            // C
         s8* playerID;      // 10
@@ -147,14 +147,14 @@ public:
     virtual u32 vf2C(u32*); // deleted
     virtual void vf34() = 0;
     virtual void execute() = 0;
-    virtual bool vf44(Node2*, u8*, Vec2f*, Vec2f*, u8) = 0;
-    virtual bool vf4C(Node2*, Vec2f*, Vec2f*, s32 sensorID, PhysicsMgr* physicsMgr) = 0;
-    virtual bool vf54(u8*, Vec2f*) = 0;
+    virtual bool vf44(Node2*, u8*, sead::Vec2f*, sead::Vec2f*, u8) = 0;
+    virtual bool vf4C(Node2*, sead::Vec2f*, sead::Vec2f*, s32 sensorID, PhysicsMgr* physicsMgr) = 0;
+    virtual bool vf54(u8*, sead::Vec2f*) = 0;
     virtual bool vf5C(u32*) = 0;
     virtual void vf64();
     virtual void vf6C() = 0;
     virtual void vf74(u32*) = 0;
-    virtual bool vf7C(Vec2f*, f32) = 0;
+    virtual bool vf7C(sead::Vec2f*, f32) = 0;
 
     void setType(Type type);
     void setSolidityType(SolidityType solidityType);
@@ -162,18 +162,18 @@ public:
 
     List::Node _10[8];          // 10
     Rect rect;                  // 70
-    Vec2f _80;                  // 80
+    sead::Vec2f _80;                  // 80
     u32 _88;                    // 88
     u32 _8C;                    // 8C
     StageActor* owner;          // 90
     u32 _94;                    // 94
     OwnerInfo ownerInfo;        // 98
-    Vec2f distToCenter;         // AC
-    Vec2f _B4;                  // B4
-    Vec2f _BC;                  // BC
-    Vec2f _C4;                  // C4
-    Vec2f _CC;                  // CC
-    Vec2f _D4;                  // D4
+    sead::Vec2f distToCenter;         // AC
+    sead::Vec2f _B4;                  // B4
+    sead::Vec2f _BC;                  // BC
+    sead::Vec2f _C4;                  // C4
+    sead::Vec2f _CC;                  // CC
+    sead::Vec2f _D4;                  // D4
     u32 _DC;                    // DC
     u32 _E0;                    // E0
     Rect _E4;                   // E4   //? Possible Vec4

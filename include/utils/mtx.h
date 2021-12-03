@@ -33,10 +33,10 @@ public:
             }
         }
     }
-    void rotateAndTranslate(const Vec3u& rotation, const Vec3f& translation);
-    static void makeST(Mtx34& mtx, const Vec3f& scale, const Vec3f& translation);
-    static void makeSRT(Mtx34& mtx, const Vec3f& scale, const Vec3f& rotation, const Vec3f& translation);
-    void makeSRzxyTIdx(const Vec3f& s, const Vec3u& r, const Vec3f& t) {
+    void rotateAndTranslate(const sead::Vec3u& rotation, const sead::Vec3f& translation);
+    static void makeST(Mtx34& mtx, const sead::Vec3f& scale, const sead::Vec3f& translation);
+    static void makeSRT(Mtx34& mtx, const sead::Vec3f& scale, const sead::Vec3f& rotation, const sead::Vec3f& translation);
+    void makeSRzxyTIdx(const sead::Vec3f& s, const sead::Vec3u& r, const sead::Vec3f& t) {
         f32 sinV[3];
         f32 cosV[3];
         sinCosIdx(&sinV[0], &cosV[0], r.x);

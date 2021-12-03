@@ -46,9 +46,9 @@ private:
     }
 };
 
-typedef Vec2<f32> Vec2f;
+typedef Vec2<f32> sead::Vec2f;
 typedef Vec2<u32> Vec2u;
-typedef Vec2<s32> Vec2i;
+typedef Vec2<s32> sead::Vec2i;
 
 template <typename T>
 struct Vec3 { // Size: 0xC
@@ -100,6 +100,6 @@ private:
     }
 };
 
-typedef Vec3<f32> Vec3f;
-typedef Vec3<u32> Vec3u;
+typedef Vec3<f32> sead::Vec3f;
+typedef Vec3<u32> sead::Vec3u;
 typedef Vec3<s32> Vec3i;

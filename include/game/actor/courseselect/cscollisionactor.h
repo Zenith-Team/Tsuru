@@ -24,14 +24,14 @@ public:
     virtual void vfAC(); // nullsub
     virtual u32 vfB4();
     virtual u32 vfBC();
-    virtual void vfC4(f64, Vec3f*);
+    virtual void vfC4(f64, sead::Vec3f*);
     virtual void vfCC(); // nullsub
     virtual u32 vfD4();
     virtual void vfDC();
     virtual u8 vfE4();
     virtual u8 vfEC();
     // Player collision related? (spawns effect RP_CSelect_HitNormal)
-    virtual void vfF4(Vec3f* position);
+    virtual void vfF4(sead::Vec3f* position);
     virtual void vfFC();
     virtual void vf104(u32);
     virtual void vf10C();

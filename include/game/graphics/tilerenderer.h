@@ -40,9 +40,9 @@ public:
     class TileMaskList { // Size: 0x5110
     public:
         struct MaskInfo {
-            Vec2f position;
+            sead::Vec2f position;
             f32 transparency;
-            Vec2f texCoords;
+            sead::Vec2f texCoords;
         };
 
     public:

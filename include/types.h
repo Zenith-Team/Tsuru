@@ -58,6 +58,6 @@ typedef void       (*funcPtr)();
 
 // Utility types
 
-#include <utils/vec.h>
+#include <sead/vector.h>
 #include <utils/mtx.h>
 #include <utils/rect.h>

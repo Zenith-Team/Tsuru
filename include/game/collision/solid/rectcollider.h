@@ -22,8 +22,8 @@ public:
 
     virtual ~RectCollider() { }
 
-    bool vf54(u8*, Vec2f*) override;
+    bool vf54(u8*, sead::Vec2f*) override;
 
-    Vec2f points[4];
+    sead::Vec2f points[4];
     Node  nodes[2][4];
 };

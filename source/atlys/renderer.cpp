@@ -47,19 +47,19 @@ void Atlys::Renderer::bindDrawMethods() {
 void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
     //* Render layers
     for (u32 i = 0; i < Atlys::Scene::instance()->map->info->layerCount; i++) {
-        agl::utl::ImageFilter2D::drawTextureMSAA(Atlys::Scene::instance()->map->layers[i].gtx.texture, *renderInfo.viewport, Vec2f(1.0f), Vec2f(0.0f));
+        agl::utl::ImageFilter2D::drawTextureMSAA(Atlys::Scene::instance()->map->layers[i].gtx.texture, *renderInfo.viewport, sead::Vec2f(1.0f), sead::Vec2f(0.0f));
     }
 
     //* Render nodes
     for (u32 i = 0; i < Atlys::Scene::instance()->map->info->nodeCount; i++) {
-        Vec2f nodePos2D(0.0f); nodePos2D.x = Atlys::Scene::instance()->map->nodes[i].position.x; nodePos2D.y = Atlys::Scene::instance()->map->nodes[i].position.y;
-        agl::utl::ImageFilter2D::drawTextureMSAA(this->nodeTex.texture, *renderInfo.viewport, Vec2f(0.5f), nodePos2D);
+        sead::Vec2f nodePos2D(0.0f); nodePos2D.x = Atlys::Scene::instance()->map->nodes[i].position.x; nodePos2D.y = Atlys::Scene::instance()->map->nodes[i].position.y;
+        agl::utl::ImageFilter2D::drawTextureMSAA(this->nodeTex.texture, *renderInfo.viewport, sead::Vec2f(0.5f), nodePos2D);
     }
     
 
     //* Render player
-    Vec2f playerPos2D(0.0f); playerPos2D.x = Atlys::Scene::instance()->player->position.x; playerPos2D.y = Atlys::Scene::instance()->player->position.y;
-    agl::utl::ImageFilter2D::drawTextureMSAA(Atlys::Scene::instance()->player->tex.texture, *renderInfo.viewport, Vec2f(0.05f), playerPos2D);
+    sead::Vec2f playerPos2D(0.0f); playerPos2D.x = Atlys::Scene::instance()->player->position.x; playerPos2D.y = Atlys::Scene::instance()->player->position.y;
+    agl::utl::ImageFilter2D::drawTextureMSAA(Atlys::Scene::instance()->player->tex.texture, *renderInfo.viewport, sead::Vec2f(0.05f), playerPos2D);
 }
 
 void Atlys::Renderer::drawLayerActors(const agl::lyr::RenderInfo& renderInfo) {

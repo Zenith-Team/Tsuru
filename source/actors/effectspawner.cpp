@@ -50,23 +50,23 @@ u32 EffectSpawner::onExecute() {
             }
 
             case 1: { // Particle effect mode
-                Vec3f effectPos(this->position.x, this->position.y, 4500.0f);
+                sead::Vec3f effectPos(this->position.x, this->position.y, 4500.0f);
                 Effect::spawn(this->settings1, &effectPos);
 
                 break;
             }
 
             case 2: { // Sound effect mode
-                playSound(*SE_VOC[this->settings2], Vec2f(this->position.x, this->position.y));
+                playSound(*SE_VOC[this->settings2], sead::Vec2f(this->position.x, this->position.y));
 
                 break;
             }
 
             case 3: { // Hybrid mode
-                Vec3f effectPos(this->position.x, this->position.y, 4500.0f);
+                sead::Vec3f effectPos(this->position.x, this->position.y, 4500.0f);
                 Effect::spawn(this->settings1, &effectPos);
 
-                playSound(*SE_VOC[this->settings2], Vec2f(this->position.x, this->position.y));
+                playSound(*SE_VOC[this->settings2], sead::Vec2f(this->position.x, this->position.y));
 
                 break;
             }

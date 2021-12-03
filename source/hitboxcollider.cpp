@@ -10,7 +10,7 @@
 #include <game/collision/hitboxcollider.h>
 
 void HitboxCollider::getRect(Rect& outRect) {
-    Vec3f* ownerPos = &this->owner->position;
+    sead::Vec3f* ownerPos = &this->owner->position;
 
     outRect.left   = ownerPos->x + this->colliderInfo.distToCenter.x - this->colliderInfo.distToEdge.x;
     outRect.right  = ownerPos->x + this->colliderInfo.distToCenter.x + this->colliderInfo.distToEdge.x;

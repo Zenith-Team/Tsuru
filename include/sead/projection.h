@@ -18,7 +18,7 @@ public:
     virtual u32 getProjectionType() const = 0;
     virtual void doUpdateMatrix(Mtx44* mtx) const = 0;
     virtual void doUpdateDeviceMatrix(Mtx44*, const Mtx44&, Graphics::DevicePosture) const;
-    virtual void doScreenPosToCameraPosTo(Vec3f*, const Vec3f&) const = 0;
+    virtual void doScreenPosToCameraPosTo(sead::Vec3f*, const sead::Vec3f&) const = 0;
 
     void updateMatrixImpl_() const;
     const Mtx44& getDeviceProjectionMatrix() const;
@@ -45,7 +45,7 @@ public:
     u32 getProjectionType() const override;
     void doUpdateMatrix(Mtx44* mtx) const override;
 
-    void doScreenPosToCameraPosTo(Vec3f*, const Vec3f&) const override; // deleted
+    void doScreenPosToCameraPosTo(sead::Vec3f*, const sead::Vec3f&) const override; // deleted
 
     void setTBLR(f32 top, f32 bottom, f32 left, f32 right);
 
@@ -76,7 +76,7 @@ public:
     u32 getProjectionType() const override;
     void doUpdateMatrix(Mtx44* mtx) const override;
 
-    void doScreenPosToCameraPosTo(Vec3f*, const Vec3f&) const override; // deleted
+    void doScreenPosToCameraPosTo(sead::Vec3f*, const sead::Vec3f&) const override; // deleted
 
     void set(f32 nearClip, f32 farClip, f32 fov, f32 aspectRatio);
 
@@ -101,7 +101,7 @@ public:
     u32 getProjectionType() const override;
     void doUpdateMatrix(Mtx44* mtx) const override;
 
-    void doScreenPosToCameraPosTo(Vec3f*, const Vec3f&) const override; // deleted
+    void doScreenPosToCameraPosTo(sead::Vec3f*, const sead::Vec3f&) const override; // deleted
 
     f32 getFovy();
 
@@ -109,10 +109,10 @@ public:
 
     f32 getOffsetX();
     f32 getOffsetY();
-    void getOffset(Vec2f& out);
+    void getOffset(sead::Vec2f& out);
 
-    inline Vec2f getOffset() {
-        Vec2f out;
+    inline sead::Vec2f getOffset() {
+        sead::Vec2f out;
         this->getOffset(out);
         return out;
     }

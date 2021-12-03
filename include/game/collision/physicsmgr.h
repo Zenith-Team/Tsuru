@@ -53,7 +53,7 @@ public:
     // @param sensorID ID which determines which sensor to get
     // @return Pointer to retrieved sensor
     const Sensor* getSensor(u32 sensorID) const;
-    bool doExplosionAt(const Vec2f& topLeft, const Vec2f& bottomRight);
+    bool doExplosionAt(const sead::Vec2f& topLeft, const sead::Vec2f& bottomRight);
 
     // Checks if the actor is on ground
     // @return Whether or not the actor is currently on ground
@@ -75,8 +75,8 @@ public:
     u8 _4C[0x844];               // 4C
     StageActor* owner;           // 890
     u32 _894;                    // 894
-    Vec3f* position;             // 898  &owner->position
-    Vec3f* _89C;                 // 89C  &owner->_240, lastPosition?
+    sead::Vec3f* position;             // 898  &owner->position
+    sead::Vec3f* _89C;                 // 89C  &owner->_240, lastPosition?
     u8* layer;                   // 8A0  &owner->layer
     u8* collisionMask;           // 8A4  &owner->collisionMask
     s8* playerID;                // 8A8  &owner->playerID

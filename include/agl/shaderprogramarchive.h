@@ -18,7 +18,7 @@ public:
         u32 _0;
         u32 _4;
         u8 _8[0x58][3]; // Class array
-        Vec2i _110;
+        sead::Vec2i _110;
         u32 _118;
         u8 _11C;
     };
@@ -33,7 +33,7 @@ public:
         u32 _1C;
         u32 _20;
         u32 _24;
-        Vec2i _28;
+        sead::Vec2i _28;
     };
 
 public:
