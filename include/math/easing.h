@@ -5,18 +5,25 @@
 #include <math/constants.h>
 #include <math/functions.h>
 
-typedef f32 (*EasingFunction)(f32);
-
 // Main class for all easing operations
 // @param func A reference to the easing function to be used
 // @param start The start value of the easing
 // @param target The target value of the easing
 // @param stepPercent How big each easing step should be, in progress percentage from 0.0 to 1.0. Put simply, the easing speed, and inversely, the smoothness
 class Easing {
+    typedef f32 (*EasingFunction)(f32);
+
 public:
-    Easing() {
-        this->inited = false;
-    }
+    Easing()
+        : inited(false)
+        , start(0.0f)
+        , target(0.0f)
+        , step(0.0f)
+        , iteration(0.0f)
+        , totalIterations(0.0f)
+        , func(nullptr)
+    { }
+
     Easing(EasingFunction func, f32 start, f32 target, f32 stepPercent) {
         this->set(func, start, target, stepPercent);
     }
@@ -28,22 +35,22 @@ public:
         this->func = func;
         this->start = start;
         this->target = target;
-        this->step = fabs(valueFromPercent(stepPercent, start, target) - start);
+        this->step = fabsf(valueFromPercent(stepPercent, start, target) - start);
         this->iteration = 0;
-        this->totalIterations = fabs(target - start) / this->step;
+        this->totalIterations = fabsf(target - start) / this->step;
     }
 
     // Eases the value towards the target value
     // @param value Reference to the variable to be eased
     // @return True if the value has reached the target value, false if not. Returns true if the easing values were not initialized to prevent infinite loops
-    bool ease(f32 &value) {
+    bool ease(f32& value) {
         if (!this->inited) {
-            LOG("WARNING > An Easing class instance was used with uninitialized values!\n");
+            LOG("WARNING > An Easing class instance was used with uninitialized values!");
             return true;
         }
 
         this->iteration++;
-        f32 progress = fabs(percentFromValue(this->start + this->step * this->iteration, this->start, this->target));
+        f32 progress = fabsf(percentFromValue(this->start + this->step * this->iteration, this->start, this->target));
         f32 next = this->start + this->func(progress) * (this->target - this->start);
         //LOG("Easing (%i): %f -> %f [Change: %f | %f%]\n", this->iteration, value, next, next - value, progress * 100);
 
