@@ -5,80 +5,105 @@
 #include <math/constants.h>
 #include <math/functions.h>
 
+typedef f32 (*EasingFunction)(f32);
+
 // Main class for all easing operations
 // @param func A reference to the easing function to be used
-// @param min The start value
-// @param max The end value
-// @param stepPercent How big each easing step should be, in progress percentage (0-100). Put simply, the easing speed
+// @param start The start value of the easing
+// @param target The target value of the easing
+// @param stepPercent How big each easing step should be, in progress percentage from 0.0 to 1.0. Put simply, the easing speed, and inversely, the smoothness
 class Easing {
-    typedef f32 (*EasingFunction)(f32);
-
 public:
-    Easing(EasingFunction func, f32 min = 0.0f, f32 max = 0.0f, f32 stepPercent = 0.0f) {
-        this->func = func;
-        this->min = min;
-        this->max = max;
-        this->step = valueFromPercent(stepPercent, min, max) - min;
-        this->iteration = 0;
+    Easing() {
+        this->inited = false;
+    }
+    Easing(EasingFunction func, f32 start, f32 target, f32 stepPercent) {
+        this->set(func, start, target, stepPercent);
     }
 
-    // Sets the parameters used for the easing operation, can be called multiple times for multi-use cases
-    void init(f32 min, f32 max, f32 stepPercent) {
-        this->min = min;
-        this->max = max;
-        this->step = valueFromPercent(stepPercent, min, max) - min;
+    // Sets the parameters used for the easing operation and resets the current easing state, can be called multiple times for multi-use cases
+    // Refer to the Easing class constructor for information on the arguments
+    void set(EasingFunction func, f32 start, f32 target, f32 stepPercent) {
+        this->inited = true;
+        this->func = func;
+        this->start = start;
+        this->target = target;
+        this->step = fabs(valueFromPercent(stepPercent, start, target) - start);
+        this->iteration = 0;
+        this->totalIterations = fabs(target - start) / this->step;
     }
 
     // Eases the value towards the target value
-    // @param value Reference to the current value to be eased
-    // @return True if the value has reached the target value, false otherwise
-    bool ease(f32& value) {
-        this->iteration++;
-        f32 next = this->func(percentFromValue(this->min * this->iteration + this->step, this->min, this->max) / 100) * (this->max - this->min) + this->min;
+    // @param value Reference to the variable to be eased
+    // @return True if the value has reached the target value, false if not. Returns true if the easing values were not initialized to prevent infinite loops
+    bool ease(f32 &value) {
+        if (!this->inited) {
+            LOG("WARNING > An Easing class instance was used with uninitialized values!\n");
+            return true;
+        }
 
-        if (next < this->max) {
+        this->iteration++;
+        f32 progress = fabs(percentFromValue(this->start + this->step * this->iteration, this->start, this->target));
+        f32 next = this->start + this->func(progress) * (this->target - this->start);
+        //LOG("Easing (%i): %f -> %f [Change: %f | %f%]\n", this->iteration, value, next, next - value, progress * 100);
+
+        if (this->iteration < totalIterations) {
             value = next;
             return false;
         };
 
-        value = this->max;
+        value = this->target;
         return true;
     }
 
     // https://easings.net
 
-    static f32 sineIn(f32 x)     { return 1.0f - cosf((x * M_PI) / 2.0f); }
-    static f32 sineOut(f32 x)    { return sinf((x * M_PI) / 2.0f); }
-    static f32 sineInOut(f32 x)  { return -(cosf(M_PI * x) - 1.0f) / 2.0f; }
+    static f32 sineIn(f32 x)       { return 1.0f - cosf((x * M_PI) / 2.0f); }
+    static f32 sineOut(f32 x)      { return sinf((x * M_PI) / 2.0f); }
+    static f32 sineInOut(f32 x)    { return -(cosf(M_PI * x) - 1.0f) / 2.0f; }
 
-    static f32 quadIn(f32 x)     { return x * x; }
-    static f32 quadOut(f32 x)    { return 1.0f - (1.0f - x) * (1.0f - x); }
-    static f32 quadInOut(f32 x)  { return x < 0.5 ? 2 * x * x : 1 - powf(-2 * x + 2, 2) / 2; }
+    static f32 quadIn(f32 x)       { return x * x; }
+    static f32 quadOut(f32 x)      { return 1.0f - (1.0f - x) * (1.0f - x); }
+    static f32 quadInOut(f32 x)    { return x < 0.5 ? 2 * x * x : 1 - powf(-2 * x + 2, 2) / 2; }
 
-    static f32 cubicIn(f32 x)    { return x * x * x; }
-    static f32 cubicOut(f32 x)   { return 1.0f - powf(1.0f - x, 3.0f); }
-    static f32 cubicInOut(f32 x) { return x < 0.5f ? 4.0f * x * x * x : 1.0f - powf(-2.0f * x + 2.0f, 3.0f) / 2.0f; }
+    static f32 cubicIn(f32 x)      { return x * x * x; }
+    static f32 cubicOut(f32 x)     { return 1.0f - powf(1.0f - x, 3.0f); }
+    static f32 cubicInOut(f32 x)   { return x < 0.5f ? 4.0f * x * x * x : 1.0f - powf(-2.0f * x + 2.0f, 3.0f) / 2.0f; }
 
-    static f32 quartIn(f32 x)    { return x * x * x * x; }
-    static f32 quartOut(f32 x)   { return 1.0f - powf(1.0f - x, 4.0f); }
-    static f32 quartInOut(f32 x) { return x < 0.5f ? 8.0f * x * x * x * x : 1.0f - powf(-2.0f * x + 2.0f, 4.0f) / 2.0f; }
+    static f32 quartIn(f32 x)      { return x * x * x * x; }
+    static f32 quartOut(f32 x)     { return 1.0f - powf(1.0f - x, 4.0f); }
+    static f32 quartInOut(f32 x)   { return x < 0.5f ? 8.0f * x * x * x * x : 1.0f - powf(-2.0f * x + 2.0f, 4.0f) / 2.0f; }
 
-    static f32 quintIn(f32 x)    { return x * x * x * x * x; }
-    static f32 quintOut(f32 x)   { return 1.0f - powf(1.0f - x, 5.0f); }
-    static f32 quintInOut(f32 x) { return x < 0.5f ? 16.0f * x * x * x * x * x : 1.0f - powf(-2.0f * x + 2.0f, 5.0f) / 2.0f; }
+    static f32 quintIn(f32 x)      { return x * x * x * x * x; }
+    static f32 quintOut(f32 x)     { return 1.0f - powf(1.0f - x, 5.0f); }
+    static f32 quintInOut(f32 x)   { return x < 0.5f ? 16.0f * x * x * x * x * x : 1.0f - powf(-2.0f * x + 2.0f, 5.0f) / 2.0f; }
 
-    static f32 expoIn(f32 x)     { return x == 0.0f ? 0.0f : powf(2.0f, 10.0f * x - 10.0f); }
-    static f32 expoOut(f32 x)    { return x == 1.0f ? 1.0f : 1.0f - powf(2.0f, -10.0f * x); }
-    static f32 expoInOut(f32 x)  { return x == 0.0f ? 0.0f : x == 1.0f ? 1.0f : x < 0.5f ? powf(2.0f, 20.0f * x - 10.0f) / 2.0f : (2.0f - powf(2.0f, -20.0f * x + 10.0f)) / 2.0f; }
+    static f32 expoIn(f32 x)       { return x == 0.0f ? 0.0f : powf(2.0f, 10.0f * x - 10.0f); }
+    static f32 expoOut(f32 x)      { return x == 1.0f ? 1.0f : 1.0f - powf(2.0f, -10.0f * x); }
+    static f32 expoInOut(f32 x)    { return x == 0.0f ? 0.0f : x == 1.0f ? 1.0f : x < 0.5f ? powf(2.0f, 20.0f * x - 10.0f) / 2.0f : (2.0f - powf(2.0f, -20.0f * x + 10.0f)) / 2.0f; }
 
-    static f32 circIn(f32 x)     { return 1.0f - sqrtf(1.0f - powf(x, 2.0f)); }
-    static f32 circOut(f32 x)    { return sqrtf(1.0f - powf(x - 1.0f, 2.0f)); }
-    static f32 circInOut(f32 x)  { return x < 0.5f ? (1.0f - sqrtf(1.0f - powf(2.0f * x, 2.0f))) / 2.0f : (sqrtf(1.0f - powf(-2.0f * x + 2.0f, 2.0f)) + 1.0f) / 2.0f; }
+    static f32 circIn(f32 x)       { return 1.0f - sqrtf(1.0f - powf(x, 2.0f)); }
+    static f32 circOut(f32 x)      { return sqrtf(1.0f - powf(x - 1.0f, 2.0f)); }
+    static f32 circInOut(f32 x)    { return x < 0.5f ? (1.0f - sqrtf(1.0f - powf(2.0f * x, 2.0f))) / 2.0f : (sqrtf(1.0f - powf(-2.0f * x + 2.0f, 2.0f)) + 1.0f) / 2.0f; }
+
+    static f32 backIn(f32 x)       { return 2.70158f * x * x * x - 1.70158f * x * x; }
+    static f32 backOut(f32 x)      { return 1.0f + 2.70158f * powf(x - 1.0f, 3.0f) + 1.70158f * powf(x - 1.0f, 2.0f); }
+    static f32 backInOut(f32 x)    { return x < 0.5f ? (powf(2.0f * x, 2.0f) * (3.5949095f * 2.0f * x - 2.5949095f)) / 2.0f : (powf(2.0f * x - 2.0f, 2.0f) * (3.5949095f * (x * 2.0f - 2.0f) + 2.5949095f) + 2.0f) / 2.0f; }
+
+    static f32 elasticIn(f32 x)    { return x == 0.0f ? 0.0f : x == 1.0f ? 1.0f : -powf(2.0f, 10.0f * x - 10.0f) * sinf((x * 10.0f - 10.75f) * (2.0f * M_PI / 3.0f)); }
+    static f32 elasticOut(f32 x)   { return x == 0.0f ? 0.0f : x == 1.0f ? 1.0f : powf(2.0f, -10.0f * x) * sinf((x * 10.0f - 0.75f) * (2.0f * M_PI / 3.0f)) + 1.0f; }
+    static f32 elasticInOut(f32 x) { return x == 0.0f ? 0.0f : x == 1.0f ? 1.0f : x < 0.5f ? -(powf(2.0f, 20.0f * x - 10.0f) * sinf((20.0f * x - 11.125f) * (2.0f * M_PI / 4.5f))) / 2.0f : (powf(2.0f, -20.0f * x + 10.0f) * sinf((20.f * x - 11.125f) * (2.0f * M_PI / 4.5f))) / 2.0f + 1.0f; }
+
+    static f32 bounceIn(f32 x)     { return 1.0f - bounceOut(1.0f - x); }
+    static f32 bounceOut(f32 x)    { return x < 1.0f / 2.75f ? 7.5625f * x * x : x < 2.0f / 2.75f ? 7.5625f * (x - 1.5f / 2.75f) * (x - 1.5f / 2.75f) + 0.75f : x < 2.5f / 2.75f   ? 7.5625f * (x - 2.25f / 2.75f) * (x - 2.25f / 2.75f) + 0.9375f : 7.5625f * (x - 2.625f / 2.75f) * (x - 2.625f / 2.75f) + 0.984375f; }
+    static f32 bounceInOut(f32 x)  { return x < 0.5f ? (1.0f - bounceOut(1.0f - 2.0f * x)) / 2.0f : (1.0f + bounceOut(2.0f * x - 1.0f)) / 2.0f; }
 
 private:
-    f32 min;
-    f32 max;
+    bool inited;
+    f32 start;
+    f32 target;
     f32 step;
     u32 iteration;
+    f32 totalIterations;
     EasingFunction func;
 };
