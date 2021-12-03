@@ -82,7 +82,7 @@ void PAcorn::vf1B4() {
 #include "game/playermgr.h"
 #include "game/effect/effect.h"
 u32 PAcorn::vf1C4() {
-    u32 local;
+    //u32 local;
 
     for (u32 i = 0; i < 4; i++) {
         Player* player = PlayerMgr::instance()->players[i];
