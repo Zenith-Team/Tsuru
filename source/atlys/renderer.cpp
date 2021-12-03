@@ -55,7 +55,7 @@ void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
         Vec2f nodePos2D(0.0f); nodePos2D.x = Atlys::Scene::instance()->map->nodes[i].position.x; nodePos2D.y = Atlys::Scene::instance()->map->nodes[i].position.y;
         agl::utl::ImageFilter2D::drawTextureMSAA(this->nodeTex.texture, *renderInfo.viewport, Vec2f(0.5f), nodePos2D);
     }
-    
+
 
     //* Render player
     Vec2f playerPos2D(0.0f); playerPos2D.x = Atlys::Scene::instance()->player->position.x; playerPos2D.y = Atlys::Scene::instance()->player->position.y;

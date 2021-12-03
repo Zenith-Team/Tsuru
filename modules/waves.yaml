@@ -18,7 +18,7 @@ Hooks:
   - type: funcptr
     addr: "100fe19c" # vtable entry for Quicksand::onExecute
     func: Quicksand_onExecute__FP10EnvTerrain
-  
+
 # Apply proper collision to waves through TileMgr waveType member
 #* Due to the fact that it uses a global member there can only be one type of wave active per level
   - type: branch

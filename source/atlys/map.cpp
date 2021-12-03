@@ -96,7 +96,7 @@ Atlys::Map::Map(const sead::SafeString& path)
 {
     LOG("Loading map: %s", path.cstr());
     Data data(path);
-    
+
     if (!data.loaded) {
         LOG("Map data failed to load");
         return;

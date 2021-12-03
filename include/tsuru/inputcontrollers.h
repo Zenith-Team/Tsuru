@@ -26,7 +26,7 @@ public:
         controllers[3].init(ControllerID_Wiimote4);
         controllers[4].init(ControllerID_Gamepad);
     }
-    
+
     // TODO: Use sead::BitFlag functions instead of our own
 
     // D-Pad

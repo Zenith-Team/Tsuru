@@ -125,7 +125,7 @@ void render() {
     tex.surface.use = GX2_SURFACE_USE_TEXTURE;
     tex.surface.imageSize = 57344;
     tex.surface.mipSize = 0;
-    tex.surface.mipData = NULL; 
+    tex.surface.mipData = NULL;
     tex.surface.tile = GX2_TILE_MODE_2D_THIN1;
     tex.surface.swizzle = 851968;
     tex.surface.align = 2048;
@@ -209,6 +209,6 @@ void render() {
 
         GX2SetTVEnable(true);
 
-        
+
     }
 }

@@ -24,14 +24,14 @@ public:
     ~GTX() {
         if (this->textureRaw)
             delete[] this->textureRaw;
-        
+
         this->textureRaw = nullptr;
     }
 
     bool load(const sead::SafeString& path) {
         sead::FileHandle handle;
         agl::TextureData textureData;
-        
+
         if (!sead::FileDeviceMgr::instance()->tryOpen(&handle, path, sead::FileDevice::FileOpenFlag_ReadOnly, 0)) {
             LOG("Texture file at %s does not exist.", path.cstr());
             return false;
@@ -61,7 +61,7 @@ public:
         textureData.invalidateGPUCache();
 
         this->texture.applyTextureData(textureData);
-    
+
         return true;
     }
 
