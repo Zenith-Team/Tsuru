@@ -84,11 +84,11 @@ inline const T& max(const T& x, const T& y) {
 // @param min The start value of the range
 // @param max The end value of the range
 // @return The percentage
-inline f32 percentFromValue(f32 value, f32 min, f32 max)   { return ((value - min) * 100) / (max - min); }
+inline f32 percentFromValue(f32 value, f32 min, f32 max)   { return (((value - min) * 100) / (max - min)) / 100; }
 
 // Gets the number represented by a percentage of a given range
 // @param percent The percentage
 // @param min The start value of the range
 // @param max The end value of the range
 // @return The number
-inline f32 valueFromPercent(f32 percent, f32 min, f32 max) { return (percent * (max - min) / 100) + min; }
+inline f32 valueFromPercent(f32 percent, f32 min, f32 max) { return (percent * 100 * (max - min) / 100) + min; }

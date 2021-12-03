@@ -8,7 +8,7 @@ namespace agl { namespace lyr {
 bool Renderer::drawCustomTV(DisplayType displayType) const {
     if (this->gpuCounter % this->gpuCounterPeriod)
         return false;
-    
+
     if (this->flags.isOffBit(4) && this->flags.isOffBit(0)) {
         agl::RenderBuffer* tvBuffer = this->renderBuffers[DisplayType_TopTV];
 
@@ -16,7 +16,7 @@ bool Renderer::drawCustomTV(DisplayType displayType) const {
             u32 clearFlags = 1;
             if (tvBuffer->targetDepth)
                 clearFlags = 3;
-            
+
             tvBuffer->bind();
 
             sead::Viewport viewport(*tvBuffer);
@@ -34,7 +34,7 @@ bool Renderer::drawCustomTV(DisplayType displayType) const {
 bool Renderer::drawCustomDRC(DisplayType displayType) const {
     if (this->gpuCounter % this->gpuCounterPeriod)
         return false;
-    
+
     if (this->flags.isOffBit(4) && this->flags.isOffBit(0)) {
         agl::RenderBuffer* drcBuffer = this->renderBuffers[DisplayType_BottomDRC];
 
@@ -42,7 +42,7 @@ bool Renderer::drawCustomDRC(DisplayType displayType) const {
             u32 clearFlags = 1;
             if (drcBuffer->targetDepth)
                 clearFlags = 3;
-            
+
             drcBuffer->bind();
 
             sead::Viewport viewport(*drcBuffer);

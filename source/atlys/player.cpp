@@ -76,7 +76,7 @@ void Atlys::Player::findTargetNode(Direction::DirectionType direction) {
         this->walkingSpeed = this->currentNode->Level_connections[direction].speed;
 
     this->direction = direction;
-    this->targetNode = target; 
+    this->targetNode = target;
     this->states.changeState(&Atlys::Player::StateID_Walking);
     this->updateTargetRotation();
 }
@@ -116,7 +116,7 @@ void Atlys::Player::executeState_Walking() {
     }
 
     LOG("Walking to node at %f, %f, current position: %f, %f", this->targetNode->position.x, this->targetNode->position.y, this->position.x, this->position.y);
-    
+
     // Pythagorean theorem
     f32 distance = sqrtf(powf(this->targetNode->position.x - this->position.x, 2) + powf(this->targetNode->position.y - this->position.y, 2));
     f32 fullDistance = sqrtf(powf(this->targetNode->position.x - this->currentNode->position.x, 2) + powf(this->targetNode->position.y - this->currentNode->position.y, 2));

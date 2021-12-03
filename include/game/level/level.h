@@ -99,11 +99,11 @@ public:
         // @param id Target location ID
         // @return Pointer to the retrieved location
         Location* getLocation(Rect& outRect, u8 id);
-        
+
         // @param id Target path ID
         // @return Pointer to the retrieved path
         Path* getPath(u8 id);
-        
+
         // @param id Target path node ID
         // @return Pointer to the retrieved path node
         PathNode* getPathNodes(u32 id);

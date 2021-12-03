@@ -34,7 +34,7 @@ public:
     void initLayer_(Layer* layer, u32 layerID, const sead::SafeString& layerName, u32 displayType, sead::Heap* heap);
 
     bool draw(DisplayType displayType) const;
-    
+
     // Custom functions
     bool drawCustomTV(DisplayType displayType) const;
     bool drawCustomDRC(DisplayType displayType) const;

@@ -41,7 +41,7 @@ RedirectCloudType:
 
     cmpwi r0, CloudTypeCustom
     beqlr
-    
+
     cmpwi r0, CloudTypeFoo
     blr
 
@@ -49,7 +49,7 @@ RedirectCloudType:
 SetCloudTexture:
     # Compare against custom and death cloud types and return the comparison result
     # If either are true, it will set the cloud tex anim frame to the death cloud one
-    
+
     cmpwi r7, CloudTypeCustom
     beqlr
 
@@ -83,13 +83,13 @@ SetCloudLightColor:
     bne    StoreLightColor
 
     # Color.. stuff
-	lis r10, LightColor@ha
-	lbzu r9, LightColor@l(r10)
-	insrwi r26, r9, 8, 0
-	lbz r9, 1(r10)
-	insrwi r26, r9, 8, 8
-	lbz r9, 2(r10)
-	insrwi r26, r9, 8, 16
+    lis r10, LightColor@ha
+    lbzu r9, LightColor@l(r10)
+    insrwi r26, r9, 8, 0
+    lbz r9, 1(r10)
+    insrwi r26, r9, 8, 8
+    lbz r9, 2(r10)
+    insrwi r26, r9, 8, 16
 StoreLightColor:
     stw    r26, 0x0(r7)
     blr
@@ -104,11 +104,11 @@ CloudCollision:
     lwz r12, 0x10(r31) # Load this->settings1
     extrwi r12, r12, 4, 24 # r12 = r12 >> 4 & 0xF
     cmpwi r12, CloudTypeCustom
-    
+
     # Restore context
     mtlr r23
     li r23, 10
-    
+
     # Return if not custom type
     bnelr
 
@@ -125,7 +125,7 @@ CloudCollision:
 
     mflr r23
     fmr f16, f1
-    
+
     # Load address to player damage function
     lwz r12, 0x4C(r11)
     lwz r12, 0x8E4(r12)
@@ -136,7 +136,7 @@ CloudCollision:
     li r4, 0   # param 2: idk
     li r5, 0xF # param 3: damageType: InstaKill_2
     bctrl
-    
+
     # Restore context and return
     fmr f1, f16
     mtlr r23
