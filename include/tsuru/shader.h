@@ -10,7 +10,7 @@ public:
     Shader(const sead::SafeString& path, u32 vtxIndex = 0, u32 fragIndex = 0, sead::Heap* heap = nullptr);
     virtual ~Shader();
 
-    inline bool isInitialized() const { return this->inited; }
+    bool isInitialized() const { return this->inited; }
 
     virtual void use(const GX2FetchShader* fetchShader) const;
 
@@ -34,11 +34,11 @@ public:
         const char* cname = name.cstr();
 
         s32 vtxOffs = GX2GetVertexUniformVarOffset(this->vertexShader, cname);
-        if (vtxOffs = -1)
+        if (vtxOffs == -1)
             GX2SetVertexUniformReg(vtxOffs, 1, &value);
         
         s32 frgOffs = GX2GetPixelUniformVarOffset(this->pixelShader, cname);
-        if (frgOffs = -1)
+        if (frgOffs == -1)
             GX2SetPixelUniformReg(frgOffs, 1, &value);
     }
 
@@ -46,11 +46,11 @@ public:
         const char* cname = name.cstr();
 
         s32 vtxOffs = GX2GetVertexUniformVarOffset(this->vertexShader, cname);
-        if (vtxOffs = -1)
+        if (vtxOffs == -1)
             GX2SetVertexUniformReg(vtxOffs, 1, &value);
         
         s32 frgOffs = GX2GetPixelUniformVarOffset(this->pixelShader, cname);
-        if (frgOffs = -1)
+        if (frgOffs == -1)
             GX2SetPixelUniformReg(frgOffs, 1, &value);
     }
 };
