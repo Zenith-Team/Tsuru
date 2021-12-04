@@ -151,10 +151,15 @@ void Atlys::Player::executeState_Walking() {
         switch (this->targetNode->type) {
             case Map::Node::Type_Passthrough: {
                 // If we reached the target and the type is passthrough, instead of stopping change target to the next node
-                if (this->targetNode->Passthrough_connections[0].node == this->currentNode->id)
+                const Map::Node* temp = this->targetNode;
+                if (this->targetNode->Passthrough_connections[0].node == this->currentNode->id) {
                     this->targetNode = Atlys::Scene::instance()->map->findNodeByID(this->targetNode->Passthrough_connections[1].node);
-                else
+                } else {
                     this->targetNode = Atlys::Scene::instance()->map->findNodeByID(this->targetNode->Passthrough_connections[0].node);
+                }
+
+                // Set current node to the passthrough we are on so that returning will work properly
+                this->currentNode = temp;
 
                 this->updateTargetRotation();
                 break;
