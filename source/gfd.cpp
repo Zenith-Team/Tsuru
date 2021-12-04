@@ -55,8 +55,8 @@ GX2VertexShader* GFDGetVertexShaderPointer(u32 index, const void* file) {
             break;
     }
 
-    if (shader != NULL && shader->shaderData != NULL)
-        return shader;
+    if (shader != NULL && shader->shaderData == NULL)
+        return NULL;
     
     return shader;
 }
@@ -112,7 +112,7 @@ GX2PixelShader* GFDGetPixelShaderPointer(u32 index, const void* file) {
             break;
     }
 
-    if (shader != NULL && shader->shaderData != NULL)
+    if (shader != NULL && shader->shaderData == NULL)
         return NULL;
     
     return shader;
