@@ -1,9 +1,9 @@
 #pragma once
 
-#include <sead/task.h>
-#include <game/states.h>
-#include <agl/lyr/renderinfo.h>
-#include <agl/lyr/drawmethod.h>
+#include "sead/task.h"
+#include "game/states.h"
+#include "agl/lyr/renderinfo.h"
+#include "agl/lyr/drawmethod.h"
 
 class CourseSelectTask : public sead::CalculateTask { // Size: 0xDD0
     SEAD_RTTI_OVERRIDE(CourseSelectTask, sead::CalculateTask)

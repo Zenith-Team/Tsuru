@@ -28,11 +28,11 @@
 #include <cstring>
 extern "C" {
 #else
-#include <string.h>
+#include<string.h>
 #endif
 
-#include <dynlibs/os/types.h>
-#include <dynlibs/gx2/types.h>
+#include "dynlibs/os/types.h"
+#include "dynlibs/gx2/types.h"
 
 extern u32 gx2_handle;
 

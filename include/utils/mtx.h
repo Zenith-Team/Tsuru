@@ -1,8 +1,8 @@
 #pragma once
 
-#include <types.h>
-#include <nw/math/triangular.h>
-#include <cafe/math/mtx.h>
+#include "types.h"
+#include "nw/math/triangular.h"
+#include "cafe/math/mtx.h"
 
 inline void sinCosIdx(f32* pSin, f32* pCos, u32 idx) {
     u32 index = (idx >> 24) & 0xFF;

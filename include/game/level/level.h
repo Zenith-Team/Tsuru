@@ -1,6 +1,6 @@
 #pragma once
 
-#include <sead.h>
+#include "sead.h"
 
 class Level {
     SEAD_SINGLETON_DISPOSER(Level)

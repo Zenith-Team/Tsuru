@@ -1,9 +1,9 @@
 #pragma once
 
-#include <sead/idisposer.h>
-#include <sead/safestring.h>
-#include <sead/list.h>
-#include <sead/runtimetypeinfo.h>
+#include "sead/idisposer.h"
+#include "sead/safestring.h"
+#include "sead/list.h"
+#include "sead/runtimetypeinfo.h"
 
 namespace sead {
 

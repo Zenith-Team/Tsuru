@@ -1,11 +1,11 @@
-#include <game/actor/stage/enemy.h>
-#include <game/graphics/model/model.h>
-#include <game/sound/sound.h>
-#include <game/collision/actorphysicsmgr.h>
-#include <game/graphics/drawmgr.h>
-#include <game/effect/effect.h>
-#include <math.h>
-#include <sead.h>
+#include "game/actor/stage/enemy.h"
+#include "game/graphics/model/model.h"
+#include "game/sound/sound.h"
+#include "game/collision/actorphysicsmgr.h"
+#include "game/graphics/drawmgr.h"
+#include "game/effect/effect.h"
+#include "math.h"
+#include "sead.h"
 
 class FallingChestnut : public Enemy {
     SEAD_RTTI_OVERRIDE_IMPL(FallingChestnut, Enemy)

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <math/constants.h>
-#include <types.h>
+#include "math/constants.h"
+#include "types.h"
 
 // @return Sine value of the given param
 f32 sinf(f32 x);

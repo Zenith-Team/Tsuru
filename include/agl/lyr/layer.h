@@ -1,7 +1,7 @@
 #pragma once
 
-#include <sead.h>
-#include <types.h>
+#include "sead.h"
+#include "types.h"
 
 #include "drawmethod.h"
 

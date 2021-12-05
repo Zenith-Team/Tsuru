@@ -1,7 +1,7 @@
 #pragma once
 
 #include "savedata.h"
-#include <sead.h>
+#include "sead.h"
 
 class SaveMgr { // Size: 0x50
     SEAD_SINGLETON_DISPOSER(SaveMgr)

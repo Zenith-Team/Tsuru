@@ -1,9 +1,9 @@
 #pragma once
 
-#include <sead/task.h>
-#include <sead/list.h>
-#include <sead/ptrarray.h>
-#include <sead/controller.h>
+#include "sead/task.h"
+#include "sead/list.h"
+#include "sead/ptrarray.h"
+#include "sead/controller.h"
 
 namespace sead {
 

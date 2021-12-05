@@ -1,6 +1,6 @@
 #pragma once
 
-#include <game/actor/courseselect/courseselectactor.h>
+#include "game/actor/courseselect/courseselectactor.h"
 
 // TODO: Figure out a better name for this class (what does it do?)
 class CSSomethingActor : public CourseSelectActor {

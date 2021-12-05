@@ -1,18 +1,18 @@
-#include <game/task/areatask.h>
-#include <game/task/courseselecttask.h>
-#include <game/collision/collidermgr.h>
-#include <game/collision/solid/shapedcollider.h>
-#include <game/collision/solid/circularcollider.h>
-#include <game/collision/solid/solidontopcollider.h>
-#include <game/collision/actorphysicsmgr.h>
-#include <game/actor/actormgr.h>
-#include <game/actor/courseselect/cscollisionactor.h>
-#include <game/collision/cshitboxcollider.h>
-#include <agl/lyr/renderinfo.h>
-#include <log.h>
-#include <tsuru/save/managers/tsurusavemgr.h>
-#include <utils/mtx.h>
-#include <math/functions.h>
+#include "game/task/areatask.h"
+#include "game/task/courseselecttask.h"
+#include "game/collision/collidermgr.h"
+#include "game/collision/solid/shapedcollider.h"
+#include "game/collision/solid/circularcollider.h"
+#include "game/collision/solid/solidontopcollider.h"
+#include "game/collision/actorphysicsmgr.h"
+#include "game/actor/actormgr.h"
+#include "game/actor/courseselect/cscollisionactor.h"
+#include "game/collision/cshitboxcollider.h"
+#include "agl/lyr/renderinfo.h"
+#include "log.h"
+#include "tsuru/save/managers/tsurusavemgr.h"
+#include "utils/mtx.h"
+#include "math/functions.h"
 
 void drawLine3D(const Vec3f& position, const u32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
     Vec3f scale(lineLength, lineThickness, lineThickness);

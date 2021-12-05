@@ -1,7 +1,7 @@
 #pragma once
 
-#include <sead/idisposer.h>
-#include <dynlibs/os/types.h>
+#include "sead/idisposer.h"
+#include "dynlibs/os/types.h"
 
 namespace sead {
 

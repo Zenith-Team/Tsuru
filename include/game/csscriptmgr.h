@@ -1,8 +1,8 @@
 #pragma once
 
-#include <sead.h>
-#include <game/csscript.h>
-#include <game/actor/actor.h>
+#include "sead.h"
+#include "game/csscript.h"
+#include "game/actor/actor.h"
 
 class CSScriptMgr { // Size: 0x570
     SEAD_SINGLETON_DISPOSER(CSScriptMgr)

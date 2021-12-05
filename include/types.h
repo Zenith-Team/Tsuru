@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cstddef>
-#include <preprocessor.h>
+#include "preprocessor.h"
 
 // Workarounds to meet newer standards
 
@@ -58,6 +58,6 @@ typedef void       (*funcPtr)();
 
 // Utility types
 
-#include <utils/vec.h>
-#include <utils/mtx.h>
-#include <utils/rect.h>
+#include "utils/vec.h"
+#include "utils/mtx.h"
+#include "utils/rect.h"

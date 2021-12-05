@@ -1,12 +1,12 @@
-#include <game/actor/stage/multistateactor.h>
-#include <game/graphics/model/model.h>
-#include <game/graphics/drawmgr.h>
-#include <game/collision/solid/rectcollider.h>
-#include <game/collision/collidermgr.h>
-#include <game/actor/actormgr.h>
-#include <game/level/levelinfo.h>
-#include <game/task/taskmgr.h>
-#include <game/task/coursetask.h>
+#include "game/actor/stage/multistateactor.h"
+#include "game/graphics/model/model.h"
+#include "game/graphics/drawmgr.h"
+#include "game/collision/solid/rectcollider.h"
+#include "game/collision/collidermgr.h"
+#include "game/actor/actormgr.h"
+#include "game/level/levelinfo.h"
+#include "game/task/taskmgr.h"
+#include "game/task/coursetask.h"
 
 class BeepBlock : public MultiStateActor {
     SEAD_RTTI_OVERRIDE_IMPL(BeepBlock, MultiStateActor)

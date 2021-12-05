@@ -1,20 +1,20 @@
 #pragma once
 
-#include <sead/idisposer.h>
-#include <sead/safestring.h>
+#include "sead/idisposer.h"
+#include "sead/safestring.h"
 
-#include <agl/texturedata.h>
-#include <agl/lyr/renderinfo.h>
-#include <agl/shaderprogramarchive.h>
-#include <agl/utl/debugtexturepage.h>
-#include <agl/vertexbuffer.h>
-#include <agl/vertexattribute.h>
-#include <agl/indexstream.h>
-#include <agl/texturesampler.h>
-#include <agl/shaderprogram.h>
-#include <agl/rendertargetcolor.h>
-#include <agl/rendertargetdepth.h>
-#include <agl/renderbuffer.h>
+#include "agl/texturedata.h"
+#include "agl/lyr/renderinfo.h"
+#include "agl/shaderprogramarchive.h"
+#include "agl/utl/debugtexturepage.h"
+#include "agl/vertexbuffer.h"
+#include "agl/vertexattribute.h"
+#include "agl/indexstream.h"
+#include "agl/texturesampler.h"
+#include "agl/shaderprogram.h"
+#include "agl/rendertargetcolor.h"
+#include "agl/rendertargetdepth.h"
+#include "agl/renderbuffer.h"
 
 class TileRenderer { // Size: 0x12AFC
     SEAD_SINGLETON_DISPOSER(TileRenderer)
