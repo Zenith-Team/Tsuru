@@ -1,7 +1,7 @@
 #pragma once
 
-#include <tsuru/save/system/customsavemgr.h>
-#include <tsuru/save/system/savemgrsystem.h>
+#include "tsuru/save/system/customsavemgr.h"
+#include "tsuru/save/system/savemgrsystem.h"
 
 // Array of function pointers to createInstance
 MiniPointerList<CustomSaveMgr* (*)(sead::Heap* heap), SAVEMGR_SYSTEM_MAX> SaveMgrSystem::ciList;

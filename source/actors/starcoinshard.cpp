@@ -1,7 +1,7 @@
-#include <game/actor/stage/multistateactor.h>
-#include <game/graphics/model/model.h>
-#include <game/graphics/drawmgr.h>
-#include <game/actor/actormgr.h>
+#include "game/actor/stage/multistateactor.h"
+#include "game/graphics/model/model.h"
+#include "game/graphics/drawmgr.h"
+#include "game/actor/actormgr.h"
 
 class StarCoinShard : public MultiStateActor {
     SEAD_RTTI_OVERRIDE_IMPL(StarCoinShard, MultiStateActor)

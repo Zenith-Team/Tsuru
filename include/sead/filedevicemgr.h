@@ -1,7 +1,7 @@
 #pragma once
 
-#include <sead/filedevice.h>
-#include <sead/safestring.h>
+#include "sead/filedevice.h"
+#include "sead/safestring.h"
 
 namespace sead {
 

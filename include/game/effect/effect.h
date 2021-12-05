@@ -1,9 +1,9 @@
 #pragma once
 
-#include <sead.h>
-#include <types.h>
-#include <nw/eft.h>
-#include <game/effect/effectid.h>
+#include "sead.h"
+#include "types.h"
+#include "nw/eft.h"
+#include "game/effect/effectid.h"
 
 class Effect {
 public:

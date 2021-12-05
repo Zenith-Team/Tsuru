@@ -1,7 +1,7 @@
 #pragma once
 
-#include <game/enemyfreezemgr.h>
-#include <game/actor/stage/multistateactor.h>
+#include "game/enemyfreezemgr.h"
+#include "game/actor/stage/multistateactor.h"
 
 class Enemy : public MultiStateActor { // Size: 0x1880
     SEAD_RTTI_OVERRIDE(Enemy, MultiStateActor)
@@ -243,3 +243,5 @@ public:
     u8  _187E;                      // 187E
     u8  _187F;                      // 187F
 };
+
+static_assert(sizeof(Enemy) == 0x1880, "Enemy size mismatch");

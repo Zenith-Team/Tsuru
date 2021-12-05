@@ -1,7 +1,7 @@
-#include <game/actor/actor.h>
-#include <game/playermgr.h>
-#include <game/actor/stage/player.h>
-#include <log.h>
+#include "game/actor/actor.h"
+#include "game/playermgr.h"
+#include "game/actor/stage/player.h"
+#include "log.h"
 
 class DebugActor : public Actor {
 public:

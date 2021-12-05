@@ -1,8 +1,8 @@
 #pragma once
 
-#include <sead/runtimetypeinfo.h>
-#include <game/actor/actorinfo.h>
-#include <game/actor/actorbuildinfo.h>
+#include "sead/runtimetypeinfo.h"
+#include "game/actor/actorinfo.h"
+#include "game/actor/actorbuildinfo.h"
 
 class Actor { // Size: 0x50
     SEAD_RTTI_BASE(Actor)
@@ -41,30 +41,8 @@ public:
     bool isSprite;                          // D
     bool isCreated;                         // E
     bool isDeleted;                         // F
-    union { u32 settings1;                  // 10
-        struct {                            // 10
-            u32 nybble12 : 4;               // 10
-            u32 nybble11 : 4;               // 10
-            u32 nybble10 : 4;               // 10
-            u32 nybble9  : 4;               // 10
-            u32 nybble8  : 4;               // 10
-            u32 nybble7  : 4;               // 10
-            u32 nybble6  : 4;               // 10
-            u32 nybble5  : 4;               // 10
-        };                                  // 10
-    };                                      // 10
-    union { u32 settings2;                  // 14
-        struct {                            // 14
-            u32 nybble20 : 4;               // 14
-            u32 nybble19 : 4;               // 14
-            u32 nybble18 : 4;               // 14
-            u32 nybble17 : 4;               // 14
-            u32 nybble16 : 4;               // 14
-            u32 nybble15 : 4;               // 14
-            u32 nybble14 : 4;               // 14
-            u32 nybble13 : 4;               // 14
-        };                                  // 14
-    };                                      // 14
+    u32 settings1;                          // 10
+    u32 settings2;                          // 14
     u8 movementID;                          // 18
     u8 linkID;                              // 19
     u8 initialStateFlag;                    // 1A

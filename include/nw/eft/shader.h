@@ -1,7 +1,7 @@
 #pragma once
 
-#include <nw/eft/cafewrapper.h>
-#include <nw/eft/resdata.h>
+#include "nw/eft/cafewrapper.h"
+#include "nw/eft/resdata.h"
 
 #include <cstring>
 

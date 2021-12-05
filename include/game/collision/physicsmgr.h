@@ -1,7 +1,7 @@
 #pragma once
 
-#include <sead.h>
-#include <game/collision/tilechecker.h>
+#include "sead.h"
+#include "game/collision/tilechecker.h"
 
 class StageActor;
 

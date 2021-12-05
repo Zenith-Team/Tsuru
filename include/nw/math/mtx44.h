@@ -1,7 +1,7 @@
 #pragma once
 
-#include <nw/math/vec4.h>
-#include <nw/math/mtx34.h>
+#include "nw/math/vec4.h"
+#include "nw/math/mtx34.h"
 
 namespace nw { namespace math {
 

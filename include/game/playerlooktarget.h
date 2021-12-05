@@ -1,6 +1,6 @@
 #pragma once
 
-#include <sead/idisposer.h>
+#include "sead/idisposer.h"
 
 class PlayerLookTarget : public sead::IDisposer { // Size: 0x2C
     PlayerLookTarget(u32* ownerID);

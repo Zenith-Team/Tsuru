@@ -1,8 +1,8 @@
 #pragma once
 
-#include <sead.h>
-#include <nw/g3d.h>
-#include <game/graphics/layer/objlayer.h>
+#include "sead.h"
+#include "nw/g3d.h"
+#include "game/graphics/layer/objlayer.h"
 
 class SkeletalAnimation;
 class TextureAnimation;

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <game/actor/stage/enemy.h>
-#include <game/graphics/model/model.h>
+#include "game/actor/stage/enemy.h"
+#include "game/graphics/model/model.h"
 
 class DoorBase : public Enemy { // Size: 0x18A8
     SEAD_RTTI_OVERRIDE(DoorBase, Enemy)
@@ -53,3 +53,5 @@ public:
     u32  _18A0;
     s32  _18A4;
 };
+
+static_assert(sizeof(DoorBase) == 0x18A8, "DoorBase size mismatch");

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <types.h>
+#include "types.h"
 
 // Compare if two wide strings are equal
 // @param str1 The first string to compare

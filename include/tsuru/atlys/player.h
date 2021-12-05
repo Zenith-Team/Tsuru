@@ -37,11 +37,10 @@ public:
     DECLARE_STATE(Player, Walking);
 
     MultiStateWrapper<Atlys::Player> states;
-    ModelWrapper* model;
     const Map::Node* currentNode;
     const Map::Node* targetNode;
     f32 walkingSpeed;
-    f32 targetRotation; // Y axis
+    f32 targetRotation; // Y axis in degrees
     Direction::DirectionType direction;
 
     GTX tex; //! Temp

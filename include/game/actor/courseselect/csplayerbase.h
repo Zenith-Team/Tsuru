@@ -1,7 +1,7 @@
 #pragma once
 
 #include "courseselectactor.h"
-#include <game/effect/effect.h>
+#include "game/effect/effect.h"
 
 class CSPlayerBase : public CourseSelectActor {
     SEAD_RTTI_OVERRIDE(CSPlayerBase, CourseSelectActor)

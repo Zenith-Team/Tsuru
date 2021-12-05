@@ -1,7 +1,7 @@
-#include <game/task/taskmgr.h>
-#include <game/task/coursetask.h>
-#include <game/level/levelinfo.h>
-#include <tsuru/save/managers/tsurusavemgr.h>
+#include "game/task/taskmgr.h"
+#include "game/task/coursetask.h"
+#include "game/level/levelinfo.h"
+#include "tsuru/save/managers/tsurusavemgr.h"
 
 void respawn() {
     if (TsuruSaveMgr::sSaveData.instantRespawnEnabled)

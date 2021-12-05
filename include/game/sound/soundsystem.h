@@ -1,7 +1,7 @@
 #pragma once
 
-#include <sead.h>
-#include <game/sound/audiofx.h>
+#include "sead.h"
+#include "game/sound/audiofx.h"
 
 class SoundSystemBase {
 public:

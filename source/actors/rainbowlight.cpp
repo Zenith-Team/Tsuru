@@ -1,7 +1,7 @@
-#include <game/actor/stage/stageactor.h>
-#include <game/graphics/lightsource.h>
-#include <game/graphics/mask/lightmask.h>
-#include <log.h>
+#include "game/actor/stage/stageactor.h"
+#include "game/graphics/lightsource.h"
+#include "game/graphics/mask/lightmask.h"
+#include "log.h"
 
 class RainbowLight : public StageActor {
     SEAD_RTTI_OVERRIDE_IMPL(RainbowLight, StageActor)
@@ -33,11 +33,11 @@ Actor* RainbowLight::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 RainbowLight::onCreate() {
-    this->lightAttenuationRadius = this->nybble13 * this->nybble13 * 1.5f;
+    this->lightAttenuationRadius = ((this->settings2 >> 0x1C) & 0xF) * ((this->settings2 >> 0x1C) & 0xF) * 1.5f;
 
-    LOG("%x", this->nybble12);
+    LOG("%x", this->settings1 & 0xF);
 
-    switch (this->nybble12) {
+    switch (this->settings1 & 0xF) {
         case 0: this->lightColor = sead::colorRed;      break;
         case 1: this->lightColor = sead::colorOrange;   break;
         case 2: this->lightColor = sead::colorYellow;   break;

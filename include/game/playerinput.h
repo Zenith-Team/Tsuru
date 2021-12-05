@@ -1,7 +1,7 @@
 #pragma once
 
-#include <sead/bitflag.h>
-#include <tsuru/utils.h>
+#include "sead/bitflag.h"
+#include "tsuru/utils.h"
 
 class PlayerInput {
 public:
