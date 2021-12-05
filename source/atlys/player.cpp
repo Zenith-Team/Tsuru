@@ -15,7 +15,6 @@ PROFILE_RESOURCES(ProfileID::AtlysPlayer, "kanibo");
 Atlys::Player::Player(const ActorBuildInfo* buildInfo)
     : Atlys::Actor(buildInfo)
     , states(this)
-    , model(nullptr)
     , currentNode(nullptr)
     , targetNode(nullptr)
     , walkingSpeed(0.0f)
@@ -43,13 +42,14 @@ u32 Atlys::Player::onCreate() {
 u32 Atlys::Player::onExecute() {
     this->states.execute();
 
-    if (this->rotation.y != this->targetRotation)
-        moveFloatTo(this->rotation.y, this->targetRotation, 0.1f);
+    if (this->rotation.y != fixDeg(this->targetRotation))
+        moveValueTo(this->rotation.y, fixDeg(this->targetRotation), 0x10000);
 
     return 1;
 }
 
 u32 Atlys::Player::onDraw() {
+    this->updateModel();
     DrawMgr::instance()->drawModel(this->model);
 
     return 1;
@@ -121,7 +121,7 @@ void Atlys::Player::executeState_Walking() {
     f32 distance = sqrtf(powf(this->targetNode->position.x - this->position.x, 2) + powf(this->targetNode->position.y - this->position.y, 2));
     f32 fullDistance = sqrtf(powf(this->targetNode->position.x - this->currentNode->position.x, 2) + powf(this->targetNode->position.y - this->currentNode->position.y, 2));
 
-    if (distance > 1.0f) { // Not at the target node yet, move towards it
+    if (distance > 0.5f) { // Not at the target node yet, move towards it
         // TODO: Use normalized vector instead
         this->position.x += (this->targetNode->position.x - this->position.x) / distance * this->walkingSpeed;
         this->position.y += (this->targetNode->position.y - this->position.y) / distance * this->walkingSpeed;
@@ -152,7 +152,7 @@ void Atlys::Player::executeState_Walking() {
             case Map::Node::Type_Passthrough: {
                 // If we reached the target and the type is passthrough, instead of stopping change target to the next node
                 const Map::Node* temp = this->targetNode;
-                
+
                 if (this->targetNode->Passthrough_connections[0].node == this->currentNode->id)
                     this->targetNode = Atlys::Scene::instance()->map->findNodeByID(this->targetNode->Passthrough_connections[1].node);
                 else
