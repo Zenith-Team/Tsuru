@@ -3,7 +3,7 @@
 #include "game/graphics/model/platformmodel.h"
 #include "game/graphics/drawmgr.h"
 #include "math/functions.h"
-#include "game/util.h"
+#include "sead/mathcalccommon.h"
 #include "game/level/levelcamera.h"
 #include "game/tilemgr.h"
 
@@ -72,8 +72,8 @@ u32 WavePlatform::onExecute() {
         this->position.y = this->targetPos;
         this->rotation.z = this->targetRot;
     } else {
-        moveFloatTo(this->position.y, this->targetPos, 2.0);
-        moveValueTo(this->rotation.z, this->targetRot, fixDeg(2.0f));
+        sead::Mathf::chase(&this->position.y, this->targetPos, 2.0);
+        sead::Mathu::chase(&this->rotation.z, this->targetRot, fixDeg(2.0f));
     }
 
     this->updateModel();

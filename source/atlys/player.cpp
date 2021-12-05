@@ -1,7 +1,7 @@
 #include "tsuru/atlys/player.h"
 #include "tsuru/atlys/scene.h"
 #include "math/functions.h"
-#include "game/util.h"
+#include "sead/mathcalccommon.h"
 #include "game/task/taskmgr.h"
 #include "game/level/levelinfo.h"
 #include "game/task/coursetask.h"
@@ -43,7 +43,7 @@ u32 Atlys::Player::onExecute() {
     this->states.execute();
 
     if (this->rotation.y != fixDeg(this->targetRotation))
-        moveValueTo(this->rotation.y, fixDeg(this->targetRotation), 0x10000);
+        sead::Mathu::chase(&this->rotation.y, fixDeg(this->targetRotation), 0x10000);
 
     return 1;
 }

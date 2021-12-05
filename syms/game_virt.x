@@ -156,6 +156,10 @@ SECTIONS {
     __vtbl__Q2_4sead12LookAtCamera = 0x1019084c;
     doUpdateMatrix__Q2_4sead12LookAtCameraCFP5Mtx34 = 0x2a04be8;
 
+/* sead::MathCalcCommon */
+    chase__Q2_4sead23MathCalcCommon__tm__2_fSFPZ1ZZ1ZT2_b = 0x2027984;
+    chase__Q2_4sead24MathCalcCommon__tm__3_UiSFPZ1ZZ1ZT2_b = 0x29e0de8;
+
 /* sead::OrthoCamera */
     __ct__Q2_4sead11OrthoCameraFv = 0x2a04d54;
 
@@ -925,8 +929,6 @@ SECTIONS {
     SFXReverbPlyJump_0 = 0x101E7D1C;
     SFXReverbPlyJump_1 = 0x101E7D20;
     nullterminator = 0x1018A56D;
-    moveFloatTo__FRffT2 = 0x2027984;
-    moveValueTo__FRUiUiT2 = 0x29e0de8;
     SE_VOC = 0x1018393C;
     mapPositionToScreen__FR13Vec2__tm__2_fRC13Vec2__tm__2_f = 0x2029368;
     DAT_101c30d0 = 0x101c30d0;
