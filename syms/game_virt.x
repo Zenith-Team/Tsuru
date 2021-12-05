@@ -934,4 +934,7 @@ SECTIONS {
     MiniPlayerJumpArc = 0x1016A848;
     PlayerJumpMax = 0x10166E68;
     PlayerDescentRate = 0x10166E74;
+    InfiniteLivesContinue = 0x24c005c;
+    InfiniteTimeContinue = 0x24c1388;
+    InvincibilityContinue = 0x2931180;
 }
