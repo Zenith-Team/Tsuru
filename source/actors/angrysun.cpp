@@ -175,7 +175,7 @@ void AngrySun::beginState_Follow() {
 void AngrySun::executeState_Follow() {
     // Handle speed
 
-    this->direction = directionToPlayerH(this->position);
+    this->direction = this->directionToPlayerH(this->position);
 
     if (this->direction == Direction::Right) {
         this->speed.x += 0.1f;

@@ -63,6 +63,14 @@ inline f32 unfixDeg(u32 val) {
     return (val / 11930465.0f);
 }
 
+inline Vec2f radToDirection(f32 rad) {
+    return Vec2f(sinf(rad), cosf(rad));
+}
+
+inline Vec2f degToDirection(f32 deg) {
+    return radToDirection(degToRad(deg));
+}
+
 // @param x First value to compare
 // @param y Second value to compare
 // @return The smallest value given
@@ -84,7 +92,7 @@ inline const T& max(const T& x, const T& y) {
 // @param min The start value of the range
 // @param max The end value of the range
 // @return The percentage
-inline f32 percentFromValue(f32 value, f32 min, f32 max)   { return (((value - min) * 100) / (max - min)) / 100; }
+inline f32 percentFromValue(f32 value, f32 min, f32 max) { return (((value - min) * 100) / (max - min)) / 100; }
 
 // Gets the number represented by a percentage of a given range
 // @param percent The percentage

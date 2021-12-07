@@ -27,6 +27,12 @@ inline void playSound(const char* label, const Vec2f& position) {
     BasicSoundActor::GlobalBasicSoundActorB->playSound(label, &screenPos, 0);
 }
 
+inline void playSound(const char* label, const Vec3f& position) {
+    Vec2f screenPos;
+    mapPositionToScreen(screenPos, Vec2f(position.x, position.y));
+    BasicSoundActor::GlobalBasicSoundActorB->playSound(label, &screenPos, 0);
+}
+
 /*
 
     * The following is a list of all vocals in the game.

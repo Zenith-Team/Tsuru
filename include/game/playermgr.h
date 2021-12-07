@@ -1,12 +1,22 @@
 #pragma once
 
-#include "sead.h"
+#include "sead/random.h"
 #include "game/actor/stage/player.h"
 
 class PlayerMgr {
     SEAD_SINGLETON_DISPOSER(PlayerMgr)
 
 public:
+    inline Player* getRandomPlayer() {
+        Player* out = nullptr;
+
+        do {
+            out = this->players[sead::randU32(3)];
+        } while (!out);
+
+        return out;
+    }
+
     u32 _10;
     u32 _14;
     u32 _18;

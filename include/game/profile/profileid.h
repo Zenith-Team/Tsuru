@@ -26,6 +26,8 @@ enum ProfileIDType {
     DebugActor,
     LiquidOverlay,
     PhysicsModifier,
+    Kamiya,
+    KamiyaArrow,
 
     // Atlys profiles
     AtlysCamera,

@@ -22,6 +22,7 @@ Files:
   - source/actors/debugactor.cpp
   - source/actors/liquidoverlay.cpp
   - source/actors/physicsmodifier.cpp
+  - source/actors/kamiya.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:
