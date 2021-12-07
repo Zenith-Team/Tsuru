@@ -830,5 +830,6 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::WavePlatform,    // 739
     ProfileID::DebugActor,      // 740
     ProfileID::LiquidOverlay,   // 741
-    ProfileID::PhysicsModifier  // 742
+    ProfileID::PhysicsModifier, // 742
+    ProfileID::Kamiya         // 743
 };

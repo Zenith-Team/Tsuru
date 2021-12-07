@@ -4,6 +4,7 @@
 #include "game/actor/actor.h"
 #include "game/collision/hitboxcollider.h"
 #include "game/collision/actorphysicsmgr.h"
+#include "game/direction.h"
 
 class ColliderBase;
 

@@ -102,7 +102,7 @@ public:
     static f32 elasticInOut(f32 x) { return x == 0.0f ? 0.0f : x == 1.0f ? 1.0f : x < 0.5f ? -(powf(2.0f, 20.0f * x - 10.0f) * sinf((20.0f * x - 11.125f) * (2.0f * M_PI / 4.5f))) / 2.0f : (powf(2.0f, -20.0f * x + 10.0f) * sinf((20.f * x - 11.125f) * (2.0f * M_PI / 4.5f))) / 2.0f + 1.0f; }
 
     static f32 bounceIn(f32 x)     { return 1.0f - bounceOut(1.0f - x); }
-    static f32 bounceOut(f32 x)    { return x < 1.0f / 2.75f ? 7.5625f * x * x : x < 2.0f / 2.75f ? 7.5625f * (x - 1.5f / 2.75f) * (x - 1.5f / 2.75f) + 0.75f : x < 2.5f / 2.75f   ? 7.5625f * (x - 2.25f / 2.75f) * (x - 2.25f / 2.75f) + 0.9375f : 7.5625f * (x - 2.625f / 2.75f) * (x - 2.625f / 2.75f) + 0.984375f; }
+    static f32 bounceOut(f32 x)    { return x < 1.0f / 2.75f ? 7.5625f * x * x : x < 2.0f / 2.75f ? 7.5625f * (x - 1.5f / 2.75f) * (x - 1.5f / 2.75f) + 0.75f : x < 2.5f / 2.75f ? 7.5625f * (x - 2.25f / 2.75f) * (x - 2.25f / 2.75f) + 0.9375f : 7.5625f * (x - 2.625f / 2.75f) * (x - 2.625f / 2.75f) + 0.984375f; }
     static f32 bounceInOut(f32 x)  { return x < 0.5f ? (1.0f - bounceOut(1.0f - 2.0f * x)) / 2.0f : (1.0f + bounceOut(2.0f * x - 1.0f)) / 2.0f; }
 
 private:
