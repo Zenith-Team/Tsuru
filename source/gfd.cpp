@@ -32,17 +32,17 @@ GX2VertexShader* GFDGetVertexShaderPointer(u32 index, const void* file) {
                 if (index == currentProgramIndex) {
                     if ((u32)ptr % GX2_SHADER_ALIGNMENT)
                         return NULL;
-                    
+
                     if (shader == NULL)
                         return NULL;
-                    
+
                     shader->shaderData = ptr;
                 }
 
                 currentProgramIndex++;
                 break;
             }
-            
+
             default: break;
         }
 
@@ -50,14 +50,14 @@ GX2VertexShader* GFDGetVertexShaderPointer(u32 index, const void* file) {
 
         if (currentShaderIndex > index && currentProgramIndex > index)
             break;
-        
+
         if (block->type == GFD_BLOCK_TYPE_END)
             break;
     }
 
     if (shader != NULL && shader->shaderData == NULL)
         return NULL;
-    
+
     return shader;
 }
 
@@ -89,17 +89,17 @@ GX2PixelShader* GFDGetPixelShaderPointer(u32 index, const void* file) {
                 if (index == currentProgramIndex) {
                     if ((u32)ptr % GX2_SHADER_ALIGNMENT)
                         return NULL;
-                    
+
                     if (shader == NULL)
                         return NULL;
-                    
+
                     shader->shaderData = ptr;
                 }
 
                 currentProgramIndex++;
                 break;
             }
-            
+
             default: break;
         }
 
@@ -114,7 +114,7 @@ GX2PixelShader* GFDGetPixelShaderPointer(u32 index, const void* file) {
 
     if (shader != NULL && shader->shaderData == NULL)
         return NULL;
-    
+
     return shader;
 }
 

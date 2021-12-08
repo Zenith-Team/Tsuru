@@ -20,7 +20,7 @@ public:
     virtual ~Actor() {
         if (this->model)
             delete this->model;
-        
+
         this->model = nullptr;
     }
 

@@ -247,25 +247,32 @@ bool Kamiya::collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOt
 void Kamiya::beginState_Spawning() {
     this->scale.set(0.0f);
     this->scale.z = 1.0f;
-    this->rotation.y = fixDeg(15.0f);
 
-    Vec3f pos(this->position); pos.z -= 2500.0f;
-    Vec3u rotation(0);
-    Vec3f scale(0.5f);
-    Effect::spawn(RP_Bunbun_ScaleUp_0, &pos, &rotation, &scale);
-    this->easerX.set(&Easing::circOut, 0.0f, 0.75f, 0.0375f);
-
-    if (this->isFirstSpawn)
-        this->isFirstSpawn = false;
-    else
-        this->addHitboxColliders();
+    this->easerX.set(&Easing::circOut, 0.0f, 0.75f, 0.025f);
 }
 
 void Kamiya::executeState_Spawning() {
     if (this->easerX.ease(this->targetScale) && this->model->sklAnims[0]->isAnimationDone())
         this->doStateChange(&Kamiya::StateID_Flying);
 
-    this->scale.set(this->targetScale);
+            this->scale.set(this->targetScale);
+
+            break;
+        }
+
+        case SpawningStage_Spin: {
+            this->rotation.y = fixDeg(this->spawnRotationY);
+
+            bool spin = this->easerY.ease(this->spawnRotationY);
+            bool up = this->easerExtra.ease(this->position.y);
+
+            if (spin && up) {
+                this->doStateChange(&Kamiya::StateID_Flying);
+            }
+
+            break;
+        }
+    }
 }
 
 void Kamiya::endState_Spawning() {
@@ -294,7 +301,7 @@ void Kamiya::executeState_Flying() {
         this->speed.x -= 0.045f;
     else
         this->speed.x += 0.045f;
-    
+
     // Clamp speed
     if (this->speed.x > 1.0f) this->speed.x -= 0.03f;   if (this->speed.x > 3.0f) this->speed.x -= 0.3f;
     if (this->speed.x < -1.0f) this->speed.x += 0.03f;  if (this->speed.x < -3.0f) this->speed.x += 0.3f;
@@ -319,10 +326,7 @@ void Kamiya::executeState_Flying() {
         return;
     }
 
-    if (this->attackCount >= 4) {
-        this->attackCount = 0;
-        this->doStateChange(&Kamiya::StateID_Fleeing);
-    }
+    this->rotation.z = fixDeg(this->speed.x * 5.0f);
 }
 
 void Kamiya::endState_Flying() { }
@@ -369,14 +373,10 @@ void Kamiya::beginState_Fleeing() {
 
 void Kamiya::executeState_Fleeing() {
     // Escape player
-    
-    if (!lefted) {
-        
-    }
 
     this->fleeTimer++;
 
-    this->speed.x -= (this->targetPlayer->position.x - this->position.x) / (3000.0f - (this->fleeTimer / 2));
+    this->speed.x -= (this->targetPlayer->position.x - this->position.x) / 3000.0f;
 
     // Clamp speed
     if (this->speed.x > 1.0f) this->speed.x -= 0.025f;   if (this->speed.x > 3.0f) this->speed.x -= 0.25f;
@@ -562,3 +562,36 @@ void KamiyaMagic::updateModel() {
     this->model->updateAnimations();
     this->model->updateModel();
 }
+
+/* STATE: Following */
+
+void KamiyaArrow::beginState_Following() { }
+
+void KamiyaArrow::executeState_Following() {
+    this->position.x += this->targetDirection.x * this->speed.x;
+    this->position.y += this->targetDirection.y * this->speed.y;
+
+    if (this->adjustTimer++ > 30) {
+        this->adjustTimer = 0;
+        this->doStateChange(&KamiyaArrow::StateID_Adjusting);
+    }
+}
+
+void KamiyaArrow::endState_Following() { }
+
+/* STATE: Adjusting */
+
+void KamiyaArrow::beginState_Adjusting() {
+    this->targetRotation = unfixDeg(this->rotation.z);
+    this->angle = atan2f(this->parentKamiya->targetPlayer->position.y - this->position.y, this->parentKamiya->targetPlayer->position.x - this->position.x);
+    this->targetDirection = radToDirection(this->angle);
+}
+
+void KamiyaArrow::executeState_Adjusting() {
+    if (sead::Mathf::chase(&this->targetRotation, this->angle, 0.5f))
+        this->doStateChange(&KamiyaArrow::StateID_Following);
+
+    this->rotation.z = fixDeg(this->targetRotation);
+}
+
+void KamiyaArrow::endState_Adjusting() { }

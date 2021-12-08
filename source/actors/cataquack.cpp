@@ -1,11 +1,11 @@
-#include <game/actor/stage/enemy.h>
-#include <game/actor/actormgr.h>
-#include <game/direction.h>
-#include <game/graphics/drawmgr.h>
-#include <game/util.h>
-#include <log.h>
-#include <tsuru/utils.h>
-#include <math/functions.h>
+#include "game/actor/stage/enemy.h"
+#include "game/actor/actormgr.h"
+#include "game/direction.h"
+#include "game/graphics/drawmgr.h"
+#include "game/util.h"
+#include "log.h"
+#include "tsuru/utils.h"
+#include "math/functions.h"
 
 class Cataquack : public Enemy {
 public:
