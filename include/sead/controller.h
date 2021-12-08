@@ -1,7 +1,7 @@
 #pragma once
 
-#include <sead/runtimetypeinfo.h>
-#include <sead/bitflag.h>
+#include "sead/runtimetypeinfo.h"
+#include "sead/bitflag.h"
 
 namespace sead {
 

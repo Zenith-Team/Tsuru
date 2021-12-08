@@ -1,5 +1,5 @@
-#include <game/actor/stage/envterrain.h>
-#include <game/tilemgr.h>
+#include "game/actor/stage/envterrain.h"
+#include "game/tilemgr.h"
 
 void setWaterWaveValues(EnvTerrain* _this) {
     // Wave values

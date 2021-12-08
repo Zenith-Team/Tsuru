@@ -28,8 +28,8 @@ InfiniteLives:
     mflr    r0
     stwu    sp, -0x4(sp)
     stw     r3, 0x8(sp)
-    lis     r3, 0x024c
-    addi    r3, r3, 0x005c
+    lis     r3, InfiniteLivesContinue@ha
+    addi    r3, r3, InfiniteLivesContinue@l
     mtctr   r3
     lwz     r3, 0x8(sp)
     addi    sp, sp, 0x4
@@ -46,8 +46,8 @@ InfiniteTime:
     mflr    r0
     stwu    sp, -0x4(sp)
     stw     r3, 0x8(sp)
-    lis     r3, 0x024c
-    addi    r3, r3, 0x1388
+    lis     r3, InfiniteTimeContinue@ha
+    addi    r3, r3, InfiniteTimeContinue@l
     mtctr   r3
     lwz     r3, 0x8(sp)
     addi    sp, sp, 0x4
@@ -81,8 +81,8 @@ Invincibility:
     mflr    r0
     stwu    sp, -0x4(sp)
     stw     r3, 0x8(sp)
-    lis     r3, 0x0293
-    addi    r3, r3, 0x1180
+    lis     r3, InvincibilityContinue@ha
+    addi    r3, r3, InvincibilityContinue@l
     mtctr   r3
     lwz     r3, 0x8(sp)
     addi    sp, sp, 0x4

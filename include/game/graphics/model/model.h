@@ -1,8 +1,8 @@
 #pragma once
 
-#include <game/resource/resarchive.h>
-#include <game/graphics/layer/renderobjlayer.h>
-#include <game/graphics/model/animation.h>
+#include "game/resource/resarchive.h"
+#include "game/graphics/layer/renderobjlayer.h"
+#include "game/graphics/model/animation.h"
 
 class Model : public RenderObjLayer::Node {
     SEAD_RTTI_OVERRIDE(Model, RenderObjLayer::Node)
@@ -122,34 +122,42 @@ public:
         return this->model->getScale();
     }
 
-    inline void playSklAnim(const sead::SafeString& identifier, u32 idx) {
+    inline void playSklAnim(const sead::SafeString& identifier, u32 idx = 0) {
         if (idx < this->sklAnims.size)
             this->sklAnims[idx]->play(this->archive, identifier);
     }
 
-    inline void playTexPatternAnim(const sead::SafeString& identifier, u32 idx) {
+    inline void playTexPatternAnim(const sead::SafeString& identifier, u32 idx = 0) {
         if (idx < this->texPatternAnims.size)
             this->texPatternAnims[idx]->play(this->archive, identifier);
     }
 
-    inline void playColorAnim(const sead::SafeString& identifier, u32 idx) {
+    inline void playColorAnim(const sead::SafeString& identifier, u32 idx = 0) {
         if (idx < this->texSrtAnims.size)
             this->texSrtAnims[idx]->playColorAnim(this->archive, identifier);
     }
 
-    inline void playTexSrtAnim(const sead::SafeString& identifier, u32 idx) {
+    inline void playTexSrtAnim(const sead::SafeString& identifier, u32 idx = 0) {
         if (idx < this->texSrtAnims.size)
             this->texSrtAnims[idx]->playTexSrtAnim(this->archive, identifier);
     }
 
-    inline void playBoneVisAnim(const sead::SafeString& identifier, u32 idx) {
+    inline void playBoneVisAnim(const sead::SafeString& identifier, u32 idx = 0) {
         if (idx < this->visAnims.size)
             this->visAnims[idx]->play(this->archive, identifier);
     }
 
-    inline void playShapeAnim(const sead::SafeString& identifier, u32 idx) {
+    inline void playShapeAnim(const sead::SafeString& identifier, u32 idx = 0) {
         if (idx < this->shaAnims.size)
             this->shaAnims[idx]->play(this->archive, identifier);
+    }
+
+    inline void loopSklAnims(bool loop) {
+        for (u32 i = 0; i < sklAnims.size; i++) {
+            SkeletalAnimation* anim = sklAnims[i];
+            if (!anim) return;
+            anim->shouldLoop(loop);
+        }
     }
 
     static inline ModelWrapper* create(const sead::SafeString& archiveIdentifier, const sead::SafeString& modelIdentifier, u32 numSklAnims = 0, u32 numTexPatternAnims = 0, u32 numTexSrtAnims = 0, u32 numVisAnims = 0, u32 numShaAnims = 0, bool unk2 = false) {

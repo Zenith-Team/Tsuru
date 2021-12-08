@@ -1,6 +1,6 @@
 #pragma once
 
-#include <types.h>
+#include "types.h"
 
 class Direction {
 public:
@@ -17,11 +17,11 @@ public:
         switch (direction) {
             case Right:
                 return Left;
-            case Left:
+            case Left: default:
                 return Right;
             case Up:
                 return Down;
-            case Down: default:
+            case Down:
                 return Up;
         }
     }

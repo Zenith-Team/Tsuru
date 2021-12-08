@@ -1,6 +1,6 @@
 // Misc. utility C++ functions
 
-#include <types.h>
+#include "types.h"
 
 // Compare if two wide strings are equal
 extern "C" s32 wcscmp(const wchar_t* str1, const wchar_t* str2) {
@@ -32,15 +32,3 @@ bool moveValueWithOverflowTo(u32& value, u32 target, u32 step, bool subtract) {
     value = target;
     return true;
 }
-
-// Inline function static implementation for branching to from asm
-
-bool nthBit64Right(u64 val, u64 nth) { return (val >> (nth - 1)) & 1; }
-bool nthBit32Right(u32 val, u32 nth) { return (val >> (nth - 1)) & 1; }
-bool nthBit16Right(u16 val, u16 nth) { return (val >> (nth - 1)) & 1; }
-bool nthBit8Right(u8 val, u8 nth)    { return (val >> (nth - 1)) & 1; }
-
-bool nthBit64Left(u64 val, u64 nth) { return (val << (nth - 1)) & 1; }
-bool nthBit32Left(u32 val, u32 nth) { return (val << (nth - 1)) & 1; }
-bool nthBit16Left(u16 val, u16 nth) { return (val << (nth - 1)) & 1; }
-bool nthBit8Left(u8 val, u8 nth)    { return (val << (nth - 1)) & 1; }

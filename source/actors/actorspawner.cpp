@@ -1,8 +1,8 @@
-#include <log.h>
-#include <game/eventmgr.h>
-#include <game/actor/actormgr.h>
-#include <game/profile/profileid.h>
-#include <game/actor/stage/stageactor.h>
+#include "log.h"
+#include "game/eventmgr.h"
+#include "game/actor/actormgr.h"
+#include "game/profile/profileid.h"
+#include "game/actor/stage/stageactor.h"
 
 class ActorSpawner : public StageActor {
     SEAD_RTTI_OVERRIDE_IMPL(ActorSpawner, StageActor)

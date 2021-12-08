@@ -9,7 +9,7 @@ ScaleActor:
     cmpwi   r0, 0xF
     bgtlr                            # return if linkID > 0xF
 
-    rlwinm  r0, r0, 0x2, 0x0, 0x1D   # r0 = r0 << 0x2
+    slwi    r0, r0, 0x2   # r0 = r0 << 0x2
 
     lis     r12, ActorScales@ha
     addi    r12, r12, ActorScales@l
@@ -61,7 +61,7 @@ ScaleHitboxCollider:
     cmpwi   r0, 0xF
     bgtlr                               # return if linkId > 0xF
 
-    rlwinm  r0, r0, 0x2, 0x0, 0x1D      # r0 = r0 << 0x2
+    slwi    r0, r0, 0x2      # r0 = r0 << 0x2
 
     lis     r12, ActorScales@ha
     addi    r12, r12, ActorScales@l
@@ -101,8 +101,7 @@ ScalePhysicsMgr:
     cmpwi   r6, 0xF
     bgtlr
 
-    # r6 = r6 << 0x2
-    rlwinm  r6, r6, 0x2, 0x0, 0x1D
+    slwi    r0, r0, 0x2             # r6 = r6 << 0x2
 
     lis     r7, ActorScales@ha
     addi    r7, r7, ActorScales@l

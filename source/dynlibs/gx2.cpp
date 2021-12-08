@@ -21,8 +21,8 @@
  * 3. This notice may not be removed or altered from any source
  * distribution.
  ***************************************************************************/
-#include <dynlibs/os/functions.h>
-#include <dynlibs/gx2/types.h>
+#include "dynlibs/os/functions.h"
+#include "dynlibs/gx2/types.h"
 
 u32 gx2Handle = 0;
 
@@ -67,6 +67,7 @@ EXPORT_DECL(void, GX2InitSamplerLOD, GX2Sampler* sampler, f32 minLOD, f32 maxLOD
 EXPORT_DECL(void, GX2InitSamplerDepthCompare, GX2Sampler* sampler, s32 depthCompare);
 EXPORT_DECL(void, GX2InitSamplerXYFilter, GX2Sampler* sampler, s32 magFilter, s32 minFilter, s32 maxAnisoRatio);
 EXPORT_DECL(void, GX2InitSamplerZMFilter, GX2Sampler* sampler, s32 zFilter, s32 mipFilter);
+EXPORT_DECL(void, GX2SetShaderModeEx, u32 mode, u32 numVsGpr, u32 numVsStackEntries, u32 numGsGpr, u32 numGsStackEntries, u32 numPsGpr, u32 numPsStackEntries);
 EXPORT_DECL(u32,  GX2CalcFetchShaderSizeEx, u32 numAttrib, s32 fetchShaderType, s32 tessellationMode);
 EXPORT_DECL(void, GX2InitFetchShaderEx, GX2FetchShader* fs, void* fsBuffer, u32 count, const GX2AttribStream* attribs, s32 fetchShaderType, s32 tessellationMode);
 EXPORT_DECL(void, GX2SetFetchShader, const GX2FetchShader* fs);
@@ -157,6 +158,7 @@ extern "C" void InitGX2FunctionPointers(void) {
     OS_FIND_EXPORT(gx2Handle, GX2SetAttribBuffer);
     OS_FIND_EXPORT(gx2Handle, GX2InitTextureRegs);
     OS_FIND_EXPORT(gx2Handle, GX2InitSampler);
+    OS_FIND_EXPORT(gx2Handle, GX2SetShaderModeEx);
     OS_FIND_EXPORT(gx2Handle, GX2CalcFetchShaderSizeEx);
     OS_FIND_EXPORT(gx2Handle, GX2InitFetchShaderEx);
     OS_FIND_EXPORT(gx2Handle, GX2SetFetchShader);

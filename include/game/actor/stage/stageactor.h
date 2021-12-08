@@ -1,9 +1,10 @@
 #pragma once
 
-#include <game/eatdata.h>
-#include <game/actor/actor.h>
-#include <game/collision/hitboxcollider.h>
-#include <game/collision/actorphysicsmgr.h>
+#include "game/eatdata.h"
+#include "game/actor/actor.h"
+#include "game/collision/hitboxcollider.h"
+#include "game/collision/actorphysicsmgr.h"
+#include "game/direction.h"
 
 class ColliderBase;
 

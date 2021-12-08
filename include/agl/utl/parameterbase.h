@@ -1,7 +1,7 @@
 #pragma once
 
-#include <types.h>
-#include <sead/safestring.h>
+#include "types.h"
+#include "sead/safestring.h"
 
 namespace agl { namespace utl {
 

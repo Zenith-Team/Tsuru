@@ -1,11 +1,11 @@
-#include <game/actor/stage/enemy.h>
-#include <game/graphics/model/model.h>
-#include <game/sound/sound.h>
-#include <game/collision/actorphysicsmgr.h>
-#include <game/graphics/drawmgr.h>
-#include <game/effect/effect.h>
-#include <math.h>
-#include <sead.h>
+#include "game/actor/stage/enemy.h"
+#include "game/graphics/model/model.h"
+#include "game/sound/sound.h"
+#include "game/collision/actorphysicsmgr.h"
+#include "game/graphics/drawmgr.h"
+#include "game/effect/effect.h"
+#include "math.h"
+#include "sead.h"
 
 class FallingChestnut : public Enemy {
     SEAD_RTTI_OVERRIDE_IMPL(FallingChestnut, Enemy)
@@ -96,10 +96,10 @@ void FallingChestnut::beginState_Idle() { }
 void FallingChestnut::executeState_Idle() {
     Vec2f dist;
 
-    if (this->distanceToPlayer(dist) > -1 && fabs(dist.x) < 48.0f)
+    if (this->distanceToPlayer(dist) > -1 && fabsf(dist.x) < 48.0f)
         this->doStateChange(&StateID_Falling);
 
-    else if (this->distanceToPlayer(dist) > -1 && fabs(dist.x) < 80.0f)
+    else if (this->distanceToPlayer(dist) > -1 && fabsf(dist.x) < 80.0f)
         ;   // TODO: Shake
 }
 

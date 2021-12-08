@@ -1,7 +1,7 @@
 #pragma once
 
-#include <types.h>
-#include <sead/heap.h>
+#include "types.h"
+#include "sead/heap.h"
 
 namespace agl {
 

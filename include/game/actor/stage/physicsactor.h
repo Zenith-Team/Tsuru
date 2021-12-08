@@ -1,7 +1,7 @@
 #pragma once
 
-#include <game/actor/stage/stageactor.h>
-#include <game/collision/actorphysicsmgr.h>
+#include "game/actor/stage/stageactor.h"
+#include "game/collision/actorphysicsmgr.h"
 
 class PhysicsActor : public StageActor { // Size: 0x17A0
     SEAD_RTTI_OVERRIDE(PhysicsActor, StageActor)

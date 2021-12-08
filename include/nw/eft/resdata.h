@@ -1,10 +1,10 @@
 #pragma once
 
-#include <dynlibs/gx2/types.h>
-#include <nw/math/mtx34.h>
-#include <nw/math/vec3.h>
-#include <nw/ut/color4f.h>
-#include <nw/eft/enum.h>
+#include "dynlibs/gx2/types.h"
+#include "nw/math/mtx34.h"
+#include "nw/math/vec3.h"
+#include "nw/ut/color4f.h"
+#include "nw/eft/enum.h"
 
 namespace nw { namespace eft{
 

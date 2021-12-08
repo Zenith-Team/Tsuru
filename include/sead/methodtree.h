@@ -1,11 +1,11 @@
 #pragma once
 
-#include <sead/tree.h>
-#include <sead/idisposer.h>
-#include <sead/bitflag.h>
-#include <sead/inamable.h>
-#include <sead/runtimetypeinfo.h>
-#include <sead/criticalsection.h>
+#include "sead/tree.h"
+#include "sead/idisposer.h"
+#include "sead/bitflag.h"
+#include "sead/inamable.h"
+#include "sead/runtimetypeinfo.h"
+#include "sead/criticalsection.h"
 
 namespace sead {
 

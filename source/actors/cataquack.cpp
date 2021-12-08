@@ -104,7 +104,7 @@ void Cataquack::executeState_Walk() {
     this->physicsMgr.processCollisions();
 
     Vec2f distToPlayer;
-    if (this->distanceToPlayer(distToPlayer) > -1 && fabs(distToPlayer.x) < 8.0f * 16.0f && fabs(distToPlayer.y) < 6.0f * 16.0f) {
+    if (this->distanceToPlayer(distToPlayer) > -1 && fabsf(distToPlayer.x) < 8.0f * 16.0f && fabsf(distToPlayer.y) < 6.0f * 16.0f) {
         if ((this->direction == Direction::Left && distToPlayer.x < 0) || (this->direction == Direction::Right && distToPlayer.x > 0)) {
             this->beginChase();
         }

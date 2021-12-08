@@ -1,6 +1,6 @@
 #pragma once
 
-#include <nw/math/constant.h>
+#include "nw/math/constant.h"
 
 namespace nw { namespace math { namespace internal {
 

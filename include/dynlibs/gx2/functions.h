@@ -25,11 +25,14 @@
 #define __GX2_FUNCTIONS_H_
 
 #ifdef __cplusplus
+#include <cstring>
 extern "C" {
+#else
+#include<string.h>
 #endif
 
-#include <dynlibs/os/types.h>
-#include <dynlibs/gx2/types.h>
+#include "dynlibs/os/types.h"
+#include "dynlibs/gx2/types.h"
 
 extern u32 gx2_handle;
 
@@ -90,6 +93,7 @@ extern void (*GX2SetVertexSamplerBorderColor)(u32 samplerUnitNumber, f32 r, f32 
 extern void (*GX2SetPixelShader)(const GX2PixelShader* pixelShader);
 extern void (*GX2SetVertexShader)(const GX2VertexShader* vertexShader);
 extern void (*GX2InitSamplerZMFilter)(GX2Sampler* sampler, s32 zFilter, s32 mipFilter);
+extern void (*GX2SetShaderModeEx)(u32 mode, u32 numVsGpr, u32 numVsStackEntries, u32 numGsGpr, u32 numGsStackEntries, u32 numPsGpr, u32 numPsStackEntries);
 extern void (*GX2SetColorControl)(s32 lop, u8 blendEnableMask, s32 enableMultiWrite, s32 enableColorBuffer);
 extern void (*GX2SetDepthOnlyControl)(s32 enableDepth, s32 enableDepthWrite, s32 depthCompFunction);
 extern void (*GX2SetBlendControl)(s32 target, s32 colorSrcBlend, s32 colorDstBlend, s32 colorCombine, s32 separateAlphaBlend, s32 alphaSrcBlend, s32 alphaDstBlend, s32 alphaCombine);
@@ -217,6 +221,40 @@ static inline void GX2InitTexture(GX2Texture* tex, u32 width, u32 height, u32 de
 
     GX2CalcSurfaceSizeAndAlignment(&tex->surface);
     GX2InitTextureRegs(tex);
+}
+
+static inline GX2UniformVar* GX2GetVertexUniformVar(const GX2VertexShader* shader, const char* name) {
+    for (u32 i = 0; i < shader->uniformVarsCount; i++) {
+        if (strcmp(shader->uniformVar[i].name, name) == 0)
+            return &shader->uniformVar[i];
+    }
+    
+    return NULL;
+}
+
+static inline s32 GX2GetVertexUniformVarOffset(const GX2VertexShader* shader, const char* name) {
+    GX2UniformVar* var = GX2GetVertexUniformVar(shader, name);
+    if (var)
+        return var->offset;
+    
+    return -1;
+}
+
+static inline GX2UniformVar* GX2GetPixelUniformVar(const GX2PixelShader* shader, const char* name) {
+    for (u32 i = 0; i < shader->uniformVarsCount; i++) {
+        if (strcmp(shader->uniformVar[i].name, name) == 0)
+            return &shader->uniformVar[i];
+    }
+    
+    return NULL;
+}
+
+static inline s32 GX2GetPixelUniformVarOffset(const GX2PixelShader* shader, const char* name) {
+    GX2UniformVar* var = GX2GetPixelUniformVar(shader, name);
+    if (var)
+        return var->offset;
+    
+    return -1;
 }
 
 #ifdef __cplusplus

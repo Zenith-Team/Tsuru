@@ -1,7 +1,7 @@
 #pragma once
 
-#include <nw/eft/heap.h>
-#include <dynlibs/os/functions.h>
+#include "nw/eft/heap.h"
+#include "dynlibs/os/functions.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <types.h>
+#include "types.h"
 
 // Compare if two wide strings are equal
 // @param str1 The first string to compare
@@ -22,40 +22,40 @@ bool moveValueWithOverflowTo(u32& value, u32 target, u32 step, bool subtract);
 // @param val The integer to be evaluated
 // @param nth The bit index from the right (1 indexed)
 // @return The value of the retrieved bit
-inline bool nthBit64Right(u64 val, u64 nth) { return (val >> (nth - 1)) & 1; }
+forceinline bool nthBit64Right(u64 val, u64 nth) { return (val >> (nth - 1)) & 1; }
 // Returns the nth bit of a 32 bit integer from the right
 // @param val The integer to be evaluated
 // @param nth The bit index from the right (1 indexed)
 // @return The value of the retrieved bit
-inline bool nthBit32Right(u32 val, u32 nth) { return (val >> (nth - 1)) & 1; }
+forceinline bool nthBit32Right(u32 val, u32 nth) { return (val >> (nth - 1)) & 1; }
 // Returns the nth bit of a 16 bit integer from the right
 // @param val The integer to be evaluated
 // @param nth The bit index from the right (1 indexed)
 // @return The value of the retrieved bit
-inline bool nthBit16Right(u16 val, u16 nth) { return (val >> (nth - 1)) & 1; }
+forceinline bool nthBit16Right(u16 val, u16 nth) { return (val >> (nth - 1)) & 1; }
 // Returns the nth bit of a 8 bit integer from the right
 // @param val The integer to be evaluated
 // @param nth The bit index from the right (1 indexed)
 // @return The value of the retrieved bit
-inline bool nthBit8Right(u8 val, u8 nth) { return (val >> (nth - 1)) & 1; }
+forceinline bool nthBit8Right(u8 val, u8 nth) { return (val >> (nth - 1)) & 1; }
 
 // Returns the nth bit of a 64 bit integer from the left
 // @param val The integer to be evaluated
 // @param nth The bit index from the right (1 indexed)
 // @return The value of the retrieved bit
-inline bool nthBit64Left(u64 val, u64 nth) { return (val << (nth - 1)) & 1; }
+forceinline bool nthBit64Left(u64 val, u64 nth) { return (val << (nth - 1)) & 1; }
 // Returns the nth bit of a 32 bit integer from the left
 // @param val The integer to be evaluated
 // @param nth The bit index from the right (1 indexed)
 // @return The value of the retrieved bit
-inline bool nthBit32Left(u32 val, u32 nth) { return (val << (nth - 1)) & 1; }
+forceinline bool nthBit32Left(u32 val, u32 nth) { return (val << (nth - 1)) & 1; }
 // Returns the nth bit of a 16 bit integer from the left
 // @param val The integer to be evaluated
 // @param nth The bit index from the right (1 indexed)
 // @return The value of the retrieved bit
-inline bool nthBit16Left(u16 val, u16 nth) { return (val << (nth - 1)) & 1; }
+forceinline bool nthBit16Left(u16 val, u16 nth) { return (val << (nth - 1)) & 1; }
 // Returns the nth bit of a 8 bit integer from the left
 // @param val The integer to be evaluated
 // @param nth The bit index from the right (1 indexed)
 // @return The value of the retrieved bit
-inline bool nthBit8Left(u8 val, u8 nth) { return (val << (nth - 1)) & 1; }
+forceinline bool nthBit8Left(u8 val, u8 nth) { return (val << (nth - 1)) & 1; }

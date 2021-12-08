@@ -45,6 +45,9 @@ SECTIONS {
     GFDGetVertexShaderHeaderSize = 0x2AF8D00;
     GFDGetVertexShaderProgramSize = 0x2AF8D40;
     GFDGetVertexShader = 0x2AF8E3C;
+    _GFDCheckHeaderVersions = 0x02af8a18;
+    _GFDCheckBlockHeaderMagicVersions = 0x02af8abc;
+    _GFDRelocateBlock = 0x02af8e04;
 
 /* agl::RenderBuffer */
     __ct__Q2_3agl12RenderBufferFR13Vec2__tm__2_ffN32 = 0x2a1eadc;
@@ -152,6 +155,10 @@ SECTIONS {
     __dt__Q2_4sead12LookAtCameraFv = 0x2a04b94;
     __vtbl__Q2_4sead12LookAtCamera = 0x1019084c;
     doUpdateMatrix__Q2_4sead12LookAtCameraCFP5Mtx34 = 0x2a04be8;
+
+/* sead::MathCalcCommon */
+    chase__Q2_4sead23MathCalcCommon__tm__2_fSFPZ1ZZ1ZT2_b = 0x2027984;
+    chase__Q2_4sead24MathCalcCommon__tm__3_UiSFPZ1ZZ1ZT2_b = 0x29e0de8;
 
 /* sead::OrthoCamera */
     __ct__Q2_4sead11OrthoCameraFv = 0x2a04d54;
@@ -922,8 +929,6 @@ SECTIONS {
     SFXReverbPlyJump_0 = 0x101E7D1C;
     SFXReverbPlyJump_1 = 0x101E7D20;
     nullterminator = 0x1018A56D;
-    moveFloatTo__FRffT2 = 0x2027984;
-    moveValueTo__FRUiUiT2 = 0x29e0de8;
     SE_VOC = 0x1018393C;
     mapPositionToScreen__FR13Vec2__tm__2_fRC13Vec2__tm__2_f = 0x2029368;
     DAT_101c30d0 = 0x101c30d0;
@@ -931,4 +936,7 @@ SECTIONS {
     MiniPlayerJumpArc = 0x1016A848;
     PlayerJumpMax = 0x10166E68;
     PlayerDescentRate = 0x10166E74;
+    InfiniteLivesContinue = 0x24c005c;
+    InfiniteTimeContinue = 0x24c1388;
+    InvincibilityContinue = 0x2931180;
 }

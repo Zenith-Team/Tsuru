@@ -1,6 +1,6 @@
 #pragma once
 
-#include <types.h>
+#include "types.h"
 
 namespace sead { namespace RuntimeTypeInfo {
 
@@ -14,7 +14,7 @@ class Root : public Interface {
 public:
     Root() { }
 
-    bool isDerived(const Interface* typeInfo) const {
+    bool isDerived(const Interface* typeInfo) const override {
         return typeInfo == this;
     }
 };
@@ -24,7 +24,7 @@ class Derive : public Interface {
 public:
     Derive() { }
 
-    bool isDerived(const Interface* typeInfo) const {
+    bool isDerived(const Interface* typeInfo) const override {
         if (this == typeInfo)
             return true;
 

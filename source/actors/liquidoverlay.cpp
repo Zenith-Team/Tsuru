@@ -1,9 +1,9 @@
-#include <game/actor/stage/stageactor.h>
-#include <game/actor/stage/player.h>
-#include <game/level/level.h>
-#include <game/level/levelinfo.h>
-#include <game/playermgr.h>
-#include <game/actor/actormgr.h>
+#include "game/actor/stage/stageactor.h"
+#include "game/actor/stage/player.h"
+#include "game/level/level.h"
+#include "game/level/levelinfo.h"
+#include "game/playermgr.h"
+#include "game/actor/actormgr.h"
 
 class LiquidOverlay : public StageActor {
     SEAD_RTTI_OVERRIDE_IMPL(LiquidOverlay, StageActor)

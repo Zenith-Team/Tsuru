@@ -100,5 +100,5 @@ If you require any assistance for anything related to Tsuru, feel free to join o
 
 # Special Thanks
 * Joey for helping me set up CafeLoader when I first started
-* STUPID for basically teaching me everything I know about code hacks
+* Abood and STUPID for basically teaching me everything I know about code hacks
 * Toms and Kinnay for giving me early access to the Newer U code

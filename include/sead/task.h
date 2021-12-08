@@ -1,13 +1,13 @@
 #pragma once
 
-#include <sead/list.h>
-#include <sead/tree.h>
-#include <sead/heappolicies.h>
-#include <sead/idisposer.h>
-#include <sead/bitflag.h>
-#include <sead/inamable.h>
-#include <sead/runtimetypeinfo.h>
-#include <sead/methodtree.h>
+#include "sead/list.h"
+#include "sead/tree.h"
+#include "sead/heappolicies.h"
+#include "sead/idisposer.h"
+#include "sead/bitflag.h"
+#include "sead/inamable.h"
+#include "sead/runtimetypeinfo.h"
+#include "sead/methodtree.h"
 
 namespace sead {
 

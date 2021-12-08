@@ -1,10 +1,10 @@
-#include <tsuru/task/cutscenetask.h>
-#include <game/task/taskmgr.h>
-#include <agl/lyr/renderer.h>
-#include <agl/lyr/layer.h>
-#include <log.h>
-#include <sead/filedevice.h>
-#include <sead/filedevicemgr.h>
+#include "tsuru/task/cutscenetask.h"
+#include "game/task/taskmgr.h"
+#include "agl/lyr/renderer.h"
+#include "agl/lyr/layer.h"
+#include "log.h"
+#include "sead/filedevice.h"
+#include "sead/filedevicemgr.h"
 
 SEAD_SINGLETON_TASK_IMPL(CutsceneTask)
 
