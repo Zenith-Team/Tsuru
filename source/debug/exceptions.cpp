@@ -17,7 +17,7 @@ void handleDVC() {
 
     // TODO: Print a message to the screen
 
-    /* //*Archive:
+    /* //?Archive:
     // Init OSScreen
     OSScreenInit();
     OSScreenSetBuffers(0xF4000000);

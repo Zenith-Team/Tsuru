@@ -16,7 +16,7 @@
 
 void drawLine3D(const Vec3f& position, const u32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
     Vec3f scale(lineLength, lineThickness, lineThickness);
-    Vec3u rot(0x80000000, (rotation + 0x40000000) * -1, 0x00000000);
+    Vec3u rot(0x80000000, (rotation + 0x40000000) * 0xFFFFFFFF, 0x00000000);
     f32 rotSin;
     f32 rotCos;
     sinCosIdx(&rotSin, &rotCos, rotation);
