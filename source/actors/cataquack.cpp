@@ -27,11 +27,11 @@ public:
 
     DECLARE_STATE(Cataquack, Walk);
     DECLARE_STATE(Cataquack, Turn);
-    //DECLARE_STATE(Cataquack, Launch);
+    DECLARE_STATE(Cataquack, Launch);
 };
 CREATE_STATE(Cataquack, Walk);
 CREATE_STATE(Cataquack, Turn);
-//CREATE_STATE(Cataquack, Launch);
+CREATE_STATE(Cataquack, Launch);
 
 const ActorInfo CataquackActorInfo = {
     Vec2i(8, -8), Vec2i(8, -8), Vec2i(32, 32), 0, 0, 0, 0, 0
@@ -90,7 +90,21 @@ void Cataquack::updateModel() {
     this->model->updateModel();
 }
 
-/* STATE: Walk */
+void Cataquack::beginChase() {
+    this->chasing    = true;
+    this->speed.x    = this->direction == Direction::Left ? -1.0f : 1.0f;
+    this->maxSpeed.x = this->direction == Direction::Left ? -1.0f : 1.0f;
+    this->model->sklAnims[0]->speed = 2.0f;
+}
+
+void Cataquack::endChase() {
+    this->chasing    = false;
+    this->speed.x    = this->direction == Direction::Left ? -0.5f : 0.5f;
+    this->maxSpeed.x = this->direction == Direction::Left ? -0.5f : 0.5f;
+    this->model->sklAnims[0]->speed = 1.0f;
+}
+
+/** STATE: Walk */
 
 void Cataquack::beginState_Walk() {
     f32 speed = this->chasing ? 1.0f : 0.5f;
@@ -124,7 +138,7 @@ void Cataquack::executeState_Walk() {
 
 void Cataquack::endState_Walk() { }
 
-/* STATE: Turn */
+/** STATE: Turn */
 
 void Cataquack::beginState_Turn() {
     this->direction ^= 1;
@@ -148,21 +162,16 @@ void Cataquack::endState_Turn() {
     this->rotation.y = Direction::directionToRotationList[this->direction];
 }
 
-void Cataquack::beginChase() {
-    this->chasing    = true;
-    this->speed.x    = this->direction == Direction::Left ? -1.0f : 1.0f;
-    this->maxSpeed.x = this->direction == Direction::Left ? -1.0f : 1.0f;
-    this->model->sklAnims[0]->speed = 2.0f;
+/** STATE: Launch */
+
+void Cataquack::beginState_Launch() {
+
 }
 
-    //Vec2f distToPlayer;
-    //if (this->distanceToPlayer(distToPlayer) < 0 || (fabs(distToPlayer.x) > 8.0f * 16.0f || fabs(distToPlayer.y) > 6.0f * 16.0f)) {
-    //    if ((this->direction == Direction::Left && distToPlayer.x < 0) || (this->direction == Direction::Right && distToPlayer.x > 0)) {
-    //        this->doStateChange(&Cataquack::StateID_Walk);
+void Cataquack::executeState_Launch() {
 
-void Cataquack::endChase() {
-    this->chasing    = false;
-    this->speed.x    = this->direction == Direction::Left ? -0.5f : 0.5f;
-    this->maxSpeed.x = this->direction == Direction::Left ? -0.5f : 0.5f;
-    this->model->sklAnims[0]->speed = 1.0f;
+}
+
+void Cataquack::endState_Launch() {
+
 }
