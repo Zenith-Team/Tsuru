@@ -52,9 +52,9 @@ Shader::Shader(const sead::SafeString& path, u32 vtxIdx, u32 fragIdx, sead::Heap
 Shader::~Shader() {
     if (!this->inited)
         return;
-    
+
     if (this->gsh) delete[] this->gsh; this->gsh = nullptr;
-    
+
     this->vertexShader = nullptr;
     this->pixelShader = nullptr;
 
@@ -64,10 +64,10 @@ Shader::~Shader() {
 void Shader::use(const GX2FetchShader* fetchShader) const {
     if (!this->inited)
         return;
-    
+
     if (fetchShader)
         GX2SetFetchShader(fetchShader);
-    
+
     GX2SetVertexShader(this->vertexShader);
     GX2SetPixelShader(this->pixelShader);
 }
@@ -75,7 +75,7 @@ void Shader::use(const GX2FetchShader* fetchShader) const {
 void ShaderUR::use(const GX2FetchShader* fetchShader) const {
     if (!this->inited)
         return;
-    
+
     GX2SetShaderModeEx(GX2_SHADER_MODE_UNIFORM_REGISTER, 48, 64, 0, 0, 200, 192);
 
     Shader::use(fetchShader);

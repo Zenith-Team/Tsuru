@@ -179,7 +179,7 @@ void Kamiya::updateModel() {
 void Kamiya::beginState_Spawning() {
     this->scale.set(0.0f);
     this->scale.z = 1.0f;
-    
+
     this->easerX.set(&Easing::circOut, 0.0f, 0.75f, 0.025f);
 }
 
@@ -199,7 +199,7 @@ void Kamiya::executeState_Spawning() {
 
         case SpawningStage_Spin: {
             this->rotation.y = fixDeg(this->spawnRotationY);
-            
+
             bool spin = this->easerY.ease(this->spawnRotationY);
             bool up = this->easerExtra.ease(this->position.y);
 
@@ -235,7 +235,7 @@ void Kamiya::executeState_Flying() {
         this->speed.x -= 0.045f;
     else
         this->speed.x += 0.045f;
-    
+
     // Clamp speed
     if (this->speed.x > 1.0f) this->speed.x -= 0.03f;   if (this->speed.x > 3.0f) this->speed.x -= 0.3f;
     if (this->speed.x < -1.0f) this->speed.x += 0.03f;  if (this->speed.x < -3.0f) this->speed.x += 0.3f;
@@ -256,7 +256,7 @@ void Kamiya::executeState_Flying() {
         }
     }
 
-    this->rotation.z = fixDeg(this->speed.x * 5.0f); 
+    this->rotation.z = fixDeg(this->speed.x * 5.0f);
 }
 
 void Kamiya::endState_Flying() { }
@@ -300,11 +300,11 @@ void Kamiya::beginState_Fleeing() {
 
 void Kamiya::executeState_Fleeing() {
     // Escape player
-    
+
     this->fleeTimer++;
 
     this->speed.x -= (this->targetPlayer->position.x - this->position.x) / 3000.0f;
-    
+
     // Clamp speed
     if (this->speed.x > 1.0f) this->speed.x -= 0.03f;   if (this->speed.x > 3.0f) this->speed.x -= 0.3f;
     if (this->speed.x < -1.0f) this->speed.x += 0.03f;  if (this->speed.x < -3.0f) this->speed.x += 0.3f;
@@ -409,7 +409,7 @@ void KamiyaArrow::beginState_Adjusting() {
 void KamiyaArrow::executeState_Adjusting() {
     if (sead::Mathf::chase(&this->targetRotation, this->angle, 0.5f))
         this->doStateChange(&KamiyaArrow::StateID_Following);
-    
+
     this->rotation.z = fixDeg(this->targetRotation);
 }
 

@@ -36,7 +36,7 @@ public:
         s32 vtxOffs = GX2GetVertexUniformVarOffset(this->vertexShader, cname);
         if (vtxOffs == -1)
             GX2SetVertexUniformReg(vtxOffs, 1, &value);
-        
+
         s32 frgOffs = GX2GetPixelUniformVarOffset(this->pixelShader, cname);
         if (frgOffs == -1)
             GX2SetPixelUniformReg(frgOffs, 1, &value);
@@ -48,7 +48,7 @@ public:
         s32 vtxOffs = GX2GetVertexUniformVarOffset(this->vertexShader, cname);
         if (vtxOffs == -1)
             GX2SetVertexUniformReg(vtxOffs, 1, &value);
-        
+
         s32 frgOffs = GX2GetPixelUniformVarOffset(this->pixelShader, cname);
         if (frgOffs == -1)
             GX2SetPixelUniformReg(frgOffs, 1, &value);

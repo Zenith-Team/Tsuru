@@ -228,7 +228,7 @@ static inline GX2UniformVar* GX2GetVertexUniformVar(const GX2VertexShader* shade
         if (strcmp(shader->uniformVar[i].name, name) == 0)
             return &shader->uniformVar[i];
     }
-    
+
     return NULL;
 }
 
@@ -236,7 +236,7 @@ static inline s32 GX2GetVertexUniformVarOffset(const GX2VertexShader* shader, co
     GX2UniformVar* var = GX2GetVertexUniformVar(shader, name);
     if (var)
         return var->offset;
-    
+
     return -1;
 }
 
@@ -245,7 +245,7 @@ static inline GX2UniformVar* GX2GetPixelUniformVar(const GX2PixelShader* shader,
         if (strcmp(shader->uniformVar[i].name, name) == 0)
             return &shader->uniformVar[i];
     }
-    
+
     return NULL;
 }
 
@@ -253,7 +253,7 @@ static inline s32 GX2GetPixelUniformVarOffset(const GX2PixelShader* shader, cons
     GX2UniformVar* var = GX2GetPixelUniformVar(shader, name);
     if (var)
         return var->offset;
-    
+
     return -1;
 }
 
