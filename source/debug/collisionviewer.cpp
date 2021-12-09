@@ -14,7 +14,7 @@
 #include "utils/mtx.h"
 #include "math/functions.h"
 
-#define __vtbl__12ColliderBase 0x101018AC
+#define __vtbl__21BlockCoinBaseCollider 0x101018AC
 #define __vtbl__16CircularCollider 0x10041B28
 #define __vtbl__18SolidOnTopCollider 0x10042238
 #define __vtbl__22SolidOnTopLiftCollider 0x10129C70
@@ -166,7 +166,7 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
 
             //else if (sead::IsDerivedFrom<ShapedCollider, ColliderBase>(colliderBase)) {
             else if ((u32)*vtable == __vtbl__14ShapedCollider         || (u32)*vtable == __vtbl__12RectCollider ||
-                     (u32)*vtable == __vtbl__12ColliderBase           || (u32)*vtable == __vtbl__4Vine ||
+                     (u32)*vtable == __vtbl__21BlockCoinBaseCollider  || (u32)*vtable == __vtbl__4Vine ||
                      (u32)*vtable == __vtbl__15RedCoinCollider        || (u32)*vtable == __vtbl__20RotatingPipeCollider ||
                      (u32)*vtable == __vtbl__16GoalPoleCollider       || (u32)*vtable == __vtbl__23MovingSemisolidCollider ||
                      (u32)*vtable == __vtbl__18PAcornOnlyCollider     || (u32)*vtable == __vtbl__18StoneBlockCollider ||
