@@ -20,8 +20,14 @@ public:
 
     // Checks if the animation has completed playback
     // @return Whether or not the animation has completed playback
-    inline bool isAnimationDone() {
+    inline bool isAnimationDone() const {
         return flags & Flag_IsDone;
+    }
+
+    // Checks if the animation loops
+    // @return Whether or not the animation loops
+    inline bool isAnimationLooping() const {
+        return flags & Flag_Repeat;
     }
 
     f32 startFrame;  // 0    Inited to 0.0

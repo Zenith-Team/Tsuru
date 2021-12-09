@@ -1,13 +1,12 @@
 SECTIONS {
 
 /* Math */
-    sinf__Ff = 0x2AFDD40;
-    cosf__Ff = 0x2AFE528;
-    atan2f__FfT1 = 0x2AFE670;
-    fmodf__FfT1 = 0x2AFD97C;
+    sinf = 0x2AFDD40;
+    cosf = 0x2AFE528;
+    atan2f = 0x2AFE670;
     fmodf = 0x2AFD97C;
-    powf__FfT1 = 0x2AFDEA8;
-    sqrtf__Ff = 0x2AFDCCC;
+    powf = 0x2AFDEA8;
+    sqrtf = 0x2AFDCCC;
     globalSinCosTbl__Q3_2nw4math8internal = 0x10191538;
 
 /* new/delete */
@@ -843,6 +842,7 @@ SECTIONS {
     typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x101E9CC0;
     __ct__10StageActorFPC14ActorBuildInfo = 0x2000AC8;
     directionToPlayerH__10StageActorFRC13Vec3__tm__2_f = 0x20005EC;
+    directionToPlayerV__10StageActorFRC13Vec3__tm__2_f = 0x20006b4;
     directionToActorH__10StageActorFRC10StageActor = 0x200C800;
     distanceToPlayer__10StageActorFR4Vec2 = 0x20005A4;
     deleteActorWhenOutOfView__10StageActorFUi = 0x20007A0;

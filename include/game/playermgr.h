@@ -11,7 +11,7 @@ public:
         Player* out = nullptr;
 
         do {
-            out = this->players[sead::randU32(3)];
+            out = this->players[sead::randU32(4)];
         } while (!out);
 
         return out;

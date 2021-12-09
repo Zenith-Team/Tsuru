@@ -74,7 +74,7 @@ void StarCoinShard::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hc
         ActorBuildInfo starCoinBuildInfo = { 0 };
 
         starCoinBuildInfo.settings1 = hcSelf->owner->settings1;
-        starCoinBuildInfo.profile = Profile::get(426);
+        starCoinBuildInfo.profile = Profile::get(ProfileID::StarCoin);
         starCoinBuildInfo.position = hcSelf->owner->position;
 
         ActorMgr::instance()->create(starCoinBuildInfo, 0);
