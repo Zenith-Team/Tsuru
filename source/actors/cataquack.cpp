@@ -6,6 +6,8 @@
 #include "log.h"
 #include "tsuru/utils.h"
 #include "math/functions.h"
+#include "game/collision/collidermgr.h"
+#include "game/collision/solid/rectcollider.h"
 
 class Cataquack : public Enemy {
 public:
@@ -22,6 +24,10 @@ public:
     void beginChase();
     void endChase();
 
+    static const HitboxCollider::Info collisionInfo;
+    static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+
+    RectCollider rectCollider;
     ModelWrapper* model;
     bool chasing;
 
@@ -49,6 +55,17 @@ Actor* Cataquack::build(const ActorBuildInfo* buildInfo) {
     return new Cataquack(buildInfo);
 }
 
+const HitboxCollider::Info Cataquack::collisionInfo = {
+    Vec2f(0.0f, 14.0f), Vec2f(11.0f, 14.0f), HitboxCollider::HitboxShape_Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Cataquack::collisionCallback
+};
+
+void Cataquack::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    if (hcOther->owner->type != StageActor::StageActorType_Player) return;
+
+    hcOther->owner->speed.y = 10.0f;
+    ((Cataquack*)hcSelf->owner)->doStateChange(&Cataquack::StateID_Launch);
+}
+
 u32 Cataquack::onCreate() {
     this->model = ModelWrapper::create("poihana", "poihana", 3);
     this->scale.x = 0.1f;
@@ -64,6 +81,16 @@ u32 Cataquack::onCreate() {
     this->direction = this->directionToPlayerH(this->position);
     this->rotation.y = Direction::directionToRotationList[this->direction];
 
+    //this->hitboxCollider.init(this, &Cataquack::collisionInfo, nullptr);
+    //this->addHitboxColliders();
+
+    ShapedCollider::Info colliderInfo = {
+        Vec2f(0.0f, 14.0f), 0.0f, 0.0f, Vec2f(-5.5f, 10.0f), Vec2f(5.5f, -12.0f), 0
+    };
+
+    this->rectCollider.init(this, colliderInfo);
+    ColliderMgr::instance()->add(&rectCollider);
+
     this->doStateChange(&Cataquack::StateID_Walk);
     this->updateModel();
     return 1;
@@ -72,7 +99,8 @@ u32 Cataquack::onCreate() {
 u32 Cataquack::onExecute() {
     this->states.execute();
     this->updateModel();
-    this->deleteActorWhenOutOfView(0); //! UNTESTED
+    this->offscreenDelete(0);
+    this->rectCollider.execute();
     return 1;
 }
 
@@ -116,6 +144,7 @@ void Cataquack::executeState_Walk() {
     this->handleGravity();
     this->handleSpeed();
     this->physicsMgr.processCollisions();
+    if (this->physicsMgr.isOnGround()) this->speed.y = 0.0f;
 
     Vec2f distToPlayer;
     if (this->distanceToPlayer(distToPlayer) > -1 && fabsf(distToPlayer.x) < 8.0f * 16.0f && fabsf(distToPlayer.y) < 6.0f * 16.0f) {
@@ -165,11 +194,15 @@ void Cataquack::endState_Turn() {
 /** STATE: Launch */
 
 void Cataquack::beginState_Launch() {
-
+    this->model->playSklAnim("throw", 0);
+    this->speed.x = 0.0f;
 }
 
 void Cataquack::executeState_Launch() {
-
+    this->handleGravity();
+    this->handleSpeed();
+    this->physicsMgr.processCollisions();
+    if (this->physicsMgr.isOnGround()) this->speed.y = 0.0f;
 }
 
 void Cataquack::endState_Launch() {

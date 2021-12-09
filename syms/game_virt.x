@@ -845,7 +845,7 @@ SECTIONS {
     directionToPlayerH__10StageActorFRC13Vec3__tm__2_f = 0x20005EC;
     directionToActorH__10StageActorFRC10StageActor = 0x200C800;
     distanceToPlayer__10StageActorFR4Vec2 = 0x20005A4;
-    deleteActorWhenOutOfView__10StageActorFUi = 0x20007A0;
+    offscreenDelete__10StageActorFUi = 0x20007A0;
     actorAcCallback0__10StageActorFP14HitboxColliderP4Vec2 = 0x219E7E8;
     actorAcCallback2__10StageActorFP14HitboxColliderP4Vec2 = 0x219E8A4;
     actorCbCallback0__10StageActorFP12ColliderBaseP4Vec2 = 0x219E8B8;
