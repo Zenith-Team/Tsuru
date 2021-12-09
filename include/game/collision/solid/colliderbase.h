@@ -93,7 +93,7 @@ public:
         Type_Carpet                         = 23, // Unused
         Type_Leaves                         = 24, // Used by Palm Tree
         Type_Wood                           = 25, // Used by Floating Barrel
-        Type_Unknown4                       = 26, // Used by Bouncy Cloud
+        Type_Bouncy                         = 26, // Used by Bouncy Cloud
         Type_SwingingVine                   = 27,
         Type_SwingingChain                  = 28,
         Type_RopeLadder                     = 29,
