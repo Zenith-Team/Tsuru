@@ -14,6 +14,7 @@
 #include "utils/mtx.h"
 #include "math/functions.h"
 
+//! TODO: Region free using syms
 #define __vtbl__21BlockCoinBaseCollider 0x101018AC
 #define __vtbl__16CircularCollider 0x10041B28
 #define __vtbl__18SolidOnTopCollider 0x10042238
