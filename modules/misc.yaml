@@ -9,10 +9,12 @@ Files:
   - source/hitboxcollider.cpp
   - source/utils.cpp
   - source/profileres.cpp
-  - source/shader.cpp
-  - source/gfd.cpp
+  - source/graphics/shader.cpp
+  - source/graphics/vbo.cpp
+  - source/cafe/gfd.cpp
 Hooks:
 # Sets PhysicsMgr->owner before doing anything else so that functions there have access to the actor pointer
+# TODO: Investigate a crash in PhysicsMgr::setSensor as it might be related to this
   - type: branch
     instr: bl
     addr: "218af98" # PhysicsMgr::init()
