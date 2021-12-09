@@ -88,7 +88,7 @@ private:
     static inline Vec3& sub(Vec3& out, const Vec3& a, const Vec3& b) {
         out.x = a.x - b.x;
         out.y = a.y - b.y;
-        out.z = a.y - b.z;
+        out.z = a.z - b.z;
         return out;
     }
 

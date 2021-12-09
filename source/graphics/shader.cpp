@@ -1,4 +1,4 @@
-#include "tsuru/shader.h"
+#include "tsuru/graphics/shader.h"
 
 #include "cafe/gfd.h"
 #include "sead/filedevicemgr.h"
@@ -61,22 +61,19 @@ Shader::~Shader() {
     this->inited = false;
 }
 
-void Shader::use(const GX2FetchShader* fetchShader) const {
+void Shader::use() const {
     if (!this->inited)
         return;
-
-    if (fetchShader)
-        GX2SetFetchShader(fetchShader);
 
     GX2SetVertexShader(this->vertexShader);
     GX2SetPixelShader(this->pixelShader);
 }
 
-void ShaderUR::use(const GX2FetchShader* fetchShader) const {
+void ShaderUR::use() const {
     if (!this->inited)
         return;
 
     GX2SetShaderModeEx(GX2_SHADER_MODE_UNIFORM_REGISTER, 48, 64, 0, 0, 200, 192);
 
-    Shader::use(fetchShader);
+    Shader::use();
 }
