@@ -32,6 +32,8 @@
 #define __vtbl__19PipeCannonBaseCollider 0x1010562C
 #define __vtbl__19PipeCannonTopCollider 0x101055A4
 #define __vtbl__11IceCollider 0x1007EAB4
+#define __vtbl__18TowerBlockCollider 0x101426B0
+#define __vtbl__12GearCollider 0x101190B4
 
 void drawLine3D(const Vec3f& position, const u32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
     Vec3f scale(lineLength, lineThickness, lineThickness);
@@ -142,6 +144,7 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
 
         while (node != nullptr) {
             ColliderBase* colliderBase = node->owner;
+            node = node->next;
             void** vtable = (void**)((u8*)colliderBase + 0xC);
 
             //if (sead::IsDerivedFrom<CircularCollider, ColliderBase>(colliderBase)) {
@@ -172,7 +175,8 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                      (u32)*vtable == __vtbl__18PAcornOnlyCollider     || (u32)*vtable == __vtbl__18StoneBlockCollider ||
                      (u32)*vtable == __vtbl__18SteelBlockCollider     || (u32)*vtable == __vtbl__16POWBlockCollider ||
                      (u32)*vtable == __vtbl__19PipeCannonBaseCollider || (u32)*vtable == __vtbl__19PipeCannonTopCollider ||
-                     (u32)*vtable == __vtbl__11IceCollider) {
+                     (u32)*vtable == __vtbl__11IceCollider            || (u32)*vtable == __vtbl__18TowerBlockCollider ||
+                     (u32)*vtable == __vtbl__12GearCollider) {
                 ShapedCollider* collider = static_cast<ShapedCollider*>(colliderBase);
                 if (collider->points.size < 2) continue;
 
@@ -195,8 +199,6 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                     colliderBase->owner->id, colliderBase->owner->profile->id, (u32)*vtable
                 );
             }
-
-            node = node->next;
         }
 
         ActorBuffer* actors = &ActorMgr::instance()->actors;
