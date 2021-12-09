@@ -272,6 +272,9 @@ SECTIONS {
     playSound__15BasicSoundActorFPCcP13Vec2__tm__2_fUi = 0x29BED48;
 
 /* ColliderBase */
+    setType__12ColliderBaseFQ2_12ColliderBase4Type = 0x21A5A70;
+
+/* ColliderBase::Node */
     __ct__Q2_12ColliderBase4NodeFv = 0x21A1ACC;
 
 /* ColliderMgr */
@@ -939,4 +942,7 @@ SECTIONS {
     InfiniteLivesContinue = 0x24c005c;
     InfiniteTimeContinue = 0x24c1388;
     InvincibilityContinue = 0x2931180;
+    __vtbl__16CircularCollider = 0x10041b28;
+    __vtbl__18SolidOnTopCollider = 0x10042238;
+    __vtbl__14ShapedCollider = 0x10042688;
 }
