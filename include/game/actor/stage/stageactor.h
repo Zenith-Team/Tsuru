@@ -75,7 +75,7 @@ public:
     u8 directionToActorH(const StageActor& other);
 
     void cullCheck(u32 unkMask = 0);
-    bool deleteActorWhenOutOfView(u32);
+    bool offscreenDelete(u32 noRespawn); // Argument might be a bool
 
     bool actorHCCallback0(HitboxCollider*, Vec2f*);
     bool actorHCCallback1(HitboxCollider*, Vec2f*);

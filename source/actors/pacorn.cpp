@@ -49,7 +49,7 @@ u32 PAcorn::onExecute() {
     this->states.execute();
     // FUN_0232a958((this->_)._.unk5 + 0x28); //? Possibly ActorScaler related
     this->updateModel();
-    this->deleteActorWhenOutOfView(0);
+    this->offscreenDelete(0);
     this->FUN_2518f94();
     this->FUN_25183ac();
 

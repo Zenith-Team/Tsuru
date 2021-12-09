@@ -14,9 +14,30 @@
 #include "utils/mtx.h"
 #include "math/functions.h"
 
+#define __vtbl__21BlockCoinBaseCollider 0x101018AC
+#define __vtbl__16CircularCollider 0x10041B28
+#define __vtbl__18SolidOnTopCollider 0x10042238
+#define __vtbl__22SolidOnTopLiftCollider 0x10129C70
+#define __vtbl__14ShapedCollider 0x10042688
+#define __vtbl__12RectCollider 0x100FB820
+#define __vtbl__4Vine 0x10102F84
+#define __vtbl__15RedCoinCollider 0x1014F7B0
+#define __vtbl__20RotatingPipeCollider 0x10150CC0
+#define __vtbl__23MovingSemisolidCollider 0x10141E40
+#define __vtbl__16GoalPoleCollider 0x101198F0
+#define __vtbl__18PAcornOnlyCollider 0x1014752C
+#define __vtbl__18StoneBlockCollider 0x100EEEDC
+#define __vtbl__18SteelBlockCollider 0x100E8330
+#define __vtbl__16POWBlockCollider 0x1014C784
+#define __vtbl__19PipeCannonBaseCollider 0x1010562C
+#define __vtbl__19PipeCannonTopCollider 0x101055A4
+#define __vtbl__11IceCollider 0x1007EAB4
+#define __vtbl__18TowerBlockCollider 0x101426B0
+#define __vtbl__12GearCollider 0x101190B4
+
 void drawLine3D(const Vec3f& position, const u32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
     Vec3f scale(lineLength, lineThickness, lineThickness);
-    Vec3u rot(0x80000000, (rotation + 0x40000000) * -1, 0x00000000);
+    Vec3u rot(0x80000000, (rotation + 0x40000000) * 0xFFFFFFFF, 0x00000000);
     f32 rotSin;
     f32 rotCos;
     sinCosIdx(&rotSin, &rotCos, rotation);
@@ -123,16 +144,20 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
 
         while (node != nullptr) {
             ColliderBase* colliderBase = node->owner;
-            if (sead::IsDerivedFrom<CircularCollider, ColliderBase>(colliderBase)) {
+            node = node->next;
+            void** vtable = (void**)((u8*)colliderBase + 0xC);
+
+            //if (sead::IsDerivedFrom<CircularCollider, ColliderBase>(colliderBase)) {
+            if ((u32)*vtable == __vtbl__16CircularCollider) {
                 CircularCollider* collider = static_cast<CircularCollider*>(colliderBase);
 
                 sead::PrimitiveRenderer::instance()->drawCircle32(Vec3f(collider->ownerInfo.position->x + collider->distToCenter.x + collider->_160.x, collider->ownerInfo.position->y + collider->distToCenter.y + collider->_160.y, 4000.f), collider->radius, sead::colorBlue);
             }
 
-            else if (sead::IsDerivedFrom<SolidOnTopCollider, ColliderBase>(colliderBase)) {
+            //else if (sead::IsDerivedFrom<SolidOnTopCollider, ColliderBase>(colliderBase)) {
+            else if ((u32)*vtable == __vtbl__18SolidOnTopCollider || (u32)*vtable == __vtbl__22SolidOnTopLiftCollider) {
                 SolidOnTopCollider* collider = static_cast<SolidOnTopCollider*>(colliderBase);
-                if (collider->points.size < 2)
-                    continue;
+                if (collider->points.size < 2) continue;
 
                 const Vec2f center = Vec2f((*collider->ownerInfo.position).x, (*collider->ownerInfo.position).y) + collider->distToCenter;
 
@@ -142,10 +167,18 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                 }
             }
 
-            else if (sead::IsDerivedFrom<ShapedCollider, ColliderBase>(colliderBase)) {
+            //else if (sead::IsDerivedFrom<ShapedCollider, ColliderBase>(colliderBase)) {
+            else if ((u32)*vtable == __vtbl__14ShapedCollider         || (u32)*vtable == __vtbl__12RectCollider ||
+                     (u32)*vtable == __vtbl__21BlockCoinBaseCollider  || (u32)*vtable == __vtbl__4Vine ||
+                     (u32)*vtable == __vtbl__15RedCoinCollider        || (u32)*vtable == __vtbl__20RotatingPipeCollider ||
+                     (u32)*vtable == __vtbl__16GoalPoleCollider       || (u32)*vtable == __vtbl__23MovingSemisolidCollider ||
+                     (u32)*vtable == __vtbl__18PAcornOnlyCollider     || (u32)*vtable == __vtbl__18StoneBlockCollider ||
+                     (u32)*vtable == __vtbl__18SteelBlockCollider     || (u32)*vtable == __vtbl__16POWBlockCollider ||
+                     (u32)*vtable == __vtbl__19PipeCannonBaseCollider || (u32)*vtable == __vtbl__19PipeCannonTopCollider ||
+                     (u32)*vtable == __vtbl__11IceCollider            || (u32)*vtable == __vtbl__18TowerBlockCollider ||
+                     (u32)*vtable == __vtbl__12GearCollider) {
                 ShapedCollider* collider = static_cast<ShapedCollider*>(colliderBase);
-                if (collider->points.size < 2)
-                    continue;
+                if (collider->points.size < 2) continue;
 
                 const Vec2f center = Vec2f((*collider->ownerInfo.position).x, (*collider->ownerInfo.position).y) + collider->distToCenter;
 
@@ -162,10 +195,10 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
             }
 
             else {
-                // LOG("Found unknown collider for actor with id: 0x%x, and profile id: 0x%x\n", colliderBase->owner->ID, colliderBase->owner->profile->ID);
+                LOG("Found unknown collider for actor with ID 0x%X and profile ID 0x%X (vtable addr: 0x%08X)\n",
+                    colliderBase->owner->id, colliderBase->owner->profile->id, (u32)*vtable
+                );
             }
-
-            node = node->next;
         }
 
         ActorBuffer* actors = &ActorMgr::instance()->actors;

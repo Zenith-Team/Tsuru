@@ -272,6 +272,9 @@ SECTIONS {
     playSound__15BasicSoundActorFPCcP13Vec2__tm__2_fUi = 0x29BED48;
 
 /* ColliderBase */
+    setType__12ColliderBaseFQ2_12ColliderBase4Type = 0x21A5A70;
+
+/* ColliderBase::Node */
     __ct__Q2_12ColliderBase4NodeFv = 0x21A1ACC;
 
 /* ColliderMgr */
@@ -845,7 +848,7 @@ SECTIONS {
     directionToPlayerV__10StageActorFRC13Vec3__tm__2_f = 0x20006b4;
     directionToActorH__10StageActorFRC10StageActor = 0x200C800;
     distanceToPlayer__10StageActorFR4Vec2 = 0x20005A4;
-    deleteActorWhenOutOfView__10StageActorFUi = 0x20007A0;
+    offscreenDelete__10StageActorFUi = 0x20007A0;
     actorAcCallback0__10StageActorFP14HitboxColliderP4Vec2 = 0x219E7E8;
     actorAcCallback2__10StageActorFP14HitboxColliderP4Vec2 = 0x219E8A4;
     actorCbCallback0__10StageActorFP12ColliderBaseP4Vec2 = 0x219E8B8;
@@ -939,4 +942,7 @@ SECTIONS {
     InfiniteLivesContinue = 0x24c005c;
     InfiniteTimeContinue = 0x24c1388;
     InvincibilityContinue = 0x2931180;
+    __vtbl__16CircularCollider = 0x10041b28;
+    __vtbl__18SolidOnTopCollider = 0x10042238;
+    __vtbl__14ShapedCollider = 0x10042688;
 }
