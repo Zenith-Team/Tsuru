@@ -309,7 +309,7 @@ void AngrySun::executeState_Spit() {
         StageActor* fireball;
 
         ActorBuildInfo projectileBuildInfo = { 0 };
-        projectileBuildInfo.profile = this->isMoon ? Profile::get(475) : Profile::get(477); // Piranha Plant iceball / fireball
+        projectileBuildInfo.profile = this->isMoon ? Profile::get(ProfileID::PiranhaPlantIceBall) : Profile::get(ProfileID::PiranhaPlantFireball);
         projectileBuildInfo.position = this->position;
         projectileBuildInfo.parentID = this->id;
 

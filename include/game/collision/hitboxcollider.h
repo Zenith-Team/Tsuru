@@ -54,7 +54,7 @@ public:
     // Initializes the collider
     // @param owner Pointer to owner of the collider
     // @param info Pointer to collider info struct
-    void init(StageActor* owner, const Info* info, void** callbackTable);
+    void init(StageActor* owner, const Info* info, void** callbackTable = nullptr);
     // Initializes the collider
     // @param owner Pointer to owner of the collider
     // @param info Pointer to collider info struct

@@ -3,6 +3,10 @@
 #include "math/constants.h"
 #include "types.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // @return Sine value of the given param
 f32 sinf(f32 x);
 // @return Cosine value of the given param
@@ -26,6 +30,10 @@ f32 powf(f32 x, f32 y);
 // @return Square root of the given param
 f32 sqrtf(f32 x);
 f32 fmodf(f32 x, f32 y);
+
+#ifdef __cplusplus
+}
+#endif
 
 // @return Square of the given param
 inline f32 pow2f(f32 x) { return x * x; }
