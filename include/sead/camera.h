@@ -40,7 +40,7 @@ class OrthoCamera : public LookAtCamera {
 
 public:
     OrthoCamera();
-    virtual ~OrthoCamera();
+    //virtual ~OrthoCamera();
 };
 
 }
