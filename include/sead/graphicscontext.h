@@ -9,11 +9,11 @@ namespace sead {
 class GraphicsContext { // Size: 0x74
 public:
     struct RenderState {
-        u32 polygonModeFront;
-        u32 polygonModeBack;
-        u8 polyOffsetFrontEnable;
-        u8 polyOffsetBackEnable;
-        u8 polyLineOffsetEnable;
+        u32 polygonModeFront;       // _0
+        u32 polygonModeBack;        // _4
+        u8 polyOffsetFrontEnable;   // _8
+        u8 polyOffsetBackEnable;    // _9
+        u8 polyLineOffsetEnable;    // _A
     };
 
 public:
@@ -23,33 +23,33 @@ public:
 
     void apply();
 
-    bool depthTestEnable;
-    bool depthWriteEnable;
-    Graphics::DepthFunc depthFunc;
-    Graphics::CullingMode cullingMode;
-    bool blendEnable;
-    Graphics::BlendFactor blendFactorSrcRGB;
-    Graphics::BlendFactor blendFactorSrcA;
-    Graphics::BlendFactor blendFactorDstRGB;
-    Graphics::BlendFactor blendFactorDstA;
-    Graphics::BlendEquation blendEquationRGB;
-    Graphics::BlendEquation blendEquationA;
-    sead::Color4f blendConstantColor;
-    bool alphaTestEnable;
-    Graphics::AlphaFunc alphaTestFunc;
-    f32 alphaTestRef;
-    bool colorMaskR;
-    bool colorMaskG;
-    bool colorMaskB;
-    bool colorMaskA;
-    bool stencilTestEnable;
-    Graphics::StencilFunc stencilTestFunc;
-    s32 stencilTestRef;
-    u32 stencilTestMask;
-    Graphics::StencilOp stencilOpFail;
-    Graphics::StencilOp stencilOpZFail;
-    Graphics::StencilOp stencilOpZPass;
-    RenderState renderState;
+    bool depthTestEnable;                       // _0
+    bool depthWriteEnable;                      // _1
+    Graphics::DepthFunc depthFunc;              // _4
+    Graphics::CullingMode cullingMode;          // _8
+    bool blendEnable;                           // _C
+    Graphics::BlendFactor blendFactorSrcRGB;    // _10
+    Graphics::BlendFactor blendFactorSrcA;      // _14
+    Graphics::BlendFactor blendFactorDstRGB;    // _18
+    Graphics::BlendFactor blendFactorDstA;      // _1C
+    Graphics::BlendEquation blendEquationRGB;   // _20
+    Graphics::BlendEquation blendEquationA;     // _24
+    sead::Color4f blendConstantColor;           // _28
+    bool alphaTestEnable;                       // _38
+    Graphics::AlphaFunc alphaTestFunc;          // _3C
+    f32 alphaTestRef;                           // _40
+    bool colorMaskR;                            // _44
+    bool colorMaskG;                            // _45
+    bool colorMaskB;                            // _46
+    bool colorMaskA;                            // _47
+    bool stencilTestEnable;                     // _48
+    Graphics::StencilFunc stencilTestFunc;      // _4C
+    s32 stencilTestRef;                         // _50
+    u32 stencilTestMask;                        // _54
+    Graphics::StencilOp stencilOpFail;          // _58
+    Graphics::StencilOp stencilOpZFail;         // _5C
+    Graphics::StencilOp stencilOpZPass;         // _60
+    RenderState renderState;                    // _64
 };
 
 static_assert(sizeof(GraphicsContext) == 0x74, "sead::GraphicsContext size mismatch");

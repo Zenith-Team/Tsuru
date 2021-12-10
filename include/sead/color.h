@@ -26,10 +26,10 @@ public:
         this->a = a;
     }
 
-    f32 r;
-    f32 g;
-    f32 b;
-    f32 a;
+    f32 r; // _0
+    f32 g; // _4
+    f32 b; // _8
+    f32 a; // _C
 };
 
 static const Color4f colorRed     (0xFF0000FF);
