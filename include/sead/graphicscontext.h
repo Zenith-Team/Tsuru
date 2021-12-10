@@ -44,7 +44,7 @@ public:
     bool colorMaskA;
     bool stencilTestEnable;
     Graphics::StencilFunc stencilTestFunc;
-    u32 stencilTestRef;
+    s32 stencilTestRef;
     u32 stencilTestMask;
     Graphics::StencilOp stencilOpFail;
     Graphics::StencilOp stencilOpZFail;
