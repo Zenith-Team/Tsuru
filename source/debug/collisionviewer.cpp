@@ -13,12 +13,14 @@
 #include "tsuru/save/managers/tsurusavemgr.h"
 #include "utils/mtx.h"
 #include "math/functions.h"
+#include "sead/graphicscontext.h"
 
 //! TODO: Region free using syms
 #define __vtbl__21BlockCoinBaseCollider 0x101018AC
 #define __vtbl__16CircularCollider 0x10041B28
 #define __vtbl__18SolidOnTopCollider 0x10042238
 #define __vtbl__22SolidOnTopLiftCollider 0x10129C70
+#define __vtbl__30SolidOnTopVerticalLiftCollider 0x1012B438
 #define __vtbl__14ShapedCollider 0x10042688
 #define __vtbl__12RectCollider 0x100FB820
 #define __vtbl__4Vine 0x10102F84
@@ -35,6 +37,7 @@
 #define __vtbl__11IceCollider 0x1007EAB4
 #define __vtbl__18TowerBlockCollider 0x101426B0
 #define __vtbl__12GearCollider 0x101190B4
+#define __vtbl__25EnterablePipeDownCollider 0x1013CB50
 
 void drawLine3D(const Vec3f& position, const u32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
     Vec3f scale(lineLength, lineThickness, lineThickness);
@@ -71,6 +74,9 @@ void drawLine(const Vec2f& point1, const Vec2f& point2, const sead::Color4f& col
 
 void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
+
+    sead::GraphicsContext graphicsContext;
+    graphicsContext.apply();
 
     if (TsuruSaveMgr::sSaveData.collisionViewerEnabled) {
         sead::PrimitiveRenderer::instance()->setCamera(*renderInfo.camera);
@@ -152,11 +158,12 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
             if ((u32)*vtable == __vtbl__16CircularCollider) {
                 CircularCollider* collider = static_cast<CircularCollider*>(colliderBase);
 
-                sead::PrimitiveRenderer::instance()->drawCircle32(Vec3f(collider->ownerInfo.position->x + collider->distToCenter.x + collider->_160.x, collider->ownerInfo.position->y + collider->distToCenter.y + collider->_160.y, 4000.f), collider->radius, sead::colorBlue);
+                sead::PrimitiveRenderer::instance()->drawCircle32(Vec3f(collider->ownerInfo.position->x + collider->distToCenter.x + collider->_160.x, collider->ownerInfo.position->y + collider->distToCenter.y + collider->_160.y, 4000.0f), collider->radius, sead::colorPurple);
             }
 
             //else if (sead::IsDerivedFrom<SolidOnTopCollider, ColliderBase>(colliderBase)) {
-            else if ((u32)*vtable == __vtbl__18SolidOnTopCollider || (u32)*vtable == __vtbl__22SolidOnTopLiftCollider) {
+            else if ((u32)*vtable == __vtbl__18SolidOnTopCollider || (u32)*vtable == __vtbl__22SolidOnTopLiftCollider ||
+                     (u32)*vtable == __vtbl__30SolidOnTopVerticalLiftCollider) {
                 SolidOnTopCollider* collider = static_cast<SolidOnTopCollider*>(colliderBase);
                 if (collider->points.size < 2) continue;
 
@@ -164,7 +171,7 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
 
                 for (u32 i = 0; i < collider->nodes1.size; i++) {
                     const ColliderBase::Node& node = collider->nodes1[i];
-                    drawLine(center + node.sensor.point1, center + node.sensor.point2, sead::colorGreen, 1.0f);
+                    drawLine(center + node.sensor.point1, center + node.sensor.point2, sead::colorOrange, 1.5f);
                 }
             }
 
@@ -177,7 +184,7 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                      (u32)*vtable == __vtbl__18SteelBlockCollider     || (u32)*vtable == __vtbl__16POWBlockCollider ||
                      (u32)*vtable == __vtbl__19PipeCannonBaseCollider || (u32)*vtable == __vtbl__19PipeCannonTopCollider ||
                      (u32)*vtable == __vtbl__11IceCollider            || (u32)*vtable == __vtbl__18TowerBlockCollider ||
-                     (u32)*vtable == __vtbl__12GearCollider) {
+                     (u32)*vtable == __vtbl__12GearCollider           || (u32)*vtable == __vtbl__25EnterablePipeDownCollider) {
                 ShapedCollider* collider = static_cast<ShapedCollider*>(colliderBase);
                 if (collider->points.size < 2) continue;
 
@@ -205,7 +212,7 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
         ActorBuffer* actors = &ActorMgr::instance()->actors;
         for (u32 i = 0; i < actors->start.size; i++) {
             StageActor* actor = sead::DynamicCast<StageActor, Actor>(actors->start[i]);
-            if (actor == NULL || !actor->isVisible || actor->isDeleted)
+            if (actor == NULL || actor->isDeleted)
                 continue;
 
             ActorPhysicsMgr* actorPhysicsMgr = actor->getActorPhysicsMgr();
