@@ -16,6 +16,7 @@ SetCurrentGraphicsContext:
     lis r3, CurrentGraphicsContext@ha
     addi r3, r3, CurrentGraphicsContext@l
 
+    # First part
     lbz r4, 0x0(r31)
     stb r4, 0x0(r3)
     lbz r4, 0x1(r31)
@@ -39,6 +40,7 @@ SetCurrentGraphicsContext:
     lwz r4, 0x24(r31)
     stw r4, 0x24(r3)
 
+    # Color4f
     addi r5, r31, 0x28
     lfs f0, 0x0(r5)
     stfs f0, 0x0(r3)
@@ -48,6 +50,7 @@ SetCurrentGraphicsContext:
     stfs f0, 0x8(r3)
     lfs f0, 0xc(r5)
 
+    # Second part
     stfs f0, 0xc(r3)
     lbz r4, 0x38(r31)
     stb r4, 0x38(r3)
@@ -78,6 +81,7 @@ SetCurrentGraphicsContext:
     lwz r4, 0x60(r31)
     stw r4, 0x60(r3)
 
+    # RenderState
     addi r5, r31, 0x64
     lwz r4, 0x0(r5)
     stw r4, 0x0(r3)
