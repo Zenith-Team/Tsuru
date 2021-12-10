@@ -271,6 +271,10 @@ SECTIONS {
     GlobalBasicSoundActorB__15BasicSoundActor = 0x101C63D0;
     playSound__15BasicSoundActorFPCcP13Vec2__tm__2_fUi = 0x29BED48;
 
+/* CircularCollider */
+    __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__16CircularColliderSFv = 0x101E9F88;
+	typeInfo__L0__getRuntimeTypeInfoStatic__16CircularColliderSFv = 0x101EA398;
+
 /* ColliderBase */
     setType__12ColliderBaseFQ2_12ColliderBase4Type = 0x21A5A70;
 
@@ -825,6 +829,8 @@ SECTIONS {
     playTexSrtAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FEE50;
 
 /* ShapedCollider */
+    __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__14ShapedColliderSFv = 0x101E9D30;
+    typeInfo__L0__getRuntimeTypeInfoStatic__14ShapedColliderSFv = 0x101E9FB4;
     __ct__14ShapedColliderFiP13Vec2__tm__2_fPQ2_12ColliderBase4NodeT3 = 0x21A7904;
     execute__14ShapedColliderFv = 0x21A871C;
     __CPR62__init__14ShapedColliderFP10StageActorRCQ2_J6J4Info = 0x21AD3BC;
@@ -832,6 +838,10 @@ SECTIONS {
 
 /* SkeletalAnimation */
     play__17SkeletalAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FDADC;
+
+/* SolidOnTopCollider */
+    __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__18SolidOnTopColliderSFv = 0x101E9D48;
+	typeInfo__L0__getRuntimeTypeInfoStatic__18SolidOnTopColliderSFv = 0x101E9FA8;
 
 /* SoundSystem */
     sInstance__11SoundSystem = 0x101E7C84;
@@ -942,7 +952,4 @@ SECTIONS {
     InfiniteLivesContinue = 0x24c005c;
     InfiniteTimeContinue = 0x24c1388;
     InvincibilityContinue = 0x2931180;
-    __vtbl__16CircularCollider = 0x10041b28;
-    __vtbl__18SolidOnTopCollider = 0x10042238;
-    __vtbl__14ShapedCollider = 0x10042688;
 }
