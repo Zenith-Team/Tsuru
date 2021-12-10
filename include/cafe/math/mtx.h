@@ -7,7 +7,9 @@ template <typename T>
 class Vec3;
 typedef Vec3<float> Vec3f;
 
+#ifdef __cplusplus
 extern "C" {
+#endif
 
 // MTX34
 void ASM_MTXConcat(Mtx34* a, Mtx34* b, Mtx34* out);
@@ -21,4 +23,6 @@ void ASM_MTX44Concat(Mtx44* a, Mtx44* b, Mtx44* out);
 void ASM_MTX44Transpose(Mtx44* mtx, Mtx44* out);
 void ASM_MTX44MultVec(Mtx44* mtx, Vec3f* vec, Vec3f* out);
 
+#ifdef __cplusplus
 }
+#endif

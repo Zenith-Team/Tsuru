@@ -24,11 +24,7 @@ class LookAtCamera : public Camera {
     SEAD_RTTI_OVERRIDE(LookAtCamera, Camera)
 
 public:
-    inline LookAtCamera(Vec3f& pos, Vec3f& at, Vec3f& up) {
-        this->pos = pos;
-        this->at = at;
-        this->up = up;
-    }
+    LookAtCamera(Vec3f& pos, Vec3f& at, Vec3f& up);
 
     virtual ~LookAtCamera();
 
@@ -44,6 +40,7 @@ class OrthoCamera : public LookAtCamera {
 
 public:
     OrthoCamera();
+    virtual ~OrthoCamera();
 };
 
 }

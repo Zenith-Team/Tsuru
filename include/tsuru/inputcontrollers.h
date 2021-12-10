@@ -20,11 +20,17 @@ public:
 
     // Initializes each controller with the appropriate ID
     void init() {
-        controllers[0].init(ControllerID_Wiimote1);
-        controllers[1].init(ControllerID_Wiimote2);
-        controllers[2].init(ControllerID_Wiimote3);
-        controllers[3].init(ControllerID_Wiimote4);
-        controllers[4].init(ControllerID_Gamepad);
+        for (u32 i = 0; i < 5; i++) {
+            controllers[i].init((ControllerID) i);
+        }
+    }
+
+    // Calls calc() on each controller
+    //! Do not call this, it is not required, but is just here for it may be needed in the future
+    void calc(u32 a, bool b) {
+        for (u32 i = 0; i < 5; i++) {
+            controllers[i].calc(a, b);
+        }
     }
 
     // TODO: Use sead::BitFlag functions instead of our own

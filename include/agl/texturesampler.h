@@ -4,6 +4,7 @@
 #include "agl/texturedata.h"
 #include "sead/color.h"
 #include "sead/bitflag.h"
+#include "agl/samplerlocation.h"
 
 namespace agl {
 
@@ -14,8 +15,7 @@ public:
 
     virtual ~TextureSampler();
 
-    // @param location Either const agl::ShaderLocation& or const agl::SamplerLocation&, I don't know which
-    u32 activate(void* location);
+    bool activate(const SamplerLocation& samplerLocation, s32 = -1) const;
 
     void applyTextureData_(const TextureData& data);
 

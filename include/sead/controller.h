@@ -159,7 +159,7 @@ public:
     ControllerWrapperBase();
     virtual ~ControllerWrapperBase();
 
-    virtual void calc() = 0;
+    virtual void calc(u32, bool) = 0;
 
     // Calls setIdleBase_()
     virtual void setIdle();
@@ -193,7 +193,7 @@ public:
     ControllerWrapper();
     virtual ~ControllerWrapper();
 
-    void calc() override;
+    void calc(u32, bool) override;
 
     u32 createPadMaskFromControllerPadMask_(u32) const;
     void setPadConfig(s32 bitMax, const u8*, bool);
