@@ -7,6 +7,9 @@ namespace agl {
 class SamplerLocation {
 public:
     SamplerLocation()
+        : vsLoc(-1)
+        , psLoc(-1)
+        , gsLoc(-1)
     { }
 
     sead::SafeString name;

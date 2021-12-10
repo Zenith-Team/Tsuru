@@ -22,13 +22,13 @@ public:
     void applyTextureData(const TextureData& data) {
         if (!this->isTexValid ||
                 this->textureData.surface.dimension != data.surface.dimension ||
-                this->textureData.surface.width     != data.surface.width ||
-                this->textureData.surface.height    != data.surface.height ||
-                this->textureData.surface.depth     != data.surface.depth ||
-                this->textureData.surface.numMips   != data.surface.numMips ||
-                this->textureData.surface.format    != data.surface.format ||
-                this->textureData.surface.swizzle   != data.surface.swizzle ||
-                this->textureData.surface.tile      != data.surface.tile ||
+                this->textureData.surface.width     != data.surface.width     ||
+                this->textureData.surface.height    != data.surface.height    ||
+                this->textureData.surface.depth     != data.surface.depth     ||
+                this->textureData.surface.numMips   != data.surface.numMips   ||
+                this->textureData.surface.format    != data.surface.format    ||
+                this->textureData.surface.swizzle   != data.surface.swizzle   ||
+                this->textureData.surface.tile      != data.surface.tile      ||
                 this->textureData.surface.aa        != data.surface.aa) {
             applyTextureData_(data);
         } else {

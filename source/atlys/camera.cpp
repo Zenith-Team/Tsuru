@@ -18,7 +18,6 @@ u32 Atlys::Camera::onCreate() {
 }
 
 u32 Atlys::Camera::onExecute() {
-    LOG("exec");
     return 1;
 }
 

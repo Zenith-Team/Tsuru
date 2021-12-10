@@ -8,6 +8,8 @@
 #include "sead/graphicscontext.h"
 #include "tsuru/gtx.h"
 #include "tsuru/atlys/camera.h"
+#include "tsuru/graphics/shader.h"
+#include "tsuru/graphics/vbo.h"
 
 namespace Atlys {
 
