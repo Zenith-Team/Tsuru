@@ -37,7 +37,9 @@ u32 Poison_onExecute(EnvTerrain* _this) { // Replaces poison water onExecute()
     TileMgr::instance()->waveType = TileMgr::WaveType_Poison;
     _this->effects.updateWaveCollisions();
 
-    return onExecute__10EnvTerrainFv(_this);
+    //onExecute__10EnvTerrainFv(_this);
+    //_this->onExecute();
+    return 1;
 }
 
 u32 Quicksand_onExecute(EnvTerrain* _this) { // Replaces quicksand onExecute()
@@ -55,5 +57,7 @@ u32 Quicksand_onExecute(EnvTerrain* _this) { // Replaces quicksand onExecute()
     TileMgr::instance()->waveType = TileMgr::WaveType_Quicksand;
     _this->effects.updateWaveCollisions();
 
-    return onExecute__10EnvTerrainFv(_this);
+    //onExecute__10EnvTerrainFv(_this);
+    //_this->onExecute();
+    return 1;
 }
