@@ -3,6 +3,7 @@
 Files:
 #* Translation unit queue:
   - source/misc.S
+  - source/misc.cpp
   - source/dynlibs/os.cpp
   - source/dynlibs/gx2.cpp
   - source/dynlibs/h264.cpp
@@ -24,3 +25,15 @@ Hooks:
   - type: patch
     data: "480000E8" # b +0xE8
     addr: "24D71C4"
+
+# Instant respawn
+  - type: branch
+    instr: b
+    func: respawn__Fv
+    addr: "24c011c"
+
+# Keep a copy of the currently active graphics context
+  - type: branch
+    instr: bl
+    func: "SetCurrentGraphicsContext"
+    addr: "2a07cbc"

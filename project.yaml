@@ -15,7 +15,6 @@ Modules:
   - modules/misc.yaml                 # Miscellaneous items
   - modules/powerup.yaml              # Custom powerups
   - modules/profile.yaml              # Extra profile and sprite slots
-  - modules/respawn.yaml              # Instant respawn after dying
   - modules/sarcloader.yaml           # Allow loading uncompressed .sarc levels
   - modules/savemgr.yaml              # Manages the custom savedata files
   - modules/sead.yaml                 # Patches for the sead library
