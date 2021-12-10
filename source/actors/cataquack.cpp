@@ -89,6 +89,7 @@ u32 Cataquack::onCreate() {
     };
 
     this->rectCollider.init(this, colliderInfo);
+    this->rectCollider.setType(ColliderBase::Type_Bouncy);
     ColliderMgr::instance()->add(&rectCollider);
 
     this->doStateChange(&Cataquack::StateID_Walk);
