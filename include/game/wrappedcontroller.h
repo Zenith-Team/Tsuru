@@ -9,5 +9,5 @@ public:
 
     void init(u32 controllerNumber);
 
-    void calc() override;
+    void calc(u32, bool) override;
 };
