@@ -34,7 +34,7 @@ public:
     // @return Profile ID of this actor
     u32 getProfileID();
 
-    sead::Heap* heap;                       // 0
+    sead::UnitHeap* heap;                   // 0
     u32 id;                                 // 4
     Profile* profile;                       // 8
     bool wasNotDeferred;                    // C
