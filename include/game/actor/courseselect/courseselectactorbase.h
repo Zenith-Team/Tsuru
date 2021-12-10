@@ -3,7 +3,7 @@
 #include "game/actor/actor.h"
 
 class CourseSelectActorBase : public Actor {
-    SEAD_RTTI_OVERRIDE(CourseSelectActor, Actor)
+    SEAD_RTTI_OVERRIDE(CourseSelectActorBase, Actor)
 
 public:
     CourseSelectActorBase(const ActorBuildInfo* buildInfo);

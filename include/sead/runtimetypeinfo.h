@@ -64,18 +64,16 @@ inline DerivedType* DynamicCast(Type* obj) {
             return &typeInfo;                                                                                \
         }                                                                                                    \
                                                                                                              \
-        virtual bool checkDerivedRuntimeTypeInfo(const sead::RuntimeTypeInfo::Interface* typeInfo) const;    \
-        virtual const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfo() const;
-
-#define SEAD_RTTI_OVERRIDE(CLASS, BASE)                                                                      \
-    public:                                                                                                  \
-        static const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfoStatic() {                          \
-            static const sead::RuntimeTypeInfo::Derive<BASE> typeInfo;                                       \
-            return &typeInfo;                                                                                \
+        virtual bool checkDerivedRuntimeTypeInfo(const sead::RuntimeTypeInfo::Interface* typeInfo) const {   \
+            const sead::RuntimeTypeInfo::Interface* clsTypeInfo = CLASS::getRuntimeTypeInfoStatic();         \
+            return typeInfo == clsTypeInfo;                                                                  \
         }                                                                                                    \
                                                                                                              \
-        virtual bool checkDerivedRuntimeTypeInfo(const sead::RuntimeTypeInfo::Interface* typeInfo) const;    \
-        virtual const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfo() const;
+        virtual const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfo() const {                         \
+            return getRuntimeTypeInfoStatic();                                                               \
+        }
+
+#define SEAD_RTTI_OVERRIDE(CLASS, BASE) SEAD_RTTI_OVERRIDE_IMPL(CLASS, BASE)
 
 #define SEAD_RTTI_OVERRIDE_IMPL(CLASS, BASE)                                                                 \
     public:                                                                                                  \
