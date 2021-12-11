@@ -10,22 +10,22 @@
 class GTX {
 public:
     GTX()
-        : textureRaw(nullptr)
+        : gtx(nullptr)
         , texture()
     { }
 
     GTX(const sead::SafeString& path)
-        : textureRaw(nullptr)
+        : gtx(nullptr)
         , texture()
     {
         this->load(path);
     }
 
     ~GTX() {
-        if (this->textureRaw)
-            delete[] this->textureRaw;
+        if (this->gtx)
+            delete[] this->gtx;
 
-        this->textureRaw = nullptr;
+        this->gtx = nullptr;
     }
 
     bool load(const sead::SafeString& path) {
@@ -44,20 +44,20 @@ public:
             return false;
         }
 
-        this->textureRaw = new(nullptr, 0x2000) u8[filesize];
+        this->gtx = new(nullptr, 0x2000) u8[filesize];
 
-        if (textureRaw == nullptr) {
+        if (gtx == nullptr) {
             LOG("Failed to allocate memory for texture \"%s\"", path.cstr());
             return false;
         }
 
-        u32 bytesRead = handle.read(this->textureRaw, filesize);
+        u32 bytesRead = handle.read(this->gtx, filesize);
         if (bytesRead != filesize) {
             LOG("Read size mismatch occurred while reading file at %s, read size: 0x%x, expected size: 0x%x", path.cstr(), bytesRead, filesize);
             return false;
         }
 
-        agl::TextureDataInitializerGTX::initialize(&textureData, this->textureRaw, 0);
+        agl::TextureDataInitializerGTX::initialize(&textureData, this->gtx, 0);
         textureData.invalidateGPUCache();
 
         this->texture.applyTextureData(textureData);
@@ -66,7 +66,7 @@ public:
     }
 
 private:
-    u8* textureRaw;
+    u8* gtx;
 
 public:
     agl::TextureSampler texture;

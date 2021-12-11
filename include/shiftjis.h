@@ -3,6 +3,7 @@
 #include "stdarg.h"
 
 // https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h
+// For Shift-JIS support (profile names)
 
 const unsigned char convTable[0x6200] = {
     0x00, 0x00, 0x00, 0x01, 0x00, 0x02, 0x00, 0x03,

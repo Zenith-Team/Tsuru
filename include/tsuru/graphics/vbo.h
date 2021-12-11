@@ -53,7 +53,7 @@ public:
         AttribFormat_32_32_32_32_SINT  = 0x312,
         AttribFormat_32_32_32_32_FLOAT = 0x813,
 
-        AttribFormat_INVALID  = 0xFFFFFFFF
+        AttribFormat_INVALID = 0xFFFFFFFF
     };
 
 private:
