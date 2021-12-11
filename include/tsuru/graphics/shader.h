@@ -58,7 +58,7 @@ public:
             GX2SetPixelUniformReg(frgOffs, 1, &value);
     }
 
-    void setMtx34(const sead::SafeString& name, const Mtx34& mat) const {
+    void setMat4(const sead::SafeString& name, const Mtx34& mat) const {
         const char* cname = name.cstr();
 
         // GLSL shader uses column-major matrix
@@ -78,7 +78,7 @@ public:
             GX2SetPixelUniformReg(frgOffs, 16, mtx);
     }
 
-    void setMtx44(const sead::SafeString& name, const Mtx44& mat) const {
+    void setMat4(const sead::SafeString& name, const Mtx44& mat) const {
         const char* cname = name.cstr();
 
         // GLSL shader uses column-major matrix
