@@ -9,11 +9,11 @@ namespace sead {
 class GraphicsContext { // Size: 0x74
 public:
     struct RenderState {
-        u32 polygonModeFront;       // _0
-        u32 polygonModeBack;        // _4
-        u8 polyOffsetFrontEnable;   // _8
-        u8 polyOffsetBackEnable;    // _9
-        u8 polyLineOffsetEnable;    // _A
+        u32 polygonModeFront;                   // _0     Inited to Fill
+        u32 polygonModeBack;                    // _4     Inited to Fill
+        bool polyOffsetFrontEnable;             // _8     Inited to false
+        bool polyOffsetBackEnable;              // _9     Inited to false
+        bool polyLineOffsetEnable;              // _A     Inited to false
     };
 
 public:
@@ -23,32 +23,32 @@ public:
 
     void apply();
 
-    bool depthTestEnable;                       // _0
-    bool depthWriteEnable;                      // _1
-    Graphics::DepthFunc depthFunc;              // _4
-    Graphics::CullingMode cullingMode;          // _8
-    bool blendEnable;                           // _C
-    Graphics::BlendFactor blendFactorSrcRGB;    // _10
-    Graphics::BlendFactor blendFactorSrcA;      // _14
-    Graphics::BlendFactor blendFactorDstRGB;    // _18
-    Graphics::BlendFactor blendFactorDstA;      // _1C
-    Graphics::BlendEquation blendEquationRGB;   // _20
-    Graphics::BlendEquation blendEquationA;     // _24
-    sead::Color4f blendConstantColor;           // _28
-    bool alphaTestEnable;                       // _38
-    Graphics::AlphaFunc alphaTestFunc;          // _3C
-    f32 alphaTestRef;                           // _40
-    bool colorMaskR;                            // _44
-    bool colorMaskG;                            // _45
-    bool colorMaskB;                            // _46
-    bool colorMaskA;                            // _47
-    bool stencilTestEnable;                     // _48
-    Graphics::StencilFunc stencilTestFunc;      // _4C
-    s32 stencilTestRef;                         // _50
-    u32 stencilTestMask;                        // _54
-    Graphics::StencilOp stencilOpFail;          // _58
-    Graphics::StencilOp stencilOpZFail;         // _5C
-    Graphics::StencilOp stencilOpZPass;         // _60
+    bool depthTestEnable;                       // _0      Inited to true
+    bool depthWriteEnable;                      // _1      Inited to true
+    Graphics::DepthFunc depthFunc;              // _4      Inited to LessEqual
+    Graphics::CullingMode cullingMode;          // _8      Inited to Back
+    bool blendEnable;                           // _C      Inited to true
+    Graphics::BlendFactor blendFactorSrcRGB;    // _10     Inited to SrcAlpha
+    Graphics::BlendFactor blendFactorSrcA;      // _14     Inited to SrcAlpha
+    Graphics::BlendFactor blendFactorDstRGB;    // _18     Inited to InvSrcAlpha
+    Graphics::BlendFactor blendFactorDstA;      // _1C     Inited to InvSrcAlpha
+    Graphics::BlendEquation blendEquationRGB;   // _20     Inited to Add
+    Graphics::BlendEquation blendEquationA;     // _24     Inited to Add
+    sead::Color4f blendConstantColor;           // _28     Inited to colorWhite
+    bool alphaTestEnable;                       // _38     Inited to false
+    Graphics::AlphaFunc alphaTestFunc;          // _3C     Inited to Greater
+    f32 alphaTestRef;                           // _40     Inited to 0.0f
+    bool colorMaskR;                            // _44     Inited to true
+    bool colorMaskG;                            // _45     Inited to true
+    bool colorMaskB;                            // _46     Inited to true
+    bool colorMaskA;                            // _47     Inited to true
+    bool stencilTestEnable;                     // _48     Inited to false
+    Graphics::StencilFunc stencilTestFunc;      // _4C     Inited to Never
+    s32 stencilTestRef;                         // _50     Inited to 0
+    u32 stencilTestMask;                        // _54     Inited to 0xFFFFFFFF
+    Graphics::StencilOp stencilOpFail;          // _58     Inited to Keep
+    Graphics::StencilOp stencilOpZFail;         // _5C     Inited to Keep
+    Graphics::StencilOp stencilOpZPass;         // _60     Inited to Keep
     RenderState renderState;                    // _64
 };
 
