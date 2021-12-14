@@ -9,7 +9,7 @@ Modules:
   - modules/cutscenetask.yaml         # Custom cutscene video player
   - modules/deathfoo.yaml             # Toxic cloud foo patch
   - modules/debug.yaml                # Debugging features
-# - modules/experiments.yaml          # Experimental things (WARNING: Do not use in releases)
+# - modules/experiments.yaml          # Experimental things #! (WARNING: Do not use in releases)
   - modules/framebuffer.yaml          # Clears the framebuffer before rendering
   - modules/initializer.yaml          # Initializer
   - modules/misc.yaml                 # Miscellaneous items
@@ -18,7 +18,7 @@ Modules:
   - modules/sarcloader.yaml           # Allow loading uncompressed .sarc levels
   - modules/savemgr.yaml              # Manages the custom savedata files
   - modules/sead.yaml                 # Patches for the sead library
-  - modules/sizemodifier.yaml         # Scale actors as you wish using nybble
+# - modules/sizemodifier.yaml         # Scale actors as you wish using nybble #! Depends on SetPhysicsMgrOwner from misc.yaml which crashes some levels
   - modules/snowparticles.yaml        # Allows changing snow particle colors from spritedata
   - modules/sound.yaml                # Patches that affect sound
   - modules/titlescreen.yaml          # Title screen patches

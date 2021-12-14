@@ -62,7 +62,7 @@ const HitboxCollider::Info Cataquack::collisionInfo = {
 void Cataquack::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     if (hcOther->owner->type != StageActor::StageActorType_Player) return;
 
-    hcOther->owner->speed.y = 10.0f;
+    hcOther->owner->speed.y = 5.0f;
     ((Cataquack*)hcSelf->owner)->doStateChange(&Cataquack::StateID_Launch);
 }
 
@@ -81,8 +81,8 @@ u32 Cataquack::onCreate() {
     this->direction = this->directionToPlayerH(this->position);
     this->rotation.y = Direction::directionToRotationList[this->direction];
 
-    //this->hitboxCollider.init(this, &Cataquack::collisionInfo, nullptr);
-    //this->addHitboxColliders();
+    this->hitboxCollider.init(this, &Cataquack::collisionInfo, nullptr);
+    this->addHitboxColliders();
 
     ShapedCollider::Info colliderInfo = {
         Vec2f(0.0f, 14.0f), 0.0f, 0.0f, Vec2f(-5.5f, 10.0f), Vec2f(5.5f, -12.0f), 0
@@ -90,7 +90,7 @@ u32 Cataquack::onCreate() {
 
     this->rectCollider.init(this, colliderInfo);
     this->rectCollider.setType(ColliderBase::Type_Bouncy);
-    ColliderMgr::instance()->add(&rectCollider);
+    //ColliderMgr::instance()->add(&rectCollider);
 
     this->doStateChange(&Cataquack::StateID_Walk);
     this->updateModel();
