@@ -219,16 +219,10 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
 void CourseSelectTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
 
-    sead::GraphicsContext context;
-    context.depthTestEnable = true;
-    context.depthWriteEnable = true;
-    context.depthFunc = sead::Graphics::DepthFunc_LessEqual;
-    context.cullingMode = sead::Graphics::CullingMode_None;
-    context.blendEnable = false;
-    context.apply();
-
-    //extern volatile sead::GraphicsContext CurrentGraphicsContext;
-    //LogGraphicsContext(graphicsContext);
+    sead::GraphicsContext graphicsContext;
+    graphicsContext.cullingMode = sead::Graphics::CullingMode_None;
+    graphicsContext.blendEnable = false;
+    graphicsContext.apply();
 
     if (TsuruSaveMgr::sSaveData.collisionViewerEnabled) {
         sead::PrimitiveRenderer::instance()->setCamera(*renderInfo.camera);
