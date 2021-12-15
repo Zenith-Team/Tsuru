@@ -1,6 +1,6 @@
 #pragma once
 
-#include "new"
+#include <new>
 #include "types.h"
 
 namespace sead { class Heap; }
