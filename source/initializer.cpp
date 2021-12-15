@@ -34,6 +34,6 @@ void initialize() {
     InitOSFunctionPointers();
     InitGX2FunctionPointers();
 
-    LOG("OSDynLoad_Acquire address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_Acquire);
-    LOG("OSDynLoad_FindExport address: 0x%08X", OS_SPECIFICS->addr_OSDynLoad_FindExport);
+    LOG("OSDynLoad_Acquire address: %s0x%08X", LogColor::Yellow, OS_SPECIFICS->addr_OSDynLoad_Acquire);
+    LOG("OSDynLoad_FindExport address: %s0x%08X", LogColor::Yellow, OS_SPECIFICS->addr_OSDynLoad_FindExport);
 }
