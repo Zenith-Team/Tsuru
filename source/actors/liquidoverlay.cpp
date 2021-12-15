@@ -54,7 +54,7 @@ u32 LiquidOverlay::onExecute() {
                     this->doOverlayCollision(i, player);
                 else
                     timers[i] = 0;
-            } else { // Zone-wide mode
+            } else { // Zone-wide mode //! Broken
                 Actor** currentActor = ActorMgr::instance()->actors.start.buffer;
                 while (currentActor < ActorMgr::instance()->actors.end.buffer) {
                     if (*currentActor && (*currentActor)->profile->id == 84) { // Water

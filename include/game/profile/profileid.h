@@ -79,6 +79,8 @@ enum ProfileIDType {
     RouletteBlock = 321,
     DonutBlock = 322,
     KamekFloorBlock = 323,
+    QuestionSwitch = 344,
+    PSwitch = 345,
     LemmyBall = 351,
     LemmyBomb = 352,
     Clampy = 353,
