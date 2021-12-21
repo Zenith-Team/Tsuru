@@ -696,7 +696,6 @@ SECTIONS {
     draw__13PlatformModelFv = 0x27be4fc;
 
 /* Player */
-    damage__6PlayerFUiT1 = 0x2930858;
     throwProjectile__6Player__PowerupStateNotFire = 0x293ae28;
     FUN_0293b080__6Player__IsProjectilePowerup = 0x293b198;
 
