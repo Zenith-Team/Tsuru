@@ -3,22 +3,10 @@
 #include "game/effect/effect.h"
 #include "game/graphics/model/model.h"
 #include "game/actor/stage/multistateactor.h"
+#include "game/actor/stage/playerbase.h"
 
 class PowerupBase : public MultiStateActor { // Size: 0x1A90
     SEAD_RTTI_OVERRIDE(PowerupBase, MultiStateActor)
-
-public:
-    enum PowerupState {
-        PowerupState_Small       = 0,
-        PowerupState_Big         = 1,
-        PowerupState_Fire        = 2,
-        PowerupState_Mini        = 3,
-        PowerupState_Propeller   = 4,
-        PowerupState_Penguin     = 5,
-        PowerupState_Ice         = 6,
-        PowerupState_Acorn       = 7,
-        PowerupState_PAcorn      = 8
-    };
 
 public:
     PowerupBase(const ActorBuildInfo* buildInfo);
@@ -110,7 +98,7 @@ public:
     // @param void* Unknown (Colliding player?)
     // @param setPowerupState Powerup state to set the colliding player to
     // @param u32 Unknown
-    u32 FUN_25196e8(void*, PowerupState setPowerupState, u32);
+    u32 FUN_25196e8(void*, PlayerBase::PowerupState setPowerupState, u32);
     // Related to player collision (plays get sound?)
     u32 FUN_2519580(u32, u32);
 
