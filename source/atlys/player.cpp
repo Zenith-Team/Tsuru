@@ -23,7 +23,10 @@ Atlys::Player::Player(const ActorBuildInfo* buildInfo)
 { }
 
 Atlys::Player::~Player() {
-    if (this->model) delete this->model; this->model = nullptr;
+    if (this->model)
+        delete this->model;
+    
+    this->model = nullptr;
 }
 
 Actor* Atlys::Player::build(const ActorBuildInfo* buildInfo) {
@@ -44,7 +47,7 @@ u32 Atlys::Player::onExecute() {
     this->states.execute();
 
     if (this->rotation.y != fixDeg(this->targetRotation))
-        sead::Mathu::chase(&this->rotation.y, fixDeg(this->targetRotation), 0x10000);
+        sead::Mathu::chase(&this->rotation.y, fixDeg(this->targetRotation + 270.0f), 0x9000000);
 
     return 1;
 }
@@ -115,8 +118,6 @@ void Atlys::Player::executeState_Walking() {
         LOG("Walk to target node failed because nullptr");
         return;
     }
-
-    LOG("Walking to node at %f, %f, current position: %f, %f", this->targetNode->position.x, this->targetNode->position.y, this->position.x, this->position.y);
 
     // Pythagorean theorem
     f32 distance = sqrtf(powf(this->targetNode->position.x - this->position.x, 2) + powf(this->targetNode->position.y - this->position.y, 2));

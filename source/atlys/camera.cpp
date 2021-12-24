@@ -1,6 +1,5 @@
 #include "tsuru/atlys/camera.h"
 #include "tsuru/atlys/scene.h"
-#include "cafe/math/mtx.h"
 #include "math/functions.h"
 
 const Profile AtlysCameraProfile(&Atlys::Camera::build, ProfileID::AtlysCamera);
@@ -8,8 +7,6 @@ const Profile AtlysCameraProfile(&Atlys::Camera::build, ProfileID::AtlysCamera);
 Atlys::Camera::Camera(const ActorBuildInfo* buildInfo)
     : Atlys::Actor(buildInfo)
 {
-    ASM_MTXScale(&this->scaleMtx, 1.0f, 1.0f, 1.0f);
-
     this->camera.pos = Vec3f(0.0f, 0.0f, 30.0f);
 }
 
