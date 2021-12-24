@@ -46,3 +46,30 @@ Hooks:
     instr: bl
     addr: "28f73e0"
     func: UseCustomSensorSizeTable
+  # Center offset
+  - type: branch
+    instr: bl
+    addr: "2924CC8"
+    func: UseCustomPowerupCenterOffsetTable
+  # Unknown arrays
+  - type: branch
+    instr: bl
+    addr: "29279c4"
+    func: UseCustomArray_1016cd68
+  - type: branch
+    instr: bl
+    addr: "292916c"
+    func: UseCustomArray_1016ce20
+  - type: branch
+    instr: bl
+    addr: "292918c"
+    func: UseCustomArray_1016ce44
+  - type: branch
+    instr: bl
+    addr: "292e474"
+    func: UseCustomArray_1016d7f8
+ # - type: branch
+ #   instr: bl
+ #   addr: "292ea6c"
+ #   func: UseCustomArray_1016d7cc
+

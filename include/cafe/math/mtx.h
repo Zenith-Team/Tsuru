@@ -15,6 +15,7 @@ extern "C" {
 void ASM_MTXConcat(Mtx34* a, Mtx34* b, Mtx34* out);
 u32  ASM_MTXInverse(Mtx34* src, Mtx34* dst);
 void ASM_MTXMultVec(Mtx34* mtx, Vec3f* vec, Vec3f* out);
+void ASM_MTXScale(Mtx34* o, f32 x, f32 y, f32 z);
 
 // MTX44
 void ASM_MTX44Copy(Mtx44* src, Mtx44* dst);

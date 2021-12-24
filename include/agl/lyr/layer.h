@@ -17,20 +17,19 @@ public:
     Layer();
     virtual ~Layer();
 
-    // TODO: Return types, parameters, names for these:
     SEAD_RTTI_BASE(Layer)
-    virtual u32 vf24() = 0;
-    virtual void vf2C(void*, u32) = 0;
+    virtual u32 getRenderStepNum() const = 0;
+    virtual void getRenderStepName(sead::SafeString* name, s32 idx) const = 0;
     virtual void doInitialize(sead::Heap* heap);
     virtual void vf3C();
-    virtual void vf44(); // Called before draw
-    virtual void vf4C(); // Called after draw
-    virtual bool vf54(u32);
+    virtual void preDrawImpl(const RenderInfo& renderInfo) const; // Called before draw
+    virtual void postDrawImpl(const RenderInfo& renderInfo) const; // Called after draw
+    virtual u32 vf54();
     virtual u32 vf5C();
 
     void initialize_(sead::Heap* heap);
 
-    DrawMethodImplBase* pushBackDrawMethod(u32, DrawMethodImplBase* drawMethod);
+    DrawMethodImplBase* pushBackDrawMethod(u32 renderStepIdx, DrawMethodImplBase* drawMethod);
     DrawMethodImplBase* pushBackDrawMethod(DrawMethodImplBase* drawMethod);
 
     u8 _10[0x4];

@@ -4,6 +4,9 @@
 
 namespace agl {
 
+enum TextureFormat { };
+enum TextureCompSel { };
+
 class TextureData { // Size: 0x9C
 public:
     TextureData();
@@ -18,13 +21,13 @@ public:
 
     void setMipLevelNum(u32 mip);
 
-    u32 aglFormat;
+    TextureFormat format;
     GX2Surface surface;
     u32 width;
     u32 height;
     u32 depth;
     u32 size;
-    u32 compSel[4];
+    TextureCompSel compSel[4];
 };
 
 static_assert(sizeof(TextureData) == 0x9C, "agl::TextureData size mismatch");

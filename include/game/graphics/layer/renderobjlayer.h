@@ -28,8 +28,8 @@ public:
         virtual const Mtx34& getMtx() const = 0;
         virtual void setScale(const Vec3f& scale) = 0;
         virtual const Vec3f& getScale() const = 0;
-        virtual bool hasShapesFlag1() const = 0;
-        virtual bool hasShapesFlag2() const = 0;
+        virtual bool hasOpa() const = 0;
+        virtual bool hasXlu() const = 0;
         virtual s32 getBoneIdx(const sead::SafeString& name) const = 0;
         virtual const char* getBoneName(u32 idx) const = 0;
         virtual u32 getBoneCount() const = 0;
@@ -71,13 +71,13 @@ public:
     RenderObjLayer();
     virtual ~RenderObjLayer();
 
-    u32 vf24() override;
-    void vf2C(void*, u32) override;
+    u32 getRenderStepNum() const override;
+    void getRenderStepName(sead::SafeString* name, s32 idx) const override;
     void doInitialize(sead::Heap* heap) override;
 
-    bool vf54(u32) override;
+    u32 vf54() override;
 
-    void vf64(u32) override;
+    void vf64(s32) override;
 
     Mtx44 _42C;
     u8 _46C;

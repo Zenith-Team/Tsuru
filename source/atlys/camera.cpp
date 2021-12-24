@@ -1,23 +1,39 @@
 #include "tsuru/atlys/camera.h"
 #include "tsuru/atlys/scene.h"
+#include "cafe/math/mtx.h"
+#include "math/functions.h"
 
 const Profile AtlysCameraProfile(&Atlys::Camera::build, ProfileID::AtlysCamera);
 
 Atlys::Camera::Camera(const ActorBuildInfo* buildInfo)
     : Atlys::Actor(buildInfo)
-    , camera()
-    , projection(0.01f, 1000.0f, agl::lyr::Renderer::instance()->layers[Atlys::Renderer::LayerID_Map]->scissor)
-{ }
+{
+    ASM_MTXScale(&this->scaleMtx, 1.0f, 1.0f, 1.0f);
+
+    this->camera.pos = Vec3f(0.0f, 0.0f, 30.0f);
+}
 
 Actor* Atlys::Camera::build(const ActorBuildInfo* buildInfo) {
     return new Atlys::Camera(buildInfo);
 }
 
 u32 Atlys::Camera::onCreate() {
+    this->projection.set(0.001f, 1000000.0f, degToRad(75), 1280.0f / 720.0f);
+
     return 1;
 }
 
 u32 Atlys::Camera::onExecute() {
+    this->position = Atlys::Scene::instance()->map->findNodeByID(0)->position;
+    this->position.z += 256.0f;
+
+    this->camera.doUpdateMatrix(&this->camera.matrix);
+
+    this->camera.at = Atlys::Scene::instance()->player->position;
+    this->camera.pos = this->position;
+
+    LOG("Camera pos: %f, %f, %f", this->position.x, this->position.y, this->position.z);
+
     return 1;
 }
 

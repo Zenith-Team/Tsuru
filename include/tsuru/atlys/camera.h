@@ -19,8 +19,9 @@ public:
     u32 onExecute() override;
     u32 onDraw() override;
 
-    sead::OrthoCamera camera;
-    sead::OrthoProjection projection;
+    sead::LookAtCamera camera;
+    sead::PerspectiveProjection projection;
+    Mtx34 modelMtx, scaleMtx;
 };
 
 }

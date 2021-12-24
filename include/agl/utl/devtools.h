@@ -5,9 +5,10 @@
 
 namespace agl { namespace utl {
 
-class DevTools { // TODO: This class has a lot more
+class DevTools {
 public:
     static void controlCamera(sead::LookAtCamera camera, const sead::Controller& controller);
+    
 };
 
 } }

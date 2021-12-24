@@ -5,6 +5,7 @@
 #include "game/task/taskmgr.h"
 #include "game/level/levelinfo.h"
 #include "game/task/coursetask.h"
+#include "game/resource/resmgr.h"
 
 CREATE_STATE(Atlys::Player, Idle);
 CREATE_STATE(Atlys::Player, Walking);
@@ -20,7 +21,6 @@ Atlys::Player::Player(const ActorBuildInfo* buildInfo)
     , walkingSpeed(0.0f)
     , targetRotation(0.0f)
     , direction(Direction::Right)
-    , tex()
 { }
 
 Atlys::Player::~Player() {
@@ -32,6 +32,8 @@ Actor* Atlys::Player::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 Atlys::Player::onCreate() {
+    this->model = ModelWrapper::create(ResArchiveMgr::instance()->get("MarioMdl"), "MB_model");
+
     this->currentNode = Atlys::Scene::instance()->map->findNodeByID(0);
     this->position = this->currentNode->position;
     this->states.changeState(&Atlys::Player::StateID_Idle);
@@ -89,7 +91,7 @@ void Atlys::Player::executeState_Idle() {
     const InputControllers& controllers = Atlys::Scene::instance()->controllers;
 
     if (controllers.buttonA(Atlys::Scene::instance()->activeController) && this->currentNode->type == Map::Node::Type_Level)
-        TaskMgr::instance()->startLevel(Atlys::Scene::instance(), this->currentNode->world, this->currentNode->level);
+       TaskMgr::instance()->startLevel(Atlys::Scene::instance(), this->currentNode->world, this->currentNode->level);
 
     // Find the target node
     if (controllers.buttonRight(Atlys::Scene::instance()->activeController))      this->findTargetNode(Direction::Right);

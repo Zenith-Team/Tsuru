@@ -28,6 +28,7 @@ public:
 
 private:
     static inline Atlys::Actor* spawnSystemActor(ProfileID::ProfileIDType id);
+    static inline Atlys::Actor* spawnSystemActor(ProfileID::ProfileIDType id, Vec3f position);
 
     friend class Renderer;
 

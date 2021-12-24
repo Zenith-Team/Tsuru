@@ -3,6 +3,7 @@
 #include "agl/lyr/layer.h"
 #include "sead/projection.h"
 #include "sead/camera.h"
+#include "agl/lyr/displaytype.h"
 
 namespace sead { class Viewport; class FrameBuffer; }
 namespace agl { class DisplayList; }
@@ -14,9 +15,9 @@ public:
     // TODO: Two constructors here
 
     s32 renderStepIndex;
-    u32 displayType;
+    DisplayType displayType;
     sead::FrameBuffer* renderBuffer;
-    u32 _C;
+    s32 layerIndex; // Index in agl::lyr::Renderer layers buffer
     Layer* layer;
     sead::Camera* camera;
     sead::Projection* projection;

@@ -29,6 +29,7 @@ public:
             return;
 
         Mtx34 mtx;
+        mtx.makeIdentity();
         mtx.rotateAndTranslate(this->rotation, this->position);
         this->model->setMtx(mtx);
         this->model->setScale(this->scale);

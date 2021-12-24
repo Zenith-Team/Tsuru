@@ -70,7 +70,7 @@ class PerspectiveProjection : public Projection { // Size: 0xB8
 
 public:
     PerspectiveProjection();
-    PerspectiveProjection(f32 nearClip, f32 farClip, f32 fov, f32 aspectRatio);
+    PerspectiveProjection(f32 nearClip, f32 farClip, f32 fovyRad, f32 aspectRatio);
     virtual ~PerspectiveProjection();
 
     u32 getProjectionType() const override;
@@ -80,13 +80,17 @@ public:
 
     void set(f32 nearClip, f32 farClip, f32 fov, f32 aspectRatio);
 
+    void setFovx(f32 fovx);
+    void setFovy_(f32 fovy);
+
     f32 nearClip;
     f32 farClip;
-    f32 fov;
-    u8 _A0[0xAC - 0xA0];    // Unknown values
+    f32 angle;
+    f32 fovySin;
+    f32 fovyCos;
+    f32 fovyTan;
     f32 aspectRatio;
-    u32 _B0;
-    u32 _B4;
+    Vec2f offset;
 };
 
 static_assert(sizeof(PerspectiveProjection) == 0xB8, "sead::PerspectiveProjection size mismatch");
