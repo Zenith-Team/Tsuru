@@ -6,7 +6,6 @@ Files:
   - source/atlys/map.cpp
   - source/atlys/player.cpp
   - source/atlys/camera.cpp
-  - source/atlys/node.cpp
 Hooks:
 # Entry point
   - type: branch

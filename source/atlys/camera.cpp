@@ -27,12 +27,10 @@ u32 Atlys::Camera::onExecute() {
     this->position = Atlys::Scene::instance()->map->findNodeByID(0)->position;
     this->position.z += 256.0f;
 
-    this->camera.doUpdateMatrix(&this->camera.matrix);
-
     this->camera.at = Atlys::Scene::instance()->player->position;
     this->camera.pos = this->position;
 
-    LOG("Camera pos: %f, %f, %f", this->position.x, this->position.y, this->position.z);
+    this->camera.doUpdateMatrix(&this->camera.matrix);
 
     return 1;
 }

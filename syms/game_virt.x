@@ -784,7 +784,7 @@ SECTIONS {
 /* Profile */
     profilesOriginal__7Profile = 0x101ED8DC;
     prioritiesOriginal__7Profile = 0x10001940;
-    hasResourcesOriginal__7Profile = 0x10002064;
+    resourcesLoadAtOriginal__7Profile = 0x10002064;
     resourceCountOriginal__7Profile = 0x100023F8;
     resourceListsOriginal__7Profile = 0x101C321C;
     loadProfileResources__7ProfileSFQ2_7Profile15LoadResourcesAtPQ2_4sead4Heap = 0x200a738;

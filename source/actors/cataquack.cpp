@@ -43,7 +43,7 @@ const ActorInfo CataquackActorInfo = {
     Vec2i(8, -8), Vec2i(8, -8), Vec2i(32, 32), 0, 0, 0, 0, 0
 };
 const Profile CataquackProfile(&Cataquack::build, ProfileID::Cataquack, "Cataquack", &CataquackActorInfo, Profile::Flag_DontRenderOffScreen);
-PROFILE_RESOURCES(ProfileID::Cataquack, "poihana");
+PROFILE_RESOURCES(ProfileID::Cataquack, Profile::LoadResourcesAt_Course, "poihana");
 
 Cataquack::Cataquack(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)

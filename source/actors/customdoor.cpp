@@ -25,7 +25,7 @@ const ActorInfo CustomDoorActorInfo = {
 };
 
 const Profile CustomDoorProfile(&CustomDoor::build, ProfileID::CustomDoor, "CustomDoor", &CustomDoorActorInfo, Profile::Flag_DontRenderOffScreen);
-PROFILE_RESOURCES(ProfileID::CustomDoor, "obj_door");
+PROFILE_RESOURCES(ProfileID::CustomDoor, Profile::LoadResourcesAt_Course, "obj_door");
 
 CustomDoor::CustomDoor(const ActorBuildInfo* buildInfo)
     : DoorBase(buildInfo)

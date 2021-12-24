@@ -36,7 +36,7 @@ CREATE_STATE(FallingChestnut, Falling);
 CREATE_STATE(FallingChestnut, OnGround);
 
 const Profile FallingChestnutProfile(&FallingChestnut::build, ProfileID::FallingChestnut);
-PROFILE_RESOURCES(ProfileID::FallingChestnut, "iga_kuribo");
+PROFILE_RESOURCES(ProfileID::FallingChestnut, Profile::LoadResourcesAt_Course, "iga_kuribo");
 
 const HitboxCollider::Info FallingChestnut::collisionInfo = {
     Vec2f(0.0f, -3.0f), Vec2f(12.0f, 15.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &FallingChestnut::collisionCallback

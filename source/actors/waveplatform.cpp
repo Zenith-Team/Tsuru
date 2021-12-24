@@ -33,7 +33,7 @@ const ActorInfo actorInfo = {
 };
 
 const Profile WavePlatformProfile(&WavePlatform::build, ProfileID::WavePlatform, "WavePlatform", &actorInfo);
-PROFILE_RESOURCES(ProfileID::WavePlatform, "lift_han_wood", "lift_han_stone", "lift_kinoko_yoko", "lift_han_spin", "lift_kinoko_shiso", "lift_han_sky");
+PROFILE_RESOURCES(ProfileID::WavePlatform, Profile::LoadResourcesAt_Course, "lift_han_wood", "lift_han_stone", "lift_kinoko_yoko", "lift_han_spin", "lift_kinoko_shiso", "lift_han_sky");
 
 WavePlatform::WavePlatform(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)

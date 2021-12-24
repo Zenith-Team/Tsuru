@@ -23,7 +23,7 @@ public:
 };
 
 const Profile PAcornProfile(&PAcorn::build, ProfileID::PAcorn, "PAcorn", nullptr, 16406);
-PROFILE_RESOURCES(ProfileID::PAcorn, "I_musasabi");
+PROFILE_RESOURCES(ProfileID::PAcorn, Profile::LoadResourcesAt_Course, "I_musasabi");
 
 PAcorn::PAcorn(const ActorBuildInfo* buildInfo)
     : Powerup(buildInfo)

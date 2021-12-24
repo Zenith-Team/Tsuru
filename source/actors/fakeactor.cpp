@@ -47,7 +47,7 @@ CREATE_STATE(FakeActor, GoalPole);
 CREATE_STATE(FakeActor, StarCoin);
 
 const Profile FakeCheckpointProfile(&FakeActor::build, ProfileID::FakeActor);
-PROFILE_RESOURCES(ProfileID::FakeActor, "middle_flag", "star_coin", "goal_set");
+PROFILE_RESOURCES(ProfileID::FakeActor, Profile::LoadResourcesAt_Course, "middle_flag", "star_coin", "goal_set");
 
 FakeActor::FakeActor(const ActorBuildInfo* buildInfo)
     : MultiStateActor(buildInfo)
