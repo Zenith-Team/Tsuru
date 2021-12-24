@@ -21,7 +21,6 @@ public:
 
     sead::LookAtCamera camera;
     sead::PerspectiveProjection projection;
-    Mtx34 modelMtx, scaleMtx;
 };
 
 }
