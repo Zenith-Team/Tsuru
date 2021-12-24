@@ -9,7 +9,7 @@ Hooks:
   - type: branch
     instr: b
     addr: "2019554" # Profile::Profile()
-    func: __ct__7ProfileFPFPC14ActorBuildInfo_P5ActorUiRCQ2_4sead23SafeStringBase__tm__2_cPC9ActorInfoT2
+    func: __ct__7ProfileFPFPC14ActorBuildInfo_P5ActorUiRCQ2_4sead23SafeStringBase__tm__2_cPC9ActorInfoT2Q2_7Profile15LoadResourcesAt
   # Redirect Profile get method to call our custom one
   - type: branch
     instr: b
