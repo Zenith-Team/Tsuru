@@ -15,7 +15,8 @@ Actor* Atlys::Camera::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 Atlys::Camera::onCreate() {
-    this->projection.set(0.001f, 1000000.0f, degToRad(75), 1280.0f / 720.0f);
+    this->projection.setNearFarClip(0.001f, 100000.0f);
+    this->projection.setTBLR(180.0f, -180.0f, -320.0f, 320.0f);
 
     return 1;
 }

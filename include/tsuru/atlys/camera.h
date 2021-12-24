@@ -19,8 +19,8 @@ public:
     u32 onExecute() override;
     u32 onDraw() override;
 
-    sead::LookAtCamera camera;
-    sead::PerspectiveProjection projection;
+    sead::OrthoCamera camera;
+    sead::OrthoProjection projection;
 };
 
 }
