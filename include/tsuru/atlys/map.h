@@ -165,7 +165,7 @@ public:
             
             Mtx34 mtx;
             mtx.makeIdentity();
-            mtx.rotateAndTranslate(Vec3u(0), this->position);
+            mtx.rotateAndTranslate(Vec3u(0), Vec3f(this->position.x, 0.0f, this->position.y));
             this->model->setMtx(mtx);
             this->model->setScale(Vec3f(1.0f));
             this->model->updateModel();
