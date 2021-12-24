@@ -10,6 +10,8 @@
 #include "sead/filedevicemgr.h"
 #include "sead/filedevice.h"
 #include "sead/new.h"
+#include "game/resource/resmgr.h"
+#include "game/resource/resarchive.h"
 
 Atlys::Renderer::Renderer()
     : layerRenderer("Atlys")
@@ -28,7 +30,17 @@ void Atlys::Renderer::makeLayers() {
 
 void Atlys::Renderer::init(Atlys::Camera* camera) {
     for (u32 i = 0; i < Atlys::Scene::instance()->map->info->layerCount; i++) {
-        Atlys::Scene::instance()->map->layers[i].gtx.load(Atlys::Scene::instance()->map->layers[i].gtxName);
+        //Atlys::Scene::instance()->map->layers[i].gtx.load(Atlys::Scene::instance()->map->layers[i].gtxName);
+    }
+
+    ResMgr::instance()->loadRes("kanibo", "actor/kanibo.szs", nullptr, true);
+    ResArchiveMgr::instance()->loadResArchive("kanibo", "kanibo", nullptr);
+
+    for (u32 i = 0; i < Atlys::Scene::instance()->map->info->nodeCount; i++) {
+        if (Atlys::Scene::instance()->map->nodes[i].type != Atlys::Map::Node::Type_Level)
+            continue;
+        
+        Atlys::Scene::instance()->map->nodes[i].model = ModelWrapper::create("kanibo", "kanibo");
     }
 
     agl::lyr::Renderer::instance()->layers[Atlys::Renderer::LayerID_Map]->camera = &camera->camera;
@@ -59,6 +71,11 @@ void Atlys::Renderer::drawLayerActors(const agl::lyr::RenderInfo& renderInfo) {
     DrawMgr::instance()->setTargetLayer(layer, 1);
 
     ActorMgr::instance()->drawActors();
+
+    // Draw nodes here too cause they are 3D models
+    for (u32 i = 0; i < Atlys::Scene::instance()->map->info->nodeCount; i++) {
+        Atlys::Scene::instance()->map->nodes[i].draw();
+    }
 
     DrawMgr::instance()->resetTargetLayer();
 }

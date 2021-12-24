@@ -257,7 +257,6 @@ enum ProfileIDType {
     // Atlys profiles
     AtlysCamera,
     AtlysPlayer,
-    AtlysNode,
 
     Num
 };

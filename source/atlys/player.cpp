@@ -11,7 +11,6 @@ CREATE_STATE(Atlys::Player, Idle);
 CREATE_STATE(Atlys::Player, Walking);
 
 const Profile AtlysPlayerProfile(&Atlys::Player::build, ProfileID::AtlysPlayer);
-PROFILE_RESOURCES(ProfileID::AtlysPlayer, "kanibo");
 
 Atlys::Player::Player(const ActorBuildInfo* buildInfo)
     : Atlys::Actor(buildInfo)

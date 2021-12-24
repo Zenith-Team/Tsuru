@@ -49,10 +49,6 @@ void Atlys::Scene::prepare() {
     this->player = (Atlys::Player*) Scene::spawnSystemActor(ProfileID::AtlysPlayer);
     this->camera = (Atlys::Camera*) Scene::spawnSystemActor(ProfileID::AtlysCamera);
 
-    for (u32 i = 0; i < this->map->info->nodeCount; i++) {
-        Scene::spawnSystemActor(ProfileID::AtlysNode, this->map->nodes[i].position);
-    }
-
     // Init the renderer
     this->renderer.init(this->camera);
 

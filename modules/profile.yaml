@@ -20,11 +20,11 @@ Hooks:
     instr: b
     addr: "2019988" # Profile::getPriority
     func: getPriority__7ProfileSFUi
-  # Redirect Profile get has resources method to call our custom one
+  # Redirect Profile get resources LoadAt method to call our custom one
   - type: branch
     instr: b
-    addr: "20199A8" # Profile::getHasResources()
-    func: getHasResources__7ProfileSFUi
+    addr: "20199A8" # Profile::getResourcesLoadAt()
+    func: getResourcesLoadAt__7ProfileSFUi
   # Redirect Profile get resource count method to call our custom one
   - type: branch
     instr: b

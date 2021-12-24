@@ -45,7 +45,7 @@ CREATE_STATE(ParaBones, Die);
 
 const ActorInfo ParaBonesActorInfo = { Vec2i(8, -16), Vec2i(0, 16), Vec2i(8, 16), 0, 0, 0, 0, 0 };
 const Profile ParaBonesProfile(&ParaBones::build, ProfileID::ParaBones, "ParaBones", &ParaBonesActorInfo);
-PROFILE_RESOURCES(ProfileID::ParaBones, "nokonokoB");
+PROFILE_RESOURCES(ProfileID::ParaBones, Profile::LoadResourcesAt_Course, "nokonokoB");
 
 const HitboxCollider::Info ParaBones::sCollisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::HitboxShape_Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback

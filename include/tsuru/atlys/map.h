@@ -1,6 +1,7 @@
 #pragma once
 
 #include "tsuru/graphics/gtx.h"
+#include "game/graphics/drawmgr.h"
 #include "sead/color.h"
 #include "log.h"
 
@@ -158,12 +159,27 @@ public:
             return this->allCompleted;
         }
 
+        void draw() {
+            if (this->type != Data::Node::Type_Level)
+                return;
+            
+            Mtx34 mtx;
+            mtx.makeIdentity();
+            mtx.rotateAndTranslate(Vec3u(0), this->position);
+            this->model->setMtx(mtx);
+            this->model->setScale(Vec3f(1.0f));
+            this->model->updateModel();
+
+            DrawMgr::instance()->drawModel(this->model);
+        }
+
         bool unlocked;
 
         // Level node only
         u32 exits;
         u8 starCoins;
         bool allCompleted;
+        ModelWrapper* model; // ModelWrapper*
     };
 
     class WorldInfo : public Data::WorldInfo {

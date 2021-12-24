@@ -3,7 +3,7 @@
 
 Profile* Profile::profilesCustom[Profile::NUM_PROFILES_CUSTOM];
 s16 Profile::prioritiesCustom[Profile::NUM_PROFILES_CUSTOM] = { 0 };
-u8 Profile::hasResourcesCustom[Profile::NUM_PROFILES_CUSTOM] = { 0 };
+u8 Profile::resourcesLoadAtCustom[Profile::NUM_PROFILES_CUSTOM] = { 0 };
 u8 Profile::resourceCountCustom[Profile::NUM_PROFILES_CUSTOM] = { 0 };
 const sead::SafeString* Profile::resourceListsCustom[Profile::NUM_PROFILES_CUSTOM] = { nullptr };
 
@@ -49,14 +49,14 @@ s16 Profile::getPriority(u32 id) {
     return -1;
 }
 
-u8 Profile::getHasResources(u32 id) {
+Profile::LoadResourcesAt Profile::getResourcesLoadAt(u32 id) {
     if (id < NUM_PROFILES_ORIGINAL)
-        return hasResourcesOriginal[id];
+        return (Profile::LoadResourcesAt) resourcesLoadAtOriginal[id];
 
     if (id < NUM_PROFILES)
-        return hasResourcesCustom[id - NUM_PROFILES_ORIGINAL];
+        return (Profile::LoadResourcesAt) resourcesLoadAtCustom[id - NUM_PROFILES_ORIGINAL];
 
-    return 0;
+    return LoadResourcesAt_Boot;
 }
 
 u8 Profile::getResourceCount(u32 id) {
@@ -83,7 +83,7 @@ u32 Profile::getNumProfiles() {
     return NUM_PROFILES;
 }
 
-// Remember to add the new profile to the ProfileID enum in profileid.h and to the end of this list
+//* Remember to add the new profile to the ProfileID enum in profileid.h and to the end of this list
 
 u32 Profile::spriteToProfileList[] = {
     467,    //   0

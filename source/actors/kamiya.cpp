@@ -101,7 +101,7 @@ CREATE_STATE(Kamiya, Teleport);
 CREATE_STATE(Kamiya, Snipe);
 
 const Profile KamiyaProfile(&Kamiya::build, ProfileID::Kamiya, "Kamiya", nullptr, 0);
-PROFILE_RESOURCES(ProfileID::Kamiya, "kamiya");
+PROFILE_RESOURCES(ProfileID::Kamiya, Profile::LoadResourcesAt_Course, "kamiya");
 
 const u32 Kamiya::possibleProjectiles[] = {
     ProfileID::KoopaTroopa,
