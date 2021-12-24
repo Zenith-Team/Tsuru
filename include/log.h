@@ -2,15 +2,19 @@
 
 #include "sead/graphicscontext.h"
 
-#ifdef Cemu
-#include "dynlibs/os/functions.h"
-#define LOG(FMT, ...) { \
-    __os_snprintf(logMsg, sizeof(logMsg), FMT, ## __VA_ARGS__); \
-    __os_snprintf(logMsg, sizeof(logMsg), "%s%s", logMsg, LogColor::Reset); \
-    OSConsoleWrite(logMsg, sizeof(logMsg)); } (void)0
+#ifdef TSURU_DEBUG
+    #ifdef Cemu
+        #include "dynlibs/os/functions.h"
+        #define LOG(FMT, ...) { \
+            __os_snprintf(logMsg, sizeof(logMsg), FMT, ## __VA_ARGS__); \
+            __os_snprintf(logMsg, sizeof(logMsg), "%s%s", logMsg, LogColor::Reset); \
+            OSConsoleWrite(logMsg, sizeof(logMsg)); } (void)0
+    #else
+        #define LOG(FMT, ...) \
+            { ((void (*)(const char* format, ...))(*(unsigned int*)(DATA_ADDR - 4)))(FMT, ## __VA_ARGS__); } (void)0
+    #endif
 #else
-#define LOG(FMT, ...) \
-    { ((void (*)(const char* format, ...))(*(unsigned int*)(DATA_ADDR - 4)))(FMT, ## __VA_ARGS__); } (void)0
+    #define LOG(FMT, ...)
 #endif
 
 /* Logging Colors */

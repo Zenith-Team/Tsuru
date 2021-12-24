@@ -64,7 +64,7 @@ void Atlys::Scene::prepare() {
 
 void Atlys::Scene::enter() {
     // Activate renderer
-    // It will be managed by the game from now on
+    // It will be automatically managed from now on
     this->renderer.activate();
 
     this->states.changeState(&Atlys::Scene::StateID_Active);
@@ -72,12 +72,6 @@ void Atlys::Scene::enter() {
 
 void Atlys::Scene::calc() {
     this->states.execute();
-}
-
-Atlys::Actor* Atlys::Scene::spawnSystemActor(ProfileID::ProfileIDType id) {
-    ActorBuildInfo buildInfo = { 0 };
-    buildInfo.profile = Profile::get(id);
-    return (Atlys::Actor*) ActorMgr::instance()->create(buildInfo, 0);
 }
 
 Atlys::Actor* Atlys::Scene::spawnSystemActor(ProfileID::ProfileIDType id, Vec3f position) {
