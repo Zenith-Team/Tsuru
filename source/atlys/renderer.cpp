@@ -19,7 +19,7 @@ Atlys::Renderer::Renderer()
 { }
 
 void Atlys::Renderer::makeLayers() {
-    this->layerRenderer.init(2, 512, 5, 5, nullptr);
+    this->layerRenderer.init(1, 0x300, 5, 5, nullptr);
 
     // These are also required for levels because it will crash when it tries to access layers with these IDs, since it assumes CourseSelectTask made them
     agl::lyr::Renderer::instance()->createLayer<RenderObjLayer>(Atlys::Renderer::LayerID_Map, "Map", agl::lyr::DisplayType_TopTV, nullptr);
@@ -33,6 +33,9 @@ void Atlys::Renderer::init(Atlys::Camera* camera) {
 
     agl::lyr::Renderer::instance()->layers[Atlys::Renderer::LayerID_Map]->camera = &camera->camera;
     agl::lyr::Renderer::instance()->layers[Atlys::Renderer::LayerID_Map]->projection = &camera->projection;
+
+    agl::lyr::Renderer::instance()->layers[Atlys::Renderer::LayerID_Actor]->camera = &camera->camera;
+    agl::lyr::Renderer::instance()->layers[Atlys::Renderer::LayerID_Actor]->projection = &camera->projection;
 }
 
 void Atlys::Renderer::activate() {
@@ -45,7 +48,7 @@ void Atlys::Renderer::bindDrawMethods() {
 }
 
 void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
-
+    // TODO: Draw map layer textures here
 }
 
 void Atlys::Renderer::drawLayerActors(const agl::lyr::RenderInfo& renderInfo) {

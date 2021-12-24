@@ -14,13 +14,13 @@ public:
     ObjLayerRenderer(const sead::SafeString& name);
     virtual ~ObjLayerRenderer();
 
-    void init(u32 layersCount, u32 nodePtrCount, u32 nodePtrBuffer1Size, u32 nodePtrBuffer2Size, sead::Heap* heap);
+    void init(u32 layersCount, u32 nodePtrCount, u32 nodeOpaBufferSize, u32 nodeXluBufferSize, sead::Heap* heap);
 
     sead::SafeString name;
     u8 _18;
     sead::PtrArray<LayerAgl::Node> nodes;
-    sead::Buffer<sead::PtrArray<LayerAgl::Node> > nodePtrBuffer1;
-    sead::Buffer<sead::PtrArray<LayerAgl::Node> > nodePtrBuffer2;
+    sead::Buffer<sead::PtrArray<LayerAgl::Node> > nodeOpaBuffer;
+    sead::Buffer<sead::PtrArray<LayerAgl::Node> > nodeXluBuffer;
     sead::PtrArray<LayerAgl::Node> nodesWithShadowCastShapes;
     u8 envObjMgr[1124]; // Is class
     sead::PtrArray<LayerAgl::Node> _4A8;

@@ -4,7 +4,7 @@
 #include "tsuru/atlys/actor.h"
 #include "game/graphics/drawmgr.h"
 #include "game/graphics/model/model.h"
-#include "tsuru/gtx.h"
+#include "tsuru/graphics/gtx.h"
 #include "game/states.h"
 #include "tsuru/atlys/map.h"
 #include "game/direction.h"
@@ -42,8 +42,6 @@ public:
     f32 walkingSpeed;
     f32 targetRotation; // Y axis in degrees
     Direction::DirectionType direction;
-
-    GTX tex; //! Temp
 };
 
 }

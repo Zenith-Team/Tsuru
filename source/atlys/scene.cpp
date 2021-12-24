@@ -49,14 +49,12 @@ void Atlys::Scene::prepare() {
     this->player = (Atlys::Player*) Scene::spawnSystemActor(ProfileID::AtlysPlayer);
     this->camera = (Atlys::Camera*) Scene::spawnSystemActor(ProfileID::AtlysCamera);
 
+    for (u32 i = 0; i < this->map->info->nodeCount; i++) {
+        Scene::spawnSystemActor(ProfileID::AtlysNode, this->map->nodes[i].position);
+    }
+
     // Init the renderer
     this->renderer.init(this->camera);
-
-    player->tex.load("tsuru/player.gtx");
-
-    ResMgr::instance()->loadRes("kanibo", "actor/kanibo.szs", nullptr, true);
-    ResArchiveMgr::instance()->loadResArchive("kanibo", "kanibo", nullptr);
-    player->model = ModelWrapper::create("kanibo", "kanibo");
 
     //! This has to go last!
     //this->adjustHeapAll();
@@ -79,6 +77,13 @@ void Atlys::Scene::calc() {
 Atlys::Actor* Atlys::Scene::spawnSystemActor(ProfileID::ProfileIDType id) {
     ActorBuildInfo buildInfo = { 0 };
     buildInfo.profile = Profile::get(id);
+    return (Atlys::Actor*) ActorMgr::instance()->create(buildInfo, 0);
+}
+
+Atlys::Actor* Atlys::Scene::spawnSystemActor(ProfileID::ProfileIDType id, Vec3f position) {
+    ActorBuildInfo buildInfo = { 0 };
+    buildInfo.profile = Profile::get(id);
+    buildInfo.position = position;
     return (Atlys::Actor*) ActorMgr::instance()->create(buildInfo, 0);
 }
 
