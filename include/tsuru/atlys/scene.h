@@ -27,8 +27,7 @@ public:
     void calc() override;
 
 private:
-    static inline Atlys::Actor* spawnSystemActor(ProfileID::ProfileIDType id);
-    static inline Atlys::Actor* spawnSystemActor(ProfileID::ProfileIDType id, Vec3f position);
+    static inline Atlys::Actor* spawnSystemActor(ProfileID::ProfileIDType id, Vec3f position = Vec3f(0.0f));
 
     friend class Renderer;
 
