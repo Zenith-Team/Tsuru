@@ -24,12 +24,15 @@ u32 Atlys::Camera::onCreate() {
 }
 
 u32 Atlys::Camera::onExecute() {
-    this->position = Atlys::Scene::instance()->map->findNodeByID(0)->position;
-    this->position.z += 256.0f;
+    Vec3f ppos = Vec3f(Atlys::Scene::instance()->player->position.x, 0.0f, Atlys::Scene::instance()->player->position.y);
 
-    this->camera.at = Atlys::Scene::instance()->player->position;
+    this->position = ppos;
+    this->camera.at = ppos;
+
+    this->position.z += 100.0f;
+    this->position.y += 150.0f;
+
     this->camera.pos = this->position;
-
     this->camera.doUpdateMatrix(&this->camera.matrix);
 
     return 1;
