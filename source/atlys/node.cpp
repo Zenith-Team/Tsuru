@@ -1,12 +1,7 @@
 #include "tsuru/atlys/node.h"
 #include "game/graphics/drawmgr.h"
-#include "game/resource/resmgr.h"
 
-const Profile AtlysNodeProfile(&Atlys::Node::build, ProfileID::AtlysNode, "AtlysNode", nullptr, 0, Profile::LoadResourcesAt_Boot);
-static const u32 profileResourceCount6 = 1;
-typedef int static_assert_6[(profileResourceCount6 <= 0xFF) ? 1 : -1];
-static const sead::SafeString profileResourceFiles6[] = { "kanibo" };
-static const ProfileResources profileResources6(ProfileID::AtlysNode, profileResourceCount6, profileResourceFiles6);
+const Profile AtlysNodeProfile(&Atlys::Node::build, ProfileID::AtlysNode);
 
 Atlys::Node::Node(const ActorBuildInfo* buildInfo)
     : Actor(buildInfo)
@@ -21,9 +16,7 @@ Actor* Atlys::Node::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 Atlys::Node::onCreate() {
-    //this->model = ModelWrapper::create(ResArchiveMgr::instance()->get("MarioMdl"), "PMB_model");
-
-    this->model = ModelWrapper::create("kanibo", "kanibo");
+    this->model = ModelWrapper::create(ResArchiveMgr::instance()->get("MarioMdl"), "PMB_model");
 
     return 1;
 }

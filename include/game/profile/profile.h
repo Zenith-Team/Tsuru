@@ -25,7 +25,7 @@ public:
     };
 
 public:
-    Profile(buildFunction, u32 id, const sead::SafeString& name = "", const ActorInfo* actorInfo = nullptr, u32 flags = 0, LoadResourcesAt loadResourcesAt = LoadResourcesAt_Boot);
+    Profile(buildFunction, u32 id, const sead::SafeString& name = "", const ActorInfo* actorInfo = nullptr, u32 flags = 0);
 
     // Locates and gets a profile based on the ID
     // @param id Target profile ID
@@ -43,7 +43,7 @@ public:
     buildFunction buildFunc;    // Pointer to build function of the target actor
     u32 id;                     // Profile ID
     const ActorInfo* actorInfo; // Pointer to actor info to build with
-    u8 loadResourcesAt;         // Load resources at boot, course, or course select (use enum)
+    u8 hasResourcesLoaded;
     u32 flags;
 
 private:
@@ -69,17 +69,20 @@ private:
 struct ProfileResources {
     ProfileResources(u32 id, u32 count, const sead::SafeString resources[]) {
         if (id < Profile::NUM_PROFILES_ORIGINAL) {
+            Profile::hasResourcesOriginal[id] = count > 0;
             Profile::resourceCountOriginal[id] = count;
             Profile::resourceListsOriginal[id] = resources;
         }
 
         else if (id < Profile::NUM_PROFILES) {
             const u32 customID = id - Profile::NUM_PROFILES_ORIGINAL;
+            Profile::hasResourcesCustom[customID] = count > 0;
             Profile::resourceCountCustom[customID] = count;
             Profile::resourceListsCustom[customID] = resources;
         }
 
         else {
+            Profile::hasResourcesOriginal[0] = count > 0;
             Profile::resourceCountOriginal[0] = count;
             Profile::resourceListsOriginal[0] = resources;
         }
