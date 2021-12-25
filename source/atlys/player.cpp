@@ -6,6 +6,14 @@
 #include "game/level/levelinfo.h"
 #include "game/task/coursetask.h"
 #include "game/resource/resmgr.h"
+#include "log.h"
+
+template <typename T>
+static inline void swap(T& a, T& b) {
+    const T tmp = a;
+    a = b;
+    b = tmp;
+}
 
 CREATE_STATE(Atlys::Player, Idle);
 CREATE_STATE(Atlys::Player, Walking);
@@ -46,8 +54,8 @@ u32 Atlys::Player::onCreate() {
 u32 Atlys::Player::onExecute() {
     this->states.execute();
 
-    if (this->rotation.y != fixDeg(this->targetRotation))
-        sead::Mathu::chase(&this->rotation.y, fixDeg(this->targetRotation + 270.0f), 0x9000000);
+    if (this->rotation.y != this->targetRotation)
+        sead::Mathu::chase(&this->rotation.y, this->targetRotation, 0x9000000);
 
     return 1;
 }
@@ -60,7 +68,11 @@ u32 Atlys::Player::onDraw() {
 }
 
 void Atlys::Player::updateTargetRotation() {
-    this->targetRotation = radToDeg(atan2f(this->targetNode->position.y - this->position.y, this->targetNode->position.x - this->position.x));
+    this->targetRotation = 0x40000000 - // 90 degrees
+    fixDeg(radToDeg(atan2f(
+        this->targetNode->position.y - this->position.y,
+        this->targetNode->position.x - this->position.x)
+    ));
 }
 
 void Atlys::Player::findTargetNode(Direction::DirectionType direction) {
@@ -136,10 +148,8 @@ void Atlys::Player::executeState_Walking() {
              || (this->direction == Direction::Left  && controllers.buttonRight(Atlys::Scene::instance()->activeController))
              || (this->direction == Direction::Up    && controllers.buttonDown(Atlys::Scene::instance()->activeController))
              || (this->direction == Direction::Down  && controllers.buttonUp(Atlys::Scene::instance()->activeController))) {
-                // Swap target and current nodes
-                const Map::Node* temp = this->targetNode;
-                this->targetNode = this->currentNode;
-                this->currentNode = temp;
+                // Swap target/current node
+                swap(this->targetNode, this->currentNode);
 
                 // Swap direction
                 this->direction = Direction::opposite(this->direction);
@@ -153,15 +163,10 @@ void Atlys::Player::executeState_Walking() {
         switch (this->targetNode->type) {
             case Map::Node::Type_Passthrough: {
                 // If we reached the target and the type is passthrough, instead of stopping change target to the next node
-                const Map::Node* temp = this->targetNode;
-
-                if (this->targetNode->Passthrough_connections[0].node == this->currentNode->id)
-                    this->targetNode = Atlys::Scene::instance()->map->findNodeByID(this->targetNode->Passthrough_connections[1].node);
-                else
-                    this->targetNode = Atlys::Scene::instance()->map->findNodeByID(this->targetNode->Passthrough_connections[0].node);
+                this->targetNode = Atlys::Scene::instance()->map->findNodeByID(this->targetNode->Passthrough_connections[this->targetNode->Passthrough_connections[0].node == this->currentNode->id].node);
 
                 // Set current node to the passthrough we are on so that returning will work properly
-                this->currentNode = temp;
+                this->currentNode = this->targetNode;
 
                 this->updateTargetRotation();
                 break;
@@ -178,7 +183,6 @@ void Atlys::Player::executeState_Walking() {
             }
 
             default: {
-                LOG("Reached target node");
                 this->states.changeState(&Atlys::Player::StateID_Idle);
                 break;
             }
