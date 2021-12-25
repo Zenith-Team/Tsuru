@@ -40,7 +40,7 @@ public:
     const Map::Node* currentNode;
     const Map::Node* targetNode;
     f32 walkingSpeed;
-    f32 targetRotation; // Y axis in degrees
+    u32 targetRotation; // Y rotation in idx
     Direction::DirectionType direction;
 };
 
