@@ -53,7 +53,7 @@ void Atlys::Scene::prepare() {
     this->renderer.init(this->camera);
 
     //! This has to go last!
-    //this->adjustHeapAll();
+    this->adjustHeapAll();
 
     //* Cannot allocate anything else to the task heap from this point on...
 }

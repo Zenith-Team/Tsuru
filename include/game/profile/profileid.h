@@ -193,6 +193,7 @@ enum ProfileIDType {
     Poltergeist = 670,
     CheepChompSpawner = 672,
     Bramball = 674,
+    SpikeTop = 676,
     Larry = 693,
     KoopalingMagic = 694,
     Lemmy = 695,
