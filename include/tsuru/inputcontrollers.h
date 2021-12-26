@@ -49,5 +49,16 @@ public:
 
     inline bool tap() const { return nthBit32Right(this->controllers[ControllerID_Gamepad].padHold.bits, 0xD); }
 
+    // Checks if a direction on the D-Pad is pressed
+    // @param index The index of the direction to check, corresponds to Direction::DirectionType
+    // @param controller The controller to check
+    // @return True if the direction is pressed, false otherwise
+    bool DPadDirection(u32 direction, InputControllers::ControllerID controller) const {
+        return ((this)->*(DPadFuncTable[direction]))(controller);
+    }
+
+private:
+    static bool (InputControllers::*DPadFuncTable[4])(ControllerID) const;
+
     WrappedController controllers[5];
 };

@@ -8,25 +8,6 @@
 #include "game/resource/resmgr.h"
 #include "log.h"
 
-template <typename T>
-static inline void swap(T& a, T& b) {
-    const T tmp = a;
-    a = b;
-    b = tmp;
-}
-
-typedef bool (InputControllers::*DirectionFunc)(InputControllers::ControllerID) const;
-static DirectionFunc DirectionFuncTable[] = {
-    &InputControllers::buttonRight,
-    &InputControllers::buttonLeft,
-    &InputControllers::buttonUp,
-    &InputControllers::buttonDown
-};
-
-// The syntax is terrible so I'm just going to do this
-#define CALL_DIRECTION_FUNC(THIS, INDEX, CONTROLLER) \
-    (THIS->*(DirectionFuncTable[INDEX]))(CONTROLLER)
-
 CREATE_STATE(Atlys::Player, Idle);
 CREATE_STATE(Atlys::Player, Walking);
 
@@ -132,7 +113,7 @@ void Atlys::Player::executeState_Idle() {
 
     // Find the target node
     for (u32 i = 0; i < 4; i++) {
-        if (CALL_DIRECTION_FUNC(controllers, i, Atlys::Scene::instance()->activeController)) {
+        if (controllers->DPadDirection(i, Atlys::Scene::instance()->activeController)) {
             this->findTargetNode((Direction::DirectionType) i);
             break;
         };
@@ -171,7 +152,7 @@ void Atlys::Player::executeState_Walking() {
             const InputControllers* controllers = &Atlys::Scene::instance()->controllers;
 
             for (u32 i = 0; i < 4; i++) {
-                if (Direction::opposite(this->direction) == i && CALL_DIRECTION_FUNC(controllers, i, Atlys::Scene::instance()->activeController)) {
+                if (Direction::opposite(this->direction) == i && controllers->DPadDirection(i, Atlys::Scene::instance()->activeController)) {
                     // Swap target/current node
                     swap(this->targetNode, this->currentNode);
 
