@@ -1,7 +1,6 @@
 #pragma once
 
 #include "game/actor/actor.h"
-#include "game/graphics/model/model.h"
 
 namespace Atlys {
 
@@ -14,32 +13,11 @@ public:
         , position(0.0f)
         , rotation(0)
         , scale(1.0f)
-        , model(nullptr)
     { }
-
-    virtual ~Actor() {
-        if (this->model)
-            delete this->model;
-
-        this->model = nullptr;
-    }
-
-    void updateModel() {
-        if (!this->model)
-            return;
-
-        Mtx34 mtx;
-        mtx.makeIdentity();
-        mtx.rotateAndTranslate(this->rotation, Vec3f(this->position.x, 0.0f, this->position.y));
-        this->model->setMtx(mtx);
-        this->model->setScale(this->scale);
-        this->model->updateModel();
-    }
 
     Vec3f position;
     Vec3u rotation;
     Vec3f scale;
-    ModelWrapper* model;
 };
 
 }

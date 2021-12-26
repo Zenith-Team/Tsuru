@@ -22,10 +22,10 @@ u32 Atlys::Camera::onCreate() {
 }
 
 u32 Atlys::Camera::onExecute() {
-    Vec3f ppos = Vec3f(Atlys::Scene::instance()->player->position.x, 0.0f, Atlys::Scene::instance()->player->position.y);
+    Vec3f playerPos(Atlys::Scene::instance()->player->position.x, 0.0f, Atlys::Scene::instance()->player->position.y);
 
-    this->position = ppos;
-    this->camera.at = ppos;
+    this->position = playerPos;
+    this->camera.at = playerPos;
 
     this->position.z += 100.0f;
     this->position.y += 150.0f;

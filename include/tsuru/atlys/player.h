@@ -32,11 +32,14 @@ private:
     // Sets the target rotation based on the target node's position to make the player face towards it
     void updateTargetRotation();
 
+    ModelWrapper* updateModel();
+
 public:
     DECLARE_STATE(Player, Idle);
     DECLARE_STATE(Player, Walking);
 
     MultiStateWrapper<Atlys::Player> states;
+    ModelWrapper* model;
     const Map::Node* currentNode;
     const Map::Node* targetNode;
     f32 walkingSpeed;

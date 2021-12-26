@@ -15,6 +15,18 @@ static inline void swap(T& a, T& b) {
     b = tmp;
 }
 
+typedef bool (InputControllers::*DirectionFunc)(InputControllers::ControllerID) const;
+static DirectionFunc DirectionFuncTable[] = {
+    &InputControllers::buttonRight,
+    &InputControllers::buttonLeft,
+    &InputControllers::buttonUp,
+    &InputControllers::buttonDown
+};
+
+// The syntax is terrible so I'm just going to do this
+#define CALL_DIRECTION_FUNC(THIS, INDEX, CONTROLLER) \
+    (THIS->*(DirectionFuncTable[INDEX]))(CONTROLLER)
+
 CREATE_STATE(Atlys::Player, Idle);
 CREATE_STATE(Atlys::Player, Walking);
 
@@ -23,10 +35,11 @@ const Profile AtlysPlayerProfile(&Atlys::Player::build, ProfileID::AtlysPlayer);
 Atlys::Player::Player(const ActorBuildInfo* buildInfo)
     : Atlys::Actor(buildInfo)
     , states(this)
+    , model(nullptr)
     , currentNode(nullptr)
     , targetNode(nullptr)
     , walkingSpeed(0.0f)
-    , targetRotation(0.0f)
+    , targetRotation(0)
     , direction(Direction::Right)
 { }
 
@@ -61,8 +74,7 @@ u32 Atlys::Player::onExecute() {
 }
 
 u32 Atlys::Player::onDraw() {
-    this->updateModel();
-    DrawMgr::instance()->drawModel(this->model);
+    DrawMgr::instance()->drawModel(this->updateModel());
 
     return 1;
 }
@@ -71,8 +83,19 @@ void Atlys::Player::updateTargetRotation() {
     this->targetRotation = 0x40000000 - // 90 degrees
     fixDeg(radToDeg(atan2f(
         this->targetNode->position.y - this->position.y,
-        this->targetNode->position.x - this->position.x)
-    ));
+        this->targetNode->position.x - this->position.x
+    )));
+}
+
+ModelWrapper* Atlys::Player::updateModel() {
+    Mtx34 mtx;
+    mtx.makeIdentity();
+    mtx.rotateAndTranslate(this->rotation, Vec3f(this->position.x, 0.0f, this->position.y));
+    this->model->setMtx(mtx);
+    this->model->setScale(this->scale);
+    this->model->updateModel();
+    
+    return this->model;
 }
 
 void Atlys::Player::findTargetNode(Direction::DirectionType direction) {
@@ -102,16 +125,18 @@ void Atlys::Player::findTargetNode(Direction::DirectionType direction) {
 void Atlys::Player::beginState_Idle() { }
 
 void Atlys::Player::executeState_Idle() {
-    const InputControllers& controllers = Atlys::Scene::instance()->controllers;
+    const InputControllers* controllers = &Atlys::Scene::instance()->controllers;
 
-    if (controllers.buttonA(Atlys::Scene::instance()->activeController) && this->currentNode->type == Map::Node::Type_Level)
+    if (controllers->buttonA(Atlys::Scene::instance()->activeController) && this->currentNode->type == Map::Node::Type_Level)
        TaskMgr::instance()->startLevel(Atlys::Scene::instance(), this->currentNode->world, this->currentNode->level);
 
     // Find the target node
-    if (controllers.buttonRight(Atlys::Scene::instance()->activeController))      this->findTargetNode(Direction::Right);
-    else if (controllers.buttonLeft(Atlys::Scene::instance()->activeController))  this->findTargetNode(Direction::Left);
-    else if (controllers.buttonUp(Atlys::Scene::instance()->activeController))    this->findTargetNode(Direction::Up);
-    else if (controllers.buttonDown(Atlys::Scene::instance()->activeController))  this->findTargetNode(Direction::Down);
+    for (u32 i = 0; i < 4; i++) {
+        if (CALL_DIRECTION_FUNC(controllers, i, Atlys::Scene::instance()->activeController)) {
+            this->findTargetNode((Direction::DirectionType) i);
+            break;
+        };
+    }
 }
 
 void Atlys::Player::endState_Idle() { }
@@ -128,6 +153,7 @@ void Atlys::Player::beginState_Walking() {
 void Atlys::Player::executeState_Walking() {
     if (!this->targetNode) {
         LOG("Walk to target node failed because nullptr");
+        this->states.changeState(&Atlys::Player::StateID_Idle);
         return;
     }
 
@@ -142,19 +168,20 @@ void Atlys::Player::executeState_Walking() {
 
         // We are 66% to target, do we want to go back?
         if (distance < (fullDistance / 3.0f)) {
-            const InputControllers& controllers = Atlys::Scene::instance()->controllers;
+            const InputControllers* controllers = &Atlys::Scene::instance()->controllers;
 
-            if ((this->direction == Direction::Right && controllers.buttonLeft(Atlys::Scene::instance()->activeController))
-             || (this->direction == Direction::Left  && controllers.buttonRight(Atlys::Scene::instance()->activeController))
-             || (this->direction == Direction::Up    && controllers.buttonDown(Atlys::Scene::instance()->activeController))
-             || (this->direction == Direction::Down  && controllers.buttonUp(Atlys::Scene::instance()->activeController))) {
-                // Swap target/current node
-                swap(this->targetNode, this->currentNode);
+            for (u32 i = 0; i < 4; i++) {
+                if (Direction::opposite(this->direction) == i && CALL_DIRECTION_FUNC(controllers, i, Atlys::Scene::instance()->activeController)) {
+                    // Swap target/current node
+                    swap(this->targetNode, this->currentNode);
 
-                // Swap direction
-                this->direction = Direction::opposite(this->direction);
+                    // Swap direction
+                    this->direction = Direction::opposite(this->direction);
 
-                this->updateTargetRotation();
+                    this->updateTargetRotation();
+
+                    break;
+                };
             }
         }
     } else { // Reached target
