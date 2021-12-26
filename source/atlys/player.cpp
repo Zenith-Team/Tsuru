@@ -115,6 +115,16 @@ void Atlys::Player::executeState_Idle() {
     for (u32 i = 0; i < 4; i++) {
         if (controllers->DPadDirection(i, Atlys::Scene::instance()->activeController)) {
             this->findTargetNode((Direction::DirectionType) i);
+            if (!this->targetNode) {
+                switch (i) {
+                    // TODO: Do this without a switch
+                    case Direction::Up: this->targetRotation = fixDeg(180.0f); break;
+                    case Direction::Down: this->targetRotation = fixDeg(0.0f); break;
+                    case Direction::Left: this->targetRotation = fixDeg(270.0f); break;
+                    case Direction::Right: this->targetRotation = fixDeg(90.0f); break;
+                }
+            }
+
             break;
         };
     }
