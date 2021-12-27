@@ -4,6 +4,10 @@
 
 namespace agl {
 
+enum ShaderMode {
+    
+};
+
 class Shader { // Size: 0xC
 public:
     enum ShaderType {

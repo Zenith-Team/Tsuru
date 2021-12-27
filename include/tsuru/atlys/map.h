@@ -80,6 +80,7 @@ private:
 
         struct Layer {
             char gtxName[32];
+            u32 scaleFilter;
         };
 
         struct Sprite {
