@@ -1,17 +1,19 @@
 #include "tsuru/atlys/renderer.h"
 #include "tsuru/atlys/scene.h"
 #include "tsuru/atlys/map.h"
-#include "log.h"
 #include "game/actor/actormgr.h"
 #include "game/graphics/drawmgr.h"
-#include "agl/utl/imagefilter2d.h"
+#include "game/resource/resarchive.h"
+#include "game/resource/resmgr.h"
 #include "agl/lyr/renderinfo.h"
 #include "agl/texturedatainitializer.h"
+#include "agl/utl/devtools.h"
+#include "sead/matrixcalccommon.h"
 #include "sead/filedevicemgr.h"
 #include "sead/filedevice.h"
 #include "sead/new.h"
-#include "game/resource/resmgr.h"
-#include "game/resource/resarchive.h"
+#include "math/functions.h"
+#include "log.h"
 
 Atlys::Renderer::Renderer()
     : layerRenderer("Atlys")
@@ -35,13 +37,13 @@ void Atlys::Renderer::init(Atlys::Camera* camera) {
  
     ResMgr::instance()->loadRes("kanibo", "actor/kanibo.szs", nullptr, true);
     ResArchiveMgr::instance()->loadResArchive("kanibo", "kanibo", nullptr);
-
     for (u32 i = 0; i < Atlys::Scene::instance()->map->info->nodeCount; i++) {
         if (Atlys::Scene::instance()->map->nodes[i].type != Atlys::Map::Node::Type_Level)
             continue;
         
         Atlys::Scene::instance()->map->nodes[i].model = ModelWrapper::create("kanibo", "kanibo");
     }
+
     agl::lyr::Renderer::instance()->layers[Atlys::Renderer::LayerID_Map]->camera = &camera->camera;
     agl::lyr::Renderer::instance()->layers[Atlys::Renderer::LayerID_Map]->projection = &camera->projection;
 
@@ -59,13 +61,28 @@ void Atlys::Renderer::bindDrawMethods() {
 }
 
 void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
-    // TODO: Draw map layer textures here
+    Mtx34 quadMtxSRT;
+    Mtx34::makeSRT(quadMtxSRT, Vec3f(1600.0f), Vec3f(degToRad(-90.0f), 0.0f, 0.0f), Vec3f(Atlys::Scene::instance()->map->findNodeByID(0)->position.x, 0.0f, Atlys::Scene::instance()->map->findNodeByID(0)->position.y));
+    
+    Mtx44 viewProj;
+    sead::Matrix44CalcCommon<f32>::multiply(viewProj, Atlys::Scene::instance()->camera->projection.getDeviceProjectionMatrix(), Atlys::Scene::instance()->camera->camera.matrix);
+
+    //* To Abood: The context was not required so I removed it :)
+
+    for (u32 i = 0; i < Atlys::Scene::instance()->map->info->layerCount; i++) {
+        agl::utl::DevTools::drawTextureTexCoord(
+            Atlys::Scene::instance()->map->layers[i].gtx.texture,
+            quadMtxSRT,
+            viewProj,
+            Vec2f(1.0f),
+            0.0f,
+            Vec2f(0.0f)
+        );
+    }
 }
 
 void Atlys::Renderer::drawLayerActors(const agl::lyr::RenderInfo& renderInfo) {
-    agl::lyr::Layer* layer = agl::lyr::Renderer::instance()->layers.buffer[Atlys::Renderer::LayerID_Actor];
-
-    DrawMgr::instance()->setTargetLayer(layer, 1);
+    DrawMgr::instance()->setTargetLayer(agl::lyr::Renderer::instance()->layers[Atlys::Renderer::LayerID_Actor], 1);
 
     ActorMgr::instance()->drawActors();
 

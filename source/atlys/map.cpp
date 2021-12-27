@@ -1,8 +1,23 @@
 #include "tsuru/atlys/map.h"
+#include "ghs.h"
 #include "dynlibs/os/functions.h"
 #include "sead/heapmgr.h"
 #include "sead/heap.h"
 #include "log.h"
+
+// Reduce clutter
+#define LOAD_MAP_SECTOR(SECTOR, COUNT, TARGET)                                                                  \
+    {                                                                                                           \
+        LOG("Reading %u items", COUNT);                                                                         \
+        void* buffer = new(nullptr, sead::FileDevice::sBufferMinAlignment) u8[sizeof(SECTOR) * COUNT];          \
+        TARGET = (SECTOR*) buffer;                                                                              \
+        u32 bytesRead = handle.read((u8*) TARGET, sizeof(SECTOR) * COUNT);                                      \
+                                                                                                                \
+        if (bytesRead != sizeof(SECTOR) * COUNT) {                                                              \
+            LOG("Read size mismatch, read size: 0x%x, expected size: 0x%x", bytesRead, sizeof(SECTOR) * COUNT); \
+            return;                                                                                             \
+        }                                                                                                       \
+    }
 
 Atlys::Map::Data::Data(const sead::SafeString& path)
     : header(nullptr)
@@ -12,69 +27,16 @@ Atlys::Map::Data::Data(const sead::SafeString& path)
     , sprites(nullptr)
     , loaded(false)
 {
-    // TODO: Concatenate path with .atlys
     const sead::SafeString& file = path;
 
     sead::FileHandle handle;
     sead::FileDeviceMgr::instance()->tryOpen(&handle, file, sead::FileDevice::FileOpenFlag_ReadWrite, 0);
 
-    LOG("Reading header");
-    this->header = new(nullptr, sead::FileDevice::sBufferMinAlignment) Header;
-    u32 bytesRead = handle.read((u8*) this->header, sizeof(Header));
-
-    if (!handle.device) {
-        LOG("File does not exist");
-        return;
-    }
-
-    if (bytesRead != sizeof(Header)) {
-        LOG("Header size mismatch, read size: 0x%x, expected size: 0x%x", bytesRead, sizeof(Header));
-        return;
-    }
-
-    LOG("Reading %u worlds", this->header->worldCount);
-
-    void* worldBuffer = new(nullptr, sead::FileDevice::sBufferMinAlignment) u8[sizeof(WorldInfo) * this->header->worldCount];
-    this->worlds = (WorldInfo*) worldBuffer;
-    bytesRead = handle.read((u8*) this->worlds, sizeof(WorldInfo) * this->header->worldCount);
-
-    if (bytesRead != sizeof(WorldInfo) * this->header->worldCount) {
-        LOG("World info size mismatch, read size: 0x%x, expected size: 0x%x", bytesRead, sizeof(WorldInfo) * this->header->worldCount);
-        return;
-    }
-
-    LOG("Reading %u nodes", this->header->nodeCount);
-
-    void* nodeBuffer = new(nullptr, sead::FileDevice::sBufferMinAlignment) u8[sizeof(Node) * this->header->nodeCount];
-    this->nodes = (Node*) nodeBuffer;
-    bytesRead = handle.read((u8*) this->nodes, sizeof(Node) * this->header->nodeCount);
-
-    if (bytesRead != sizeof(Node) * this->header->nodeCount) {
-        LOG("Node size mismatch, read size: 0x%x, expected size: 0x%x", bytesRead, sizeof(Node) * this->header->nodeCount);
-        return;
-    }
-
-    LOG("Reading %u layers", this->header->layerCount);
-
-    void* layerBuffer = new(nullptr, sead::FileDevice::sBufferMinAlignment) u8[sizeof(Layer) * this->header->layerCount];
-    this->layers = (Layer*) layerBuffer;
-    bytesRead = handle.read((u8*) this->layers, sizeof(Layer) * this->header->layerCount);
-
-    if (bytesRead != sizeof(Layer) * this->header->layerCount) {
-        LOG("Layer size mismatch, read size: 0x%x, expected size: 0x%x", bytesRead, sizeof(Layer) * this->header->layerCount);
-        return;
-    }
-
-    LOG("Reading %u sprites", this->header->spriteCount);
-
-    void* spriteBuffer = new(nullptr, sead::FileDevice::sBufferMinAlignment) u8[sizeof(Sprite) * this->header->spriteCount];
-    this->sprites = (Sprite*) spriteBuffer;
-    bytesRead = handle.read((u8*) this->sprites, sizeof(Sprite) * this->header->spriteCount);
-
-    if (bytesRead != sizeof(Sprite) * this->header->spriteCount) {
-        LOG("Sprite size mismatch, read size: 0x%x, expected size: 0x%x", bytesRead, sizeof(Sprite) * this->header->spriteCount);
-        return;
-    }
+    LOAD_MAP_SECTOR(Header, 1, this->header);
+    LOAD_MAP_SECTOR(WorldInfo, this->header->worldCount, this->worlds);
+    LOAD_MAP_SECTOR(Node, this->header->nodeCount, this->nodes);
+    LOAD_MAP_SECTOR(Layer, this->header->layerCount, this->layers);
+    LOAD_MAP_SECTOR(Sprite, this->header->spriteCount, this->sprites);
 
     this->loaded = true;
 }
@@ -121,6 +83,7 @@ Atlys::Map::Map(const sead::SafeString& path)
     for (u32 i = 0; i < data.header->spriteCount; i++) OSBlockMove(&this->sprites[i], &data.sprites[i], sizeof(Data::Sprite), 0);    // Sprites
 
     // Additional setup
+
     for (u32 i = 0; i < data.header->nodeCount; i++) {
         for (u32 j = 0; j < 4; j++) {
             if (this->nodes[i].type == Node::Type_Normal) {
@@ -131,6 +94,11 @@ Atlys::Map::Map(const sead::SafeString& path)
                     this->findNodeByID(this->nodes[i].Level_connections[j].node)->unlocked = true;
             }
         }
+    }
+
+    for (u32 i = 0; i < data.header->layerCount; i++) {
+        this->layers[i].gtx.texture.magFilter = this->layers[i].scaleFilter;
+        this->layers[i].gtx.texture.minFilter = this->layers[i].scaleFilter;
     }
 
     LOG("Map \"%s\" loaded and ready to go!", path.cstr());

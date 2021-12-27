@@ -8,7 +8,7 @@ namespace agl { namespace utl {
 
 class ImageFilter2D {
 public:
-    static u32 drawTextureMSAA(const TextureSampler& textureSampler, const sead::Viewport& viewport, const Vec2f& scale, const Vec2f& translate, u32 shaderMode = 3);
+    static u32 drawTextureMSAA(const TextureSampler& textureSampler, const sead::Viewport& viewport, const Vec2f& scale, const Vec2f& translate, ShaderMode shaderMode = (ShaderMode) 3);
 };
 
 } }

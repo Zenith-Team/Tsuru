@@ -90,6 +90,9 @@ SECTIONS {
     sInstance__Q3_3agl3lyr8Renderer = 0x101E8A2C;
     initLayer___Q3_3agl3lyr8RendererFPQ3_3agl3lyr5LayerUiRCQ2_4sead23SafeStringBase__tm__2_cT2PQ2_4sead4Heap = 0x2a3aee8;
 
+/* agl::utl::DevTools */
+    drawTextureTexCoord__Q3_3agl3utl8DevToolsSFRCQ2_3agl14TextureSamplerRC5Mtx34RC5Mtx44RC13Vec2__tm__2_ffT4Q2_3agl10ShaderMode = 0x2a51a28;
+
 /* agl::utl::ImageFilter2D */
     drawTextureMSAA__Q3_3agl3utl13ImageFilter2DSFRCQ2_3agl14TextureSamplerRCQ2_4sead8ViewportRC13Vec2__tm__2_fT3Ui = 0x2a533ec;
 
@@ -185,6 +188,9 @@ SECTIONS {
 
 /* sead::PrimitiveRendererCafe */
     drawTriangles___Q2_4sead21PrimitiveRendererCafeFRC5Mtx34RCQ2_4sead7Color4fT2PQ3_4sead21PrimitiveRendererUtil6VertexUiPUsT5PC11_GX2Texture = 0x2A0A190;
+
+/* sead::Projection */
+    getDeviceProjectionMatrix__Q2_4sead10ProjectionCFv = 0x2a05a9c;
 
 /* sead::Random */
     getU32__Q2_4sead6RandomFv = 0x2A13780;

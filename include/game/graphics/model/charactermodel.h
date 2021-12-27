@@ -1,26 +1,28 @@
 #pragma once
 
 #include "game/resource/resarchive.h"
+#include "game/graphics/model/model.h"
 
 class CharacterModel : public sead::IDisposer { // Size: 0xF0
 public:
     CharacterModel(const sead::SafeString& tex, const sead::SafeString& anim);
     virtual ~CharacterModel();
 
-    // TODO: Virtual functions
+    SEAD_RTTI_BASE(CharacterModel);
 
-    ResArchive* texArchive;
-    ResArchive* animArchive;
-    u32 _18;
+
+    ResArchive* modelResArchive;
+    ResArchive* animResArchive;
+    ModelWrapper* bodyModel;
     s32 _1C;
     s32 _20;
     s32 _24;
     u32 _28;
-    u8 _2C[0x30]; // new thing
-    u8 _5C[0x30]; // new thing
+    Mtx34 srtMtx;  // Set externally
+    Mtx34 srtMtx2; // Copies from srtMtx
     Vec3f _8C;
     Vec3f _98;
-    u32 _A4;
+    u32 currentCharacter;
     u32 _A8;
     u32 _AC;
     u32 _B0;
@@ -28,9 +30,9 @@ public:
     f32 _B8;
     f32 _BC;
     f32 _C0;
-    u32 _C4;
-    u8 _C8[12]; // Unknown values
-    u32 _D4;
+    u32 animFlagsArray[3];
+    u32 _D0;
+    u32 _D4; // Index related to jump anim
     u32 _D8;
     u32 _DC;
     u32 _E0;
@@ -53,8 +55,9 @@ public:
 
 public:
     YoshiModel(TexColor color);
+    virtual ~YoshiModel();
 
-    static sead::SafeString texArray[4];
+    static sead::SafeString texArray[];
 
     u32 _F0;
     u8 _F4[0x40]; // Is class
