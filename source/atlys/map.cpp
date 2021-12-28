@@ -8,7 +8,6 @@
 // Reduce clutter
 #define LOAD_MAP_SECTOR(SECTOR, COUNT, TARGET)                                                                  \
     {                                                                                                           \
-        LOG("Reading %u items", COUNT);                                                                         \
         void* buffer = new(nullptr, sead::FileDevice::sBufferMinAlignment) u8[sizeof(SECTOR) * COUNT];          \
         TARGET = (SECTOR*) buffer;                                                                              \
         u32 bytesRead = handle.read((u8*) TARGET, sizeof(SECTOR) * COUNT);                                      \

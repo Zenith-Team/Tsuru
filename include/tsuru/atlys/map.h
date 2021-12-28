@@ -1,6 +1,6 @@
 #pragma once
 
-#include "tsuru/graphics/gtx.h"
+#include "tsuru/gtx.h"
 #include "game/graphics/drawmgr.h"
 #include "sead/color.h"
 #include "log.h"

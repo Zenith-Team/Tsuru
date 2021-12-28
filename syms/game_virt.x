@@ -830,6 +830,7 @@ SECTIONS {
 
 /* SaveMgr */
     sInstance__7SaveMgr = 0x101E7DA4;
+    save__7SaveMgrFPQ2_4sead14DelegateThread = 0x29d9560;
 
 /* ShaderAnimation */
     playTexSrtAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FEE50;
