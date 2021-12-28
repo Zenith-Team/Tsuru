@@ -67,9 +67,9 @@ Atlys::Map::Map(const sead::SafeString& path)
 
     // Allocate
     this->info = new Data::Header;
-    if (data.header->worldCount > 0) this->worlds = new WorldInfo[data.header->worldCount];
-    if (data.header->nodeCount  > 0) this->nodes  = new Node[data.header->nodeCount];
-    if (data.header->layerCount > 0) this->layers = new Layer[data.header->layerCount];
+    if (data.header->worldCount > 0)  this->worlds  = new WorldInfo[data.header->worldCount];
+    if (data.header->nodeCount  > 0)  this->nodes   = new Node[data.header->nodeCount];
+    if (data.header->layerCount > 0)  this->layers  = new Layer[data.header->layerCount];
     if (data.header->spriteCount > 0) this->sprites = new Data::Sprite[data.header->spriteCount];
 
     LOG("Allocated dynamic data");

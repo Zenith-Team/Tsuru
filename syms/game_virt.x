@@ -259,9 +259,9 @@ SECTIONS {
     shouldLoop__9AnimationFb = 0x24DEED4;
     reset__9AnimationFv = 0x24DEEAC;
 
-/* AreaRumbleMgr */
-    sInstance__13AreaRumbleMgr = 0x101D1660;
-    rumble__13AreaRumbleMgrFiScN22 = 0x24C4D3C;
+/* ZoneRumbleMgr */
+    sInstance__13ZoneRumbleMgr = 0x101D1660;
+    rumble__13ZoneRumbleMgrFiScN22 = 0x24C4D3C;
 
 /* AreaTask */
     drawLayer3D__8AreaTaskFRCQ3_3agl3lyr10RenderInfo = 0x24B84A8;
