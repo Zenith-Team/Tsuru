@@ -60,15 +60,20 @@ void Atlys::Renderer::bindDrawMethods() {
 }
 
 void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
-    Mtx34 quadMtxSRT;
-    Mtx34::makeSRT(quadMtxSRT, Vec3f(1600.0f), Vec3f(degToRad(-90.0f), 0.0f, 0.0f), Vec3f(Atlys::Scene::instance()->map->findNodeByID(0)->position.x, 0.0f, Atlys::Scene::instance()->map->findNodeByID(0)->position.y));
-    
+    //* To Abood: The context was not required so I removed it :)
+
     Mtx44 viewProj;
     sead::Matrix44CalcCommon<f32>::multiply(viewProj, Atlys::Scene::instance()->camera->projection.getDeviceProjectionMatrix(), Atlys::Scene::instance()->camera->camera.matrix);
 
-    //* To Abood: The context was not required so I removed it :)
-
     for (u32 i = 0; i < Atlys::Scene::instance()->map->info->layerCount; i++) {
+        Mtx34 quadMtxSRT;
+        Mtx34::makeSRT(
+            quadMtxSRT,
+            Vec3f(Atlys::Scene::instance()->map->layers[i].size),
+            Vec3f(degToRad(-90.0f), 0.0f, 0.0f),
+            Vec3f(Atlys::Scene::instance()->map->layers[i].position.x, 0.0f, Atlys::Scene::instance()->map->layers[i].position.y)
+        );
+
         agl::utl::DevTools::drawTextureTexCoord(
             Atlys::Scene::instance()->map->layers[i].gtx.texture,
             quadMtxSRT,

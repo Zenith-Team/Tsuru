@@ -152,7 +152,7 @@ void Atlys::Player::executeState_Walking() {
     f32 distance = sqrtf(powf(this->targetNode->position.x - this->position.x, 2) + powf(this->targetNode->position.y - this->position.y, 2));
     f32 fullDistance = sqrtf(powf(this->targetNode->position.x - this->currentNode->position.x, 2) + powf(this->targetNode->position.y - this->currentNode->position.y, 2));
 
-    if (distance > 0.5f) { // Not at the target node yet, move towards it
+    if (distance > this->walkingSpeed) { // Not at the target node yet, move towards it
         // TODO: Use normalized vector instead
         this->position.x += (this->targetNode->position.x - this->position.x) / distance * this->walkingSpeed;
         this->position.y += (this->targetNode->position.y - this->position.y) / distance * this->walkingSpeed;
