@@ -6,10 +6,8 @@
 #include "agl/lyr/renderer.h"
 #include "agl/renderbuffer.h"
 #include "sead/graphicscontext.h"
-#include "tsuru/graphics/gtx.h"
 #include "tsuru/atlys/camera.h"
-#include "tsuru/graphics/shader.h"
-#include "tsuru/graphics/vbo.h"
+#include "tsuru/gtx.h"
 
 namespace Atlys {
 
@@ -41,7 +39,6 @@ private:
     ObjLayerRenderer layerRenderer;
     agl::lyr::DrawMethodImpl<Renderer> drawMethodMap;
     agl::lyr::DrawMethodImpl<Renderer> drawMethodActors;
-    GTX nodeTex;
 };
 
 }

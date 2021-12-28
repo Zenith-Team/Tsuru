@@ -3,6 +3,7 @@
 #include "game/profile/profile.h"
 #include "log.h"
 #include "game/resource/resarchive.h"
+#include "game/savemgr.h"
 #include "game/resource/resmgr.h"
 
 SEAD_SINGLETON_TASK_IMPL(Atlys::Scene)
@@ -94,7 +95,9 @@ void Atlys::Scene::endState_Active() { }
 
 /* STATE: Paused */
 
-void Atlys::Scene::beginState_Paused() { }
+void Atlys::Scene::beginState_Paused() {
+    SaveMgr::instance()->thread->sendMessage(2, sead::MessageQueue::BlockType_NoBlock);
+}
 
 void Atlys::Scene::executeState_Paused() {
     if (this->controllers.buttonA(this->activeController)) {

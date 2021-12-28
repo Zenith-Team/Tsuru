@@ -339,3 +339,9 @@ public:
 };
 
 static_assert(sizeof(SaveData) == 0xB134, "SaveData size mismatch");
+
+struct PersonalSaveData {
+    u8 _0[0x8];
+};
+
+static_assert(sizeof(PersonalSaveData) == 0x8, "PersonalSaveData size mismatch");

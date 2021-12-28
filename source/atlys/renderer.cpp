@@ -19,7 +19,6 @@ Atlys::Renderer::Renderer()
     : layerRenderer("Atlys")
     , drawMethodMap()
     , drawMethodActors()
-    , nodeTex("tsuru/uhhuh.gtx")
 { }
 
 void Atlys::Renderer::makeLayers() {
