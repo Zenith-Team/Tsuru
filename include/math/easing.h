@@ -145,49 +145,49 @@ public:
 
     static EasingFunction EaseTypeToEaseFunc(EaseType type) {
         switch (type) {
-            case EaseType_Linear: return &linear;
+            case EaseType_Linear: return &Easing::linear;
             
-            case EaseType_SineIn: return &sineIn;
-            case EaseType_SineOut: return &sineOut;
-            case EaseType_SineInOut: return &sineInOut;
+            case EaseType_SineIn: return &Easing::sineIn;
+            case EaseType_SineOut: return &Easing::sineOut;
+            case EaseType_SineInOut: return &Easing::sineInOut;
 
-            case EaseType_QuadIn: return &quadIn;
-            case EaseType_QuadOut: return &quadOut;
-            case EaseType_QuadInOut: return &quadInOut;
+            case EaseType_QuadIn: return &Easing::quadIn;
+            case EaseType_QuadOut: return &Easing::quadOut;
+            case EaseType_QuadInOut: return &Easing::quadInOut;
 
-            case EaseType_CubicIn: return &cubicIn;
-            case EaseType_CubicOut: return &cubicOut;
-            case EaseType_CubicInOut: return &cubicInOut;
+            case EaseType_CubicIn: return &Easing::cubicIn;
+            case EaseType_CubicOut: return &Easing::cubicOut;
+            case EaseType_CubicInOut: return &Easing::cubicInOut;
 
-            case EaseType_QuartIn: return &quartIn;
-            case EaseType_QuartOut: return &quartOut;
-            case EaseType_QuartInOut: return &quartInOut;
+            case EaseType_QuartIn: return &Easing::quartIn;
+            case EaseType_QuartOut: return &Easing::quartOut;
+            case EaseType_QuartInOut: return &Easing::quartInOut;
 
-            case EaseType_QuintIn: return &quintIn;
-            case EaseType_QuintOut: return &quintOut;
-            case EaseType_QuintInOut: return &quintInOut;
+            case EaseType_QuintIn: return &Easing::quintIn;
+            case EaseType_QuintOut: return &Easing::quintOut;
+            case EaseType_QuintInOut: return &Easing::quintInOut;
 
-            case EaseType_ExpoIn: return &expoIn;
-            case EaseType_ExpoOut: return &expoOut;
-            case EaseType_ExpoInOut: return &expoInOut;
+            case EaseType_ExpoIn: return &Easing::expoIn;
+            case EaseType_ExpoOut: return &Easing::expoOut;
+            case EaseType_ExpoInOut: return &Easing::expoInOut;
 
-            case EaseType_CircIn: return &circIn;
-            case EaseType_CircOut: return &circOut;
-            case EaseType_CircInOut: return &circInOut;
+            case EaseType_CircIn: return &Easing::circIn;
+            case EaseType_CircOut: return &Easing::circOut;
+            case EaseType_CircInOut: return &Easing::circInOut;
 
-            case EaseType_BackIn: return &backIn;
-            case EaseType_BackOut: return &backOut;
-            case EaseType_BackInOut: return &backInOut;
+            case EaseType_BackIn: return &Easing::backIn;
+            case EaseType_BackOut: return &Easing::backOut;
+            case EaseType_BackInOut: return &Easing::backInOut;
 
-            case EaseType_ElasticIn: return &elasticIn;
-            case EaseType_ElasticOut: return &elasticOut;
-            case EaseType_ElasticInOut: return &elasticInOut;
+            case EaseType_ElasticIn: return &Easing::elasticIn;
+            case EaseType_ElasticOut: return &Easing::elasticOut;
+            case EaseType_ElasticInOut: return &Easing::elasticInOut;
 
-            case EaseType_BounceIn: return &bounceIn;
-            case EaseType_BounceOut: return &bounceOut;
-            case EaseType_BounceInOut: return &bounceInOut;
+            case EaseType_BounceIn: return &Easing::bounceIn;
+            case EaseType_BounceOut: return &Easing::bounceOut;
+            case EaseType_BounceInOut: return &Easing::bounceInOut;
 
-            default: return &linear;
+            default: return &Easing::linear;
         }
     }
 

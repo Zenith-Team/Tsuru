@@ -85,6 +85,10 @@ void Atlys::Scene::beginState_Active() { }
 void Atlys::Scene::executeState_Active() {
     ActorMgr::instance()->executeActors();
 
+    for (u32 i = 0; i < Atlys::Scene::instance()->map->info->animTexCount; ++i) {
+        Atlys::Scene::instance()->map->animTexs[i].animate();
+    }
+
     if (this->controllers.buttonPlus(this->activeController)) {
         LOG("Pausing");
         this->states.changeState(&Atlys::Scene::StateID_Paused);
