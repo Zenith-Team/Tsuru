@@ -4,6 +4,7 @@
 #include "game/graphics/drawmgr.h"
 #include "sead/color.h"
 #include "log.h"
+#include "math/easing.h"
 
 #define ATLYS_NODE_INVALID 0xFFFFFFFF
 
@@ -20,6 +21,7 @@ private:
             u32 layerCount;                 // Number of layers
             u32 spriteCount;                // Number of sprites
             u32 worldCount;                 // Number of worlds
+            u32 animTexCount;               // Number of animated textures
         };
 
         struct WorldInfo {
@@ -92,6 +94,41 @@ private:
             Vec2f position;
         };
 
+        struct AnimTex {
+            enum AnimFlags {
+                ScaleAnimation_X    = 1 << 0,
+                ScaleAnimation_Y    = 1 << 1,
+
+                PositionAnimation_X = 1 << 2,
+                PositionAnimation_Y = 1 << 3,
+
+                RotationAnimation_X = 1 << 4
+            };
+
+            char gtxName[32];
+            
+            bool reverseLoop; // Should we reverse the animation when it reaches the end
+
+            AnimFlags animFlags;
+
+            Vec2f scaleStart;
+            Vec2f scaleEnd;
+            Easing::EaseType scaleXEase;
+            Easing::EaseType scaleYEase;
+            f32 scaleSpeed;
+
+            Vec2f positionStart;
+            Vec2f positionEnd;
+            Easing::EaseType positionXEase;
+            Easing::EaseType positionYEase;
+            f32 positionSpeed;
+
+            f32 rotationStart;
+            f32 rotationEnd;
+            Easing::EaseType rotationEase;
+            f32 rotationSpeed;
+        };
+
     public:
         Data(const sead::SafeString& path);
         ~Data();
@@ -101,6 +138,7 @@ private:
         Node* nodes;
         Layer* layers;
         Sprite* sprites;
+        AnimTex* animTexs;
         bool loaded;
     };
 
@@ -275,6 +313,103 @@ public:
         GTX gtx;
     };
 
+    class AnimTex : public Data::AnimTex {
+    private:
+        Easing::EasingFunction scaleXEaseFunc;
+        Easing::EasingFunction scaleYEaseFunc;
+        Easing::EasingFunction positionXEaseFunc;
+        Easing::EasingFunction positionYEaseFunc;
+        Easing::EasingFunction rotationEaseFunc;
+
+        Easing scaleXEaser;
+        Easing scaleYEaser;
+        Easing positionXEaser;
+        Easing positionYEaser;
+        Easing rotationEaser;
+
+    public:
+        AnimTex()
+            : scaleXEaseFunc(nullptr)
+            , scaleYEaseFunc(nullptr)
+            , positionXEaseFunc(nullptr)
+            , positionYEaseFunc(nullptr)
+            , rotationEaseFunc(nullptr)
+            , scaleXEaser()
+            , scaleYEaser()
+            , positionXEaser()
+            , positionYEaser()
+            , rotationEaser()
+            , gtx()
+            , rewinding(false)
+        {
+            this->scaleXEaseFunc = Easing::EaseTypeToEaseFunc(this->scaleXEase);
+            this->scaleYEaseFunc = Easing::EaseTypeToEaseFunc(this->scaleYEase);
+
+            this->positionXEaseFunc = Easing::EaseTypeToEaseFunc(this->positionXEase);
+            this->positionYEaseFunc = Easing::EaseTypeToEaseFunc(this->positionYEase);
+
+            this->rotationEaseFunc = Easing::EaseTypeToEaseFunc(this->rotationEase);
+        }
+
+    private:
+        void setTargetToEnd() {
+            this->scaleXEaser.set(this->scaleXEaseFunc, this->scaleStart.x, this->scaleEnd.x, this->scaleSpeed);
+            this->scaleYEaser.set(this->scaleYEaseFunc, this->scaleStart.y, this->scaleEnd.y, this->scaleSpeed);
+
+            this->positionXEaser.set(this->positionXEaseFunc, this->positionStart.x, this->positionEnd.x, this->positionSpeed);
+            this->positionYEaser.set(this->positionYEaseFunc, this->positionStart.y, this->positionEnd.y, this->positionSpeed);
+
+            this->rotationEaser.set(this->rotationEaseFunc, this->rotationStart, this->rotationEnd, this->rotationSpeed);
+        }
+
+        void setTargetToStart() {
+            this->scaleXEaser.set(this->scaleXEaseFunc, this->scaleEnd.x, this->scaleStart.x, this->scaleSpeed);
+            this->scaleYEaser.set(this->scaleYEaseFunc, this->scaleEnd.y, this->scaleStart.y, this->scaleSpeed);
+
+            this->positionXEaser.set(this->positionXEaseFunc, this->positionEnd.x, this->positionStart.x, this->positionSpeed);
+            this->positionYEaser.set(this->positionYEaseFunc, this->positionEnd.y, this->positionStart.y, this->positionSpeed);
+
+            this->rotationEaser.set(this->rotationEaseFunc, this->rotationEnd, this->rotationStart, this->rotationSpeed);
+        }
+
+    public:
+        void init(const sead::SafeString& tex) {
+            this->gtx.load(tex);
+            
+            this->setTargetToEnd();
+        }
+
+        void animate() {
+            bool finishedScaleX = this->scaleXEaser.ease(this->scale.x);
+            bool finishedScaleY = this->scaleYEaser.ease(this->scale.y);
+
+            bool finishedPositionX = this->positionXEaser.ease(this->position.x);
+            bool finishedPositionY = this->positionYEaser.ease(this->position.y);
+
+            bool finishedRotation = this->rotationEaser.ease(this->rotation);
+
+            if (finishedScaleX && finishedScaleY && finishedPositionX && finishedPositionY && finishedRotation) {
+                if (this->reverseLoop) {
+                    if (this->rewinding) {
+                        this->rewinding = false;
+                        this->setTargetToEnd();
+                    } else {
+                        this->rewinding = true;
+                        this->setTargetToStart();
+                    }
+                } else {
+                    this->setTargetToEnd();
+                }
+            }
+        }
+
+        GTX gtx;
+        Vec2f scale;
+        Vec2f position;
+        f32 rotation;
+        bool rewinding;
+    };
+
 public:
     Map(const sead::SafeString& path);
     ~Map();
@@ -286,6 +421,7 @@ public:
     Node* nodes;
     Layer* layers;
     Data::Sprite* sprites;
+    AnimTex* animTexs;
 };
 
 }

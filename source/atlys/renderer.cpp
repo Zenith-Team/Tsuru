@@ -33,6 +33,10 @@ void Atlys::Renderer::init(Atlys::Camera* camera) {
     for (u32 i = 0; i < Atlys::Scene::instance()->map->info->layerCount; i++) {
         Atlys::Scene::instance()->map->layers[i].gtx.load(Atlys::Scene::instance()->map->layers[i].gtxName);
     }
+
+    for (u32 i = 0; i < Atlys::Scene::instance()->map->info->animTexCount; i++) {
+        Atlys::Scene::instance()->map->animTexs[i].init(Atlys::Scene::instance()->map->animTexs[i].gtxName);
+    }
  
     ResMgr::instance()->loadRes("kanibo", "actor/kanibo.szs", nullptr, true);
     ResArchiveMgr::instance()->loadResArchive("kanibo", "kanibo", nullptr);
@@ -77,11 +81,26 @@ void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
         agl::utl::DevTools::drawTextureTexCoord(
             Atlys::Scene::instance()->map->layers[i].gtx.texture,
             quadMtxSRT,
-            viewProj,
-            Vec2f(1.0f),
-            0.0f,
-            Vec2f(0.0f)
+            viewProj
         );
+    }
+
+    for (u32 i = 0; i < Atlys::Scene::instance()->map->info->animTexCount; i++) {
+        Mtx34 quadMtxSRT;
+        Mtx34::makeSRT(
+            quadMtxSRT,
+            Vec3f(Atlys::Scene::instance()->map->animTexs[i].scale.x, Atlys::Scene::instance()->map->animTexs[i].scale.y, 1.0f),
+            Vec3f(degToRad(-90.0f), Atlys::Scene::instance()->map->animTexs[i].rotation, 0.0f),
+            Vec3f(Atlys::Scene::instance()->map->animTexs[i].position.x, 0.0f, Atlys::Scene::instance()->map->animTexs[i].position.y)
+        );
+
+        agl::utl::DevTools::drawTextureTexCoord(
+            Atlys::Scene::instance()->map->animTexs[i].gtx.texture,
+            quadMtxSRT,
+            viewProj
+        );
+
+        Atlys::Scene::instance()->map->animTexs[i].animate();
     }
 }
 
