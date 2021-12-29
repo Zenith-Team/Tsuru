@@ -64,8 +64,6 @@ void Atlys::Renderer::bindDrawMethods() {
 }
 
 void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
-    //* To Abood: The context was not required so I removed it :)
-
     Mtx44 viewProj;
     sead::Matrix44CalcCommon<f32>::multiply(viewProj, Atlys::Scene::instance()->camera->projection.getDeviceProjectionMatrix(), Atlys::Scene::instance()->camera->camera.matrix);
 
@@ -90,7 +88,7 @@ void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
         Mtx34::makeSRT(
             quadMtxSRT,
             Vec3f(Atlys::Scene::instance()->map->animTexs[i].scale.x, Atlys::Scene::instance()->map->animTexs[i].scale.y, 1.0f),
-            Vec3f(degToRad(-90.0f), Atlys::Scene::instance()->map->animTexs[i].rotation, 0.0f),
+            Vec3f(degToRad(-90.0f), degToRad(Atlys::Scene::instance()->map->animTexs[i].rotation), 0.0f),
             Vec3f(Atlys::Scene::instance()->map->animTexs[i].position.x, 0.0f, Atlys::Scene::instance()->map->animTexs[i].position.y)
         );
 
@@ -99,8 +97,6 @@ void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
             quadMtxSRT,
             viewProj
         );
-
-        Atlys::Scene::instance()->map->animTexs[i].animate();
     }
 }
 

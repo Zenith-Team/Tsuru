@@ -341,15 +341,7 @@ public:
             , rotationEaser()
             , gtx()
             , rewinding(false)
-        {
-            this->scaleXEaseFunc = Easing::EaseTypeToEaseFunc(this->scaleXEase);
-            this->scaleYEaseFunc = Easing::EaseTypeToEaseFunc(this->scaleYEase);
-
-            this->positionXEaseFunc = Easing::EaseTypeToEaseFunc(this->positionXEase);
-            this->positionYEaseFunc = Easing::EaseTypeToEaseFunc(this->positionYEase);
-
-            this->rotationEaseFunc = Easing::EaseTypeToEaseFunc(this->rotationEase);
-        }
+        { }
 
     private:
         void setTargetToEnd() {
@@ -376,6 +368,15 @@ public:
         void init(const sead::SafeString& tex) {
             this->gtx.load(tex);
             
+
+            this->scaleXEaseFunc = Easing::EaseTypeToEaseFunc(this->scaleXEase);
+            this->scaleYEaseFunc = Easing::EaseTypeToEaseFunc(this->scaleYEase);
+
+            this->positionXEaseFunc = Easing::EaseTypeToEaseFunc(this->positionXEase);
+            this->positionYEaseFunc = Easing::EaseTypeToEaseFunc(this->positionYEase);
+
+            this->rotationEaseFunc = Easing::EaseTypeToEaseFunc(this->rotationEase);
+
             this->setTargetToEnd();
         }
 
