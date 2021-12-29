@@ -11,7 +11,43 @@
 // @param target The target value of the easing
 // @param stepPercent How big each easing step should be, in progress percentage from 0.0 to 1.0. Put simply, the easing speed, and inversely, the smoothness
 class Easing {
+public:
     typedef f32 (*EasingFunction)(f32);
+
+public:
+    enum EaseType {
+        EaseType_Linear,
+        EaseType_SineIn,
+        EaseType_SineOut,
+        EaseType_SineInOut,
+        EaseType_QuadIn,
+        EaseType_QuadOut,
+        EaseType_QuadInOut,
+        EaseType_CubicIn,
+        EaseType_CubicOut,
+        EaseType_CubicInOut,
+        EaseType_QuartIn,
+        EaseType_QuartOut,
+        EaseType_QuartInOut,
+        EaseType_QuintIn,
+        EaseType_QuintOut,
+        EaseType_QuintInOut,
+        EaseType_ExpoIn,
+        EaseType_ExpoOut,
+        EaseType_ExpoInOut,
+        EaseType_CircIn,
+        EaseType_CircOut,
+        EaseType_CircInOut,
+        EaseType_BackIn,
+        EaseType_BackOut,
+        EaseType_BackInOut,
+        EaseType_ElasticIn,
+        EaseType_ElasticOut,
+        EaseType_ElasticInOut,
+        EaseType_BounceIn,
+        EaseType_BounceOut,
+        EaseType_BounceInOut
+    };
 
 public:
     Easing()
@@ -65,6 +101,8 @@ public:
 
     // https://easings.net
 
+    static f32 linear(f32 x)       { return x + 1; }
+
     static f32 sineIn(f32 x)       { return 1.0f - cosf((x * M_PI) / 2.0f); }
     static f32 sineOut(f32 x)      { return sinf((x * M_PI) / 2.0f); }
     static f32 sineInOut(f32 x)    { return -(cosf(M_PI * x) - 1.0f) / 2.0f; }
@@ -104,6 +142,54 @@ public:
     static f32 bounceIn(f32 x)     { return 1.0f - bounceOut(1.0f - x); }
     static f32 bounceOut(f32 x)    { return x < 1.0f / 2.75f ? 7.5625f * x * x : x < 2.0f / 2.75f ? 7.5625f * (x - 1.5f / 2.75f) * (x - 1.5f / 2.75f) + 0.75f : x < 2.5f / 2.75f ? 7.5625f * (x - 2.25f / 2.75f) * (x - 2.25f / 2.75f) + 0.9375f : 7.5625f * (x - 2.625f / 2.75f) * (x - 2.625f / 2.75f) + 0.984375f; }
     static f32 bounceInOut(f32 x)  { return x < 0.5f ? (1.0f - bounceOut(1.0f - 2.0f * x)) / 2.0f : (1.0f + bounceOut(2.0f * x - 1.0f)) / 2.0f; }
+
+    static EasingFunction EaseTypeToEaseFunc(EaseType type) {
+        switch (type) {
+            case EaseType_Linear: return &linear;
+            
+            case EaseType_SineIn: return &sineIn;
+            case EaseType_SineOut: return &sineOut;
+            case EaseType_SineInOut: return &sineInOut;
+
+            case EaseType_QuadIn: return &quadIn;
+            case EaseType_QuadOut: return &quadOut;
+            case EaseType_QuadInOut: return &quadInOut;
+
+            case EaseType_CubicIn: return &cubicIn;
+            case EaseType_CubicOut: return &cubicOut;
+            case EaseType_CubicInOut: return &cubicInOut;
+
+            case EaseType_QuartIn: return &quartIn;
+            case EaseType_QuartOut: return &quartOut;
+            case EaseType_QuartInOut: return &quartInOut;
+
+            case EaseType_QuintIn: return &quintIn;
+            case EaseType_QuintOut: return &quintOut;
+            case EaseType_QuintInOut: return &quintInOut;
+
+            case EaseType_ExpoIn: return &expoIn;
+            case EaseType_ExpoOut: return &expoOut;
+            case EaseType_ExpoInOut: return &expoInOut;
+
+            case EaseType_CircIn: return &circIn;
+            case EaseType_CircOut: return &circOut;
+            case EaseType_CircInOut: return &circInOut;
+
+            case EaseType_BackIn: return &backIn;
+            case EaseType_BackOut: return &backOut;
+            case EaseType_BackInOut: return &backInOut;
+
+            case EaseType_ElasticIn: return &elasticIn;
+            case EaseType_ElasticOut: return &elasticOut;
+            case EaseType_ElasticInOut: return &elasticInOut;
+
+            case EaseType_BounceIn: return &bounceIn;
+            case EaseType_BounceOut: return &bounceOut;
+            case EaseType_BounceInOut: return &bounceInOut;
+
+            default: return &linear;
+        }
+    }
 
 private:
     bool inited;

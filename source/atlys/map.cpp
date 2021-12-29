@@ -24,6 +24,7 @@ Atlys::Map::Data::Data(const sead::SafeString& path)
     , nodes(nullptr)
     , layers(nullptr)
     , sprites(nullptr)
+    , animTexs(nullptr)
     , loaded(false)
 {
     const sead::SafeString& file = path;
@@ -36,16 +37,18 @@ Atlys::Map::Data::Data(const sead::SafeString& path)
     LOAD_MAP_SECTOR(Node, this->header->nodeCount, this->nodes);
     LOAD_MAP_SECTOR(Layer, this->header->layerCount, this->layers);
     LOAD_MAP_SECTOR(Sprite, this->header->spriteCount, this->sprites);
+    LOAD_MAP_SECTOR(AnimTex, this->header->animTexCount, this->animTexs);
 
     this->loaded = true;
 }
 
 Atlys::Map::Data::~Data() {
-    if (this->header)  delete         this->header;  this->header = nullptr;
-    if (this->worlds)  delete[] (u8*) this->worlds;  this->worlds = nullptr;
-    if (this->nodes)   delete[] (u8*) this->nodes;   this->nodes = nullptr;
-    if (this->layers)  delete[] (u8*) this->layers;  this->layers = nullptr;
-    if (this->sprites) delete[] (u8*) this->sprites; this->sprites = nullptr;
+    if (this->header)   delete         this->header;   this->header = nullptr;
+    if (this->worlds)   delete[] (u8*) this->worlds;   this->worlds = nullptr;
+    if (this->nodes)    delete[] (u8*) this->nodes;    this->nodes = nullptr;
+    if (this->layers)   delete[] (u8*) this->layers;   this->layers = nullptr;
+    if (this->sprites)  delete[] (u8*) this->sprites;  this->sprites = nullptr;
+    if (this->animTexs) delete[] (u8*) this->animTexs; this->animTexs = nullptr;
 }
 
 Atlys::Map::Map(const sead::SafeString& path)
@@ -54,6 +57,7 @@ Atlys::Map::Map(const sead::SafeString& path)
     , nodes(nullptr)
     , layers(nullptr)
     , sprites(nullptr)
+    , animTexs(nullptr)
 {
     LOG("Loading map: %s", path.cstr());
     Data data(path);
@@ -67,19 +71,21 @@ Atlys::Map::Map(const sead::SafeString& path)
 
     // Allocate
     this->info = new Data::Header;
-    if (data.header->worldCount > 0)  this->worlds  = new WorldInfo[data.header->worldCount];
-    if (data.header->nodeCount  > 0)  this->nodes   = new Node[data.header->nodeCount];
-    if (data.header->layerCount > 0)  this->layers  = new Layer[data.header->layerCount];
-    if (data.header->spriteCount > 0) this->sprites = new Data::Sprite[data.header->spriteCount];
+    if (data.header->worldCount > 0)   this->worlds   = new WorldInfo[data.header->worldCount];
+    if (data.header->nodeCount  > 0)   this->nodes    = new Node[data.header->nodeCount];
+    if (data.header->layerCount > 0)   this->layers   = new Layer[data.header->layerCount];
+    if (data.header->spriteCount > 0)  this->sprites  = new Data::Sprite[data.header->spriteCount];
+    if (data.header->animTexCount > 0) this->animTexs = new AnimTex[data.header->animTexCount];
 
     LOG("Allocated dynamic data");
 
     // Copy
-    OSBlockMove(this->info, data.header, sizeof(Data::Header), 0);                                                                   // Header
-    for (u32 i = 0; i < data.header->worldCount; i++)  OSBlockMove(&this->worlds[i],  &data.worlds[i],  sizeof(Data::WorldInfo), 0); // Worlds
-    for (u32 i = 0; i < data.header->nodeCount; i++)   OSBlockMove(&this->nodes[i],   &data.nodes[i],   sizeof(Data::Node), 0);      // Nodes
-    for (u32 i = 0; i < data.header->layerCount; i++)  OSBlockMove(&this->layers[i],  &data.layers[i],  sizeof(Data::Layer), 0);     // Layers
-    for (u32 i = 0; i < data.header->spriteCount; i++) OSBlockMove(&this->sprites[i], &data.sprites[i], sizeof(Data::Sprite), 0);    // Sprites
+    OSBlockMove(this->info, data.header, sizeof(Data::Header), 0);                                                                      // Header
+    for (u32 i = 0; i < data.header->worldCount; i++)   OSBlockMove(&this->worlds[i],   &data.worlds[i],   sizeof(Data::WorldInfo), 0); // Worlds
+    for (u32 i = 0; i < data.header->nodeCount; i++)    OSBlockMove(&this->nodes[i],    &data.nodes[i],    sizeof(Data::Node),      0); // Nodes
+    for (u32 i = 0; i < data.header->layerCount; i++)   OSBlockMove(&this->layers[i],   &data.layers[i],   sizeof(Data::Layer),     0); // Layers
+    for (u32 i = 0; i < data.header->spriteCount; i++)  OSBlockMove(&this->sprites[i],  &data.sprites[i],  sizeof(Data::Sprite),    0); // Sprites
+    for (u32 i = 0; i < data.header->animTexCount; i++) OSBlockMove(&this->animTexs[i], &data.animTexs[i], sizeof(AnimTex),         0); // AnimTexs
 
     // Additional setup
 
@@ -104,11 +110,12 @@ Atlys::Map::Map(const sead::SafeString& path)
 }
 
 Atlys::Map::~Map() {
-    if (this->info)    delete this->info;      this->info    = nullptr;
-    if (this->worlds)  delete[] this->worlds;  this->worlds  = nullptr;
-    if (this->nodes)   delete[] this->nodes;   this->nodes   = nullptr;
-    if (this->layers)  delete[] this->layers;  this->layers  = nullptr;
-    if (this->sprites) delete[] this->sprites; this->sprites = nullptr;
+    if (this->info)     delete   this->info;     this->info    = nullptr;
+    if (this->worlds)   delete[] this->worlds;   this->worlds  = nullptr;
+    if (this->nodes)    delete[] this->nodes;    this->nodes   = nullptr;
+    if (this->layers)   delete[] this->layers;   this->layers  = nullptr;
+    if (this->sprites)  delete[] this->sprites;  this->sprites = nullptr;
+    if (this->animTexs) delete[] this->animTexs; this->animTexs = nullptr;
 }
 
 Atlys::Map::Node* Atlys::Map::findNodeByID(u32 id) {
