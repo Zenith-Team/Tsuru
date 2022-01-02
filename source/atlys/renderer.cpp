@@ -15,6 +15,11 @@
 #include "math/functions.h"
 #include "log.h"
 
+static inline void loadActorRes(const sead::SafeString& name, const sead::SafeString& path) {
+    ResMgr::instance()->loadRes(name, path, nullptr, true);
+    ResArchiveMgr::instance()->loadResArchive(name, path, nullptr);
+}
+
 Atlys::Renderer::Renderer()
     : layerRenderer("Atlys")
     , drawMethodMap()
@@ -37,14 +42,11 @@ void Atlys::Renderer::init(Atlys::Camera* camera) {
     for (u32 i = 0; i < Atlys::Scene::instance()->map->info->animTexCount; i++) {
         Atlys::Scene::instance()->map->animTexs[i].init(Atlys::Scene::instance()->map->animTexs[i].gtxName);
     }
- 
-    ResMgr::instance()->loadRes("kanibo", "actor/kanibo.szs", nullptr, true);
-    ResArchiveMgr::instance()->loadResArchive("kanibo", "kanibo", nullptr);
+
+    loadActorRes("kuribo", "actor/kuribo.szs");
+
     for (u32 i = 0; i < Atlys::Scene::instance()->map->info->nodeCount; i++) {
-        if (Atlys::Scene::instance()->map->nodes[i].type != Atlys::Map::Node::Type_Level)
-            continue;
-        
-        Atlys::Scene::instance()->map->nodes[i].model = ModelWrapper::create("kanibo", "kanibo");
+        Atlys::Scene::instance()->map->nodes[i].loadModel();
     }
 
     agl::lyr::Renderer::instance()->layers[Atlys::Renderer::LayerID_Map]->camera = &camera->camera;
@@ -67,6 +69,7 @@ void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
     Mtx44 viewProj;
     sead::Matrix44CalcCommon<f32>::multiply(viewProj, Atlys::Scene::instance()->camera->projection.getDeviceProjectionMatrix(), Atlys::Scene::instance()->camera->camera.matrix);
 
+    // Draw layer
     for (u32 i = 0; i < Atlys::Scene::instance()->map->info->layerCount; i++) {
         Mtx34 quadMtxSRT;
         Mtx34::makeSRT(
@@ -83,6 +86,7 @@ void Atlys::Renderer::drawLayerMap(const agl::lyr::RenderInfo& renderInfo) {
         );
     }
 
+    // Draw animated textures
     for (u32 i = 0; i < Atlys::Scene::instance()->map->info->animTexCount; i++) {
         Mtx34 quadMtxSRT;
         Mtx34::makeSRT(

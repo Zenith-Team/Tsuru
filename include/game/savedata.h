@@ -145,7 +145,7 @@ public:
         u8 _B;
         u8 playerLifeCount[4];              // Order: Mario, Luigi, Blue Toad, Yellow Toad
         u8 playerCharacterSelection[4];     // TODO: Verify order
-        u8 playerPowerupState[4];           // Order: Mario, Luigi, Blue Toad, Yellow Toad //* enum = PowerupBase::PowerupState
+        u8 playerPowerupState[4];           // Order: Mario, Luigi, Blue Toad, Yellow Toad //* enum = PlayerBase::PowerupState
         u8 playerGameOverCount[4];          // Order: Mario, Luigi, Blue Toad, Yellow Toad
         u16 worldCompletionFlag;            //* enum = SaveData::WorldCompletionFlag
         u8 gameCompletionFlag;              //* enum = SaveData::GameCompletionFlag
