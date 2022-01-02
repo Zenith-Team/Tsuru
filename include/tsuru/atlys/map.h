@@ -165,6 +165,14 @@ public:
             , allCompleted(false)
         { }
 
+        void loadModel() {
+            if (this->id == 0) {
+                this->model = ModelWrapper::create("kuribo", "kuribo");
+            } else if (this->type == Data::Node::Type_Level) {
+                this->model = ModelWrapper::create("kuribo", "kuribo");
+            }
+        }
+
         bool anyExitDone() {
             if (this->type == Data::Node::Type_Level) {
                 if (this->exits & Exit_Normal)
