@@ -1,7 +1,7 @@
 
 ---
 Files:
-  - source/waves.S
+  - source/asm/waves.S
   - source/waves.cpp
 Hooks:
 # Apply waves

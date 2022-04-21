@@ -1,7 +1,7 @@
 
 ---
 Files:
-  - source/yoshicolors.S
+  - source/asm/yoshicolors.S
   - source/yoshicolors.cpp
 Hooks:
 # Redirect the YoshiModel constructor to use the custom array instead of the default one

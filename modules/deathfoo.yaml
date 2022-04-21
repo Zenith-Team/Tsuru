@@ -1,7 +1,7 @@
 
 ---
 Files:
-  - source/deathfoo.S
+  - source/asm/deathfoo.S
 Hooks:
 # Add the ability to spawn deathfoo clouds from Foo
   # Temp patch: set type to spawned by death foo in onCreate

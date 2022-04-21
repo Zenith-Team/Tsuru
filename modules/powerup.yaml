@@ -1,7 +1,7 @@
 
 ---
 Files:
-  - source/powerup.S
+  - source/asm/powerup.S
 Hooks:
 # Projectile
   # Spawn the custom projectile
