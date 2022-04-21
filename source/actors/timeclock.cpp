@@ -78,7 +78,11 @@ void TimeClock::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
 
         s16 time = self->settings1 & 0xFFF; // Nybbles 10-12
         if (self->settings1 >> 0x1C & 0xF /* Nybble 5 */) time = -time;
-        LevelTimer::instance()->addTime(time);
+        if (LevelTimer::instance()->timeLimit + time <= 0) {
+            LevelTimer::instance()->addTime(-LevelTimer::instance()->timeLimit + 3);
+        } else {
+            LevelTimer::instance()->addTime(time);
+        }
 
         self->isDeleted = true;
     }
