@@ -3,6 +3,7 @@
 #include "game/actor/stage/stageactor.h"
 #include "game/level/leveltimer.h"
 #include "game/sound/sound.h"
+#include "log.h"
 
 class TimeClock : public StageActor {
     SEAD_RTTI_OVERRIDE_IMPL(TimeClock, StageActor)
@@ -69,7 +70,7 @@ void TimeClock::updateModel() {
 
 void TimeClock::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     TimeClock* self = static_cast<TimeClock*>(hcSelf->owner);
-    if (hcOther->owner->type == 1) {
+    if (hcOther->owner->type == StageActorType_Player || hcOther->owner->type == StageActorType_Yoshi) {
         Vec3f effectPos(self->position.x, self->position.y - 24.0f, 4500.0f);
         Effect::spawn(RP_FlagPass_1, &effectPos);
 
