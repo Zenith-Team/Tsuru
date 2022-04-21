@@ -318,7 +318,7 @@ public:
     virtual void vfA34() = 0;
     virtual void vfA3C() = 0;
     virtual void vfA44() = 0;
-    
+
     u8 _27C[0x2C];                        // 27C
     PlayerInput input;                    // 2A8
     u8 _33C[0x1C4];                       // 33C

@@ -280,7 +280,7 @@ SECTIONS {
 
 /* CircularCollider */
     __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__16CircularColliderSFv = 0x101E9F88;
-	typeInfo__L0__getRuntimeTypeInfoStatic__16CircularColliderSFv = 0x101EA398;
+    typeInfo__L0__getRuntimeTypeInfoStatic__16CircularColliderSFv = 0x101EA398;
 
 /* ColliderBase */
     setType__12ColliderBaseFQ2_12ColliderBase4Type = 0x21A5A70;
@@ -848,7 +848,7 @@ SECTIONS {
 
 /* SolidOnTopCollider */
     __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__18SolidOnTopColliderSFv = 0x101E9D48;
-	typeInfo__L0__getRuntimeTypeInfoStatic__18SolidOnTopColliderSFv = 0x101E9FA8;
+    typeInfo__L0__getRuntimeTypeInfoStatic__18SolidOnTopColliderSFv = 0x101E9FA8;
 
 /* SoundSystem */
     sInstance__11SoundSystem = 0x101E7C84;

@@ -146,7 +146,7 @@ public:
     static EasingFunction EaseTypeToEaseFunc(EaseType type) {
         switch (type) {
             case EaseType_Linear: return &Easing::linear;
-            
+
             case EaseType_SineIn: return &Easing::sineIn;
             case EaseType_SineOut: return &Easing::sineOut;
             case EaseType_SineInOut: return &Easing::sineInOut;

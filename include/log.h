@@ -46,7 +46,7 @@ namespace LogColor {
     static const char* White        = "\33[97m";
     static const char* Default      = "\33[39m";
     //static const char* Extended     = "\33[38m";
-    
+
     namespace BG {
         static const char* Black        = "\33[40m";
         static const char* Red          = "\33[41m";
@@ -94,7 +94,7 @@ namespace LogColor {
     static const char* White        = "";
     static const char* Default      = "";
     //static const char* Extended     = "";
-    
+
     namespace BG {
         static const char* Black        = "";
         static const char* Red          = "";
