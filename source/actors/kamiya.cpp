@@ -6,7 +6,6 @@
 #include "game/effect/effect.h"
 #include "game/effect/effectid.h"
 #include "game/playermgr.h"
-#include "game/sound/sound.h"
 #include "game/direction.h"
 #include "math/easing.h"
 #include "sead/random.h"

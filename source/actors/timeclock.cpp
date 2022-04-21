@@ -2,6 +2,7 @@
 #include "game/graphics/drawmgr.h"
 #include "game/actor/stage/stageactor.h"
 #include "game/level/leveltimer.h"
+#include "game/sound/sound.h"
 
 class TimeClock : public StageActor {
     SEAD_RTTI_OVERRIDE_IMPL(TimeClock, StageActor)
@@ -37,7 +38,7 @@ Actor* TimeClock::build(const ActorBuildInfo* buildInfo) {
 }
 
 const HitboxCollider::Info TimeClock::collisionInfo = {
-    Vec2f(0.0f, -3.0f), Vec2f(12.0f, 15.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &TimeClock::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(12.0f, 12.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &TimeClock::collisionCallback
 };
 
 u32 TimeClock::onCreate() {
@@ -71,6 +72,8 @@ void TimeClock::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
     if (hcOther->owner->type == 1) {
         Vec3f effectPos(self->position.x, self->position.y - 24.0f, 4500.0f);
         Effect::spawn(RP_FlagPass_1, &effectPos);
+
+        playSound(SoundEffects::SE_SYS_CONTINUE_DONE, self->position);
 
         s16 time = self->settings1 & 0xFFF; // Nybbles 10-12
         if (self->settings1 >> 0x1C & 0xF /* Nybble 5 */) time = -time;
