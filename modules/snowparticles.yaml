@@ -1,7 +1,7 @@
 
 ---
 Files:
-  - source/snowparticles.S
+  - source/asm/snowparticles.S
 Hooks:
 # Save the colors from the spritedata
   - type: branch

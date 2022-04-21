@@ -2,7 +2,7 @@
 ---
 Files:
 #* Translation unit queue:
-  - source/misc.S
+  - source/asm/misc.S
   - source/misc.cpp
   - source/dynlibs/os.cpp
   - source/dynlibs/gx2.cpp
