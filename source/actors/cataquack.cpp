@@ -31,6 +31,10 @@ public:
     ModelWrapper* model;
     bool chasing;
 
+    StageActor* target;
+    f32 targetInitialY;
+    f32 launchHeight;
+
     DECLARE_STATE(Cataquack, Walk);
     DECLARE_STATE(Cataquack, Turn);
     DECLARE_STATE(Cataquack, Launch);
@@ -49,6 +53,9 @@ Cataquack::Cataquack(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)
     , model(nullptr)
     , chasing(false)
+    , target(nullptr)
+    , targetInitialY(0.0f)
+    , launchHeight(128.0f)
 { };
 
 Actor* Cataquack::build(const ActorBuildInfo* buildInfo) {
@@ -59,19 +66,13 @@ const HitboxCollider::Info Cataquack::collisionInfo = {
     Vec2f(0.0f, 14.0f), Vec2f(11.0f, 14.0f), HitboxCollider::HitboxShape_Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Cataquack::collisionCallback
 };
 
-void Cataquack::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    if (hcOther->owner->type != StageActor::StageActorType_Player) return;
-
-    hcOther->owner->speed.y = 5.0f;
-    ((Cataquack*)hcSelf->owner)->doStateChange(&Cataquack::StateID_Launch);
-}
-
 u32 Cataquack::onCreate() {
     this->model = ModelWrapper::create("poihana", "poihana", 3);
     this->scale.x = 0.1f;
     this->scale.y = 0.1f;
     this->scale.z = 0.1f;
     this->model->playSklAnim("walk", 0);
+    this->model->sklAnims[0]->shouldLoop(true);
 
     PhysicsMgr::Sensor belowSensor = { -6,  6,  0 };
     PhysicsMgr::Sensor aboveSensor = { -6,  6, 28 };
@@ -98,6 +99,12 @@ u32 Cataquack::onCreate() {
 }
 
 u32 Cataquack::onExecute() {
+    if (this->target != nullptr) {
+        if (this->target->position.y > this->targetInitialY + this->launchHeight) {
+            this->target->speed.y *= 0.3f;
+            this->target = nullptr;
+        }
+    }
     this->states.execute();
     this->updateModel();
     this->offscreenDelete(0);
@@ -195,8 +202,13 @@ void Cataquack::endState_Turn() {
 /** STATE: Launch */
 
 void Cataquack::beginState_Launch() {
+    this->direction = this->directionToPlayerH(this->position);
+    this->rotation.y = Direction::directionToRotationList[this->direction];
+
     this->model->playSklAnim("throw", 0);
+    this->model->sklAnims[0]->shouldLoop(false);
     this->speed.x = 0.0f;
+    this->target->speed.y = 1.0f + this->launchHeight / 14.0f;
 }
 
 void Cataquack::executeState_Launch() {
@@ -204,8 +216,19 @@ void Cataquack::executeState_Launch() {
     this->handleSpeed();
     this->physicsMgr.processCollisions();
     if (this->physicsMgr.isOnGround()) this->speed.y = 0.0f;
+    if (this->model->sklAnims[0]->isAnimationDone()) this->doStateChange(&Cataquack::StateID_Walk);
 }
 
 void Cataquack::endState_Launch() {
+    this->model->playSklAnim("walk", 0);
+    this->model->sklAnims[0]->shouldLoop(true);
+}
 
+void Cataquack::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    if (hcOther->owner->type != StageActorType_Player && hcOther->owner->type != StageActorType_Yoshi) return;
+    Cataquack* self = static_cast<Cataquack*>(hcSelf->owner);
+
+    self->target = hcOther->owner;
+    self->targetInitialY = self->target->position.y;
+    self->doStateChange(&Cataquack::StateID_Launch);
 }
