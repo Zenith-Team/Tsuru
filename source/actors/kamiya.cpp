@@ -6,7 +6,6 @@
 #include "game/effect/effect.h"
 #include "game/effect/effectid.h"
 #include "game/playermgr.h"
-#include "game/sound/sound.h"
 #include "game/direction.h"
 #include "math/easing.h"
 #include "sead/random.h"
@@ -294,7 +293,7 @@ void Kamiya::executeState_Flying() {
 
     f32 distance = this->targetPlayer->position.x - this->position.x;
     this->speed.x += distance / 1565.0f;
-    
+
     this->direction = this->directionToPlayerH(this->position);
 
     if (this->targetPlayer->direction == Direction::Right)
@@ -312,8 +311,8 @@ void Kamiya::executeState_Flying() {
     sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->direction], fixDeg(2.5f));
 
     this->flyTimer++;
-    
-    this->rotation.z = fixDeg(this->speed.x * 5.0f); 
+
+    this->rotation.z = fixDeg(this->speed.x * 5.0f);
 
     if (this->flyTimer > 240 && fabsf(this->speed.x) < 0.25f) {
         switch (sead::randU32(3)) {
@@ -374,6 +373,10 @@ void Kamiya::beginState_Fleeing() {
 void Kamiya::executeState_Fleeing() {
     // Escape player
 
+    if (!lefted) {
+
+    }
+
     this->fleeTimer++;
 
     this->speed.x -= (this->targetPlayer->position.x - this->position.x) / 3000.0f;
@@ -431,10 +434,10 @@ void Kamiya::beginState_Damage() {
 void Kamiya::executeState_Damage() {
     bool spin = this->easerY.ease(this->spawnRotationY);
     bool scale = this->easerExtra.ease(this->targetScale);
-    
+
     if (spin && scale)
         this->doStateChange(&Kamiya::StateID_Teleport);
-    
+
     this->rotation.y = fixDeg(this->spawnRotationY);
     this->scale.set(this->targetScale);
 }
@@ -449,7 +452,7 @@ void Kamiya::beginState_Teleport() {
         this->targetPosition = this->targetPlayer->get2DPosition();
     else
         this->targetPosition = this->get2DPosition();
-    
+
     targetPosition.x += sead::randF32(-100.0f, 100.0f) * (sead::randBool() + 1);
 
     this->easerX.set(&Easing::circInOut, this->position.x, targetPosition.x, 3.33f);
@@ -487,13 +490,13 @@ void Kamiya::executeState_Snipe() {
         this->throwing = true;
         this->model->loopSklAnims(true);
         this->model->playSklAnim("fly_throw_st_wait");
-    
+
         ActorBuildInfo poltergeist = { 0 };
         poltergeist.position = this->position;
         poltergeist.profile = Profile::get(ProfileID::Poltergeist);
-        
+
         ActorMgr::instance()->create(poltergeist, 0);
-        
+
         return;
     }
 

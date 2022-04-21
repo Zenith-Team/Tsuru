@@ -1,6 +1,5 @@
 #include "game/actor/stage/enemy.h"
 #include "game/graphics/model/model.h"
-#include "game/sound/sound.h"
 #include "game/collision/actorphysicsmgr.h"
 #include "game/graphics/drawmgr.h"
 #include "game/effect/effect.h"

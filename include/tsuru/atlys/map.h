@@ -106,7 +106,7 @@ private:
             };
 
             char gtxName[32];
-            
+
             bool reverseLoop; // Should we reverse the animation when it reaches the end
 
             AnimFlags animFlags;
@@ -211,7 +211,7 @@ public:
         void draw() {
             if (this->type != Data::Node::Type_Level)
                 return;
-            
+
             Mtx34 mtx;
             mtx.makeIdentity();
             mtx.rotateAndTranslate(Vec3u(0), Vec3f(this->position.x, 0.0f, this->position.y));
@@ -375,7 +375,7 @@ public:
     public:
         void init(const sead::SafeString& tex) {
             this->gtx.load(tex);
-            
+
 
             this->scaleXEaseFunc = Easing::EaseTypeToEaseFunc(this->scaleXEase);
             this->scaleYEaseFunc = Easing::EaseTypeToEaseFunc(this->scaleYEase);

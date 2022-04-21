@@ -27,7 +27,7 @@ Atlys::Player::Player(const ActorBuildInfo* buildInfo)
 Atlys::Player::~Player() {
     if (this->model)
         delete this->model;
-    
+
     this->model = nullptr;
 }
 
@@ -75,7 +75,7 @@ ModelWrapper* Atlys::Player::updateModel() {
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
     this->model->updateModel();
-    
+
     return this->model;
 }
 
