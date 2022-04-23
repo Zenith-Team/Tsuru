@@ -95,6 +95,20 @@ inline const T& max(const T& x, const T& y) {
     return (x < y) ? y : x;
 }
 
+// Power function for integers, with support for 64 bit integers
+// @param x Base value
+// @param y Exponent value
+template <typename T>
+inline T powi(T base, T exp) {
+    T result = 1;
+    while (exp) {
+        if (exp & 1) result *= base;
+        exp >>= 1;
+        base *= base;
+    }
+    return result;
+}
+
 // Gets the percentage represented by a number within a given range
 // @param value The number
 // @param min The start value of the range

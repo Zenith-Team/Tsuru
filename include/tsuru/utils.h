@@ -1,6 +1,8 @@
 #pragma once
 
 #include "types.h"
+#include "sead/safestring.h"
+#include "math/functions.h"
 
 // Compare if two wide strings are equal
 // @param str1 The first string to compare
@@ -65,4 +67,41 @@ static inline void swap(T& a, T& b) {
     const T temp = a;
     a = b;
     b = temp;
+}
+
+// Converts an integer to a string of it's binary representation
+// @param num The integer to be converted
+template <typename T>
+static inline sead::SafeString toBinaryString(T num) {
+    u8 bits = sizeof(T) * 8;
+    char str[65];
+    for (u8 c = 0; c < bits; c++) {
+        bool one = (num & (static_cast<T>(1) << ((bits - 1) - c))) != 0;
+        str[c] = one ? '1' : '0';
+    }
+    str[bits] = '\0';
+    return sead::SafeString(str);
+}
+
+// Parses a string of binary digits into an integer
+// @param str The string to be parsed
+template <typename T>
+static inline T parseBinaryString(const char* str) {
+    u8 bits = sizeof(T) * 8;
+    u64 n = 0;
+    for (u8 c = 0; c < bits; c++) {
+        if (str[(bits - 1) - c] == '1') {
+            n += powi(static_cast<T>(2), static_cast<T>(c));
+        }
+    }
+    return static_cast<T>(n);
+}
+
+// Returns the number of bits set to 1 in an integer
+// @param x The integer to be evaluated
+template <typename T>
+static inline u8 popcount(T x) {
+    u8 c = 0;
+    for (; x != 0; x &= x - 1) c++;
+    return c;
 }
