@@ -149,8 +149,8 @@ public:
     bool noSpawn;                       // 210     Inited to false
     u8  _211;                           // 211     Inited to 1
     u8  _212;                           // 212     Inited to 0
-    u8  eventID1;                       // 213
-    u8  eventID2;                       // 214
+    u8  eventID2;                       // 213
+    u8  eventID1;                       // 214
     u8  _215;                           // 215
     u16 actorInfoFlags;                 // 216     Inited to actorInfo->flags
     u32 bumpDamageTimer;                // 218     Inited to 0

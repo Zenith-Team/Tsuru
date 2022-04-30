@@ -32,7 +32,7 @@ Actor* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 ActorSpawner::onCreate() {
-    if (!eventID2)
+    if (!eventID1)
         return 2;
 
     u16 inputID = linkID | ((movementID & 0xF) << 8);
@@ -49,7 +49,7 @@ u32 ActorSpawner::onCreate() {
 u32 ActorSpawner::onExecute() {
     Actor* child = (childList.begin() != childList.end()) ? childList.begin().ptr : nullptr;
 
-    if (EventMgr::instance()->isActive(eventID2 - 1)) {
+    if (EventMgr::instance()->isActive(this->eventID1 - 1)) {
         if (initialStateFlag == 2 && child) {
             StageActor* actor = sead::DynamicCast<StageActor, Actor>(child);
 
@@ -65,15 +65,15 @@ u32 ActorSpawner::onExecute() {
         if (!spawned) {
             ActorBuildInfo buildInfo = { 0 };
 
-            buildInfo.settings1 = settings1;
-            buildInfo.settings2 = settings2;
-            buildInfo.profile = Profile::get(spawnProfileID);
-            buildInfo.position = position;
-            buildInfo.eventID1 = eventID1 & 0xF;
-            buildInfo.eventID2 = (eventID1 >> 4) & 0xF;
+            buildInfo.settings1 = this->settings1;
+            buildInfo.settings2 = this->settings2;
+            buildInfo.profile = Profile::get(this->spawnProfileID);
+            buildInfo.position = this->position;
+            buildInfo.eventID1 = (this->eventID2 >> 4) & 0xF;
+            buildInfo.eventID2 = this->eventID2 & 0xF;
             ActorMgr::instance()->create(buildInfo, 0);
 
-            spawned = true;
+            this->spawned = true;
         }
     }
 
