@@ -32,7 +32,7 @@ Actor* PhysicsModifier::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 PhysicsModifier::onExecute() {
-    if (!this->activated && EventMgr::instance()->isActive(this->eventID1)) {
+    if (!this->activated && EventMgr::instance()->isActive(this->eventID2)) {
         PlayerJumpArc = 0.5f;
         MiniPlayerJumpArc = 0.5f;
         PlayerJumpMax = 4.5f;

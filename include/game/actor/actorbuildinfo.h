@@ -11,8 +11,8 @@ struct ActorBuildInfo {
     Vec3f position;         // 10
     u32 rotation;           // 1C
     u8 layer;               // 20
-    u8 eventID1;            // 21
-    u8 eventID2;            // 22
+    u8 eventID2;            // 21
+    u8 eventID1;            // 22
     u8 _23;                 // 23
     u8 movementID;          // 24
     u8 linkID;              // 25
