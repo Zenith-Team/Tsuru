@@ -3,8 +3,7 @@
 #include "tsuru/atlys/map.h"
 #include "game/actor/actormgr.h"
 #include "game/graphics/drawmgr.h"
-#include "game/resource/resarchive.h"
-#include "game/resource/resmgr.h"
+#include "game/resource/util.h"
 #include "agl/lyr/renderinfo.h"
 #include "agl/texturedatainitializer.h"
 #include "agl/utl/devtools.h"
@@ -14,11 +13,6 @@
 #include "sead/new.h"
 #include "math/functions.h"
 #include "log.h"
-
-static inline void loadActorRes(const sead::SafeString& name, const sead::SafeString& path) {
-    ResMgr::instance()->loadRes(name, path, nullptr, true);
-    ResArchiveMgr::instance()->loadResArchive(name, path, nullptr);
-}
 
 Atlys::Renderer::Renderer()
     : layerRenderer("Atlys")
@@ -43,7 +37,7 @@ void Atlys::Renderer::init(Atlys::Camera* camera) {
         Atlys::Scene::instance()->map->animTexs[i].init(Atlys::Scene::instance()->map->animTexs[i].gtxName);
     }
 
-    loadActorRes("kuribo", "actor/kuribo.szs");
+    loadResource("kuribo", "actor/kuribo.szs");
 
     for (u32 i = 0; i < Atlys::Scene::instance()->map->info->nodeCount; i++) {
         Atlys::Scene::instance()->map->nodes[i].loadModel();
