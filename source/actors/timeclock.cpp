@@ -71,7 +71,7 @@ void TimeClock::updateModel() {
 void TimeClock::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     TimeClock* self = static_cast<TimeClock*>(hcSelf->owner);
     if (hcOther->owner->type == StageActorType_Player || hcOther->owner->type == StageActorType_Yoshi) {
-        Vec3f effectPos(self->position.x, self->position.y - 24.0f, 4500.0f);
+        Vec3f effectPos(self->position.x, self->position.y - 12.0f, 4500.0f);
         Effect::spawn(RP_FlagPass_1, &effectPos);
 
         playSound(SoundEffects::SE_SYS_CONTINUE_DONE, self->position);
