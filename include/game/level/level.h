@@ -26,7 +26,7 @@ public:
         };
 
         struct Sprite {
-            u16 type;                       // 0
+            u16 id;                         // 0
             u16 x;                          // 2
             u16 y;                          // 4
             u16 eventID1_2;                 // 6
@@ -93,7 +93,7 @@ public:
     public:
         // @param id Target sprite ID
         // @return Pointer to the retrieved sprite
-        Sprite* getSprite(u32 id, void*);
+        Sprite* getSprite(u32 id, Sprite*);
 
         // @param outRect Output rect which represents the location
         // @param id Target location ID
