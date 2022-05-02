@@ -1,10 +1,10 @@
 #pragma once
 
 #include "sead/graphicscontext.h"
+#include "dynlibs/os/functions.h"
 
 #ifdef TSURU_DEBUG
     #ifdef Cemu
-        #include "dynlibs/os/functions.h"
         #define LOG(FMT, ...) { \
             __os_snprintf(logMsg, sizeof(logMsg), FMT, ## __VA_ARGS__); \
             __os_snprintf(logMsg, sizeof(logMsg), "%s%s", logMsg, LogColor::Reset); \
