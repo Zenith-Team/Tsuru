@@ -831,5 +831,7 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::DebugActor,      // 740
     ProfileID::LiquidOverlay,   // 741
     ProfileID::PhysicsModifier, // 742
-    ProfileID::Kamiya         // 743
+    ProfileID::Kamiya,          // 743
+    ProfileID::ModelLoader,     // 744
+    ProfileID::StringBank,      // 745
 };

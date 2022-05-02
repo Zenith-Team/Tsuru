@@ -23,6 +23,8 @@ Files:
   - source/actors/liquidoverlay.cpp
   - source/actors/physicsmodifier.cpp
   - source/actors/kamiya.cpp
+  - source/actors/modelloader.cpp
+  - source/actors/stringbank.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:
