@@ -254,10 +254,10 @@ enum ProfileIDType {
     PhysicsModifier,
     Kamiya,
     KamiyaMagic,
-
-    // Atlys profiles
     AtlysCamera,
     AtlysPlayer,
+    ModelLoader,
+    StringBank,
 
     Num
 };
