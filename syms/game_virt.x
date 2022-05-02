@@ -581,26 +581,27 @@ SECTIONS {
     sInstance__17HitboxColliderMgr = 0x101C95D8;
 
 /* LayerAGL */
-    vf44__8LayerAglFv = 0x24f9340;
-    vf4C__8LayerAglFv = 0x24f9344;
+    vf44__8LayerAglFv = 0x24F9340;
+    vf4C__8LayerAglFv = 0x24F9344;
 
 /* Level */
-    sInstance__5Level = 0x101db048;
+    sInstance__5Level = 0x101DB048;
 
 /* Level::Area */
-    getArea__5LevelFUi = 0x269a2dc;
-    getLocation__Q2_5Level4AreaFR4RectUc = 0x269a020;
+    getArea__5LevelFUi = 0x269A2DC;
+    getLocation__Q2_5Level4AreaFR4RectUc = 0x269A020;
+    getSprite__Q2_5Level4AreaFUiPQ3_5Level4Area6Sprite = 0x2699C08;
 
 /* LevelCamera */
-    sInstance__11LevelCamera = 0x101e7c54;
+    sInstance__11LevelCamera = 0x101E7C54;
 
 /* LevelInfo */
     sInstance__9LevelInfo = 0x101D18EC;
     setDestEntrance__9LevelInfoFSc = 0x24D2984;
-    setDestWorld__9LevelInfoFUc = 0x24d293c;
-    setDestLevel__9LevelInfoFUc = 0x24d2954;
-    setDestArea__9LevelInfoFUc = 0x24d296c;
-    setDestZone__9LevelInfoFUi = 0x24d299c;
+    setDestWorld__9LevelInfoFUc = 0x24D293C;
+    setDestLevel__9LevelInfoFUc = 0x24D2954;
+    setDestArea__9LevelInfoFUc = 0x24D296C;
+    setDestZone__9LevelInfoFUi = 0x24D299C;
 
 /* LevelTimer */
     sInstance__10LevelTimer = 0x101D15F4;
