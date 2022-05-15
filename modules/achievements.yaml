@@ -1,0 +1,11 @@
+
+---
+Files:
+  - source/achievements/achievmgr.cpp
+  - source/achievements/triggers.S
+Hooks:
+  #  Triggers
+  - type: branch
+    instr: bl
+    addr: "252c194"
+    func: Collect3UpMoon
