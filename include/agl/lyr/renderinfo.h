@@ -12,11 +12,11 @@ namespace agl { namespace lyr {
 
 class RenderInfo { // Size: 0x28
 public:
-    // TODO: Two constructors here
+    RenderInfo(DisplayType displayType, const sead::FrameBuffer* frameBuffer, bool, const Layer* parentLayer, DisplayList* displayList);
 
     s32 renderStepIndex;
     DisplayType displayType;
-    sead::FrameBuffer* renderBuffer;
+    sead::FrameBuffer* frameBuffer;
     s32 layerIndex; // Index in agl::lyr::Renderer layers buffer
     Layer* layer;
     sead::Camera* camera;
