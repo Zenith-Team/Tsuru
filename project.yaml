@@ -2,7 +2,6 @@
 ---
 Name: Tsuru
 Modules:
-  - modules/achievements.yaml         # Achievements
  # - modules/atlys.yaml                # Atlys custom world map system
   - modules/cheats.yaml               # Cheat menu
   - modules/collisionconditions.yaml  # Fixes collision conditions for some actors
