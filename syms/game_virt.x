@@ -830,6 +830,7 @@ SECTIONS {
     ResMgr_LoadLevelArchiveSuccess = 0x29D3354;
 
 /* SaveMgr */
+    createInstance__7SaveMgrSFPQ2_4sead4Heap  = 0x29d6d00;
     sInstance__7SaveMgr = 0x101E7DA4;
     save__7SaveMgrFPQ2_4sead14DelegateThread = 0x29d9560;
 

@@ -42,8 +42,8 @@ public:
     // Initializes the physics manager
     // @param owner Pointer to the owner of the manager
     // @param belowSensor Optional pointer to a sensor to be used as the bottom sensor
-    // @param belowSensor Optional pointer to a sensor to be used as the top sensor
-    // @param belowSensor Optional pointer to a sensor to be used as the side sensors
+    // @param aboveSensor Optional pointer to a sensor to be used as the top sensor
+    // @param adjacentSensor Optional pointer to a sensor to be used as the side sensors
     void init(StageActor* owner, const Sensor* belowSensor = nullptr, const Sensor* aboveSensor = nullptr, const Sensor* adjacentSensor = nullptr);
     // Sets a sensor
     // @param sensor Sensor to be set
@@ -62,7 +62,7 @@ public:
     // @return Whether or not the actor is currently colliding with something on the right
     inline bool isCollidedRight() { return this->output & Flag_CollidedRight; }
     // Checks if the actor is colliding with something on the left
-    // @return Whether or not the actor is currently colliding with something on the lest
+    // @return Whether or not the actor is currently colliding with something on the left
     inline bool isCollidedLeft()  { return this->output & Flag_CollidedLeft;  }
     // Checks if the actor is colliding with something
     // @param direction Direction to check collision
