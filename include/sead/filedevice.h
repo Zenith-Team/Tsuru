@@ -14,7 +14,7 @@ struct DirectoryEntry;
 class BufferedSafeString;
 
 class FileDevice : public TListNode<FileDevice*>, public IDisposer {
-    SEAD_RTTI_BASE(FileDevice)
+    SEAD_RTTI_BASE(FileDevice);
 
 public:
     enum FileOpenFlag {

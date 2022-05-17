@@ -43,7 +43,7 @@ public:
     // Calls "execute" virtual functions
     void executeActors();
 
-    // Callc "draw" virtual functions
+    // Calls "draw" virtual functions
     void drawActors();
 
     sead::UnitHeap* playerUnitHeap;
