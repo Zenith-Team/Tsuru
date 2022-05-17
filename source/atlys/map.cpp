@@ -1,6 +1,7 @@
 #include "tsuru/atlys/map.h"
 #include "ghs.h"
 #include "dynlibs/os/functions.h"
+#include "sead/filedevice.h"
 #include "sead/heapmgr.h"
 #include "sead/heap.h"
 #include "log.h"
