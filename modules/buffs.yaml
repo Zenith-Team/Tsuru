@@ -1,0 +1,7 @@
+
+---
+Files: []
+Hooks:
+  - type: patch
+    addr: "20e9448"  # Bowser::getFireDamage()
+    data: "38600000" # li r3, 0

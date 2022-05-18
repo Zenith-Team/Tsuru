@@ -6,7 +6,7 @@ Hooks:
 # Add the ability to spawn deathfoo clouds from Foo
   # Temp patch: set type to spawned by death foo in onCreate
   - type: patch
-    addr: "23b4f4c"
+    addr: "23b4f4c" # Foo::onCreate()
     data: "3BA000B0" # li r29, 0xB0
   # Temp patch: set type to spawned by death foo executeState_BreathIn
   - type: patch
