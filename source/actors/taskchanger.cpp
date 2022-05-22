@@ -6,6 +6,8 @@
 #include "log.h"
 
 class TaskChanger : public StageActor {
+    SEAD_RTTI_OVERRIDE_IMPL(TaskChanger, StageActor)
+
 public:
     TaskChanger(const ActorBuildInfo* buildInfo);
     virtual ~TaskChanger() { }

@@ -10,6 +10,8 @@
 #include "game/collision/solid/rectcollider.h"
 
 class Cataquack : public Enemy {
+    SEAD_RTTI_OVERRIDE_IMPL(Cataquack, Enemy)
+
 public:
     Cataquack(const ActorBuildInfo* buildInfo);
     virtual ~Cataquack() { }
