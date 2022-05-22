@@ -1,5 +1,4 @@
-#ifndef __H264_TYPES_H_
-#define __H264_TYPES_H_
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -115,6 +114,4 @@ typedef struct _H264DECOutput {
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

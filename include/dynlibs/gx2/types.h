@@ -21,8 +21,7 @@
  * 3. This notice may not be removed or altered from any source
  * distribution.
  ***************************************************************************/
-#ifndef _GX2_TYPES_H_
-#define _GX2_TYPES_H_
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -762,6 +761,4 @@ typedef void (* GX2RFreeFunction) (u32, void*);
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

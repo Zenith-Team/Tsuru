@@ -21,8 +21,7 @@
  * 3. This notice may not be removed or altered from any source
  * distribution.
  ***************************************************************************/
-#ifndef __GX2_FUNCTIONS_H_
-#define __GX2_FUNCTIONS_H_
+#pragma once
 
 #ifdef __cplusplus
 #include <cstring>
@@ -260,5 +259,3 @@ static inline s32 GX2GetPixelUniformVarOffset(const GX2PixelShader* shader, cons
 #ifdef __cplusplus
 }
 #endif
-
-#endif // __GX2_FUNCTIONS_H_

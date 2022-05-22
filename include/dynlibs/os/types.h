@@ -1,5 +1,4 @@
-#ifndef _OS_TYPES_H_
-#define _OS_TYPES_H_
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -273,6 +272,4 @@ typedef enum MEMFrmHeapFreeMode {
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

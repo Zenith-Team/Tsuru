@@ -1,3 +1,5 @@
+#pragma once
+
 #include "tsuru/save/system/customsavemgr.h"
 #include "sead/idisposer.h"
 
