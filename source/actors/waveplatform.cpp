@@ -8,6 +8,8 @@
 #include "game/tilemgr.h"
 
 class WavePlatform : public StageActor {
+    SEAD_RTTI_OVERRIDE_IMPL(WavePlatform, StageActor)
+
 public:
     WavePlatform(const ActorBuildInfo* buildInfo);
     virtual ~WavePlatform() { }
