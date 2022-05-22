@@ -25,6 +25,10 @@ Hooks:
     data: "480000E8" # b +0xE8
     addr: "24D71C4"
 
+# stupid dynamic cast
+  - type: nop
+    addr: "2328cc8"
+
 # Instant respawn
   - type: branch
     instr: b
