@@ -2,6 +2,8 @@
 
 #include "agl/utl/iparameterobj.h"
 #include "agl/utl/inamedobj.h"
+#include "sead/safestring.h"
+#include "sead/heap.h"
 
 namespace agl { namespace env {
 
@@ -15,7 +17,7 @@ public:
 public:
     EnvObj();
 
-    void* registClass(const sead::SafeString&, const sead::SafeStringBase&, EnvObj* (*)(sead::Heap*), agl::env::EnvObj::MetaInfo, u32);
+    void* registClass(const sead::SafeString&, const sead::SafeStringBase<char>&, EnvObj* (*)(sead::Heap*), agl::env::EnvObj::MetaInfo, u32);
 
     u32 _74;
     u16 _78;

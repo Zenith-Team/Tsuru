@@ -2,7 +2,9 @@
 
 #include "types.h"
 
-namespace FFL { // "FFL" handles Mii related stuff
+// caFe Face Library
+// Handles Mii related stuff
+namespace FFL {
 
 struct AuthorID { // Size: 0x8
     u16 _0;
