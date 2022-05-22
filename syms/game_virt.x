@@ -30,13 +30,13 @@ SECTIONS {
     __memzero = 0x2AFA55C;
     vsnprintf = 0x2AFBD54;
     _f_ftoll = 0x2AFEBFC;
-    __array_new_prefix_size = 0x101e9338;
-    __placement_array_new = 0x2afa30c;
+    __array_new_prefix_size = 0x101E9338;
+    __placement_array_new = 0x2AFA30C;
 
 /* Cafe SDK Static */
     ASM_MTXConcat = 0x2AF98A0;
-    ASM_MTXScale = 0x2af9b64;
-    ASM_VECDistance = 0x2af9718;
+    ASM_MTXScale = 0x2AF9B64;
+    ASM_VECDistance = 0x2AF9718;
     GFDGetPixelShaderCount = 0x2AF8C10;
     GFDGetPixelShaderHeaderSize = 0x2AF8D10;
     GFDGetPixelShaderProgramSize = 0x2AF8D40;
@@ -45,23 +45,23 @@ SECTIONS {
     GFDGetVertexShaderHeaderSize = 0x2AF8D00;
     GFDGetVertexShaderProgramSize = 0x2AF8D40;
     GFDGetVertexShader = 0x2AF8E3C;
-    _GFDCheckHeaderVersions = 0x02af8a18;
-    _GFDCheckBlockHeaderMagicVersions = 0x02af8abc;
-    _GFDRelocateBlock = 0x02af8e04;
+    _GFDCheckHeaderVersions = 0x02AF8A18;
+    _GFDCheckBlockHeaderMagicVersions = 0x02AF8ABC;
+    _GFDRelocateBlock = 0x02AF8E04;
 
 /* agl::RenderBuffer */
-    __ct__Q2_3agl12RenderBufferFR13Vec2__tm__2_ffN32 = 0x2a1eadc;
-    __ct__Q2_3agl12RenderBufferFv = 0x2a1e9dc;
-    __dt__Q2_3agl12RenderBufferFv = 0x2a1e33c;
-    clear__Q2_3agl12RenderBufferFUiT1RCQ2_4sead7Color4ffT1 = 0x2a1e644;
-    initialize__Q2_3agl12RenderBufferFv = 0x2a1e9b4;
+    __ct__Q2_3agl12RenderBufferFR13Vec2__tm__2_ffN32 = 0x2A1EADC;
+    __ct__Q2_3agl12RenderBufferFv = 0x2A1E9DC;
+    __dt__Q2_3agl12RenderBufferFv = 0x2A1E33C;
+    clear__Q2_3agl12RenderBufferFUiT1RCQ2_4sead7Color4ffT1 = 0x2A1E644;
+    initialize__Q2_3agl12RenderBufferFv = 0x2A1E9B4;
 
 /* agl::RenderTargetColor */
-    __ct__Q2_3agl17RenderTargetColorFv = 0x2a1efdc;
+    __ct__Q2_3agl17RenderTargetColorFv = 0x2A1EFDC;
 
 /* agl::ShaderProgramArchive */
-    __ct__Q2_3agl20ShaderProgramArchiveFv = 0x2a22934;
-    FUN_2A23f1C__Q2_3agl20ShaderProgramArchiveFPUcRCUiUiPQ2_4sead4Heap = 0x2A23f1C;
+    __ct__Q2_3agl20ShaderProgramArchiveFv = 0x2A22934;
+    FUN_2A23f1C__Q2_3agl20ShaderProgramArchiveFPUcRCUiUiPQ2_4sead4Heap = 0x2A23F1C;
 
 /* agl::TextureData */
     __ct__Q2_3agl11TextureDataFv = 0x2A249A0;
@@ -72,29 +72,29 @@ SECTIONS {
     initialize__Q2_3agl25TextureDataInitializerGTXSFPQ2_3agl11TextureDataPvUi = 0x2A24F38;
 
 /* agl::TextureSampler */
-    __ct__Q2_3agl14TextureSamplerFv = 0x2a2587c;
-    __ct__Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2a25a64;
-    __dt__Q2_3agl14TextureSamplerFv = 0x2a25c60;
-    applyTextureData___Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2a25990;
+    __ct__Q2_3agl14TextureSamplerFv = 0x2A2587C;
+    __ct__Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2A25A64;
+    __dt__Q2_3agl14TextureSamplerFv = 0x2A25C60;
+    applyTextureData___Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2A25990;
 
 /* agl::driver::GX2Resource */
-    sInstance__Q3_3agl6driver11GX2Resource = 0x101e88c4;
-    restoreContextState__Q3_3agl6driver11GX2ResourceFv = 0x2a283c4;
+    sInstance__Q3_3agl6driver11GX2Resource = 0x101E88C4;
+    restoreContextState__Q3_3agl6driver11GX2ResourceFv = 0x2A283C4;
 
 /* agl::lyr::Layer */
-    pushBackDrawMethod__Q3_3agl3lyr5LayerFUiPQ3_3agl3lyr18DrawMethodImplBase = 0x2a376b8;
-    pushBackDrawMethod__Q3_3agl3lyr5LayerFPQ3_3agl3lyr10DrawMethod = 0x2a37710;
+    pushBackDrawMethod__Q3_3agl3lyr5LayerFUiPQ3_3agl3lyr18DrawMethodImplBase = 0x2A376B8;
+    pushBackDrawMethod__Q3_3agl3lyr5LayerFPQ3_3agl3lyr10DrawMethod = 0x2A37710;
 
 /* agl::lyr::Renderer */
-    draw__Q3_3agl3lyr8RendererCFQ3_3agl3lyr11DisplayType = 0x2a3ab90;
+    draw__Q3_3agl3lyr8RendererCFQ3_3agl3lyr11DisplayType = 0x2A3AB90;
     sInstance__Q3_3agl3lyr8Renderer = 0x101E8A2C;
-    initLayer___Q3_3agl3lyr8RendererFPQ3_3agl3lyr5LayerUiRCQ2_4sead23SafeStringBase__tm__2_cT2PQ2_4sead4Heap = 0x2a3aee8;
+    initLayer___Q3_3agl3lyr8RendererFPQ3_3agl3lyr5LayerUiRCQ2_4sead23SafeStringBase__tm__2_cT2PQ2_4sead4Heap = 0x2A3AEE8;
 
 /* agl::utl::DevTools */
-    drawTextureTexCoord__Q3_3agl3utl8DevToolsSFRCQ2_3agl14TextureSamplerRC5Mtx34RC5Mtx44RC13Vec2__tm__2_ffT4Q2_3agl10ShaderMode = 0x2a51a28;
+    drawTextureTexCoord__Q3_3agl3utl8DevToolsSFRCQ2_3agl14TextureSamplerRC5Mtx34RC5Mtx44RC13Vec2__tm__2_ffT4Q2_3agl10ShaderMode = 0x2A51A28;
 
 /* agl::utl::ImageFilter2D */
-    drawTextureMSAA__Q3_3agl3utl13ImageFilter2DSFRCQ2_3agl14TextureSamplerRCQ2_4sead8ViewportRC13Vec2__tm__2_fT3Ui = 0x2a533ec;
+    drawTextureMSAA__Q3_3agl3utl13ImageFilter2DSFRCQ2_3agl14TextureSamplerRCQ2_4sead8ViewportRC13Vec2__tm__2_fT3Ui = 0x2A533EC;
 
 /* sead::CalculateTask */
     __ct__Q2_4sead13CalculateTaskFRCQ2_4sead16TaskConstructArgPCc = 0x29FC508;
@@ -115,12 +115,12 @@ SECTIONS {
     __vtbl__Q2_4sead6Camera = 0x10190824;
 
 /* sead::ControllerMgr */
-    sInstance__Q2_4sead13ControllerMgr = 0x101e7efc;
+    sInstance__Q2_4sead13ControllerMgr = 0x101E7EFC;
 
 /* sead::FileDevice */
     tryClose__Q2_4sead10FileDeviceFPQ2_4sead10FileHandle = 0x29F78C0;
     tryWrite__Q2_4sead10FileDeviceFPUiPQ2_4sead10FileHandlePCUcUi = 0x29F7AE8;
-    __CPR84__trySeek__Q2_4sead10FileDeviceFPQ2_J12J10FileHandleiQ3_J12JJ17J10SeekOrigin = 0x29f7b98;
+    __CPR84__trySeek__Q2_4sead10FileDeviceFPQ2_J12J10FileHandleiQ3_J12JJ17J10SeekOrigin = 0x29F7B98;
 
 /* sead::FileDeviceMgr */
     sInstance__Q2_4sead13FileDeviceMgr = 0x101E7F18;
@@ -132,7 +132,7 @@ SECTIONS {
     getFileSize__Q2_4sead10FileHandleFv = 0x29F8368;
 
 /* sead::FrameBuffer */
-    bind__Q2_4sead11FrameBufferCFv = 0x2a058f0;
+    bind__Q2_4sead11FrameBufferCFv = 0x2A058F0;
 
 /* sead::FrustumProjection */
     __ct__Q2_4sead17FrustumProjectionFfN51 = 0x2A06944;
@@ -142,39 +142,39 @@ SECTIONS {
     sInstance__Q2_4sead12GlobalRandom = 0x101E806C;
 
 /* sead::GraphicsContext */
-    __ct__Q2_4sead15GraphicsContextFv = 0x2a07bbc;
-    apply__Q2_4sead15GraphicsContextFv = 0x2a07cb0;
+    __ct__Q2_4sead15GraphicsContextFv = 0x2A07BBC;
+    apply__Q2_4sead15GraphicsContextFv = 0x2A07CB0;
 
 /* sead::HeapMgr */
-    sRootHeaps__Q2_4sead7HeapMgr = 0x105ea148;
-    sInstancePtr__Q2_4sead7HeapMgr = 0x101e8040;
-    getCurrentHeap__Q2_4sead7HeapMgrFv = 0x2a0d554;
+    sRootHeaps__Q2_4sead7HeapMgr = 0x105EA148;
+    sInstancePtr__Q2_4sead7HeapMgr = 0x101E8040;
+    getCurrentHeap__Q2_4sead7HeapMgrFv = 0x2A0D554;
 
 /* sead::IDisposer */
     __ct__Q2_4sead9IDisposerFv = 0x2A0A2FC;
     __dt__Q2_4sead9IDisposerFv = 0x2A0A384;
 
 /* sead::LookAtCamera */
-    __dt__Q2_4sead12LookAtCameraFv = 0x2a04b94;
-    __vtbl__Q2_4sead12LookAtCamera = 0x1019084c;
-    doUpdateMatrix__Q2_4sead12LookAtCameraCFP5Mtx34 = 0x2a04be8;
+    __dt__Q2_4sead12LookAtCameraFv = 0x2A04B94;
+    __vtbl__Q2_4sead12LookAtCamera = 0x1019084C;
+    doUpdateMatrix__Q2_4sead12LookAtCameraCFP5Mtx34 = 0x2A04BE8;
 
 /* sead::MathCalcCommon */
     chase__Q2_4sead23MathCalcCommon__tm__2_fSFPZ1ZZ1ZT2_b = 0x2027984;
-    chase__Q2_4sead24MathCalcCommon__tm__3_UiSFPZ1ZZ1ZT2_b = 0x29e0de8;
+    chase__Q2_4sead24MathCalcCommon__tm__3_UiSFPZ1ZZ1ZT2_b = 0x29E0DE8;
 
 /* sead::OrthoCamera */
-    __ct__Q2_4sead11OrthoCameraFv = 0x2a04d54;
+    __ct__Q2_4sead11OrthoCameraFv = 0x2A04D54;
 
 /* sead::OrthoProjection */
     __ct__Q2_4sead15OrthoProjectionFv = 0x2A06518;
-    __ct__Q2_4sead15OrthoProjectionFfT1RCQ2_4sead8Viewport = 0x2a066b4;
+    __ct__Q2_4sead15OrthoProjectionFfT1RCQ2_4sead8Viewport = 0x2A066B4;
     setTBLR__Q2_4sead15OrthoProjectionFfN31 = 0x2A06818;
     __dt__Q2_4sead15OrthoProjectionFv = 0x2A067C4;
 
 /* sead::PerspectiveProjection */
     __ct__Q2_4sead21PerspectiveProjectionFv = 0x2A06108;
-    __ct__Q2_4sead21PerspectiveProjectionFfN31 = 0x2a061ac;
+    __ct__Q2_4sead21PerspectiveProjectionFfN31 = 0x2A061AC;
     set__Q2_4sead21PerspectiveProjectionFfN31 = 0x2A062EC;
     __dt__Q2_4sead21PerspectiveProjectionFv = 0x2A06298;
 
@@ -182,7 +182,7 @@ SECTIONS {
     sInstance__Q2_4sead17PrimitiveRenderer = 0x101E8010;
     setCamera__Q2_4sead17PrimitiveRendererFRCQ2_4sead6Camera = 0x2A083D0;
     setProjection__Q2_4sead17PrimitiveRendererFRCQ2_4sead10Projection = 0x2A083E4;
-    setModelMatrix__Q2_4sead17PrimitiveRendererFRC5Mtx34 = 0x2a083f8;
+    setModelMatrix__Q2_4sead17PrimitiveRendererFRC5Mtx34 = 0x2A083F8;
     begin__Q2_4sead17PrimitiveRendererFv = 0x2A08408;
     end__Q2_4sead17PrimitiveRendererFv = 0x2A0841C;
 
@@ -190,13 +190,13 @@ SECTIONS {
     drawTriangles___Q2_4sead21PrimitiveRendererCafeFRC5Mtx34RCQ2_4sead7Color4fT2PQ3_4sead21PrimitiveRendererUtil6VertexUiPUsT5PC11_GX2Texture = 0x2A0A190;
 
 /* sead::Projection */
-    getDeviceProjectionMatrix__Q2_4sead10ProjectionCFv = 0x2a05a9c;
+    getDeviceProjectionMatrix__Q2_4sead10ProjectionCFv = 0x2A05A9C;
 
 /* sead::Random */
     getU32__Q2_4sead6RandomFv = 0x2A13780;
 
 /* sead::SafeStringBase */
-    sNullChar__Q2_4sead23SafeStringBase__tm__2_c = 0x1011bf6b;
+    sNullChar__Q2_4sead23SafeStringBase__tm__2_c = 0x1011BF6B;
 
 /* sead::TaskBase */
     pauseCalcChild__Q2_4sead8TaskBaseFb = __deleted_virtual_called;
@@ -209,17 +209,17 @@ SECTIONS {
     adjustHeapAll__Q2_4sead8TaskBaseFv = 0x29FF9DC;
 
 /* sead::Viewport */
-    __ct__Q2_4sead8ViewportFfN31 = 0x2a072fc;
-    __ct__Q2_4sead8ViewportFRCQ2_4sead18LogicalFrameBuffer = 0x2a074c8;
-    apply__Q2_4sead8ViewportCFRCQ2_4sead18LogicalFrameBuffer = 0x2a0783c;
+    __ct__Q2_4sead8ViewportFfN31 = 0x2A072FC;
+    __ct__Q2_4sead8ViewportFRCQ2_4sead18LogicalFrameBuffer = 0x2A074C8;
+    apply__Q2_4sead8ViewportCFRCQ2_4sead18LogicalFrameBuffer = 0x2A0783C;
 
 /* Actor */
-    __ct__5ActorFPC14ActorBuildInfo = 0x2002ce0;
-    __dt__5ActorFv = 0x2002e68;
+    __ct__5ActorFPC14ActorBuildInfo = 0x2002CE0;
+    __dt__5ActorFv = 0x2002E68;
     __vtbl__5Actor = 0x100006C0;
-    checkDerivedRuntimeTypeInfo__5ActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x2002f40;
+    checkDerivedRuntimeTypeInfo__5ActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x2002F40;
     getRuntimeTypeInfo__5ActorCFv = __deleted_virtual_called;
-    onCreate__5ActorFv = 0x2002f84;
+    onCreate__5ActorFv = 0x2002F84;
     __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__5ActorSFv = 0x101E9CC4;
     typeInfo__L0__getRuntimeTypeInfoStatic__5ActorSFv = 0x101E9CC8;
     removeChild__5ActorFP5Actor = 0x2002C8C;
@@ -247,10 +247,10 @@ SECTIONS {
     sInstance__8ActorMgr = 0x101C30C8;
     create__8ActorMgrFR14ActorBuildInfoUi = 0x2009A58;
     findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP5Actor = 0x2009B6C;
-    createInstance__8ActorMgrSFPQ2_4sead4Heap = 0x2008cb4;
-    createHeaps__8ActorMgrFPQ2_4sead4Heap = 0x200959c;
-    executeActors__8ActorMgrFv = 0x2009d58;
-    drawActors__8ActorMgrFv = 0x2009ecc;
+    createInstance__8ActorMgrSFPQ2_4sead4Heap = 0x2008CB4;
+    createHeaps__8ActorMgrFPQ2_4sead4Heap = 0x200959C;
+    executeActors__8ActorMgrFv = 0x2009D58;
+    drawActors__8ActorMgrFv = 0x2009ECC;
 
 /* AreaTask */
     sInstance__8AreaTask = 0x101D1598;
@@ -295,7 +295,7 @@ SECTIONS {
 
 /* CourseTask */
     sInstance__10CourseTask = 0x101D15F0;
-    construct__10CourseTaskSFRCQ2_4sead16TaskConstructArg = 0x202b4c8;
+    construct__10CourseTaskSFRCQ2_4sead16TaskConstructArg = 0x202B4C8;
 
 /* CourseSelectActor */
     __ct__17CourseSelectActorFPC14ActorBuildInfo = 0x21D4CB4;
@@ -412,8 +412,8 @@ SECTIONS {
     drawModel__7DrawMgrFP5Model = 0x24FAB58;
     drawModel__7DrawMgrFP12ModelWrapper = 0x24FAC98;
     drawTile__7DrawMgrFUsRC4Vec3RCUiT2 = 0x24FAD28;
-    setTargetLayer__7DrawMgrFPQ3_3agl3lyr5LayerUi = 0x24faa50;
-    resetTargetLayer__7DrawMgrFv = 0x24fab4c;
+    setTargetLayer__7DrawMgrFPQ3_3agl3lyr5LayerUi = 0x24FAA50;
+    resetTargetLayer__7DrawMgrFv = 0x24FAB4C;
 
 /* DRCModeTask */
     sInstance__11DRCModeTask = 0x101D1904;
@@ -562,7 +562,7 @@ SECTIONS {
     setFlags__14EnemyFreezeMgrFRCQ2_14EnemyFreezeMgr5Flags = 0x237CB94;
 
 /* EnvTerrain */
-    onExecute__10EnvTerrainFv = 0x26f0e9c;
+    onExecute__10EnvTerrainFv = 0x26F0E9C;
 
 /* ErrorViewerTask */
     sInstance__15ErrorViewerTask = 0x101D1904;
@@ -657,19 +657,19 @@ SECTIONS {
     doStateChange__15MultiStateActorFP9StateBase = 0x200B090;
 
 /* MusicPlayer */
-    shouldHurryUp__11MusicPlayerFv = 0x29b83d8;
+    shouldHurryUp__11MusicPlayerFv = 0x29B83D8;
 
 /* ObjLayer */
-    checkDerivedRuntimeTypeInfo__8ObjLayerCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x24fcf4c;
+    checkDerivedRuntimeTypeInfo__8ObjLayerCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x24FCF4C;
     getRuntimeTypeInfo__8ObjLayerCFv = __deleted_virtual_called;
-    vf3C__8ObjLayerFv = 0x24fd0e8;
-    vf5C__8ObjLayerFv = 0x24fd0f4;
-    setParentRenderer__8ObjLayerFP16ObjLayerRenderer = 0x24fca24;
+    vf3C__8ObjLayerFv = 0x24FD0E8;
+    vf5C__8ObjLayerFv = 0x24FD0F4;
+    setParentRenderer__8ObjLayerFP16ObjLayerRenderer = 0x24FCA24;
 
 /* ObjLayerRenderer */
-    __dt__16ObjLayerRendererFv = 0x24fb0ac;
-    __ct__16ObjLayerRendererFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24faf58;
-    init__16ObjLayerRendererFUiN31PQ2_4sead4Heap = 0x24fb128;
+    __dt__16ObjLayerRendererFv = 0x24FB0AC;
+    __ct__16ObjLayerRendererFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FAF58;
+    init__16ObjLayerRendererFUiN31PQ2_4sead4Heap = 0x24FB128;
 
 /* PhysicsActor */
     __vtbl__12PhysicsActor = 0x1000084C;
@@ -699,13 +699,13 @@ SECTIONS {
     processCollisions__10PhysicsMgrFv = 0x218D954;
 
 /* PlatformModel */
-    init__13PlatformModelFv = 0x27be110;
-    update__13PlatformModelFR13Vec3__tm__2_ff = 0x27be428;
-    draw__13PlatformModelFv = 0x27be4fc;
+    init__13PlatformModelFv = 0x27BE110;
+    update__13PlatformModelFR13Vec3__tm__2_ff = 0x27BE428;
+    draw__13PlatformModelFv = 0x27BE4FC;
 
 /* Player */
-    throwProjectile__6Player__PowerupStateNotFire = 0x293ae28;
-    FUN_0293b080__6Player__IsProjectilePowerup = 0x293b198;
+    throwProjectile__6Player__PowerupStateNotFire = 0x293AE28;
+    FUN_0293b080__6Player__IsProjectilePowerup = 0x293B198;
 
 /* PlayerInput */
     isUpHeld__11PlayerInputCFv = 0x2916114;
@@ -794,7 +794,7 @@ SECTIONS {
     resourcesLoadAtOriginal__7Profile = 0x10002064;
     resourceCountOriginal__7Profile = 0x100023F8;
     resourceListsOriginal__7Profile = 0x101C321C;
-    loadProfileResources__7ProfileSFQ2_7Profile15LoadResourcesAtPQ2_4sead4Heap = 0x200a738;
+    loadProfileResources__7ProfileSFQ2_7Profile15LoadResourcesAtPQ2_4sead4Heap = 0x200A738;
 
 /* RDashMgr */
     sInstance__8RDashMgr = 0x101E7D9C;
@@ -806,13 +806,13 @@ SECTIONS {
     __vtbl__12RectCollider = 0x100FB820;
 
 /* RenderObjLayer */
-    __ct__14RenderObjLayerFv = 0x24fca6c;
-    __dt__14RenderObjLayerFv = 0x24fcb18
-    vf24__14RenderObjLayerFv = 0x24fd00c;
-    vf2C__14RenderObjLayerFPvUi = 0x24fcb6c;
-    doInitialize__14RenderObjLayerFPQ2_4sead4Heap = 0x24fcbcc;
-    vf54__14RenderObjLayerFUi = 0x24fd014;
-    vf64__14RenderObjLayerFUi = 0x24fce18;
+    __ct__14RenderObjLayerFv = 0x24FCA6C;
+    __dt__14RenderObjLayerFv = 0x24FCB18;
+    vf24__14RenderObjLayerFv = 0x24FD00C;
+    vf2C__14RenderObjLayerFPvUi = 0x24FCB6C;
+    doInitialize__14RenderObjLayerFPQ2_4sead4Heap = 0x24FCBCC;
+    vf54__14RenderObjLayerFUi = 0x24FD014;
+    vf64__14RenderObjLayerFUi = 0x24FCE18;
 
 /* ResArchive */
     getModel__10ResArchiveFRCQ2_4sead23SafeStringBase__tm__2_cUiN42bPQ2_4sead4Heap = 0x24EE440;
@@ -820,19 +820,19 @@ SECTIONS {
 /* ResArchiveMgr */
     sInstance__13ResArchiveMgr = 0x101D2D50;
     get__13ResArchiveMgrFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24F60EC;
-    loadResArchive__13ResArchiveMgrFRCQ2_4sead23SafeStringBase__tm__2_cT1PQ2_4sead4Heap = 0x24f6140;
+    loadResArchive__13ResArchiveMgrFRCQ2_4sead23SafeStringBase__tm__2_cT1PQ2_4sead4Heap = 0x24F6140;
 
 /* ResMgr */
-    sInstance__6ResMgr = 0x101e7d94;
-    loadRes__6ResMgrFRCQ2_4sead23SafeStringBase__tm__2_cT1PQ2_4sead4Heapb = 0x29d34a8;
+    sInstance__6ResMgr = 0x101E7D94;
+    loadRes__6ResMgrFRCQ2_4sead23SafeStringBase__tm__2_cT1PQ2_4sead4Heapb = 0x29D34A8;
     ResMgr_LoadLevelResource = 0x29D2A20;
     ResMgr_LoadLevelArchiveFail = 0x29D333C;
     ResMgr_LoadLevelArchiveSuccess = 0x29D3354;
 
 /* SaveMgr */
-    createInstance__7SaveMgrSFPQ2_4sead4Heap  = 0x29d6d00;
+    createInstance__7SaveMgrSFPQ2_4sead4Heap  = 0x29D6D00;
     sInstance__7SaveMgr = 0x101E7DA4;
-    save__7SaveMgrFPQ2_4sead14DelegateThread = 0x29d9560;
+    save__7SaveMgrFPQ2_4sead14DelegateThread = 0x29D9560;
 
 /* ShaderAnimation */
     playTexSrtAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FEE50;
@@ -864,7 +864,7 @@ SECTIONS {
     typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x101E9CC0;
     __ct__10StageActorFPC14ActorBuildInfo = 0x2000AC8;
     directionToPlayerH__10StageActorFRC13Vec3__tm__2_f = 0x20005EC;
-    directionToPlayerV__10StageActorFRC13Vec3__tm__2_f = 0x20006b4;
+    directionToPlayerV__10StageActorFRC13Vec3__tm__2_f = 0x20006B4;
     directionToActorH__10StageActorFRC10StageActor = 0x200C800;
     distanceToPlayer__10StageActorFR4Vec2 = 0x20005A4;
     offscreenDelete__10StageActorFUi = 0x20007A0;
@@ -898,10 +898,10 @@ SECTIONS {
 
 /* StateBase */
     sCurrentID__9StateBase = 0x101E9F04;
-    sNullState__9StateBase = 0x1022d390;
+    sNullState__9StateBase = 0x1022D390;
 
 /* StateMgr */
-    __ct__8StateMgrFP17StateExecutorBaseP9StateBase = 0x29c4a08;
+    __ct__8StateMgrFP17StateExecutorBaseP9StateBase = 0x29C4A08;
     execute__8StateMgrFv = 0x29C4A80;
     changeState__8StateMgrFP9StateBase = 0x29C4AF0;
 
@@ -914,7 +914,7 @@ SECTIONS {
     updateWaveCollisions__14TerrainEffectsFv = 0x28B8D5C;
 
 /* TileMgr */
-    sInstance__7TileMgr = 0x101dab94;
+    sInstance__7TileMgr = 0x101DAB94;
 
 /* WindGenerator */
     __dt__13WindGeneratorFv = 0x288EFA0;
@@ -932,8 +932,8 @@ SECTIONS {
 
 /* WrappedController */
     __ct__17WrappedControllerFv = 0x2514150;
-    init__17WrappedControllerFUi = 0x25141b0;
-    __dt__17WrappedControllerFv = 0x25140e8;
+    init__17WrappedControllerFUi = 0x25141B0;
+    __dt__17WrappedControllerFv = 0x25140E8;
 
 /* Unknown Class */
     FUN_02902b08__FP10StageActor = 0x2902B08;
@@ -953,12 +953,12 @@ SECTIONS {
     nullterminator = 0x1018A56D;
     SE_VOC = 0x1018393C;
     mapPositionToScreen__FR13Vec2__tm__2_fRC13Vec2__tm__2_f = 0x2029368;
-    DAT_101c30d0 = 0x101c30d0;
+    DAT_101c30d0 = 0x101C30D0;
     PlayerJumpArc = 0x1016A800;
     MiniPlayerJumpArc = 0x1016A848;
     PlayerJumpMax = 0x10166E68;
     PlayerDescentRate = 0x10166E74;
-    InfiniteLivesContinue = 0x24c005c;
-    InfiniteTimeContinue = 0x24c1388;
+    InfiniteLivesContinue = 0x24C005C;
+    InfiniteTimeContinue = 0x24C1388;
     InvincibilityContinue = 0x2931180;
 }

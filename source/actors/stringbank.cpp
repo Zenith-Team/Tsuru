@@ -34,14 +34,14 @@ u32 StringBank::onCreate() {
         );
         return 1;
     }
-    
+
     char strPrimary[17]   = { 0 };
     char strSecondary[17] = { 0 };
     char strLast[17]      = { 0 };
     StringBank::getPrimaryString(this, strPrimary);
     StringBank::getAdjacentStrings(this, strSecondary, strLast);
     StringBank::constructFullString(this->string, strPrimary, strSecondary, strLast);
-    
+
     LOG("%s(StringBank #%i) Initialized with string: %s", LogColor::LightCyan, this->bankID, this->string);
     return 1;
 }
