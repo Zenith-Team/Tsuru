@@ -1,5 +1,4 @@
-#ifndef __H264_FUNCTIONS_H_
-#define __H264_FUNCTIONS_H_
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -30,5 +29,3 @@ extern s32 (*H264DECCheckSkipableFrame)(const u8* buffer, s32 length, s32* skipF
 #ifdef __cplusplus
 }
 #endif
-
-#endif // __H264_FUNCTIONS_H_

@@ -1,7 +1,6 @@
-#include "types.h"
+#pragma once
 
-#ifndef __OS_DEFS_H_
-#define __OS_DEFS_H_
+#include "types.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,5 +27,3 @@ typedef struct _s_mem_area {
 #ifdef __cplusplus
 }
 #endif
-
-#endif // __OS_DEFS_H_

@@ -1,3 +1,5 @@
+#pragma once
+
 class SoundEffects {
 public:
     enum IDs {

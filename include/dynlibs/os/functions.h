@@ -21,8 +21,7 @@
  * 3. This notice may not be removed or altered from any source
  * distribution.
  ***************************************************************************/
-#ifndef __OS_FUNCTIONS_H_
-#define __OS_FUNCTIONS_H_
+#pragma once
 
 #include "dynlibs/os/types.h"
 #include "dynlibs/os/defs.h"
@@ -305,5 +304,3 @@ extern s32 (*IOS_Close)(s32 fd);
 #ifdef __cplusplus
 }
 #endif
-
-#endif // __OS_FUNCTIONS_H_
