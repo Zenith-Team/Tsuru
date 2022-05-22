@@ -33,7 +33,7 @@ InfiniteLives:
     mtctr   r3
     lwz     r3, 0x8(sp)
     addi    sp, sp, 0x4
-    bctr    # 0x24c005c
+    bctr    # 0x24C005C
 
 .global InfiniteTime
 InfiniteTime:
@@ -51,7 +51,7 @@ InfiniteTime:
     mtctr   r3
     lwz     r3, 0x8(sp)
     addi    sp, sp, 0x4
-    bctr    # 0x24c1388
+    bctr    # 0x24C1388
 
 .global NoClip
 NoClip:

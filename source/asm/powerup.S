@@ -46,47 +46,47 @@ ARRAY_1016d7cc:
 # TODO: What does this do? It's HitboxCollider related [distToCenter]
 #* Index corresponds to ARRAY_1016d7cc entries
 ARRAY_101e6d1c:
-    .long 0x1016d694
-    .long 0x1016d6a4
-    .long 0x1016d6b4
-    .long 0x1016d6c4
-    .long 0x1016d6d4
-    .long 0x1016d6e4
-    .long 0x1016d6f4
-    .long 0x1016d624
-    .long 0x1016d634
-    .long 0x1016d644
-    .long 0x1016d654
-    .long 0x1016d664
-    .long 0x1016d674
-    .long 0x1016d684
+    .long 0x1016D694
+    .long 0x1016D6A4
+    .long 0x1016D6B4
+    .long 0x1016D6C4
+    .long 0x1016D6D4
+    .long 0x1016D6E4
+    .long 0x1016D6F4
+    .long 0x1016D624
+    .long 0x1016D634
+    .long 0x1016D644
+    .long 0x1016D654
+    .long 0x1016D664
+    .long 0x1016D674
+    .long 0x1016D684
     # Begin custom data
 
 #? SomePowerupRelatedTable / SomeTable from NSMBW
 # TODO: What does this do? It's HitboxCollider related [distToEdge]
 #* Index corresponds to ARRAY_1016d7cc entries
 ARRAY_101e6d54:
-    .long 0x1016d704
-    .long 0x1016d714
-    .long 0x1016d724
-    .long 0x1016d734
-    .long 0x1016d744
-    .long 0x1016d754
-    .long 0x1016d764
-    .long 0x1016d624
-    .long 0x1016d634
-    .long 0x1016d644
-    .long 0x1016d654
-    .long 0x1016d664
-    .long 0x1016d674
-    .long 0x1016d684
+    .long 0x1016D704
+    .long 0x1016D714
+    .long 0x1016D724
+    .long 0x1016D734
+    .long 0x1016D744
+    .long 0x1016D754
+    .long 0x1016D764
+    .long 0x1016D624
+    .long 0x1016D634
+    .long 0x1016D644
+    .long 0x1016D654
+    .long 0x1016D664
+    .long 0x1016D674
+    .long 0x1016D684
     # Begin custom data
-    .long 0x1016d684
-    .long 0x1016d684
-    .long 0x1016d684
-    .long 0x1016d684
-    .long 0x1016d684
-    .long 0x1016d684
+    .long 0x1016D684
+    .long 0x1016D684
+    .long 0x1016D684
+    .long 0x1016D684
+    .long 0x1016D684
+    .long 0x1016D684
 
 #? WeirdScaleTable from NSMBW
 # TODO: What does the index correspond to?

@@ -51,11 +51,11 @@ u32 ModelLoader::onCreate() {
         StringBank* strBank = sead::DynamicCast<StringBank, Actor>(actors->start[i]);
         if (!strBank || strBank->layer != StringBank::Type_Primary) continue;
 
-        if (strBank->bankID == modelFileBankID) { 
+        if (strBank->bankID == modelFileBankID) {
             strncpy(this->modelFile, strBank->string, 49);
             strBank->isDeleted = true;
         }
-        if (strBank->bankID == modelNameBankID) { 
+        if (strBank->bankID == modelNameBankID) {
             strncpy(this->modelName, strBank->string, 49);
             strBank->isDeleted = true;
         }
