@@ -19,7 +19,6 @@ public:
 
     void touch();
     void updateModel();
-    void updateModel2();
 
     ModelWrapper* model;
     ModelWrapper* model2;
