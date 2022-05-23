@@ -11,8 +11,6 @@ Please note that a rewrite is currently in progress, so not everything listed he
 < something something about actors and the headers comment from the old desc >
 
 ## Custom Sprites:
-All custom sprites which were not written by me have credits in customsprites.yaml. Also listed there are the sprite/profile IDs of each custom sprite.
-
 * Actor Spawner
 * Angry Sun
 * Beep Block
@@ -21,32 +19,35 @@ All custom sprites which were not written by me have credits in customsprites.ya
 * Death Foo
 * Debug Helper
 * Effect Spawner
-* Elemental Thwomp *
 * Example World Map Actor
 * Fake Actor
 * Falling Chestnut
 * Flipblock *
+* Kamiya Miniboss
 * Liquid Collision Overlay
 * Magic Platform *
 * Mini-only door
-* Model Loader *
+* Model Loader
 * P-Acorn (as an in-game actor)
 * Para-Bones
+* Physics Modifier
 * Poison Mushroom *
 * Rainbow Light
 * Star Coin Shard
+* String Bank
 * Task Changer
 * Time Clock
 * Triple Block *
 * Water Waves
-* Water Waves Platform *
 * Wind Generator
 
 ## Patches:
 Miscellaneous hacks/patches are listed here. Most of the game-changing patches are toggleable in the savefile by hex editing or disabling them in project.yaml
 * Add archive links for some unused actors to allow adding models *
+* ATLYS custom world map system (early alpha)
 * Cheat menu to activate cheats and debug settings
 * Custom cutscene player
+* Custom powerup slots
 * Custom save data manager API with an example
 * Customizable snow particle colors
 * Customizable world map scripts *
@@ -54,13 +55,18 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 * Disabled acorns falling on title screen
 * Disabled Miiverse integration *
 * Extra profile slots for up to 64812 new actors
+* Fireproof Bowser
 * Fixed collision conditions for some sprites
+* Fixed framebuffer clearing issue
 * Handle some exceptions/errors
 * Indicator for hacks loaded via version string
 * Infinite lives
 * Infinite time
 * Instant respawn
+* Integrated crash fix graphics pack
+* Load resources for actor spawner automatically
 * NoClip
+* No powerup from checkpoint
 * Projection settings for World Map and Level
 * Restored background offset settings functionality *
 * Restored many of sead::PrimitiveRendererCafe's deleted functions
@@ -71,10 +77,11 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 * Space physics
 * Titlescreen theme based on last world saved in
 * World-based titlescreen level theme
+* Wrong VF handling
 * Yoshi colors
 
 # Contributing
-No pull requests please. If you would like to contribute a piece of code then just make an issue on the [issues page](https://github.com/Luminyx1/Tsuru/issues) and provide a link to the code along with a short description of the purpose of the code. If you have a suggestion then just drop it by at the issues page and we'll consider making it.
+Just create a new Pull Request on the designated page. We will review the PR and accept if we feel that it meets our quality standard. If you have discovered an issue or bug, make an issue on the Issue Tracker. Suggestions can also go there.
 
 # Building
 This project is meant to be compiled with my fork of shibboleet's fork of the [CafeLoader Project Compiler](https://github.com/Luminyx1/CafeLoader-Compiler) script. A version of this source code that is ready for building will always be available on the [releases](https://github.com/Luminyx1/Tsuru/releases) page which includes additional files required for compiling. Keep in mind that currently this project targets version 1.3.0 of the standalone copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not our top priority.
@@ -89,13 +96,13 @@ If you require any assistance for anything related to Tsuru, feel free to join o
 # Credits
 * [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code, headers, and build system
 * [jhmaster2000](https://github.com/jhmaster2000) - General code and headers
-* [Luminyx](https://github.com/Luminyx1) - Project leader, general code and headers
+* [Luminyx](https://github.com/Luminyx1) - Project lead, general code and headers
 * [Newer Team](https://github.com/Newer-Team) - [Newer U](https://github.com/Newer-Team/NewerSMBU) code and headers
 * [RicBent](https://github.com/RicBent) - [CodeDX](https://github.com/RicBent/codedx) code and headers
 * [RoadrunnerWMC](https://github.com/RoadrunnerWMC) - Customizable [world map scripts](https://github.com/RoadrunnerWMC/Cobra)
 * [shibboleet](https://github.com/shibbo) - General code, headers, and contribution to the build system
 * [STUPID](https://github.com/stupidestmodder) - General code and headers
-* Modified dynamic_libs headers based on original implementation by Dimok and [Maschell fork](https://github.com/Maschell/dynamic_libs)
+* Modified dynamic_libs headers based on original implementation by [Dimok](https://github.com/dimok789) and [Maschell fork](https://github.com/Maschell/dynamic_libs)
 * shiftjis.h from [Apollo PS3](https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h)
 
 # Special Thanks
