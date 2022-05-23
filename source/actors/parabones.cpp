@@ -18,15 +18,18 @@ public:
 
     void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    void modelUpdate();
+    void updateModel();
 
     ModelWrapper* model;
+    ModelWrapper* wings;
     u32 timerIdleLowered;
     u32 timerIdleRaised;
     u32 timerLowering;
     u32 timerRising;
     u16 flyDistance;
     u16 idleTime;
+    bool startRising;
+    bool horizontal;
 
     static const HitboxCollider::Info sCollisionInfo;
 
@@ -45,14 +48,24 @@ CREATE_STATE(ParaBones, Die);
 
 const ActorInfo ParaBonesActorInfo = { Vec2i(8, -16), Vec2i(0, 16), Vec2i(8, 16), 0, 0, 0, 0, 0 };
 const Profile ParaBonesProfile(&ParaBones::build, ProfileID::ParaBones, "ParaBones", &ParaBonesActorInfo);
-PROFILE_RESOURCES(ProfileID::ParaBones, Profile::LoadResourcesAt_Course, "nokonokoB");
+PROFILE_RESOURCES(ProfileID::ParaBones, Profile::LoadResourcesAt_Course, "nokonokoB", "karon", "wing");
 
 const HitboxCollider::Info ParaBones::sCollisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::HitboxShape_Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback
+    Vec2f(0.0f, 8.0f), Vec2f(8.0f, 12.0f), HitboxCollider::HitboxShape_Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback
 };
 
 ParaBones::ParaBones(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)
+    , model(nullptr)
+    , wings(nullptr)
+    , timerIdleLowered(0)
+    , timerIdleRaised(0)
+    , timerLowering(0)
+    , timerRising(0)
+    , flyDistance(0)
+    , idleTime(0)
+    , startRising(this->settings1 >> 0x14 & 0xF) // nybble 7
+    , horizontal(this->settings1 >> 0x10 & 0xF) // nybble 8
 { }
 
 Actor* ParaBones::build(const ActorBuildInfo* buildInfo) {
@@ -60,83 +73,101 @@ Actor* ParaBones::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 ParaBones::onCreate() {
-    Vec3u rotationOffset(0, 1000, 0);
-    this->rotation.y = Direction::directionToRotationList[Direction::Left];
+    this->rotation.y = Direction::directionToRotationList[Direction::Left] + 1000;
 
-    model = ModelWrapper::create("nokonokoB", "nokonokoB", 10);
-    model->playSklAnim("flyA", 0);
+    this->model = ModelWrapper::create("nokonokoB", "nokonokoB", 10);
+    this->model->playSklAnim("flyA", 0);
 
-    hitboxCollider.init(this, &ParaBones::sCollisionInfo, nullptr);
-    addHitboxColliders();
+    this->wings = ModelWrapper::create("wing", "wing", 10);
+    this->wings->playSklAnim("wing_kuri", 0); // wing_pata
 
-    flyDistance = 200;
-    idleTime = 150;
+    this->hitboxCollider.init(this, &ParaBones::sCollisionInfo, nullptr);
+    this->addHitboxColliders();
 
-    doStateChange(&ParaBones::StateID_Lowering);
+    // 30 = 1 tile
+    this->flyDistance = 30 * (this->settings1 >> 0x1C & 0xF); // nybble 5
+    // 30 = 0.5 seconds
+    this->idleTime = 30 * (this->settings1 >> 0x18 & 0xF); // nybble 6
 
-    modelUpdate();
+    this->speed.y = 0.0f;
+    this->gravity = 0.0f;
+    this->maxSpeed.y = 0.0f;
 
+    if (this->flyDistance != 0) {
+        this->doStateChange(this->startRising ? &ParaBones::StateID_Rising : &ParaBones::StateID_Lowering);
+    }
+
+    this->updateModel();
     return 1;
 }
 
 u32 ParaBones::onExecute() {
-    handleGravity();
-    handleSpeed();
+    this->handleGravity();
+    this->handleSpeed();
 
-    if (timerLowering >= flyDistance)
-        speed.y = 0.0f;
-    else
-        timerLowering += 1;
+    if (this->startRising) {
+        if (this->timerRising >= this->flyDistance)
+            this->speed.y = 0.0f;
+        else
+            this->timerRising += 1;
+    } else {
+        if (this->timerLowering >= this->flyDistance)
+            this->speed.y = 0.0f;
+        else
+            this->timerLowering += 1;
+    }
 
-    states.execute();
-
-    modelUpdate();
+    this->states.execute();
+    this->updateModel();
 
     return 1;
 }
 
 u32 ParaBones::onDraw() {
-    DrawMgr::instance()->drawModel(model);
-
+    DrawMgr::instance()->drawModel(this->model);
+    DrawMgr::instance()->drawModel(this->wings);
     return 1;
 }
 
-void ParaBones::modelUpdate() {
+void ParaBones::updateModel() {
     Mtx34 mtx;
+    mtx.rotateAndTranslate(this->rotation, this->position);
+    this->model->setMtx(mtx);
+    this->model->setScale(this->scale);
+    this->model->updateModel();
+    this->model->updateAnimations();
 
-    mtx.rotateAndTranslate(rotation, position);
-
-    model->setMtx(mtx);
-    model->setScale(scale);
-    model->updateModel();
-    model->updateAnimations();
+    Mtx34 mtxWings;
+    mtxWings.rotateAndTranslate(this->rotation, this->position + Vec3f(0.0f, 8.0f, 0.0f));
+    this->wings->setMtx(mtxWings);
+    this->wings->setScale(this->scale);
+    this->wings->updateModel();
+    this->wings->updateAnimations();
 }
 
 void ParaBones::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    u32 hitType = processCollision(hcSelf, hcOther, 0);
+    u32 hitType = this->processCollision(hcSelf, hcOther, 0);
 
     if (hitType == 0)
-        damagePlayer(hcSelf, hcOther);
+        this->damagePlayer(hcSelf, hcOther);
     else if (hitType == 1 || hitType == 3)
-        killPlayerJump(hcOther->owner, 0.0f, &ParaBones::StateID_Die);
+        this->killPlayerJump(hcOther->owner, 0.0f, &ParaBones::StateID_Die);
 }
 
 // Lowering state
 
 void ParaBones::beginState_Lowering() {
-    timerLowering = 0;
-    gravity = -1.0f;
-    maxSpeed.y = -1.0f;
+    this->timerLowering = 0;
+    this->gravity = -1.0f;
+    this->maxSpeed.y = -1.0f;
 }
 
 void ParaBones::executeState_Lowering() {
-    if (timerLowering >= flyDistance) {
-        speed.y = 0.0f;
-        doStateChange(&ParaBones::StateID_IdleLowered);
+    if (this->timerLowering >= this->flyDistance / (this->startRising + 1)) {
+        this->speed.y = 0.0f;
+        this->doStateChange(&ParaBones::StateID_IdleLowered);
     }
-
-    else
-        timerLowering++;
+    else this->timerLowering++;
 }
 
 void ParaBones::endState_Lowering() { }
@@ -144,16 +175,16 @@ void ParaBones::endState_Lowering() { }
 // IdleLowered state
 
 void ParaBones::beginState_IdleLowered() {
-    timerIdleLowered = 0;
-    gravity = 0.0f;
-    maxSpeed.y = 0.0f;
+    this->timerIdleLowered = 0;
+    this->gravity = 0.0f;
+    this->maxSpeed.y = 0.0f;
 }
 
 void ParaBones::executeState_IdleLowered() {
-    if (timerIdleLowered >= idleTime)
-        doStateChange(&ParaBones::StateID_Rising);
+    if (this->timerIdleLowered >= this->idleTime)
+        this->doStateChange(&ParaBones::StateID_Rising);
     else
-        timerIdleLowered++;
+        this->timerIdleLowered++;
 }
 
 void ParaBones::endState_IdleLowered() { }
@@ -161,19 +192,17 @@ void ParaBones::endState_IdleLowered() { }
 // Rising state
 
 void ParaBones::beginState_Rising() {
-    timerRising = 0;
-    gravity = 0.0875f;
-    maxSpeed.y = 1.0f;
+    this->timerRising = 0;
+    this->gravity = 0.0875f;
+    this->maxSpeed.y = 1.0f;
 }
 
 void ParaBones::executeState_Rising() {
-    if (timerRising >= flyDistance / 2) {
-        speed.y = 0.0f;
-        doStateChange(&ParaBones::StateID_IdleRaised);
+    if (this->timerRising >= this->flyDistance / (!this->startRising + 1)) {
+        this->speed.y = 0.0f;
+        this->doStateChange(&ParaBones::StateID_IdleRaised);
     }
-
-    else
-        timerRising++;
+    else this->timerRising++;
 }
 
 void ParaBones::endState_Rising() { }
@@ -181,16 +210,16 @@ void ParaBones::endState_Rising() { }
 // IdleRaised state
 
 void ParaBones::beginState_IdleRaised() {
-    timerIdleRaised = 0;
-    gravity = 0.0f;
-    maxSpeed.y = 0.0f;
+    this->timerIdleRaised = 0;
+    this->gravity = 0.0f;
+    this->maxSpeed.y = 0.0f;
 }
 
 void ParaBones::executeState_IdleRaised() {
-    if (timerIdleRaised >= idleTime)
-        doStateChange(&ParaBones::StateID_Lowering);
+    if (this->timerIdleRaised >= this->idleTime)
+        this->doStateChange(&ParaBones::StateID_Lowering);
     else
-        timerIdleRaised++;
+        this->timerIdleRaised++;
 }
 
 void ParaBones::endState_IdleRaised() { }
@@ -198,12 +227,11 @@ void ParaBones::endState_IdleRaised() { }
 // Die state
 
 void ParaBones::beginState_Die() {
-    removeHitboxColliders();
-    Vec3f posKillFix(0.0f, -8.0f, 0.0f);
+    this->removeHitboxColliders();
 
     ActorBuildInfo DryBones = { 0 };
     DryBones.profile = Profile::get(Profile::spriteToProfileList[137]);
-    DryBones.position += posKillFix;
+    DryBones.position = this->position + Vec3f(0.0f, -8.0f, 0.0f);
     ActorMgr::instance()->create(DryBones, 0);
     this->isDeleted = true;
 }
