@@ -9,6 +9,8 @@ public:
     inline WindGenerator(const ActorBuildInfo* buildInfo) : StageActor(buildInfo) { }
     virtual ~WindGenerator();
 
+    static Actor* build(const ActorBuildInfo* buildInfo);
+
     u32 onCreate() override;
 
     u32 onExecute() override;

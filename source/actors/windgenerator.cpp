@@ -33,28 +33,35 @@ u32 FixedWindGenerator::onExecute() {
     // Blow players
     for (u32 i = 0; i < 4; i++) {
         Player* player = PlayerMgr::instance()->players[i];
-        if (player)
-            player->position.x += this->finalWindStrength * 2.5;
+        if (player != nullptr) {
+            switch (this->initialStateFlag) {
+                case 0: player->position.x += this->finalWindStrength * 2.5; break;
+                case 1: player->position.x -= this->finalWindStrength * 2.5; break;
+                case 2: player->position.y += this->finalWindStrength * 2.5; break;
+                case 3: player->position.y -= this->finalWindStrength * 2.5; break;
+            }
+        }
     }
 
     // Blow actors
-    Actor** current = ActorMgr::instance()->actors.start.buffer;
-    while (current < ActorMgr::instance()->actors.end.buffer) {
+    for (Actor** current = ActorMgr::instance()->actors.start.buffer; current < ActorMgr::instance()->actors.end.buffer; current++) {
         Actor* actor = *current;
-        if (actor) {
+        if (actor != nullptr) {
             u32 profileID = actor->getProfileID();
-            for (u32 i = 0; i < 10; i++) {
+            for (u32 i = 0; i < sizeof(affectedActors) / sizeof(u32); i++) {
                 if (profileID == affectedActors[i]) {
-                    ((StageActor*)actor)->position.x += this->finalWindStrength * 2.5;
+                    switch (this->initialStateFlag) {
+                        case 0: ((StageActor*)actor)->position.x += this->finalWindStrength * 2.5; break;
+                        case 1: ((StageActor*)actor)->position.x -= this->finalWindStrength * 2.5; break;
+                        case 2: ((StageActor*)actor)->position.y += this->finalWindStrength * 2.5; break;
+                        case 3: ((StageActor*)actor)->position.y -= this->finalWindStrength * 2.5; break;
+                    }
+
                     break;
                 }
             }
         }
-
-        current++;
     }
-
-    LOG("wind state: %i", this->_298);
 
     return 1;
 }

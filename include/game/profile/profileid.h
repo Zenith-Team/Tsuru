@@ -259,6 +259,8 @@ enum ProfileIDType {
     StringBank,
     MilitaryCheep,
     MilitaryCheepController,
+    GiantSkewer,
+    Scuttlebug,
 
     // Atlys profiles //! Do not place anything below these
     AtlysCamera,
