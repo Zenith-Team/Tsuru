@@ -26,6 +26,8 @@ Files:
   - source/actors/modelloader.cpp
   - source/actors/stringbank.cpp
   - source/actors/militarycheep.cpp
+  - source/actors/giantskewer.cpp
+  - source/actors/scuttlebug.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:

@@ -4,6 +4,7 @@ Files:
 #* Translation unit queue:
   - source/asm/misc.S
   - source/misc.cpp
+  - source/asm/bgoffset.S
   - source/dynlibs/os.cpp
   - source/dynlibs/gx2.cpp
   - source/dynlibs/h264.cpp
@@ -40,3 +41,9 @@ Hooks:
     instr: bl
     func: "SetCurrentGraphicsContext"
     addr: "2a07cbc"
+
+# Fix background offset settings
+  - type: branch
+    instr: bl
+    addr: "22A7FD4"
+    func: AddBGOffset
