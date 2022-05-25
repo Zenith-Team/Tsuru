@@ -73,7 +73,10 @@ inline DerivedType* DynamicCast(Type* obj) {
             return getRuntimeTypeInfoStatic();                                                               \
         }
 
-#define SEAD_RTTI_OVERRIDE(CLASS, BASE) SEAD_RTTI_OVERRIDE_IMPL(CLASS, BASE)
+#define SEAD_RTTI_OVERRIDE(CLASS, BASE)                                                                     \
+    public:                                                                                                 \
+        bool checkDerivedRuntimeTypeInfo(const sead::RuntimeTypeInfo::Interface* typeInfo) const override;  \
+        const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfo() const override { return nullptr; } // This function is deleted so its ok
 
 #define SEAD_RTTI_OVERRIDE_IMPL(CLASS, BASE)                                                                 \
     public:                                                                                                  \

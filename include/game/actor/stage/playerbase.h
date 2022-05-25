@@ -72,7 +72,7 @@ public:
 
     virtual void vf10C() = 0;
     virtual void vf114() = 0;
-    virtual u32 vf11C() = 0; // TODO: Investigate the return type
+    virtual u32 vf11C() = 0;
     virtual void vf124(PowerupState, bool); // Calls vf12C
     virtual void vf12C(PowerupState, bool) = 0;
     virtual bool vf134();
@@ -81,7 +81,7 @@ public:
     virtual void vf144() = 0;
     virtual void vf14C(Vec3f*, f32*) = 0;
     virtual u32 vf154();
-    virtual void* vf15C() = 0; // TODO: Investigate the return type
+    virtual f32* vf15C() = 0; //? TallType related
     virtual f32 vf164() = 0;
     virtual void vf16C() = 0;
     virtual void vf174() = 0;

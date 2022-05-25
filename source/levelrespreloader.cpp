@@ -49,5 +49,5 @@ void levelResPreloader() {
         char modelFilePath[64] = { 0 };
         __os_snprintf(modelFilePath, 64, "actor/%s.szs", modelFile);
         loadResource(modelFile, modelFilePath, true, "LevelPreloader");
-    };
+    }
 }
