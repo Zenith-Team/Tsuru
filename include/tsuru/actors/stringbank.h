@@ -9,7 +9,7 @@
 #include "ghs.h"
 
 class StringBank : public Actor {
-    SEAD_RTTI_OVERRIDE(StringBank, Actor)
+    SEAD_RTTI_OVERRIDE_IMPL(StringBank, Actor)
 
 public:
     enum Type {

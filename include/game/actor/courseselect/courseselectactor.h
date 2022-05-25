@@ -26,7 +26,7 @@ public:
     virtual bool vf8C();
     virtual void vf94();
     virtual void vf9C();
-    virtual void onCSScriptCommandUpdate(); // nullsub, name may be inaccurate // TODO: Verify this name
+    virtual void onCSScriptCommandUpdate(); // nullsub, name may be inaccurate
 
     f32 _DC;             // Inited to 1.0
     f32 _E0;             // Inited to 1.0

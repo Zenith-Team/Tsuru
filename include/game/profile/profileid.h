@@ -213,6 +213,7 @@ enum ProfileIDType {
     Bowser = 715,
     BowserFireballSpawner = 716,
     BowserFireball = 717,
+    CutsceneKamek = 720,
     DemoSumoBoss = 723,
     FinalBowserFireball = 724,
     FinalBowserJrFireball = 726,
@@ -254,10 +255,14 @@ enum ProfileIDType {
     PhysicsModifier,
     Kamiya,
     KamiyaMagic,
-    AtlysCamera,
-    AtlysPlayer,
     ModelLoader,
     StringBank,
+    MilitaryCheep,
+    MilitaryCheepController,
+
+    // Atlys profiles //! Do not place anything below these
+    AtlysCamera,
+    AtlysPlayer,
 
     Num
 };

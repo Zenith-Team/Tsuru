@@ -812,26 +812,28 @@ u32 Profile::spriteToProfileList[] = {
     533,    // 723
 
     // Start of custom entries
-    ProfileID::ActorSpawner,    // 724
-    ProfileID::ParaBones,       // 725
-    ProfileID::CustomDoor,      // 726
-    ProfileID::FakeActor,       // 727
-    ProfileID::PAcorn,          // 728
-    ProfileID::StarCoinShard,   // 729
-    ProfileID::BeepBlock,       // 730
-    ProfileID::FallingChestnut, // 731
-    ProfileID::TaskChanger,     // 732
-    ProfileID::Cataquack,       // 733
-    ProfileID::TimeClock,       // 734
-    ProfileID::EffectSpawner,   // 735
-    ProfileID::AngrySun,        // 736
-    ProfileID::AngryMoon,       // 737
-    ProfileID::RainbowLight,    // 738
-    ProfileID::WavePlatform,    // 739
-    ProfileID::DebugActor,      // 740
-    ProfileID::LiquidOverlay,   // 741
-    ProfileID::PhysicsModifier, // 742
-    ProfileID::Kamiya,          // 743
-    ProfileID::ModelLoader,     // 744
-    ProfileID::StringBank,      // 745
+    ProfileID::ActorSpawner,            // 724
+    ProfileID::ParaBones,               // 725
+    ProfileID::CustomDoor,              // 726
+    ProfileID::FakeActor,               // 727
+    ProfileID::PAcorn,                  // 728
+    ProfileID::StarCoinShard,           // 729
+    ProfileID::BeepBlock,               // 730
+    ProfileID::FallingChestnut,         // 731
+    ProfileID::TaskChanger,             // 732
+    ProfileID::Cataquack,               // 733
+    ProfileID::TimeClock,               // 734
+    ProfileID::EffectSpawner,           // 735
+    ProfileID::AngrySun,                // 736
+    ProfileID::AngryMoon,               // 737
+    ProfileID::RainbowLight,            // 738
+    ProfileID::WavePlatform,            // 739
+    ProfileID::DebugActor,              // 740
+    ProfileID::LiquidOverlay,           // 741
+    ProfileID::PhysicsModifier,         // 742
+    ProfileID::Kamiya,                  // 743
+    ProfileID::ModelLoader,             // 744
+    ProfileID::StringBank,              // 745
+    ProfileID::MilitaryCheep,           // 746
+    ProfileID::MilitaryCheepController, // 747
 };

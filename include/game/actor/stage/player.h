@@ -43,7 +43,7 @@ public:
     void vf144() override;
     void vf14C(Vec3f*, f32*) override;
     u32 vf154() override;
-    void* vf15C() override;
+    f32* vf15C() override;
     f32 vf164() override;
     void vf16C() override;
     void vf174() override;

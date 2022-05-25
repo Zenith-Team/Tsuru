@@ -25,6 +25,7 @@ Files:
   - source/actors/kamiya.cpp
   - source/actors/modelloader.cpp
   - source/actors/stringbank.cpp
+  - source/actors/militarycheep.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:
