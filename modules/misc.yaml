@@ -21,6 +21,12 @@ Hooks:
 #    addr: "218af98" # PhysicsMgr::init()
 #    func: SetPhysicsMgrOwner
 
+# Increase spawn range limits
+  # Floating Log
+  - type: patch
+    data: "00005000"
+    addr: "10136b50" # FloatingLog::ActorInfo::spawnRangeSize.x
+
 # Embed crash fix into the RPX
   - type: patch
     data: "480000E8" # b +0xE8

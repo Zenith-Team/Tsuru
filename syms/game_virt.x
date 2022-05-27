@@ -240,6 +240,9 @@ SECTIONS {
 /* ActorBuffer */
     findActorByID__11ActorBufferFRCUi = 0x200A5C8;
 
+/* ActorGlobalsHolder */
+    sInstance__18ActorGlobalsHolder = 0x101C30D0;
+
 /* ActorInfo */
     sDefault__9ActorInfo = 0x100018F4;
 
@@ -557,6 +560,9 @@ SECTIONS {
     vf94__16CSSomethingActorFv = 0x2201CEC;
     vf9C__16CSSomethingActorFv = 0x2201CF8;
     vfA4__16CSSomethingActorFv = 0x2201D04;
+
+/* CutsceneKamek */
+    StateID_CutsceneKamekState2__13CutsceneKamek = 0x101F1BCC;
 
 /* Direction */
     directionToRotationList__9Direction = 0x10200DD8;

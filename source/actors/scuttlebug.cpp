@@ -16,6 +16,8 @@ public:
     u32 onDraw() override;
 
     void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
     void updateModel();
 
@@ -119,6 +121,18 @@ void Scuttlebug::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther
         this->damagePlayer(hcSelf, hcOther);
     else
         this->killPlayerJump(hcOther->owner, 0.0f, &Scuttlebug::StateID_Die);
+}
+
+bool Scuttlebug::collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->isDeleted = true;
+
+    return true;
+}
+
+bool Scuttlebug::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->isDeleted = true;
+
+    return true;
 }
 
 void Scuttlebug::updateModel() {

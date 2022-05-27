@@ -51,7 +51,7 @@ public:
     u8 _17C8;
     u8 _17C9;
     u8 _17CA;
-    u8 _17CB;
+    bool bossDoneDying;
     u32 _17CC;
     u32 _17D0;
     u32 _17D4;
