@@ -4,6 +4,8 @@
 #include "game/actor/stage/bosscontroller.h"
 #include "game/actor/actormgr.h"
 #include "game/task/coursetask.h"
+#include "game/actorglobalsholder.h"
+#include "game/actor/stage/cutscenekamek.h"
 #include "log.h"
 
 class MilitaryCheep : public Boss {
@@ -129,21 +131,18 @@ void MilitaryCheep::vf5AC() {
 }
 
 void MilitaryCheep::processHits(u32 amount) {
-    LOG("Process hits");
     void (*processHits__10BoomBoomW1FUi)(Boss*, u32) = (void(*)(Boss*,u32)) 0x205d82c;
     processHits__10BoomBoomW1FUi(this, amount);
 }
 
 void MilitaryCheep::onStompKill(StageActor* collidingPlayer) {
-    LOG("on stomp kill");
-
     this->FUN_202D094(collidingPlayer, &this->position, 6);
 }
 
 void MilitaryCheep::onKill() {
-    LOG("deatg");
-    this->onStompKillEx();
     this->vf574();
+
+    ActorGlobalsHolder::instance()->activeBossController->bossDoneDying = true;
 }
 
 void MilitaryCheep::setLookTarget() {
@@ -185,7 +184,6 @@ void MilitaryCheep::beginState_BossState1() {
 }
 
 void MilitaryCheep::executeState_BossState1() {
-    LOG("execute state 1");
     this->executeState_DieFumi();
 }
 
@@ -199,8 +197,6 @@ void MilitaryCheep::beginState_BossState5() {
 
 void MilitaryCheep::executeState_BossState5() {
     this->executeState_DieFumi();
-
-    LOG("execute state 5");
 }
 
 void MilitaryCheep::endState_BossState5() {
@@ -218,15 +214,11 @@ public:
 
     static Actor* build(const ActorBuildInfo* buildInfo);
 
-    u32 onExecute() override;
-
     u32 vf1F4() override;
     u8 vf1FC() override;
     u32 vf204() override;
     StageActor* getTargetBoss() override;
     void spawnCutsceneKamek() override;
-
-    u32 kamekID;
 };
 
 const Profile MilitaryCheepControllerProfile(&MilitaryCheepController::build, ProfileID::MilitaryCheepController);
@@ -238,12 +230,6 @@ Actor* MilitaryCheepController::build(const ActorBuildInfo* buildInfo) {
 MilitaryCheepController::MilitaryCheepController(const ActorBuildInfo* buildInfo)
     : BossController(buildInfo)
 { }
-
-u32 MilitaryCheepController::onExecute() {
-    LOG("0x%x", this->states.currentState());
-
-    return BossController::onExecute();
-}
 
 u32 MilitaryCheepController::vf1F4() {
     return 1;
@@ -272,5 +258,5 @@ void MilitaryCheepController::spawnCutsceneKamek() {
     ActorBuildInfo buildInfo = { 0 };
     buildInfo.profile = Profile::get(ProfileID::CutsceneKamek);
 
-    this->kamekID = ActorMgr::instance()->create(buildInfo, 0)->id;
+    ((CutsceneKamek*) ActorMgr::instance()->create(buildInfo, 0))->doStateChange(&CutsceneKamek::StateID_CutsceneKamekState2);
 }

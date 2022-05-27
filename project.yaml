@@ -3,7 +3,7 @@
 Name: Tsuru
 Modules:
  # - modules/atlys.yaml                # Atlys custom world map system
-  - modules/buffs.yaml                # 'Cause the game is too easy
+ # - modules/buffs.yaml                # 'Cause the game is too easy
   - modules/cheats.yaml               # Cheat menu
   - modules/collisionconditions.yaml  # Fixes collision conditions for some actors
   - modules/customactors.yaml         # Custom sprites/actors
