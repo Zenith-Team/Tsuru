@@ -82,25 +82,3 @@ void MilitaryCheep::updateModel() {
     this->model->setMtx(mtx);
     this->model->updateModel();
 }
-
-//!-----------------------------------
-//! Military Cheep Controller 
-//!-----------------------------------
-
-class MilitaryCheepController : public BossControllerWrapper<ProfileID::MilitaryCheep> {
-public:
-    MilitaryCheepController(const ActorBuildInfo* buildInfo);
-    virtual ~MilitaryCheepController() { }
-
-    static Actor* build(const ActorBuildInfo* buildInfo);
-};
-
-const Profile MilitaryCheepControllerProfile(&MilitaryCheepController::build, ProfileID::MilitaryCheepController);
-
-Actor* MilitaryCheepController::build(const ActorBuildInfo* buildInfo) {
-    return new MilitaryCheepController(buildInfo);
-}
-
-MilitaryCheepController::MilitaryCheepController(const ActorBuildInfo* buildInfo)
-    : BossControllerWrapper<ProfileID::MilitaryCheep>(buildInfo)
-{ }

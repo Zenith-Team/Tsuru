@@ -2,6 +2,8 @@
 
 #include "game/actor/stage/stateactor.h"
 
+class Boss;
+
 class BossController : public StateActor { // Size: 0x17E0
     SEAD_RTTI_OVERRIDE(BossController, StateActor)
 
@@ -44,7 +46,7 @@ public:
     virtual u32 vf1F4();
     virtual u8 vf1FC();
     virtual u32 vf204();
-    virtual StageActor* getTargetBoss();
+    virtual Boss* getTargetBoss();
     virtual void spawnCutsceneKamek();
     virtual void vf21C();
 

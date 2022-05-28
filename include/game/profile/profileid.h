@@ -258,7 +258,7 @@ enum ProfileIDType {
     ModelLoader,
     StringBank,
     MilitaryCheep,
-    MilitaryCheepController,
+    UniversalBossController,
     GiantSkewer,
     Scuttlebug,
 

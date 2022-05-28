@@ -5,7 +5,7 @@
 #include "game/actorglobalsholder.h"
 #include "game/profile/profileid.h"
 
-template <u32 hits>
+template <u32 THitPoints>
 class BossWrapper : public Boss { // Because the original Boss class is ridiculous to use :skull:
 public:
     BossWrapper(const ActorBuildInfo* buildInfo)
@@ -20,11 +20,10 @@ public:
         }
     }
 
-    void initHitsToDeath() override { this->hitsToDeath = hits; }
-    void initHitsToDamage() { this->hitsToDamage = hits / 6; }
+    void initHitsToDeath() override { this->hitsToDeath = THitPoints; }
+    void initHitsToDamage() { this->hitsToDamage = THitPoints / 6; }
 
     void processHits(u32 amount) override {
-        // copied ida decomp moment
         int dlt = this->hitsToDeath - amount;
         if (dlt > 0) {
             this->hitsToDeath = dlt;
@@ -58,16 +57,15 @@ public:
     void setLookTarget() override { this->lookTarget.targetPosition.x = this->position.x; this->lookTarget.targetPosition.y = this->position.y; }
     bool vf58C() override { return this->freezeMgr._44 ^ 1; }
     void onKill() override { this->vf574(); ActorGlobalsHolder::instance()->activeBossController->bossDoneDying = true; }
-    u32 stompDamageAmount() override { return hits / 3; }
-    u32 groundPoundDamageAmount() override { return hits / 3; }
-    u32 stompDamageAmount2() override { return hits / 3; }
-    u32 stompDamageAmountEx() override { return hits / 3; }
+    u32 stompDamageAmount() override { return THitPoints / 3; }
+    u32 groundPoundDamageAmount() override { return THitPoints / 3; }
+    u32 stompDamageAmount2() override { return THitPoints / 3; }
+    u32 stompDamageAmountEx() override { return THitPoints / 3; }
 
     void updateModel() override = 0;
     void initHitboxCollider() override = 0;
 };
 
-template <ProfileID::ProfileIDType BossProfile>
 class BossControllerWrapper : public BossController {
 public:
     BossControllerWrapper(const ActorBuildInfo* buildInfo)
@@ -78,25 +76,6 @@ public:
     u8 vf1FC() override { return this->_17CA; }
     u32 vf204() override { return 1; }
 
-    StageActor* getTargetBoss() override {
-        for (Actor** current = ActorMgr::instance()->actors.start.buffer; current < ActorMgr::instance()->actors.end.buffer; current++) {
-            Actor* actor = *current;
-            if (actor && actor->getProfileID() == BossProfile) {
-                return (StageActor*) actor;
-            }
-        }
-
-        #ifdef LOG
-            LOG("Could not find target boss with profile ID %d", (u32) BossProfile);
-        #endif
-
-        return nullptr;
-    }
-
-    void spawnCutsceneKamek() override {
-        ActorBuildInfo buildInfo = { 0 };
-        buildInfo.profile = Profile::get(ProfileID::CutsceneKamek);
-
-        ((CutsceneKamek*) ActorMgr::instance()->create(buildInfo, 0))->doStateChange(&CutsceneKamek::StateID_CutsceneKamekState2);
-    }
+    Boss* getTargetBoss() override = 0;
+    void spawnCutsceneKamek() override = 0;
 };

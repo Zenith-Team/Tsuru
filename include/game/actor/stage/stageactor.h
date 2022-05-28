@@ -17,7 +17,10 @@ public:
         StageActorType_Player   = 1,
         StageActorType_Yoshi    = 2,
         StageActorType_Enemy    = 3,
-        StageActorType_Unknown  = 4
+        StageActorType_Unknown  = 4,
+        
+        // Custom types
+        StageActorType_Boss     = 5,
     };
 
 public:
@@ -143,7 +146,7 @@ public:
     f32 _204;                           // 204     Inited to 80.0 + actorInfo->_1C
     f32 _208;                           // 208     Inited to 80.0 + actorInfo->_1E
     u8  zoneID;                         // 20C
-    u8  type;                           // 20D     0: Actor, 1: Player, 2: Yoshi, 3: Enemy, 4: Unknown
+    u8  type;                           // 20D     0: Actor, 1: Player, 2: Yoshi, 3: Enemy, 4: Unknown, 5: Boss
     bool isActive;                      // 20E     Inited to true
     bool isVisible;                     // 20F     Inited to true
     bool noSpawn;                       // 210     Inited to false
