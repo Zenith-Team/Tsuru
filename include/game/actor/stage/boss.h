@@ -86,7 +86,7 @@ public:
     virtual void vf594();
     virtual u32 vf59C(); // deleted
     virtual bool isNextDamageKill(); // deleted
-    virtual void vf5AC(); // deleted
+    virtual u32 vf5AC(); // deleted
     virtual bool isDamageHit();
     virtual void processHits(u32 amount);
     virtual u32 fireDamageAmount() = 0;
@@ -103,8 +103,8 @@ public:
     virtual u32 fireTime();
     virtual void vf624();
     virtual u32 stompTime();
-    virtual void vf634(u32);
-    virtual void vf63C(u32);
+    virtual void vf634(StageActor* collidingPlayer);
+    virtual void vf63C(StageActor* collidingPlayer);
     virtual void vf644();
     virtual void onStomp(StageActor* collidingPlayer);
     virtual void onStompDamage(StageActor* collidingPlayer);
@@ -166,12 +166,12 @@ public:
     void updateModelTrampoline();
 
     // All these are score related
-    void FUN_202D0F8(u32, Vec3f*, u32);
+    void FUN_202D0F8(StageActor*, Vec3f*, u32);
     void FUN_202D030(StageActor*, Vec3f*, u32);
     void FUN_202D094(StageActor*, Vec3f*, u32);
 
-    u32 hitsToDeath;        // Hits until boss dies
-    u32 hitsToDamage;       // Fireball hits until boss takes damage
+    s32 hitsToDeath;        // Hits until boss dies
+    s32 hitsToDamage;       // Fireball hits until boss takes damage
     u32 _1888;              // Some type of timer, related to stomp?
     bool isRumbling;
     bool isCutscene;
