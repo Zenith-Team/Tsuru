@@ -97,3 +97,15 @@ SetCurrentGraphicsContext:
 
     RestoreVolatileRegisters
     blr
+
+.global SetBossActorType
+SetBossActorType:
+    li r0, 5
+    stb r0, 0x20D(r31)
+
+    lwz r0, 0x14(r1)
+    lwz r31, 0xC(r1)
+    mtlr r0
+    addi r1, r1, 0x10
+    li r3, 1
+    blr

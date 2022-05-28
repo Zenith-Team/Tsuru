@@ -53,3 +53,9 @@ Hooks:
     instr: bl
     addr: "22A7FD4"
     func: AddBGOffset
+
+# Set boss type in stageactor
+  - type: branch
+    instr: b
+    addr: "202bdc4" # Boss::beforeExecute()
+    func: SetBossActorType

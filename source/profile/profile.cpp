@@ -835,7 +835,7 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::ModelLoader,             // 744
     ProfileID::StringBank,              // 745
     ProfileID::MilitaryCheep,           // 746
-    ProfileID::MilitaryCheepController, // 747
+    ProfileID::UniversalBossController, // 747
     ProfileID::GiantSkewer,             // 748
     ProfileID::Scuttlebug,              // 749
 };
