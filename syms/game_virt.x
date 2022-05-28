@@ -281,14 +281,9 @@ SECTIONS {
     GlobalBasicSoundActorB__15BasicSoundActor = 0x101C63D0;
     playSound__15BasicSoundActorFPCcP13Vec2__tm__2_fUi = 0x29BED48;
 
-/* BoomBoomW1 */
-    vf59C__10BoomBoomW1Fv = 0x205d7a4;
-    vf5AC__10BoomBoomW1Fv = 0x205d7ec;
-    FUN_202D0F8__4BossFUiP13Vec3__tm__2_fT1 = 0x202D0F8;
-    FUN_202D030__4BossFP10StageActorP13Vec3__tm__2_fUi = 0x202D030;
-
-
 /* Boss */
+    FUN_202D0F8__4BossFP10StageActorP13Vec3__tm__2_fUi = 0x202D0F8;
+    FUN_202D030__4BossFP10StageActorP13Vec3__tm__2_fUi = 0x202D030;
     checkDerivedRuntimeTypeInfo__4BossCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x202dab0;
     StateID_BossState1__4Boss = 0x101f09e0;
     StateID_BossState5__4Boss = 0x101f0a70;
