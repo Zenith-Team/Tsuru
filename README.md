@@ -12,38 +12,42 @@ Please note that a rewrite is currently in progress, so not everything listed he
 
 ## Custom Sprites:
 * Actor Spawner
-* Angry Sun
+* Angry Sun/Moon
 * Beep Block
 * Bomb Bro *
 * Cataquack
+* Custom Door
 * Death Foo
 * Debug Helper
 * Effect Spawner
 * Example World Map Actor
-* Fake Actor
+* Fake Actor Collection
 * Falling Chestnut
 * Flipblock *
-* Kamiya Miniboss
+* Giant Skewer
+* Kamiya
 * Liquid Collision Overlay
 * Magic Platform *
-* Mini-only door
+* Military Cheep
 * Model Loader
 * P-Acorn (as an in-game actor)
 * Para-Bones
 * Physics Modifier
 * Poison Mushroom *
-* Rainbow Light
+* RGB Light Source
+* Scuttlebug
 * Star Coin Shard
 * String Bank
 * Task Changer
 * Time Clock
 * Triple Block *
+* Universal Boss Controller
 * Water Waves
 * Wind Generator
 
 ## Patches:
 Miscellaneous hacks/patches are listed here. Most of the game-changing patches are toggleable in the savefile by hex editing or disabling them in project.yaml
-* Add archive links for some unused actors to allow adding models *
+* Add archive links for some unused actors to allow adding models
 * ATLYS custom world map system (early alpha)
 * Cheat menu to activate cheats and debug settings
 * Custom cutscene player
@@ -59,7 +63,7 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 * Fixed collision conditions for some sprites
 * Fixed framebuffer clearing issue
 * Handle some exceptions/errors
-* Indicator for hacks loaded via version string
+* Indicator for hacks loaded via version string *
 * Infinite lives
 * Infinite time
 * Instant respawn
@@ -68,12 +72,11 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 * NoClip
 * No powerup from checkpoint
 * Projection settings for World Map and Level
-* Restored background offset settings functionality *
-* Restored many of sead::PrimitiveRendererCafe's deleted functions
+* Restored background offset settings functionality
 * Restored sound effect reverb settings
 * RPL library loader
 * SARC level loader
-* Size modifier
+* Size modifier *
 * Space physics
 * Titlescreen theme based on last world saved in
 * World-based titlescreen level theme
