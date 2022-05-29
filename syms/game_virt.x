@@ -97,6 +97,7 @@ SECTIONS {
     drawTextureMSAA__Q3_3agl3utl13ImageFilter2DSFRCQ2_3agl14TextureSamplerRCQ2_4sead8ViewportRC13Vec2__tm__2_fT3Ui = 0x2A533EC;
 
 /* sead::CalculateTask */
+    RTTI__Q2_4sead13CalculateTask = 0x101ea764;
     __ct__Q2_4sead13CalculateTaskFRCQ2_4sead16TaskConstructArgPCc = 0x29FC508;
     __dt__Q2_4sead13CalculateTaskFv = 0x29FC2F0;
     checkDerivedRuntimeTypeInfo__Q2_4sead13CalculateTaskCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x29FC7D8;
@@ -284,6 +285,8 @@ SECTIONS {
     playSound__15BasicSoundActorFPCcP13Vec2__tm__2_fUi = 0x29BED48;
 
 /* Boss */
+    RTTI__4Boss = 0x101e9f24;
+    getRuntimeTypeInfo__4BossCFv = __deleted_virtual_called;
     FUN_202D0F8__4BossFP10StageActorP13Vec3__tm__2_fUi = 0x202D0F8;
     FUN_202D030__4BossFP10StageActorP13Vec3__tm__2_fUi = 0x202D030;
     checkDerivedRuntimeTypeInfo__4BossCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x202dab0;
@@ -448,6 +451,7 @@ SECTIONS {
     FUN_202D094__4BossFP10StageActorP13Vec3__tm__2_fUi = 0x202d094;
 
 /* BossController */
+    getRuntimeTypeInfo__14BossControllerCFv = __deleted_virtual_called;
     checkDerivedRuntimeTypeInfo__14BossControllerCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x202f644;
     StateID_StartSequence__14BossController = 0x101f0ac4;
     __ct__14BossControllerFPC14ActorBuildInfo = 0x202e448;
@@ -471,8 +475,7 @@ SECTIONS {
     vf21C__14BossControllerFv = 0x202f7b0;
 
 /* CircularCollider */
-    __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__16CircularColliderSFv = 0x101E9F88;
-    typeInfo__L0__getRuntimeTypeInfoStatic__16CircularColliderSFv = 0x101EA398;
+    RTTI__16CircularCollider = 0x101EA398;
 
 /* ColliderBase */
     RTTI__12ColliderBase = 0x101e9fa4;
@@ -512,6 +515,7 @@ SECTIONS {
     sInstance__11CSPlayerMgr = 0x101CC30C;
 
 /* CSCollisionActor */
+    RTTI__16CSCollisionActor = 0x101ea3e8;
     __ct__16CSCollisionActorFPC14ActorBuildInfo = 0x21D596C;
     __dt__16CSCollisionActorFv = 0x21D60EC;
     checkDerivedRuntimeTypeInfo__16CSCollisionActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x21D5FF0;
@@ -566,6 +570,7 @@ SECTIONS {
     directionToRotationList__9Direction = 0x10200DD8;
 
 /* DoorBase */
+    RTTI__8DoorBase = 0x101eb330;
     __ct__8DoorBaseFPC14ActorBuildInfo = 0x27583F0;
     __dt__8DoorBaseFv = 0x2759534;
     checkDerivedRuntimeTypeInfo__8DoorBaseCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x27593B8;
@@ -618,6 +623,7 @@ SECTIONS {
     spawn__6EffectSFUiPC13Vec3__tm__2_fPC14Vec3__tm__3_UiT2 = 0x22AB080;
 
 /* Enemy */
+    RTTI__5Enemy = 0x101e9ef0;
     __ct__5EnemyFPC14ActorBuildInfo = 0x2328494;
     processCollision__5EnemyFP14HitboxColliderT1Ui = 0x2329B88;
     killPlayerJump__5EnemyFP10StageActorRC13Vec2__tm__2_fP9StateBase = 0x232DA34;
@@ -827,6 +833,7 @@ SECTIONS {
     makeSRT__5Mtx34SFR5Mtx34RC13Vec3__tm__2_fN22 = 0x2508424;
 
 /* MultiStateActor */
+    RTTI__15MultiStateActor = 0x101e9ce8;
     __vtbl__15MultiStateActor = 0x10001048;
     __ct__15MultiStateActorFPC14ActorBuildInfo = 0x200AA8C;
     vfAC__15MultiStateActorFv = 0x200ABB0;
@@ -913,6 +920,7 @@ SECTIONS {
     sInstance__9PlayerMgr = 0x101E6994;
 
 /* Powerup */
+    RTTI__7Powerup = 0x101ead38;
     __ct__7PowerupFPC14ActorBuildInfo = 0x251EBFC;
     __dt__7PowerupFv = 0x251FE04;
     checkDerivedRuntimeTypeInfo__7PowerupCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x251FC68;
@@ -1037,6 +1045,7 @@ SECTIONS {
     __CPR62__init__14ShapedColliderFP10StageActorRCQ2_J6J4Info = 0x21ad3bc;
     execute__14ShapedColliderFv = 0x21a871c;
     __dt__14ShapedColliderFv = 0x21A7A04;
+    RTTI__14ShapedCollider = 0x101e9fb4;
 
     /* //! THIS IS PROBABLY WRONG THE CTOR IS INLINED TODO: FIX THIS FIX THIS */
     __ct__14ShapedColliderFiP13Vec2__tm__2_fPQ2_12ColliderBase4NodeT3 = 0x21A7904;
@@ -1045,8 +1054,7 @@ SECTIONS {
     play__17SkeletalAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FDADC;
 
 /* SolidOnTopCollider */
-    __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__18SolidOnTopColliderSFv = 0x101E9D48;
-    typeInfo__L0__getRuntimeTypeInfoStatic__18SolidOnTopColliderSFv = 0x101E9FA8;
+    RTTI__18SolidOnTopCollider = 0x101E9FA8;
 
 /* SoundSystem */
     sInstance__11SoundSystem = 0x101E7C84;
@@ -1055,6 +1063,7 @@ SECTIONS {
     getAudioFx__15SoundSystemBaseFv = 0x29B1AA4;
 
 /* StageActor */
+    RTTI__10StageActor = 0x101e9cc0;
     __vtbl__10StageActor = 0x10000268;
     __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x101E9CBC;
     typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x101E9CC0;
@@ -1134,6 +1143,7 @@ SECTIONS {
 
 /* WindGenerator */
     __dt__13WindGeneratorFv = 0x288EFA0;
+    RTTI__13WindGenerator = 0x101e9cc0;
     checkDerivedRuntimeTypeInfo__13WindGeneratorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x288EEFC;
     getRuntimeTypeInfo__13WindGeneratorCFv = __deleted_virtual_called;
     onCreate__13WindGeneratorFv = 0x288EBC4;
