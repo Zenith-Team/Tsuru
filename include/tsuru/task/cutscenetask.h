@@ -6,6 +6,19 @@
 #include "agl/lyr/drawmethod.h"
 #include "sead.h"
 
+#include "game/layout/layoutclass2.h"
+
+class PaBatteryLayout : public LayoutClass2 {
+public:
+    PaBatteryLayout()
+        : LayoutClass2(this->cl, 1)
+    { }
+
+    virtual ~PaBatteryLayout() { }
+
+    CoLayout cl[1];
+};
+
 class CutsceneTask : public sead::CalculateTask {
     SEAD_RTTI_OVERRIDE_IMPL(CutsceneTask, sead::CalculateTask)
     SEAD_SINGLETON_TASK(CutsceneTask)
@@ -23,6 +36,5 @@ public:
     void drawLayerCutscene(const agl::lyr::RenderInfo& renderInfo);
 
     agl::lyr::DrawMethodImpl<CutsceneTask> drawMethodCutscene;
-    u32 frame;
-    const char* videoFile;
+    PaBatteryLayout lyt;
 };
