@@ -130,7 +130,7 @@ void GiantSkewer::endState_Idle() { }
 /** STATE: PreMove */
 
 void GiantSkewer::beginState_PreMove() {
-    // TODO: Play premove sound
+    playSound("SE_OBJ_DAIKONBOU_L_SIGN", this->position);
 }
 
 void GiantSkewer::executeState_PreMove() {
@@ -172,6 +172,7 @@ void GiantSkewer::executeState_Moving() {
 
 void GiantSkewer::endState_Moving() {
     ZoneRumbleMgr::instance()->rumble(6);
+    playSound("SE_OBJ_DAIKONBOU_L_LAND", this->position);
 }
 
 /** STATE: MovingEnd */
@@ -200,4 +201,6 @@ void GiantSkewer::executeState_Retracting() {
     }
 }
 
-void GiantSkewer::endState_Retracting() { }
+void GiantSkewer::endState_Retracting() {
+    playSound("SE_OBJ_DAIKONBOU_L_REVERT_F", this->position);
+}
