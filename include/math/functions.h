@@ -3,6 +3,9 @@
 #include "math/constants.h"
 #include "types.h"
 
+// @return The given param without a sign
+inline f32 abs(f32 x) { return (x < 0.0f) ? -x : x; }
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -37,9 +40,6 @@ f32 fmodf(f32 x, f32 y);
 
 // @return Square of the given param
 inline f32 pow2f(f32 x) { return x * x; }
-
-// @return The given param without a sign
-inline f32 fabsf(f32 x) { return (x < 0.0f) ? -x : x; }
 
 inline f32 degToRad(f32 deg) { return (deg * M_PI) / 180.0f; }
 

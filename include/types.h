@@ -11,6 +11,9 @@
 //#define Override
 #ifdef Override
 #define override
+#define static_assert(condition, ...) typedef int TOKENPASTE2(static_assert_, __LINE__)[(condition) ? 1 : -1]
+#else
+#define static_assert(x, ...)
 #endif
 
 #define forceinline __attribute__((always_inline))
@@ -18,7 +21,6 @@
 #define aligned(x)  __attribute__((aligned(x)))
 
 #define nullptr NULL
-#define static_assert(condition, ...) typedef int TOKENPASTE2(static_assert_, __LINE__)[(condition) ? 1 : -1]
 
 // Primitive type shortcuts
 

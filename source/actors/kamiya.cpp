@@ -314,7 +314,7 @@ void Kamiya::executeState_Flying() {
 
     this->rotation.z = fixDeg(this->speed.x * 5.0f);
 
-    if (this->flyTimer > 240 && fabsf(this->speed.x) < 0.25f) {
+    if (this->flyTimer > 240 && abs(this->speed.x) < 0.25f) {
         switch (sead::randU32(3)) {
             case 0:  this->flyTimer = 120;                            break;
             case 1:  this->doStateChange(&Kamiya::StateID_Attacking); break;
