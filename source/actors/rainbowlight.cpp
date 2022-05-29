@@ -22,6 +22,10 @@ public:
     f32 lightAttenuationRadius;
 };
 
+const ActorInfo RainbowLightActorInfo = {
+    Vec2i(0, 0), Vec2i(0, 0), Vec2i(240, 240), 0, 0, 0, 0, 0
+};
+
 const Profile RainbowLightProfile(&RainbowLight::build, ProfileID::RainbowLight, "RainbowLight", nullptr, 0);
 
 RainbowLight::RainbowLight(const ActorBuildInfo* buildInfo)
@@ -33,11 +37,10 @@ Actor* RainbowLight::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 RainbowLight::onCreate() {
-    this->lightAttenuationRadius = ((this->settings2 >> 0x1C) & 0xF) * ((this->settings2 >> 0x1C) & 0xF) * 1.5f;
+    // Nybble 2 squared
+    this->lightAttenuationRadius = (this->eventID1 & 0xF) * (this->eventID1 & 0xF) * 1.5f;
 
-    LOG("%x", this->settings1 & 0xF);
-
-    switch (this->settings1 & 0xF) {
+    switch (this->eventID1 >> 0x4 & 0xF) { // Nybble 1
         case 0: this->lightColor = sead::colorRed;      break;
         case 1: this->lightColor = sead::colorOrange;   break;
         case 2: this->lightColor = sead::colorYellow;   break;
