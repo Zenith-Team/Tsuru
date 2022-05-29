@@ -2,7 +2,6 @@
 #include "tsuru/task/cutscenetask.h"
 #include "game/actor/stage/stageactor.h"
 #include "game/task/taskmgr.h"
-#include "tsuru/task/cutscenetask.h"
 #include "log.h"
 
 class TaskChanger : public StageActor {
