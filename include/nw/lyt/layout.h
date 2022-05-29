@@ -3,6 +3,7 @@
 #include "nw/ut/runtimetypeinfo.h"
 #include "nw/ut/linkedlist.h"
 #include "nw/lyt/drawinfo.h"
+#include "nw/math/vec2.h"
 
 namespace nw { namespace lyt {
 
@@ -34,8 +35,7 @@ public:
     ut::internal::LinkListImpl animTransList;
     Pane* rootPane;
     GroupContainer* groupContainer;
-    f32 width;
-    f32 height;
+    nw::math::VEC2 size;
     void* _1C;
     ResourceAccessor* resourceAccessor;
     ut::internal::LinkListImpl partsPaneList;

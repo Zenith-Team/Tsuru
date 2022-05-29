@@ -71,9 +71,9 @@ public:
         this->func = func;
         this->start = start;
         this->target = target;
-        this->step = fabsf(valueFromPercent(stepPercent, start, target) - start);
+        this->step = abs(valueFromPercent(stepPercent, start, target) - start);
         this->iteration = 0;
-        this->totalIterations = fabsf(target - start) / this->step;
+        this->totalIterations = abs(target - start) / this->step;
     }
 
     // Eases the value towards the target value
@@ -86,7 +86,7 @@ public:
         }
 
         this->iteration++;
-        f32 progress = fabsf(percentFromValue(this->start + this->step * this->iteration, this->start, this->target));
+        f32 progress = abs(percentFromValue(this->start + this->step * this->iteration, this->start, this->target));
         f32 next = this->start + this->func(progress) * (this->target - this->start);
         //LOG("Easing (%i): %f -> %f [Change: %f | %f%]\n", this->iteration, value, next, next - value, progress * 100);
 
