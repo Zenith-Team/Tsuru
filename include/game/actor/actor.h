@@ -5,7 +5,7 @@
 #include "game/actor/actorbuildinfo.h"
 
 class Actor { // Size: 0x50
-    SEAD_RTTI_BASE(Actor)
+    SEAD_RTTI_BASE(Actor);
 
 public:
     Actor(const ActorBuildInfo* buildInfo);

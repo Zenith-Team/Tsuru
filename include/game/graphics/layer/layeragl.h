@@ -7,7 +7,7 @@ class LayerAgl : public agl::lyr::Layer {
 
 public:
     class Node {
-        SEAD_RTTI_BASE(Node)
+        SEAD_RTTI_BASE(Node);
 
     public:
         virtual void calc() = 0;

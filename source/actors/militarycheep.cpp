@@ -18,8 +18,6 @@ public:
     u32 onExecute() override;
     u32 onDraw() override;
     
-    void startCutscene() override;
-    void endCutscene() override;
     void initHitboxCollider() override;
     void initModels() override;
     void updateModel() override;
@@ -49,6 +47,8 @@ u32 MilitaryCheep::onExecute() {
     this->states.execute();
     this->updateModelTrampoline();
 
+    this->finishedSpawning();
+
     return 1;
 }
 
@@ -56,16 +56,6 @@ u32 MilitaryCheep::onDraw() {
     DrawMgr::instance()->drawModel(this->model);
 
     return 0;
-}
-
-void MilitaryCheep::startCutscene() {
-    LOG("start cutscene");
-    this->isCutscene = true;
-}
-
-void MilitaryCheep::endCutscene() {
-    LOG("end cutscene");
-    this->isCutscene = false;
 }
 
 void MilitaryCheep::initHitboxCollider() {

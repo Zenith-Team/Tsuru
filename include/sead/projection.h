@@ -8,7 +8,7 @@
 namespace sead {
 
 class Projection { // Size: 0x94
-    SEAD_RTTI_BASE(Projection)
+    SEAD_RTTI_BASE(Projection);
 
 public:
     Projection();

@@ -17,7 +17,7 @@ public:
     Layer();
     virtual ~Layer();
 
-    SEAD_RTTI_BASE(Layer)
+    SEAD_RTTI_BASE(Layer);
     virtual u32 getRenderStepNum() const = 0;
     virtual void getRenderStepName(sead::SafeString* name, s32 idx) const = 0;
     virtual void doInitialize(sead::Heap* heap);

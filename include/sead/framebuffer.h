@@ -6,7 +6,7 @@
 namespace sead {
 
 class LogicalFrameBuffer {
-    SEAD_RTTI_BASE(LogicalFrameBuffer)
+    SEAD_RTTI_BASE(LogicalFrameBuffer);
 
 public:
     LogicalFrameBuffer()

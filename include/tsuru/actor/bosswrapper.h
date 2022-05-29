@@ -56,7 +56,7 @@ public:
     void onStompKill(StageActor* col) override { this->FUN_202D094(col, &this->position, 6); }
     void setLookTarget() override { this->lookTarget.targetPosition.x = this->position.x; this->lookTarget.targetPosition.y = this->position.y; }
     bool vf58C() override { return this->freezeMgr._44 ^ 1; }
-    void onKill() override { this->vf574(); ActorGlobalsHolder::instance()->activeBossController->bossDoneDying = true; }
+    void onKill() override { this->vf574(); this->finishedDying(); }
     u32 stompDamageAmount() override { return THitPoints / 3; }
     u32 groundPoundDamageAmount() override { return THitPoints / 3; }
     u32 stompDamageAmount2() override { return THitPoints / 3; }
@@ -64,6 +64,14 @@ public:
 
     void updateModel() override = 0;
     void initHitboxCollider() override = 0;
+
+    void finishedDying() {
+        ActorGlobalsHolder::instance()->activeBossController->bossDoneDying = true;
+    }
+
+    void finishedSpawning() {
+        ActorGlobalsHolder::instance()->activeBossController->startSequenceFinished = true;
+    }
 };
 
 class BossControllerWrapper : public BossController {

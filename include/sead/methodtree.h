@@ -13,7 +13,7 @@ template <typename T, typename U>
 class IDelegate2;
 
 class MethodTreeNode : public TTreeNode<MethodTreeNode*>, INamable, IDisposer {
-    SEAD_RTTI_BASE(MethodTreeNode)
+    SEAD_RTTI_BASE(MethodTreeNode);
 
 public:
     enum PauseFlag {

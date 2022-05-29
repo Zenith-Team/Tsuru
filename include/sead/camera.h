@@ -6,7 +6,7 @@
 namespace sead {
 
 class Camera {
-    SEAD_RTTI_BASE(Camera)
+    SEAD_RTTI_BASE(Camera);
 
 public:
     inline Camera() {

@@ -45,7 +45,7 @@ public:
         this->destroy();
     }
 
-    SEAD_RTTI_BASE(EffectWrapper)
+    SEAD_RTTI_BASE(EffectWrapper);
 
     void init(u32 effectID, const Mtx34* mtx, bool mtxHasScale);
     void init(u32 effectID, const Vec3f* position, const Vec3u* rotation, const Vec3f* scale);
@@ -60,7 +60,7 @@ public:
 };
 
 class ActorEffect : public EffectWrapper {
-    SEAD_RTTI_OVERRIDE(ActorEffect, EffectWrapper)
+    SEAD_RTTI_OVERRIDE(ActorEffect, EffectWrapper);
 
 public:
     ActorEffect()
