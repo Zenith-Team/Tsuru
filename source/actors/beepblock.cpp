@@ -70,7 +70,7 @@ u32 BeepBlock::onCreate() {
 
     this->model = ModelWrapper::create("star_coin", "star_coinA");
 
-    this->beepBlockType = static_cast<BeepBlockColor>(this->settings1 >> 0x1C);
+    this->beepBlockType = static_cast<BeepBlockColor>(this->eventID1 >> 0x4 & 0xF); // Nybble 1
 
     if (this->beepBlockType == BeepBlockColor_Red)
         this->doStateChange(&StateID_RedDisabled);

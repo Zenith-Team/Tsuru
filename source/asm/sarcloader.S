@@ -4,10 +4,10 @@ RDashCoursePathFormat:  .string "rdash://course_res_pack/%s.sarc"
 
 .text
 
-.global ResMgr_LoadLevelArchiveWithoutDecomp
-ResMgr_LoadLevelArchiveWithoutDecomp:
+.global LoadLevelArchiveWithoutDecomp
+LoadLevelArchiveWithoutDecomp:
     cmpwi     r3, 0x0
-    bne       ResMgr_LoadLevelArchiveContinue
+    bne       LoadLevelArchiveContinue
 
     lis       r4, nullterminator@ha
     addi      r3, r1, 0x10
@@ -21,17 +21,17 @@ ResMgr_LoadLevelArchiveWithoutDecomp:
     addi      r3, r1, 0x10
     lwz       r5, 0x0(r28)
     cmpwi     r0, 0x0
-    bne       ResMgr_SetLevelArchiveRDash
+    bne       SetLevelArchiveRDash
 
     lis       r4, CoursePathFormat@ha
     addi      r4, r4, CoursePathFormat@l
-    b         ResMgr_LoadLevelArchiveWithoutDecompContinue
+    b         LoadLevelArchiveWithoutDecompContinue
 
-ResMgr_SetLevelArchiveRDash:
+SetLevelArchiveRDash:
     lis       r4, RDashCoursePathFormat@ha
     addi      r4, r4, RDashCoursePathFormat@l
 
-ResMgr_LoadLevelArchiveWithoutDecompContinue:
+LoadLevelArchiveWithoutDecompContinue:
     crclr     4*cr1+eq
     bl        formatBufferedString
     li        r7, 0x0
@@ -41,10 +41,10 @@ ResMgr_LoadLevelArchiveWithoutDecompContinue:
     mr        r3, r27
     bl        ResMgr_LoadLevelResource
     cmpwi     r3, 0x0
-    bne       ResMgr_LoadLevelArchiveContinue
+    bne       LoadLevelArchiveContinue
     stw       r3, 0x10(r27)
     b         ResMgr_LoadLevelArchiveFail
 
-ResMgr_LoadLevelArchiveContinue:
+LoadLevelArchiveContinue:
     stw       r3, 0x10(r27)
     b         ResMgr_LoadLevelArchiveSuccess
