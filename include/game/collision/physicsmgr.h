@@ -6,7 +6,7 @@
 class StageActor;
 
 class PhysicsMgr : public TileChecker { // Size: 0x14DC
-    SEAD_RTTI_BASE(PhysicsMgr)
+    SEAD_RTTI_BASE(PhysicsMgr);
 
 public:
     struct Sensor {

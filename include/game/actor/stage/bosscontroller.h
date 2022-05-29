@@ -8,6 +8,11 @@ class BossController : public StateActor { // Size: 0x17E0
     SEAD_RTTI_OVERRIDE(BossController, StateActor)
 
 public:
+    enum EndSequenceState {
+        EndSequenceState_WaitingForBossDeath = 2
+    };
+
+public:
     BossController(const ActorBuildInfo* ActorBuildInfo);
     virtual ~BossController();
 
@@ -36,10 +41,10 @@ public:
     u32 vf174() override;
     void getRect(Rect& rect) override;
 */
-    DECLARE_STATE_VIRTUAL(BossController, BossControllerState1);
-    DECLARE_STATE_VIRTUAL(BossController, BossControllerState2);
-    DECLARE_STATE_VIRTUAL(BossController, BossControllerState3);
-    DECLARE_STATE_VIRTUAL(BossController, BossControllerState4);
+    DECLARE_STATE_VIRTUAL(BossController, Initialize);
+    DECLARE_STATE_VIRTUAL(BossController, StartSequence);
+    DECLARE_STATE_VIRTUAL(BossController, Wait);
+    DECLARE_STATE_VIRTUAL(BossController, EndSequence);
 
     virtual void vf1E4();
     virtual void vf1EC();
@@ -50,14 +55,14 @@ public:
     virtual void spawnCutsceneKamek();
     virtual void vf21C();
 
-    u8 _17C8;
+    bool startSequenceFinished;
     u8 _17C9;
     u8 _17CA;
     bool bossDoneDying;
     u32 _17CC;
-    u32 _17D0;
+    EndSequenceState endSequenceState;
     u32 _17D4;
-    u32 _17D8;
+    s32 startSequenceWaitTimer;
     u8 _17DC;
     u8 _17DD;
 };

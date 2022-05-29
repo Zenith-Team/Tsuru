@@ -57,7 +57,16 @@ inline DerivedType* DynamicCast(Type* obj) {
 
 }
 
-#define SEAD_RTTI_BASE(CLASS)                                                                                \
+#define SEAD_RTTI_BASE(CLASS) \
+    public: \
+        static const sead::RuntimeTypeInfo::Root RTTI; \
+        static const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfoStatic() {                          \
+            return &RTTI;                                                                                    \
+        }                                                                                                    \
+        virtual bool checkDerivedRuntimeTypeInfo(const sead::RuntimeTypeInfo::Interface* typeInfo) const; \
+        virtual const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfo() const
+
+#define SEAD_RTTI_BASE_IMPL(CLASS)                                                                           \
     public:                                                                                                  \
         static const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfoStatic() {                          \
             static const sead::RuntimeTypeInfo::Root typeInfo;                                               \
@@ -71,12 +80,16 @@ inline DerivedType* DynamicCast(Type* obj) {
                                                                                                              \
         virtual const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfo() const {                         \
             return getRuntimeTypeInfoStatic();                                                               \
-        }
+        } ((void)0)
 
 #define SEAD_RTTI_OVERRIDE(CLASS, BASE)                                                                     \
     public:                                                                                                 \
+        static const sead::RuntimeTypeInfo::Derive<CLASS> RTTI;                                             \
+        static const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfoStatic() {                         \
+            return &RTTI;                                                                                   \
+        }                                                                                                   \
         bool checkDerivedRuntimeTypeInfo(const sead::RuntimeTypeInfo::Interface* typeInfo) const override;  \
-        const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfo() const override { return nullptr; } // This function is deleted so its ok
+        const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfo() const override;
 
 #define SEAD_RTTI_OVERRIDE_IMPL(CLASS, BASE)                                                                 \
     public:                                                                                                  \

@@ -142,7 +142,7 @@ public:
 public:
     ColliderBase();
     virtual ~ColliderBase() { }
-    SEAD_RTTI_BASE(ColliderBase)
+    SEAD_RTTI_BASE(ColliderBase);
     virtual bool vf24(u32*, u32);
     virtual u32 vf2C(u32*); // deleted
     virtual void vf34() = 0;

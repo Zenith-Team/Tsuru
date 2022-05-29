@@ -207,6 +207,7 @@ SECTIONS {
     onDestroy__Q2_4sead8TaskBaseFv = __deleted_virtual_called;
     enterCommon__Q2_4sead8TaskBaseFv = 0x29FF818;
     adjustHeapAll__Q2_4sead8TaskBaseFv = 0x29FF9DC;
+    RTTI__Q2_4sead8TaskBase = 0x101ea768;
 
 /* sead::Viewport */
     __ct__Q2_4sead8ViewportFfN31 = 0x2A072FC;
@@ -214,6 +215,7 @@ SECTIONS {
     apply__Q2_4sead8ViewportCFRCQ2_4sead18LogicalFrameBuffer = 0x2A0783C;
 
 /* Actor */
+    RTTI__5Actor = 0x101e9cc8;
     __ct__5ActorFPC14ActorBuildInfo = 0x2002CE0;
     __dt__5ActorFv = 0x2002E68;
     __vtbl__5Actor = 0x100006C0;
@@ -447,23 +449,23 @@ SECTIONS {
 
 /* BossController */
     checkDerivedRuntimeTypeInfo__14BossControllerCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x202f644;
-    StateID_BossControllerState2__14BossController = 0x101f0ac4;
+    StateID_StartSequence__14BossController = 0x101f0ac4;
     __ct__14BossControllerFPC14ActorBuildInfo = 0x202e448;
     __dt__14BossControllerFv = 0x202f7c0;
     onCreate__14BossControllerFv = 0x202e4dc;
     onExecute__14BossControllerFv = 0x202e578;
-    beginState_BossControllerState1__14BossControllerFv = 0x202e6d4;
-    executeState_BossControllerState1__14BossControllerFv = 0x202e754;
-    endState_BossControllerState1__14BossControllerFv = 0x202ee6c;
-    beginState_BossControllerState2__14BossControllerFv = 0x202e758;
-    executeState_BossControllerState2__14BossControllerFv = 0x202e7d8;
-    endState_BossControllerState2__14BossControllerFv = 0x202e948;
-    beginState_BossControllerState3__14BossControllerFv = 0x202e9b8;
-    executeState_BossControllerState3__14BossControllerFv = 0x202ead8;
-    endState_BossControllerState3__14BossControllerFv = 0x202f784;
-    beginState_BossControllerState4__14BossControllerFv = 0x202eb50;
-    executeState_BossControllerState4__14BossControllerFv = 0x202ee6c;
-    endState_BossControllerState4__14BossControllerFv = 0x202f788;
+    beginState_Initialize__14BossControllerFv = 0x202e6d4;
+    executeState_Initialize__14BossControllerFv = 0x202e754;
+    endState_Initialize__14BossControllerFv = 0x202ee6c;
+    beginState_StartSequence__14BossControllerFv = 0x202e758;
+    executeState_StartSequence__14BossControllerFv = 0x202e7d8;
+    endState_StartSequence__14BossControllerFv = 0x202e948;
+    beginState_Wait__14BossControllerFv = 0x202e9b8;
+    executeState_Wait__14BossControllerFv = 0x202ead8;
+    endState_Wait__14BossControllerFv = 0x202f784;
+    beginState_EndSequence__14BossControllerFv = 0x202eb50;
+    executeState_EndSequence__14BossControllerFv = 0x202ee6c;
+    endState_EndSequence__14BossControllerFv = 0x202f788;
     vf1E4__14BossControllerFv = 0x202f110;
     vf1EC__14BossControllerFv = 0x202f158;
     vf21C__14BossControllerFv = 0x202f7b0;
@@ -473,6 +475,7 @@ SECTIONS {
     typeInfo__L0__getRuntimeTypeInfoStatic__16CircularColliderSFv = 0x101EA398;
 
 /* ColliderBase */
+    RTTI__12ColliderBase = 0x101e9fa4;
     setType__12ColliderBaseFQ2_12ColliderBase4Type = 0x21A5A70;
 
 /* ColliderBase::Node */
@@ -1031,12 +1034,12 @@ SECTIONS {
     playTexSrtAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FEE50;
 
 /* ShapedCollider */
-    __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__14ShapedColliderSFv = 0x101E9D30;
-    typeInfo__L0__getRuntimeTypeInfoStatic__14ShapedColliderSFv = 0x101E9FB4;
-    __ct__14ShapedColliderFiP13Vec2__tm__2_fPQ2_12ColliderBase4NodeT3 = 0x21A7904;
-    execute__14ShapedColliderFv = 0x21A871C;
-    __CPR62__init__14ShapedColliderFP10StageActorRCQ2_J6J4Info = 0x21AD3BC;
+    __CPR62__init__14ShapedColliderFP10StageActorRCQ2_J6J4Info = 0x21ad3bc;
+    execute__14ShapedColliderFv = 0x21a871c;
     __dt__14ShapedColliderFv = 0x21A7A04;
+
+    /* //! THIS IS PROBABLY WRONG THE CTOR IS INLINED TODO: FIX THIS FIX THIS */
+    __ct__14ShapedColliderFiP13Vec2__tm__2_fPQ2_12ColliderBase4NodeT3 = 0x21A7904;
 
 /* SkeletalAnimation */
     play__17SkeletalAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FDADC;

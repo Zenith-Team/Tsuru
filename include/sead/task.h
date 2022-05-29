@@ -49,7 +49,7 @@ public:
 };
 
 class TaskBase : public TTreeNode<TaskBase*>, public IDisposer, public INamable {
-    SEAD_RTTI_BASE(TaskBase)
+    SEAD_RTTI_BASE(TaskBase);
 
 public:
     enum State {

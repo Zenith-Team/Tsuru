@@ -24,7 +24,7 @@ public:
     Heap(const SafeString& name, Heap* parent, void* address, u32 size, HeapDirection direction, bool);
     virtual ~Heap();
 
-    SEAD_RTTI_BASE(Heap)
+    SEAD_RTTI_BASE(Heap);
 
     virtual void destroy() = 0;
     virtual u32 adjust() = 0;

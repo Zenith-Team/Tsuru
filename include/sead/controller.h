@@ -10,7 +10,7 @@ class ListNode;
 
 class ControllerInlineBase { // Size: 0x14
                              // This structure appears at the start of multiple controller class constructors and seems to be an inlined base class
-    SEAD_RTTI_BASE(ControllerInlineBase)
+    SEAD_RTTI_BASE(ControllerInlineBase);
 
 public:
     virtual void vf20(); // deleted
@@ -63,7 +63,7 @@ public:
 static_assert(sizeof(ControllerBase) == 0x130, "sead::ControllerBase size mismatch");
 
 class Controller : public ControllerBase { // Size: 0x15C
-    SEAD_RTTI_BASE(Controller)
+    SEAD_RTTI_BASE(Controller);
 
 public:
     Controller(ControllerMgr* manager);
@@ -85,7 +85,7 @@ public:
 static_assert(sizeof(Controller) == 0x15C, "sead::Controller size mismatch");
 
 class CafeDRCController : public Controller { // Size: 0x190
-    SEAD_RTTI_OVERRIDE(CafeDRCController, Controller)
+    SEAD_RTTI_OVERRIDE(CafeDRCController, Controller);
 
 public:
     struct TouchPanelInfo { // Size: 0xC
@@ -117,7 +117,7 @@ public:
 static_assert(sizeof(CafeDRCController) == 0x190, "sead::CafeDRCController size mismatch");
 
 class CafeRemoteController : public Controller { // Size: 0x164
-    SEAD_RTTI_OVERRIDE(CafeRemoteController, Controller)
+    SEAD_RTTI_OVERRIDE(CafeRemoteController, Controller);
 
 public:
     CafeRemoteController(ControllerMgr* manager, u32 _15C);
@@ -153,7 +153,7 @@ public:
 static_assert(sizeof(CafeDebugController) == 0x164, "sead::CafeDebugController size mismatch");
 
 class ControllerWrapperBase : public ControllerBase { // Size: 0x174
-    SEAD_RTTI_BASE(ControllerWrapperBase)
+    SEAD_RTTI_BASE(ControllerWrapperBase);
 
 public:
     ControllerWrapperBase();
