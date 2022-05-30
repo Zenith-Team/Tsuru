@@ -261,6 +261,7 @@ enum ProfileIDType {
     UniversalBossController,
     GiantSkewer,
     Scuttlebug,
+    AngryGrrrol,
 
     // Atlys profiles //! Do not place anything below these
     AtlysCamera,
