@@ -29,6 +29,7 @@ Files:
   - source/actors/universalbosscontroller.cpp
   - source/actors/giantskewer.cpp
   - source/actors/scuttlebug.cpp
+  - source/actors/angrygrrrol.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:

@@ -77,6 +77,12 @@ public:
     u8 directionToPlayerV(const Vec3f& position);
     u8 directionToActorH(const StageActor& other);
 
+    Vec2f distanceToPlayer() {
+        Vec2f out;
+        this->distanceToPlayer(out);
+        return out;
+    }
+
     void cullCheck(u32 unkMask = 0);
     bool offscreenDelete(u32 noRespawn); // Argument might be a bool
 
@@ -91,11 +97,11 @@ public:
     void actorCBCallback3(ColliderBase*, Vec2f*);
     void actorCBCallback4(ColliderBase*, Vec2f*);
 
-    inline Vec2f get2DPosition() const {
+    Vec2f get2DPosition() const {
         return Vec2f(this->position.x, this->position.y);
     }
 
-    inline void getRect(Rect& out) const {
+    void getRect(Rect& out) const {
         f32 XPos1 = position.x - 16.0f;
         f32 XPos2 = position.x + 16.0f;
         f32 YPos1 = position.y;

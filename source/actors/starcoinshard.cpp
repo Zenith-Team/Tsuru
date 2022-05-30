@@ -24,6 +24,7 @@ public:
 };
 
 const Profile StarCoinShardProfile(&StarCoinShard::build, ProfileID::StarCoinShard);
+PROFILE_RESOURCES(ProfileID::StarCoinShard, Profile::LoadResourcesAt_Course, "star_coin");
 
 const HitboxCollider::Info StarCoinShard::sCollisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &StarCoinShard::collisionCallback
