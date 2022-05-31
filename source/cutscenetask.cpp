@@ -21,7 +21,16 @@ CutsceneTask::CutsceneTask(const sead::TaskConstructArg& arg)
 void CutsceneTask::prepare() {
     this->lyt.init();
     this->lyt.getArchive("Common");
-    this->lyt.loadBFLYT("PaBattery.bflyt");
+    this->lyt.loadBFLYT("PreGameStoryW9.bflyt");
+    
+    static const sead::SafeString anims[] = {
+        "In"
+    };
+
+    u32 size = sizeof(anims) / sizeof(sead::SafeString);
+
+    this->lyt.initAnims(anims, size);
+    this->lyt.playAnim(0, "In", true);
 
     this->adjustHeapAll();
 }
