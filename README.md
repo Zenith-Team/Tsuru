@@ -3,12 +3,11 @@
 #### Let's build a platform for NSMBU custom code hacks
 
 # Our goal
-The goal of this project is to provide a platform for NSMBU custom code hacks for modders with the same toolset that Nintendo developers had when writing the game. We also have provided a ton of code examples and premade patches for new modders to learn from and for people who would just like to use them in their own personal mods.
+The goal of this project is to provide a platform for New Super Mario Bros. U custom code for modders with the same toolset that Nintendo developers had when writing the game. We also have provided a ton of code examples and premade patches for new modders to learn from and for people who would just like to use them in their own personal mods.
 Project started on March 9 2021.
 
 # What's here
 Please note that a rewrite is currently in progress, so not everything listed here is available at the moment. **Items with an asterisk next to the name have not been added after the rewrite yet.**
-< something something about actors and the headers comment from the old desc >
 
 ## Custom Sprites:
 * Actor Spawner
@@ -84,10 +83,10 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 * Yoshi colors
 
 # Contributing
-Just create a new Pull Request on the designated page. We will review the PR and accept if we feel that it meets our quality standard. If you have discovered an issue or bug, make an issue on the Issue Tracker. Suggestions can also go there.
+Just create a new Pull Request on the designated page. We will review the PR and accept if we feel that it meets our quality standard and design philosophy. If you have discovered an issue or bug, make an issue on the Issue Tracker. Suggestions can also go there.
 
 # Building
-This project is meant to be compiled with my fork of shibboleet's fork of the [CafeLoader Project Compiler](https://github.com/Luminyx1/CafeLoader-Compiler) script. A version of this source code that is ready for building will always be available on the [releases](https://github.com/Luminyx1/Tsuru/releases) page which includes additional files required for compiling. Keep in mind that currently this project targets version 1.3.0 of the standalone copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not our top priority.
+This project is meant to be compiled with a custom version of the CafeLoader Project Compiler script. A version of this source code that is ready for building will always be available on the [releases](https://github.com/Luminyx1/Tsuru/releases) page which includes additional files required for compiling. Keep in mind that currently this project targets version 1.3.0 of the standalone copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not our top priority.
 
 # Usage
 If you would like to use the hacks from the Tsuru project in your own mods, all you need to do is to include a link to this repository somewhere in the credits of the mod.
@@ -99,6 +98,7 @@ If you require any assistance for anything related to Tsuru, feel free to join o
 # Credits
 * [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code, headers, and build system
 * [Flizl](https://twitter.com/fliizzl) - Graphics
+* [iHarv](https://github.com/iHarv) - Quality Assurance
 * [jhmaster2000](https://github.com/jhmaster2000) - General code and headers
 * [Luminyx](https://github.com/Luminyx1) - Project lead, general code and headers
 * [Newer Team](https://github.com/Newer-Team) - [Newer U](https://github.com/Newer-Team/NewerSMBU) code and headers
@@ -106,11 +106,12 @@ If you require any assistance for anything related to Tsuru, feel free to join o
 * [RoadrunnerWMC](https://github.com/RoadrunnerWMC) - Customizable [world map scripts](https://github.com/RoadrunnerWMC/Cobra)
 * [shibboleet](https://github.com/shibbo) - General code, headers, and contribution to the build system
 * [STUPID](https://github.com/stupidestmodder) - General code and headers
+* [Techmuse](https://twitter.com/techmuse8) - Quality Assurance
 * [WillyMaker](https://www.youtube.com/channel/UCBDaY5sapkDhqlBBNJnW-Og) - Sprite data and images
 * Modified dynamic_libs headers based on original implementation by [Dimok](https://github.com/dimok789) and [Maschell fork](https://github.com/Maschell/dynamic_libs)
 * shiftjis.h from [Apollo PS3](https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h)
 
 # Special Thanks
 * Joey for helping me set up CafeLoader when I first started
-* Abood and STUPID for basically teaching me everything I know about code hacks
-* Toms and Kinnay for giving me early access to the Newer U code
+* Abood and STUPID for basically teaching me everything I know about custom code
+* Toms and Kinnay for giving me early access to the Newer U source code
