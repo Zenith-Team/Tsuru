@@ -6,17 +6,17 @@
 #include "agl/lyr/drawmethod.h"
 #include "sead.h"
 
-#include "game/layout/layoutclass2.h"
+#include "game/layout/layoutcontainer.h"
 
-class PaBatteryLayout : public LayoutClass2 {
+class PaBatteryLayout : public LayoutContainer {
 public:
     PaBatteryLayout()
-        : LayoutClass2(this->cl, 1)
+        : LayoutContainer(this->LayoutAnimators, 1)
     { }
 
     virtual ~PaBatteryLayout() { }
 
-    CoLayout cl[1];
+    LayoutAnimator LayoutAnimators[1];
 };
 
 class CutsceneTask : public sead::CalculateTask {
