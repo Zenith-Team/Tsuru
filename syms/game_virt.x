@@ -480,9 +480,6 @@ SECTIONS {
 /* CircularCollider */
     RTTI__16CircularCollider = 0x101EA398;
 
-/* CoLayout */
-    __ct__8CoLayoutFv = 0x25ce268;
-
 /* ColliderBase */
     RTTI__12ColliderBase = 0x101e9fa4;
     setType__12ColliderBaseFQ2_12ColliderBase4Type = 0x21A5A70;
@@ -792,18 +789,21 @@ SECTIONS {
     vf44__8LayerAglFv = 0x24F9340;
     vf4C__8LayerAglFv = 0x24F9344;
 
-/* LayoutClass1 */
-    init__12LayoutClass1FPQ2_4sead4Heap = 0x26711c8;
-    update__12LayoutClass1FUiT1 = 0x2672a4c;
-    draw__12LayoutClass1FRC5Mtx44 = 0x2672d14;
-    initAnims__12LayoutClass1FPCQ2_4sead23SafeStringBase__tm__2_cRUi = 0x2671c54;
-    playAnim__12LayoutClass1FUiRCQ2_4sead23SafeStringBase__tm__2_cb = 0x2671680;
+/* LayoutAnimator */
+    __ct__14LayoutAnimatorFv = 0x25ce268;
 
-/* LayoutClass2 */
-    __ct__12LayoutClass2FP8CoLayouti = 0x2672f04;
-    getArchive__12LayoutClass2FRCQ2_4sead23SafeStringBase__tm__2_c = 0x2673008;
-    loadBFLYT__12LayoutClass2FRCQ2_4sead23SafeStringBase__tm__2_cUiN22 = 0x2673050;
-    __dt__12LayoutClass2Fv = 0x2672f80;
+/* LayoutContainer */
+    __ct__15LayoutContainerFP14LayoutAnimatori = 0x2672f04;
+    getArchive__15LayoutContainerFRCQ2_4sead23SafeStringBase__tm__2_c = 0x2673008;
+    loadBFLYT__15LayoutContainerFRCQ2_4sead23SafeStringBase__tm__2_cUiN22 = 0x2673050;
+    __dt__15LayoutContainerFv = 0x2672f80;
+
+/* LayoutHandler */
+    init__13LayoutHandlerFPQ2_4sead4Heap = 0x26711c8;
+    update__13LayoutHandlerFUiP5Mtx34 = 0x2672a4c;
+    draw__13LayoutHandlerFRC5Mtx44 = 0x2672d14;
+    initAnims__13LayoutHandlerFPCQ2_4sead23SafeStringBase__tm__2_cRUi = 0x2671c54;
+    playAnim__13LayoutHandlerFUiRCQ2_4sead23SafeStringBase__tm__2_cb = 0x2671680;
 
 /* Level */
     sInstance__5Level = 0x101DB048;

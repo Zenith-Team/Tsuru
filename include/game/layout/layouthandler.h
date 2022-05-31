@@ -6,28 +6,34 @@
 #include "utils/mtx.h"
 #include "game/layout/gamelayout.h"
 
-// TODO: RE this more
-class CoLayout { public: CoLayout(); u32 _0; sead::SafeString _4; u32 _C; u8 _10; };
-
-class LayoutClass1 : public sead::IDisposer { // Size: 0xE88
+class LayoutAnimator {
 public:
-    LayoutClass1(CoLayout*, s32);
-    virtual ~LayoutClass1();
+    LayoutAnimator();
+    
+    u32 _0;
+    sead::SafeString _4;
+    u32 _C;
+    u8 _10;
+};
+
+class LayoutHandler : public sead::IDisposer { // Size: 0xE88
+public:
+    LayoutHandler(LayoutAnimator*, s32);
+    virtual ~LayoutHandler();
 
     void init(sead::Heap* heap = nullptr);
     void draw(const Mtx44& projectionMtx);
-    void update(u32 layerID, u32 = 0);
+    void update(u32 layerID, Mtx34* mtx = nullptr);
     void initAnims(const sead::SafeString* names, u32& count);
     void playAnim(u32, const sead::SafeString& name, bool loop = false);
 
     GameLayout* layout;
-    void* heap; // some sead/nw bridge class probably
-    u32 _18;
+    struct { void* _0; u32 _4; } allocator; // Likely a NW/Sead bridge class
     nw::lyt::DrawInfo drawInfo;
     u8 _E4[3476]; // inlined class
-    sead::Buffer<CoLayout> _E78;
+    sead::Buffer<LayoutAnimator> LayoutAnimators;
     class { virtual void spawnVtable() { } } _E80; // wesley says its font related
     f32 _E84;
 };
 
-static_assert(sizeof(LayoutClass1) == 0xE88, "LayoutClass1 size mismatch");
+static_assert(sizeof(LayoutHandler) == 0xE88, "LayoutHandler size mismatch");
