@@ -796,6 +796,8 @@ SECTIONS {
     init__12LayoutClass1FPQ2_4sead4Heap = 0x26711c8;
     update__12LayoutClass1FUiT1 = 0x2672a4c;
     draw__12LayoutClass1FRC5Mtx44 = 0x2672d14;
+    initAnims__12LayoutClass1FPCQ2_4sead23SafeStringBase__tm__2_cRUi = 0x2671c54;
+    playAnim__12LayoutClass1FUiRCQ2_4sead23SafeStringBase__tm__2_cb = 0x2671680;
 
 /* LayoutClass2 */
     __ct__12LayoutClass2FP8CoLayouti = 0x2672f04;

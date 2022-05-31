@@ -17,6 +17,8 @@ public:
     void init(sead::Heap* heap = nullptr);
     void draw(const Mtx44& projectionMtx);
     void update(u32 layerID, u32 = 0);
+    void initAnims(const sead::SafeString* names, u32& count);
+    void playAnim(u32, const sead::SafeString& name, bool loop = false);
 
     GameLayout* layout;
     void* heap; // some sead/nw bridge class probably
