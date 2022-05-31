@@ -12,11 +12,12 @@
 #ifdef Override
 #define override
 #define static_assert(condition, ...) typedef int TOKENPASTE2(static_assert_, __LINE__)[(condition) ? 1 : -1]
+#define forceinline __attribute__((always_inline))
 #else
 #define static_assert(x, ...)
+#define forceinline
 #endif
 
-#define forceinline __attribute__((always_inline))
 #define packed      __attribute__((packed))
 #define aligned(x)  __attribute__((aligned(x)))
 

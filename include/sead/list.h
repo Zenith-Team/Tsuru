@@ -7,8 +7,8 @@ namespace sead {
 class ListNode {
 public:
     forceinline ListNode()
-        : prev(NULL)
-        , next(NULL)
+        : prev(nullptr)
+        , next(nullptr)
     { }
 
     void insertFront_(ListNode* node);
@@ -103,7 +103,7 @@ public:
     }
 
     void erase(TListNode<T>* obj) {
-        obj->list = NULL;
+        obj->list = nullptr;
         ListImpl::erase(obj);
     }
 };
@@ -113,19 +113,19 @@ class TListNode : public ListNode {
 public:
     forceinline TListNode()
         : ListNode()
-        , data(NULL)
-        , list(NULL)
+        , data(nullptr)
+        , list(nullptr)
     { }
 
     forceinline TListNode(T data)
         : ListNode()
         , data(data)
-        , list(NULL)
+        , list(nullptr)
     { }
 
     void erase() {
         TList<T>* list = this->list;
-        if (list != NULL)
+        if (list != nullptr)
             list->erase(this);
     }
 
