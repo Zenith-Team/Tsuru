@@ -86,7 +86,7 @@ u32 PAcorn::vf1C4() {
 
     for (u32 i = 0; i < 4; i++) {
         Player* player = PlayerMgr::instance()->players[i];
-        if (player) player->powerupState = (Player::PowerupState) 9;
+        if (player) player->powerupState = Player::PowerupState_PAcorn;
         this->isDeleted = true;
     }
 

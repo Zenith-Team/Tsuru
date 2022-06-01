@@ -982,7 +982,7 @@ SECTIONS {
     splashLavaWave__11PowerupBaseFP13Vec3__tm__2_f = 0x2517E18;
     splashPoison__11PowerupBaseFP13Vec3__tm__2_f = 0x2517ED4;
     vf144__11PowerupBaseFb = 0x251771C;
-    vf1BC__11PowerupBaseFv = 0x251784C;
+    initHitboxes__11PowerupBaseFv = 0x251784C;
     vf1CC__11PowerupBaseFv = 0x25178C0;
     vf1D4__11PowerupBaseFv = 0x2517908;
     vf1DC__11PowerupBaseFv = 0x2517950;

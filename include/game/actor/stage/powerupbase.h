@@ -52,16 +52,15 @@ public:
     virtual void playIdleAnim();                // nullsub
     virtual void playFloatAnim();               // nullsub
     virtual void vf1B4();                       // nullsub
-    virtual void vf1BC();
-    // Player collision
-    virtual u32  vf1C4();
+    virtual void initHitboxes();
+    virtual u32  vf1C4(); // Player collision
     virtual void vf1CC();
     virtual void vf1D4();
     virtual void vf1DC();
     virtual void vf1E4();
     virtual void vf1EC();
     virtual void vf1F4();
-    virtual void vf1FC();                       // nullsub
+    virtual void vf1FC(); // nullsub
     virtual u32  vf204();
     DECLARE_STATE_VIRTUAL(PowerupBase, PowerupBaseState12); // unknown state
     DECLARE_STATE_VIRTUAL(PowerupBase, PowerupBaseState13); // unknown state
@@ -95,7 +94,7 @@ public:
     // Sets this->_185F and this->_1828 to 0
     void FUN_25183ac();
     // Related to player collision (gives powerup state)
-    // @param void* Unknown (Colliding player?)
+    // @param void* Unknown
     // @param setPowerupState Powerup state to set the colliding player to
     // @param u32 Unknown
     u32 FUN_25196e8(void*, PlayerBase::PowerupState setPowerupState, u32);

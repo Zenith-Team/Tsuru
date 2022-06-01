@@ -30,6 +30,7 @@ Files:
   - source/actors/giantskewer.cpp
   - source/actors/scuttlebug.cpp
   - source/actors/angrygrrrol.cpp
+  - source/actors/poisonmushroom.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:
