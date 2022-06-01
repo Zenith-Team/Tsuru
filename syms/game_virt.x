@@ -166,6 +166,7 @@ SECTIONS {
 /* sead::MathCalcCommon */
     chase__Q2_4sead23MathCalcCommon__tm__2_fSFPZ1ZZ1ZT2_b = 0x2027984;
     chase__Q2_4sead24MathCalcCommon__tm__3_UiSFPZ1ZZ1ZT2_b = 0x29E0DE8;
+    cSinCosTbl__Q2_4sead23MathCalcCommon__tm__2_f = 0x10191538;
 
 /* sead::OrthoCamera */
     __ct__Q2_4sead11OrthoCameraFv = 0x2A04D54;
@@ -618,6 +619,7 @@ SECTIONS {
     drawTile__7DrawMgrFUsRC4Vec3RCUiT2 = 0x24FAD28;
     setTargetLayer__7DrawMgrFPQ3_3agl3lyr5LayerUi = 0x24FAA50;
     resetTargetLayer__7DrawMgrFv = 0x24FAB4C;
+    drawTile__7DrawMgrFUsRC13Vec3__tm__2_fRCUiT2 = 0x24fad28;
 
 /* DRCModeTask */
     sInstance__11DRCModeTask = 0x101D1904;
@@ -845,6 +847,10 @@ SECTIONS {
     setup__12ModelWrapperFP10ResArchivePvPQ2_4sead4Heap = 0x24D49A0;
     updateModel__12ModelWrapperFv = 0x24D4E84;
     updateAnimations__12ModelWrapperFv = 0x24D4D20;
+
+/* MovementHandler */
+    __ct__15MovementHandlerFv = 0x2849c40;
+    execute__15MovementHandlerFv = 0x284b8c4;
 
 /* Mtx34 */
     rotateAndTranslate__5Mtx34FRC14Vec3__tm__3_UiRC13Vec3__tm__2_f = 0x203C1C8;
@@ -1074,6 +1080,9 @@ SECTIONS {
 
 /* SolidOnTopCollider */
     RTTI__18SolidOnTopCollider = 0x101E9FA8;
+    __ct__18SolidOnTopColliderFv = 0x21a1d38;
+    __dt__18SolidOnTopColliderFv = 0x21a1f18;
+    execute__18SolidOnTopColliderFv = 0x21a2e0c;
 
 /* SoundSystem */
     sInstance__11SoundSystem = 0x101E7C84;
@@ -1082,6 +1091,10 @@ SECTIONS {
     getAudioFx__15SoundSystemBaseFv = 0x29B1AA4;
 
 /* StageActor */
+    actorHCCallback0__10StageActorFP14HitboxColliderP13Vec2__tm__2_f = 0x219e7e8;
+    actorHCCallback2__10StageActorFP14HitboxColliderP13Vec2__tm__2_f = 0x219e8a4;
+    actorCBCallback0__10StageActorFP12ColliderBaseP13Vec2__tm__2_f = 0x219e8b8;
+    actorCBCallback2__10StageActorFP12ColliderBaseP13Vec2__tm__2_f = 0x219e974;
     RTTI__10StageActor = 0x101e9cc0;
     __vtbl__10StageActor = 0x10000268;
     __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x101E9CBC;

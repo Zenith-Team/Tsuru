@@ -840,4 +840,5 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::Scuttlebug,              // 749
     ProfileID::AngryGrrrol,             // 750
     ProfileID::PoisonMushroom,          // 751
+    ProfileID::MagicPlatform,           // 752
 };
