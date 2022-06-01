@@ -15,6 +15,9 @@ public:
     };
 
 public:
+    static u16* getTilePtr(u16 x, u16 y, u32 area, u8 layer, u32* blockIndexOut = nullptr);
+    static u16* getTilePtrCurrentArea(u16 x, u16 y, u8 layer, u32* blockIndexOut = nullptr);
+
     void* d_bgchk_data;
     f32 liquidTop;
     f32 liquidTop2;

@@ -31,6 +31,7 @@ Files:
   - source/actors/scuttlebug.cpp
   - source/actors/angrygrrrol.cpp
   - source/actors/poisonmushroom.cpp
+  - source/actors/magicplatform.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:

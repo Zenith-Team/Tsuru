@@ -266,6 +266,7 @@ enum ProfileIDType {
     Scuttlebug,
     AngryGrrrol,
     PoisonMushroom,
+    MagicPlatform,
 
     // Atlys profiles //! Do not place anything below these
     AtlysCamera,

@@ -7,6 +7,26 @@
 #include "game/direction.h"
 
 class ColliderBase;
+class StageActor;
+
+struct StageActorCallbackTable {
+    typedef bool (StageActor::*typeHCCallbackB)(HitboxCollider*, Vec2f*);
+    typedef void (StageActor::*typeHCCallbackV)(HitboxCollider*, Vec2f*);
+    typedef bool (StageActor::*typeCBCallbackB)(ColliderBase*, Vec2f*);
+    typedef void (StageActor::*typeCBCallbackV)(ColliderBase*, Vec2f*);
+
+    void (StageActor::*root)(); // nullptr
+    typeHCCallbackB hcCallback0;
+    typeHCCallbackB hcCallback1;
+    typeHCCallbackB hcCallback2;
+    typeHCCallbackV hcCallback3;
+    typeHCCallbackV hcCallback4;
+    typeCBCallbackB cbCallback0;
+    typeCBCallbackB cbCallback1;
+    typeCBCallbackB cbCallback2;
+    typeCBCallbackV cbCallback3;
+    typeCBCallbackV cbCallback4;
+};
 
 class StageActor : public Actor {
     SEAD_RTTI_OVERRIDE(StageActor, Actor)
@@ -21,26 +41,6 @@ public:
         
         // Custom types
         StageActorType_Boss     = 5,
-    };
-
-public:
-    struct CallbackTable {
-        typedef bool (StageActor::*typeHCCallbackB)(HitboxCollider*, Vec2f*);
-        typedef void (StageActor::*typeHCCallbackV)(HitboxCollider*, Vec2f*);
-        typedef bool (StageActor::*typeCBCallbackB)(ColliderBase*, Vec2f*);
-        typedef void (StageActor::*typeCBCallbackV)(ColliderBase*, Vec2f*);
-
-        void (StageActor::*root)(); // nullptr
-        typeHCCallbackB hcCallback0;
-        typeHCCallbackB hcCallback1;
-        typeHCCallbackB hcCallback2;
-        typeHCCallbackV hcCallback3;
-        typeHCCallbackV hcCallback4;
-        typeCBCallbackB cbCallback0;
-        typeCBCallbackB cbCallback1;
-        typeCBCallbackB cbCallback2;
-        typeCBCallbackV cbCallback3;
-        typeCBCallbackV cbCallback4;
     };
 
 public:

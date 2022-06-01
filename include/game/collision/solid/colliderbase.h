@@ -3,6 +3,8 @@
 #include "sead.h"
 #include "game/collision/physicsmgr.h"
 
+struct StageActorCallbackTable;
+
 class ColliderBase : public sead::IDisposer {
 public:
     typedef void (*Callback)(ColliderBase* cSelf, PhysicsMgr* otherMgr, u32 sensorID);
@@ -160,35 +162,35 @@ public:
     void setSolidityType(SolidityType solidityType);
     void setSurfaceType(SurfaceType surfaceType);
 
-    List::Node _10[8];          // 10
-    Rect rect;                  // 70
-    Vec2f _80;                  // 80
-    u32 _88;                    // 88
-    u32 _8C;                    // 8C
-    StageActor* owner;          // 90
-    u32 _94;                    // 94
-    OwnerInfo ownerInfo;        // 98
-    Vec2f distToCenter;         // AC
-    Vec2f _B4;                  // B4
-    Vec2f _BC;                  // BC
-    Vec2f _C4;                  // C4
-    Vec2f _CC;                  // CC
-    Vec2f _D4;                  // D4
-    u32 _DC;                    // DC
-    u32 _E0;                    // E0
-    Rect _E4;                   // E4   //? Possible Vec4
-    u32 rotation;               // F4
-    u32 _F8;                    // F8
-    List _FC[4];                // FC
-    Type type;                  // 12C
-    u32 flags;                  // 130
-    u32 _134;                   // 134
-    Callback topCallback;       // 138  PhysicsMgr Sensor colliding with top of the collider
-    Callback bottomCallback;    // 13C  PhysicsMgr Sensor colliding with bottom of the collider
-    Callback sideCallback;      // 140  PhysicsMgr Sensor colliding with side of the collider
-    void* _144;                 // 144
-    void* _148;                 // 148
-    void* _14C;                 // 14C
-    void** callbackTable;       // 150
-    u32 _154;                   // 154
+    List::Node _10[8];                          // 10
+    Rect rect;                                  // 70
+    Vec2f _80;                                  // 80
+    u32 _88;                                    // 88
+    u32 _8C;                                    // 8C
+    StageActor* owner;                          // 90
+    u32 _94;                                    // 94
+    OwnerInfo ownerInfo;                        // 98
+    Vec2f distToCenter;                         // AC
+    Vec2f _B4;                                  // B4
+    Vec2f _BC;                                  // BC
+    Vec2f _C4;                                  // C4
+    Vec2f _CC;                                  // CC
+    Vec2f _D4;                                  // D4
+    u32 _DC;                                    // DC
+    u32 _E0;                                    // E0
+    Rect _E4;                                   // E4   //? Possible Vec4
+    u32 rotation;                               // F4
+    u32 _F8;                                    // F8
+    List _FC[4];                                // FC
+    Type type;                                  // 12C
+    u32 flags;                                  // 130
+    u32 _134;                                   // 134
+    Callback topCallback;                       // 138  PhysicsMgr Sensor colliding with top of the collider
+    Callback bottomCallback;                    // 13C  PhysicsMgr Sensor colliding with bottom of the collider
+    Callback sideCallback;                      // 140  PhysicsMgr Sensor colliding with side of the collider
+    void* _144;                                 // 144
+    void* _148;                                 // 148
+    void* _14C;                                 // 14C
+    StageActorCallbackTable** callbackTable;   // 150
+    u32 _154;                                   // 154
 };
