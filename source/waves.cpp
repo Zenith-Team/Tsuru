@@ -18,8 +18,8 @@ void setWaterWaveValues(EnvTerrain* _this) {
     _this->effects.updateWaveCollisions();
 }
 
-// For some reason the game hangs if we call EnvTerrain::onExecute directly so this is a hack
-extern u32 (*onExecute__10EnvTerrainFv)(EnvTerrain*);
+// We're not in a class so we must do this manually
+extern "C" u32 onExecute__10EnvTerrainFv(EnvTerrain*);
 
 u32 Poison_onExecute(EnvTerrain* _this) { // Replaces poison water onExecute()
     // Wave values
@@ -37,9 +37,7 @@ u32 Poison_onExecute(EnvTerrain* _this) { // Replaces poison water onExecute()
     TileMgr::instance()->waveType = TileMgr::WaveType_Poison;
     _this->effects.updateWaveCollisions();
 
-    //onExecute__10EnvTerrainFv(_this);
-    //_this->onExecute();
-    return 1;
+    return onExecute__10EnvTerrainFv(_this);
 }
 
 u32 Quicksand_onExecute(EnvTerrain* _this) { // Replaces quicksand onExecute()
@@ -57,7 +55,5 @@ u32 Quicksand_onExecute(EnvTerrain* _this) { // Replaces quicksand onExecute()
     TileMgr::instance()->waveType = TileMgr::WaveType_Quicksand;
     _this->effects.updateWaveCollisions();
 
-    //onExecute__10EnvTerrainFv(_this);
-    //_this->onExecute();
-    return 1;
+    return onExecute__10EnvTerrainFv(_this);
 }

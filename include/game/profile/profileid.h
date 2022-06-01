@@ -164,6 +164,9 @@ enum ProfileIDType {
     FlyingMechaCheepSpawner = 546,
     CheepCheepFormation = 547,
     FishBone = 548,
+    Grrrol = 562,
+    BigGrrrol = 563,
+    BigGrrrol_RDash = 564,
     CheckpointFlag = 565,
     Seaweed = 601,
     MontyMole = 610,
@@ -262,6 +265,7 @@ enum ProfileIDType {
     GiantSkewer,
     Scuttlebug,
     AngryGrrrol,
+    PoisonMushroom,
 
     // Atlys profiles //! Do not place anything below these
     AtlysCamera,
