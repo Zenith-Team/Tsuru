@@ -20,6 +20,7 @@ public:
     // Notes:
     // 1. Shadow-only or reflection-only shapes are always invisible
     // 2. Shadow casting for a shape is automatically enabled if "shadow_cast" is not present in its material's render info
+    // 3. "Opa" = Opaque & Alphamask, "Xlu" = Translucent
 
     void drawOpa(s32 viewIndex, const Mtx34& viewMtx, const Mtx44& projMtx, ObjLayerRenderer* renderer) override;
     void drawXlu(s32 viewIndex, const Mtx34& viewMtx, const Mtx44& projMtx, ObjLayerRenderer* renderer) override;
@@ -97,53 +98,43 @@ public:
     void updateModel();
     void updateAnimations();
 
-    inline void setMtx(const Mtx34& mtxRT) {
-        this->model->setMtx(mtxRT);
-    }
+    void setMtx(const Mtx34& mtxRT) { this->model->setMtx(mtxRT); }
+    const Mtx34& getMtx() const { return this->model->getMtx(); }
 
-    inline const Mtx34& getMtx() const {
-        return this->model->getMtx();
-    }
+    void setScale(const Vec3f& scale) { this->model->setScale(scale); }
+    const Vec3f& getScale() const { return this->model->getScale(); }
 
-    inline void setScale(const Vec3f& scale) {
-        this->model->setScale(scale);
-    }
-
-    inline const Vec3f& getScale() const {
-        return this->model->getScale();
-    }
-
-    inline void playSklAnim(const sead::SafeString& identifier, u32 idx = 0) {
+    void playSklAnim(const sead::SafeString& identifier, u32 idx = 0) {
         if (idx < this->sklAnims.size)
             this->sklAnims[idx]->play(this->archive, identifier);
     }
 
-    inline void playTexPatternAnim(const sead::SafeString& identifier, u32 idx = 0) {
+    void playTexPatternAnim(const sead::SafeString& identifier, u32 idx = 0) {
         if (idx < this->texPatternAnims.size)
             this->texPatternAnims[idx]->play(this->archive, identifier);
     }
 
-    inline void playColorAnim(const sead::SafeString& identifier, u32 idx = 0) {
+    void playColorAnim(const sead::SafeString& identifier, u32 idx = 0) {
         if (idx < this->texSrtAnims.size)
             this->texSrtAnims[idx]->playColorAnim(this->archive, identifier);
     }
 
-    inline void playTexSrtAnim(const sead::SafeString& identifier, u32 idx = 0) {
+    void playTexSrtAnim(const sead::SafeString& identifier, u32 idx = 0) {
         if (idx < this->texSrtAnims.size)
             this->texSrtAnims[idx]->playTexSrtAnim(this->archive, identifier);
     }
 
-    inline void playBoneVisAnim(const sead::SafeString& identifier, u32 idx = 0) {
+    void playBoneVisAnim(const sead::SafeString& identifier, u32 idx = 0) {
         if (idx < this->visAnims.size)
             this->visAnims[idx]->play(this->archive, identifier);
     }
 
-    inline void playShapeAnim(const sead::SafeString& identifier, u32 idx = 0) {
+    void playShapeAnim(const sead::SafeString& identifier, u32 idx = 0) {
         if (idx < this->shaAnims.size)
             this->shaAnims[idx]->play(this->archive, identifier);
     }
 
-    inline void loopSklAnims(bool loop) {
+    void loopSklAnims(bool loop) {
         for (u32 i = 0; i < sklAnims.size; i++) {
             SkeletalAnimation* anim = sklAnims[i];
             if (!anim) return;
@@ -151,7 +142,7 @@ public:
         }
     }
 
-    static inline ModelWrapper* create(const sead::SafeString& archiveIdentifier, const sead::SafeString& modelIdentifier, u32 numSklAnims = 0, u32 numTexPatternAnims = 0, u32 numTexSrtAnims = 0, u32 numVisAnims = 0, u32 numShaAnims = 0, bool unk2 = false) {
+    static ModelWrapper* create(const sead::SafeString& archiveIdentifier, const sead::SafeString& modelIdentifier, u32 numSklAnims = 0, u32 numTexPatternAnims = 0, u32 numTexSrtAnims = 0, u32 numVisAnims = 0, u32 numShaAnims = 0, bool unk2 = false) {
         ResArchive* archive = ResArchiveMgr::instance()->get(archiveIdentifier);
         Model* model = archive->getModel(modelIdentifier, numSklAnims, numTexPatternAnims, numTexSrtAnims, numVisAnims, numShaAnims, unk2, nullptr);
         ModelWrapper* wrapper = new ModelWrapper(model, numSklAnims, numTexPatternAnims, numTexSrtAnims, numVisAnims, numShaAnims);
@@ -159,7 +150,7 @@ public:
         return wrapper;
     }
 
-    static inline ModelWrapper* create(ResArchive* archive, const sead::SafeString& modelIdentifier, u32 numSklAnims = 0, u32 numTexPatternAnims = 0, u32 numTexSrtAnims = 0, u32 numVisAnims = 0, u32 numShaAnims = 0, bool unk2 = false) {
+    static ModelWrapper* create(ResArchive* archive, const sead::SafeString& modelIdentifier, u32 numSklAnims = 0, u32 numTexPatternAnims = 0, u32 numTexSrtAnims = 0, u32 numVisAnims = 0, u32 numShaAnims = 0, bool unk2 = false) {
         Model* model = archive->getModel(modelIdentifier, numSklAnims, numTexPatternAnims, numTexSrtAnims, numVisAnims, numShaAnims, unk2, nullptr);
         ModelWrapper* wrapper = new ModelWrapper(model, numSklAnims, numTexPatternAnims, numTexSrtAnims, numVisAnims, numShaAnims);
         wrapper->setup(archive);
