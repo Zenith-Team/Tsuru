@@ -37,7 +37,7 @@ Actor* LiquidOverlay::build(const ActorBuildInfo* buildInfo) {
 
 u32 LiquidOverlay::onCreate() {
     // Retrieve the target location containing the liquid by the ID in nybble 5
-    Level::instance()->getArea(LevelInfo::instance()->area)->getLocation(this->targetLiquidLocation, this->settings1 >> 0x1C & 0xF);
+    Level::instance()->getArea(LevelInfo::instance()->area)->getLocation(&this->targetLiquidLocation, this->settings1 >> 0x1C & 0xF);
 
     return 1;
 }
