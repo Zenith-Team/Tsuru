@@ -21,7 +21,6 @@ public:
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
-    u32 onDelete() override;
 
     // Callback table
     bool mpHCCallback1(HitboxCollider*, Vec2f*) { return false; }
@@ -76,12 +75,7 @@ Actor* MagicPlatform::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 MagicPlatform::onCreate() {
-    Level::Area::Location* location = nullptr;
-    
-    {
-        Rect r;
-        Level::instance()->getArea(LevelInfo::instance()->area)->getLocation(r, this->settings1 & 0xFF);
-    }
+    Level::Area::Location* location = Level::instance()->getArea(LevelInfo::instance()->area)->getLocation(nullptr, this->settings1 & 0xFF);
 
     if (!location)
         return 2;
@@ -132,6 +126,7 @@ u32 MagicPlatform::onCreate() {
             ColliderMgr::instance()->add(&this->rectCollider);
             break;
         }
+
         case 1: {
             Vec2f points[2] = {
                 Vec2f(this->tileSize.x * -8.0f, this->tileSize.y * 8.0f),
@@ -198,12 +193,5 @@ u32 MagicPlatform::onDraw() {
         }
     }
 
-    return 1;
-}
-
-u32 MagicPlatform::onDelete() {
-    if (this->tileData)
-        delete[] this->tileData;
-    
     return 1;
 }
