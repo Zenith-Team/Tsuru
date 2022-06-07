@@ -54,7 +54,7 @@ public:
     void vf1CC();
     void vf1D4(u32);
     bool vf1DC();
-    void vf1E4(const Vec3f&, u32, u32);
+    void vf1E4(const Vec3f&, u32);
     void vf1EC();
     void vf1F4(f32, u32);
     void vf1FC();
@@ -67,7 +67,7 @@ public:
     void vf234();
     void vf23C();
     void vf244();
-    void vf24C(u32);
+    void vf24C();
     void vf254();
     void vf25C();
 

@@ -484,6 +484,7 @@ SECTIONS {
 /* ColliderBase */
     RTTI__12ColliderBase = 0x101e9fa4;
     setType__12ColliderBaseFQ2_12ColliderBase4Type = 0x21A5A70;
+    __CPR61__setSurfaceType__12ColliderBaseFQ2_J16J11SurfaceType = 0x21a5ad0;
 
 /* ColliderBase::Node */
     __ct__Q2_12ColliderBase4NodeFv = 0x21A1ACC;
@@ -812,7 +813,7 @@ SECTIONS {
 
 /* Level::Area */
     getArea__5LevelFUi = 0x269A2DC;
-    getLocation__Q2_5Level4AreaFR4RectUc = 0x269A020;
+    getLocation__Q2_5Level4AreaFP4RectUc = 0x269A020;
     getSprite__Q2_5Level4AreaFUiPQ3_5Level4Area6Sprite = 0x2699C08;
 
 /* LevelCamera */
@@ -851,6 +852,8 @@ SECTIONS {
 /* MovementHandler */
     __ct__15MovementHandlerFv = 0x2849c40;
     execute__15MovementHandlerFv = 0x284b8c4;
+    getMaskForMovementType__15MovementHandlerFUi = 0x284a37c;
+    link__15MovementHandlerFRC13Vec3__tm__2_fUiUc = 0x284b6f4;
 
 /* Mtx34 */
     rotateAndTranslate__5Mtx34FRC14Vec3__tm__3_UiRC13Vec3__tm__2_f = 0x203C1C8;
@@ -1083,6 +1086,7 @@ SECTIONS {
     __ct__18SolidOnTopColliderFv = 0x21a1d38;
     __dt__18SolidOnTopColliderFv = 0x21a1f18;
     execute__18SolidOnTopColliderFv = 0x21a2e0c;
+    __CPR85__init__18SolidOnTopColliderFP10StageActorRCQ2_J6J4InfoiPQ2_4sead4Heap = 0x21a2378;
 
 /* SoundSystem */
     sInstance__11SoundSystem = 0x101E7C84;
@@ -1172,6 +1176,7 @@ SECTIONS {
 
 /* TileMgr */
     sInstance__7TileMgr = 0x101DAB94;
+    getTilePtrCurrentArea__7TileMgrSFUsT1UcPUi = 0x2685000;
 
 /* WindGenerator */
     __dt__13WindGeneratorFv = 0x288EFA0;
