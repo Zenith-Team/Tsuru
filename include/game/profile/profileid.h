@@ -267,6 +267,7 @@ enum ProfileIDType {
     AngryGrrrol,
     PoisonMushroom,
     MagicPlatform,
+    ColdFuzzy,
 
     // Atlys profiles //! Do not place anything below these
     AtlysCamera,
