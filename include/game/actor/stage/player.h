@@ -183,8 +183,8 @@ public:
     void vf864(u32) override;
     void vf86C() override;
     bool vf874() override;
-    void* vf87C() override;
-    bool vf884() override;
+    u32 vf87C() override;
+    void resetFallSpeed() override;
     void vf88C() override;
     f32 vf894() override;
     f32 vf89C() override;
