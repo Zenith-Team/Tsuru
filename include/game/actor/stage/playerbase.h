@@ -99,7 +99,7 @@ public:
     virtual void vf1CC() = 0;
     virtual void vf1D4(u32) = 0;
     virtual bool vf1DC() = 0;
-    virtual void vf1E4(const Vec3f&, u32, u32);
+    virtual void vf1E4(const Vec3f&, u32);
     virtual void vf1EC();
     virtual void vf1F4(f32, u32);
     virtual void vf1FC();
@@ -112,7 +112,7 @@ public:
     virtual void vf234();
     virtual void vf23C();
     virtual void vf244();
-    virtual void vf24C(u32); // TODO: Investigate the params
+    virtual void vf24C(); // Calls vf1F4
     virtual void vf254();
     virtual void vf25C();
     DECLARE_STATE_VIRTUAL(PlayerBase, PlayerBaseState1);
@@ -141,11 +141,11 @@ public:
     DECLARE_STATE_VIRTUAL(PlayerBase, PlayerBaseState24);
     DECLARE_STATE_VIRTUAL(PlayerBase, PlayerBaseState25);
     virtual void vf4BC(bool) = 0;
-    virtual void vf4C4(u32);
-    virtual void vf4CC(u32);
-    virtual void vf4D4();
-    virtual bool vf4DC();
-    virtual bool vf4E4(u32);
+    virtual void vf4C4(u32); // Add flag to _20DC
+    virtual void vf4CC(u32); // Remove flag from _20DC
+    virtual void vf4D4(); // Clear flags from _20DC
+    virtual bool vf4DC(); // Is any flag set in _20DC
+    virtual bool vf4E4(u32); // Is specific flag set in _20DC
     virtual bool vf4EC() = 0;
     virtual bool vf4F4();
     virtual bool vf4FC() = 0;
@@ -260,8 +260,8 @@ public:
     virtual void vf864(u32) = 0;
     virtual void vf86C() = 0;
     virtual bool vf874();
-    virtual void* vf87C(); // TODO: Investigate return type
-    virtual bool vf884();
+    virtual u32 vf87C();
+    virtual void resetFallSpeed();
     virtual void vf88C() = 0;
     virtual f32 vf894() = 0;
     virtual f32 vf89C() = 0;
