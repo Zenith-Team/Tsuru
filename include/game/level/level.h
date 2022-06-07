@@ -98,7 +98,7 @@ public:
         // @param outRect Output rect which represents the location
         // @param id Target location ID
         // @return Pointer to the retrieved location
-        Location* getLocation(Rect& outRect, u8 id);
+        Location* getLocation(Rect* outRect, u8 id);
 
         // @param id Target path ID
         // @return Pointer to the retrieved path

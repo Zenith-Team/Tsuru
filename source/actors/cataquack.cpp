@@ -58,7 +58,7 @@ Cataquack::Cataquack(const ActorBuildInfo* buildInfo)
     , target(nullptr)
     , targetInitialY(0.0f)
     , launchHeight(128.0f)
-{ };
+{ }
 
 Actor* Cataquack::build(const ActorBuildInfo* buildInfo) {
     return new Cataquack(buildInfo);
