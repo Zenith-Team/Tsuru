@@ -8,6 +8,7 @@
 #include "game/tilemgr.h"
 #include "sead/mathcalccommon.h"
 #include "game/graphics/drawmgr.h"
+#include "log.h"
 
 class MagicPlatform : public StageActor {
     SEAD_RTTI_OVERRIDE_IMPL(MagicPlatform, StageActor);
@@ -77,16 +78,20 @@ Actor* MagicPlatform::build(const ActorBuildInfo* buildInfo) {
 u32 MagicPlatform::onCreate() {
     Level::Area::Location* location = Level::instance()->getArea(LevelInfo::instance()->area)->getLocation(nullptr, this->settings1 & 0xFF);
 
-    if (!location)
+    if (!location) {
         return 2;
+        LOG("MagicPlatform: failed to get location");
+    }
     
     u32 locX = location->x & ~0xF;
     u32 locY = location->y & ~0xF;
     this->tileSize.x = (location->w + (location->x & 0xF) + 0xF) / 16;
-    this->tileSize.y = (location->y + (location->y & 0xF) + 0xF) / 16;
+    this->tileSize.y = (location->h + (location->y & 0xF) + 0xF) / 16;
 
-    if (!this->tileSize.x || !this->tileSize.y)
+    if (!this->tileSize.x || !this->tileSize.y) {
         return 2;
+        LOG("MagicPlatformf ailed to get tile size");
+    }
     
     this->tileData = new u16[this->tileSize.x * this->tileSize.y];
 
