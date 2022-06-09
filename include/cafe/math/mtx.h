@@ -1,11 +1,12 @@
 #pragma once
 
 typedef unsigned int u32;
+typedef float f32;
 class Mtx34;
 class Mtx44;
 template <typename T>
 class Vec3;
-typedef Vec3<float> Vec3f;
+typedef Vec3<f32> Vec3f;
 
 #ifdef __cplusplus
 extern "C" {
