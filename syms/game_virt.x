@@ -826,6 +826,7 @@ SECTIONS {
     setDestLevel__9LevelInfoFUc = 0x24D2954;
     setDestArea__9LevelInfoFUc = 0x24D296C;
     setDestZone__9LevelInfoFUi = 0x24D299C;
+    worldLevelToIndex__9LevelInfoSFiT1b = 0x24d3ad4;
 
 /* LevelTimer */
     sInstance__10LevelTimer = 0x101D15F4;

@@ -30,6 +30,13 @@ public:
     // Custom function
     void setTitlescreenThemeEntrance();
 
+    static s32 worldLevelToIndex(s32 world, s32 level, bool forStarcoins);
+
+    static u32 worldNormalLevelCount[9];
+    static u32 worldToadHouseCount[9];
+    static u32 worldAmbushCount[9];
+    
+
     u8 world;                   // 10
     u8 level;                   // 11
     u8 area;                    // 12
