@@ -842,4 +842,7 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::PoisonMushroom,          // 751
     ProfileID::MagicPlatform,           // 752
     ProfileID::ColdFuzzy,               // 753
+    ProfileID::WavyWater,               // 754
+    ProfileID::WavyPoison,              // 755
+    ProfileID::WavyQuicksand,           // 756
 };

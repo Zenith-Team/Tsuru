@@ -29,3 +29,7 @@ Hooks:
     instr: bl
     addr: "218f884"
     func: WaveCollision_r12
+
+# Fix ripples only appearing at troughs
+  - type: nop
+    addr: "28b7fc4"

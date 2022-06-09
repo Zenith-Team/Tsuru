@@ -268,6 +268,9 @@ enum ProfileIDType {
     PoisonMushroom,
     MagicPlatform,
     ColdFuzzy,
+    WavyWater,
+    WavyPoison,
+    WavyQuicksand,
 
     // Atlys profiles //! Do not place anything below these
     AtlysCamera,

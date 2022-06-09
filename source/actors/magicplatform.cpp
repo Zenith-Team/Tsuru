@@ -79,8 +79,8 @@ u32 MagicPlatform::onCreate() {
     Level::Area::Location* location = Level::instance()->getArea(LevelInfo::instance()->area)->getLocation(nullptr, this->settings1 & 0xFF);
 
     if (!location) {
+        LOG("MagicPlatform failed to get location");
         return 2;
-        LOG("MagicPlatform: failed to get location");
     }
     
     u32 locX = location->x & ~0xF;
@@ -89,8 +89,8 @@ u32 MagicPlatform::onCreate() {
     this->tileSize.y = (location->h + (location->y & 0xF) + 0xF) / 16;
 
     if (!this->tileSize.x || !this->tileSize.y) {
+        LOG("MagicPlatform failed to get tile size");
         return 2;
-        LOG("MagicPlatformf ailed to get tile size");
     }
     
     this->tileData = new u16[this->tileSize.x * this->tileSize.y];

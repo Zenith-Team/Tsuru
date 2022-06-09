@@ -947,6 +947,9 @@ SECTIONS {
 /* PlayerMgr */
     sInstance__9PlayerMgr = 0x101E6994;
 
+/* Poison */
+    build__6PoisonSFPC14ActorBuildInfo = 0x26f6e6c;
+
 /* Powerup */
     RTTI__7Powerup = 0x101ead38;
     __ct__7PowerupFPC14ActorBuildInfo = 0x251EBFC;
@@ -1027,6 +1030,9 @@ SECTIONS {
     resourceCountOriginal__7Profile = 0x100023F8;
     resourceListsOriginal__7Profile = 0x101C321C;
     loadProfileResources__7ProfileSFQ2_7Profile15LoadResourcesAtPQ2_4sead4Heap = 0x200A738;
+
+/* Quicksand */
+    build__9QuicksandSFPC14ActorBuildInfo = 0x26f7c84;
 
 /* RDashMgr */
     sInstance__8RDashMgr = 0x101E7D9C;
@@ -1177,6 +1183,9 @@ SECTIONS {
 /* TileMgr */
     sInstance__7TileMgr = 0x101DAB94;
     getTilePtrCurrentArea__7TileMgrSFUsT1UcPUi = 0x2685000;
+
+/* Water */
+    build__5WaterSFPC14ActorBuildInfo = 0x26f9af0;
 
 /* WindGenerator */
     __dt__13WindGeneratorFv = 0x288EFA0;
