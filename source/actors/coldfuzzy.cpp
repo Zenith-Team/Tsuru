@@ -33,7 +33,7 @@ public:
 
 // stuffs
 const Profile ColdFuzzyProfile(&ColdFuzzy::build, ProfileID::ColdFuzzy);
-PROFILE_RESOURCES(ProfileID::ColdFuzzy, Profile::LoadResourcesAt_Course, "chorobon");
+PROFILE_RESOURCES(ProfileID::ColdFuzzy, Profile::LoadResourcesAt_Course, "coldobon");
 
 // collider stuff
 HitboxCollider::Info ColdFuzzy::collisionInfo = {
@@ -61,7 +61,7 @@ Actor* ColdFuzzy::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 ColdFuzzy::onCreate() {
-    this->model = ModelWrapper::create("chorobon", "chorobon", 1);
+    this->model = ModelWrapper::create("coldobon", "coldobon", 1);
     this->model->playSklAnim("run");
     this->model->loopSklAnims(true);
     

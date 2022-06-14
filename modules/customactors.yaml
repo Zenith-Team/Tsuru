@@ -33,6 +33,7 @@ Files:
   - source/actors/poisonmushroom.cpp
   - source/actors/magicplatform.cpp
   - source/actors/coldfuzzy.cpp
+  - source/actors/layerchanger.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:
