@@ -2,12 +2,11 @@
 #include "game/graphics/model/model.h"
 #include "game/graphics/drawmgr.h"
 #include "game/movementhandler.h"
-#include "game/actor/stage/playerbase.h"
-#include "game/playermgr.h"
 #include "log.h"
 
 class Biddybud : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(Biddybud, Enemy)
+    SEAD_RTTI_OVERRIDE_IMPL(Biddybud, Enemy);
+
 public:
     Biddybud(const ActorBuildInfo* buildInfo);
     virtual ~Biddybud() { }
@@ -24,16 +23,7 @@ public:
 
     static HitboxCollider::Info collisionInfo;
 
-    // others
     ModelWrapper* model;
-
-    struct PlayerTracker {
-        PlayerBase* player;
-        u32 timer;
-    };
-
-    PlayerTracker playerTracker[4];
-
     u32 behavior; 
     /* behavior chart
     0 - Stationary
@@ -47,45 +37,31 @@ public:
     DECLARE_STATE(Biddybud, Move);
     DECLARE_STATE(Biddybud, Die);
     DECLARE_STATE(Biddybud, DieSquish);
-
 };
 
 CREATE_STATE(Biddybud, Move);
 CREATE_STATE(Biddybud, Die);
 CREATE_STATE(Biddybud, DieSquish);
 
-// stuff
 const Profile BiddybudProfile(&Biddybud::build, ProfileID::Biddybud);
 PROFILE_RESOURCES(ProfileID::Biddybud, Profile::LoadResourcesAt_Course, "ttwing"); // winged
 
-
-
-// collider stuff
 HitboxCollider::Info Biddybud::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &Enemy::collisionCallback
 };
 
-void Biddybud::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    for (u32 i = 0; i < 4; i++) {
-        if (hcOther->owner == this->playerTracker[i].player && this->playerTracker[i].timer >= 240) {
-            this->playerTracker[i].timer = 0;
-            ((PlayerBase*) hcOther->owner)->doDamage(this, PlayerBase::DamageType_SingleHit);
-        }
-    }
-}
-
-// 
 Biddybud::Biddybud(const ActorBuildInfo* buildInfo) 
     : Enemy(buildInfo)
     , model(nullptr)
+    , behavior(0)
+    , counter(0)
     , movementHandler()
+    , alternater(false)
 { }
 
 Actor* Biddybud::build(const ActorBuildInfo* buildInfo) {
     return new Biddybud(buildInfo);
 }
-
-// on functions
 
 u32 Biddybud::onCreate() {
     // this->behavior = (this->settings1 >> 0x1C & 0xF);
@@ -100,47 +76,27 @@ u32 Biddybud::onCreate() {
     this->scale.z = .14;
     this->position.y -= 8;
     this->position.x += 8;
-    
 
     this->hitboxCollider.init(this, &Biddybud::collisionInfo);
     this->addHitboxColliders();
 
-    for (u32 i = 0; i < 4; i++) {
-        this->playerTracker[i].player = PlayerMgr::instance()->players[i];
-    }
     // this->movementID = (this->movementID & 0xFF); // 21-22
     // this->movementID >> 0x4 & 0xF
 
-
-
-    u32 movementMask = this->movementHandler.getMaskForMovementType(this->settings2 & 0xFF);
+    u32 movementMask = this->movementHandler.getMaskForMovementType(this->eventID1 >> 0x4 & 0xFF); // Nybbles 1-2
     this->movementHandler.link(this->position, movementMask, this->movementID);
 
     this->doStateChange(&Biddybud::StateID_Move);
     this->updateModel();
-    // return this->onExecute();
-    return 1;
+    return this->onExecute();
 }
-
-
-
-
 
 u32 Biddybud::onExecute() {
     this->movementHandler.execute();
     this->position = this->movementHandler.position;
     this->rotation.z = this->movementHandler.rotation;
 
-
-    for (u32 i = 0; i < 4; i++) {
-        if (this->playerTracker[i].timer < 240) {
-            this->playerTracker[i].timer++;
-        }
-
-    }
-
     this->states.execute();
-
 
     this->updateModel();
 
@@ -151,10 +107,8 @@ u32 Biddybud::onDraw() {
     DrawMgr::instance()->drawModel(this->model);
     this->model->playColorAnim("Color", 1);
 
-
     return 1;
 }
-
 
 void Biddybud::updateModel() {
     Mtx34 mtx;
@@ -167,49 +121,38 @@ void Biddybud::updateModel() {
     this->model->updateAnimations();
     this->model->updateModel();
 }
-// states
 
-// Move State
+void Biddybud::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    u32 hitType = this->processCollision(hcSelf, hcOther, 0);
+
+    if (hitType == 0)
+        this->damagePlayer(hcSelf, hcOther);
+    else if (hitType == 1 || hitType == 3)
+        this->killPlayerJump(hcOther->owner, 0.0f, &Biddybud::StateID_Die);
+}
+
+/** STATE: Move */
+
 void Biddybud::beginState_Move() {
     this->counter = 0;
 }
 
-void Biddybud::executeState_Move() {
+void Biddybud::executeState_Move() { }
 
-}
+void Biddybud::endState_Move() { }
 
-void Biddybud::endState_Move() {
+/** STATE: Die */
 
-}
+void Biddybud::beginState_Die() { }
 
+void Biddybud::executeState_Die() { }
 
-// Die state
+void Biddybud::endState_Die() { }
 
+/** STATE: DieSquish */
 
+void Biddybud::beginState_DieSquish() { }
 
-void Biddybud::beginState_Die() {
+void Biddybud::executeState_DieSquish() { }
 
-}
-
-void Biddybud::executeState_Die() {
-
-}
-
-void Biddybud::endState_Die() {
-
-}
-
-
-// Die Squish State
-
-
-
-void Biddybud::beginState_DieSquish() {
-
-}
-void Biddybud::executeState_DieSquish() {
-
-}
-void Biddybud::endState_DieSquish() {
-
-}
+void Biddybud::endState_DieSquish() { }
