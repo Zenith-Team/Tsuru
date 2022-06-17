@@ -268,10 +268,12 @@ enum ProfileIDType {
     PoisonMushroom,
     MagicPlatform,
     ColdFuzzy,
-    LayerChanger,
     WavyWater,
     WavyPoison,
     WavyQuicksand,
+    LayerChanger,
+    Biddybud,
+
     
     // Atlys profiles //! Do not place anything below these
     AtlysCamera,

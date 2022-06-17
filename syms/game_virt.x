@@ -1074,6 +1074,7 @@ SECTIONS {
     save__7SaveMgrFPQ2_4sead14DelegateThread = 0x29D9560;
 
 /* ShaderAnimation */
+    playColorAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FECC8;
     playTexSrtAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FEE50;
 
 /* ShapedCollider */

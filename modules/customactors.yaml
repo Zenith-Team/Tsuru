@@ -34,6 +34,7 @@ Files:
   - source/actors/magicplatform.cpp
   - source/actors/coldfuzzy.cpp
   - source/actors/layerchanger.cpp
+  - source/actors/biddybud.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:
