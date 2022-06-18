@@ -847,5 +847,5 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::WavyQuicksand,           // 756
     ProfileID::LayerChanger,            // 757
     ProfileID::Biddybud,                // 758
-    
+    ProfileID::HelicalBar,              // 759
 };

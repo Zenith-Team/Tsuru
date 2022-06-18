@@ -161,7 +161,7 @@ void FakeActor::beginState_GoalPole() {
     this->model2->playTexSrtAnim("wait", 0);
     this->model2Offset = Vec3f(0.0f, 80.0f, 0.0f);
 
-    ShapedCollider::Info colliderInfo = {
+    static const ShapedCollider::Info colliderInfo = {
         Vec2f(0.0f, 8.0f), 0.0f, 0.0f, Vec2f(-16.0f, 8.0f), Vec2f(16.0f, -8.0f), 0
     };
 

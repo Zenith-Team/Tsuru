@@ -84,6 +84,7 @@ enum ProfileIDType {
     LemmyBall = 351,
     LemmyBomb = 352,
     Clampy = 353,
+    FireBar = 375,
     BuzzyBeetle = 381,
     BigBuzzyBeetle = 382,
     Urchin = 383,
@@ -273,7 +274,7 @@ enum ProfileIDType {
     WavyQuicksand,
     LayerChanger,
     Biddybud,
-
+    HelicalBar,
     
     // Atlys profiles //! Do not place anything below these
     AtlysCamera,

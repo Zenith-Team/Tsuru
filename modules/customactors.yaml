@@ -35,6 +35,7 @@ Files:
   - source/actors/coldfuzzy.cpp
   - source/actors/layerchanger.cpp
   - source/actors/biddybud.cpp
+  - source/actors/helicalbar.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:
