@@ -166,7 +166,7 @@ void FakeActor::beginState_GoalPole() {
     };
 
     this->rectCollider.init(this, colliderInfo);
-    ColliderMgr::instance()->add(&rectCollider);
+    ColliderMgr::instance()->add(&this->rectCollider);
 
     this->hitboxCollider.init(this, &FakeActor::sGoalpoleCollisionInfo, nullptr);
     this->addHitboxColliders();
