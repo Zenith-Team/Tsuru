@@ -5,12 +5,17 @@
 #include "game/collision/solid/rectcollider.h"
 #include "game/collision/collidermgr.h"
 #include "game/graphics/mask/lightmask.h"
+#include "game/actor/stage/playerbase.h"
+#include "game/effect/effect.h"
+#include "game/effect/effectid.h"
 #include "math/functions.h"
 #include "sead/heapmgr.h"
 
 // SO MUCH MATH :C
 
-#define finalHelixDelta (((j * 10.0f) * j) / 10.0f)
+#define calcFireOrbit(angleoffs) \
+    fp.x = this->position.x + calcFireRadius(j) * cosf(degToRad(this->fireRotate + this->helixDelta(j) + angleoffs)); \
+    fp.y = this->position.y + calcFireRadius(j) * sinf(degToRad(this->fireRotate + this->helixDelta(j) + angleoffs))
 
 static f32 calcFireRadius(const u32 j) {
     f32 result = 0;
@@ -48,14 +53,27 @@ public:
 
     void updateModel();
 
+    inline f32 helixDelta(const u32 orbitRadius) {
+        f32 delta = ((orbitRadius * 10.0f) * orbitRadius) / 10.0f;
+        delta *= helixMultiplier;
+
+        return this->animate ? delta * sinf(degToRad(this->time)) : delta;
+    }
+
+    static void fireCollision(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+
     ModelWrapper* centerModel;
     ModelWrapper* fireModel[4][6];
     Vec2f firePositions[4][6];
     LightSource fireLights[4][6];
     HitboxCollider fireHitboxes[4][6];
+    HitboxCollider::Info hcInfos[4][6];
+    EffectWrapper heatDistorters[4][6];
     RectCollider centerCollider;
     f32 fireRotate;
-    bool reverse;
+    f32 time;
+    u32 helixMultiplier;
+    bool animate;
 
     static const ShapedCollider::Info colliderInfo;
 
@@ -82,7 +100,7 @@ HelicalBar::HelicalBar(const ActorBuildInfo* buildInfo)
     , fireLights()
     , fireHitboxes()
     , fireRotate(0)
-    , reverse(false)
+    , animate(false)
 { }
 
 Actor* HelicalBar::build(const ActorBuildInfo* buildInfo) {
@@ -122,11 +140,18 @@ u32 HelicalBar::onCreate() {
         }
     }
 
+    this->animate = this->eventID1 & 0x1;
+    this->helixMultiplier = (this->eventID2 & 0xF) + 1;
+
     return this->onExecute();
 }
 
 u32 HelicalBar::onExecute() {
-    this->fireRotate++;
+    if (!(this->eventID2 >> 0x4 & 0xF)) {
+        this->fireRotate++;
+    }
+
+    this->time++;
 
     this->states.execute();
 
@@ -169,22 +194,49 @@ void HelicalBar::updateModel() {
     this->centerModel->updateModel();
 }
 
+void HelicalBar::fireCollision(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    if (hcOther->owner->type == StageActor::StageActorType_Player) {
+        PlayerBase* player = static_cast<PlayerBase*>(hcOther->owner);
+        player->trySpecialDamage(hcSelf->owner, PlayerBase::DamageType_LavaNoInstaKill);
+    }
+}
+
 /** STATE: OneBar */
 
-void HelicalBar::beginState_OneBar() { }
+void HelicalBar::beginState_OneBar() {
+    this->executeState_OneBar();
+
+    for (u32 i = 0; i < 1; i++) {
+        for (u32 j = 0; j < 6; j++) {
+            const Vec2f& fp = this->firePositions[i][j];
+
+            this->hcInfos[i][j].set(
+                Vec2f(this->position.x - fp.x, this->position.y - fp.y), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
+            );
+
+            this->fireHitboxes[i][j].init(this, &this->hcInfos[i][j]);
+
+            HitboxColliderMgr::instance()->safeAddToCreateList(&this->fireHitboxes[i][j]);
+        }
+    }
+}
 
 void HelicalBar::executeState_OneBar() {
-    for (u32 i = 0; i < 4; i++) {
+    for (u32 i = 0; i < 1; i++) {
         for (u32 j = 0; j < 6; j++) {
             Vec2f& fp = this->firePositions[i][j];
 
+            this->fireHitboxes[i][j].colliderInfo.distToCenter = Vec2f(this->position.x - fp.x, this->position.y - fp.y);
+
             switch (i) {
                 case Direction::Right: {
-                    fp.x = this->position.x + calcFireRadius(j) * cosf(degToRad(this->fireRotate + finalHelixDelta));
-                    fp.y = this->position.y + calcFireRadius(j) * sinf(degToRad(this->fireRotate + finalHelixDelta));
+                    calcFireOrbit(0.0f);
                     break;
                 }
             }
+
+            Vec3f efp(fp.x, fp.y, 4000.0f);
+            this->heatDistorters[i][j].update(RP_Firebar, &efp, &this->rotation, &this->scale);
         }
     }
 }
@@ -193,26 +245,44 @@ void HelicalBar::endState_OneBar() { }
 
 /** STATE: TwoBars */
 
-void HelicalBar::beginState_TwoBars() { }
+void HelicalBar::beginState_TwoBars() {
+    this->executeState_TwoBars();
+
+    for (u32 i = 0; i < 2; i++) {
+        for (u32 j = 0; j < 6; j++) {
+            const Vec2f& fp = this->firePositions[i][j];
+
+            this->hcInfos[i][j].set(
+                Vec2f(this->position.x - fp.x, this->position.y - fp.y), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
+            );
+
+            this->fireHitboxes[i][j].init(this, &this->hcInfos[i][j]);
+            HitboxColliderMgr::instance()->safeAddToCreateList(&this->fireHitboxes[i][j]);
+        }
+    }
+}
 
 void HelicalBar::executeState_TwoBars() {
     for (u32 i = 0; i < 4; i++) {
         for (u32 j = 0; j < 6; j++) {
             Vec2f& fp = this->firePositions[i][j];
 
+            this->fireHitboxes[i][j].colliderInfo.distToCenter = Vec2f(this->position.x - fp.x, this->position.y - fp.y);
+
             switch (i) {
                 case Direction::Right: {
-                    fp.x = this->position.x + calcFireRadius(j) * cosf(degToRad(this->fireRotate + finalHelixDelta));
-                    fp.y = this->position.y + calcFireRadius(j) * sinf(degToRad(this->fireRotate + finalHelixDelta));
+                    calcFireOrbit(0.0f);
                     break;
                 }
 
                 case Direction::Left: {
-                    fp.x = this->position.x + calcFireRadius(j) * cosf(degToRad(this->fireRotate + 180.0f + finalHelixDelta));
-                    fp.y = this->position.y + calcFireRadius(j) * sinf(degToRad(this->fireRotate + 180.0f + finalHelixDelta));
+                    calcFireOrbit(180.0f);
                     break;
                 }
             }
+
+            Vec3f efp(fp.x, fp.y, 4000.0f);
+            this->heatDistorters[i][j].update(RP_Firebar, &efp, &this->rotation, &this->scale);
         }
     }
 }
@@ -221,7 +291,22 @@ void HelicalBar::endState_TwoBars() { }
 
 /** STATE: ThreeBars */
 
-void HelicalBar::beginState_ThreeBars() { }
+void HelicalBar::beginState_ThreeBars() {
+    this->executeState_ThreeBars();
+
+    for (u32 i = 0; i < 3; i++) {
+        for (u32 j = 0; j < 6; j++) {
+            const Vec2f& fp = this->firePositions[i][j];
+
+            this->hcInfos[i][j].set(
+                Vec2f(this->position.x - fp.x, this->position.y - fp.y), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
+            );
+
+            this->fireHitboxes[i][j].init(this, &this->hcInfos[i][j]);
+            HitboxColliderMgr::instance()->safeAddToCreateList(&this->fireHitboxes[i][j]);
+        }
+    }
+}
 
 void HelicalBar::executeState_ThreeBars() {
     for (u32 i = 0; i < 4; i++) {
@@ -230,23 +315,25 @@ void HelicalBar::executeState_ThreeBars() {
 
             switch (i) {
                 case Direction::Right: {
-                    fp.x = this->position.x + calcFireRadius(j) * cosf(degToRad(this->fireRotate + finalHelixDelta));
-                    fp.y = this->position.y + calcFireRadius(j) * sinf(degToRad(this->fireRotate + finalHelixDelta));
+                    calcFireOrbit(0.0f);
                     break;
                 }
 
                 case Direction::Left: {
-                    fp.x = this->position.x + calcFireRadius(j) * cosf(degToRad(this->fireRotate + 120.0f + finalHelixDelta));
-                    fp.y = this->position.y + calcFireRadius(j) * sinf(degToRad(this->fireRotate + 120.0f + finalHelixDelta));
+                    calcFireOrbit(120.0f);
                     break;
                 }
 
                 case Direction::Up: {
-                    fp.x = this->position.x + calcFireRadius(j) * cosf(degToRad(this->fireRotate + 240.0f + finalHelixDelta));
-                    fp.y = this->position.y + calcFireRadius(j) * sinf(degToRad(this->fireRotate + 240.0f + finalHelixDelta));
+                    calcFireOrbit(240.0f);
                     break;
                 }
             }
+
+            this->fireHitboxes[i][j].colliderInfo.distToCenter = Vec2f(this->position.x - fp.x, this->position.y - fp.y);
+        
+            Vec3f efp(fp.x, fp.y, 4000.0f);
+            this->heatDistorters[i][j].update(RP_Firebar, &efp, &this->rotation, &this->scale);
         }
     }
 }

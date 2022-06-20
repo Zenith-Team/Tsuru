@@ -2,6 +2,7 @@
 
 #include "sead.h"
 #include "types.h"
+#include "dynlibs/os/functions.h"
 
 class StageActor;
 
@@ -17,6 +18,7 @@ public:
     };
 
     struct Info {
+
         static Info sDefault;
 
         Vec2f distToCenter;     // 0
@@ -28,6 +30,18 @@ public:
         u32 collisionMask;      // 20  Sets allowed collisions such as colliding with Yoshi
         u32 interactionMask;    // 24  Sets allowed interactions such as being pickup-able
         Callback callback;      // 28
+    
+        void set(const Vec2f& distToCenter, const Vec2f& distToEdge, HitboxShape shape, u32 _14, u32 _18, u32 _1C, u32 collisionMask, u32 interactionMask, Callback callback) {
+            this->distToCenter = distToCenter;
+            this->distToEdge = distToEdge;
+            this->shape = shape;
+            this->_14 = _14;
+            this->_18 = _18;
+            this->_1C = _1C;
+            this->collisionMask = collisionMask;
+            this->interactionMask = interactionMask;
+            this->callback = callback;
+        }
     };
 
     class List {
@@ -119,6 +133,12 @@ public:
     void removeFromActiveList(HitboxCollider*);
     void removeFromCreateList(HitboxCollider*);
     void removeFromList3(HitboxCollider*);
+
+    inline void safeAddToCreateList(HitboxCollider* hc) {
+        if (!this->isInActiveList(hc) && !this->isInCreateList(hc)) {
+            this->addToCreateList(hc);
+        }
+    }
 
     HitboxCollider::List activeList;    // 10
     HitboxCollider::List createList;    // 1C
