@@ -13,6 +13,7 @@ Please note that a rewrite is currently in progress, so not everything listed he
 * Actor Spawner
 * Angry Sun/Moon
 * Beep Block
+* Biddybud
 * Bomb Bro *
 * Cataquack
 * Custom Door
@@ -24,6 +25,8 @@ Please note that a rewrite is currently in progress, so not everything listed he
 * Falling Chestnut
 * Flipblock *
 * Giant Skewer
+* Helical Fire Bar
+* Ice Fuzzy
 * Kamiya
 * Liquid Collision Overlay
 * Magic Platform *
@@ -32,6 +35,7 @@ Please note that a rewrite is currently in progress, so not everything listed he
 * P-Acorn (as an in-game actor)
 * Para-Bones
 * Physics Modifier
+* Player Layer Changer
 * Poison Mushroom *
 * RGB Light Source
 * Scuttlebug
