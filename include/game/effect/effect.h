@@ -40,32 +40,15 @@ public:
 class EffectWrapper : public sead::IDisposer, public Effect, public sead::TListNode<EffectWrapper*> {
 public:
     EffectWrapper();
-
-    virtual ~EffectWrapper() {
-        this->destroy();
-    }
+    ~EffectWrapper();
 
     SEAD_RTTI_BASE(EffectWrapper);
 
-    void init(u32 effectID, const Mtx34* mtx, bool mtxHasScale);
-    void init(u32 effectID, const Vec3f* position, const Vec3u* rotation, const Vec3f* scale);
-
-    bool update(const Vec3f* position, const Vec3u* rotation, const Vec3f* scale);
-    bool update(const Mtx34* mtx, bool mtxHasScale);
+    bool update(const u32 effectID, const Vec3f* position, const Vec3u* rotation, const Vec3f* scale);
+    bool update(const u32 effectID, const Mtx34* mtx, bool mtxHasScale);
 
     void destroy();
 
     u32 effectID;   // 60
     bool isActive;  // 64
-};
-
-class ActorEffect : public EffectWrapper {
-    SEAD_RTTI_OVERRIDE(ActorEffect, EffectWrapper);
-
-public:
-    ActorEffect()
-        : EffectWrapper()
-    { }
-
-    virtual ~ActorEffect() { }
 };

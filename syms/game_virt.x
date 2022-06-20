@@ -628,6 +628,12 @@ SECTIONS {
 /* Effect */
     spawn__6EffectSFUiPC13Vec3__tm__2_fPC14Vec3__tm__3_UiT2 = 0x22AB080;
 
+/* EffectWrapper */
+    __ct__13EffectWrapperFv = 0x22ab868;
+    update__13EffectWrapperFUiPC13Vec3__tm__2_fPC14Vec3__tm__3_UiT2 = 0x22ab52c;
+    __vtbl__13EffectWrapper = 0x10058734;
+    __dt__13EffectWrapperFv = 0x22ab7dc;
+
 /* Enemy */
     RTTI__5Enemy = 0x101e9ef0;
     __ct__5EnemyFPC14ActorBuildInfo = 0x2328494;
@@ -787,6 +793,9 @@ SECTIONS {
 
 /* HitboxColliderMgr */
     sInstance__17HitboxColliderMgr = 0x101C95D8;
+    isInActiveList__17HitboxColliderMgrFP14HitboxCollider = 0x219dc5c;
+    isInCreateList__17HitboxColliderMgrFP14HitboxCollider = 0x219dd88;
+    addToCreateList__17HitboxColliderMgrFP14HitboxCollider = 0x219e028;
 
 /* LayerAGL */
     vf44__8LayerAglFv = 0x24F9340;
