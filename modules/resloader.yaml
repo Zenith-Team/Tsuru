@@ -1,10 +1,10 @@
 
 ---
 Files:
-  - source/asm/levelrespreloader.S
-  - source/levelrespreloader.cpp
+  - asm/levelrespreloader.S
+  - levelrespreloader.cpp
 Hooks:
   - type: branch
     instr: bl
     func: LevelResPreloaderCaller
-    addr: "200A874"
+    addr: "0x200A874"

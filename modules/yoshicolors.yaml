@@ -1,17 +1,17 @@
 
 ---
 Files:
-  - source/asm/yoshicolors.S
-  - source/yoshicolors.cpp
+  - asm/yoshicolors.S
+  - yoshicolors.cpp
 Hooks:
 # Redirect the YoshiModel constructor to use the custom array instead of the default one
   - type: branch
     instr: bl
-    addr: "2967ae8" # YoshiModel::YoshiModel()
+    addr: "0x2967ae8" # YoshiModel::YoshiModel()
     func: RedirectToCustomYoshiTexArray
 
 # Randomize nybble 12 (color)
   - type: branch
     instr: bl
-    addr: "295DF50" # Yoshi::Yoshi()
+    addr: "0x295DF50" # Yoshi::Yoshi()
     func: RandomYoshiColors

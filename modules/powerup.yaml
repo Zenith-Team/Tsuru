@@ -1,75 +1,75 @@
 
 ---
 Files:
-  - source/asm/powerup.S
+  - asm/powerup.S
 Hooks:
 # Projectile
   # Spawn the custom projectile
   - type: branch
     instr: bl
-    addr: "293ade0"
+    addr: "0x293ade0"
     func: ProjectileProfileIDs
   # Allow checking if we can throw projectile from custom type
   - type: branch
     instr: b
-    addr: "293acc0"
+    addr: "0x293acc0"
     func: ShouldThrowProjectile
   # Allow throwing projectile from custom type
   - type: branch
     instr: bl
-    addr: "293b148"
+    addr: "0x293b148"
     func: AllowThrowingProjectile
   # Another one
   - type: branch
     instr: bl
-    addr: "293abc8"
+    addr: "0x293abc8"
     func: AnotherProjectilePowerupCheck
   # Yet another
   - type: branch
     instr: b
-    addr: "293ac38"
+    addr: "0x293ac38"
     func: ShouldThrowProjectile_2
   # Continue spawning if it's custom type
   - type: branch
     instr: bl
-    addr: "293adbc"
+    addr: "0x293adbc"
     func: ProjectileExtraTypes
 
 # Extend tables
   # Tall type
   - type: branch
     instr: b
-    addr: "2925128"
+    addr: "0x2925128"
     func: UseCustomTallTypeTable
   # Sensor sizes
   - type: branch
     instr: bl
-    addr: "28f73e0"
+    addr: "0x28f73e0"
     func: UseCustomSensorSizeTable
   # Center offset
   - type: branch
     instr: bl
-    addr: "2924CC8"
+    addr: "0x2924CC8"
     func: UseCustomPowerupCenterOffsetTable
   # Unknown arrays
   - type: branch
     instr: bl
-    addr: "29279c4"
+    addr: "0x29279c4"
     func: UseCustomArray_1016cd68
   - type: branch
     instr: bl
-    addr: "292916c"
+    addr: "0x292916c"
     func: UseCustomArray_1016ce20
   - type: branch
     instr: bl
-    addr: "292918c"
+    addr: "0x292918c"
     func: UseCustomArray_1016ce44
   - type: branch
     instr: bl
-    addr: "292e474"
+    addr: "0x292e474"
     func: UseCustomArray_1016d7f8
  # - type: branch
  #   instr: bl
- #   addr: "292ea6c"
+ #   addr: "0x292ea6c"
  #   func: UseCustomArray_1016d7cc
 

@@ -1,9 +1,9 @@
 
 ---
 Files:
-  - source/collisionconditions.cpp
+  - collisionconditions.cpp
 Hooks:
 # Allow Yoshi bounce on Urchin
   - type: funcptr
-    addr: "100AE7FC" # Urchin::vtable entry for Enemy::collisionYoshi
+    addr: "0x100AE7FC" # Urchin::vtable entry for Enemy::collisionYoshi
     func: collisionYoshi_Bounce__FP5EnemyP14HitboxColliderT2
