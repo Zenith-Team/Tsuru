@@ -1,35 +1,35 @@
 
 ---
 Files:
-  - asm/waves.S
-  - waves.cpp
+  - source/asm/waves.S
+  - source/waves.cpp
 Hooks:
 # Apply waves
   # Water
   - type: branch
     instr: bl
-    addr: "0x26f9444" # Water::onExecute()
+    addr: "26f9444" # Water::onExecute()
     func: SetWaterWaveValues
   # Poison
   - type: funcptr
-    addr: "0x100fdddc" # vtable entry for Poison::onExecute
+    addr: "100fdddc" # vtable entry for Poison::onExecute
     func: Poison_onExecute__FP10EnvTerrain
   # Quicksand xd
   - type: funcptr
-    addr: "0x100fe19c" # vtable entry for Quicksand::onExecute
+    addr: "100fe19c" # vtable entry for Quicksand::onExecute
     func: Quicksand_onExecute__FP10EnvTerrain
 
 # Apply proper collision to waves through TileMgr waveType member
 #* Due to the fact that it uses a global member there can only be one type of wave active per level
   - type: branch
     instr: bl
-    addr: "0x218f150"
+    addr: "218f150"
     func: WaveCollision_r4
   - type: branch
     instr: bl
-    addr: "0x218f884"
+    addr: "218f884"
     func: WaveCollision_r12
 
 # Fix ripples only appearing at troughs
   - type: nop
-    addr: "0x28b7fc4"
+    addr: "28b7fc4"

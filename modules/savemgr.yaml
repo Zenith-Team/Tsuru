@@ -2,19 +2,19 @@
 ---
 Files:
 # System
-  - save/system/customsavemgr.cpp
-  - save/system/savemgrsystem.cpp
+  - source/save/system/customsavemgr.cpp
+  - source/save/system/savemgrsystem.cpp
 # Managers
-  - save/managers/tsurusavemgr.cpp
+  - source/save/managers/tsurusavemgr.cpp
 Hooks:
 # Initialize managers
   - type: branch
     instr: b
-    addr: "0x29d5b68" # RootTask::prepare()
+    addr: "29d5b68" # RootTask::prepare()
     func: initSystem__13SaveMgrSystemSFv
 
 # Save all managers' data
   - type: branch
     instr: b
-    addr: "0x29d97b8"
+    addr: "29d97b8"
     func: saveSystem__13SaveMgrSystemSFv

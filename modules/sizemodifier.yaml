@@ -1,21 +1,21 @@
 
 ---
 Files:
-  - asm/sizemodifier.S
+  - source/asm/sizemodifier.S
 Hooks:
 # Modify actor size
   # Modify the scale member of the actor
   - type: branch
     instr: b
-    addr: "0x2000FE4" # StageActor::afterCreate
+    addr: "2000FE4" # StageActor::afterCreate
     func: ScaleActor
   # Modify the HitboxCollider info of the actor
   - type: branch
     instr: bl
-    addr: "0x219AF58" # HitboxCollider::init
+    addr: "219AF58" # HitboxCollider::init
     func: ScaleHitboxCollider
   # Modify the PhysicsMgr sensor of the actor
   - type: branch
     instr: b
-    addr: "0x218AF50" # PhysicsMgr::setSensor
+    addr: "218AF50" # PhysicsMgr::setSensor
     func: ScalePhysicsMgr

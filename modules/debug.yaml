@@ -1,37 +1,37 @@
 
 ---
 Files:
-  - debug/collisionviewer.S
-  - debug/collisionviewer.cpp
-  - debug/exceptions.cpp
+  - source/debug/collisionviewer.S
+  - source/debug/collisionviewer.cpp
+  - source/debug/exceptions.cpp
 Hooks:
 # Draw debug layer for levels
   # Hijack funcptr of AreaTask::drawLayer3D to point to a custom function
   - type: branch
     instr: bl
-    addr: "0x24B65E0" # AreaTask::FUN_24b6398()
+    addr: "24B65E0" # AreaTask::FUN_24b6398()
     func: AreaTaskDebugDraw
 
 # Draw debug layer for world map
   # Hijack funcptr of CourseSelectTask::drawLayer3D to point to a custom function
   - type: branch
     instr: bl
-    addr: "0x22664ec" # CourseSelectTask::enter()
+    addr: "22664ec" # CourseSelectTask::enter()
     func: CourseSelectTaskDebugDraw
   # Redirect CourseSelectTask::drawLayer3D_DRC to branch to a custom function instead of drawLayer3D
   - type: branch
     instr: b
-    addr: "0x2267704" # CourseSelectTask::drawLayer3D_DRC()
+    addr: "2267704" # CourseSelectTask::drawLayer3D_DRC()
     func: renderCollisions__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo
 
 # Handle wrong calls
   # __pure_virtual_called
   - type: branch
     instr: b
-    addr: "0x2afa554"
+    addr: "2afa554"
     func: handlePVC__Fv
   # __deleted_virtual_called
   - type: branch
     instr: b
-    addr: "0x2afa5e8"
+    addr: "2afa5e8"
     func: handleDVC__Fv

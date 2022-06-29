@@ -1,10 +1,9 @@
 
 ---
-Files:
-  - initializer.cpp
+Files: [source/initializer.cpp]
 Hooks:
 # Initialize things that need to do so
   - type: branch
     instr: b
-    addr: "0x2AFA050" # __call_ctors()
+    addr: "2AFA050" # __call_ctors()
     func: initialize__Fv

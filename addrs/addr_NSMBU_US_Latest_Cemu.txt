@@ -1,0 +1,7 @@
+
+-textAddr = 0x2B01360
+-dataAddr = 0x10607D00
+-symsAddr = 0xC000BED0
+
+EBC0000 - FFFFFFF: Addr - 0xCBC0000
+10502200 - 20000000: Addr - 0x502200

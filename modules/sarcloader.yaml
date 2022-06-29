@@ -1,10 +1,10 @@
 
 ---
 Files:
-  - asm/sarcloader.S
+  - source/asm/sarcloader.S
 Hooks:
 # Load levels as uncompressed SARChive
   - type: branch
     instr: bl
-    addr: "0x29D3330"
+    addr: "29D3330"
     func: LoadLevelArchiveWithoutDecomp

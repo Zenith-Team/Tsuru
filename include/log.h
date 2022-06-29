@@ -3,7 +3,7 @@
 #include "sead/graphicscontext.h"
 #include "dynlibs/os/functions.h"
 
-#ifdef DEBUG
+#ifdef TSURU_DEBUG
     #ifdef Cemu
         #define LOG(FMT, ...) { \
             __os_snprintf(logMsg, sizeof(logMsg), FMT, ## __VA_ARGS__); \

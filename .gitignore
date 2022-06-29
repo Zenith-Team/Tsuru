@@ -17,4 +17,6 @@ objs
 *.rpx
 *.py
 *.bat
-env.yaml
+include/**config*
+include/sead2
+__pycache__

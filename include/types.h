@@ -6,7 +6,7 @@
 // Workarounds to meet newer standards
 
 //! This is a hack, if you got here because of an error:
-//* To have override intellisense: Add Override as a define in project.yaml
+//* To have override intellisense: Add \t-DOverride above \t-DCemu on compiler_cemu.py
 //? To just compile without override intellisense, uncomment #define below.
 //#define Override
 #ifdef Override

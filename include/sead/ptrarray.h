@@ -74,14 +74,6 @@ public:
         : PtrArray<T>(N, reinterpret_cast<T**>(work))
     { }
 
-    T& operator[](s32 index) {
-        return *(reinterpret_cast<T**>(ptrs)[index]);
-    }
-
-    const T& operator[](s32 index) const {
-        return *(reinterpret_cast<T**>(ptrs)[index]);
-    }
-
     u8 work[N * sizeof(void*)];
 };
 
