@@ -2,31 +2,27 @@
 ---
 Name: Tsuru
 Modules:
- # - atlys.yaml                # Atlys custom world map system
- # - buffs.yaml                # 'Cause the game is too easy
-  - cheats.yaml               # Cheat menu
-  - collisionconditions.yaml  # Fixes collision conditions for some actors
-  - customactors.yaml         # Custom sprites/actors
-  - cutscenetask.yaml         # Custom cutscene video player
-  - deathfoo.yaml             # Toxic cloud foo patch
-  - debug.yaml                # Debugging features
-# - experiments.yaml          # Experimental things #! (WARNING: Do not use in releases)
-  - framebuffer.yaml          # Clears the framebuffer before rendering
-#  - heap.yaml                 # LETS FREE SOME RAM
-  - initializer.yaml          # Initializer
-  - misc.yaml                 # Miscellaneous items
-#  - powerup.yaml              # Custom powerups
-  - profile.yaml              # Extra profile and sprite slots
-  - resloader.yaml            # Resource loader
-  - sarcloader.yaml           # Allow loading uncompressed .sarc levels
-  - savemgr.yaml              # Manages the custom savedata files
-  - sead.yaml                 # Patches for the sead library
-# - sizemodifier.yaml         # Scale actors as you wish using nybble #! Depends on SetPhysicsMgrOwner from misc.yaml which crashes some levels
-  - snowparticles.yaml        # Allows changing snow particle colors from spritedata
-  - sound.yaml                # Patches that affect sound
-  - titlescreen.yaml          # Title screen patches
-  - waves.yaml                # Wavy liquids
-  - yoshicolors.yaml          # Extra colors for Yoshi
-Defines:
-  - Override
-  - Cemu
+ # - modules/atlys.yaml                # Atlys custom world map system
+ # - modules/buffs.yaml                # 'Cause the game is too easy
+  - modules/cheats.yaml               # Cheat menu
+  - modules/collisionconditions.yaml  # Fixes collision conditions for some actors
+  - modules/customactors.yaml         # Custom sprites/actors
+  - modules/cutscenetask.yaml         # Custom cutscene video player
+  - modules/deathfoo.yaml             # Toxic cloud foo patch
+  - modules/debug.yaml                # Debugging features
+# - modules/experiments.yaml          # Experimental things #! (WARNING: Do not use in releases)
+  - modules/framebuffer.yaml          # Clears the framebuffer before rendering
+  - modules/initializer.yaml          # Initializer
+  - modules/misc.yaml                 # Miscellaneous items
+  - modules/powerup.yaml              # Custom powerups
+  - modules/profile.yaml              # Extra profile and sprite slots
+  - modules/resloader.yaml            # Resource loader
+  - modules/sarcloader.yaml           # Allow loading uncompressed .sarc levels
+  - modules/savemgr.yaml              # Manages the custom savedata files
+  - modules/sead.yaml                 # Patches for the sead library
+# - modules/sizemodifier.yaml         # Scale actors as you wish using nybble #! Depends on SetPhysicsMgrOwner from misc.yaml which crashes some levels
+  - modules/snowparticles.yaml        # Allows changing snow particle colors from spritedata
+  - modules/sound.yaml                # Patches that affect sound
+  - modules/titlescreen.yaml          # Title screen patches
+  - modules/waves.yaml                # Wavy liquids
+  - modules/yoshicolors.yaml          # Extra colors for Yoshi

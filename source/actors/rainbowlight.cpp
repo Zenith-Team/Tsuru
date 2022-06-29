@@ -51,7 +51,7 @@ u32 RainbowLight::onCreate() {
         default: this->lightColor = sead::colorRed;     break;
     }
 
-    this->lightSource.update(0, this->position, nullptr, this->lightAttenuationRadius, nullptr, this->lightColor);
+    this->lightSource.update(0, &this->position, nullptr, &this->lightAttenuationRadius, nullptr, &this->lightColor);
 
     this->lightMask.init(nullptr, 2);
     this->lightMask.position = this->position;
@@ -64,7 +64,7 @@ u32 RainbowLight::onCreate() {
 u32 RainbowLight::onExecute() {
     // TODO: Movement controller setup
 
-    this->lightSource.update(0, this->position, nullptr, this->lightAttenuationRadius, nullptr, this->lightColor);
+    this->lightSource.update(0, &this->position, nullptr, &this->lightAttenuationRadius, nullptr, &this->lightColor);
 
     this->lightMask.position = this->position;
     this->lightMask.update();

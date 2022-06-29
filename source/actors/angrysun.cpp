@@ -96,7 +96,7 @@ u32 AngrySun::onCreate() {
 
     this->model = this->isMoon ? ModelWrapper::create("star_coin", "star_coinB") : ModelWrapper::create("star_coin", "star_coinA");
 
-    this->lightSource.update(0, this->position, nullptr, this->lightAttenuationRadius, nullptr, this->lightColor);
+    this->lightSource.update(0, &this->position, nullptr, &this->lightAttenuationRadius, nullptr, &this->lightColor);
 
     this->lightMask.init(nullptr, 2);
     this->lightMask.position = this->position;
@@ -121,7 +121,7 @@ u32 AngrySun::onCreate() {
 u32 AngrySun::onExecute() {
     this->states.execute();
 
-    this->lightSource.update(0, this->position, nullptr, this->lightAttenuationRadius, nullptr, this->lightColor);
+    this->lightSource.update(0, &this->position, nullptr, &this->lightAttenuationRadius, nullptr, &this->lightColor);
 
     this->lightMask.position = this->position;
     this->lightMask.update();

@@ -1,15 +1,15 @@
 
 ---
 Files:
-  - framebuffer.cpp
+  - source/framebuffer.cpp
 Hooks:
   # TV
   - type: branch
     instr: bl
-    addr: "0x24E1114"
+    addr: "24E1114"
     func: drawCustomTV__Q3_3agl3lyr8RendererCFQ3_3agl3lyr11DisplayType
   # Gamepad
   - type: branch
     instr: bl
-    addr: "0x24E11A8"
+    addr: "24E11A8"
     func: drawCustomDRC__Q3_3agl3lyr8RendererCFQ3_3agl3lyr11DisplayType

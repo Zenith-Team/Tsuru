@@ -1,4 +1,6 @@
-# Math
+SECTIONS {
+
+/* Math */
     sinf = 0x2AFDD40;
     cosf = 0x2AFE528;
     atan2f = 0x2AFE670;
@@ -7,7 +9,7 @@
     sqrtf = 0x2AFDCCC;
     globalSinCosTbl__Q3_2nw4math8internal = 0x10191538;
 
-# new/delete
+/* new/delete */
     __nw__FUi = 0x29F1594;
     __nw__FUiPQ2_4sead4Heapi = 0x29F1858;
     __nwa__FUi = 0x29F1630;
@@ -15,7 +17,7 @@
     __dl__FPv = 0x29F1748;
     __dla__FPv = 0x29F17D0;
 
-# GHS
+/* GHS */
     __pure_virtual_called = 0x2AFA554;
     __deleted_virtual_called = 0x2AFA5E8;
     __vec_new = 0x2AFA350;
@@ -31,7 +33,7 @@
     __array_new_prefix_size = 0x101E9338;
     __placement_array_new = 0x2AFA30C;
 
-# Cafe SDK Static
+/* Cafe SDK Static */
     ASM_MTXConcat = 0x2AF98A0;
     ASM_MTXScale = 0x2AF9B64;
     ASM_VECDistance = 0x2AF9718;
@@ -47,57 +49,57 @@
     _GFDCheckBlockHeaderMagicVersions = 0x02AF8ABC;
     _GFDRelocateBlock = 0x02AF8E04;
 
-# agl::RenderBuffer
+/* agl::RenderBuffer */
     __ct__Q2_3agl12RenderBufferFR13Vec2__tm__2_ffN32 = 0x2A1EADC;
     __ct__Q2_3agl12RenderBufferFv = 0x2A1E9DC;
     __dt__Q2_3agl12RenderBufferFv = 0x2A1E33C;
     clear__Q2_3agl12RenderBufferFUiT1RCQ2_4sead7Color4ffT1 = 0x2A1E644;
     initialize__Q2_3agl12RenderBufferFv = 0x2A1E9B4;
 
-# agl::RenderTargetColor
+/* agl::RenderTargetColor */
     __ct__Q2_3agl17RenderTargetColorFv = 0x2A1EFDC;
 
-# agl::ShaderProgramArchive
+/* agl::ShaderProgramArchive */
     __ct__Q2_3agl20ShaderProgramArchiveFv = 0x2A22934;
     FUN_2A23f1C__Q2_3agl20ShaderProgramArchiveFPUcRCUiUiPQ2_4sead4Heap = 0x2A23F1C;
 
-# agl::TextureData
+/* agl::TextureData */
     __ct__Q2_3agl11TextureDataFv = 0x2A249A0;
     invalidateGPUCache__Q2_3agl11TextureDataFv = 0x2A24A64;
     initializeFromSurface__Q2_3agl11TextureDataFRC11_GX2Surface = 0x2A24E80;
 
-# agl::TextureDataInitializerGTX
+/* agl::TextureDataInitializerGTX */
     initialize__Q2_3agl25TextureDataInitializerGTXSFPQ2_3agl11TextureDataPvUi = 0x2A24F38;
 
-# agl::TextureSampler
+/* agl::TextureSampler */
     __ct__Q2_3agl14TextureSamplerFv = 0x2A2587C;
     __ct__Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2A25A64;
     __dt__Q2_3agl14TextureSamplerFv = 0x2A25C60;
     applyTextureData___Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2A25990;
 
-# agl::driver::GX2Resource
+/* agl::driver::GX2Resource */
     sInstance__Q3_3agl6driver11GX2Resource = 0x101E88C4;
     restoreContextState__Q3_3agl6driver11GX2ResourceFv = 0x2A283C4;
 
-# agl::lyr::Layer
+/* agl::lyr::Layer */
     pushBackDrawMethod__Q3_3agl3lyr5LayerFUiPQ3_3agl3lyr18DrawMethodImplBase = 0x2A376B8;
     pushBackDrawMethod__Q3_3agl3lyr5LayerFPQ3_3agl3lyr10DrawMethod = 0x2A37710;
 
-# agl::lyr::Renderer
+/* agl::lyr::Renderer */
     draw__Q3_3agl3lyr8RendererCFQ3_3agl3lyr11DisplayType = 0x2A3AB90;
     sInstance__Q3_3agl3lyr8Renderer = 0x101E8A2C;
     initLayer___Q3_3agl3lyr8RendererFPQ3_3agl3lyr5LayerUiRCQ2_4sead23SafeStringBase__tm__2_cT2PQ2_4sead4Heap = 0x2A3AEE8;
 
-# agl::lyr::RenderInfo
+/* agl::lyr::RenderInfo */
     __ct__Q3_3agl3lyr10RenderInfoFQ3_3agl3lyr11DisplayTypePCQ2_4sead11FrameBufferbPCQ3_3agl3lyr5LayerPQ2_3agl11DisplayList = 0x2a3b2c0;
 
-# agl::utl::DevTools
+/* agl::utl::DevTools */
     drawTextureTexCoord__Q3_3agl3utl8DevToolsSFRCQ2_3agl14TextureSamplerRC5Mtx34RC5Mtx44RC13Vec2__tm__2_ffT4Q2_3agl10ShaderMode = 0x2A51A28;
 
-# agl::utl::ImageFilter2D
+/* agl::utl::ImageFilter2D */
     drawTextureMSAA__Q3_3agl3utl13ImageFilter2DSFRCQ2_3agl14TextureSamplerRCQ2_4sead8ViewportRC13Vec2__tm__2_fT3Ui = 0x2A533EC;
 
-# sead::CalculateTask
+/* sead::CalculateTask */
     RTTI__Q2_4sead13CalculateTask = 0x101ea764;
     __ct__Q2_4sead13CalculateTaskFRCQ2_4sead16TaskConstructArgPCc = 0x29FC508;
     __dt__Q2_4sead13CalculateTaskFv = 0x29FC2F0;
@@ -113,79 +115,75 @@
     getCorrespondingMethodTreeMgrTypeInfo__Q2_4sead13CalculateTaskCFv = __deleted_virtual_called;
     getMethodTreeNode__Q2_4sead13CalculateTaskFi = 0x29FC4F0;
 
-# sead::Camera
+/* sead::Camera */
     __vtbl__Q2_4sead6Camera = 0x10190824;
 
-# sead::ControllerMgr
+/* sead::ControllerMgr */
     sInstance__Q2_4sead13ControllerMgr = 0x101E7EFC;
 
-# sead::ExpHeap
-    tryCreate__Q2_4sead7ExpHeapSFUiRCQ2_4sead23SafeStringBase__tm__2_cPQ2_4sead4HeapQ3_4sead4Heap13HeapDirectionb = 0x2a0a7ac;
-
-# sead::FileDevice
+/* sead::FileDevice */
     tryClose__Q2_4sead10FileDeviceFPQ2_4sead10FileHandle = 0x29F78C0;
     tryWrite__Q2_4sead10FileDeviceFPUiPQ2_4sead10FileHandlePCUcUi = 0x29F7AE8;
     __CPR84__trySeek__Q2_4sead10FileDeviceFPQ2_J12J10FileHandleiQ3_J12JJ17J10SeekOrigin = 0x29F7B98;
 
-# sead::FileDeviceMgr
+/* sead::FileDeviceMgr */
     sInstance__Q2_4sead13FileDeviceMgr = 0x101E7F18;
     tryLoad__Q2_4sead13FileDeviceMgrFRQ3_4sead10FileDevice7LoadArg = 0x29F8BBC;
     tryOpen__Q2_4sead13FileDeviceMgrFPQ2_4sead10FileHandleRCQ2_4sead23SafeStringBase__tm__2_cQ3_4sead10FileDevice12FileOpenFlagUi = 0x29F8B0C;
 
-# sead::FileHandle
+/* sead::FileHandle */
     read__Q2_4sead10FileHandleFPUcUi = 0x29F81D0;
     getFileSize__Q2_4sead10FileHandleFv = 0x29F8368;
 
-# sead::FrameBuffer
+/* sead::FrameBuffer */
     bind__Q2_4sead11FrameBufferCFv = 0x2A058F0;
 
-# sead::FrustumProjection
+/* sead::FrustumProjection */
     __ct__Q2_4sead17FrustumProjectionFfN51 = 0x2A06944;
     __dt__Q2_4sead17FrustumProjectionFv = 0x2A06A4C;
 
-# sead::GlobalRandom
+/* sead::GlobalRandom */
     sInstance__Q2_4sead12GlobalRandom = 0x101E806C;
 
-# sead::GraphicsContext
+/* sead::GraphicsContext */
     __ct__Q2_4sead15GraphicsContextFv = 0x2A07BBC;
     apply__Q2_4sead15GraphicsContextFv = 0x2A07CB0;
 
-# sead::HeapMgr
+/* sead::HeapMgr */
     sRootHeaps__Q2_4sead7HeapMgr = 0x105EA148;
     sInstancePtr__Q2_4sead7HeapMgr = 0x101E8040;
     getCurrentHeap__Q2_4sead7HeapMgrFv = 0x2A0D554;
-    setCurrentHeap__Q2_4sead7HeapMgrFPQ2_4sead4Heap = 0x2a0d584;
 
-# sead::IDisposer
+/* sead::IDisposer */
     __ct__Q2_4sead9IDisposerFv = 0x2A0A2FC;
     __dt__Q2_4sead9IDisposerFv = 0x2A0A384;
 
-# sead::LookAtCamera
+/* sead::LookAtCamera */
     __dt__Q2_4sead12LookAtCameraFv = 0x2A04B94;
     __vtbl__Q2_4sead12LookAtCamera = 0x1019084C;
     doUpdateMatrix__Q2_4sead12LookAtCameraCFP5Mtx34 = 0x2A04BE8;
 
-# sead::MathCalcCommon
+/* sead::MathCalcCommon */
     chase__Q2_4sead23MathCalcCommon__tm__2_fSFPZ1ZZ1ZT2_b = 0x2027984;
     chase__Q2_4sead24MathCalcCommon__tm__3_UiSFPZ1ZZ1ZT2_b = 0x29E0DE8;
     cSinCosTbl__Q2_4sead23MathCalcCommon__tm__2_f = 0x10191538;
 
-# sead::OrthoCamera
+/* sead::OrthoCamera */
     __ct__Q2_4sead11OrthoCameraFv = 0x2A04D54;
 
-# sead::OrthoProjection
+/* sead::OrthoProjection */
     __ct__Q2_4sead15OrthoProjectionFv = 0x2A06518;
     __ct__Q2_4sead15OrthoProjectionFfT1RCQ2_4sead8Viewport = 0x2A066B4;
     setTBLR__Q2_4sead15OrthoProjectionFfN31 = 0x2A06818;
     __dt__Q2_4sead15OrthoProjectionFv = 0x2A067C4;
 
-# sead::PerspectiveProjection
+/* sead::PerspectiveProjection */
     __ct__Q2_4sead21PerspectiveProjectionFv = 0x2A06108;
     __ct__Q2_4sead21PerspectiveProjectionFfN31 = 0x2A061AC;
     set__Q2_4sead21PerspectiveProjectionFfN31 = 0x2A062EC;
     __dt__Q2_4sead21PerspectiveProjectionFv = 0x2A06298;
 
-# sead::PrimitiveRenderer
+/* sead::PrimitiveRenderer */
     sInstance__Q2_4sead17PrimitiveRenderer = 0x101E8010;
     setCamera__Q2_4sead17PrimitiveRendererFRCQ2_4sead6Camera = 0x2A083D0;
     setProjection__Q2_4sead17PrimitiveRendererFRCQ2_4sead10Projection = 0x2A083E4;
@@ -193,19 +191,19 @@
     begin__Q2_4sead17PrimitiveRendererFv = 0x2A08408;
     end__Q2_4sead17PrimitiveRendererFv = 0x2A0841C;
 
-# sead::PrimitiveRendererCafe
+/* sead::PrimitiveRendererCafe */
     drawTriangles___Q2_4sead21PrimitiveRendererCafeFRC5Mtx34RCQ2_4sead7Color4fT2PQ3_4sead21PrimitiveRendererUtil6VertexUiPUsT5PC11_GX2Texture = 0x2A0A190;
 
-# sead::Projection
+/* sead::Projection */
     getDeviceProjectionMatrix__Q2_4sead10ProjectionCFv = 0x2A05A9C;
 
-# sead::Random
+/* sead::Random */
     getU32__Q2_4sead6RandomFv = 0x2A13780;
 
-# sead::SafeStringBase
+/* sead::SafeStringBase */
     sNullChar__Q2_4sead23SafeStringBase__tm__2_c = 0x1011BF6B;
 
-# sead::TaskBase
+/* sead::TaskBase */
     pauseCalcChild__Q2_4sead8TaskBaseFb = __deleted_virtual_called;
     pauseDrawChild__Q2_4sead8TaskBaseFb = __deleted_virtual_called;
     prepare__Q2_4sead8TaskBaseFv = 0x29FFF6C;
@@ -216,12 +214,12 @@
     adjustHeapAll__Q2_4sead8TaskBaseFv = 0x29FF9DC;
     RTTI__Q2_4sead8TaskBase = 0x101ea768;
 
-# sead::Viewport
+/* sead::Viewport */
     __ct__Q2_4sead8ViewportFfN31 = 0x2A072FC;
     __ct__Q2_4sead8ViewportFRCQ2_4sead18LogicalFrameBuffer = 0x2A074C8;
     apply__Q2_4sead8ViewportCFRCQ2_4sead18LogicalFrameBuffer = 0x2A0783C;
 
-# Actor
+/* Actor */
     RTTI__5Actor = 0x101e9cc8;
     __ct__5ActorFPC14ActorBuildInfo = 0x2002CE0;
     __dt__5ActorFv = 0x2002E68;
@@ -246,16 +244,16 @@
     afterDelete__5ActorFUi = 0x2002F3C;
     getProfileID__5ActorFv = 0x2002C80;
 
-# ActorBuffer
+/* ActorBuffer */
     findActorByID__11ActorBufferFRCUi = 0x200A5C8;
 
-# ActorGlobalsHolder
+/* ActorGlobalsHolder */
     sInstance__18ActorGlobalsHolder = 0x101C30D0;
 
-# ActorInfo
+/* ActorInfo */
     sDefault__9ActorInfo = 0x100018F4;
 
-# ActorMgr
+/* ActorMgr */
     sInstance__8ActorMgr = 0x101C30C8;
     create__8ActorMgrFR14ActorBuildInfoUi = 0x2009A58;
     findActorByType__8ActorMgrFQ2_9ProfileId13ProfileIdTypePP5Actor = 0x2009B6C;
@@ -264,33 +262,33 @@
     executeActors__8ActorMgrFv = 0x2009D58;
     drawActors__8ActorMgrFv = 0x2009ECC;
 
-# AreaTask
+/* AreaTask */
     sInstance__8AreaTask = 0x101D1598;
 
-# Animation
+/* Animation */
     shouldLoop__9AnimationFb = 0x24DEED4;
     reset__9AnimationFv = 0x24DEEAC;
 
-# ZoneRumbleMgr
+/* ZoneRumbleMgr */
     sInstance__13ZoneRumbleMgr = 0x101D1660;
     rumble__13ZoneRumbleMgrFiScN22 = 0x24C4D3C;
 
-# AreaTask
+/* AreaTask */
     drawLayer3D__8AreaTaskFRCQ3_3agl3lyr10RenderInfo = 0x24B84A8;
 
-# ApplicationTask
+/* ApplicationTask */
     sInstance__15ApplicationTask = 0x101E7D40;
 
-# AudioFx
+/* AudioFx */
     getReverbHiParam__7AudioFxFv = 0x29B2FD8;
     getDelayParam__7AudioFxFv = 0x29B2FE0;
 
-# BasicSoundActor
+/* BasicSoundActor */
     GlobalBasicSoundActorA__15BasicSoundActor = 0x101C63CC;
     GlobalBasicSoundActorB__15BasicSoundActor = 0x101C63D0;
     playSound__15BasicSoundActorFPCcP13Vec2__tm__2_fUi = 0x29BED48;
 
-# Boss
+/* Boss */
     RTTI__4Boss = 0x101e9f24;
     getRuntimeTypeInfo__4BossCFv = __deleted_virtual_called;
     FUN_202D0F8__4BossFP10StageActorP13Vec3__tm__2_fUi = 0x202D0F8;
@@ -456,7 +454,7 @@
     updateModelTrampoline__4BossFv = 0x23291DC;
     FUN_202D094__4BossFP10StageActorP13Vec3__tm__2_fUi = 0x202d094;
 
-# BossController
+/* BossController */
     getRuntimeTypeInfo__14BossControllerCFv = __deleted_virtual_called;
     checkDerivedRuntimeTypeInfo__14BossControllerCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x202f644;
     StateID_StartSequence__14BossController = 0x101f0ac4;
@@ -480,27 +478,27 @@
     vf1EC__14BossControllerFv = 0x202f158;
     vf21C__14BossControllerFv = 0x202f7b0;
 
-# CircularCollider
+/* CircularCollider */
     RTTI__16CircularCollider = 0x101EA398;
 
-# ColliderBase
+/* ColliderBase */
     RTTI__12ColliderBase = 0x101e9fa4;
     setType__12ColliderBaseFQ2_12ColliderBase4Type = 0x21A5A70;
     __CPR61__setSurfaceType__12ColliderBaseFQ2_J16J11SurfaceType = 0x21a5ad0;
 
-# ColliderBase::Node
+/* ColliderBase::Node */
     __ct__Q2_12ColliderBase4NodeFv = 0x21A1ACC;
 
-# ColliderMgr
+/* ColliderMgr */
     sInstance__11ColliderMgr = 0x101C9360;
     add__11ColliderMgrFP12ColliderBase = 0x219269C;
     remove__11ColliderMgrFP12ColliderBase = 0x219282C;
 
-# CourseTask
+/* CourseTask */
     sInstance__10CourseTask = 0x101D15F0;
     construct__10CourseTaskSFRCQ2_4sead16TaskConstructArg = 0x202B4C8;
 
-# CourseSelectActor
+/* CourseSelectActor */
     __ct__17CourseSelectActorFPC14ActorBuildInfo = 0x21D4CB4;
     __dt__17CourseSelectActorFv = 0x21D5838;
     checkDerivedRuntimeTypeInfo__17CourseSelectActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x21D588C;
@@ -513,15 +511,15 @@
     vfA4__17CourseSelectActorFv = 0x21D5968;
     updateCSScriptInteractions__17CourseSelectActorFv = 0x21D4F1C;
 
-# CourseSelectTask
+/* CourseSelectTask */
     sInstance__16CourseSelectTask = 0x101CC96C;
     drawLayer3D__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo = 0x22676A4;
     construct__16CourseSelectTaskSFRCQ2_4sead16TaskConstructArg = 0x202B870;
 
-# CSPlayerMgr
+/* CSPlayerMgr */
     sInstance__11CSPlayerMgr = 0x101CC30C;
 
-# CSCollisionActor
+/* CSCollisionActor */
     RTTI__16CSCollisionActor = 0x101ea3e8;
     __ct__16CSCollisionActorFPC14ActorBuildInfo = 0x21D596C;
     __dt__16CSCollisionActorFv = 0x21D60EC;
@@ -548,19 +546,19 @@
     vf11C__16CSCollisionActorFv = 0x21D61A8;
     vf124__16CSCollisionActorFv = 0x21D61C0;
 
-# CSHitboxCollider
+/* CSHitboxCollider */
     __CPR72__init__16CSHitboxColliderFP16CSCollisionActorPCQ2_J6J4Info = 0x21C5634;
 
-# CSHitboxColliderMgr
+/* CSHitboxColliderMgr */
     sInstance__19CSHitboxColliderMgr = 0x101C9758;
     add__19CSHitboxColliderMgrFP16CSHitboxCollider = 0x21C5800;
     FUN_21c5894__19CSHitboxColliderMgrFP16CSHitboxCollider = 0x21C5894;
 
-# CSScriptMgr
+/* CSScriptMgr */
     sInstance__11CSScriptMgr = 0x101CBBC4;
     getCurrentScriptCommandType__11CSScriptMgrFPUi = 0x21E42FC;
 
-# CSSomethingActor
+/* CSSomethingActor */
     __ct__16CSSomethingActorFPC14ActorBuildInfo = 0x2201C04;
     __dt__16CSSomethingActorFv = 0x2201D08;
     checkDerivedRuntimeTypeInfo__16CSSomethingActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x2201D5C;
@@ -570,13 +568,13 @@
     vf9C__16CSSomethingActorFv = 0x2201CF8;
     vfA4__16CSSomethingActorFv = 0x2201D04;
 
-# CutsceneKamek
+/* CutsceneKamek */
     StateID_CutsceneKamekState2__13CutsceneKamek = 0x101F1BCC;
 
-# Direction
+/* Direction */
     directionToRotationList__9Direction = 0x10200DD8;
 
-# DoorBase
+/* DoorBase */
     RTTI__8DoorBase = 0x101eb330;
     __ct__8DoorBaseFPC14ActorBuildInfo = 0x27583F0;
     __dt__8DoorBaseFv = 0x2759534;
@@ -615,7 +613,7 @@
     vf5C4__8DoorBaseFv = 0x2759704;
     collisionCallback__8DoorBaseSFP14HitboxColliderT1 = 0x2758C58;
 
-# DrawMgr
+/* DrawMgr */
     sInstance__7DrawMgr = 0x101D2D88;
     drawModel__7DrawMgrFP5Model = 0x24FAB58;
     drawModel__7DrawMgrFP12ModelWrapper = 0x24FAC98;
@@ -624,19 +622,19 @@
     resetTargetLayer__7DrawMgrFv = 0x24FAB4C;
     drawTile__7DrawMgrFUsRC13Vec3__tm__2_fRCUiT2 = 0x24fad28;
 
-# DRCModeTask
+/* DRCModeTask */
     sInstance__11DRCModeTask = 0x101D1904;
 
-# Effect
+/* Effect */
     spawn__6EffectSFUiPC13Vec3__tm__2_fPC14Vec3__tm__3_UiT2 = 0x22AB080;
 
-# EffectWrapper
+/* EffectWrapper */
     __ct__13EffectWrapperFv = 0x22ab868;
     update__13EffectWrapperFUiPC13Vec3__tm__2_fPC14Vec3__tm__3_UiT2 = 0x22ab52c;
     __vtbl__13EffectWrapper = 0x10058734;
     __dt__13EffectWrapperFv = 0x22ab7dc;
 
-# Enemy
+/* Enemy */
     RTTI__5Enemy = 0x101e9ef0;
     __ct__5EnemyFPC14ActorBuildInfo = 0x2328494;
     processCollision__5EnemyFP14HitboxColliderT1Ui = 0x2329B88;
@@ -774,63 +772,63 @@
     move__5EnemyFR13Vec2__tm__2_f = 0x232A67C;
     getRect__5EnemyFR4Rect = 0x232A6A8;
 
-# EnemyFreezeMgr
+/* EnemyFreezeMgr */
     setFlags__14EnemyFreezeMgrFRCQ2_14EnemyFreezeMgr5Flags = 0x237CB94;
 
-# EnvTerrain
+/* EnvTerrain */
     onExecute__10EnvTerrainFv = 0x26F0E9C;
 
-# ErrorViewerTask
+/* ErrorViewerTask */
     sInstance__15ErrorViewerTask = 0x101D1904;
 
-# EventMgr
+/* EventMgr */
     sInstance__8EventMgr = 0x101DB06C;
     set__8EventMgrFUiT1bN41 = 0x269CD68;
 
-# HitboxCollider
+/* HitboxCollider */
     __ct__14HitboxColliderFv = 0x219A960;
     __dt__14HitboxColliderFv = 0x219AB90;
     __CPR65__init__14HitboxColliderFP10StageActorPCQ2_J6J4InfoPPv = 0x219AF1C;
     Default__Q2_14HitboxCollider4Info = 0x10041BC0;
 
-# HitboxColliderMgr
+/* HitboxColliderMgr */
     sInstance__17HitboxColliderMgr = 0x101C95D8;
     isInActiveList__17HitboxColliderMgrFP14HitboxCollider = 0x219dc5c;
     isInCreateList__17HitboxColliderMgrFP14HitboxCollider = 0x219dd88;
     addToCreateList__17HitboxColliderMgrFP14HitboxCollider = 0x219e028;
 
-# LayerAGL
+/* LayerAGL */
     vf44__8LayerAglFv = 0x24F9340;
     vf4C__8LayerAglFv = 0x24F9344;
 
-# LayoutAnimator
+/* LayoutAnimator */
     __ct__14LayoutAnimatorFv = 0x25ce268;
 
-# LayoutContainer
+/* LayoutContainer */
     __ct__15LayoutContainerFP14LayoutAnimatori = 0x2672f04;
     getArchive__15LayoutContainerFRCQ2_4sead23SafeStringBase__tm__2_c = 0x2673008;
     loadBFLYT__15LayoutContainerFRCQ2_4sead23SafeStringBase__tm__2_cUiN22 = 0x2673050;
     __dt__15LayoutContainerFv = 0x2672f80;
 
-# LayoutHandler
+/* LayoutHandler */
     init__13LayoutHandlerFPQ2_4sead4Heap = 0x26711c8;
     update__13LayoutHandlerFUiP5Mtx34 = 0x2672a4c;
     draw__13LayoutHandlerFRC5Mtx44 = 0x2672d14;
     initAnims__13LayoutHandlerFPCQ2_4sead23SafeStringBase__tm__2_cRUi = 0x2671c54;
     playAnim__13LayoutHandlerFUiRCQ2_4sead23SafeStringBase__tm__2_cb = 0x2671680;
 
-# Level
+/* Level */
     sInstance__5Level = 0x101DB048;
 
-# Level::Area
+/* Level::Area */
     getArea__5LevelFUi = 0x269A2DC;
     getLocation__Q2_5Level4AreaFP4RectUc = 0x269A020;
     getSprite__Q2_5Level4AreaFUiPQ3_5Level4Area6Sprite = 0x2699C08;
 
-# LevelCamera
+/* LevelCamera */
     sInstance__11LevelCamera = 0x101E7C54;
 
-# LevelInfo
+/* LevelInfo */
     sInstance__9LevelInfo = 0x101D18EC;
     setDestEntrance__9LevelInfoFSc = 0x24D2984;
     setDestWorld__9LevelInfoFUc = 0x24D293C;
@@ -839,40 +837,40 @@
     setDestZone__9LevelInfoFUi = 0x24D299C;
     worldLevelToIndex__9LevelInfoSFiT1b = 0x24d3ad4;
 
-# LevelTimer
+/* LevelTimer */
     sInstance__10LevelTimer = 0x101D15F4;
     addTime__10LevelTimerFi = 0x24C14C0;
 
-# LightMask
+/* LightMask */
     __ct__9LightMaskFv = 0x2815C9C;
     init__9LightMaskFPQ2_4sead4HeapUi = 0x2815D20;
     update__9LightMaskFv = 0x2815DCC;
     draw__9LightMaskFv = 0x28160C8;
 
-# LightSource
+/* LightSource */
     __ct__11LightSourceFv = 0x24E24BC;
     update__11LightSourceFP13Vec3__tm__2_fPfN22PQ2_4sead7Color4fN22 = 0x24E25F4;
     __dt__11LightSourceFv = 0x24E2580;
-    update__11LightSourceFUiR13Vec3__tm__2_fPUiRfPfRQ2_4sead7Color4fN25 = 0x24E26BC;
+    update__11LightSourceFUiP13Vec3__tm__2_fPUiPfT4PQ2_4sead7Color4fN24 = 0x24E26BC;
 
-# ModelWrapper
+/* ModelWrapper */
     __ct__12ModelWrapperFP5ModelUiN42 = 0x24D4798;
     setup__12ModelWrapperFP10ResArchivePvPQ2_4sead4Heap = 0x24D49A0;
     updateModel__12ModelWrapperFv = 0x24D4E84;
     updateAnimations__12ModelWrapperFv = 0x24D4D20;
 
-# MovementHandler
+/* MovementHandler */
     __ct__15MovementHandlerFv = 0x2849c40;
     execute__15MovementHandlerFv = 0x284b8c4;
     getMaskForMovementType__15MovementHandlerFUi = 0x284a37c;
     link__15MovementHandlerFRC13Vec3__tm__2_fUiUc = 0x284b6f4;
 
-# Mtx34
+/* Mtx34 */
     rotateAndTranslate__5Mtx34FRC14Vec3__tm__3_UiRC13Vec3__tm__2_f = 0x203C1C8;
     makeST__5Mtx34SFR5Mtx34RC13Vec3__tm__2_fT2 = 0x2222A88;
     makeSRT__5Mtx34SFR5Mtx34RC13Vec3__tm__2_fN22 = 0x2508424;
 
-# MultiStateActor
+/* MultiStateActor */
     RTTI__15MultiStateActor = 0x101e9ce8;
     __vtbl__15MultiStateActor = 0x10001048;
     __ct__15MultiStateActorFPC14ActorBuildInfo = 0x200AA8C;
@@ -899,22 +897,22 @@
     getRect__15MultiStateActorFR4Rect = 0x200AC20;
     doStateChange__15MultiStateActorFP9StateBase = 0x200B090;
 
-# MusicPlayer
+/* MusicPlayer */
     shouldHurryUp__11MusicPlayerFv = 0x29B83D8;
 
-# ObjLayer
+/* ObjLayer */
     checkDerivedRuntimeTypeInfo__8ObjLayerCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x24FCF4C;
     getRuntimeTypeInfo__8ObjLayerCFv = __deleted_virtual_called;
     vf3C__8ObjLayerFv = 0x24FD0E8;
     vf5C__8ObjLayerFv = 0x24FD0F4;
     setParentRenderer__8ObjLayerFP16ObjLayerRenderer = 0x24FCA24;
 
-# ObjLayerRenderer
+/* ObjLayerRenderer */
     __dt__16ObjLayerRendererFv = 0x24FB0AC;
     __ct__16ObjLayerRendererFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FAF58;
     init__16ObjLayerRendererFUiN31PQ2_4sead4Heap = 0x24FB128;
 
-# PhysicsActor
+/* PhysicsActor */
     __vtbl__12PhysicsActor = 0x1000084C;
     __ct__12PhysicsActorFPC14ActorBuildInfo = 0x2002FB8;
     __dt__12PhysicsActorFv = 0x20040B0;
@@ -935,34 +933,34 @@
     move__12PhysicsActorFR13Vec2__tm__2_f = 0x2004020;
     getRect__12PhysicsActorFR4Rect = 0x200404C;
 
-# PhysicsMgr
+/* PhysicsMgr */
     init__10PhysicsMgrFP10StageActorPCQ2_10PhysicsMgr6SensorN22 = 0x218AF6C;
     getSensor__10PhysicsMgrCFUi = 0x218CE74;
     setSensor__10PhysicsMgrFPCQ2_10PhysicsMgr6SensorUi = 0x218AEFC;
     processCollisions__10PhysicsMgrFv = 0x218D954;
 
-# PlatformModel
+/* PlatformModel */
     init__13PlatformModelFv = 0x27BE110;
     update__13PlatformModelFR13Vec3__tm__2_ff = 0x27BE428;
     draw__13PlatformModelFv = 0x27BE4FC;
 
-# Player
+/* Player */
     throwProjectile__6Player__PowerupStateNotFire = 0x293AE28;
     FUN_0293b080__6Player__IsProjectilePowerup = 0x293B198;
 
-# PlayerInput
+/* PlayerInput */
     isUpHeld__11PlayerInputCFv = 0x2916114;
     isDownHeld__11PlayerInputCFv = 0x2915F84;
     isRightHeld__11PlayerInputCFv = 0x2915F9C;
     isLeftHeld__11PlayerInputCFv = 0x2915F90;
 
-# PlayerMgr
+/* PlayerMgr */
     sInstance__9PlayerMgr = 0x101E6994;
 
-# Poison
+/* Poison */
     build__6PoisonSFPC14ActorBuildInfo = 0x26f6e6c;
 
-# Powerup
+/* Powerup */
     RTTI__7Powerup = 0x101ead38;
     __ct__7PowerupFPC14ActorBuildInfo = 0x251EBFC;
     __dt__7PowerupFv = 0x251FE04;
@@ -993,7 +991,7 @@
     vf2A4__7PowerupFv = 0x251FDF0;
     vf2AC__7PowerupFv = 0x251EC6C;
 
-# PowerupBase
+/* PowerupBase */
     setupActor__11PowerupBaseFv = 0x2517F90;
     spawnMethod__11PowerupBaseFv = 0x2518470;
     updateModel__11PowerupBaseFv = 0x2518A4C;
@@ -1035,7 +1033,7 @@
     FUN_25196e8__11PowerupBaseFPvQ2_11PowerupBase12PowerupStateUi = 0x25196E8;
     FUN_2519580__11PowerupBaseFUiT1 = 0x2519580;
 
-# Profile
+/* Profile */
     profilesOriginal__7Profile = 0x101ED8DC;
     prioritiesOriginal__7Profile = 0x10001940;
     resourcesLoadAtOriginal__7Profile = 0x10002064;
@@ -1043,19 +1041,19 @@
     resourceListsOriginal__7Profile = 0x101C321C;
     loadProfileResources__7ProfileSFQ2_7Profile15LoadResourcesAtPQ2_4sead4Heap = 0x200A738;
 
-# Quicksand
+/* Quicksand */
     build__9QuicksandSFPC14ActorBuildInfo = 0x26f7c84;
 
-# RDashMgr
+/* RDashMgr */
     sInstance__8RDashMgr = 0x101E7D9C;
 
-# Rect
+/* Rect */
     sZero__4Rect = 0x105EA79C;
 
-# RectCollider
+/* RectCollider */
     __vtbl__12RectCollider = 0x100FB820;
 
-# RenderObjLayer
+/* RenderObjLayer */
     __ct__14RenderObjLayerFv = 0x24FCA6C;
     __dt__14RenderObjLayerFv = 0x24FCB18;
     vf24__14RenderObjLayerFv = 0x24FD00C;
@@ -1064,56 +1062,56 @@
     vf54__14RenderObjLayerFUi = 0x24FD014;
     vf64__14RenderObjLayerFUi = 0x24FCE18;
 
-# ResArchive
+/* ResArchive */
     getModel__10ResArchiveFRCQ2_4sead23SafeStringBase__tm__2_cUiN42bPQ2_4sead4Heap = 0x24EE440;
 
-# ResArchiveMgr
+/* ResArchiveMgr */
     sInstance__13ResArchiveMgr = 0x101D2D50;
     get__13ResArchiveMgrFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24F60EC;
     loadResArchive__13ResArchiveMgrFRCQ2_4sead23SafeStringBase__tm__2_cT1PQ2_4sead4Heap = 0x24F6140;
 
-# ResMgr
+/* ResMgr */
     sInstance__6ResMgr = 0x101E7D94;
     loadRes__6ResMgrFRCQ2_4sead23SafeStringBase__tm__2_cT1PQ2_4sead4Heapb = 0x29D34A8;
     ResMgr_LoadLevelResource = 0x29D2A20;
     ResMgr_LoadLevelArchiveFail = 0x29D333C;
     ResMgr_LoadLevelArchiveSuccess = 0x29D3354;
 
-# SaveMgr
+/* SaveMgr */
     createInstance__7SaveMgrSFPQ2_4sead4Heap  = 0x29D6D00;
     sInstance__7SaveMgr = 0x101E7DA4;
     save__7SaveMgrFPQ2_4sead14DelegateThread = 0x29D9560;
 
-# ShaderAnimation
+/* ShaderAnimation */
     playColorAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FECC8;
     playTexSrtAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FEE50;
 
-# ShapedCollider
+/* ShapedCollider */
     __CPR62__init__14ShapedColliderFP10StageActorRCQ2_J6J4Info = 0x21ad3bc;
     execute__14ShapedColliderFv = 0x21a871c;
     __dt__14ShapedColliderFv = 0x21A7A04;
     RTTI__14ShapedCollider = 0x101e9fb4;
 
-    # //! THIS IS PROBABLY WRONG THE CTOR IS INLINED TODO: FIX THIS FIX THIS
+    /* //! THIS IS PROBABLY WRONG THE CTOR IS INLINED TODO: FIX THIS FIX THIS */
     __ct__14ShapedColliderFiP13Vec2__tm__2_fPQ2_12ColliderBase4NodeT3 = 0x21A7904;
 
-# SkeletalAnimation
+/* SkeletalAnimation */
     play__17SkeletalAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FDADC;
 
-# SolidOnTopCollider
+/* SolidOnTopCollider */
     RTTI__18SolidOnTopCollider = 0x101E9FA8;
     __ct__18SolidOnTopColliderFv = 0x21a1d38;
     __dt__18SolidOnTopColliderFv = 0x21a1f18;
     execute__18SolidOnTopColliderFv = 0x21a2e0c;
     __CPR85__init__18SolidOnTopColliderFP10StageActorRCQ2_J6J4InfoiPQ2_4sead4Heap = 0x21a2378;
 
-# SoundSystem
+/* SoundSystem */
     sInstance__11SoundSystem = 0x101E7C84;
 
-# SoundSystemBase
+/* SoundSystemBase */
     getAudioFx__15SoundSystemBaseFv = 0x29B1AA4;
 
-# StageActor
+/* StageActor */
     actorHCCallback0__10StageActorFP14HitboxColliderP13Vec2__tm__2_f = 0x219e7e8;
     actorHCCallback2__10StageActorFP14HitboxColliderP13Vec2__tm__2_f = 0x219e8a4;
     actorCBCallback0__10StageActorFP12ColliderBaseP13Vec2__tm__2_f = 0x219e8b8;
@@ -1156,7 +1154,7 @@
     vfCC__10StageActorFv = 0x2002AD4;
     distanceToPlayer__10StageActorFR13Vec2__tm__2_f = 0x20005A4;
 
-# StateActor
+/* StateActor */
     vfAC__10StateActorFv = 0x200ABB0;
     vfB4__10StateActorFv = 0x200ABB4;
     vfBC__10StateActorFv = 0x200ABBC;
@@ -1176,31 +1174,31 @@
     getActorPhysicsMgr__10StateActorFv = 0x200ABE4;
     getRect__10StateActorFR4Rect = 0x200AC20;
 
-# StateBase
+/* StateBase */
     sCurrentID__9StateBase = 0x101E9F04;
     sNullState__9StateBase = 0x1022D390;
 
-# StateMgr
+/* StateMgr */
     __ct__8StateMgrFP17StateExecutorBaseP9StateBase = 0x29C4A08;
     execute__8StateMgrFv = 0x29C4A80;
     changeState__8StateMgrFP9StateBase = 0x29C4AF0;
 
-# TaskMgr
+/* TaskMgr */
     sInstance__7TaskMgr = 0x101E7B28;
     startLevel__7TaskMgrFPQ2_4sead8TaskBaseUcT2 = 0x29941D0;
     changeTask__7TaskMgrFPQ2_4sead8TaskBaseRQ2_4sead11TaskClassIDUiT3 = 0x2994164;
 
-# TerrainEffects
+/* TerrainEffects */
     updateWaveCollisions__14TerrainEffectsFv = 0x28B8D5C;
 
-# TileMgr
+/* TileMgr */
     sInstance__7TileMgr = 0x101DAB94;
     getTilePtrCurrentArea__7TileMgrSFUsT1UcPUi = 0x2685000;
 
-# Water
+/* Water */
     build__5WaterSFPC14ActorBuildInfo = 0x26f9af0;
 
-# WindGenerator
+/* WindGenerator */
     __dt__13WindGeneratorFv = 0x288EFA0;
     RTTI__13WindGenerator = 0x101e9cc0;
     checkDerivedRuntimeTypeInfo__13WindGeneratorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x288EEFC;
@@ -1215,17 +1213,17 @@
     vfCC__13WindGeneratorFv = 0x288EF98;
     damageFromUnder__13WindGeneratorFv = 0x288EF9C;
 
-# WrappedController
+/* WrappedController */
     __ct__17WrappedControllerFv = 0x2514150;
     init__17WrappedControllerFUi = 0x25141B0;
     __dt__17WrappedControllerFv = 0x25140E8;
 
-# Unknown Class
+/* Unknown Class */
     FUN_02902b08__FP10StageActor = 0x2902B08;
     setBufferedString = 0x29D4240;
     formatBufferedString = 0x2A0F308;
 
-# Misc
+/* Misc */
     BLOSDynLoad_Acquire = 0x2A9EF58;
     BOSDynLoad_FindExport = 0x2A9F418;
     DefaultReverbHiParam = 0x1022D328;
@@ -1246,3 +1244,4 @@
     InfiniteLivesContinue = 0x24C005C;
     InfiniteTimeContinue = 0x24C1388;
     InvincibilityContinue = 0x2931180;
+}

@@ -109,23 +109,3 @@ SetBossActorType:
     addi r1, r1, 0x10
     li r3, 1
     blr
-
-.global SaveRootTaskInstance
-SaveRootTaskInstance:
-    SaveVolatileRegisters
-    mr r31, r3
-    lis r3, sInstance__8RootTask@ha
-    addi r3, r3, sInstance__8RootTask@l
-    stw r31, 0x0(r3)
-    RestoreVolatileRegisters
-    blr
-
-.global ReturnFalse
-ReturnFalse:
-    li r3, 0
-    blr
-
-.global ReturnTrue
-ReturnTrue:
-    li r3, 1
-    blr

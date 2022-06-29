@@ -2,66 +2,60 @@
 ---
 Files:
 #* Translation unit queue:
-  - asm/misc.S
-  - misc.cpp
-  - asm/bgoffset.S
-  - dynlibs/os.cpp
-  - dynlibs/gx2.cpp
-  - dynlibs/h264.cpp
-  - hitboxcollider.cpp
-  - utils.cpp
-  - profileres.cpp
-  - cafe/gfd.cpp
-  - inputcontrollers.cpp
+  - source/asm/misc.S
+  - source/misc.cpp
+  - source/asm/bgoffset.S
+  - source/dynlibs/os.cpp
+  - source/dynlibs/gx2.cpp
+  - source/dynlibs/h264.cpp
+  - source/hitboxcollider.cpp
+  - source/utils.cpp
+  - source/profileres.cpp
+  - source/cafe/gfd.cpp
+  - source/inputcontrollers.cpp
 Hooks:
 # Sets PhysicsMgr->owner before doing anything else so that functions there have access to the actor pointer
 # TODO: Investigate a crash in PhysicsMgr::setSensor as it might be related to this
 #  - type: branch
 #    instr: bl
-#    addr: "0x218af98" # PhysicsMgr::init()
+#    addr: "218af98" # PhysicsMgr::init()
 #    func: SetPhysicsMgrOwner
 
 # Increase spawn range limits
   # Floating Log
   - type: patch
     data: "00005000"
-    addr: "0x10136b50" # FloatingLog::ActorInfo::spawnRangeSize.x
+    addr: "10136b50" # FloatingLog::ActorInfo::spawnRangeSize.x
 
 # Embed crash fix into the RPX
   - type: patch
-    addr: "0x24D71C4"
     data: "480000E8" # b +0xE8
+    addr: "24D71C4"
 
 # stupid dynamic cast
   - type: nop
-    addr: "0x2328cc8"
+    addr: "2328cc8"
 
 # Instant respawn
   - type: branch
     instr: b
     func: respawn__Fv
-    addr: "0x24c011c"
+    addr: "24c011c"
 
 # Keep a copy of the currently active graphics context
   - type: branch
     instr: bl
     func: "SetCurrentGraphicsContext"
-    addr: "0x2a07cbc"
-
-# Keep a pointer to RootTask for easy access
-  - type: branch
-    instr: b
-    func: "SaveRootTaskInstance"
-    addr: "0x20002C8" # RootTask::construct
+    addr: "2a07cbc"
 
 # Fix background offset settings
   - type: branch
     instr: bl
-    addr: "0x22A7FD4"
+    addr: "22A7FD4"
     func: AddBGOffset
 
 # Set boss type in stageactor
   - type: branch
     instr: b
-    addr: "0x202bdc4" # Boss::beforeExecute()
+    addr: "202bdc4" # Boss::beforeExecute()
     func: SetBossActorType
