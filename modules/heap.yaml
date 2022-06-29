@@ -1,0 +1,147 @@
+Files:
+  - heap/heap.S
+  - heap/heap.cpp
+Hooks:
+# Remove CommentMgr
+  # Replace the call to spawn the task with a function to use that heap instead
+  - type: branch
+    instr: bl
+    addr: "0x29d6858"
+    func: CreateTsuruHeap
+
+  - type: multinop
+    addr: "0x29d6874"
+    count: 6
+  
+  - type: nop
+    addr: "0x24be03c"
+
+  - type: nop
+    addr: "0x2985664"
+
+  - type: return
+    addr: "0x29c8134"
+  
+  - type: return
+    addr: "0x29C816C"
+
+  - type: nop
+    addr: "0x29cf89c"
+
+  - type: nop
+    addr: "0x21c6b40"
+
+  - type: branch
+    instr: b
+    addr: "0x21c77f4"
+    func: ReturnFalse
+
+  - type: patch
+    addr: "0x21c6a20"
+    data: "3960FFFF" # li r11, 0xFFFF
+
+  - type: patch
+    addr: "0x21c6a30"
+    data: "38000000" # li r0, 0
+
+  - type: patch
+    addr: "0x259b0f4"
+    data: "38A00001" # li r5, 1
+
+  - type: return
+    addr: "0x29c81ec"
+
+  - type: nop
+    addr: "0x2931db4"
+
+  - type: nop
+    addr: "0x29364D0"
+
+  - type: return
+    addr: "0x29C8588"
+
+  # UB
+  - type: nop
+    addr: "0x24BF75C"
+
+  # UB
+  - type: nop
+    addr: "0x24BEEA0"
+
+  - type: multinop
+    addr: "0x2902DB0"
+    count: 4
+
+  - type: patch
+    addr: "0x29959C0"
+    data: "48000064" # b +0x64
+
+  - type: patch
+    addr: "0x264b680"
+    data: "3BC00001" # li r30, 1
+
+  - type: branch
+    instr: b
+    addr: "0x29c8164"
+    func: ReturnFalse
+
+  - type: patch
+    addr: "0x264b714"
+    data: "39600001" # li r11, 1
+
+  - type: nop
+    addr: "0x264c458"
+
+  - type: patch
+    addr: "0x29d87e8"
+    data: "39600001" # li r11, 1
+  - type: patch
+    addr: "0x29d87f4"
+    data: "39200001" # li r9, 1
+
+  - type: nop
+    addr: "0x29cf460"
+  - type: nop
+    addr: "0x29cf540"
+  - type: nop
+    addr: "0x29cf544"
+
+  - type: nop
+    addr: "0x29c89c8"
+  - type: nop
+    addr: "0x29c89dc"
+
+  - type: nop
+    addr: "0x29cf878"
+  
+  - type: nop
+    addr: "0x29cf888"
+  
+  - type: nop
+    addr: "0x29cf89c"
+
+  - type: nop
+    addr: "0x2995f9c"
+  - type: nop
+    addr: "0x2995fa4"
+
+  - type: nop
+    addr: "0x29967C4"
+
+  - type: return
+    addr: "0x2996710"
+
+  - type: return
+    addr: "0x299652C"
+
+  - type: return
+    addr: "0x29967dc"
+
+  - type: return
+    addr: "0x29979BC"
+
+  - type: return
+    addr: "0x2997A30"
+
+  - type: nop
+    addr: "0x202ab7c"

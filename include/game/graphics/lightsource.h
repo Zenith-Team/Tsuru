@@ -19,11 +19,11 @@ public:
     // @param f32* Pointer to radius variable for the light source
     // @param f32* Unknown
     // @param color Pointer to sead::Color4f variable to determine the color of the light source
-    bool update(u32 type, Vec3f* position, u32*, f32* radius, f32*, sead::Color4f* color, f32* = nullptr, f32* = nullptr);
+    bool update(u32 type, Vec3f& position, u32*, f32& radius, f32*, sead::Color4f& color, f32* = nullptr, f32* = nullptr);
 
 private:
     // Updates the light source
-    bool update(Vec3f* position, f32*, f32* radius, f32*, sead::Color4f* color, f32* = nullptr, f32* = nullptr);
+    //bool update(Vec3f* position, f32*, f32* radius, f32*, sead::Color4f* color, f32* = nullptr, f32* = nullptr);
 
 public:
     bool _10;
