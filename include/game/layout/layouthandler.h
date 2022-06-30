@@ -3,7 +3,7 @@
 #include "sead/idisposer.h"
 #include "sead/buffer.h"
 #include "sead/safestring.h"
-#include "utils/mtx.h"
+#include "sead/matrix.h"
 #include "game/layout/gamelayout.h"
 
 class LayoutAnimator {

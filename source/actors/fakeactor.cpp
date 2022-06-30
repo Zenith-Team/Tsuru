@@ -90,7 +90,7 @@ void FakeActor::updateModel() {
     if (this->model) {
         this->model->updateAnimations();
         Mtx34 mtx;
-        mtx.rotateAndTranslate(this->rotation, this->position + this->modelOffset);
+        mtx.makeRTIdx(this->rotation, this->position + this->modelOffset);
         this->model->setMtx(mtx);
         this->model->updateModel();
     }
@@ -98,7 +98,7 @@ void FakeActor::updateModel() {
     if (this->model2) {
         this->model2->updateAnimations();
         Mtx34 mtx;
-        mtx.rotateAndTranslate(this->rotation, this->position + this->model2Offset);
+        mtx.makeRTIdx(this->rotation, this->position + this->model2Offset);
         this->model2->setMtx(mtx);
         this->model2->updateModel();
     }

@@ -70,7 +70,7 @@ u32 FallingChestnut::onExecute() {
     Vec3u rotOffset(fixDeg(90.0f), 0, 0);
 
     Mtx34 mtx;
-    mtx.rotateAndTranslate(this->rotation + rotOffset, this->position + posOffset);
+    mtx.makeRTIdx(this->rotation + rotOffset, this->position + posOffset);
 
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);

@@ -6,6 +6,7 @@
 #include "sead/idisposer.h"
 #include "sead/list.h"
 #include "sead/runtimetypeinfo.h"
+#include "sead/matrix.h"
 
 class Effect {
 public:

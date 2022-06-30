@@ -11,17 +11,18 @@
 #include "agl/lyr/renderinfo.h"
 #include "log.h"
 #include "tsuru/save/managers/tsurusavemgr.h"
-#include "utils/mtx.h"
+#include "sead/matrix.h"
 #include "math/functions.h"
 #include "sead/graphicscontext.h"
 #include "sead/primitiverenderer.h"
+#include "sead/mathcalccommon.h"
 
 void drawLine3D(const Vec3f& position, const u32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
     Vec3f scale(lineLength, lineThickness, lineThickness);
     Vec3u rot(0x80000000, (rotation + 0x40000000) * 0xFFFFFFFF, 0x00000000);
     f32 rotSin;
     f32 rotCos;
-    sinCosIdx(&rotSin, &rotCos, rotation);
+    sead::Mathf::sinCosIdx(&rotSin, &rotCos, rotation);
     Vec3f pos(position.x + (lineLength * rotSin) / 2, position.y, position.z + (lineLength * rotCos) / 2);
 
     Mtx34 mtx;
@@ -35,7 +36,7 @@ void drawLine(const Vec2f& position, const f32 rotation, const sead::Color4f& co
     Vec3f pos(position.x + (lineLength * cosf(rotation)) / 2, position.y + (lineLength * sinf(rotation)) / 2, 4000.0f);
 
     Mtx34 mtx;
-    Mtx34::makeSRT(mtx, scale, rot, pos);
+    mtx.makeSRT(scale, rot, pos);
     sead::PrimitiveRenderer::instance()->rendererImpl->drawQuadImpl(mtx, color, color);
 }
 

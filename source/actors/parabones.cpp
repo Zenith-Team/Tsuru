@@ -131,14 +131,14 @@ u32 ParaBones::onDraw() {
 
 void ParaBones::updateModel() {
     Mtx34 mtx;
-    mtx.rotateAndTranslate(this->rotation, this->position);
+    mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
     this->model->updateModel();
     this->model->updateAnimations();
 
     Mtx34 mtxWings;
-    mtxWings.rotateAndTranslate(this->rotation, this->position + Vec3f(0.0f, 8.0f, 0.0f));
+    mtxWings.makeRTIdx(this->rotation, this->position + Vec3f(0.0f, 8.0f, 0.0f));
     this->wings->setMtx(mtxWings);
     this->wings->setScale(this->scale);
     this->wings->updateModel();

@@ -114,7 +114,7 @@ void Biddybud::updateModel() {
     Mtx34 mtx;
     Vec3f modelPos = this->position;
     modelPos.y -= 8;
-    mtx.rotateAndTranslate(this->rotation, modelPos);
+    mtx.makeRTIdx(this->rotation, modelPos);
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
     this->model->playColorAnim("Color", 1);

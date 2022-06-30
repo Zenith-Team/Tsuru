@@ -60,6 +60,4 @@ typedef signed int     intptr_t;
 typedef void       (*funcPtr)();
 
 // Utility types
-
-#include "utils/mtx.h"
 #include "utils/rect.h"

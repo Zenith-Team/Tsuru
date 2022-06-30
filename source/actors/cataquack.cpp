@@ -121,7 +121,7 @@ u32 Cataquack::onDraw() {
 
 void Cataquack::updateModel() {
     Mtx34 mtx;
-    mtx.rotateAndTranslate(this->rotation, this->position + Vec3f(0.0f, 20.0f, 0.0f));
+    mtx.makeRTIdx(this->rotation, this->position + Vec3f(0.0f, 20.0f, 0.0f));
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
     this->model->updateAnimations();

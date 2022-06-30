@@ -71,7 +71,7 @@ void Atlys::Player::updateTargetRotation() {
 ModelWrapper* Atlys::Player::updateModel() {
     Mtx34 mtx;
     mtx.makeIdentity();
-    mtx.rotateAndTranslate(this->rotation, Vec3f(this->position.x, 0.0f, this->position.y));
+    mtx.makeRTIdx(this->rotation, Vec3f(this->position.x, 0.0f, this->position.y));
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
     this->model->updateModel();

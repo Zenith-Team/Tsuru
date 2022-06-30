@@ -193,7 +193,7 @@ SECTIONS {
     end__Q2_4sead17PrimitiveRendererFv = 0x2A0841C;
 
 /* sead::PrimitiveRendererCafe */
-    drawTriangles___Q2_4sead21PrimitiveRendererCafeFRC5Mtx34RCQ2_4sead7Color4fT2PQ3_4sead21PrimitiveRendererUtil6VertexUiPUsT5PC11_GX2Texture = 0x2A0A190;
+    drawTriangles___Q2_4sead21PrimitiveRendererCafeFRCQ2_4sead17Matrix34__tm__2_fRCQ2_4sead7Color4fT2PQ3_4sead21PrimitiveRendererUtil6VertexUiPUsT5PC11_GX2Texture = 0x2A0A190;
 
 /* sead::Projection */
     getDeviceProjectionMatrix__Q2_4sead10ProjectionCFv = 0x2A05A9C;
@@ -813,8 +813,8 @@ SECTIONS {
 
 /* LayoutHandler */
     init__13LayoutHandlerFPQ2_4sead4Heap = 0x26711c8;
-    update__13LayoutHandlerFUiP5Mtx34 = 0x2672a4c;
-    draw__13LayoutHandlerFRC5Mtx44 = 0x2672d14;
+    update__13LayoutHandlerFUiPQ2_4sead17Matrix34__tm__2_f = 0x2672a4c;
+    draw__13LayoutHandlerFRCQ2_4sead17Matrix44__tm__2_f = 0x2672d14;
     initAnims__13LayoutHandlerFPCQ2_4sead23SafeStringBase__tm__2_cRUi = 0x2671c54;
     playAnim__13LayoutHandlerFUiRCQ2_4sead23SafeStringBase__tm__2_cb = 0x2671680;
 
