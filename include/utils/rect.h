@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "sead/vector.h"
+#include "sead/matrix.h"
 
 struct Rect { // Size: 0x10
     static inline bool intersects(Rect& thisRect, Rect& otherRect) {

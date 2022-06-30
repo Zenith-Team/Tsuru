@@ -1,5 +1,5 @@
 #include "sead/primitiverenderer.h"
-#include "utils/mtx.h"
+#include "cafe/math/mtx.h"
 #include "dynlibs/gx2/functions.h"
 
 namespace sead {
@@ -8,10 +8,10 @@ void PrimitiveRenderer::drawCube(const Vec3f& position, f32 size, const Color4f&
     Vec3f scale(size);
 
     Mtx34 mtx;
-    Mtx34::makeST(mtx, scale, position);
+    mtx.makeST(scale, position);
 
     Mtx34 outMtx;
-    (void)MTX34MULT(&outMtx, &modelMtx, &mtx);
+    (void)ASM_MTXConcat(outMtx.m, modelMtx.m, mtx.m);
 
     this->rendererImpl->drawCubeImpl(outMtx, color, color);
 }
@@ -20,10 +20,10 @@ void PrimitiveRenderer::drawWireCube(const Vec3f& position, f32 size, const Colo
     Vec3f scale(size);
 
     Mtx34 mtx;
-    Mtx34::makeST(mtx, scale, position);
+    mtx.makeST(scale, position);
 
     Mtx34 outMtx;
-    (void)MTX34MULT(&outMtx, &modelMtx, &mtx);
+    (void)ASM_MTXConcat(outMtx.m, modelMtx.m, mtx.m);
 
     this->rendererImpl->drawWireCubeImpl(outMtx, color, color);
 }
@@ -33,10 +33,10 @@ void PrimitiveRenderer::drawCircle16(const Vec3f& position, f32 radius, const Co
     Vec3f scale(diameter);
 
     Mtx34 mtx;
-    Mtx34::makeST(mtx, scale, position);
+    mtx.makeST(scale, position);
 
     Mtx34 outMtx;
-    (void)MTX34MULT(&outMtx, &modelMtx, &mtx);
+    (void)ASM_MTXConcat(outMtx.m, modelMtx.m, mtx.m);
 
     this->rendererImpl->drawCircle16Impl(outMtx, color);
 }
@@ -46,10 +46,10 @@ void PrimitiveRenderer::drawCircle32(const Vec3f& position, f32 radius, const Co
     Vec3f scale(diameter);
 
     Mtx34 mtx;
-    Mtx34::makeST(mtx, scale, position);
+    mtx.makeST(scale, position);
 
     Mtx34 outMtx;
-    (void)MTX34MULT(&outMtx, &modelMtx, &mtx);
+    (void)ASM_MTXConcat(outMtx.m, modelMtx.m, mtx.m);
 
     this->rendererImpl->drawCircle32Impl(outMtx, color);
 }

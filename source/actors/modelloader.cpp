@@ -86,7 +86,7 @@ u32 ModelLoader::onDraw() {
 
 void ModelLoader::updateModel() {
     Mtx34 mtx;
-    mtx.rotateAndTranslate(this->rotation, this->position);
+    mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
     this->model->updateModel();
 }

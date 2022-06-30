@@ -1,6 +1,6 @@
 #pragma once
 
-#include "utils/mtx.h"
+#include "sead/matrix.h"
 #include "game/graphics/layer/layeragl.h"
 #include "game/graphics/layer/objlayerrenderer.h"
 

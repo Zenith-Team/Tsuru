@@ -1,13 +1,112 @@
 #pragma once
 
-#include "types.h"
+#include "sead/matrix.h"
+#include "sead/mathcalccommon.h"
 
 namespace sead {
 
 template <typename T>
+class Matrix34CalcCommon {
+public:
+    static void makeRTIdx(Matrix34<T>& o, const Vector3<u32>& r, const Vector3<T>& t) {
+        T sinV[3];
+        T cosV[3];
+
+        MathCalcCommon<T>::sinCosIdx(&sinV[0], &cosV[0], r.x);
+        MathCalcCommon<T>::sinCosIdx(&sinV[1], &cosV[1], r.y);
+        MathCalcCommon<T>::sinCosIdx(&sinV[2], &cosV[2], r.z);
+
+        o.m[0][0] = (cosV[1] * cosV[2]);
+        o.m[1][0] = (cosV[1] * sinV[2]);
+        o.m[2][0] = -sinV[1];
+
+        o.m[0][1] = (sinV[0] * sinV[1] * cosV[2] - cosV[0] * sinV[2]);
+        o.m[1][1] = (sinV[0] * sinV[1] * sinV[2] + cosV[0] * cosV[2]);
+        o.m[2][1] = (sinV[0] * cosV[1]);
+
+        o.m[0][2] = (cosV[0] * cosV[2] * sinV[1] + sinV[0] * sinV[2]);
+        o.m[1][2] = (cosV[0] * sinV[2] * sinV[1] - sinV[0] * cosV[2]);
+        o.m[2][2] = (cosV[0] * cosV[1]);
+
+        o.m[0][3] = t.x;
+        o.m[1][3] = t.y;
+        o.m[2][3] = t.z;
+    }
+    
+    static void makeSRzxyTIdx(Matrix34<T>& o, const Vector3<T>& s, const Vector3<u32>& r, const Vector3<T>& t) {
+        T sinV[3];
+        T cosV[3];
+
+        MathCalcCommon<T>::sinCosIdx(&sinV[0], &cosV[0], r.x);
+        MathCalcCommon<T>::sinCosIdx(&sinV[1], &cosV[1], r.y);
+        MathCalcCommon<T>::sinCosIdx(&sinV[2], &cosV[2], r.z);
+
+        o.m[2][2] = s.z * (cosV[0] * cosV[1]);
+        o.m[0][2] = s.z * (cosV[0] * sinV[1]);
+        o.m[1][2] = s.z * -sinV[0];
+
+        o.m[2][0] = s.x * (sinV[1] * cosV[2] - sinV[0] * cosV[1] * sinV[2]);
+        o.m[0][0] = s.x * (cosV[1] * cosV[2] + sinV[0] * sinV[1] * sinV[2]);
+        o.m[1][0] = s.x * (cosV[0] * sinV[2]);
+
+        o.m[2][1] = s.y * (sinV[1] * sinV[2] + sinV[0] * cosV[1] * cosV[2]);
+        o.m[0][1] = s.y * (cosV[1] * sinV[2] - sinV[0] * sinV[1] * cosV[2]);
+        o.m[1][1] = s.y * (cosV[0] * cosV[2]);
+
+        o.m[0][3] = t.x;
+        o.m[1][3] = t.y;
+        o.m[2][3] = t.z;
+    }
+
+    static void makeST(Matrix34<T>& o, const Vector3<T>& s, const Vector3<T>& t) {
+        o.m[0][0] = s.x;
+        o.m[1][0] = 0;
+        o.m[2][0] = 0;
+
+        o.m[0][1] = 0;
+        o.m[1][1] = s.y;
+        o.m[2][1] = 0;
+
+        o.m[0][2] = 0;
+        o.m[1][2] = 0;
+        o.m[2][2] = s.z;
+
+        o.m[0][3] = t.x;
+        o.m[1][3] = t.y;
+        o.m[2][3] = t.z;
+    }
+
+    static void makeSRT(Matrix34<T>& o, const Vector3<T>& s, const Vector3<T>& r, const Vector3<T>& t) {
+        const T sinV[3] = { sinf(r.x),
+                            sinf(r.y),
+                            sinf(r.z) };
+
+        const T cosV[3] = { cosf(r.x),
+                            cosf(r.y),
+                            cosf(r.z) };
+
+        o.m[0][0] = s.x * (cosV[1] * cosV[2]);
+        o.m[1][0] = s.x * (cosV[1] * sinV[2]);
+        o.m[2][0] = s.x * -sinV[1];
+
+        o.m[0][1] = s.y * (sinV[0] * sinV[1] * cosV[2] - cosV[0] * sinV[2]);
+        o.m[1][1] = s.y * (sinV[0] * sinV[1] * sinV[2] + cosV[0] * cosV[2]);
+        o.m[2][1] = s.y * (sinV[0] * cosV[1]);
+
+        o.m[0][2] = s.z * (cosV[0] * cosV[2] * sinV[1] + sinV[0] * sinV[2]);
+        o.m[1][2] = s.z * (cosV[0] * sinV[2] * sinV[1] - sinV[0] * cosV[2]);
+        o.m[2][2] = s.z * (cosV[0] * cosV[1]);
+
+        o.m[0][3] = t.x;
+        o.m[1][3] = t.y;
+        o.m[2][3] = t.z;
+    }
+};
+
+template <typename T>
 class Matrix44CalcCommon {
 public:
-    static void multiply(Mtx44& out, const Mtx44& a, const Mtx34& b) {
+    static void multiply(sead::Matrix44<T>& out, const sead::Matrix44<T>& a, const sead::Matrix34<T>& b) {
         const T a11 = a.rows[0][0];
         const T a12 = a.rows[0][1];
         const T a13 = a.rows[0][2];

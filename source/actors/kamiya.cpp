@@ -176,7 +176,7 @@ u32 Kamiya::onDraw() {
 
 void Kamiya::updateModel() {
     Mtx34 mtx;
-    mtx.rotateAndTranslate(this->rotation, this->position);
+    mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
     this->model->updateAnimations();
@@ -555,7 +555,7 @@ u32 KamiyaMagic::onDraw() {
 
 void KamiyaMagic::updateModel() {
     Mtx34 mtx;
-    mtx.rotateAndTranslate(this->rotation, this->position);
+    mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
     this->model->updateAnimations();

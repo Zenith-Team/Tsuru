@@ -34,7 +34,7 @@ public:
 
     u32 onExecute() override {
         Mtx34 mtx;
-        mtx.rotateAndTranslate(this->rotation, this->position);
+        mtx.makeRTIdx(this->rotation, this->position);
         this->model->setMtx(mtx);
         this->model->setScale(0.5f);
         this->model->updateModel();
@@ -166,7 +166,7 @@ void BasaltBones::initModels() {
 
 void BasaltBones::updateModel() {
     Mtx34 mtx;
-    mtx.rotateAndTranslate(this->rotation, this->position);
+    mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
     this->model->updateModel();
 }

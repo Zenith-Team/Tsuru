@@ -85,7 +85,7 @@ u32 AngryGrrrol::onDraw() {
 
 void AngryGrrrol::updateModel() {
     Mtx34 mtx;
-    mtx.rotateAndTranslate(this->rotation, this->position);
+    mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
     this->model->updateAnimations();
     this->model->setScale(this->scale);

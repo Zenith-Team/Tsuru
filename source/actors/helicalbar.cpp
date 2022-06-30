@@ -175,7 +175,7 @@ u32 HelicalBar::onDraw() {
             this->fireLights[i][j].update(nullptr, &lfp, nullptr, &lightRadius, nullptr, &lightcolor);
 
             Mtx34 mtx;
-            mtx.rotateAndTranslate(Vec3u(0, 0, fixDeg(-this->fireRotate * 4)), this->firePositions[i][j]);
+            mtx.makeRTIdx(Vec3u(0, 0, fixDeg(-this->fireRotate * 4)), this->firePositions[i][j]);
             this->fireModel[i][j]->setMtx(mtx);
             this->fireModel[i][j]->setScale(Vec3f(0.78f, 0.78f, 0.78f));
             this->fireModel[i][j]->updateModel();
@@ -189,7 +189,7 @@ u32 HelicalBar::onDraw() {
 
 void HelicalBar::updateModel() {
     Mtx34 mtx;
-    mtx.rotateAndTranslate(this->rotation, Vec3f(this->position.x, this->position.y, -1000.0f));
+    mtx.makeRTIdx(this->rotation, Vec3f(this->position.x, this->position.y, -1000.0f));
     this->centerModel->setMtx(mtx);
     this->centerModel->updateModel();
 }

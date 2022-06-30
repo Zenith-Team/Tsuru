@@ -84,7 +84,7 @@ u32 BeepBlock::onExecute() {
     this->model->updateAnimations();
 
     Mtx34 mtx;
-    mtx.rotateAndTranslate(this->rotation, this->position);
+    mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
     this->model->updateModel();
 

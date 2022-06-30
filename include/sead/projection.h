@@ -1,6 +1,6 @@
 #pragma once
 
-#include "utils/mtx.h"
+#include "sead/matrix.h"
 #include "sead/runtimetypeinfo.h"
 #include "sead/graphics.h"
 #include "sead/viewport.h"

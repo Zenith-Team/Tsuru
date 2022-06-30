@@ -73,7 +73,7 @@ u32 CSCustomActor::onExecute() {
 u32 CSCustomActor::onDraw() {
     Mtx34 mtx;
 
-    mtx.rotateAndTranslate(this->rotation, this->position);
+    mtx.makeRTIdx(this->rotation, this->position);
 
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);

@@ -1,6 +1,7 @@
 #pragma once
 
-#include "utils/mtx.h"
+#include "utils/rect.h"
+#include "sead/matrix.h"
 #include "dynlibs/gx2/types.h"
 #include "sead/color.h"
 #include "sead/safestring.h"

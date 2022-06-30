@@ -63,7 +63,7 @@ u32 ColdFuzzy::onCreate() {
 
 u32 ColdFuzzy::onExecute() {
     Mtx34 mtx;
-    mtx.rotateAndTranslate(this->rotation, this->position);
+    mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
     this->model->updateAnimations();
