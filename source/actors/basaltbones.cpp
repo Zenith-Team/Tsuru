@@ -5,6 +5,7 @@
 #include "game/actor/actormgr.h"
 #include "math/functions.h"
 #include "sead/mathcalccommon.h"
+#include "math/easing.h"
 #include "log.h"
 
 class BasaltBone : public Enemy {
@@ -98,8 +99,9 @@ public:
     u32 spawnWait;
     SpawnStage spawnStage;
     Vec3f startPosition
-    ,     targetBonePositions[6];
+    ,     targetBonePositions[6][3];
     f32 boneTimer;
+    Easing boneEaser;
 };
 
 CREATE_STATE(BasaltBones, Spawning);
@@ -130,6 +132,7 @@ BasaltBones::BasaltBones(const ActorBuildInfo* buildInfo)
     , spawnStage(SpawnStage_Wait)
     , startPosition()
     , boneTimer()
+    , boneEaser()
 { }
 
 u32 BasaltBones::onCreate() {
@@ -180,12 +183,29 @@ void BasaltBones::beginState_Spawning() {
     this->removeHitboxColliders();
     this->isVisible = false;
 
-    this->targetBonePositions[0] = this->position + Vec3f(4*16, 1*16, 0.0f);
-    this->targetBonePositions[1] = this->position + Vec3f(4*16, 3*16, 0.0f);
-    this->targetBonePositions[2] = this->position + Vec3f(4*16, 5*16, 0.0f);
-    this->targetBonePositions[3] = this->position + Vec3f(-4*16, 1*16, 0.0f);
-    this->targetBonePositions[4] = this->position + Vec3f(-4*16, 3*16, 0.0f);
-    this->targetBonePositions[5] = this->position + Vec3f(-4*16, 5*16, 0.0f);
+    this->targetBonePositions[0][0] = this->position + Vec3f(0, -3*16, 0);
+    this->targetBonePositions[0][1] = this->position + Vec3f(0, 0, 0);
+    this->targetBonePositions[0][2] = this->position + Vec3f(0, 3*16, 0);
+
+    this->targetBonePositions[1][0] = this->position + Vec3f(0, -3*16, 0);
+    this->targetBonePositions[1][1] = this->position + Vec3f(0, 0, 0);
+    this->targetBonePositions[1][2] = this->position + Vec3f(0, 8*16, 0);
+
+    this->targetBonePositions[2][0] = this->position + Vec3f(5*16, -3*16, 0);
+    this->targetBonePositions[2][1] = this->position + Vec3f(5*16, 7*16, 0);
+    this->targetBonePositions[2][2] = this->position + Vec3f(2*16, 7*16, 0);
+
+    this->targetBonePositions[3][0] = this->position + Vec3f(-5*16, -3*16, 0);
+    this->targetBonePositions[3][1] = this->position + Vec3f(-5*16, 7*16, 0);
+    this->targetBonePositions[3][2] = this->position + Vec3f(-2*16, 7*16, 0);
+
+    this->targetBonePositions[4][0] = this->position + Vec3f(8*16, -3*16, 0);
+    this->targetBonePositions[4][1] = this->position + Vec3f(8*16, 5*16, 0);
+    this->targetBonePositions[4][2] = this->position + Vec3f(3*16, 5*16, 0);
+
+    this->targetBonePositions[5][0] = this->position + Vec3f(-8*16, -3*16, 0);
+    this->targetBonePositions[5][1] = this->position + Vec3f(-8*16, 5*16, 0);
+    this->targetBonePositions[5][2] = this->position + Vec3f(-3*16, 5*16, 0);
 
     for (u32 i = 0; i < 6; i++) {
         ActorBuildInfo buildInfo = { 0 };
@@ -193,14 +213,15 @@ void BasaltBones::beginState_Spawning() {
         
         f32 left = i % 2 == 0 ? -1.0f : 1.0f;
 
-        buildInfo.position = targetBonePositions[i];
-        buildInfo.position.y = this->position.y - 5*16.0f;
+        buildInfo.position = targetBonePositions[i][0];
 
         this->bones[i] = (BasaltBone*)ActorMgr::instance()->create(buildInfo, 0);
-        //this->bones[i]->removeHitboxColliders();
+        this->bones[i]->removeHitboxColliders();
     }
 
     this->spawnWait = 63 * 6;
+
+    this->boneEaser.set(Easing::quadInOut, 0.0f, 1.0f, 0.01f);
 }
 
 void BasaltBones::executeState_Spawning() {
@@ -210,34 +231,39 @@ void BasaltBones::executeState_Spawning() {
                 this->spawnStage = SpawnStage_Rumble;
                 this->spawnWait = 60 * 2;
             }
+
             break;
         }
 
         case SpawnStage_Rumble: {
             ZoneRumbleMgr::instance()->rumble(1);
 
-            bool done = true;
-
-            for (u32 i = 0; i < 6; i++) {
-                if (this->bones[i]->position.y < this->targetBonePositions[i].y+4 && this->bones[i]->position.y > this->targetBonePositions[i].y-4) {
-                    this->bones[i]->position = this->targetBonePositions[i];
-                } else {
-                    done = false;
-                }
+            if (--this->spawnWait == 0) {
+                this->spawnStage = SpawnStage_RumbleWait;
+                this->spawnWait = 63 * 5;
             }
-
-            for (u32 i = 0; i < 6; i++) {
-                Vec3f velocity = (this->targetBonePositions[i] - this->bones[i]->position) * 0.0001f;
-                this->bones[i]->speed += velocity;
-                this->bones[i]->handleSpeed();
-            }
-
+            
             break;
         }
 
         case SpawnStage_RumbleWait: {
             if (--this->spawnWait == 0) {
                 this->spawnStage = SpawnStage_Rumble;
+            }
+
+            this->boneEaser.ease(this->boneTimer);
+            
+            for (u32 i = 0; i < 6; i++) {
+                Vec3f delta = this->bones[i]->position;
+
+                Vec3f a = this->targetBonePositions[i][0]; a.lerp(this->targetBonePositions[i][1], this->boneTimer);
+                Vec3f b = this->targetBonePositions[i][1]; b.lerp(this->targetBonePositions[i][2], this->boneTimer);
+                Vec3f pos = a; pos.lerp(b, this->boneTimer);
+
+                this->bones[i]->position = pos;
+
+                delta = this->bones[i]->position - delta;
+                this->bones[i]->rotation.z += fixDeg(0.1f + delta.length() * 3.0f);
             }
             
             break;
