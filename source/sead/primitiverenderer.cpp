@@ -1,4 +1,4 @@
-#include "sead.h"
+#include "sead/primitiverenderer.h"
 #include "utils/mtx.h"
 #include "dynlibs/gx2/functions.h"
 

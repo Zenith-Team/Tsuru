@@ -275,6 +275,8 @@ enum ProfileIDType {
     LayerChanger,
     Biddybud,
     HelicalBar,
+    BasaltBones,
+    BasaltBone,
     
     // Atlys profiles //! Do not place anything below these
     AtlysCamera,

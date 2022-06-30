@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead.h"
-#include "types.h"
+#include "sead/heap.h"
+#include "sead/safestring.h"
 #include "game/resource/resarchive.h"
 
 class Animation {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead.h"
+#include "sead/idisposer.h"
 
 class ZoneRumbleMgr {
     SEAD_SINGLETON_DISPOSER(ZoneRumbleMgr)

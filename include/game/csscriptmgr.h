@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead.h"
+#include "sead/idisposer.h"
 #include "game/csscript.h"
 #include "game/actor/actor.h"
 

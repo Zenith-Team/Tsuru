@@ -1,6 +1,7 @@
 #pragma once
 
-#include "sead.h"
+#include "sead/idisposer.h"
+#include "sead/task.h"
 
 class TaskMgr {
     SEAD_SINGLETON_DISPOSER(TaskMgr)

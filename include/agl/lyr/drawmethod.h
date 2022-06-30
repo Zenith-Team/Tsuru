@@ -1,7 +1,9 @@
 #pragma once
 
-#include "sead.h"
 #include "types.h"
+#include "sead/idisposer.h"
+#include "sead/inamable.h"
+#include "sead/task.h"
 
 //! -----------------------------------------------------
 //! THIS IS NOT AN OFFICIAL IMPLEMENTATION OF DRAWMETHOD.

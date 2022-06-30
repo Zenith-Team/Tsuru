@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead.h"
+#include "sead/idisposer.h"
 
 class LevelTimer {
     SEAD_SINGLETON_DISPOSER(LevelTimer)

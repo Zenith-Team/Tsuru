@@ -244,7 +244,7 @@ bool Kamiya::collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOt
 /** STATE: Spawning */
 
 void Kamiya::beginState_Spawning() {
-    this->scale.set(0.0f);
+    this->scale = (0.0f);
     this->scale.z = 1.0f;
 
     this->easerX.set(&Easing::circOut, 0.0f, 0.75f, 0.025f);
@@ -254,24 +254,7 @@ void Kamiya::executeState_Spawning() {
     if (this->easerX.ease(this->targetScale) && this->model->sklAnims[0]->isAnimationDone())
         this->doStateChange(&Kamiya::StateID_Flying);
 
-            this->scale.set(this->targetScale);
-
-            break;
-        }
-
-        case SpawningStage_Spin: {
-            this->rotation.y = fixDeg(this->spawnRotationY);
-
-            bool spin = this->easerY.ease(this->spawnRotationY);
-            bool up = this->easerExtra.ease(this->position.y);
-
-            if (spin && up) {
-                this->doStateChange(&Kamiya::StateID_Flying);
-            }
-
-            break;
-        }
-    }
+    this->scale = (this->targetScale);
 }
 
 void Kamiya::endState_Spawning() {
@@ -439,7 +422,7 @@ void Kamiya::executeState_Damage() {
         this->doStateChange(&Kamiya::StateID_Teleport);
 
     this->rotation.y = fixDeg(this->spawnRotationY);
-    this->scale.set(this->targetScale);
+    this->scale = (this->targetScale);
 }
 
 void Kamiya::endState_Damage() {}
@@ -537,8 +520,8 @@ Actor* KamiyaMagic::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 KamiyaMagic::onCreate() {
-    this->scale.set(0.25f);
-    this->speed.set(1.0f);
+    this->scale = (0.25f);
+    this->speed = 1.0f;
     this->model = ModelWrapper::create("star_coin", "star_coinB");
 
     return 1;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead.h"
+#include "sead/idisposer.h"
 #include "game/actor/courseselect/csplayerbase.h"
 
 class CSPlayerMgr { // Size: 0x34

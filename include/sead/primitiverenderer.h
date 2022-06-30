@@ -1,8 +1,10 @@
 #pragma once
 
-#include "sead.h"
 #include "utils/mtx.h"
 #include "dynlibs/gx2/types.h"
+#include "sead/color.h"
+#include "sead/safestring.h"
+#include "sead/idisposer.h"
 
 namespace sead {
 

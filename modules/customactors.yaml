@@ -36,6 +36,7 @@ Files:
   - source/actors/layerchanger.cpp
   - source/actors/biddybud.cpp
   - source/actors/helicalbar.cpp
+  - source/actors/basaltbones.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:

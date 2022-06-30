@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead.h"
-#include "types.h"
+#include "sead/safestring.h"
+#include "sead/heap.h"
 #include "preprocessor.h"
 #include "game/profile/profileid.h"
 

@@ -4,7 +4,6 @@
 #include "game/graphics/drawmgr.h"
 #include "game/effect/effect.h"
 #include "math.h"
-#include "sead.h"
 
 class FallingChestnut : public Enemy {
     SEAD_RTTI_OVERRIDE_IMPL(FallingChestnut, Enemy)
