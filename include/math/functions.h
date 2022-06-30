@@ -71,14 +71,6 @@ inline f32 unfixDeg(u32 val) {
     return (val / 11930465.0f);
 }
 
-inline Vec2f radToDirection(f32 rad) {
-    return Vec2f(sinf(rad), cosf(rad));
-}
-
-inline Vec2f degToDirection(f32 deg) {
-    return radToDirection(degToRad(deg));
-}
-
 // @param x First value to compare
 // @param y Second value to compare
 // @return The smallest value given

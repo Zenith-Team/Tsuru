@@ -143,7 +143,7 @@ void AngrySun::freeze() {
     EnemyFreezeMgr::Info info = { 0 };
     info.position = this->position;
     info.position.y -= 24;
-    info.scale.set(0.75f);
+    info.scale = 0.75f;
     info.settings = 0x00000003;
 }
 

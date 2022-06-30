@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "sead/vector.h"
 
 namespace sead {
 
@@ -11,16 +12,16 @@ struct BoundBox2 {
         , max(t)
     { }
 
-    Vec2<T> min;
-    Vec2<T> max;
+    sead::Vector2<T> min;
+    sead::Vector2<T> max;
 
     static const BoundBox2<T> sUndefined;
 };
 
 template <typename T>
 struct BoundBox3 {
-    Vec3<T> min;
-    Vec3<T> max;
+    sead::Vector3<T> min;
+    sead::Vector3<T> max;
 
     static const BoundBox3<T> sUndefined;
 };
