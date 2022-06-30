@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead.h"
+#include "sead/idisposer.h"
 #include "game/sound/audiofx.h"
 
 class SoundSystemBase {

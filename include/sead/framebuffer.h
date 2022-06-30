@@ -2,6 +2,7 @@
 
 #include "sead/runtimetypeinfo.h"
 #include "sead/boundbox.h"
+#include "sead/color.h"
 
 namespace sead {
 

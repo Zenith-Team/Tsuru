@@ -1,6 +1,10 @@
 #pragma once
 
-#include "sead.h"
+#include "sead/idisposer.h"
+#include "sead/safestring.h"
+#include "sead/ptrarray.h"
+#include "sead/buffer.h"
+#include "sead/criticalsection.h"
 #include "agl/lyr/displaytype.h"
 #include "agl/renderbuffer.h"
 #include "sead/controller.h"

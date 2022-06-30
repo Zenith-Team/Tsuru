@@ -1,7 +1,8 @@
 #pragma once
 
 #include "savedata.h"
-#include "sead.h"
+#include "sead/heap.h"
+#include "sead/idisposer.h"
 #include "sead/thread.h"
 
 class SaveMgr { // Size: 0x50

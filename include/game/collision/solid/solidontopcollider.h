@@ -1,6 +1,7 @@
 #pragma once
 
 #include "game/collision/solid/colliderbase.h"
+#include "sead/buffer.h"
 
 class SolidOnTopCollider : public ColliderBase { // Size: 0x178
     SEAD_RTTI_OVERRIDE(SolidOnTopCollider, ColliderBase)

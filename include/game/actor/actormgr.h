@@ -1,6 +1,9 @@
 #pragma once
 
-#include "sead.h"
+#include "sead/list.h"
+#include "sead/heap.h"
+#include "sead/buffer.h"
+#include "sead/ptrarray.h"
 #include "game/actor/stage/stageactor.h"
 
 class ActorBuffer { // Size: 0x18

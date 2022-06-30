@@ -1,9 +1,10 @@
 #pragma once
 
-#include "sead.h"
 #include "types.h"
-
-#include "drawmethod.h"
+#include "agl/lyr/drawmethod.h"
+#include "sead/viewport.h"
+#include "sead/camera.h"
+#include "sead/projection.h"
 
 namespace agl { namespace lyr {
 

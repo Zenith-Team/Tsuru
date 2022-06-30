@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead.h"
 #include "nw/snd.h"
+#include "sead/idisposer.h"
 
 class SoundActor : public nw::snd::SoundActor {
 public:

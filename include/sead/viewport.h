@@ -2,6 +2,7 @@
 
 #include "boundbox.h"
 #include "framebuffer.h"
+#include "sead/graphics.h"
 
 namespace sead {
 

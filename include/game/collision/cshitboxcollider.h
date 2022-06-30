@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include "sead.h"
-#include "types.h"
+#include "sead/idisposer.h"
+#include "sead/ptrarray.h"
 
 class CSCollisionActor;
 

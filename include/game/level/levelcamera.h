@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead.h"
+#include "sead/idisposer.h"
 
 class LevelCamera {
     SEAD_SINGLETON_DISPOSER(LevelCamera)

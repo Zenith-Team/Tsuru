@@ -4,7 +4,7 @@
 #include "dynlibs/h264/functions.h"
 #include "dynlibs/os/functions.h"
 #include "agl/lyr/drawmethod.h"
-#include "sead.h"
+#include "sead/task.h"
 
 #include "game/layout/layoutcontainer.h"
 

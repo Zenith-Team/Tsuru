@@ -1,6 +1,5 @@
 #pragma once
 
-#include "sead.h"
 #include "types.h"
 #include "dynlibs/os/functions.h"
 
