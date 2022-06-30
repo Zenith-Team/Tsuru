@@ -55,6 +55,12 @@ public:
         return Vector2<T>(this->x / len, this->y / len);
     }
 
+    Vector2<T>& lerp(const Vector2<T>& other, const T t) {
+        this->x = (1 - t) * this->x + t * other.x;
+        this->y = (1 - t) * this->y + t * other.y;
+        return *this;
+    }
+
     Vector2<T> operator+(const Vector2<T>& other) const { return Vector2<T>(this->x + other.x, this->y + other.y); }
     Vector2<T> operator+(const T other) const { return Vector2<T>(this->x + other, this->y + other); }
 
@@ -153,10 +159,10 @@ public:
     }
 
     Vector3<T>& lerp(const Vector3<T>& other, const T t) {
-        this->x = this->x + (other.x - this->x) * t;
-        this->y = this->y + (other.y - this->y) * t;
-        this->z = this->z + (other.z - this->z) * t;
-       return *this;
+        this->x = (1 - t) * this->x + t * other.x;
+        this->y = (1 - t) * this->y + t * other.y;
+        this->z = (1 - t) * this->z + t * other.z;
+        return *this;
     }
 
     Vector3<T> crossedWith(const Vector3<T>& other) const {
