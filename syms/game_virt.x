@@ -7,6 +7,7 @@ SECTIONS {
     fmodf = 0x2AFD97C;
     powf = 0x2AFDEA8;
     sqrtf = 0x2AFDCCC;
+    tanf = 0x2afdb84;
     globalSinCosTbl__Q3_2nw4math8internal = 0x10191538;
 
 /* new/delete */

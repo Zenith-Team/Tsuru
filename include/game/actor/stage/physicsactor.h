@@ -97,3 +97,5 @@ public:
     u8 _179B;                           // 179B Inited to 0
     u32 _179C;                          // 179C Inited to 0
 };
+
+static_assert(sizeof(PhysicsActor) == 0x17A0, "PhysicsActor size mismatch");

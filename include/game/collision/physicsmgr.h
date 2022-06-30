@@ -5,7 +5,7 @@
 
 class StageActor;
 
-class PhysicsMgr : public TileChecker { // Size: 0x14DC
+class PhysicsMgr : public TileChecker { // Size: 0x14E0
     SEAD_RTTI_BASE(PhysicsMgr);
 
 public:
@@ -103,3 +103,5 @@ public:
 
     u8 _958[0xB84];              // 958
 };
+
+static_assert(sizeof(PhysicsMgr) == 0x14E0, "PhysicsMgr size mismatch");
