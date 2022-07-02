@@ -18,8 +18,9 @@ public:
     u32 onDraw() override;
 
     void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
-    
+    bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     void updateModel();
+
 
     static HitboxCollider::Info collisionInfo;
 
@@ -38,7 +39,6 @@ public:
     DECLARE_STATE(Biddybud, Die);
     DECLARE_STATE(Biddybud, DieSquish);
 };
-
 CREATE_STATE(Biddybud, Move);
 CREATE_STATE(Biddybud, Die);
 CREATE_STATE(Biddybud, DieSquish);
@@ -46,9 +46,23 @@ CREATE_STATE(Biddybud, DieSquish);
 const Profile BiddybudProfile(&Biddybud::build, ProfileID::Biddybud);
 PROFILE_RESOURCES(ProfileID::Biddybud, Profile::LoadResourcesAt_Course, "ttwing"); // winged
 
+// collider related stuff
+
 HitboxCollider::Info Biddybud::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &Enemy::collisionCallback
 };
+
+void Biddybud::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    u32 hitType = this->processCollision(hcSelf, hcOther, 0);
+    if (hitType == HitType_Collide)
+        this->damagePlayer(hcSelf, hcOther);
+    else if (hitType == HitType_NormalJump || hitType == HitType_SpinJump)
+        this->killPlayerJump(hcOther->owner, 0.0f, &Biddybud::StateID_DieSquish);
+}
+
+bool Biddybud::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    doStateChange(&Biddybud::StateID_DieFumi);
+}
 
 Biddybud::Biddybud(const ActorBuildInfo* buildInfo) 
     : Enemy(buildInfo)
@@ -71,9 +85,10 @@ u32 Biddybud::onCreate() {
     
     this->model->playSklAnim("FlyWait");
     this->model->loopSklAnims(true);
-    this->scale.x = .14;
-    this->scale.y = .14;
-    this->scale.z = .14;
+    // this->scale.x = .14;
+    // this->scale.y = .14;
+    // this->scale.z = .14;
+    model->setScale(00.1);
     this->position.y -= 8;
     this->position.x += 8;
 
@@ -83,7 +98,7 @@ u32 Biddybud::onCreate() {
     // this->movementID = (this->movementID & 0xFF); // 21-22
     // this->movementID >> 0x4 & 0xF
 
-    u32 movementMask = this->movementHandler.getMaskForMovementType(this->eventID1 >> 0x4 & 0xFF); // Nybbles 1-2
+    u32 movementMask = this->movementHandler.getMaskForMovementType(this->settings2 & 0xFF); // nybbles 1-2?
     this->movementHandler.link(this->position, movementMask, this->movementID);
 
     this->doStateChange(&Biddybud::StateID_Move);
@@ -122,14 +137,7 @@ void Biddybud::updateModel() {
     this->model->updateModel();
 }
 
-void Biddybud::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    u32 hitType = this->processCollision(hcSelf, hcOther, 0);
 
-    if (hitType == 0)
-        this->damagePlayer(hcSelf, hcOther);
-    else if (hitType == 1 || hitType == 3)
-        this->killPlayerJump(hcOther->owner, 0.0f, &Biddybud::StateID_Die);
-}
 
 /** STATE: Move */
 
@@ -143,7 +151,10 @@ void Biddybud::endState_Move() { }
 
 /** STATE: Die */
 
-void Biddybud::beginState_Die() { }
+void Biddybud::beginState_Die() {
+    this->isDeleted = true;
+    this->model->playSklAnim("BlowDown");
+}
 
 void Biddybud::executeState_Die() { }
 
@@ -151,7 +162,10 @@ void Biddybud::endState_Die() { }
 
 /** STATE: DieSquish */
 
-void Biddybud::beginState_DieSquish() { }
+void Biddybud::beginState_DieSquish() {
+    this->isDeleted = true;
+    this->model->playSklAnim("PressDown");
+}
 
 void Biddybud::executeState_DieSquish() { }
 
