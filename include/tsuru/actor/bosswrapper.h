@@ -15,7 +15,9 @@ public:
     void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override {
         u32 hitType = this->processCollision(hcSelf, hcOther);
 
-        if (hitType == 1) {
+        if (hitType == 0) {
+            this->damagePlayer(hcSelf, hcOther);
+        } else if (hitType == 1 || hitType == 3) {
             this->onStomp(hcOther->owner);
         }
     }
