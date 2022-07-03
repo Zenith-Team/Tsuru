@@ -18,7 +18,6 @@ public:
     u32 onDraw() override;
 
     void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
-    bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     void updateModel();
 
 
@@ -44,7 +43,8 @@ CREATE_STATE(Biddybud, Die);
 CREATE_STATE(Biddybud, DieSquish);
 
 const Profile BiddybudProfile(&Biddybud::build, ProfileID::Biddybud);
-PROFILE_RESOURCES(ProfileID::Biddybud, Profile::LoadResourcesAt_Course, "ttwing"); // winged
+// PROFILE_RESOURCES(ProfileID::Biddybud, Profile::LoadResourcesAt_Course, "ttwing"); // winged
+PROFILE_RESOURCES(ProfileID::Biddybud, Profile::LoadResourcesAt_Course, "tenten_w");
 
 // collider related stuff
 
@@ -60,9 +60,6 @@ void Biddybud::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) 
         this->killPlayerJump(hcOther->owner, 0.0f, &Biddybud::StateID_DieSquish);
 }
 
-bool Biddybud::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    doStateChange(&Biddybud::StateID_DieFumi);
-}
 
 Biddybud::Biddybud(const ActorBuildInfo* buildInfo) 
     : Enemy(buildInfo)
@@ -81,14 +78,15 @@ u32 Biddybud::onCreate() {
     // this->behavior = (this->settings1 >> 0x1C & 0xF);
     // this->alternater = false;
 
-    this->model = ModelWrapper::create("ttwing", "biddybud", 3, 4, 3, 3, 1);
+    // this->model = ModelWrapper::create("ttwing", "biddybud", 3, 4, 3, 3, 1);
+    this->model = ModelWrapper::create("tenten_w", "tenten_w", 3, 4, 3, 3, 1);
     
     this->model->playSklAnim("FlyWait");
     this->model->loopSklAnims(true);
-    // this->scale.x = .14;
-    // this->scale.y = .14;
-    // this->scale.z = .14;
-    model->setScale(00.1);
+    this->scale.x = .14;
+    this->scale.y = .14;
+    this->scale.z = .14;
+    model->setScale(0.001);
     this->position.y -= 8;
     this->position.x += 8;
 
@@ -163,7 +161,7 @@ void Biddybud::endState_Die() { }
 /** STATE: DieSquish */
 
 void Biddybud::beginState_DieSquish() {
-    this->isDeleted = true;
+    // this->isDeleted = true;
     this->model->playSklAnim("PressDown");
 }
 
