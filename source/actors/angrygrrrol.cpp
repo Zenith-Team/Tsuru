@@ -1,6 +1,5 @@
 #include "game/actor/stage/enemy.h"
 #include "game/graphics/model/model.h"
-#include "game/graphics/drawmgr.h"
 #include "math/functions.h"
 
 class AngryGrrrol : public Enemy {
@@ -78,7 +77,7 @@ u32 AngryGrrrol::onExecute() {
 }
 
 u32 AngryGrrrol::onDraw() {
-    DrawMgr::instance()->drawModel(this->model);
+    this->model->draw();
 
     return 1;
 }

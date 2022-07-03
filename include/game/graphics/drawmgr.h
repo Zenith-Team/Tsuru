@@ -1,7 +1,9 @@
 #pragma once
 
-#include "game/graphics/model/model.h"
 #include "agl/lyr/layer.h"
+
+class Model;
+class ModelWrapper;
 
 class DrawMgr {
     SEAD_SINGLETON_DISPOSER(DrawMgr)

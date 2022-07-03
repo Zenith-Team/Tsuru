@@ -1,4 +1,4 @@
-#include "game/graphics/drawmgr.h"
+#include "game/graphics/model/model.h"
 #include "game/collision/collidermgr.h"
 #include "game/actor/stage/multistateactor.h"
 #include "game/collision/solid/rectcollider.h"
@@ -81,8 +81,8 @@ u32 FakeActor::onExecute() {
 }
 
 u32 FakeActor::onDraw() {
-    if (this->model)  DrawMgr::instance()->drawModel(this->model);
-    if (this->model2) DrawMgr::instance()->drawModel(this->model2);
+    if (this->model)  this->model->draw();
+    if (this->model2) this->model2->draw();
     return 1;
 }
 

@@ -219,7 +219,7 @@ public:
             this->model->setScale(Vec3f(1.0f));
             this->model->updateModel();
 
-            DrawMgr::instance()->drawModel(this->model);
+            this->model->draw();
         }
 
         bool unlocked;

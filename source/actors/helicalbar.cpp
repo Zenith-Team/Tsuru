@@ -161,7 +161,7 @@ u32 HelicalBar::onExecute() {
 }
 
 u32 HelicalBar::onDraw() {
-    DrawMgr::instance()->drawModel(this->centerModel);
+    this->centerModel->draw();
 
     static f32 lightRadius = 1.25f;
     static sead::Color4f lightcolor = sead::Color4f(0.4f, 0.3f, 0.0f, 0.7f);
@@ -180,7 +180,7 @@ u32 HelicalBar::onDraw() {
             this->fireModel[i][j]->setScale(Vec3f(0.78f, 0.78f, 0.78f));
             this->fireModel[i][j]->updateModel();
             this->fireModel[i][j]->updateAnimations();
-            DrawMgr::instance()->drawModel(this->fireModel[i][j]);
+            this->fireModel[i][j]->draw();
         }
     }
 

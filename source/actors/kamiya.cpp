@@ -169,7 +169,7 @@ u32 Kamiya::onExecute() {
 }
 
 u32 Kamiya::onDraw() {
-    DrawMgr::instance()->drawModel(this->model);
+    this->model->draw();
 
     return 1;
 }
@@ -535,7 +535,7 @@ u32 KamiyaMagic::onExecute() {
 }
 
 u32 KamiyaMagic::onDraw() {
-    DrawMgr::instance()->drawModel(this->model);
+    this->model->draw();
 
     return 1;
 }

@@ -1,6 +1,5 @@
 #include "game/actor/stage/enemy.h"
 #include "game/graphics/model/model.h"
-#include "game/graphics/drawmgr.h"
 #include "game/graphics/lightsource.h"
 #include "game/graphics/mask/lightmask.h"
 #include "game/actor/actormgr.h"
@@ -132,7 +131,7 @@ u32 AngrySun::onExecute() {
 }
 
 u32 AngrySun::onDraw() {
-    DrawMgr::instance()->drawModel(this->model);
+    this->model->draw();
 
     this->lightMask.draw();
 

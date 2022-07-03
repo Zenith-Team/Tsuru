@@ -1,6 +1,5 @@
 #include "game/actor/stage/enemy.h"
 #include "game/graphics/model/model.h"
-#include "game/graphics/drawmgr.h"
 #include "game/actor/stage/playerbase.h"
 #include "game/playermgr.h"
 
@@ -79,7 +78,7 @@ u32 ColdFuzzy::onExecute() {
 }
 
 u32 ColdFuzzy::onDraw() {
-    DrawMgr::instance()->drawModel(this->model);
+    this->model->draw();
 
     return 1;
 }

@@ -108,8 +108,8 @@ u32 Scuttlebug::onExecute() {
 }
 
 u32 Scuttlebug::onDraw() {
-    DrawMgr::instance()->drawModel(this->model);
-    DrawMgr::instance()->drawModel(this->string);
+    this->model->draw();
+    this->string->draw();
 
     return 1;
 }

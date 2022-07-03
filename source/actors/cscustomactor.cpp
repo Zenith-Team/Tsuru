@@ -2,7 +2,6 @@
 #include "game/csplayermgr.h"
 #include "game/actor/actormgr.h"
 #include "game/graphics/model/model.h"
-#include "game/graphics/drawmgr.h"
 #include "game/csscriptmgr.h"
 #include "game/savemgr.h"
 #include "log.h"
@@ -79,7 +78,7 @@ u32 CSCustomActor::onDraw() {
     this->model->setScale(this->scale);
     this->model->updateModel();
 
-    DrawMgr::instance()->drawModel(model);
+    this->model->draw();
 
     return 1;
 }

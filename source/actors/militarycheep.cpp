@@ -53,7 +53,7 @@ u32 MilitaryCheep::onExecute() {
 }
 
 u32 MilitaryCheep::onDraw() {
-    DrawMgr::instance()->drawModel(this->model);
+    this->model->draw();
 
     return 0;
 }
