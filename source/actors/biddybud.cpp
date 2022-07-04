@@ -1,6 +1,7 @@
 #include "game/actor/stage/enemy.h"
 #include "game/graphics/model/model.h"
 #include "game/movementhandler.h"
+#include "game/effect/effect.h"
 #include "log.h"
 
 class Biddybud : public Enemy {
@@ -17,21 +18,20 @@ public:
     u32 onDraw() override;
 
     void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     void updateModel();
 
 
     static HitboxCollider::Info collisionInfo;
 
     ModelWrapper* model;
-    u32 behavior; 
-    /* behavior chart
-    0 - Stationary
-    1 (temp) - left and right
-    2 (temp) - up and down
-    */ 
     u32 counter;
     MovementHandler movementHandler;
-    bool alternater;
+    bool isDead;
+    u32 color;
+
+    Vec3f effectScale;
+    Vec3f effectOffset;
 
     DECLARE_STATE(Biddybud, Move);
     DECLARE_STATE(Biddybud, Die);
@@ -59,14 +59,21 @@ void Biddybud::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) 
         this->killPlayerJump(hcOther->owner, 0.0f, &Biddybud::StateID_DieSquish);
 }
 
+bool Biddybud::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    // doStateChange(&Biddybud::StateID_Die);
+    return 1;
+}
+
 
 Biddybud::Biddybud(const ActorBuildInfo* buildInfo) 
     : Enemy(buildInfo)
     , model(nullptr)
-    , behavior(0)
     , counter(0)
     , movementHandler()
-    , alternater(false)
+    , isDead(false)
+    , color(0)
+    , effectScale(0.5, 0.5, 0.5)
+    , effectOffset(0, 0, 0)
 { }
 
 Actor* Biddybud::build(const ActorBuildInfo* buildInfo) {
@@ -78,16 +85,37 @@ u32 Biddybud::onCreate() {
     // this->alternater = false;
 
     // this->model = ModelWrapper::create("ttwing", "biddybud", 3, 4, 3, 3, 1);
+    this->color = (this->settings1 >> 0x1C & 0xF); // nybble 5
     this->model = ModelWrapper::create("tenten_w", "tenten_w", 3, 4, 3, 3, 1);
+    switch (this->color) {
+        case 1: {
+            this->model = ModelWrapper::create("tenten_w", "tenten_w_yellow", 3, 4, 3, 3, 1);
+            break;
+        }
+        case 2: {
+            this->model = ModelWrapper::create("tenten_w", "tenten_w_green", 3, 4, 3, 3, 1);
+            break;
+        }
+        case 3: {
+            this->model = ModelWrapper::create("tenten_w", "tenten_w_blue", 3, 4, 3, 3, 1);
+            break;
+        }
+        case 4: {
+            this->model = ModelWrapper::create("tenten_w", "tenten_w_pink", 3, 4, 3, 3, 1);
+            break;
+        }
+    }
+    
     
     this->model->playSklAnim("FlyWait");
     this->model->loopSklAnims(true);
-    this->scale.x = .14;
-    this->scale.y = .14;
-    this->scale.z = .14;
+    this->scale.x = .17;
+    this->scale.y = .17;
+    this->scale.z = .17;
     model->setScale(0.001);
     this->position.y -= 8;
     this->position.x += 8;
+
 
     this->hitboxCollider.init(this, &Biddybud::collisionInfo);
     this->addHitboxColliders();
@@ -95,8 +123,8 @@ u32 Biddybud::onCreate() {
     // this->movementID = (this->movementID & 0xFF); // 21-22
     // this->movementID >> 0x4 & 0xF
 
-    u32 movementMask = this->movementHandler.getMaskForMovementType(this->settings2 & 0xFF); // nybbles 1-2?
-    this->movementHandler.link(this->position, movementMask, this->movementID);
+    u32 movementMask = this->movementHandler.getMaskForMovementType(this->settings2 & 0xFF); // nybble 20
+    this->movementHandler.link(this->position, movementMask, this->movementID); // nybble 21-22
 
     this->doStateChange(&Biddybud::StateID_Move);
     this->updateModel();
@@ -104,10 +132,11 @@ u32 Biddybud::onCreate() {
 }
 
 u32 Biddybud::onExecute() {
-    this->movementHandler.execute();
-    this->position = this->movementHandler.position;
-    this->rotation.z = this->movementHandler.rotation;
-
+    if (!this->isDead) {
+        this->movementHandler.execute();
+        this->position = this->movementHandler.position;
+        this->rotation.z = this->movementHandler.rotation;
+    }
     this->states.execute();
 
     this->updateModel();
@@ -149,11 +178,19 @@ void Biddybud::endState_Move() { }
 /** STATE: Die */
 
 void Biddybud::beginState_Die() {
-    this->isDeleted = true;
+    // this->isDeleted = true;
     this->model->playSklAnim("BlowDown");
+    this->model->loopSklAnims(false);
+    this->isDead = true;
+    this->removeHitboxColliders();
 }
 
-void Biddybud::executeState_Die() { }
+void Biddybud::executeState_Die() {
+    this->counter++;
+    if (this->counter == 180) { // until there's an "is animation done" function that i'm aware of, i'll just use this
+        this->isDeleted = true;
+    }
+}
 
 void Biddybud::endState_Die() { }
 
@@ -161,9 +198,21 @@ void Biddybud::endState_Die() { }
 
 void Biddybud::beginState_DieSquish() {
     // this->isDeleted = true;
-    this->model->playSklAnim("PressDown");
+    // this->model->playSklAnim("PressDown");
+    this->model->playSklAnim("BlowDown");
+    this->model->loopSklAnims(false);
+    this->isDead = true;
+    this->removeHitboxColliders();
 }
 
-void Biddybud::executeState_DieSquish() { }
+void Biddybud::executeState_DieSquish() {
+    this->counter++;
+    if (this->counter == 32) {
+        Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+        Vec3f effectPos(effectOrigin + this->effectOffset);
+        Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
+        this->isDeleted = true;
+    }
+}
 
 void Biddybud::endState_DieSquish() { }
