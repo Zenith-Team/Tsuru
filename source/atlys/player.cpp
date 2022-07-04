@@ -55,7 +55,7 @@ u32 Atlys::Player::onExecute() {
 }
 
 u32 Atlys::Player::onDraw() {
-    DrawMgr::instance()->drawModel(this->updateModel());
+    this->updateModel()->draw();
 
     return 1;
 }

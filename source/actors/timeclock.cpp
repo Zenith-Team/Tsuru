@@ -1,5 +1,5 @@
 #include "game/effect/effect.h"
-#include "game/graphics/drawmgr.h"
+#include "game/graphics/model/model.h"
 #include "game/actor/stage/stageactor.h"
 #include "game/level/leveltimer.h"
 #include "game/sound/sound.h"
@@ -57,7 +57,7 @@ u32 TimeClock::onExecute() {
 }
 
 u32 TimeClock::onDraw() {
-    DrawMgr::instance()->drawModel(this->model);
+    this->model->draw();
     return 1;
 }
 

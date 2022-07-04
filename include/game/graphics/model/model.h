@@ -3,6 +3,7 @@
 #include "game/resource/resarchive.h"
 #include "game/graphics/layer/renderobjlayer.h"
 #include "game/graphics/model/animation.h"
+#include "game/graphics/drawmgr.h"
 
 class Model : public RenderObjLayer::Node {
     SEAD_RTTI_OVERRIDE(Model, RenderObjLayer::Node)
@@ -140,6 +141,10 @@ public:
             if (!anim) return;
             anim->shouldLoop(loop);
         }
+    }
+
+    void draw() {
+        DrawMgr::instance()->drawModel(this);
     }
 
     static ModelWrapper* create(const sead::SafeString& archiveIdentifier, const sead::SafeString& modelIdentifier, u32 numSklAnims = 0, u32 numTexPatternAnims = 0, u32 numTexSrtAnims = 0, u32 numVisAnims = 0, u32 numShaAnims = 0, bool unk2 = false) {

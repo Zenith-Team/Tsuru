@@ -63,7 +63,7 @@ u32 StarCoinShard::onExecute() {
 }
 
 u32 StarCoinShard::onDraw() {
-    DrawMgr::instance()->drawModel(this->model);
+    this->model->draw();
 
     return 1;
 }

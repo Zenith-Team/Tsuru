@@ -1,6 +1,5 @@
 #include "game/actor/stage/enemy.h"
 #include "game/graphics/model/model.h"
-#include "game/graphics/drawmgr.h"
 #include "game/movementhandler.h"
 #include "log.h"
 
@@ -117,7 +116,7 @@ u32 Biddybud::onExecute() {
 }
 
 u32 Biddybud::onDraw() {
-    DrawMgr::instance()->drawModel(this->model);
+    this->model->draw();
     this->model->playColorAnim("Color", 1);
 
     return 1;

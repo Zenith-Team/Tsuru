@@ -82,7 +82,7 @@ u32 FallingChestnut::onExecute() {
 }
 
 u32 FallingChestnut::onDraw() {
-    DrawMgr::instance()->drawModel(this->model);
+    this->model->draw();
 
     return 1;
 }

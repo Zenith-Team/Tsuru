@@ -99,7 +99,7 @@ u32 GiantSkewer::onExecute() {
 }
 
 u32 GiantSkewer::onDraw() {
-    DrawMgr::instance()->drawModel(this->model);
+    this->model->draw();
 
     return 1;
 }

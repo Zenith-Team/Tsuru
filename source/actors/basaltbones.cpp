@@ -1,5 +1,4 @@
 #include "tsuru/actor/bosswrapper.h"
-#include "game/graphics/drawmgr.h"
 #include "game/graphics/model/model.h"
 #include "game/actor/actormgr.h"
 #include "game/actor/stage/player.h"
@@ -116,13 +115,13 @@ u32 BasaltBones::onExecute() {
 
 u32 BasaltBones::onDraw() {
     if (this->states.currentState()->ID == StateID_Active.ID) {
-        DrawMgr::instance()->drawModel(this->model);
+        this->model->draw();
     }
 
 
     for (u32 i = 0; i < 6; i++) {
         if (this->bones[i].render) {
-            DrawMgr::instance()->drawModel(this->bones[i].model);
+            this->bones[i].model->draw();
         }
     }
 
@@ -342,6 +341,7 @@ void BasaltBones::executeState_Assemble() {
         bone.hitbox.colliderInfo.distToCenter = Vec2f(bone.position.x - this->position.x, bone.position.y - this->position.y);
     }
 
+    // Launch
     if (this->assembler < 6) {
         Bone& bone1 = this->bones[this->assembler];
         bool bone1done = bone1.easer.ease(bone1.t);
@@ -358,6 +358,7 @@ void BasaltBones::executeState_Assemble() {
         }
     }
 
+    // Assemble
     if (this->assembler > 0) {
         Bone& bone2 = this->bones[this->assembler - 1];
 

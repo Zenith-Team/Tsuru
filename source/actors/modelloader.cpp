@@ -1,4 +1,4 @@
-#include "game/graphics/drawmgr.h"
+#include "game/graphics/model/model.h"
 #include "game/actor/stage/stageactor.h"
 #include "log.h"
 #include "ghs.h"
@@ -80,7 +80,7 @@ u32 ModelLoader::onExecute() {
 }
 
 u32 ModelLoader::onDraw() {
-    if (this->model) DrawMgr::instance()->drawModel(this->model);
+    if (this->model) this->model->draw();
     return 1;
 }
 

@@ -1,6 +1,5 @@
 #include "game/actor/stage/multistateactor.h"
 #include "game/graphics/model/model.h"
-#include "game/graphics/drawmgr.h"
 #include "game/collision/solid/rectcollider.h"
 #include "game/collision/collidermgr.h"
 #include "game/actor/actormgr.h"
@@ -94,7 +93,7 @@ u32 BeepBlock::onExecute() {
 }
 
 u32 BeepBlock::onDraw() {
-    DrawMgr::instance()->drawModel(this->model);
+    this->model->draw();
 
     return 1;
 }

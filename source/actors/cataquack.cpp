@@ -1,7 +1,7 @@
 #include "game/actor/stage/enemy.h"
 #include "game/actor/actormgr.h"
 #include "game/direction.h"
-#include "game/graphics/drawmgr.h"
+#include "game/graphics/model/model.h"
 #include "game/util.h"
 #include "log.h"
 #include "tsuru/utils.h"
@@ -115,7 +115,7 @@ u32 Cataquack::onExecute() {
 }
 
 u32 Cataquack::onDraw() {
-    DrawMgr::instance()->drawModel(this->model);
+    this->model->draw();
     return 1;
 }
 

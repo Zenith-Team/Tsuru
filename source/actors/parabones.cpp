@@ -1,7 +1,7 @@
 #include "game/actor/stage/enemy.h"
 #include "game/actor/actormgr.h"
 #include "game/direction.h"
-#include "game/graphics/drawmgr.h"
+#include "game/graphics/model/model.h"
 
 class ParaBones : public Enemy {
     SEAD_RTTI_OVERRIDE_IMPL(ParaBones, Enemy)
@@ -124,8 +124,8 @@ u32 ParaBones::onExecute() {
 }
 
 u32 ParaBones::onDraw() {
-    DrawMgr::instance()->drawModel(this->model);
-    DrawMgr::instance()->drawModel(this->wings);
+    this->model->draw();
+    this->wings->draw();
     return 1;
 }
 
