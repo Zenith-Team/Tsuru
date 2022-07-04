@@ -20,9 +20,13 @@ public:
     };
 
     enum HitType {
+        // Moving into the sprite; this includes penguin slides and slope slides
         HitType_Collide,
+        // Jumping onto the sprite; this includes ground pounds
         HitType_NormalJump,
+        // Jumping onto the sprite as Mini Mario; this includes Mini Mario spin-jump
         HitType_MiniJump,
+        // Spin-jumping onto the sprite; this includes Propeller Mario drills
         HitType_SpinJump
     };
 
