@@ -1086,6 +1086,7 @@ SECTIONS {
 /* ShaderAnimation */
     playColorAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FECC8;
     playTexSrtAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FEE50;
+    play__16TextureAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x0250B1EC;
 
 /* ShapedCollider */
     __CPR62__init__14ShapedColliderFP10StageActorRCQ2_J6J4Info = 0x21ad3bc;

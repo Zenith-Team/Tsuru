@@ -2,6 +2,7 @@
 #include "game/graphics/model/model.h"
 #include "game/movementhandler.h"
 #include "game/effect/effect.h"
+#include "game/graphics/model/animation.h"
 #include "log.h"
 
 class Biddybud : public Enemy {
@@ -18,7 +19,10 @@ public:
     u32 onDraw() override;
 
     void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
-    bool collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     void updateModel();
 
 
@@ -42,7 +46,6 @@ CREATE_STATE(Biddybud, Die);
 CREATE_STATE(Biddybud, DieSquish);
 
 const Profile BiddybudProfile(&Biddybud::build, ProfileID::Biddybud);
-// PROFILE_RESOURCES(ProfileID::Biddybud, Profile::LoadResourcesAt_Course, "ttwing"); // winged
 PROFILE_RESOURCES(ProfileID::Biddybud, Profile::LoadResourcesAt_Course, "tenten_w");
 
 // collider related stuff
@@ -59,11 +62,37 @@ void Biddybud::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) 
         this->killPlayerJump(hcOther->owner, 0.0f, &Biddybud::StateID_DieSquish);
 }
 
-bool Biddybud::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    // doStateChange(&Biddybud::StateID_Die);
+bool Biddybud::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+    Vec3f effectPos(effectOrigin + this->effectOffset);
+    Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
+    this->isDeleted = true;
     return 1;
 }
 
+bool Biddybud::collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+    Vec3f effectPos(effectOrigin + this->effectOffset);
+    Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
+    this->isDeleted = true;
+    return 1;
+}
+
+bool Biddybud::collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+    Vec3f effectPos(effectOrigin + this->effectOffset);
+    Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
+    this->isDeleted = true;
+    return 1;
+}
+
+bool Biddybud::collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+    Vec3f effectPos(effectOrigin + this->effectOffset);
+    Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
+    this->isDeleted = true;
+    return 1;
+}
 
 Biddybud::Biddybud(const ActorBuildInfo* buildInfo) 
     : Enemy(buildInfo)
@@ -81,33 +110,13 @@ Actor* Biddybud::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 Biddybud::onCreate() {
-    // this->behavior = (this->settings1 >> 0x1C & 0xF);
-    // this->alternater = false;
-
-    // this->model = ModelWrapper::create("ttwing", "biddybud", 3, 4, 3, 3, 1);
     this->color = (this->settings1 >> 0x1C & 0xF); // nybble 5
-    this->model = ModelWrapper::create("tenten_w", "tenten_w", 3, 4, 3, 3, 1);
-    switch (this->color) {
-        case 1: {
-            this->model = ModelWrapper::create("tenten_w", "tenten_w_yellow", 3, 4, 3, 3, 1);
-            break;
-        }
-        case 2: {
-            this->model = ModelWrapper::create("tenten_w", "tenten_w_green", 3, 4, 3, 3, 1);
-            break;
-        }
-        case 3: {
-            this->model = ModelWrapper::create("tenten_w", "tenten_w_blue", 3, 4, 3, 3, 1);
-            break;
-        }
-        case 4: {
-            this->model = ModelWrapper::create("tenten_w", "tenten_w_pink", 3, 4, 3, 3, 1);
-            break;
-        }
-    }
-    
-    
+    this->model = ModelWrapper::create("tenten_w", "tenten_w", 3, 1, 1);
+    this->model->playTexPatternAnim("bud", 0);
+    this->model->playTexSrtAnim("FlyWait", 0);
     this->model->playSklAnim("FlyWait");
+    this->model->texPatternAnims[0]->startFrame = this->color;
+    this->model->texPatternAnims[0]->speed = 0.0;
     this->model->loopSklAnims(true);
     this->scale.x = .17;
     this->scale.y = .17;
@@ -135,7 +144,6 @@ u32 Biddybud::onExecute() {
     if (!this->isDead) {
         this->movementHandler.execute();
         this->position = this->movementHandler.position;
-        this->rotation.z = this->movementHandler.rotation;
     }
     this->states.execute();
 
@@ -146,8 +154,6 @@ u32 Biddybud::onExecute() {
 
 u32 Biddybud::onDraw() {
     this->model->draw();
-    this->model->playColorAnim("Color", 1);
-
     return 1;
 }
 
@@ -158,7 +164,6 @@ void Biddybud::updateModel() {
     mtx.makeRTIdx(this->rotation, modelPos);
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
-    this->model->playColorAnim("Color", 1);
     this->model->updateAnimations();
     this->model->updateModel();
 }
