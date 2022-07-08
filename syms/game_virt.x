@@ -198,6 +198,9 @@ SECTIONS {
 /* sead::Projection */
     getDeviceProjectionMatrix__Q2_4sead10ProjectionCFv = 0x2A05A9C;
 
+/* sead::PtrArrayImpl */
+    sort__Q2_4sead12PtrArrayImplFPFPCvT1_i = 0x29F2120;
+
 /* sead::Random */
     getU32__Q2_4sead6RandomFv = 0x2A13780;
 

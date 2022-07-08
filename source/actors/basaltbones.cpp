@@ -3,12 +3,59 @@
 #include "game/actor/actormgr.h"
 #include "game/actor/stage/player.h"
 #include "game/zonerumblemgr.h"
+#include "game/effect/effect.h"
+#include "game/effect/effectid.h"
+#include "game/graphics/lightsource.h"
 #include "math/bezier.h"
 #include "math/easing.h"
+#include "sead/random.h"
 #include "log.h"
 
 class BasaltBones : public BossWrapper<18> {
     SEAD_RTTI_OVERRIDE_IMPL(BasaltBones, Boss)
+
+public:
+    enum SpawnStage {
+        SpawnStage_Wait,
+        SpawnStage_Shake,
+        SpawnStage_FlyOut,
+        SpawnStage_Assemble,
+        SpawnStage_Scream,
+    };
+
+    class Bone {
+    public:
+        Bone(): model(nullptr), hitbox(), bezier(), easer(), position(0), rotation(0), t(0), render(false) { }
+
+        void draw() {
+            if (this->render) {
+                this->model->draw();
+            }
+        }
+
+        static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+            BasaltBones* self = (BasaltBones*)hcSelf->owner;
+
+            if (self->states.currentState()->ID != StateID_Assemble.ID && self->states.currentState()->ID != StateID_AssembleFinalize.ID) {
+                return;
+            }
+
+            if (hcOther->owner->type == StageActor::StageActorType_Player) {
+                ((Player*)hcOther->owner)->tryDamage(hcSelf);
+            }
+        }
+
+        static const HitboxCollider::Info collisionInfo;
+
+        ModelWrapper* model;
+        HitboxCollider hitbox;
+        QuadraticBezier bezier;
+        Easing easer;
+        Vec3f position;
+        Vec3u rotation;
+        f32 t;
+        bool render;
+    };
 
 public:
     BasaltBones(const ActorBuildInfo* buildInfo);
@@ -16,6 +63,7 @@ public:
 
     static Actor* build(const ActorBuildInfo* buildInfo);
 
+    u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
     
@@ -23,70 +71,86 @@ public:
     void initModels() override;
     void updateModel() override;
     void onStompDamage(StageActor*) override;
+    void onStompKill(StageActor*) override;
+
+    static const HitboxCollider::Info sCollisionInfo;
+    
+    static const Vec3f launchKeyframes[6][2][3];
+    static const Vec3f assembleKeyframes[6];
 
     static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
-    static const HitboxCollider::Info sCollisionInfo;
 
-    struct Bone {
-        static const HitboxCollider::Info sCollisionInfo;
-        static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-            if (((BasaltBones*)hcSelf->owner)->states.currentState()->ID != BasaltBones::StateID_Assemble.ID) {
-                return;
-            }
-            
-            if (hcOther->owner->type == StageActor::StageActorType_Player) {
-                ((Player*)hcOther->owner)->tryDamage(hcSelf);
-            }
-        }
-
-        Bone(): model(nullptr), hitbox(), bezier(), easer(), position(0,0,0), rotation(0), t(0.0f), render(false) { }
-  
-        ModelWrapper* model;
-        HitboxCollider hitbox;
-        QuadraticBezier bezier;
-        Easing easer;
-        Vec3f position;
-        u32 rotation;
-        f32 t;
-        bool render;
-    } bones[6];
     ModelWrapper* model;
-    enum {
-        SpawnStage_Wait,
-        SpawnStage_Shake,
-        SpawnStage_FlyOut,
-        SpawnStage_Assemble
-    } spawnStage;
-    struct SpawnParamters {
-        SpawnParamters(): down(0.0f), timer(0) { }
-
-        f32 down;
-        u32 timer;
-    } spawnParams;
     Vec3f startPosition;
-    u32 assembler;
+    SpawnStage spawnStage;
+    Bone bones[6];
+    union { u32 timer, assembler; };
+    f32 down;
+    bool dead, draw, first;
 
-    DECLARE_STATE(BasaltBones, Spawning);
+    DECLARE_STATE(BasaltBones, Spawn);
     DECLARE_STATE(BasaltBones, Active);
     DECLARE_STATE(BasaltBones, Disassemble);
     DECLARE_STATE(BasaltBones, Assemble);
+    DECLARE_STATE(BasaltBones, AssembleFinalize);
 };
 
-CREATE_STATE(BasaltBones, Spawning);
+CREATE_STATE(BasaltBones, Spawn);
 CREATE_STATE(BasaltBones, Active);
 CREATE_STATE(BasaltBones, Disassemble);
 CREATE_STATE(BasaltBones, Assemble);
+CREATE_STATE(BasaltBones, AssembleFinalize);
 
 const Profile BasaltBonesProfile(&BasaltBones::build, ProfileID::BasaltBones);
-PROFILE_RESOURCES(ProfileID::BasaltBones, Profile::LoadResourcesAt_Course, "star_coin");
+PROFILE_RESOURCES(ProfileID::BasaltBones, Profile::LoadResourcesAt_Course, "laron");
 
 const HitboxCollider::Info BasaltBones::sCollisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &BasaltBones::collisionCallback
+    Vec2f(0.0f, 6.0f), Vec2f(14.0f, 22.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &BasaltBones::collisionCallback
 };
 
-const HitboxCollider::Info BasaltBones::Bone::sCollisionInfo = {
+const HitboxCollider::Info BasaltBones::Bone::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &BasaltBones::Bone::collisionCallback
 };
+
+#define b(x) ((f32)(((f32)x) * 16.0f)) // Convert # of tiles to position value for it
+
+const Vec3f BasaltBones::launchKeyframes[6][2][3] = {
+    {
+        { Vec3f(b(-9), b(-3)), Vec3f(b(-9), b(3)), Vec3f(b(-9), b(8)) },
+        { Vec3f(b(-9), b(-3)), Vec3f(b(-4), b(3)), Vec3f(b(-9), b(8)) }
+    },
+    {
+        { Vec3f(b(-5), b(-3)), Vec3f(b(-2), b(3)), Vec3f(b(-5), b(8)) },
+        { Vec3f(b(-9), b(-3)), Vec3f(b(-8), b(3)), Vec3f(b(-5), b(8)) }
+    },
+    {
+        { Vec3f(b(-2), b(-3)), Vec3f(b(-2), b(6)), Vec3f(b(2),  b(8)) },
+        { Vec3f(b(-2), b(-3)), Vec3f(b(2),  b(6)), Vec3f(b(2),  b(8)) }
+    },
+    {
+        { Vec3f(b(2),  b(-3)), Vec3f(b(2),  b(6)), Vec3f(b(-2), b(8)) },
+        { Vec3f(b(2),  b(-3)), Vec3f(b(-2), b(6)), Vec3f(b(-2), b(8)) }
+    },
+    {
+        { Vec3f(b(5),  b(-3)), Vec3f(b(2),  b(3)), Vec3f(b(5),  b(8)) },
+        { Vec3f(b(5),  b(-3)), Vec3f(b(8),  b(3)), Vec3f(b(5),  b(8)) }
+    },
+    {
+        { Vec3f(b(9),  b(-3)), Vec3f(b(9),  b(3)), Vec3f(b(9),  b(8)) },
+        { Vec3f(b(9),  b(-3)), Vec3f(b(4),  b(3)), Vec3f(b(9),  b(8)) }
+    }
+};
+
+const Vec3f BasaltBones::assembleKeyframes[6] = {
+    Vec3f(b(0.5f), b(1)),
+    Vec3f(0.5f, b(-0.5f)),
+    Vec3f(b(-0.5f), b(-0.5f)),
+    Vec3f(b(-1.0f), b(1)),
+    Vec3f(0, b(2)),
+    Vec3f(b(1), b(1))
+};
+
+#undef b
 
 Actor* BasaltBones::build(const ActorBuildInfo* buildInfo) {
     return new BasaltBones(buildInfo);
@@ -95,34 +159,41 @@ Actor* BasaltBones::build(const ActorBuildInfo* buildInfo) {
 BasaltBones::BasaltBones(const ActorBuildInfo* buildInfo)
     : BossWrapper<18>(buildInfo)
     , model(nullptr)
+    , startPosition()
     , spawnStage(SpawnStage_Wait)
-    , spawnParams()
-    , startPosition(buildInfo->position)
+    , bones()
+    , timer(0)
+    , down(0.0f)
+    , dead(false)
+    , draw(false)
 { }
+
+u32 BasaltBones::onCreate() {
+    this->startPosition = this->position;
+
+    this->doStateChange(&StateID_Spawn);
+
+    return BossWrapper<18>::onCreate();
+}
 
 u32 BasaltBones::onExecute() {
     this->states.execute();
     this->updateModelTrampoline();
 
     for (u32 i = 0; i < 6; i++) {
-        Bone& bone = bones[i];
-        
-        bone.rotation += fixDeg(1.0f);
+        this->bones[i].rotation += Vec3u(fixDeg(1), fixDeg(1.25f), fixDeg(0.4f));
     }
 
     return 1;
 }
 
 u32 BasaltBones::onDraw() {
-    if (this->states.currentState()->ID == StateID_Active.ID) {
+    if (this->draw) {
         this->model->draw();
     }
 
-
     for (u32 i = 0; i < 6; i++) {
-        if (this->bones[i].render) {
-            this->bones[i].model->draw();
-        }
+        this->bones[i].draw();
     }
 
     return 0;
@@ -130,81 +201,100 @@ u32 BasaltBones::onDraw() {
 
 void BasaltBones::initHitboxCollider() {
     this->hitboxCollider.init(this, &BasaltBones::sCollisionInfo);
-    for (u32 i = 0; i < 6; i++) {
-        Bone& bone = this->bones[i];
-    
-        bone.hitbox.init(this, &BasaltBones::Bone::sCollisionInfo);
-        HitboxColliderMgr::instance()->safeAddToCreateList(&bone.hitbox);
-    }
 }
 
 void BasaltBones::initModels() {
-    this->model = ModelWrapper::create("star_coin", "star_coinA");
-    for (u32 i = 0; i < 6; i++) {
-        Bone& bone = this->bones[i];
-    
-        bone.model = ModelWrapper::create("star_coin", "star_coinA");
-        bone.position = this->position;
-    }
+    LOG("Before: 0x%x", this->heap->getFreeSize());
 
-    this->doStateChange(&BasaltBones::StateID_Spawning);
+    this->model = ModelWrapper::create("laron", "laron", 2);
+
+    for (u32 i = 0; i < 6; i++) {
+        static const sead::SafeString boneModels[6] = {
+            "laron_partsB",
+            "laron_partsE",
+            "laron_partsC",
+            "laron_head",
+            "laron_partsD",
+            "laron_partsF",
+        };
+
+        this->bones[i].model = ModelWrapper::create("laron", boneModels[i]);
+    }
+    
+    LOG("After: 0x%x", this->heap->getFreeSize());
 }
 
 void BasaltBones::updateModel() {
     Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position);
+    mtx.makeRTIdx(this->rotation, this->position + Vec3f(0, -16.0f, 0));
+    this->model->setScale(2.0f);
+    this->model->updateAnimations();
     this->model->setMtx(mtx);
-    this->model->setScale(1);
     this->model->updateModel();
 
     for (u32 i = 0; i < 6; i++) {
         Bone& bone = this->bones[i];
-    
-        Mtx34 mtx;
-        mtx.makeRTIdx(Vec3u(0, 0, bone.rotation), bone.position);
-        bone.model->setScale(0.5f);
+
+        mtx.makeRTIdx(bone.rotation, bone.position);
+        
         bone.model->setMtx(mtx);
+        bone.model->setScale(2.0f);
         bone.model->updateModel();
     }
 }
 
 void BasaltBones::onStompDamage(StageActor* collidingActor) {
-    this->doStateChange(&BasaltBones::StateID_Disassemble);
+    this->doStateChange(&StateID_Disassemble);
 
+    for (u32 i = 0; i < 6; i++) {
+        this->bones[i].position = 0;
+    }
+    
     return BossWrapper<18>::onStompDamage(collidingActor);
 }
 
+void BasaltBones::onStompKill(StageActor* collidingActor) {
+    this->dead = true;
+    
+    this->doStateChange(&StateID_Disassemble);
+    
+    return BossWrapper<18>::onStompKill(collidingActor);
+}
+
 void BasaltBones::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    if (((BasaltBones*)hcSelf->owner)->states.currentState()->ID != BasaltBones::StateID_Active.ID) {
+    BasaltBones* self = (BasaltBones*)hcSelf->owner;
+    
+    if (self->states.currentState()->ID != BasaltBones::StateID_Active.ID) {
         return;
     }
 
     return BossWrapper<18>::collisionCallback(hcSelf, hcOther);
 }
 
-/** STATE: Spawning */
+/** STATE: Spawn */
 
-void BasaltBones::beginState_Spawning() {
-    this->bones[0].bezier.set(this->position + Vec3f(0, -3*16, 0),      this->position + Vec3f(0, 0, 0),         this->position + Vec3f(-19.6, 82.3, 0));
-    this->bones[1].bezier.set(this->position + Vec3f(0, -3*16, 0),      this->position + Vec3f(0, 0, 0),         this->position + Vec3f(0.3, 70.8, 0));
-    this->bones[2].bezier.set(this->position + Vec3f(5*16, -3*16, 0),   this->position + Vec3f(5*16, 7*16, 0),   this->position + Vec3f(19.3, 81.8, 0));
+void BasaltBones::beginState_Spawn() {
+    this->bones[0].bezier.set(this->position + Vec3f( 0,    -3*16, 0),  this->position + Vec3f( 0,    0,    0),  this->position + Vec3f(-19.6, 82.3, 0));
+    this->bones[1].bezier.set(this->position + Vec3f( 0,    -3*16, 0),  this->position + Vec3f( 0,    0,    0),  this->position + Vec3f(0.3, 70.8, 0));
+    this->bones[2].bezier.set(this->position + Vec3f( 5*16, -3*16, 0),  this->position + Vec3f( 5*16, 7*16, 0),  this->position + Vec3f(19.3, 81.8, 0));
     this->bones[3].bezier.set(this->position + Vec3f(-5*16, -3*16, 0),  this->position + Vec3f(-5*16, 7*16, 0),  this->position + Vec3f(19.6, 104.3, 0));
-    this->bones[4].bezier.set(this->position + Vec3f(8*16, -3*16, 0),   this->position + Vec3f(8*16, 5*16, 0),   this->position + Vec3f(0.3, 115.8, 0));
+    this->bones[4].bezier.set(this->position + Vec3f( 8*16, -3*16, 0),  this->position + Vec3f( 8*16, 5*16, 0),  this->position + Vec3f(0.3, 115.8, 0));
     this->bones[5].bezier.set(this->position + Vec3f(-8*16, -3*16, 0),  this->position + Vec3f(-8*16, 5*16, 0),  this->position + Vec3f(-19.3, 104.8, 0));
 
     for (u32 i = 0; i < 6; i++) {
         this->bones[i].easer.set(Easing::quadInOut, 0.0f, 1.0f, 0.0075f);
     }
 
-    this->spawnParams.timer = 63 * 6;
+    this->timer = 378;
+    this->rotation.y = Direction::directionToRotationList[Direction::Left];
 }
 
-void BasaltBones::executeState_Spawning() {
+void BasaltBones::executeState_Spawn() {
     switch (this->spawnStage) {
         case SpawnStage_Wait: {
-            if (--this->spawnParams.timer == 0) {
+            if (--this->timer == 0) {
                 this->spawnStage = SpawnStage_Shake;
-                this->spawnParams.timer = 60 * 2;
+                this->timer = 60 * 2;
             }
             
             break;
@@ -213,9 +303,9 @@ void BasaltBones::executeState_Spawning() {
         case SpawnStage_Shake: {
             ZoneRumbleMgr::instance()->rumble(1);
 
-            if (--this->spawnParams.timer == 0) {
+            if (--this->timer == 0) {
                 this->spawnStage = SpawnStage_FlyOut;
-                this->spawnParams.timer = 63 * 5;
+                this->timer = 63 * 5;
             }
 
             break;
@@ -240,8 +330,10 @@ void BasaltBones::executeState_Spawning() {
 
         case SpawnStage_Assemble: {
             Vec3f centerPoint = (this->bones[0].bezier.keyframes[2] + this->bones[1].bezier.keyframes[2] + this->bones[2].bezier.keyframes[2] + this->bones[3].bezier.keyframes[2] + this->bones[4].bezier.keyframes[2] + this->bones[5].bezier.keyframes[2]) / 6;
-            this->spawnParams.down += 0.0014 * this->bones[0].t;
-            centerPoint.y -= this->spawnParams.down;
+            this->down += 0.0010 * this->bones[0].t;
+            centerPoint.y -= this->down;
+
+            bool change = false;
 
             for (u32 i = 0; i < 6; i++) {
                 Bone& bone = this->bones[i];
@@ -251,30 +343,67 @@ void BasaltBones::executeState_Spawning() {
                 bone.position.y = centerPoint.y + (bone.t / 16) * sinf(bone.t / 16 + i * M_PI / 3.0f);
             
                 if (done) {
-                    this->doStateChange(&BasaltBones::StateID_Active);
-                    bone.render = false;
+                    change = true;
                 }
             }
 
+            if (change) {
+                this->spawnStage = SpawnStage_Scream;
+                this->draw = true;
+                for (u32 i = 0; i < 6; i++) {
+                    Bone& bone = this->bones[i];
+
+                    bone.render = false;
+                    bone.position = Vec3f(0, 0, 0);
+
+                    bone.hitbox.init(this, &BasaltBones::Bone::collisionInfo);
+                    HitboxColliderMgr::instance()->safeAddToCreateList(&bone.hitbox);
+                }
+
+                this->timer = 45;
+                this->model->playSklAnim("big_stop");
+                Vec3f scale = 2.3f;
+                Effect::spawn(RP_Cmn_FireballHit, &this->position, nullptr, &scale);
+                this->first = true;
+            }
+
+            break;
+        }
+
+        case SpawnStage_Scream: {
+            if (--this->timer == 0) {
+                this->doStateChange(&BasaltBones::StateID_Active);
+            }
+            
             break;
         }
     }
 }
 
-void BasaltBones::endState_Spawning() {
+void BasaltBones::endState_Spawn() {
     this->finishedSpawning();
 }
 
 /** STATE: Active */
 
 void BasaltBones::beginState_Active() {
-    this->direction = Direction::Right;
+    this->model->playSklAnim("walk");
+
+    if (!first) {
+        Vec3f scale = 2.3f;
+        Effect::spawn(RP_Cmn_FireballHit, &this->position, nullptr, &scale);
+    }
+
+    this->direction = sead::randBool();
+
+    this->draw = true;
+    this->first = false;
 }
 
 void BasaltBones::executeState_Active() {
     sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[Direction::opposite((Direction::DirectionType)this->direction)], fixDeg(6.0f));
 
-    static const float threshold = 120.0f;
+    static const f32 threshold = 8 * 16;
 
     if (this->position.x - this->startPosition.x < -threshold) {
         this->direction = Direction::Left;
@@ -289,9 +418,11 @@ void BasaltBones::executeState_Active() {
     }
 }
 
-void BasaltBones::endState_Active() { }
+void BasaltBones::endState_Active() {
+    this->draw = false;
+}
 
-/** STATE: Disassemble */
+/** STATE:  */
 
 void BasaltBones::beginState_Disassemble() {
     this->bones[0].bezier.set(this->position, this->position + Vec3f(0, 0, 0), this->position + Vec3f(0, -3*16, 0));
@@ -309,6 +440,8 @@ void BasaltBones::beginState_Disassemble() {
 }
 
 void BasaltBones::executeState_Disassemble() {
+    bool change = false;
+
     for (u32 i = 0; i < 6; i++) {
         Bone& bone = this->bones[i];
         bone.render = true;
@@ -318,6 +451,14 @@ void BasaltBones::executeState_Disassemble() {
     
         if (done) {
             bone.render = false;
+            change = true;
+        }
+    }
+
+    if (change) {
+        if (this->dead) {
+            this->finishedDying();
+        } else {
             this->doStateChange(&BasaltBones::StateID_Assemble);
         }
     }
@@ -330,33 +471,41 @@ void BasaltBones::endState_Disassemble() { }
 void BasaltBones::beginState_Assemble() {
     this->assembler = 0;
 
-    this->bones[0].bezier.set(this->position + Vec3f(0, -16*3, 0), this->position + Vec3f(0, 2*16, 0), this->position + Vec3f(0, 4*16, 0));
-    this->bones[0].render = true;
-    this->bones[0].easer.set(Easing::quadInOut, 0.0f, 1.0f, 0.006f);
+    this->position = this->startPosition;
+
+    const Vec3f* keyframes = launchKeyframes[this->assembler][sead::randBool()];
+
+    Bone& bone = this->bones[0];
+
+    bone.bezier.set(this->position + keyframes[0], this->position + keyframes[1], this->position + keyframes[2]);
+    bone.render = true;
+    bone.easer.set(Easing::quadInOut, 0, 1, 0.006f);
 }
 
 void BasaltBones::executeState_Assemble() {
-    for (u32 i = 0; i < 6; i++) {
-        Bone& bone = this->bones[i];
-        bone.hitbox.colliderInfo.distToCenter = Vec2f(bone.position.x - this->position.x, bone.position.y - this->position.y);
-    }
-
-    // Launch
+    // Launch 
     if (this->assembler < 6) {
         Bone& bone1 = this->bones[this->assembler];
         bool bone1done = bone1.easer.ease(bone1.t);
         bone1.bezier.execute(&bone1.position, bone1.t);
         if (bone1done) {
             this->assembler++;
-            Bone& bone1next = this->bones[this->assembler];
-            bone1next.render = true;
-            bone1next.easer.set(Easing::quadInOut, 0.0f, 1.0f, 0.006f);
-            bone1next.bezier.set(this->position + Vec3f(0, -16*3, 0), this->position + Vec3f(0, 2*16, 0), this->position + Vec3f(this->assembler*16, 4*16, 0));
+            
+            if (this->assembler < 6) {
+                const Vec3f* keyframes = launchKeyframes[this->assembler][sead::randBool()];
+                
+                Bone& bone1next = this->bones[this->assembler];
+                bone1next.render = true;
+                bone1next.easer.set(Easing::quadInOut, 0.0f, 1.0f, 0.006f);
+                bone1next.bezier.set(this->position + keyframes[0], this->position + keyframes[1], this->position + keyframes[2]);
 
-            bone1.bezier.set(bone1.position, this->position + Vec3f(0, 2*16, 0), this->position);
-            bone1.easer.set(Easing::quadInOut, 0.0f, 1.0f, 0.006f);
+                bone1.bezier.set(bone1.position, this->position + Vec3f(0, 2*16, 0), this->position + assembleKeyframes[this->assembler]);
+                bone1.easer.set(Easing::quadInOut, 0.0f, 1.0f, 0.006f);   
+            }
         }
     }
+
+    bool change = false;
 
     // Assemble
     if (this->assembler > 0) {
@@ -366,13 +515,47 @@ void BasaltBones::executeState_Assemble() {
         bone2.bezier.execute(&bone2.position, bone2.t);
 
         if (this->assembler == 6 && done) {
-            this->doStateChange(&BasaltBones::StateID_Active);
+            change = true;
         }
+    }
+
+    for (u32 i = 0; i < 6; i++) {
+        Bone& bone = this->bones[i];
+        bone.hitbox.colliderInfo.distToCenter = Vec2f(bone.position.x - this->position.x, bone.position.y - this->position.y);
+    }
+
+    if (change) {
+        this->doStateChange(&BasaltBones::StateID_AssembleFinalize);
     }
 }
 
-void BasaltBones::endState_Assemble() {
-    for (u32 i = 0; i < 6; i++) {
-        this->bones[i].render = false;
+void BasaltBones::endState_Assemble() { }
+
+/** STATE: AssembleFinalize */
+
+void BasaltBones::beginState_AssembleFinalize() {
+    Bone& bone = this->bones[5];
+
+    bone.bezier.set(bone.position, this->position + Vec3f(0, 2*16, 0), this->position + assembleKeyframes[5]);
+    bone.easer.set(Easing::quadInOut, 0.0f, 1.0f, 0.006f);
+}
+
+void BasaltBones::executeState_AssembleFinalize() {
+    Bone& bone = this->bones[5];
+
+    bool done = bone.easer.ease(bone.t);
+    bone.bezier.execute(&bone.position, bone.t);
+
+    bone.hitbox.colliderInfo.distToCenter = Vec2f(bone.position.x - this->position.x, bone.position.y - this->position.y);
+
+    if (done) {
+        for (u32 i = 0; i < 6; i++) {
+            Bone& bone = this->bones[i];
+            bone.render = false;
+        }
+
+        this->doStateChange(&BasaltBones::StateID_Active);
     }
 }
+
+void BasaltBones::endState_AssembleFinalize() { }

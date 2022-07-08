@@ -10,12 +10,12 @@ public:
 
     virtual ~StateBase() { }
 
-    virtual s32 getRootID() {
+    virtual s32 getRootID() const {
         return ID;
     }
 
-    inline bool isEqual(StateBase* other) {
-        return this->getRootID() == other->getRootID();
+    inline bool isEqual(const StateBase& other) const {
+        return this->getRootID() == other.getRootID();
     }
 
     static StateBase sNullState;
@@ -51,9 +51,10 @@ public:
 
     virtual ~StateVirtual() { }
 
-    s32 getRootID() override {
-        if (baseState->ID != -1)
+    s32 getRootID() const override {
+        if (baseState->ID != -1) {
             return baseState->getRootID();
+        }
 
         return ID;
     }
