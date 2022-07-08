@@ -276,6 +276,7 @@ enum ProfileIDType {
     Biddybud,
     HelicalBar,
     BasaltBones,
+    SizeModifierActivator,
     
     // Atlys profiles //! Do not place anything below these
     AtlysCamera,

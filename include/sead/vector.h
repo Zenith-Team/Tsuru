@@ -122,6 +122,12 @@ public:
         this->z = z;
     }
 
+    Vector3(const T x, const T y) {
+        this->x = x;
+        this->y = y;
+        this->z = 0;
+    }
+
     Vector3(const Vector3<T>& other) {
         this->x = other.x;
         this->y = other.y;

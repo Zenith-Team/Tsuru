@@ -13,6 +13,7 @@ Modules:
 # - modules/experiments.yaml          # Experimental things #! (WARNING: Do not use in releases)
   - modules/framebuffer.yaml          # Clears the framebuffer before rendering
   - modules/initializer.yaml          # Initializer
+  - modules/layout.yaml               # Custom layouts
   - modules/misc.yaml                 # Miscellaneous items
   - modules/powerup.yaml              # Custom powerups
   - modules/profile.yaml              # Extra profile and sprite slots

@@ -37,6 +37,7 @@ Files:
   - source/actors/biddybud.cpp
   - source/actors/helicalbar.cpp
   - source/actors/basaltbones.cpp
+  - source/actors/sizemodifieractivator.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:
