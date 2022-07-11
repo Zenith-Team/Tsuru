@@ -2,9 +2,9 @@
 ---
 Files:
 #* Translation unit queue:
-  - source/asm/misc.S
+  - source/misc.S
   - source/misc.cpp
-  - source/asm/bgoffset.S
+  - source/bgoffset.S
   - source/dynlibs/os.cpp
   - source/dynlibs/gx2.cpp
   - source/dynlibs/h264.cpp

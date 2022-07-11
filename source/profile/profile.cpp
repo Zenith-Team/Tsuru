@@ -823,7 +823,7 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::TaskChanger,             // 732
     ProfileID::Cataquack,               // 733
     ProfileID::TimeClock,               // 734
-    ProfileID::EffectSpawner,           // 735
+    0xFFFF,                             // 735 //! Effect spawner goes here
     ProfileID::AngrySun,                // 736
     ProfileID::AngryMoon,               // 737
     ProfileID::RainbowLight,            // 738
