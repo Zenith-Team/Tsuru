@@ -1,12 +1,23 @@
 #pragma once
 
+#include "agl/lyr/drawmethod.h"
 #include "game/layout/layouthandler.h"
-#include "sead/list.h"
+#include "tsuru/minipointerlist.h"
 
 class LayoutRenderer {
-public:
-    static sead::TList<LayoutHandler*> layouts;
+    SEAD_SINGLETON_DISPOSER(LayoutRenderer);
 
-    static void render();
-    static void addLayout(LayoutHandler* layout);
+public:
+    void addLayout(LayoutHandler& layout) {
+        this->layouts.append(&layout);
+    }
+
+private:
+    LayoutRenderer();
+
+    void render(const agl::lyr::RenderInfo& renderInfo);
+
+    agl::lyr::DrawMethodImpl<LayoutRenderer> drawMethod;
+
+    MiniPointerList<LayoutHandler*, 0xFF> layouts;
 };

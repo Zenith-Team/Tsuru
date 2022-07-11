@@ -24,7 +24,7 @@ public:
 public:
     u32 _18;
     u32 _1C;
-    u32 _20;
+    void* _20;
     TOwner* _24;
     PTMF method;
     u32 _30;
@@ -39,14 +39,16 @@ static_assert(sizeof(DrawMethod) == 0x40, "agl::lyr::DrawMethod size mismatch");
 
 } }
 
-#define BIND_DRAW_METHOD(MEMBER, NAME, METHOD, LAYERNUM)                            \
-    this-> ## MEMBER ## .INamableName = NAME ## ;                                   \
-    this-> ## MEMBER ## ._18 = 1;                                                   \
-    this-> ## MEMBER ## ._20 = 0x10177234; /* Stolen vtable from GameOverScene */   \
-    this-> ## MEMBER ## ._24 = this;                                                \
-    this-> ## MEMBER ## .method = METHOD;                                           \
+extern int SafeStringVtable;
+
+#define BIND_DRAW_METHOD(OBJECT, NAME, METHOD, LAYERNUM, OWNERPTR)                  \
+    OBJECT ## .INamableName = NAME ## ;                                             \
+    OBJECT ## ._18 = 1;                                                             \
+    OBJECT ## ._20 = &SafeStringVtable;                                             \
+    OBJECT ## ._24 = OWNERPTR;                                                      \
+    OBJECT ## .method = METHOD;                                                     \
     {   agl::lyr::Layer* layer = agl::lyr::Renderer::instance()->layers.buffer[0];  \
         if (LAYERNUM < agl::lyr::Renderer::instance()->layers.size)                 \
             layer = agl::lyr::Renderer::instance()->layers.buffer[LAYERNUM];        \
-        layer->pushBackDrawMethod(0, &this-> ## MEMBER);                            \
+        layer->pushBackDrawMethod(0, & ## OBJECT);                                  \
     } (void)0

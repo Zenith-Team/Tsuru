@@ -1242,6 +1242,7 @@ SECTIONS {
     SE_VOC = 0x1018393C;
     __CPR77__mapPositionToScreen__FRQ2_4sead16Vector2__tm__2_fRCQ2_J26JJ31J = 0x2029368;
     DAT_101c30d0 = 0x101C30D0;
+    SafeStringVtable = 0x10177234;
     PlayerJumpArc = 0x1016A800;
     MiniPlayerJumpArc = 0x1016A848;
     PlayerJumpMax = 0x10166E68;
