@@ -1,5 +1,4 @@
 #include "game/task/coursetask.h"
-#include "tsuru/task/cutscenetask.h"
 #include "game/actor/stage/stageactor.h"
 #include "game/task/taskmgr.h"
 #include "log.h"
@@ -27,11 +26,11 @@ Actor* TaskChanger::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 TaskChanger::onCreate() {
-    LOG("Changing task... ");
-
     sead::TaskClassID taskClassID;
     taskClassID.type = sead::TaskClassID::Type_Factory;
-    taskClassID.id.factory = &CutsceneTask::construct;
+    taskClassID.id.factory = nullptr; //! Set a target task!
+
+    return 2; // And remove this line
 
     bool t = TaskMgr::instance()->changeTask(CourseTask::instance(), taskClassID, 0, 0);
 
