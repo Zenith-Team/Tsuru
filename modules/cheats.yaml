@@ -1,7 +1,7 @@
 
 ---
 Files:
-  - source/asm/cheats.S
+  - source/cheats.S
 Hooks:
 # Infinite lives
   - type: branch

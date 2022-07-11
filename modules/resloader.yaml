@@ -1,7 +1,7 @@
 
 ---
 Files:
-  - source/asm/levelrespreloader.S
+  - source/levelrespreloader.S
   - source/levelrespreloader.cpp
 Hooks:
   - type: branch
