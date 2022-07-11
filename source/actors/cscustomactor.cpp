@@ -26,6 +26,7 @@ public:
     static const CSHitboxCollider::Info sCollisionInfo;
 };
 
+//? Uncomment this line to enable the custom actor.
 //const Profile CSCustomActorProfile(&CSCustomActor::build, 856);
 
 const CSHitboxCollider::Info CSCustomActor::sCollisionInfo = {
