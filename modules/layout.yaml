@@ -1,5 +1,8 @@
 ---
 Files:
   - source/layout.cpp
-  - source/layout.S
-Hooks: []
+Hooks:
+  - type: branch
+    instr: bl
+    addr: "24e0db8"
+    func: initLayoutRenderer

@@ -4,6 +4,9 @@
 #include "game/level/levelinfo.h"
 #include "game/playermgr.h"
 #include "game/actor/actormgr.h"
+#include "game/layout/layoutcontainer.h"
+#include "tsuru/layoutrenderer.h"
+#include "log.h"
 
 class LiquidOverlay : public StageActor {
     SEAD_RTTI_OVERRIDE_IMPL(LiquidOverlay, StageActor)
@@ -19,6 +22,17 @@ public:
 
     void doOverlayCollision(u32 index, Player* player);
 
+    class FreezeLayout : public LayoutContainer {
+    public:
+        FreezeLayout()
+            : LayoutContainer(this->animators, 1)
+        { }
+
+        virtual ~FreezeLayout() { }
+
+        LayoutAnimator animators[1];
+    } layout;
+
     u32 timers[4];
     Rect targetLiquidLocation;
 };
@@ -29,6 +43,7 @@ LiquidOverlay::LiquidOverlay(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
     , timers()
     , targetLiquidLocation()
+    , layout()
 { }
 
 Actor* LiquidOverlay::build(const ActorBuildInfo* buildInfo) {
@@ -39,10 +54,16 @@ u32 LiquidOverlay::onCreate() {
     // Retrieve the target location containing the liquid by the ID in nybble 5
     Level::instance()->getArea(LevelInfo::instance()->area)->getLocation(&this->targetLiquidLocation, this->settings1 >> 0x1C & 0xF);
 
+    this->layout.init();
+    this->layout.getArchive("Common");
+    this->layout.loadBFLYT("PaBattery.bflyt");
+
     return 1;
 }
 
 u32 LiquidOverlay::onExecute() {
+    this->layout.update(0xE);
+
     for (u32 i = 0; i < 4; i++) {
         Player* player = PlayerMgr::instance()->players[i];
         if (player) {
