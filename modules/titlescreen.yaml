@@ -10,16 +10,6 @@ Hooks:
   - type: nop
     addr: "29DF4B8" # TitlescreenController::beginState_TitlescreenControllerState3()
 
-# Patch version string
-  #- type: branch
-  #  instr: bl
-  #  addr: "2680F94"
-  #  func: PatchStringSize
-  #- type: branch
-  #  instr: bl
-  #  addr: "2681A80"
-  #  func: CheckIfShouldPatchString
-
 # Pick the entrance based on the world last saved in
   - type: branch
     instr: bl
