@@ -249,7 +249,6 @@ enum ProfileIDType {
     TaskChanger,
     Cataquack,
     TimeClock,
-    EffectSpawner,
     AngrySun,
     AngryMoon,
     RainbowLight,
