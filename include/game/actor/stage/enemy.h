@@ -218,7 +218,7 @@ public:
     // @param hcSelf Pointer to self HitboxCollider
     // @param hcOther Pointer to colliding actor's HitboxCollider
     // @param u32 Unknown
-    u32 processCollision(HitboxCollider* hcSelf, HitboxCollider* hcOther, u32 = 0);
+    HitType processCollision(HitboxCollider* hcSelf, HitboxCollider* hcOther, u32 = 0);
 
     // Bounces the colliding player when hit
     // @param player Colliding player
