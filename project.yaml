@@ -13,7 +13,6 @@ Modules:
   - modules/initializer.yaml          # Initializer
   - modules/layout.yaml               # Custom layouts
   - modules/misc.yaml                 # Miscellaneous items
-  - modules/powerup.yaml              # Custom powerups
   - modules/profile.yaml              # Extra profile and sprite slots
   - modules/resloader.yaml            # Resource loader
   - modules/sarcloader.yaml           # Allow loading uncompressed .sarc levels

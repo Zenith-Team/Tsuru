@@ -14,13 +14,6 @@ Files:
   - source/cafe/gfd.cpp
   - source/inputcontrollers.cpp
 Hooks:
-# Sets PhysicsMgr->owner before doing anything else so that functions there have access to the actor pointer
-# TODO: Investigate a crash in PhysicsMgr::setSensor as it might be related to this
-#  - type: branch
-#    instr: bl
-#    addr: "218af98" # PhysicsMgr::init()
-#    func: SetPhysicsMgrOwner
-
 # Increase spawn range limits
   # Floating Log
   - type: patch
