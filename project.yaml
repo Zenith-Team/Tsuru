@@ -5,6 +5,7 @@ Modules:
  # - modules/buffs.yaml                # 'Cause the game is too easy
   - modules/cheats.yaml               # Cheat menu
   - modules/collisionconditions.yaml  # Fixes collision conditions for some actors
+  - modules/csscripts.yaml            # Custom world map scripts
   - modules/customactors.yaml         # Custom sprites/actors
   - modules/deathfoo.yaml             # Toxic cloud foo patch
   - modules/debug.yaml                # Debugging features

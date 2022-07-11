@@ -11,3 +11,12 @@ struct CSScript {
     u32 priority;
     CSScriptCommand* scriptStart;
 };
+
+namespace CSCommand {
+
+enum CSCommandType {
+    ShowMiiverseSetup = 311,
+    End = 344
+};
+
+}
