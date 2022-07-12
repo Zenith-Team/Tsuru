@@ -29,14 +29,14 @@ Please note that a rewrite is currently in progress, so not everything listed he
 * Ice Fuzzy
 * Kamiya
 * Liquid Collision Overlay
-* Magic Platform *
+* Magic Platform
 * Military Cheep
 * Model Loader
 * P-Acorn (as an in-game actor)
 * Para-Bones
 * Physics Modifier
 * Player Layer Changer
-* Poison Mushroom *
+* Poison Mushroom
 * RGB Light Source
 * Scuttlebug
 * Star Coin Shard
@@ -51,13 +51,12 @@ Please note that a rewrite is currently in progress, so not everything listed he
 ## Patches:
 Miscellaneous hacks/patches are listed here. Most of the game-changing patches are toggleable in the savefile by hex editing or disabling them in project.yaml
 * Add archive links for some unused actors to allow adding models
-* ATLYS custom world map system (early alpha)
 * Cheat menu to activate cheats and debug settings
 * Custom cutscene player
 * Custom powerup slots
 * Custom save data manager API with an example
 * Customizable snow particle colors
-* Customizable world map scripts *
+* Customizable world map scripts
 * Debug collision viewer for levels and world map
 * Disabled acorns falling on title screen
 * Disabled Miiverse integration *
