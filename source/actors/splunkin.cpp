@@ -18,15 +18,16 @@ public:
     u32 onDraw() override;
 
     // collisions later
-
+    bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     static HitboxCollider::Info collisionInfo;
     
 
     void updateModel();
-    
+
     ModelWrapper* model;
     bool damaged;
-
+    bool frozen;
+    u32 frozenCounter;
     DECLARE_STATE(Splunkin, Walk);
     DECLARE_STATE(Splunkin, Turn);
     DECLARE_STATE(Splunkin, Die);
@@ -41,7 +42,10 @@ const Profile SplunkinProfile(&Splunkin::build, ProfileID::Splunkin);
 PROFILE_RESOURCES(ProfileID::Splunkin, Profile::LoadResourcesAt_Course, "kakibo");
 
 // collider stuff
-
+bool Splunkin::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->frozen = true;
+    return Enemy::collisionIceball(hcSelf, hcOther);
+}
 HitboxCollider::Info Splunkin::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0xFFFFFFFF, 0, &Enemy::collisionCallback
 };
@@ -52,6 +56,8 @@ Splunkin::Splunkin(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)
     , model(nullptr)
     , damaged(false)
+    , frozen(false)
+    , frozenCounter(0)
 { }
 
 Actor* Splunkin::build(const ActorBuildInfo* buildInfo) {
@@ -66,6 +72,7 @@ u32 Splunkin::onCreate() {
     this->model->loopSklAnims(true);
     this->position.y -= 8;
     this->position.x += 8;
+    this->rotation.y += 20;
 
 
     this->hitboxCollider.init(this, &Splunkin::collisionInfo);
@@ -79,6 +86,17 @@ u32 Splunkin::onCreate() {
 u32 Splunkin::onExecute() {
     this->states.execute();
     this->updateModel();
+    if (frozen) {
+        this->model->sklAnims[0]->speed = 0.0;
+        if (this->frozenCounter == 0)
+            this->position.y += 8;
+        this->frozenCounter++;
+        if (this->frozenCounter == 540) {
+            this->frozenCounter = 0;
+            this->frozen = false;
+            this->position.y -= 8;
+        }
+    }
     return 1;
 }
 
