@@ -89,12 +89,13 @@ u32 Splunkin::onExecute() {
     if (frozen) {
         this->model->sklAnims[0]->speed = 0.0;
         if (this->frozenCounter == 0)
-            this->position.y += 8;
+            this->position.y += 16;
         this->frozenCounter++;
-        if (this->frozenCounter == 540) {
+        if (this->frozenCounter == 500) {
+            this->model->sklAnims[0]->speed = 1.0;
             this->frozenCounter = 0;
             this->frozen = false;
-            this->position.y -= 8;
+            // this->position.y -= 8;
         }
     }
     return 1;
@@ -108,7 +109,8 @@ u32 Splunkin::onDraw() {
 void Splunkin::updateModel() {
     Mtx34 mtx;
     Vec3f modelPos = this->position;
-    modelPos.y -= 8;
+    if (!this->frozen)
+        modelPos.y -= 8;
     mtx.makeRTIdx(this->rotation, modelPos);
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
