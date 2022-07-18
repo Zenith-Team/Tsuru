@@ -19,7 +19,7 @@ public:
         bool noRespawn;
     };
 
-    enum HitType {
+    enum HitType { // applies to Yoshi as well
         // Moving into the sprite; this includes penguin slides and slope slides
         HitType_Collide,
         // Jumping onto the sprite; this includes ground pounds
