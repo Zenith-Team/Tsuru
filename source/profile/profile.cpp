@@ -849,4 +849,5 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::Biddybud,                // 758
     ProfileID::HelicalBar,              // 759
     ProfileID::BasaltBones,             // 760
+    ProfileID::Splunkin,                // 761
 };

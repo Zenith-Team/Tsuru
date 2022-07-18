@@ -3,7 +3,7 @@
 #include "game/movementhandler.h"
 #include "game/effect/effect.h"
 #include "game/graphics/model/animation.h"
-#include "log.h"
+// #include "log.h"
 
 class Biddybud : public Enemy {
     SEAD_RTTI_OVERRIDE_IMPL(Biddybud, Enemy);
@@ -132,7 +132,7 @@ bool Biddybud::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther)
     return 1;
 }
 
-bool Biddybud::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+bool Biddybud::collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     Biddybud::collisionFireball(hcSelf, hcOther);
     return 1;
 }
@@ -145,7 +145,6 @@ Biddybud::Biddybud(const ActorBuildInfo* buildInfo)
     , color(0)
     , effectScale(0.5, 0.5, 0.5)
     , effectOffset(0, 0, 0)
-    , freezeCounter(0)
 { }
 
 Actor* Biddybud::build(const ActorBuildInfo* buildInfo) {
@@ -269,3 +268,4 @@ void Biddybud::executeState_DieSquish() {
 }
 
 void Biddybud::endState_DieSquish() { }
+// plans to make a grounded one? maybe.

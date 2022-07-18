@@ -37,6 +37,7 @@ Files:
   - source/actors/helicalbar.cpp
   - source/actors/basaltbones.cpp
   - source/actors/sizemodifieractivator.cpp
+  - source/actors/splunkin.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:
