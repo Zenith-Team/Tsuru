@@ -19,10 +19,17 @@ public:
     u32 onDraw() override;
 
     void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    void collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* hcOther);
+    bool collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     void updateModel();
 
 
@@ -33,7 +40,6 @@ public:
     MovementHandler movementHandler;
     bool isDead;
     u32 color;
-
     Vec3f effectScale;
     Vec3f effectOffset;
 
@@ -51,7 +57,7 @@ PROFILE_RESOURCES(ProfileID::Biddybud, Profile::LoadResourcesAt_Course, "tenten_
 // collider related stuff
 
 HitboxCollider::Info Biddybud::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &Enemy::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0xFFFFFFFF, 0, &Enemy::collisionCallback
 };
 
 void Biddybud::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
@@ -62,6 +68,21 @@ void Biddybud::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) 
         this->killPlayerJump(hcOther->owner, 0.0f, &Biddybud::StateID_DieSquish);
 }
 
+void Biddybud::collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    u32 hitType = this->processCollision(hcSelf, hcOther, 0);
+    if (hitType == HitType_Collide) {
+        this->damagePlayer(hcSelf, hcOther);
+    }
+    if (hitType == HitType_NormalJump) {
+        Biddybud::collisionStar(hcSelf, hcOther);
+    }
+
+}
+
+bool Biddybud::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Biddybud::collisionStar(hcSelf, hcOther);
+    return 1;
+}
 bool Biddybud::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
     Vec3f effectPos(effectOrigin + this->effectOffset);
@@ -71,22 +92,26 @@ bool Biddybud::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
 }
 
 bool Biddybud::collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
-    Vec3f effectPos(effectOrigin + this->effectOffset);
-    Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
-    this->isDeleted = true;
+    doStateChange(&Biddybud::StateID_Die);
     return 1;
 }
 
 bool Biddybud::collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
-    Vec3f effectPos(effectOrigin + this->effectOffset);
-    Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
-    this->isDeleted = true;
+    doStateChange(&Biddybud::StateID_Die);
     return 1;
 }
 
 bool Biddybud::collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Biddybud::collisionStar(hcSelf, hcOther);
+    return 1;
+}
+
+bool Biddybud::collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Biddybud::collisionStar(hcSelf, hcOther);
+    return 1;
+}
+
+bool Biddybud::collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
     Vec3f effectPos(effectOrigin + this->effectOffset);
     Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
@@ -94,6 +119,23 @@ bool Biddybud::collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider*
     return 1;
 }
 
+bool Biddybud::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Enemy::collisionFireball(hcSelf, hcOther);
+    while (this->counter < 32) {
+        this->counter++;
+    }
+    return Biddybud::collisionStar(hcSelf, hcOther);
+}
+
+bool Biddybud::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Biddybud::collisionStar(hcSelf, hcOther);
+    return 1;
+}
+
+bool Biddybud::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Biddybud::collisionFireball(hcSelf, hcOther);
+    return 1;
+}
 Biddybud::Biddybud(const ActorBuildInfo* buildInfo) 
     : Enemy(buildInfo)
     , model(nullptr)
@@ -103,6 +145,7 @@ Biddybud::Biddybud(const ActorBuildInfo* buildInfo)
     , color(0)
     , effectScale(0.5, 0.5, 0.5)
     , effectOffset(0, 0, 0)
+    , freezeCounter(0)
 { }
 
 Actor* Biddybud::build(const ActorBuildInfo* buildInfo) {
@@ -117,6 +160,7 @@ u32 Biddybud::onCreate() {
     this->model->playSklAnim("FlyWait");
     this->model->texPatternAnims[0]->startFrame = this->color;
     this->model->texPatternAnims[0]->speed = 0.0;
+    this->model->texSrtAnims[0]->shouldLoop(true);
     this->model->loopSklAnims(true);
     this->scale.x = .17;
     this->scale.y = .17;
@@ -166,6 +210,7 @@ void Biddybud::updateModel() {
     this->model->setScale(this->scale);
     this->model->updateAnimations();
     this->model->updateModel();
+
 }
 
 
@@ -192,7 +237,10 @@ void Biddybud::beginState_Die() {
 
 void Biddybud::executeState_Die() {
     this->counter++;
-    if (this->counter == 180) { // until there's an "is animation done" function that i'm aware of, i'll just use this
+    if (this->counter == 32) { // until there's an "is animation done" function that i'm aware of, i'll just use this
+        Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+        Vec3f effectPos(effectOrigin + this->effectOffset);
+        Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
         this->isDeleted = true;
     }
 }
