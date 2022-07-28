@@ -1,10 +1,12 @@
-#include "game/actor/stage/multistateactor.h"
+#include "game/actor/stage/stageactor.h"
 #include "game/graphics/model/model.h"
-#include "game/graphics/drawmgr.h"
 #include "game/actor/actormgr.h"
+#include "log.h"
 
-class StarCoinShard : public MultiStateActor {
-    SEAD_RTTI_OVERRIDE_IMPL(StarCoinShard, MultiStateActor)
+class StarCoinShardMgr;
+
+class StarCoinShard : public StageActor {
+    SEAD_RTTI_OVERRIDE_IMPL(StarCoinShard, StageActor);
 
 public:
     StarCoinShard(const ActorBuildInfo* buildInfo);
@@ -16,24 +18,43 @@ public:
     u32 onExecute() override;
     u32 onDraw() override;
 
-    static u8 sCollectedCount;
     static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
-    static const HitboxCollider::Info sCollisionInfo;
+
+    static const HitboxCollider::Info collisionInfo;
 
     ModelWrapper* model;
+    StarCoinShardMgr* mgr;
+    u8 mgrID;
+};
+
+class StarCoinShardMgr : public StageActor {
+    SEAD_RTTI_OVERRIDE_IMPL(StarCoinShardMgr, StageActor);
+
+public:
+    StarCoinShardMgr(const ActorBuildInfo* buildInfo);
+    virtual ~StarCoinShardMgr() { }
+
+    static Actor* build(const ActorBuildInfo* buildInfo);
+
+    u32 onExecute() override;
+
+    u32 collectedCount;
+    u32 id;
 };
 
 const Profile StarCoinShardProfile(&StarCoinShard::build, ProfileID::StarCoinShard);
+const Profile StarCoinShardMgrProfile(&StarCoinShardMgr::build, ProfileID::StarCoinShardMgr);
+
 PROFILE_RESOURCES(ProfileID::StarCoinShard, Profile::LoadResourcesAt_Course, "star_coin");
 
-const HitboxCollider::Info StarCoinShard::sCollisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &StarCoinShard::collisionCallback
+const HitboxCollider::Info StarCoinShard::collisionInfo = {
+    Vec2f(0.0f, 0.0f), Vec2f(10.0f, 10.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &StarCoinShard::collisionCallback
 };
 
-u8 StarCoinShard::sCollectedCount = 0;
-
 StarCoinShard::StarCoinShard(const ActorBuildInfo* buildInfo)
-    : MultiStateActor(buildInfo)
+    : StageActor(buildInfo)
+    , model(nullptr)
+    , mgr(nullptr)
 { }
 
 Actor* StarCoinShard::build(const ActorBuildInfo* buildInfo) {
@@ -43,22 +64,36 @@ Actor* StarCoinShard::build(const ActorBuildInfo* buildInfo) {
 u32 StarCoinShard::onCreate() {
     this->model = ModelWrapper::create("star_coin", "star_coinA");
 
-    this->hitboxCollider.init(this, &StarCoinShard::sCollisionInfo, nullptr);
+    this->hitboxCollider.init(this, &StarCoinShard::collisionInfo);
     this->addHitboxColliders();
 
-    return 1;
+    this->mgrID = this->eventID1 >> 0x4 & 0xF;
+
+    return this->onExecute();
 }
 
 u32 StarCoinShard::onExecute() {
-    this->model->updateAnimations();
-
     Mtx34 mtx;
     mtx.makeRTIdx(this->rotation, this->position);
+
+    this->rotation.y += fixDeg(3.0f);
+
     this->model->setMtx(mtx);
     this->model->updateModel();
 
-    this->rotation.y += 0x3FD27D2;
-
+    for (Actor** it = ActorMgr::instance()->actors.start.buffer; it != ActorMgr::instance()->actors.end.buffer; ++it) {
+        if (*it != nullptr) {
+            Actor& actor = **it;
+            if (actor.getProfileID() == ProfileID::StarCoinShardMgr) {
+                StarCoinShardMgr* mgr = static_cast<StarCoinShardMgr*>(&actor);
+                if (mgr->id == this->mgrID) {
+                    this->mgr = mgr;
+                    break;
+                }
+            }
+        }
+    }
+    
     return 1;
 }
 
@@ -69,17 +104,34 @@ u32 StarCoinShard::onDraw() {
 }
 
 void StarCoinShard::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    StarCoinShard::sCollectedCount++;
-    if (StarCoinShard::sCollectedCount % 4 == 0) {
+    if (hcOther->owner->type == StageActor::StageActorType_Player) {
+        StarCoinShard* self = (StarCoinShard*)hcSelf->owner;
 
-        ActorBuildInfo starCoinBuildInfo = { 0 };
-
-        starCoinBuildInfo.settings1 = hcSelf->owner->settings1;
-        starCoinBuildInfo.profile = Profile::get(ProfileID::StarCoin);
-        starCoinBuildInfo.position = hcSelf->owner->position;
-
-        ActorMgr::instance()->create(starCoinBuildInfo, 0);
+        self->mgr->collectedCount++;
+        self->isDeleted = true;
     }
+}
 
-    hcSelf->owner->isDeleted = true;
+StarCoinShardMgr::StarCoinShardMgr(const ActorBuildInfo* buildInfo)
+    : StageActor(buildInfo)
+    , collectedCount(0)
+    , id(buildInfo->eventID1 >> 0x4 & 0xF)
+{ }
+
+Actor* StarCoinShardMgr::build(const ActorBuildInfo* buildInfo) {
+    return new StarCoinShardMgr(buildInfo);
+}
+
+u32 StarCoinShardMgr::onExecute() {
+    if (this->collectedCount >= this->eventID1 & 0xF) {
+        this->isDeleted = true;
+
+        ActorBuildInfo buildInfo = { 0 };
+        buildInfo.profile = Profile::get(ProfileID::StarCoin);
+        buildInfo.position = this->position;
+        
+        ActorMgr::instance()->create(buildInfo, 0);
+    }
+    
+    return 1;
 }

@@ -38,6 +38,7 @@ Files:
   - source/actors/basaltbones.cpp
   - source/actors/sizemodifieractivator.cpp
   - source/actors/splunkin.cpp
+  - source/actors/switchblock.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:
