@@ -244,6 +244,7 @@ enum ProfileIDType {
     FakeActor,
     PAcorn,
     StarCoinShard,
+    StarCoinShardMgr,
     BeepBlock,
     FallingChestnut,
     TaskChanger,
