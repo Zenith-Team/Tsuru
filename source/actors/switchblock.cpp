@@ -102,7 +102,7 @@ u32 SwitchBlock::onCreate() {
     this->eventB = (this->settings1 >> 0x8 & 0xFF) -1; // nybble 9-10
     this->delay = (this->settings1 >> 0x4 & 0xF) * 60; // nybble 11
     if (this->delay == 0) {
-        this->delay = 120;
+        this->delay = 10;
     }
 
 
