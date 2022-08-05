@@ -278,6 +278,7 @@ enum ProfileIDType {
     BasaltBones,
     SizeModifierActivator,
     Splunkin,
+    SwitchBlock,
     
     // Atlys profiles //! Do not place anything below these
     AtlysCamera,
