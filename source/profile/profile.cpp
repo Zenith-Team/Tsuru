@@ -850,5 +850,7 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::HelicalBar,              // 759
     ProfileID::BasaltBones,             // 760
     ProfileID::Splunkin,                // 761
-    ProfileID::SwitchBlock              // 762
+    ProfileID::StarCoinShardMgr,        // 762
+    ProfileID::SwitchBlock,             // 763
+    ProfileID::PowerupSwitcher,         // 764 
 };

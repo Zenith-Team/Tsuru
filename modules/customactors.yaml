@@ -39,6 +39,7 @@ Files:
   - source/actors/sizemodifieractivator.cpp
   - source/actors/splunkin.cpp
   - source/actors/switchblock.cpp
+  - source/actors/powerupswitcher.cpp
 #* Course Select Actors:
   - source/actors/cscustomactor.cpp
 Hooks:
