@@ -279,6 +279,7 @@ enum ProfileIDType {
     SizeModifierActivator,
     Splunkin,
     SwitchBlock,
+    PowerupSwitcher,
     
     // Atlys profiles //! Do not place anything below these
     AtlysCamera,
