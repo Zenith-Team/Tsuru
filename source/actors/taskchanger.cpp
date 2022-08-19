@@ -25,16 +25,20 @@ Actor* TaskChanger::build(const ActorBuildInfo* buildInfo) {
     return new TaskChanger(buildInfo);
 }
 
+#define DISABLE // Remove this line to use
+
 u32 TaskChanger::onCreate() {
+#ifndef DISABLE
     sead::TaskClassID taskClassID;
     taskClassID.type = sead::TaskClassID::Type_Factory;
     taskClassID.id.factory = nullptr; //! Set a target task!
-
-    return 2; // And remove this line
 
     bool t = TaskMgr::instance()->changeTask(CourseTask::instance(), taskClassID, 0, 0);
 
     LOG("TaskMgr says: %u", t);
 
     return 0;
+#else
+    return 2;
+#endif
 }

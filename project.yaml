@@ -2,7 +2,7 @@
 ---
 Name: Tsuru
 Modules:
- # - modules/buffs.yaml                # 'Cause the game is too easy
+#  - modules/buffs.yaml                # What if we made the game a bit more tricky
   - modules/cheats.yaml               # Cheat menu
   - modules/collisionconditions.yaml  # Fixes collision conditions for some actors
   - modules/csscripts.yaml            # Custom world map scripts

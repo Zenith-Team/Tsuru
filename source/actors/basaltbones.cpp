@@ -6,6 +6,8 @@
 #include "game/effect/effect.h"
 #include "game/effect/effectid.h"
 #include "game/graphics/lightsource.h"
+#include "game/actor/stage/envterrain.h"
+#include "game/tilemgr.h"
 #include "math/bezier.h"
 #include "math/easing.h"
 #include "sead/random.h"
@@ -87,6 +89,7 @@ public:
     union { u32 timer, assembler; };
     f32 down;
     bool dead, draw, first;
+    EnvTerrain* lava;
 
     DECLARE_STATE(BasaltBones, Spawn);
     DECLARE_STATE(BasaltBones, Active);
@@ -152,6 +155,9 @@ const Vec3f BasaltBones::assembleKeyframes[6] = {
 
 #undef b
 
+static f32 defaultWaveRippleHeight = 0;
+static u32 defaultWaveHorizontalSpeed = 0;
+
 Actor* BasaltBones::build(const ActorBuildInfo* buildInfo) {
     return new BasaltBones(buildInfo);
 }
@@ -166,12 +172,22 @@ BasaltBones::BasaltBones(const ActorBuildInfo* buildInfo)
     , down(0.0f)
     , dead(false)
     , draw(false)
+    , lava(nullptr)
 { }
 
 u32 BasaltBones::onCreate() {
     this->startPosition = this->position;
 
     this->doStateChange(&StateID_Spawn);
+    
+    for (Actor** i = ActorMgr::instance()->actors.start.buffer; i < ActorMgr::instance()->actors.end.buffer; i++) {
+        if ((*i) != nullptr && (*i)->getProfileID() == ProfileID::Lava) {
+            this->lava = (EnvTerrain*)*i;
+            return BossWrapper<18>::onCreate();
+        }
+    }
+
+    LOG("BasaltBones: Couldn't find lava!");
 
     return BossWrapper<18>::onCreate();
 }
@@ -213,11 +229,11 @@ void BasaltBones::initModels() {
             "laron_partsB",
             "laron_partsE",
             "laron_partsC",
-            "laron_head",
             "laron_partsD",
             "laron_partsF",
+            "laron_head",
         };
-
+        
         this->bones[i].model = ModelWrapper::create("laron", boneModels[i]);
     }
     
@@ -295,6 +311,14 @@ void BasaltBones::executeState_Spawn() {
             if (--this->timer == 0) {
                 this->spawnStage = SpawnStage_Shake;
                 this->timer = 60 * 2;
+
+                TileMgr::instance()->hasWaves = true;
+                TileMgr::instance()->waveType = TileMgr::WaveType_Lava;
+
+                defaultWaveRippleHeight = lava->effects.waveRippleHeight;
+                defaultWaveHorizontalSpeed = lava->effects.waveHorizontalSpeed;
+
+                lava->effects.waveWidth = 70887560;
             }
             
             break;
@@ -307,6 +331,9 @@ void BasaltBones::executeState_Spawn() {
                 this->spawnStage = SpawnStage_FlyOut;
                 this->timer = 63 * 5;
             }
+
+            sead::Mathf::chase(&lava->effects.waveRippleHeight, 28.0f, 0.2f);
+            sead::Mathu::chase(&lava->effects.waveHorizontalSpeed, 42472454 / 2, 42472454 / 40);
 
             break;
         }
@@ -329,6 +356,9 @@ void BasaltBones::executeState_Spawn() {
         }
 
         case SpawnStage_Assemble: {
+            sead::Mathf::chase(&lava->effects.waveRippleHeight, defaultWaveRippleHeight, 0.2f);
+            sead::Mathu::chase(&lava->effects.waveHorizontalSpeed, defaultWaveHorizontalSpeed, 42472454 / 40);
+
             Vec3f centerPoint = (this->bones[0].bezier.keyframes[2] + this->bones[1].bezier.keyframes[2] + this->bones[2].bezier.keyframes[2] + this->bones[3].bezier.keyframes[2] + this->bones[4].bezier.keyframes[2] + this->bones[5].bezier.keyframes[2]) / 6;
             this->down += 0.0010 * this->bones[0].t;
             centerPoint.y -= this->down;
@@ -401,6 +431,9 @@ void BasaltBones::beginState_Active() {
 }
 
 void BasaltBones::executeState_Active() {
+    sead::Mathf::chase(&lava->effects.waveRippleHeight, defaultWaveRippleHeight, 0.2f);
+    sead::Mathu::chase(&lava->effects.waveHorizontalSpeed, defaultWaveHorizontalSpeed, 42472454 / 40);
+
     sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[Direction::opposite((Direction::DirectionType)this->direction)], fixDeg(6.0f));
 
     static const f32 threshold = 8 * 16;
@@ -483,6 +516,9 @@ void BasaltBones::beginState_Assemble() {
 }
 
 void BasaltBones::executeState_Assemble() {
+    sead::Mathf::chase(&lava->effects.waveRippleHeight, 28.0f, 0.2f);
+    sead::Mathu::chase(&lava->effects.waveHorizontalSpeed, 42472454 / 2, 42472454 / 40);
+
     // Launch 
     if (this->assembler < 6) {
         Bone& bone1 = this->bones[this->assembler];
