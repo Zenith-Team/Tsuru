@@ -123,13 +123,14 @@ Actor* StarCoinShardMgr::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 StarCoinShardMgr::onExecute() {
-    if (this->collectedCount >= this->eventID1 & 0xF) {
+    if (this->collectedCount >= (this->eventID1 & 0xF)) {
         this->isDeleted = true;
 
         ActorBuildInfo buildInfo = { 0 };
         buildInfo.profile = Profile::get(ProfileID::StarCoin);
         buildInfo.position = this->position;
-        
+        buildInfo.settings1 = this->settings1;
+
         ActorMgr::instance()->create(buildInfo, 0);
     }
     
