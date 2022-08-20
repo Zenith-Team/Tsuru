@@ -852,5 +852,5 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::Splunkin,                // 761
     ProfileID::StarCoinShardMgr,        // 762
     ProfileID::SwitchBlock,             // 763
-    ProfileID::PowerupSwitcher,         // 764 
+    ProfileID::PowerupSwitcher,         // 764
 };
