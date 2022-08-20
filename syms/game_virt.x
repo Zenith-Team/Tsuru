@@ -1034,7 +1034,7 @@ SECTIONS {
     beginState_SpatByYoshi__11PowerupBaseFv = 0x251C5FC;
     executeState_SpatByYoshi__11PowerupBaseFv = 0x251C714;
     endState_SpatByYoshi__11PowerupBaseFv = 0x251DCA8;
-    FUN_25196e8__11PowerupBaseFPvQ2_11PowerupBase12PowerupStateUi = 0x25196E8;
+    FUN_25196e8__11PowerupBaseFPvQ2_10PlayerBase12PowerupStateUi = 0x25196E8;
     FUN_2519580__11PowerupBaseFUiT1 = 0x2519580;
 
 /* Profile */
