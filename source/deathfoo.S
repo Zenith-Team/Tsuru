@@ -22,7 +22,7 @@ SetSpawnedCloudType:
     blr
 
 .global SetDeathFooTexture
-SetDeathFooTexture:
+SetDeathFooTexture: # Unused for now
     lwz   r0, 0x18C0(r28) # Load this->noCloud
     cmpwi r0, 0x0
     lis   r0, 0x1009
@@ -126,7 +126,7 @@ CloudCollision:
     mflr r23
     fmr f16, f1
 
-    # Load address to player damage function
+    # Load address to player damage function (vtable)
     lwz r12, 0x4C(r11)
     lwz r12, 0x8E4(r12)
     mtctr r12
