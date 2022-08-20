@@ -1,5 +1,5 @@
 .rodata
-CoursePathFormat:       .string "course_res_pack/%s.sac"
+CoursePathFormat:       .string "course_res_pack/%s.sarc"
 RDashCoursePathFormat:  .string "rdash://course_res_pack/%s.sarc"
 
 .text

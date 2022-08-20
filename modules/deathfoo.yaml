@@ -3,14 +3,14 @@
 Files:
   - source/deathfoo.S
 Hooks:
-# Add the ability to spawn deathfoo clouds from Foo
-  # Temp patch: set type to spawned by death foo in onCreate
+# Add the ability to spawn deathfoo clouds from Foo (replaces No Cloud setting)
+  # Set type to spawned by death foo in onCreate
   - type: patch
     addr: "23b4f4c" # Foo::onCreate()
     data: "3BA000B0" # li r29, 0xB0
-  # Temp patch: set type to spawned by death foo executeState_BreathIn
+  # Set type to spawned by death foo executeState_BreathIn
   - type: patch
-    addr: "23b5b5c"
+    addr: "23b5b5c" # Foo::executeState_BreathIn()
     data: "3BA000B0" # li r29, 0xB0
 # Add custom deathfoo cloud type
   # Redirect the custom cloud type to call the foo type function, we can patch it there

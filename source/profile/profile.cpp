@@ -1,6 +1,8 @@
 #include "game/profile/profile.h"
 #include "game/actor/actor.h"
 
+#define RESERVED_ID 0xFFFF
+
 Profile* Profile::profilesCustom[Profile::NUM_PROFILES_CUSTOM];
 s16 Profile::prioritiesCustom[Profile::NUM_PROFILES_CUSTOM] = { 0 };
 u8 Profile::resourcesLoadAtCustom[Profile::NUM_PROFILES_CUSTOM] = { 0 };
@@ -823,7 +825,7 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::TaskChanger,             // 732
     ProfileID::Cataquack,               // 733
     ProfileID::TimeClock,               // 734
-    0xFFFF,                             // 735 //! Effect spawner goes here
+    RESERVED_ID,                        // 735 //! Effect spawner goes here
     ProfileID::AngrySun,                // 736
     ProfileID::AngryMoon,               // 737
     ProfileID::RainbowLight,            // 738

@@ -2,8 +2,8 @@
 
 /*
     * Course Select Scripts
-    * Dumped by RoadrunnerWMC for the Cobra project @ https://github.com/RoadrunnerWMC/Cobra
-    * Note: This is a modified version of the original CS scripts, find the orginal here: https://pastebin.com/f2MTPneY
+    * Originally dumped by RoadrunnerWMC for the Cobra project @ https://github.com/RoadrunnerWMC/Cobra
+    * Note: This is a modified version of the vanilla CS scripts, find those here: https://pastebin.com/f2MTPneY
 */
 
 namespace cmd = CSCommand;
