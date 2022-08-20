@@ -82,16 +82,10 @@ void PAcorn::vf1B4() {
 #include "game/playermgr.h"
 #include "game/effect/effect.h"
 u32 PAcorn::vf1C4() {
-    //u32 local;
+    u32 local;
 
-    for (u32 i = 0; i < 4; i++) {
-        Player* player = PlayerMgr::instance()->players[i];
-        if (player) player->powerupState = Player::PowerupState_PAcorn;
-        this->isDeleted = true;
-    }
-
-    //if (FUN_25196e8(&local, PowerupState_PAcorn, 1) != 0)
-        //return FUN_2519580(local, this->_1830);
+    if (FUN_25196e8(&local, PlayerBase::PowerupState_PAcorn, 1) != 0)
+        return FUN_2519580(local, this->_1830);
 
     return 0;
 }
