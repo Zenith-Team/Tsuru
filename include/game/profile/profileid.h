@@ -280,10 +280,6 @@ enum ProfileIDType {
     Splunkin,
     SwitchBlock,
     PowerupSwitcher,
-    
-    // Atlys profiles //! Do not place anything below these
-    AtlysCamera,
-    AtlysPlayer,
 
     Num
 };
