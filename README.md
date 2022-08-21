@@ -108,6 +108,7 @@ If you require any assistance for anything related to Tsuru, feel free to join o
 * [Newer Team](https://github.com/Newer-Team) - [Newer U](https://github.com/Newer-Team/NewerSMBU) code and headers
 * [RicBent](https://github.com/RicBent) - [CodeDX](https://github.com/RicBent/codedx) code and headers
 * [RoadrunnerWMC](https://github.com/RoadrunnerWMC) - Customizable [world map scripts](https://github.com/RoadrunnerWMC/Cobra)
+* rodmjorgeh -
 * [shibboleet](https://github.com/shibbo) - General code, headers, and contribution to the build system
 * [STUPID](https://github.com/stupidestmodder) - General code and headers
 * [Swiftshine](https://github.com/Swiftshine) - General code and headers
