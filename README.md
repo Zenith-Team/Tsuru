@@ -1,6 +1,6 @@
 # <img src="https://media.discordapp.net/attachments/804348227482419230/901215136302395535/tsuru3_small.png" width="64"> Tsuru
 
-#### Let's build a platform for NSMBU custom code.
+#### Let's build a platform for NSMBU custom code
 
 # Our goal
 The goal of this project is to provide a platform for New Super Mario Bros. U custom code for modders with the same toolset that Nintendo developers had when writing the game. We also have provided a ton of code examples and premade patches for new modders to learn from and for people who would just like to use them in their own personal mods. It also serves as a unification of multiple code hack projects in order to have a project with everything. All credits linked at the bottom of this readme.
@@ -90,7 +90,7 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 Just create a new Pull Request on the designated page. We will review the PR and accept if we feel that it meets our quality standard and design philosophy. If you have discovered an issue or bug, make an issue on the Issue Tracker. Suggestions can also go there.
 
 # Building
-This project is meant to be compiled with a custom version of the CafeLoader Project Compiler script. A version of this source code that is ready for building will always be available on the [releases](https://github.com/Luminyx1/Tsuru/releases) page which includes additional files required for compiling. Keep in mind that currently this project targets version 1.3.0 of the standalone copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not our top priority.
+This project is intended to be compiled with the [Tachyon](https://github.com/jhmaster2000/Tachyon) build system. Keep in mind that currently this project targets version 1.3.0 of the standalone copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not our top priority.
 
 # Usage
 If you would like to use the hacks from the Tsuru project in your own mods, all you need to do is to include a link to this repository somewhere in the credits of the mod.
@@ -108,7 +108,7 @@ If you require any assistance for anything related to Tsuru, feel free to join o
 * [Newer Team](https://github.com/Newer-Team) - [Newer U](https://github.com/Newer-Team/NewerSMBU) code and headers
 * [RicBent](https://github.com/RicBent) - [CodeDX](https://github.com/RicBent/codedx) code and headers
 * [RoadrunnerWMC](https://github.com/RoadrunnerWMC) - Customizable [world map scripts](https://github.com/RoadrunnerWMC/Cobra)
-* rodmjorgeh -
+* [rodmjorgeh]() - Graphics
 * [shibboleet](https://github.com/shibbo) - General code, headers, and contribution to the build system
 * [STUPID](https://github.com/stupidestmodder) - General code and headers
 * [Swiftshine](https://github.com/Swiftshine) - General code and headers
