@@ -1,112 +1,111 @@
 
 ---
 Files:
-  - source/profile/profile.S
-  - source/profile/profile.cpp
+  - profile/profile.S
+  - profile/profile.cpp
 Hooks:
 # Replace Profile methods with custom ones
   # Redirect Profile constructor to call our custom one
   - type: branch
     instr: b
-    addr: "2019554" # Profile::Profile()
+    addr: "0x2019554" # Profile::Profile()
     func: __ct__7ProfileFPFPC14ActorBuildInfo_P5ActorUiRCQ2_4sead23SafeStringBase__tm__2_cPC9ActorInfoT2
   # Redirect Profile get method to call our custom one
   - type: branch
     instr: b
-    addr: "2019774" # Profile::get()
+    addr: "0x2019774" # Profile::get()
     func: get__7ProfileSFUi
   # Redirect Profile get priority method to call our custom one
   - type: branch
     instr: b
-    addr: "2019988" # Profile::getPriority
+    addr: "0x2019988" # Profile::getPriority
     func: getPriority__7ProfileSFUi
   # Redirect Profile get resources LoadAt method to call our custom one
   - type: branch
     instr: b
-    addr: "20199A8" # Profile::getResourcesLoadAt()
+    addr: "0x20199A8" # Profile::getResourcesLoadAt()
     func: getResourcesLoadAt__7ProfileSFUi
   # Redirect Profile get resource count method to call our custom one
   - type: branch
     instr: b
-    addr: "20199CC" # Profile::getResourceCount()
+    addr: "0x20199CC" # Profile::getResourceCount()
     func: getResourceCount__7ProfileSFUi
   # Redirect Profile get resource list method to call our custom one
   - type: branch
     instr: b
-    addr: "20199EC" # Profile::getResourceList()
+    addr: "0x20199EC" # Profile::getResourceList()
     func: getResourceList__7ProfileSFUi
 
 # Increase all instances of the 0x2D4 limit to 0xFFFF
   - type: patch
-    addr: "200501A"
+    addr: "0x200501A"
     data: "FFFF"
   - type: patch
-    addr: "2007C62"
+    addr: "0x2007C62"
     data: "FFFF"
   - type: patch
-    addr: "200806E"
+    addr: "0x200806E"
     data: "FFFF"
   - type: patch
-    addr: "2008262"
+    addr: "0x2008262"
     data: "FFFF"
   - type: patch
-    addr: "200844E"
+    addr: "0x200844E"
     data: "FFFF"
   - type: patch
-    addr: "200457A"
+    addr: "0x200457A"
     data: "FFFF"
 
 # Kill the staticInit function
-  - type: patch
-    addr: "2017388"  # Profile::staticInit
-    data: "4e800020" # blr
+  - type: return
+    addr: "0x2017388"  # Profile::staticInit
 
 # Make the game load the custom spriteToProfileList[] instead of the original
   - type: branch
     instr: bl
-    addr: "200A89C"
+    addr: "0x200A89C"
     func: loadNumProfiles_r29
   - type: branch
     instr: bl
-    addr: "200A950"
+    addr: "0x200A950"
     func: loadNumProfiles_r30
   - type: branch
     instr: bl
-    addr: "2004DA8"
+    addr: "0x2004DA8"
     func: SpriteToProfileList_r3
   - type: branch
     instr: bl
-    addr: "2004948"
+    addr: "0x2004948"
     func: SpriteToProfileList_r3_2
   - type: branch
     instr: bl
-    addr: "2004FF8"
+    addr: "0x2004FF8"
     func: SpriteToProfileList_r19
   - type: branch
     instr: bl
-    addr: "2004570"
+    addr: "0x2004570"
     func: SpriteToProfileList_r22
   - type: branch
     instr: bl
-    addr: "2007C50"
+    addr: "0x2007C50"
     func: SpriteToProfileList_r24
   - type: branch
     instr: bl
-    addr: "2008064"
+    addr: "0x2008064"
     func: SpriteToProfileList_r24
   - type: branch
     instr: bl
-    addr: "2008258"
+    addr: "0x2008258"
     func: SpriteToProfileList_r24
   - type: branch
     instr: bl
-    addr: "2008440"
+    addr: "0x2008440"
     func: SpriteToProfileList_r26
   - type: branch
     instr: bl
-    addr: "200A7EC"
+    addr: "0x200A7EC"
     func: SpriteToProfileList_r30
   - type: branch
     instr: bl
-    addr: "2008678"
+    addr: "0x2008678"
     func: SpriteToProfileList_r31

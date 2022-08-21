@@ -2,25 +2,27 @@
 ---
 Name: Tsuru
 Modules:
-#  - modules/buffs.yaml                # What if we made the game a bit more tricky
-  - modules/cheats.yaml               # Cheat menu
-  - modules/collisionconditions.yaml  # Fixes collision conditions for some actors
-  - modules/csscripts.yaml            # Custom world map scripts
-  - modules/customactors.yaml         # Custom sprites/actors
-  - modules/deathfoo.yaml             # Toxic cloud foo patch
-  - modules/debug.yaml                # Debugging features
-# - modules/experiments.yaml          # Experimental things
-  - modules/framebuffer.yaml          # Clears the framebuffer before rendering
-  - modules/initializer.yaml          # Initializer
-  - modules/layout.yaml               # Custom layouts
-  - modules/misc.yaml                 # Miscellaneous items
-  - modules/profile.yaml              # Extra profile and sprite slots
-  - modules/resloader.yaml            # Resource loader
-  - modules/sarcloader.yaml           # Allow loading uncompressed .sarc levels
-  - modules/savemgr.yaml              # Manages the custom savedata files
-  - modules/sead.yaml                 # Patches for the sead library
-  - modules/snowparticles.yaml        # Allows changing snow particle colors from spritedata
-  - modules/sound.yaml                # Patches that affect sound
-  - modules/titlescreen.yaml          # Title screen patches
-  - modules/waves.yaml                # Wavy liquids
-  - modules/yoshicolors.yaml          # Extra colors for Yoshi
+# - buffs.yaml                # What if we made the game a bit more tricky
+  - cheats.yaml               # Cheat menu
+  - collisionconditions.yaml  # Fixes collision conditions for some actors
+  - csscripts.yaml            # Custom world map scripts
+  - customactors.yaml         # Custom sprites/actors
+  - deathfoo.yaml             # Toxic cloud foo patch
+  - debug.yaml                # Debugging features
+# - experiments.yaml          # Experimental things
+  - framebuffer.yaml          # Clears the framebuffer before rendering
+  - initializer.yaml          # Initializer
+  - layout.yaml               # Custom layouts
+  - misc.yaml                 # Miscellaneous items
+  - profile.yaml              # Extra profile and sprite slots
+  - resloader.yaml            # Resource loader
+  - sarcloader.yaml           # Allow loading uncompressed .sarc levels
+  - savemgr.yaml              # Manages the custom savedata files
+  - sead.yaml                 # Patches for the sead library
+  - snowparticles.yaml        # Allows changing snow particle colors from spritedata
+  - sound.yaml                # Patches that affect sound
+  - titlescreen.yaml          # Title screen patches
+  - waves.yaml                # Wavy liquids
+  - yoshicolors.yaml          # Extra colors for Yoshi
+Defines:
+  - Override

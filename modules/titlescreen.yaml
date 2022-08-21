@@ -1,16 +1,16 @@
 
 ---
 Files:
-  - source/titlescreen.cpp
+  - titlescreen.cpp
 Hooks:
 # Disable spawning of falling acorns
   - type: nop
-    addr: "29DF464" # TitlescreenController::beginState_TitlescreenControllerState3()
+    addr: "0x29DF464" # TitlescreenController::beginState_TitlescreenControllerState3()
   - type: nop
-    addr: "29DF4B8" # TitlescreenController::beginState_TitlescreenControllerState3()
+    addr: "0x29DF4B8" # TitlescreenController::beginState_TitlescreenControllerState3()
 
 # Pick the entrance based on the world last saved in
   - type: branch
     instr: bl
-    addr: "24d3a74"
+    addr: "0x24d3a74"
     func: setTitlescreenThemeEntrance__9LevelInfoFv

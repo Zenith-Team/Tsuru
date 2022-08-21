@@ -1,40 +1,40 @@
 
 ---
 Files:
-  - source/deathfoo.S
+  - deathfoo.S
 Hooks:
 # Add the ability to spawn deathfoo clouds from Foo (replaces No Cloud setting)
   # Set type to spawned by death foo in onCreate
   - type: patch
-    addr: "23b4f4c" # Foo::onCreate()
+    addr: "0x23b4f4c" # Foo::onCreate()
     data: "3BA000B0" # li r29, 0xB0
   # Set type to spawned by death foo executeState_BreathIn
   - type: patch
-    addr: "23b5b5c" # Foo::executeState_BreathIn()
+    addr: "0x23b5b5c" # Foo::executeState_BreathIn()
     data: "3BA000B0" # li r29, 0xB0
 # Add custom deathfoo cloud type
   # Redirect the custom cloud type to call the foo type function, we can patch it there
   - type: branch
     instr: bl
-    addr: "230011c" # Cloud::onExecute()
+    addr: "0x230011c" # Cloud::onExecute()
     func: RedirectCloudType
   # Set the cloud texture
   - type: branch
     instr: bl
-    addr: "22FA520" # Cloud::onCreate()
+    addr: "0x22FA520" # Cloud::onCreate()
     func: SetCloudTexture
   # Set the dark color
   - type: branch
     instr: bl
-    addr: "22FAE50" # Cloud::onExecute_SpawnedByFoo()
+    addr: "0x22FAE50" # Cloud::onExecute_SpawnedByFoo()
     func: SetCloudDarkColor
   # Set the light color
   - type: branch
     instr: bl
-    addr: "22FBBD8" # Cloud::onExecute_SpawnedByFoo()
+    addr: "0x22FBBD8" # Cloud::onExecute_SpawnedByFoo()
     func: SetCloudLightColor
   # Apply collision
   - type: branch
     instr: bl
-    addr: "22fba68" # Cloud::onExecute_SpawnedByFoo()
+    addr: "0x22fba68" # Cloud::onExecute_SpawnedByFoo()
     func: CloudCollision

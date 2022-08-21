@@ -2,49 +2,49 @@
 ---
 Files:
 #* Stage Actors:
-  - source/actors/customdoor.cpp
-  - source/actors/pacorn.cpp
-  - source/actors/parabones.cpp
-  - source/actors/fakeactor.cpp
-  - source/actors/actorspawner.cpp
-  - source/actors/windgenerator.cpp
-  - source/actors/starcoinshard.cpp
-  - source/actors/beepblock.cpp
-  - source/actors/beepblock.S
-  - source/actors/fallingchestnut.cpp
-  - source/actors/taskchanger.cpp
-  - source/actors/cataquack.cpp
-  - source/actors/timeclock.cpp
-  - source/actors/angrysun.cpp
-  - source/actors/rainbowlight.cpp
-  - source/actors/waveplatform.cpp
-  - source/actors/debugactor.cpp
-  - source/actors/liquidoverlay.cpp
-  - source/actors/physicsmodifier.cpp
-  - source/actors/kamiya.cpp
-  - source/actors/modelloader.cpp
-  - source/actors/stringbank.cpp
-  - source/actors/militarycheep.cpp
-  - source/actors/universalbosscontroller.cpp
-  - source/actors/giantskewer.cpp
-  - source/actors/scuttlebug.cpp
-  - source/actors/angrygrrrol.cpp
-  - source/actors/poisonmushroom.cpp
-  - source/actors/magicplatform.cpp
-  - source/actors/coldfuzzy.cpp
-  - source/actors/layerchanger.cpp
-  - source/actors/biddybud.cpp
-  - source/actors/helicalbar.cpp
-  - source/actors/basaltbones.cpp
-  - source/actors/sizemodifieractivator.cpp
-  - source/actors/splunkin.cpp
-  - source/actors/switchblock.cpp
-  - source/actors/powerupswitcher.cpp
+  - actors/customdoor.cpp
+  - actors/pacorn.cpp
+  - actors/parabones.cpp
+  - actors/fakeactor.cpp
+  - actors/actorspawner.cpp
+  - actors/windgenerator.cpp
+  - actors/starcoinshard.cpp
+  - actors/beepblock.cpp
+  - actors/beepblock.S
+  - actors/fallingchestnut.cpp
+  - actors/taskchanger.cpp
+  - actors/cataquack.cpp
+  - actors/timeclock.cpp
+  - actors/angrysun.cpp
+  - actors/rainbowlight.cpp
+  - actors/waveplatform.cpp
+  - actors/debugactor.cpp
+  - actors/liquidoverlay.cpp
+  - actors/physicsmodifier.cpp
+  - actors/kamiya.cpp
+  - actors/modelloader.cpp
+  - actors/stringbank.cpp
+  - actors/militarycheep.cpp
+  - actors/universalbosscontroller.cpp
+  - actors/giantskewer.cpp
+  - actors/scuttlebug.cpp
+  - actors/angrygrrrol.cpp
+  - actors/poisonmushroom.cpp
+  - actors/magicplatform.cpp
+  - actors/coldfuzzy.cpp
+  - actors/layerchanger.cpp
+  - actors/biddybud.cpp
+  - actors/helicalbar.cpp
+  - actors/basaltbones.cpp
+  - actors/sizemodifieractivator.cpp
+  - actors/splunkin.cpp
+  - actors/switchblock.cpp
+  - actors/powerupswitcher.cpp
 #* Course Select Actors:
-  - source/actors/cscustomactor.cpp
+  - actors/cscustomactor.cpp
 Hooks:
 # Update beep block states
   - type: branch
     instr: b
     func: UpdateBeepBlockStates
-    addr: "24bfa4c" # CourseTask::calc()
+    addr: "0x24bfa4c" # CourseTask::calc()

@@ -2,53 +2,53 @@
 ---
 Files:
 #* Translation unit queue:
-  - source/misc.S
-  - source/misc.cpp
-  - source/bgoffset.S
-  - source/dynlibs/os.cpp
-  - source/dynlibs/gx2.cpp
-  - source/dynlibs/h264.cpp
-  - source/hitboxcollider.cpp
-  - source/utils.cpp
-  - source/profileres.cpp
-  - source/cafe/gfd.cpp
-  - source/inputcontrollers.cpp
+  - misc.S
+  - misc.cpp
+  - bgoffset.S
+  - dynlibs/os.cpp
+  - dynlibs/gx2.cpp
+  - dynlibs/h264.cpp
+  - hitboxcollider.cpp
+  - utils.cpp
+  - profileres.cpp
+  - cafe/gfd.cpp
+  - inputcontrollers.cpp
 Hooks:
 # Increase spawn range limits
   # Floating Log
   - type: patch
     data: "00005000"
-    addr: "10136b50" # FloatingLog::ActorInfo::spawnRangeSize.x
+    addr: "0x10136b50" # FloatingLog::ActorInfo::spawnRangeSize.x
 
 # Embed crash fix into the RPX
   - type: patch
     data: "480000E8" # b +0xE8
-    addr: "24D71C4"
+    addr: "0x24D71C4"
 
 # stupid dynamic cast
   - type: nop
-    addr: "2328cc8"
+    addr: "0x2328cc8"
 
 # Instant respawn
   - type: branch
     instr: b
     func: respawn__Fv
-    addr: "24c011c"
+    addr: "0x24c011c"
 
 # Keep a copy of the currently active graphics context
   - type: branch
     instr: bl
     func: "SetCurrentGraphicsContext"
-    addr: "2a07cbc"
+    addr: "0x2a07cbc"
 
 # Fix background offset settings
   - type: branch
     instr: bl
-    addr: "22A7FD4"
+    addr: "0x22A7FD4"
     func: AddBGOffset
 
 # Set boss type in stageactor
   - type: branch
     instr: b
-    addr: "202bdc4" # Boss::beforeExecute()
+    addr: "0x202bdc4" # Boss::beforeExecute()
     func: SetBossActorType

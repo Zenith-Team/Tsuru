@@ -1,18 +1,18 @@
 
 ---
 Files:
-  - source/sead/primitiverenderer.cpp
+  - sead/primitiverenderer.cpp
 Hooks:
 # Restore sead::PrimitiveRendererCafe's deleted functions
   - type: funcptr
-    addr: "10190f4c"
+    addr: "0x10190f4c"
     func: drawCubeImpl__Q2_4sead21PrimitiveRendererCafeFRCQ2_4sead17Matrix34__tm__2_fRCQ2_4sead7Color4fT2
   - type: funcptr
-    addr: "10190f54"
+    addr: "0x10190f54"
     func: drawWireCubeImpl__Q2_4sead21PrimitiveRendererCafeFRCQ2_4sead17Matrix34__tm__2_fRCQ2_4sead7Color4fT2
   - type: funcptr
-    addr: "10190F84"
+    addr: "0x10190F84"
     func: drawCircle16Impl__Q2_4sead21PrimitiveRendererCafeFRCQ2_4sead17Matrix34__tm__2_fRCQ2_4sead7Color4f
   - type: funcptr
-    addr: "10190F8C"
+    addr: "0x10190F8C"
     func: drawCircle32Impl__Q2_4sead21PrimitiveRendererCafeFRCQ2_4sead17Matrix34__tm__2_fRCQ2_4sead7Color4f
