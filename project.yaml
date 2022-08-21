@@ -26,3 +26,5 @@ Modules:
   - yoshicolors.yaml          # Extra colors for Yoshi
 Defines:
   - Override
+  - Cemu
+  - TSURU_DEBUG
