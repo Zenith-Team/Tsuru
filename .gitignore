@@ -1,9 +1,3 @@
-game_NSMBU_US_Latest.x
-game_NSMBU_US_Latest_Cemu.x
-game_NSMBU_EU_Latest.x
-game_NSMBU_EU_Latest_Cemu.x
-game_NSMBU_JP_Latest.x
-game_NSMBU_JP_Latest_Cemu.x
 project.ld
 project.gpj
 syms/game_phys.x
@@ -17,6 +11,7 @@ objs
 *.rpx
 *.py
 *.bat
-include/**config*
-include/sead2
+*.x
+*.json
+linker
 __pycache__
