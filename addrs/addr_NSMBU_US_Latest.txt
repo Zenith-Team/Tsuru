@@ -1,7 +1,0 @@
-
-text = 0
-data = 0
--textAddr = 0x0F800000
--dataAddr = 0x10400000
-
-EBC0000 - 20000000: Addr + 0
