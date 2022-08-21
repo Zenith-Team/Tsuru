@@ -1,14 +1,14 @@
 ---
 Files:
-  - source/csscript.cpp
-  - source/csscript.S
+  - csscript.cpp
+  - csscript.S
 Hooks:
   - type: branch
     instr: bl
-    addr: "21E4368"
+    addr: "0x21E4368"
     func: UseCustomCSScripts1
   
   - type: branch
     instr: b
-    addr: "21E4B54"
+    addr: "0x21E4B54"
     func: UseCustomCSScripts2
