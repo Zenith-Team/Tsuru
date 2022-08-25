@@ -90,7 +90,7 @@ Miscellaneous hacks/patches are listed here. Most of the game-changing patches a
 Just create a new Pull Request on the designated page. We will review the PR and accept if we feel that it meets our quality standard and design philosophy. If you have discovered an issue or bug, make an issue on the Issue Tracker. Suggestions can also go there.
 
 # Building
-This project is intended to be compiled with the [Tachyon](https://github.com/jhmaster2000/Tachyon) build system. Keep in mind that currently this project targets version 1.3.0 of the standalone copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not our top priority.
+This project is intended to be compiled with the [Tachyon](https://github.com/Zenith-Team/Tachyon) build system. Keep in mind that currently this project targets version 1.3.0 of the standalone copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not our top priority.
 
 # Usage
 If you would like to use the hacks from the Tsuru project in your own mods, all you need to do is to include a link to this repository somewhere in the credits of the mod.
