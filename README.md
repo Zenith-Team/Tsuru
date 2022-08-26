@@ -101,7 +101,7 @@ If you require any assistance for anything related to Tsuru, feel free to join o
 
 # Credits
 * [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code, headers, and build system
-* [Flizl]() - Graphics
+* [Flizl](https://twitter.com/fliizzl) - Graphics
 * [iHarv](https://github.com/iHarv) - Quality Assurance
 * [jhmaster2000](https://github.com/jhmaster2000) - Code and headers
 * [Luminyx](https://github.com/Luminyx1) - Project lead, code, and headers
