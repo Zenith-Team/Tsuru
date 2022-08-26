@@ -101,18 +101,18 @@ If you require any assistance for anything related to Tsuru, feel free to join o
 
 # Credits
 * [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code, headers, and build system
-* [Flizl](https://twitter.com/fliizzl) - Graphics
+* [Flizl]() - Graphics
 * [iHarv](https://github.com/iHarv) - Quality Assurance
-* [jhmaster2000](https://github.com/jhmaster2000) - General code and headers
-* [Luminyx](https://github.com/Luminyx1) - Project lead, general code and headers
+* [jhmaster2000](https://github.com/jhmaster2000) - Code and headers
+* [Luminyx](https://github.com/Luminyx1) - Project lead, code, and headers
 * [Newer Team](https://github.com/Newer-Team) - [Newer U](https://github.com/Newer-Team/NewerSMBU) code and headers
 * [RicBent](https://github.com/RicBent) - [CodeDX](https://github.com/RicBent/codedx) code and headers
 * [RoadrunnerWMC](https://github.com/RoadrunnerWMC) - Customizable [world map scripts](https://github.com/RoadrunnerWMC/Cobra)
 * [rodmjorgeh](https://github.com/Rodmjorge) - Graphics
-* [shibboleet](https://github.com/shibbo) - General code, headers, and contribution to the build system
-* [STUPID](https://github.com/stupidestmodder) - General code and headers
-* [Swiftshine](https://github.com/Swiftshine) - General code and headers
-* [Techmuse](https://twitter.com/techmuse8) - Quality Assurance
+* [shibboleet](https://github.com/shibbo) - Code and headers
+* [STUPID](https://github.com/stupidestmodder) - Code and headers
+* [Swiftshine](https://github.com/Swiftshine) - Code and headers
+* [Techmuse]() - Quality Assurance
 * [WillyMaker](https://www.youtube.com/channel/UCBDaY5sapkDhqlBBNJnW-Og) - Sprite data and images
 * Modified dynamic_libs headers based on original implementation by [Dimok](https://github.com/dimok789) and [Maschell fork](https://github.com/Maschell/dynamic_libs)
 * shiftjis.h from [Apollo PS3](https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h)
