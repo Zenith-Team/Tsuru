@@ -112,7 +112,7 @@ If you require any assistance for anything related to Tsuru, feel free to join o
 * [shibboleet](https://github.com/shibbo) - Code and headers
 * [STUPID](https://github.com/stupidestmodder) - Code and headers
 * [Swiftshine](https://github.com/Swiftshine) - Code and headers
-* [Techmuse]() - Quality Assurance
+* [techmuse](https://twitter.com/techmuse8) - Quality Assurance
 * [WillyMaker](https://www.youtube.com/channel/UCBDaY5sapkDhqlBBNJnW-Og) - Sprite data and images
 * Modified dynamic_libs headers based on original implementation by [Dimok](https://github.com/dimok789) and [Maschell fork](https://github.com/Maschell/dynamic_libs)
 * shiftjis.h from [Apollo PS3](https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h)
