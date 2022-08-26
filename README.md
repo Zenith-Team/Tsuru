@@ -100,7 +100,7 @@ If you would like to fork the repo and build upon it, just provide a link to thi
 If you require any assistance for anything related to Tsuru, feel free to join our [Discord server](https://discord.gg/PXM34tKQNj) and ask for help in there.
 
 # Credits
-* [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code, headers, and build system
+* [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code and headers
 * [Flizl](https://twitter.com/fliizzl) - Graphics
 * [iHarv](https://github.com/iHarv) - Quality Assurance
 * [jhmaster2000](https://github.com/jhmaster2000) - Code and headers
@@ -109,7 +109,7 @@ If you require any assistance for anything related to Tsuru, feel free to join o
 * [RicBent](https://github.com/RicBent) - [CodeDX](https://github.com/RicBent/codedx) code and headers
 * [RoadrunnerWMC](https://github.com/RoadrunnerWMC) - Customizable [world map scripts](https://github.com/RoadrunnerWMC/Cobra)
 * [rodmjorgeh](https://github.com/Rodmjorge) - Graphics
-* [shibboleet](https://github.com/shibbo) - Code and headers
+* [shibboleet](https://github.com/shibbo) - [Headers](https://github.com/shibbo/NSMBU-Headers/)
 * [STUPID](https://github.com/stupidestmodder) - Code and headers
 * [Swiftshine](https://github.com/Swiftshine) - Code and headers
 * [techmuse](https://twitter.com/techmuse8) - Quality Assurance
