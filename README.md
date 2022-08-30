@@ -13,7 +13,6 @@ Please note that a rewrite is currently in progress, so not everything listed he
 * Actor Spawner
 * Angry Sun/Moon
 * Beep Block
-* Biddybud
 * Bomb Bro *
 * Cataquack
 * Custom Door
@@ -47,6 +46,7 @@ Please note that a rewrite is currently in progress, so not everything listed he
 * Universal Boss Controller
 * Water Waves
 * Wind Generator
+* Winged Biddybud
 
 ## Patches:
 Miscellaneous hacks/patches are listed here. Most of the game-changing patches are toggleable in the savefile by hex editing or disabling them in project.yaml
