@@ -1,5 +1,5 @@
 #include "game/actor/stage/enemy.h"
-#include "game/graphics/model/model.h"
+#include "game/graphics/model/modelnw.h"
 #include "game/graphics/lightsource.h"
 #include "game/graphics/mask/lightmask.h"
 #include "game/actor/actormgr.h"
@@ -7,7 +7,7 @@
 #include "sead/random.h"
 #include "math/functions.h"
 
-class AngrySun : public Enemy { // Angry Sun miniboss from Newer Wii, written by Bent, ported by Luminyx, for Mixed SMBU
+class AngrySun : public Enemy {
     SEAD_RTTI_OVERRIDE_IMPL(AngrySun, Enemy)
 
 public:

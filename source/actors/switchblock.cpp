@@ -1,5 +1,5 @@
 #include "game/actor/stage/multistateactor.h"
-#include "game/graphics/model/model.h"
+#include "game/graphics/model/modelnw.h"
 #include "game/movementhandler.h"
 #include "game/eventmgr.h"
 #include "game/effect/effect.h"
@@ -20,15 +20,13 @@ public:
     u32 onExecute() override;
     u32 onDraw() override;
 
-
-    /* add collisions later
-    player collision from below
-    ground pound from above
-    slide from the side
-    rolling object
+    /*
+        add collisions later
+        player collision from below
+        ground pound from above
+        slide from the side
+        rolling object
     */
-
-
 
     static HitboxCollider::Info collisionInfo;
     static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
@@ -93,25 +91,22 @@ Actor* SwitchBlock::build(const ActorBuildInfo* buildInfo) {
     return new SwitchBlock(buildInfo);
 }
 
-
-
 u32 SwitchBlock::onCreate() {
     this->initialState = (this->settings1 >> 0x1C & 0xF); // nybble 5
     this->oneTimeUse = (this->settings1 >> 0x18 & 0xF); // nybble 6
     this->eventR = (this->settings1 >> 0x10 & 0xFF) -1; // nybble 7-8
     this->eventB = (this->settings1 >> 0x8 & 0xFF) -1; // nybble 9-10
     this->delay = (this->settings1 >> 0x4 & 0xF) * 60; // nybble 11
+
     if (this->delay == 0) {
         this->delay = 10;
     }
 
-
-
     this->model = ModelWrapper::create("block_stch", "block_stch", 2, 1);
     this->model->playTexPatternAnim("switch", 0);
-    this->model->texPatternAnims[0]->frame = this->initialState;
+    this->model->texPatternAnims[0]->frameCtrl.currentFrame = this->initialState;
     this->currentState = this->initialState;
-    this->model->texPatternAnims[0]->speed = 0.0;
+    this->model->texPatternAnims[0]->frameCtrl.speed = 0.0;
     this->position.x += 8;
     this->position.y -= 8;
     this->updateModel();
@@ -200,7 +195,7 @@ void SwitchBlock::switchState() {
 
 void SwitchBlock::beginState_Red() {
     this->currentState = SwitchBlock_Red;
-    this->model->texPatternAnims[0]->frame = this->currentState;
+    this->model->texPatternAnims[0]->frameCtrl.currentFrame = this->currentState;
 }
 void SwitchBlock::executeState_Red() {
 
@@ -210,7 +205,7 @@ void SwitchBlock::endState_Red() {
 }
 void SwitchBlock::beginState_Blue() {
     this->currentState = SwitchBlock_Blue;
-    this->model->texPatternAnims[0]->frame = this->currentState;
+    this->model->texPatternAnims[0]->frameCtrl.currentFrame = this->currentState;
 }
 void SwitchBlock::executeState_Blue() {
 
@@ -221,7 +216,7 @@ void SwitchBlock::endState_Blue() {
 void SwitchBlock::beginState_Inactive() {
     this->isInactive = true;
     this->currentState = SwitchBlock_Inactive;
-    this->model->texPatternAnims[0]->frame = 3;
+    this->model->texPatternAnims[0]->frameCtrl.currentFrame = 3;
 }
 void SwitchBlock::executeState_Inactive() {
 

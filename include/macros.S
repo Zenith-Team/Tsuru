@@ -36,8 +36,8 @@
     addi sp,  sp, 0x38
 .endm
 
-.macro SafeBranch Function
+.macro SafeBranch __Function__
     SaveVolatileRegisters
-    bl Function
+    bl __Function__
     RestoreVolatileRegisters
 .endm

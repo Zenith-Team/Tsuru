@@ -1,5 +1,5 @@
 #include "game/actor/stage/multistateactor.h"
-#include "game/graphics/model/model.h"
+#include "game/graphics/model/modelnw.h"
 #include "game/graphics/drawmgr.h"
 #include "game/graphics/lightsource.h"
 #include "game/collision/solid/rectcollider.h"

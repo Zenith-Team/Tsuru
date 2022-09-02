@@ -8,7 +8,10 @@
 #include "math/functions.h"
 #include "game/level/levelinfo.h"
 
+#define ORTHO
+
 u32 worldMapProjection() {
+#ifdef ORTHO
     {   // Orthographic projection
         static sead::OrthoProjection projection;
 
@@ -17,9 +20,9 @@ u32 worldMapProjection() {
 
         agl::lyr::Renderer::instance()->layers.buffer[7]->projection = &projection;
 
-        return 1;   // Remove this if you wanna use frustum instead
+        return 1;
     }
-
+#else
     {   // Frustum projection
         static sead::FrustumProjection projection(0.1f, 5000000.0f, 360.0f / 2400.0f, -360.0f / 2400.0f, -640.0f / 2400.0f, 640.0f / 2400.0f);
 
@@ -27,6 +30,7 @@ u32 worldMapProjection() {
 
         return 1;
     }
+#endif
 }
 
 void makePerspectiveLevel() {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "game/effect/effect.h"
-#include "game/graphics/model/model.h"
+#include "game/graphics/model/modelnw.h"
 #include "game/actor/stage/multistateactor.h"
 #include "game/actor/stage/playerbase.h"
 

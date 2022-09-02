@@ -1,7 +1,7 @@
 #include "game/actor/stage/enemy.h"
 #include "game/actor/actormgr.h"
 #include "game/direction.h"
-#include "game/graphics/model/model.h"
+#include "game/graphics/model/modelnw.h"
 #include "game/util.h"
 #include "log.h"
 #include "tsuru/utils.h"
@@ -74,7 +74,7 @@ u32 Cataquack::onCreate() {
     this->scale.y = 0.1f;
     this->scale.z = 0.1f;
     this->model->playSklAnim("walk", 0);
-    this->model->sklAnims[0]->shouldLoop(true);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(true);
 
     PhysicsMgr::Sensor belowSensor = { -6,  6,  0 };
     PhysicsMgr::Sensor aboveSensor = { -6,  6, 28 };
@@ -132,14 +132,14 @@ void Cataquack::beginChase() {
     this->chasing    = true;
     this->speed.x    = this->direction == Direction::Left ? -1.0f : 1.0f;
     this->maxSpeed.x = this->direction == Direction::Left ? -1.0f : 1.0f;
-    this->model->sklAnims[0]->speed = 2.0f;
+    this->model->sklAnims[0]->frameCtrl.speed = 2.0f;
 }
 
 void Cataquack::endChase() {
     this->chasing    = false;
     this->speed.x    = this->direction == Direction::Left ? -0.5f : 0.5f;
     this->maxSpeed.x = this->direction == Direction::Left ? -0.5f : 0.5f;
-    this->model->sklAnims[0]->speed = 1.0f;
+    this->model->sklAnims[0]->frameCtrl.speed = 1.0f;
 }
 
 /** STATE: Walk */
@@ -208,7 +208,7 @@ void Cataquack::beginState_Launch() {
     this->rotation.y = Direction::directionToRotationList[this->direction];
 
     this->model->playSklAnim("throw", 0);
-    this->model->sklAnims[0]->shouldLoop(false);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(false);
     this->speed.x = 0.0f;
     this->target->speed.y = 1.0f + this->launchHeight / 14.0f;
 }
@@ -218,12 +218,12 @@ void Cataquack::executeState_Launch() {
     this->handleSpeed();
     this->physicsMgr.processCollisions();
     if (this->physicsMgr.isOnGround()) this->speed.y = 0.0f;
-    if (this->model->sklAnims[0]->isAnimationDone()) this->doStateChange(&Cataquack::StateID_Walk);
+    if (this->model->sklAnims[0]->frameCtrl.isDone()) this->doStateChange(&Cataquack::StateID_Walk);
 }
 
 void Cataquack::endState_Launch() {
     this->model->playSklAnim("walk", 0);
-    this->model->sklAnims[0]->shouldLoop(true);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(true);
 }
 
 void Cataquack::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {

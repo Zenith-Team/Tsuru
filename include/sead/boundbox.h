@@ -26,4 +26,7 @@ struct BoundBox3 {
     static const BoundBox3<T> sUndefined;
 };
 
+typedef BoundBox2<f32> BoundBox2f;
+typedef BoundBox3<f32> BoundBox3f;
+
 }

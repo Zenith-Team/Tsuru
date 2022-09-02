@@ -1,4 +1,4 @@
-#include "game/graphics/model/model.h"
+#include "game/graphics/model/modelnw.h"
 #include "game/actor/stage/stageactor.h"
 #include "log.h"
 #include "ghs.h"

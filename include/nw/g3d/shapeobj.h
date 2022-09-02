@@ -9,4 +9,9 @@ struct Sphere {
     f32 radius;    // C
 };
 
+class ShapeObj {
+public:
+    // TODO
+};
+
 } }

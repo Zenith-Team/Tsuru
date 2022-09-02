@@ -89,7 +89,7 @@ typedef void* (*DisasmGetSym)(u32 addr, u8* symbolName, u32 nameBufSize);
 #define FLUSH_DATA_BLOCK(addr)          asm volatile("dcbf 0, %0; sync" : : "r"(((addr) & ~31)))
 #define INVAL_DATA_BLOCK(addr)          asm volatile("dcbi 0, %0; sync" : : "r"(((addr) & ~31)))
 
-#define EXPORT_DECL(res, func, ...)     res (* func)(__VA_ARGS__) = 0;
+#define EXPORT_DECL(ret, func, ...)     ret (* func)(__VA_ARGS__) = 0;
 #define EXPORT_VAR(type, var)           type var;
 
 #define EXPORT_FUNC_WRITE(func, val)    *(u32*)(((u32)&func) + 0) = (u32)val
@@ -222,7 +222,7 @@ extern void* (*OSGetSymbolName)(u32 addr, u8* symbolName, u32 nameBufSize);
 extern void* (*OSGetSymbolNameEx)(u32 addr, u8* symbolName, u32 nameBufSize);
 extern s32 (*OSIsDebuggerInitialized)(void);
 
-extern bool (*OSGetSharedData)(u32 type, u32 unkR4, u8* addr, u32* size);
+extern bool (*OSGetSharedData)(u32 type, u32 reserved, void** addr, u32* size);
 
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //! Memory functions
@@ -300,6 +300,13 @@ extern s32 (*IOS_Ioctl)(s32 fd, u32 request, void* inputBuffer, u32 inputBufferL
 extern s32 (*IOS_IoctlAsync)(s32 fd, u32 request, void* inputBuffer, u32 inputBufferLen, void* outputBuffer, u32 outputBufferLen, void* cb, void* cbarg);
 extern s32 (*IOS_Open)(char* path, u32 mode);
 extern s32 (*IOS_Close)(s32 fd);
+
+//!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//! Logging functions
+//!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+extern void (*OSLogBuffer)(u32 category, u32 level, u32 options, void* buffer, size_t size);
+extern void (*OSLogPrintf)(u32 category, u32 level, u32 options, const char* fmt, ...);
+extern void (*OSReport)(const char* fmt, ...);
 
 #ifdef __cplusplus
 }

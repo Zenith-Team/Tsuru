@@ -1,5 +1,5 @@
 #include "game/actor/stage/enemy.h"
-#include "game/graphics/model/model.h"
+#include "game/graphics/model/modelnw.h"
 #include "game/movementhandler.h"
 #include "game/effect/effect.h"
 #include "game/graphics/model/animation.h"
@@ -157,9 +157,9 @@ u32 Biddybud::onCreate() {
     this->model->playTexPatternAnim("bud", 0);
     this->model->playTexSrtAnim("FlyWait", 0);
     this->model->playSklAnim("FlyWait");
-    this->model->texPatternAnims[0]->startFrame = this->color;
-    this->model->texPatternAnims[0]->speed = 0.0;
-    this->model->texSrtAnims[0]->shouldLoop(true);
+    this->model->texPatternAnims[0]->frameCtrl.startFrame = this->color;
+    this->model->texPatternAnims[0]->frameCtrl.speed = 0.0;
+    this->model->texSrtAnims[0]->frameCtrl.shouldLoop(true);
     this->model->loopSklAnims(true);
     this->scale.x = .17;
     this->scale.y = .17;

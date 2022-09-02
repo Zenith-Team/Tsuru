@@ -825,7 +825,7 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::TaskChanger,             // 732
     ProfileID::Cataquack,               // 733
     ProfileID::TimeClock,               // 734
-    RESERVED_ID,                        // 735 //! Effect spawner goes here
+    RESERVED_ID,                        // 735
     ProfileID::AngrySun,                // 736
     ProfileID::AngryMoon,               // 737
     ProfileID::RainbowLight,            // 738
@@ -836,7 +836,7 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::Kamiya,                  // 743
     ProfileID::ModelLoader,             // 744
     ProfileID::StringBank,              // 745
-    ProfileID::MilitaryCheep,           // 746
+    RESERVED_ID,                        // 746
     ProfileID::UniversalBossController, // 747
     ProfileID::GiantSkewer,             // 748
     ProfileID::Scuttlebug,              // 749

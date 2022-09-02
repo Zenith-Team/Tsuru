@@ -6,14 +6,6 @@ class LayerAgl : public agl::lyr::Layer {
     SEAD_RTTI_OVERRIDE(LayerAgl, agl::lyr::Layer)
 
 public:
-    class Node {
-        SEAD_RTTI_BASE(Node);
-
-    public:
-        virtual void calc() = 0;
-    };
-
-public:
     LayerAgl();
     virtual ~LayerAgl();
 
@@ -24,5 +16,7 @@ public:
     u32 vf54() override;
     u32 vf5C() override;
 
-    u8 _41C[0x420 - 0x41C];
+    u8 _41C;
 };
+
+static_assert(sizeof(LayerAgl) == 0x420, "LayerAgl size mismatch");

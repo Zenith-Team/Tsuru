@@ -1,5 +1,5 @@
 #include "tsuru/actor/bosswrapper.h"
-#include "game/graphics/model/model.h"
+#include "game/graphics/model/modelnw.h"
 #include "game/actor/actormgr.h"
 #include "game/actor/stage/player.h"
 #include "game/zonerumblemgr.h"
@@ -7,6 +7,7 @@
 #include "game/effect/effectid.h"
 #include "game/graphics/lightsource.h"
 #include "game/actor/stage/envterrain.h"
+#include "tsuru/heatdistorter.h"
 #include "game/tilemgr.h"
 #include "math/bezier.h"
 #include "math/easing.h"
@@ -78,7 +79,6 @@ public:
     static const HitboxCollider::Info sCollisionInfo;
     
     static const Vec3f launchKeyframes[6][2][3];
-    static const Vec3f assembleKeyframes[6];
 
     static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 
@@ -90,6 +90,7 @@ public:
     f32 down;
     bool dead, draw, first;
     EnvTerrain* lava;
+    HeatDistorter heat;
 
     DECLARE_STATE(BasaltBones, Spawn);
     DECLARE_STATE(BasaltBones, Active);
@@ -117,7 +118,7 @@ const HitboxCollider::Info BasaltBones::Bone::collisionInfo = {
 
 #define b(x) ((f32)(((f32)x) * 16.0f)) // Convert # of tiles to position value for it
 
-const Vec3f BasaltBones::launchKeyframes[6][2][3] = {
+const Vec3f BasaltBones::launchKeyframes[6][2][3] = { // 6 bones, 2 possible paths each containing 3 positions
     {
         { Vec3f(b(-9), b(-3)), Vec3f(b(-9), b(3)), Vec3f(b(-9), b(8)) },
         { Vec3f(b(-9), b(-3)), Vec3f(b(-4), b(3)), Vec3f(b(-9), b(8)) }
@@ -144,15 +145,6 @@ const Vec3f BasaltBones::launchKeyframes[6][2][3] = {
     }
 };
 
-const Vec3f BasaltBones::assembleKeyframes[6] = {
-    Vec3f(b(0.5f), b(1)),
-    Vec3f(0.5f, b(-0.5f)),
-    Vec3f(b(-0.5f), b(-0.5f)),
-    Vec3f(b(-1.0f), b(1)),
-    Vec3f(0, b(2)),
-    Vec3f(b(1), b(1))
-};
-
 #undef b
 
 static f32 defaultWaveRippleHeight = 0;
@@ -173,6 +165,7 @@ BasaltBones::BasaltBones(const ActorBuildInfo* buildInfo)
     , dead(false)
     , draw(false)
     , lava(nullptr)
+    , heat()
 { }
 
 u32 BasaltBones::onCreate() {
@@ -199,6 +192,8 @@ u32 BasaltBones::onExecute() {
     for (u32 i = 0; i < 6; i++) {
         this->bones[i].rotation += Vec3u(fixDeg(1), fixDeg(1.25f), fixDeg(0.4f));
     }
+
+    this->heat.execute(this->position + Vec3f(0, 8, 0), Vec3f(1.75f));
 
     return 1;
 }
@@ -524,7 +519,7 @@ void BasaltBones::executeState_Assemble() {
         Bone& bone1 = this->bones[this->assembler];
         bool bone1done = bone1.easer.ease(bone1.t);
         bone1.bezier.execute(&bone1.position, bone1.t);
-        if (bone1done) {
+        if (bone1done) {            
             this->assembler++;
             
             if (this->assembler < 6) {
@@ -535,7 +530,7 @@ void BasaltBones::executeState_Assemble() {
                 bone1next.easer.set(Easing::quadInOut, 0.0f, 1.0f, 0.006f);
                 bone1next.bezier.set(this->position + keyframes[0], this->position + keyframes[1], this->position + keyframes[2]);
 
-                bone1.bezier.set(bone1.position, this->position + Vec3f(0, 2*16, 0), this->position + assembleKeyframes[this->assembler]);
+                bone1.bezier.set(bone1.position, this->position + Vec3f(0, 2*16, 0), this->position);
                 bone1.easer.set(Easing::quadInOut, 0.0f, 1.0f, 0.006f);   
             }
         }
@@ -572,7 +567,7 @@ void BasaltBones::endState_Assemble() { }
 void BasaltBones::beginState_AssembleFinalize() {
     Bone& bone = this->bones[5];
 
-    bone.bezier.set(bone.position, this->position + Vec3f(0, 2*16, 0), this->position + assembleKeyframes[5]);
+    bone.bezier.set(bone.position, this->position + Vec3f(0, 2*16, 0), this->position);
     bone.easer.set(Easing::quadInOut, 0.0f, 1.0f, 0.006f);
 }
 

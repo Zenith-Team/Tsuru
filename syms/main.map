@@ -267,10 +267,6 @@
 # AreaTask
     sInstance__8AreaTask = 0x101D1598;
 
-# Animation
-    shouldLoop__9AnimationFb = 0x24DEED4;
-    reset__9AnimationFv = 0x24DEEAC;
-
 # ZoneRumbleMgr
     sInstance__13ZoneRumbleMgr = 0x101D1660;
     rumble__13ZoneRumbleMgrFiScN22 = 0x24C4D3C;
@@ -516,6 +512,7 @@
 # CourseSelectTask
     sInstance__16CourseSelectTask = 0x101CC96C;
     drawLayer3D__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo = 0x22676A4;
+    drawLayerCourseSelect__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo = 0x22672bc;
     construct__16CourseSelectTaskSFRCQ2_4sead16TaskConstructArg = 0x202B870;
 
 # CSPlayerMgr
@@ -786,6 +783,10 @@
 # EventMgr
     sInstance__8EventMgr = 0x101DB06C;
     set__8EventMgrFUiT1bN41 = 0x269CD68;
+
+# FrameCtrl
+    shouldLoop__9FrameCtrlFb = 0x24DEED4;
+    reset__9FrameCtrlFv = 0x24DEEAC;
 
 # HitboxCollider
     __ct__14HitboxColliderFv = 0x219A960;
