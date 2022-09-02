@@ -46,9 +46,10 @@ CREATE_STATE(BeepBlock, BlueEnabled);
 CREATE_STATE(BeepBlock, BlueDisabled);
 
 const Profile BeepBlockProfile(&BeepBlock::build, ProfileID::BeepBlock);
+PROFILE_RESOURCES(ProfileID::BeepBlock, Profile::LoadResourcesAt_Course, "star_coin");
 
 const ShapedCollider::Info BeepBlock::colliderInfo = {
-    Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-16.0f, 8.0f), Vec2f(16.0f, -8.0f), 0
+    Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-8.0f, 8.0f), Vec2f(8.0f, -8.0f), 0
 };
 
 BeepBlock::BeepBlockColor BeepBlock::CurrentBeepBlockState = BeepBlock::BeepBlockColor_Blue;

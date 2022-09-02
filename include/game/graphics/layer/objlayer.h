@@ -39,7 +39,7 @@ public:
 
     void setParentRenderer(ObjLayerRenderer* renderer);
 
-    u32 _420;
-    s32 _424;
+    ObjLayerRenderer* renderer;
+    s32 viewIndex;
     Mtx44* _428;
 };

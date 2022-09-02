@@ -24,7 +24,6 @@ Files:
   - actors/kamiya.cpp
   - actors/modelloader.cpp
   - actors/stringbank.cpp
-  - actors/militarycheep.cpp
   - actors/universalbosscontroller.cpp
   - actors/giantskewer.cpp
   - actors/scuttlebug.cpp

@@ -23,9 +23,9 @@ Hooks:
   # Replace ortho projection class with frustum projection
   - type: branch
     instr: b
-    func: RedirectToFrustumCtor
+    func: __ct__Q2_4sead17FrustumProjectionFfN51
     addr: "0x2a065ac" # sead::OrthoProjection::OrthoProjection()
   - type: branch
     instr: b
-    func: RedirectToFrustumDtor
+    func: __dt__Q2_4sead17FrustumProjectionFv
     addr: "0x2a067c4" # sead::OrthoProjection::~OrthoProjection()

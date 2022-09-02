@@ -16,6 +16,8 @@
 #include "sead/graphicscontext.h"
 #include "sead/primitiverenderer.h"
 #include "sead/mathcalccommon.h"
+#include "agl/lyr/renderer.h"
+#include "game/graphics/model/model.h"
 
 void drawLine3D(const Vec3f& position, const u32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
     Vec3f scale(lineLength, lineThickness, lineThickness);

@@ -126,7 +126,7 @@ EXPORT_DECL(void*, OSGetSymbolName, u32, u8*, u32);
 EXPORT_DECL(void*, OSGetSymbolNameEx, u32, u8*, u32);
 EXPORT_DECL(s32, OSIsDebuggerInitialized, void);
 
-EXPORT_DECL(bool, OSGetSharedData, u32 type, u32 unkR4, u8* addr, u32* size);
+EXPORT_DECL(bool, OSGetSharedData, u32 type, u32, void** addr, u32* size);
 
 //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //! Memory functions
@@ -215,6 +215,13 @@ EXPORT_DECL(s32, IOS_Ioctl, s32 fd, u32 request, void* inputBuffer, u32 inputBuf
 EXPORT_DECL(s32, IOS_IoctlAsync, s32 fd, u32 request, void* inputBuffer, u32 inputBufferLen, void* outputBuffer, u32 outputBufferLen, void* cb, void* cbarg);
 EXPORT_DECL(s32, IOS_Open, char* path, u32 mode);
 EXPORT_DECL(s32, IOS_Close, s32 fd);
+
+//!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//! Logging functions
+//!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+EXPORT_DECL(void, OSLogBuffer, u32 category, u32 level, u32 options, void* buffer, size_t size);
+EXPORT_DECL(void, OSLogPrintf, u32 category, u32 level, u32 options, const char* fmt, ...);
+EXPORT_DECL(void, OSReport, const char* fmt, ...);
 
 void _os_find_export(u32 handle, const char* funcName, void* funcPointer) {
     OSDynLoad_FindExport(handle, 0, funcName, funcPointer);
@@ -425,4 +432,11 @@ void InitOSFunctionPointers(void) {
     OS_FIND_EXPORT(coreinitHandle, IOS_IoctlAsync);
     OS_FIND_EXPORT(coreinitHandle, IOS_Open);
     OS_FIND_EXPORT(coreinitHandle, IOS_Close);
+
+    //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //! Logging functions
+    //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    OS_FIND_EXPORT(coreinitHandle, OSLogBuffer);
+    OS_FIND_EXPORT(coreinitHandle, OSLogPrintf);
+    OS_FIND_EXPORT(coreinitHandle, OSReport);
 }

@@ -2,12 +2,13 @@
 
 #include "sead/graphicscontext.h"
 #include "dynlibs/os/functions.h"
+#include <cstring>
 
 #ifdef TSURU_DEBUG
     #ifdef Cemu
         #define LOG(FMT, ...) { \
             __os_snprintf(logMsg, sizeof(logMsg), FMT, ## __VA_ARGS__); \
-            __os_snprintf(logMsg, sizeof(logMsg), "%s%s", logMsg, LogColor::Reset); \
+            __os_snprintf(logMsg + strlen(logMsg), sizeof(logMsg) - strlen(logMsg), "%s", LogColor::Reset); \
             OSConsoleWrite(logMsg, sizeof(logMsg)); } (void)0
     #else
         #define LOG(FMT, ...) \

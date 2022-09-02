@@ -261,7 +261,6 @@ enum ProfileIDType {
     KamiyaMagic,
     ModelLoader,
     StringBank,
-    MilitaryCheep,
     UniversalBossController,
     GiantSkewer,
     Scuttlebug,

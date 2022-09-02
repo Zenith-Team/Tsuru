@@ -7,7 +7,7 @@
 #include "sead/random.h"
 #include "math/functions.h"
 
-class AngrySun : public Enemy { // Angry Sun miniboss from Newer Wii, written by Bent, ported by Luminyx, for Mixed SMBU
+class AngrySun : public Enemy {
     SEAD_RTTI_OVERRIDE_IMPL(AngrySun, Enemy)
 
 public:

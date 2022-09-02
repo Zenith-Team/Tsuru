@@ -62,6 +62,20 @@ typedef volatile double vf64;
 #define OS_THREAD_ATTR_NAME_SENT        0x0080U        // debugger has seen the name
 #define OS_THREAD_ATTR_LAST (OS_THREAD_ATTR_DETACH | OS_THREAD_ATTR_PINNED_AFFINITY | OS_THREAD_ATTR_AFFINITY_NONE)
 
+#define OS_LOG_LEVEL_NOISE              0
+#define OS_LOG_LEVEL_NOTICE             1
+#define OS_LOG_LEVEL_WARNING            2
+#define OS_LOG_LEVEL_ERROR              3
+
+#define OS_LOG_CATEGORY_OS              0
+#define OS_LOG_CATEGORY_OSREPORT        1
+#define OS_LOG_CATEGORY_LOADER          2
+#define OS_LOG_CATEGORY_APP             3
+#define OS_LOG_CATEGORY_GFX             4
+#define OS_LOG_CATEGORY_DRC             5
+#define OS_LOG_CATEGORY_SOUND           6
+#define OS_LOG_CATEGORY_FS              7
+
 typedef struct OSThread_ OSThread;
 
 typedef struct OSThreadLink_ {

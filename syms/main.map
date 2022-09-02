@@ -516,6 +516,7 @@
 # CourseSelectTask
     sInstance__16CourseSelectTask = 0x101CC96C;
     drawLayer3D__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo = 0x22676A4;
+    drawLayerCourseSelect__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo = 0x22672bc;
     construct__16CourseSelectTaskSFRCQ2_4sead16TaskConstructArg = 0x202B870;
 
 # CSPlayerMgr
