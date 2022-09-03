@@ -9,7 +9,6 @@ public:
     UniversalBossController(const ActorBuildInfo* buildInfo)
         : BossControllerWrapper(buildInfo)
         , firstIteration(true)
-        , shush(false)
     { }
 
     virtual ~UniversalBossController() { }
@@ -33,14 +32,6 @@ public:
             }
         }
 
-        if (this->shush) {
-            return nullptr;
-        }
-
-        LOG("Could not find a target boss. So sad.");
-
-        this->shush = true;
-
         return nullptr;
     }
 
@@ -48,12 +39,10 @@ public:
         ActorBuildInfo buildInfo = { 0 };
         buildInfo.profile = Profile::get(ProfileID::CutsceneKamek);
 
-        ((CutsceneKamek*) ActorMgr::instance()->create(buildInfo, 0))->doStateChange(&CutsceneKamek::StateID_CutsceneKamekState2);
+        static_cast<CutsceneKamek*>(ActorMgr::instance()->create(buildInfo, 0))->doStateChange(&CutsceneKamek::StateID_CutsceneKamekState2);
     }
 
-private:
     bool firstIteration;
-    bool shush;
 };
 
 const Profile UniversalBossControllerProfile(&UniversalBossController::build, ProfileID::UniversalBossController);

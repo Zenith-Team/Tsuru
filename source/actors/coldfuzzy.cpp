@@ -133,7 +133,7 @@ void ColdFuzzy::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther)
     for (u32 i = 0; i < 4; i++) {
         if (hcOther->owner == this->playerTimers[i].player && this->playerTimers[i].timer >= 240) {
             this->playerTimers[i].timer = 0;
-            ((PlayerBase*) hcOther->owner)->doDamage(this, PlayerBase::DamageType_Ice);
+            static_cast<PlayerBase*>(hcOther->owner)->doDamage(this, PlayerBase::DamageType_Ice);
         }
     }
 }

@@ -16,7 +16,6 @@ const Profile SizeModifierActivatorProfile(&SizeModifierActivator::build, Profil
 SizeModifierActivator::SizeModifierActivator(const ActorBuildInfo* buildInfo)
     : Actor(buildInfo)
 {
-    
     LOG("Sizemod activated");
 }
 
