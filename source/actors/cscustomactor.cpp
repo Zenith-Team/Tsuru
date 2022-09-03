@@ -1,7 +1,7 @@
 #include "game/actor/courseselect/cscollisionactor.h"
 #include "game/csplayermgr.h"
 #include "game/actor/actormgr.h"
-#include "game/graphics/model/model.h"
+#include "game/graphics/model/modelnw.h"
 #include "game/csscriptmgr.h"
 #include "game/savemgr.h"
 #include "log.h"

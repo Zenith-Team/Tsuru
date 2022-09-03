@@ -1,5 +1,5 @@
 #include "tsuru/actor/bosswrapper.h"
-#include "game/graphics/model/model.h"
+#include "game/graphics/model/modelnw.h"
 #include "game/actor/actormgr.h"
 #include "game/actor/stage/player.h"
 #include "game/zonerumblemgr.h"

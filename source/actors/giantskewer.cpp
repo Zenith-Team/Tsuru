@@ -1,5 +1,5 @@
 #include "game/actor/stage/enemy.h"
-#include "game/graphics/model/model.h"
+#include "game/graphics/model/modelnw.h"
 #include "game/sound/sound.h"
 #include "game/zonerumblemgr.h"
 #include "game/graphics/drawmgr.h"

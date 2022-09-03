@@ -12,6 +12,8 @@ namespace sead {
 template <typename T>
 class Vector2 : public Policies<T>::Vec2Base {
 public:
+    typedef T ValueType;
+
     Vector2() {
         this->x = 0;
         this->y = 0;
@@ -104,6 +106,8 @@ public:
 template <typename T>
 class Vector3 : public Policies<T>::Vec3Base {
 public:
+    typedef T ValueType;
+
     Vector3() {
         this->x = 0;
         this->y = 0;
@@ -217,6 +221,12 @@ public:
 
     bool operator!=(const Vector3<T>& other) const { return this->x != other.x || this->y != other.y || this->z != other.z; }
     bool operator!=(const T other) const { return this->x != other || this->y != other || this->z != other; }
+};
+
+template <typename T>
+class Vector4 : public Policies<T>::Vec4Base {
+public:
+    typedef T ValueType;
 };
 
 }

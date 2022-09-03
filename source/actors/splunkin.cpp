@@ -1,5 +1,5 @@
 #include "game/actor/stage/enemy.h"
-#include "game/graphics/model/model.h"
+#include "game/graphics/model/modelnw.h"
 #include "game/effect/effect.h"
 #include "game/graphics/model/animation.h"
 #include "log.h"
@@ -87,12 +87,12 @@ u32 Splunkin::onExecute() {
     this->states.execute();
     this->updateModel();
     if (frozen) {
-        this->model->sklAnims[0]->speed = 0.0;
+        this->model->sklAnims[0]->frameCtrl.speed = 0.0;
         if (this->frozenCounter == 0)
             this->position.y += 16;
         this->frozenCounter++;
         if (this->frozenCounter == 500) {
-            this->model->sklAnims[0]->speed = 1.0;
+            this->model->sklAnims[0]->frameCtrl.speed = 1.0;
             this->frozenCounter = 0;
             this->frozen = false;
             // this->position.y -= 8;

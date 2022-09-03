@@ -1,5 +1,5 @@
 #include "game/effect/effect.h"
-#include "game/graphics/model/model.h"
+#include "game/graphics/model/modelnw.h"
 #include "game/actor/stage/stageactor.h"
 #include "game/level/leveltimer.h"
 #include "game/sound/sound.h"

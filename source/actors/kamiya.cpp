@@ -2,7 +2,7 @@
 
 #include "game/actor/stage/enemy.h"
 #include "game/graphics/drawmgr.h"
-#include "game/graphics/model/model.h"
+#include "game/graphics/model/modelnw.h"
 #include "game/effect/effect.h"
 #include "game/effect/effectid.h"
 #include "game/playermgr.h"
@@ -261,7 +261,7 @@ void Kamiya::beginState_Spawning() {
 }
 
 void Kamiya::executeState_Spawning() {
-    if (this->easerX.ease(this->targetScale) && this->model->sklAnims[0]->isAnimationDone())
+    if (this->easerX.ease(this->targetScale) && this->model->sklAnims[0]->frameCtrl.isDone())
         this->doStateChange(&Kamiya::StateID_Flying);
 
     this->scale = (this->targetScale);
@@ -337,7 +337,7 @@ void Kamiya::beginState_Attacking() {
 }
 
 void Kamiya::executeState_Attacking() {
-    if (this->model->sklAnims[0]->isAnimationDone() && !this->projectileSpawned) {
+    if (this->model->sklAnims[0]->frameCtrl.isDone() && !this->projectileSpawned) {
         ActorBuildInfo buildInfo = { 0 };
         buildInfo.position = this->position;
         buildInfo.parentID = this->id;
@@ -411,7 +411,7 @@ void Kamiya::beginState_Dying() {
 }
 
 void Kamiya::executeState_Dying() {
-    if (this->model->sklAnims[0]->isAnimationDone())
+    if (this->model->sklAnims[0]->frameCtrl.isDone())
         this->isDeleted = true;
 }
 
@@ -482,7 +482,7 @@ void Kamiya::beginState_Snipe() {
 }
 
 void Kamiya::executeState_Snipe() {
-    if (!this->throwing && this->model->sklAnims[0]->isAnimationDone()) {
+    if (!this->throwing && this->model->sklAnims[0]->frameCtrl.isDone()) {
         this->throwing = true;
         this->model->loopSklAnims(true);
         this->model->playSklAnim("fly_throw_st_wait");

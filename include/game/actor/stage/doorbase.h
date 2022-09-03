@@ -1,7 +1,7 @@
 #pragma once
 
 #include "game/actor/stage/enemy.h"
-#include "game/graphics/model/model.h"
+#include "game/graphics/model/modelnw.h"
 
 class DoorBase : public Enemy { // Size: 0x18A8
     SEAD_RTTI_OVERRIDE(DoorBase, Enemy)
