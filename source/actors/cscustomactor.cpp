@@ -91,17 +91,3 @@ void CSCustomActor::onCSScriptCommandUpdate() {
 
     LOG("%u", command);
 }
-
-/*
-    * 4: Entered castle/tower?
-    * 7: Wait
-    * 36: Level exit (dynamic anim, does a different thing if castle/tower lvl)
-    * 55: Inside sign popup
-    * 56: Exiting sign popup
-    * 65: Inside map view mode
-    * 66: Exiting map view mode
-    * 72: Transition
-    * 111: Flying in the air from pipe cannon
-    * 146: Landing from air from pipe cannon
-    * 181: W6 Switch pressed
-*/

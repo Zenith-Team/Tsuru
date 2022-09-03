@@ -76,7 +76,6 @@ u32 FakeActor::onCreate() {
 u32 FakeActor::onExecute() {
     this->updateModel();
     this->states.execute();
-    //if (this->states.currentState()->isEqual(&StateID_StarCoin)) { };
     return 1;
 }
 

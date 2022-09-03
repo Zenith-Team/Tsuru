@@ -10,12 +10,10 @@ public:
 
     static Actor* build(const ActorBuildInfo* buildInfo);
 
-    //void ZOrder() override; // broken
     void loadModel() override;
     void initHitboxCollider() override;
     void playOpenDoorAnim() override;
     void playCloseDoorAnim() override;
-    //void vf5BC() override; // broken
 
     static const HitboxCollider::Info sCollisionInfo;
 };
@@ -47,13 +45,6 @@ void CustomDoor::initHitboxCollider() {
     this->addHitboxColliders();
 }
 
-// Broken override
-/*void CustomDoor::ZOrder() {
-    // nybble5 checkbox
-    if (this->settings1 >> 0x1C == 1) this->position.z  = 0xC5228000;
-    else this->position.z = 0x42000000;
-};*/
-
 void CustomDoor::loadModel() {
     this->model = ModelWrapper::create("obj_door", "obj_doorA", 1, 1, 2, 1);
     this->model->playSklAnim("obj_doorA", 0);
@@ -75,9 +66,3 @@ void CustomDoor::playCloseDoorAnim() {
     sklAnim->frameCtrl.reset();
     sklAnim->frameCtrl.shouldLoop(false);
 };
-
-// Broken override
-/*void CustomDoor::vf5BC() {
-    LOG("vf5BC called.");
-    return;
-}*/
