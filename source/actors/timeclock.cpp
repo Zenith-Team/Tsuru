@@ -77,7 +77,9 @@ void TimeClock::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
         playSound(SoundEffects::SE_SYS_CONTINUE_DONE, self->position);
 
         s16 time = self->settings1 & 0xFFF; // Nybbles 10-12
-        if (self->settings1 >> 0x1C & 0xF /* Nybble 5 */) time = -time;
+        if (self->settings1 >> 0x1C & 0xF /* Nybble 5 */)
+            time = -time;
+
         if (LevelTimer::instance()->timeLimit + time <= 0) {
             LevelTimer::instance()->addTime(-LevelTimer::instance()->timeLimit + 3);
         } else {

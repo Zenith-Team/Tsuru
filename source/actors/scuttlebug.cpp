@@ -23,7 +23,8 @@ public:
 
     static const HitboxCollider::Info collisionInfo;
 
-    ModelWrapper *model, *string; // This is the only time I will do right-aligned pointer star
+    ModelWrapper* model;
+    ModelWrapper* string;
 
     u32 timerIdleRaised, timerIdleLowered, timerLowering, timerRising;
 

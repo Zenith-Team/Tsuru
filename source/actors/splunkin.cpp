@@ -118,42 +118,26 @@ void Splunkin::updateModel() {
     this->model->updateModel();
 }
 
-// states
-
 /** STATE: Walk */
 
+void Splunkin::beginState_Walk() { }
 
-void Splunkin::beginState_Walk() {
+void Splunkin::executeState_Walk() { }
 
-}
-void Splunkin::executeState_Walk() {
-
-}
-void Splunkin::endState_Walk() {
-
-}
+void Splunkin::endState_Walk() { }
 
 /** STATE: Turn */
 
-void Splunkin::beginState_Turn() {
+void Splunkin::beginState_Turn() { }
 
-}
-void Splunkin::executeState_Turn() {
+void Splunkin::executeState_Turn() { }
 
-}
-void Splunkin::endState_Turn() {
-
-}
-
+void Splunkin::endState_Turn() { }
 
 /** STATE: Die */
 
-void Splunkin::beginState_Die() {
-    
-}
-void Splunkin::executeState_Die() {
-    
-}
-void Splunkin::endState_Die() {
-    
-}
+void Splunkin::beginState_Die() { }
+
+void Splunkin::executeState_Die() { }
+
+void Splunkin::endState_Die() { }
