@@ -6,7 +6,6 @@
 class TsuruSaveMgr : public CustomSaveMgr {
 public:
     struct TsuruSaveData : CustomSaveData {
-    private:
         TsuruSaveData()
             : CustomSaveData()
             , infiniteLivesEnabled(false)
@@ -15,17 +14,16 @@ public:
             , invincibilityEnabled(false)
             , collisionViewerEnabled(false)
             , instantRespawnEnabled(false)
+            , switchBlockBlue()
         { }
 
-    public:
-        friend class TsuruSaveMgr;
-
-        bool infiniteLivesEnabled;          // 4
-        bool infiniteTimeEnabled;           // 5
-        bool noClipEnabled;                 // 6
-        bool invincibilityEnabled;          // 7
-        bool collisionViewerEnabled;        // 8
-        bool instantRespawnEnabled;         // 9
+        bool infiniteLivesEnabled;
+        bool infiniteTimeEnabled;
+        bool noClipEnabled;
+        bool invincibilityEnabled;
+        bool collisionViewerEnabled;
+        bool instantRespawnEnabled;
+        bool switchBlockBlue[6];
     };
 
 public:

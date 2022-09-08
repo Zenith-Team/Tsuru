@@ -18,7 +18,6 @@ public:
     u8 trigEvent;
     u32 layerDest;
     bool isDone;
-    PlayerBase* player;
     EventMgr eventmgr;
 };
 
@@ -53,7 +52,7 @@ u32 LayerChanger::onExecute() {
             this->isDone = true;
             LOG("Event ID %d was triggered", trigEvent);
             for (u32 i = 0; i < 4; i++) {
-                player = PlayerMgr::instance()->players[i];
+                Player* player = PlayerMgr::instance()->players[i];
                 if (player) {
                     player->layer = this->layerDest;
                 }
