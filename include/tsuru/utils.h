@@ -105,3 +105,8 @@ static inline u8 popcount(T x) {
     for (; x != 0; x &= x - 1) c++;
     return c;
 }
+
+template <typename T>
+static inline void toggle(T& val) {
+    val = !val;
+}

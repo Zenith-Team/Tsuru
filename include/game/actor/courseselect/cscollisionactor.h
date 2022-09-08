@@ -14,8 +14,7 @@ public:
     bool vf8C() override;
     void vf94() override;
     void vf9C() override;
-    // Nullsub
-    void onCSScriptCommandUpdate() override;
+    void onCSScriptCommandUpdate() override; // nullsub
 
     // Custom function
     // @param state Pointer to state to switch to

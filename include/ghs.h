@@ -71,6 +71,8 @@ void __ghsUnlock(void);
 
 void __gh_memclr32(void*, int);
 
+void __dotsyscall();
+
 // Initializes and allocates an array
 // @param output Pointer to memory to allocate to
 // @param entryCount Number of entries in the array
