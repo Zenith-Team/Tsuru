@@ -97,7 +97,7 @@ If you would like to use the hacks from the Tsuru project in your own mods, all 
 If you would like to fork the repo and build upon it, just provide a link to this repository and include the Credits section below in the readme.
 
 # Help
-If you require any assistance for anything related to Tsuru, feel free to join our [Discord server](https://discord.gg/PXM34tKQNj) and ask for help in there.
+If you require any assistance for anything related to Tsuru, feel free to join our [Discord server](https://discord.nsmbu.net) and ask for help in there.
 
 # Credits
 * [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code and headers
