@@ -5,6 +5,8 @@
 #include "game/actor/actormgr.h"
 #include "log.h"
 
+#define SwitchBlockState TsuruSaveMgr::sSaveData.switchBlockBlue[SaveMgr::instance()->saveData->header.lastSessionSaveSlot]
+
 class SwitchBlock : public BlockWrapper {
     SEAD_RTTI_OVERRIDE_IMPL(SwitchBlock, BlockWrapper);
 
@@ -47,7 +49,7 @@ u32 SwitchBlock::onCreate() {
     this->model = ModelWrapper::create("block_stch", "block_stch", 0, 1);
     this->model->playTexPatternAnim("switch");
     this->model->texPatternAnims[0]->frameCtrl.speed = 0;
-    this->model->texPatternAnims[0]->frameCtrl.currentFrame = TsuruSaveMgr::sSaveData.switchBlockBlue[SaveMgr::instance()->saveData->header.lastSessionSaveSlot] ? 1 : 0;
+    this->model->texPatternAnims[0]->frameCtrl.currentFrame = SwitchBlockState ? 1 : 0;
 
     return this->onExecute();
 }
@@ -70,7 +72,7 @@ u32 SwitchBlock::onDraw() {
 void SwitchBlock::spawnItemUp() {
     this->doStateChange(&StateID_Active);
 
-    bool& isBlue = TsuruSaveMgr::sSaveData.switchBlockBlue[SaveMgr::instance()->saveData->header.lastSessionSaveSlot];
+    bool& isBlue = SwitchBlockState;
 
     isBlue = !isBlue;
 
@@ -91,7 +93,7 @@ void SwitchBlock::spawnItemUp() {
 void SwitchBlock::spawnItemDown() {
     this->doStateChange(&StateID_Active);
 
-    bool& isBlue = TsuruSaveMgr::sSaveData.switchBlockBlue[SaveMgr::instance()->saveData->header.lastSessionSaveSlot];
+    bool& isBlue = SwitchBlockState;
 
     isBlue = !isBlue;
 
