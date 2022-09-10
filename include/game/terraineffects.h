@@ -8,13 +8,13 @@ class TerrainEffects { // Size: 0xFF4C
     // This class seems to handle distortions such as the waves in liquids, and the distortion on the bump-from-bottom platform (sprite 407)
     // It is present as a member of EnvTerrain
 public:
-    enum TerrainType {
-        TerrainType_Water     = 0,
-        TerrainType_Lava      = 1,
-        TerrainType_Poison    = 2,
-        TerrainType_LavaWaves = 3,
-        TerrainType_Quicksand = 4
-    };
+    ENUM_CLASS(TerrainType,
+        Water     = 0,
+        Lava      = 1,
+        Poison    = 2,
+        LavaWaves = 3,
+        Quicksand = 4
+    );
 
     TerrainEffects();
     ~TerrainEffects(); // nullsub

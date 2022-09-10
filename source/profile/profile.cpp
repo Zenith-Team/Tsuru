@@ -51,14 +51,14 @@ s16 Profile::getPriority(u32 id) {
     return -1;
 }
 
-Profile::LoadResourcesAt Profile::getResourcesLoadAt(u32 id) {
+Profile::LoadResourcesAt::__type__ Profile::getResourcesLoadAt(u32 id) {
     if (id < NUM_PROFILES_ORIGINAL)
-        return (Profile::LoadResourcesAt) resourcesLoadAtOriginal[id];
+        return static_cast<Profile::LoadResourcesAt::__type__>(resourcesLoadAtOriginal[id]);
 
     if (id < NUM_PROFILES)
-        return (Profile::LoadResourcesAt) resourcesLoadAtCustom[id - NUM_PROFILES_ORIGINAL];
+        return static_cast<Profile::LoadResourcesAt::__type__>(resourcesLoadAtCustom[id - NUM_PROFILES_ORIGINAL]);
 
-    return LoadResourcesAt_Boot;
+    return LoadResourcesAt::Boot;
 }
 
 u8 Profile::getResourceCount(u32 id) {
@@ -814,45 +814,45 @@ u32 Profile::spriteToProfileList[] = {
     533,    // 723
 
     // Start of custom entries
-    ProfileID::ActorSpawner,            // 724
-    ProfileID::ParaBones,               // 725
-    ProfileID::CustomDoor,              // 726
-    ProfileID::FakeActor,               // 727
-    ProfileID::PAcorn,                  // 728
-    ProfileID::StarCoinShard,           // 729
-    ProfileID::BeepBlock,               // 730
-    ProfileID::FallingChestnut,         // 731
-    ProfileID::TaskChanger,             // 732
-    ProfileID::Cataquack,               // 733
-    ProfileID::TimeClock,               // 734
-    RESERVED_ID,                        // 735
-    ProfileID::AngrySun,                // 736
-    ProfileID::AngryMoon,               // 737
-    ProfileID::RainbowLight,            // 738
-    ProfileID::WavePlatform,            // 739
-    ProfileID::DebugActor,              // 740
-    ProfileID::LiquidOverlay,           // 741
-    ProfileID::PhysicsModifier,         // 742
-    ProfileID::Kamiya,                  // 743
-    ProfileID::ModelLoader,             // 744
-    ProfileID::StringBank,              // 745
-    RESERVED_ID,                        // 746
-    ProfileID::UniversalBossController, // 747
-    ProfileID::GiantSkewer,             // 748
-    ProfileID::Scuttlebug,              // 749
-    ProfileID::AngryGrrrol,             // 750
-    ProfileID::PoisonMushroom,          // 751
-    ProfileID::MagicPlatform,           // 752
-    ProfileID::ColdFuzzy,               // 753
-    ProfileID::WavyWater,               // 754
-    ProfileID::WavyPoison,              // 755
-    ProfileID::WavyQuicksand,           // 756
-    ProfileID::LayerChanger,            // 757
-    ProfileID::Biddybud,                // 758
-    ProfileID::HelicalBar,              // 759
-    ProfileID::BasaltBones,             // 760
-    ProfileID::Splunkin,                // 761
-    ProfileID::StarCoinShardMgr,        // 762
-    ProfileID::SwitchBlock,             // 763
-    ProfileID::PowerupSwitcher,         // 764
+    ProfileID::ActorSpawner,                // 724
+    ProfileID::ParaBones,                   // 725
+    ProfileID::CustomDoor,                  // 726
+    ProfileID::FakeActor,                   // 727
+    ProfileID::PAcorn,                      // 728
+    ProfileID::StarCoinShard,               // 729
+    ProfileID::BeepBlock,                   // 730
+    ProfileID::FallingChestnut,             // 731
+    ProfileID::TaskChanger,                 // 732
+    ProfileID::Cataquack,                   // 733
+    ProfileID::TimeClock,                   // 734
+    ProfileID::RedBlueBlock,                // 735
+    ProfileID::AngrySun,                    // 736
+    ProfileID::AngryMoon,                   // 737
+    ProfileID::RainbowLight,                // 738
+    ProfileID::WavePlatform,                // 739
+    ProfileID::DebugActor,                  // 740
+    ProfileID::LiquidOverlay,               // 741
+    ProfileID::PhysicsModifier,             // 742
+    ProfileID::Kamiya,                      // 743
+    ProfileID::ModelLoader,                 // 744
+    ProfileID::StringBank,                  // 745
+    ProfileID::SwitchBlockEventActivator,   // 746
+    ProfileID::UniversalBossController,     // 747
+    ProfileID::GiantSkewer,                 // 748
+    ProfileID::Scuttlebug,                  // 749
+    ProfileID::AngryGrrrol,                 // 750
+    ProfileID::PoisonMushroom,              // 751
+    ProfileID::MagicPlatform,               // 752
+    ProfileID::ColdFuzzy,                   // 753
+    ProfileID::WavyWater,                   // 754
+    ProfileID::WavyPoison,                  // 755
+    ProfileID::WavyQuicksand,               // 756
+    ProfileID::LayerChanger,                // 757
+    ProfileID::Biddybud,                    // 758
+    ProfileID::HelicalBar,                  // 759
+    ProfileID::BasaltBones,                 // 760
+    ProfileID::Splunkin,                    // 761
+    ProfileID::StarCoinShardMgr,            // 762
+    ProfileID::SwitchBlock,                 // 763
+    ProfileID::PowerupSwitcher,             // 764
 };

@@ -36,10 +36,10 @@ public:
     void vf10C() override;
     void vf114() override;
     u32 vf11C() override;
-    void vf124(PowerupState, bool) override;
-    void vf12C(PowerupState, bool) override;
+    void vf124(PowerupState::__type__, bool) override;
+    void vf12C(PowerupState::__type__, bool) override;
     bool vf134() override;
-    TallType getTallType(PowerupState powerupState) override;
+    TallType getTallType(PowerupState::__type__ powerupState) override;
     void vf144() override;
     void vf14C(Vec3f*, f32*) override;
     u32 vf154() override;
@@ -193,10 +193,10 @@ public:
     bool vf8B4() override;
 
     bool tryDamage(HitboxCollider* hcOther) override;
-    bool trySpecialDamage(StageActor* collidingActor, DamageType damageType) override;
-    bool vf8D4(StageActor* collidingActor, DamageType damageType) override;
+    bool trySpecialDamage(StageActor* collidingActor, DamageType::__type__ damageType) override;
+    bool vf8D4(StageActor* collidingActor, DamageType::__type__ damageType) override;
     void vf8DC(f32, f32, u32, u32, u32, u32) override;
-    bool doDamage(StageActor* collidingActor, DamageType damageType) override;
+    bool doDamage(StageActor* collidingActor, DamageType::__type__ damageType) override;
     u32 vf8EC(u32, u32) override;
     void vf8F4() override;
     u8 vf8FC() override;

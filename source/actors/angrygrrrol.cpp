@@ -24,10 +24,10 @@ public:
 };
 
 const Profile AngryGrrrolProfile(&AngryGrrrol::build, ProfileID::AngryGrrrol);
-PROFILE_RESOURCES(ProfileID::AngryGrrrol, Profile::LoadResourcesAt_Course, "guruguru");
+PROFILE_RESOURCES(ProfileID::AngryGrrrol, Profile::LoadResourcesAt::Course, "guruguru");
 
 HitboxCollider::Info AngryGrrrol::sCollisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &AngryGrrrol::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &AngryGrrrol::collisionCallback
 };
 
 const PhysicsMgr::Sensor AngryGrrrol::bottomSensor = {

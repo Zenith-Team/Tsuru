@@ -50,11 +50,11 @@ const ActorInfo GiantSkewerActorInfo = {
 };
 
 const HitboxCollider::Info GiantSkewer::collisionInfo = {
-    Vec2f(0.0f, 800.0f), Vec2f(96.0f, 1000.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &Enemy::collisionCallback
+    Vec2f(0.0f, 800.0f), Vec2f(96.0f, 1000.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &Enemy::collisionCallback
 };
 
 const Profile GiantSkewerProfile(&GiantSkewer::build, ProfileID::GiantSkewer, "GiantSkewer", &GiantSkewerActorInfo);
-PROFILE_RESOURCES(ProfileID::GiantSkewer, Profile::LoadResourcesAt_Course,"daikonbouBig");
+PROFILE_RESOURCES(ProfileID::GiantSkewer, Profile::LoadResourcesAt::Course,"daikonbouBig");
 
 GiantSkewer::GiantSkewer(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)

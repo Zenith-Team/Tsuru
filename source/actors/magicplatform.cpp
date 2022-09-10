@@ -41,7 +41,7 @@ public:
 };
 
 const ActorInfo MagicPlatformActorInfo = {
-    Vec2i(0, 0), Vec2i(0, 0), Vec2i(0, 0), 0, 0, 0, 0, ActorInfo::Flag_IgnoreSpawnRange | ActorInfo::Flag_Unknown1
+    Vec2i(0, 0), Vec2i(0, 0), Vec2i(0, 0), 0, 0, 0, 0, ActorInfo::Flags::IgnoreSpawnRange | ActorInfo::Flags::Unknown1
 };
 
 const Profile MagicPlatformProfile(&MagicPlatform::build, ProfileID::MagicPlatform, "MagicPlatform", &MagicPlatformActorInfo);
@@ -106,12 +106,12 @@ u32 MagicPlatform::onCreate() {
     if (this->collisionType > 2)
         return 2;
     
-    const ColliderBase::Type colliderType = ColliderBase::Type((this->settings1 >> 16) & 0xFF);
-    if (colliderType > ColliderBase::Type_InvisibleBlock)
+    const ColliderBase::Type::__type__ colliderType = ColliderBase::Type::__type__((this->settings1 >> 16) & 0xFF);
+    if (colliderType > ColliderBase::Type::InvisibleBlock)
         return 2;
     
-    ColliderBase::SurfaceType colliderSurfaceType = ColliderBase::SurfaceType((this->settings1 >> 12) & 0xF);
-    if (colliderSurfaceType > ColliderBase::SurfaceType_BeanstalkLeaf)
+    ColliderBase::SurfaceType::__type__ colliderSurfaceType = ColliderBase::SurfaceType::__type__((this->settings1 >> 12) & 0xF);
+    if (colliderSurfaceType > ColliderBase::SurfaceType::BeanstalkLeaf)
         return 2;
     
     switch (collisionType) {

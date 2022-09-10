@@ -1,7 +1,7 @@
 #include "game/sound/musicplayer.h"
 
 bool MusicPlayer::isValidStrmID(s32 strmID) {
-    return strmID < MusicIndex_Num;
+    return strmID < MusicIndex::Num;
 }
 
 const char* MusicPlayer::getStrmName(s32 strmID) {
@@ -34,7 +34,7 @@ const char* MusicPlayer::getSeqName(s32 seqID) {
 
 // Remember to add your new music to the MusicIndex enum in musicplayer.h, and add it to every array below
 
-const char* MusicPlayer::strmListNormal[MusicPlayer::MusicIndex_Num] = {
+const char* MusicPlayer::strmListNormal[MusicPlayer::MusicIndex::Num] = {
     nullptr,
     "STRM_BGM_CHIJOU",
     "STRM_BGM_CHIKA",
@@ -66,7 +66,7 @@ const char* MusicPlayer::strmListNormal[MusicPlayer::MusicIndex_Num] = {
     "WSD_BGM_SHIRO_LAST",
 };
 
-const char* MusicPlayer::strmListFast[MusicPlayer::MusicIndex_Num] = {
+const char* MusicPlayer::strmListFast[MusicPlayer::MusicIndex::Num] = {
     nullptr,
     "STRM_BGM_CHIJOU_FAST",
     "STRM_BGM_CHIKA_FAST",
@@ -98,7 +98,7 @@ const char* MusicPlayer::strmListFast[MusicPlayer::MusicIndex_Num] = {
     "WSD_BGM_SHIRO_LAST_FAST",
 };
 
-const char* MusicPlayer::seqListNormal[MusicPlayer::MusicIndex_Num] = {
+const char* MusicPlayer::seqListNormal[MusicPlayer::MusicIndex::Num] = {
     nullptr,
     "SEQ_BGM_CHIJOU_V",
     "SEQ_BGM_CHIKA_V",
@@ -130,7 +130,7 @@ const char* MusicPlayer::seqListNormal[MusicPlayer::MusicIndex_Num] = {
     nullptr,
 };
 
-const char* MusicPlayer::seqListFast[MusicPlayer::MusicIndex_Num] = {
+const char* MusicPlayer::seqListFast[MusicPlayer::MusicIndex::Num] = {
     nullptr,
     "SEQ_BGM_CHIJOU_FAST_V",
     "SEQ_BGM_CHIKA_FAST_V",

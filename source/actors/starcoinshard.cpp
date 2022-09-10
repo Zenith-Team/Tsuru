@@ -45,10 +45,10 @@ public:
 const Profile StarCoinShardProfile(&StarCoinShard::build, ProfileID::StarCoinShard);
 const Profile StarCoinShardMgrProfile(&StarCoinShardMgr::build, ProfileID::StarCoinShardMgr);
 
-PROFILE_RESOURCES(ProfileID::StarCoinShard, Profile::LoadResourcesAt_Course, "star_coin");
+PROFILE_RESOURCES(ProfileID::StarCoinShard, Profile::LoadResourcesAt::Course, "star_coin");
 
 const HitboxCollider::Info StarCoinShard::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(10.0f, 10.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &StarCoinShard::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(10.0f, 10.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &StarCoinShard::collisionCallback
 };
 
 StarCoinShard::StarCoinShard(const ActorBuildInfo* buildInfo)
@@ -104,7 +104,7 @@ u32 StarCoinShard::onDraw() {
 }
 
 void StarCoinShard::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    if (hcOther->owner->type == StageActor::StageActorType_Player) {
+    if (hcOther->owner->type == StageActor::Type::Player) {
         StarCoinShard* self = (StarCoinShard*)hcSelf->owner;
 
         self->mgr->collectedCount++;

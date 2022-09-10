@@ -15,13 +15,13 @@ public:
     };
 
 public:
-    enum Flags {
-        Flag_OnGround        = 1 << 0,
-        Flag_OnSlope         = 1 << 1,
-        Flag_OnSemiSold      = 1 << 4,
-        Flag_CollidedRight   = 1 << 18,
-        Flag_CollidedLeft    = 1 << 19
-    };
+    ENUM_CLASS(Flags,
+        OnGround        = 1 << 0,
+        OnSlope         = 1 << 1,
+        OnSemiSolid     = 1 << 4,
+        CollidedRight   = 1 << 18,
+        CollidedLeft    = 1 << 19
+    );
 
 public:
     PhysicsMgr();
@@ -56,19 +56,19 @@ public:
 
     // Checks if the actor is on ground
     // @return Whether or not the actor is currently on ground
-    inline bool isOnGround()      { return this->output & Flag_OnGround;      }
+    inline bool isOnGround()      { return this->output & Flags::OnGround;      }
     // Checks if the actor is colliding with something on the right
     // @return Whether or not the actor is currently colliding with something on the right
-    inline bool isCollidedRight() { return this->output & Flag_CollidedRight; }
+    inline bool isCollidedRight() { return this->output & Flags::CollidedRight; }
     // Checks if the actor is colliding with something on the left
     // @return Whether or not the actor is currently colliding with something on the left
-    inline bool isCollidedLeft()  { return this->output & Flag_CollidedLeft;  }
+    inline bool isCollidedLeft()  { return this->output & Flags::CollidedLeft;  }
     // Checks if the actor is colliding with something
     // @param direction Direction to check collision
     // @return Whether or not the actor is currently colliding with something
     inline bool isCollided(u32 direction) {
         if (direction > 1) return false;
-        return this->output & (Flag_CollidedRight << direction);
+        return this->output & (Flags::CollidedRight << direction);
     }
 
     u8 _4C[0x844];               // 4C

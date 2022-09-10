@@ -11,10 +11,10 @@ class BeepBlock : public MultiStateActor {
     SEAD_RTTI_OVERRIDE_IMPL(BeepBlock, MultiStateActor)
 
 public:
-    enum BeepBlockColor {
-        BeepBlockColor_Red = 0,
-        BeepBlockColor_Blue = 1
-    };
+    ENUM_CLASS(Color,
+        Red,
+        Blue
+    );
 
 public:
     BeepBlock(const ActorBuildInfo* buildInfo);
@@ -28,9 +28,9 @@ public:
 
     ModelWrapper* model;
     RectCollider rectCollider;
-    BeepBlockColor beepBlockType;
+    Color::__type__ beepBlockType;
 
-    static BeepBlockColor CurrentBeepBlockState;
+    static Color::__type__ CurrentBeepBlockState;
 
     static const ShapedCollider::Info colliderInfo;
 
@@ -46,19 +46,19 @@ CREATE_STATE(BeepBlock, BlueEnabled);
 CREATE_STATE(BeepBlock, BlueDisabled);
 
 const Profile BeepBlockProfile(&BeepBlock::build, ProfileID::BeepBlock);
-PROFILE_RESOURCES(ProfileID::BeepBlock, Profile::LoadResourcesAt_Course, "star_coin");
+PROFILE_RESOURCES(ProfileID::BeepBlock, Profile::LoadResourcesAt::Course, "star_coin");
 
 const ShapedCollider::Info BeepBlock::colliderInfo = {
     Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-8.0f, 8.0f), Vec2f(8.0f, -8.0f), 0
 };
 
-BeepBlock::BeepBlockColor BeepBlock::CurrentBeepBlockState = BeepBlock::BeepBlockColor_Blue;
+BeepBlock::Color::__type__ BeepBlock::CurrentBeepBlockState = BeepBlock::Color::Blue;
 
 BeepBlock::BeepBlock(const ActorBuildInfo* buildInfo)
     : MultiStateActor(buildInfo)
     , model(nullptr)
     , rectCollider()
-    , beepBlockType(BeepBlockColor_Blue)
+    , beepBlockType(BeepBlock::Color::Blue)
 { }
 
 Actor* BeepBlock::build(const ActorBuildInfo* buildInfo) {
@@ -70,9 +70,9 @@ u32 BeepBlock::onCreate() {
 
     this->model = ModelWrapper::create("star_coin", "star_coinA");
 
-    this->beepBlockType = static_cast<BeepBlockColor>(this->eventID1 >> 0x4 & 0xF); // Nybble 1
+    this->beepBlockType = static_cast<BeepBlock::Color::__type__>(this->eventID1 >> 0x4 & 0xF); // Nybble 1
 
-    if (this->beepBlockType == BeepBlockColor_Red)
+    if (this->beepBlockType == BeepBlock::Color::Red)
         this->doStateChange(&StateID_RedDisabled);
     else
         this->doStateChange(&StateID_BlueDisabled);
@@ -104,11 +104,11 @@ u32 BeepBlock::onDraw() {
 void BeepBlock::beginState_RedEnabled() {
     ColliderMgr::instance()->add(&this->rectCollider);
 
-    // Don't forget to change the model here when that's done :)
+    // Don't forget to change the model here when that's done
 }
 
 void BeepBlock::executeState_RedEnabled() {
-    if (CurrentBeepBlockState == BeepBlockColor_Blue)
+    if (CurrentBeepBlockState == BeepBlock::Color::Blue)
         this->doStateChange(&StateID_RedDisabled);
 
     this->rectCollider.execute();
@@ -121,11 +121,11 @@ void BeepBlock::endState_RedEnabled() { }
 void BeepBlock::beginState_RedDisabled() {
     ColliderMgr::instance()->remove(&this->rectCollider);
 
-    // Don't forget to change the model here when that's done :)
+    // Don't forget to change the model here when that's done
 }
 
 void BeepBlock::executeState_RedDisabled() {
-    if (CurrentBeepBlockState == BeepBlockColor_Red)
+    if (CurrentBeepBlockState == BeepBlock::Color::Red)
         this->doStateChange(&StateID_RedEnabled);
 }
 
@@ -136,11 +136,11 @@ void BeepBlock::endState_RedDisabled() { }
 void BeepBlock::beginState_BlueEnabled() {
     ColliderMgr::instance()->add(&this->rectCollider);
 
-    // Don't forget to change the model here when that's done :)
+    // Don't forget to change the model here when that's done
 }
 
 void BeepBlock::executeState_BlueEnabled() {
-    if (CurrentBeepBlockState == BeepBlockColor_Red)
+    if (CurrentBeepBlockState == BeepBlock::Color::Red)
         this->doStateChange(&StateID_BlueDisabled);
 
     this->rectCollider.execute();
@@ -153,11 +153,11 @@ void BeepBlock::endState_BlueEnabled() { }
 void BeepBlock::beginState_BlueDisabled() {
     ColliderMgr::instance()->remove(&this->rectCollider);
 
-    // Don't forget to change the model here when that's done :)
+    // Don't forget to change the model here when that's done
 }
 
 void BeepBlock::executeState_BlueDisabled() {
-    if (CurrentBeepBlockState == BeepBlockColor_Blue)
+    if (CurrentBeepBlockState == BeepBlock::Color::Blue)
         this->doStateChange(&StateID_BlueEnabled);
 }
 

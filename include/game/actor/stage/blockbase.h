@@ -8,27 +8,27 @@ class BlockAndCoinBase : public MultiStateActor {
     SEAD_RTTI_OVERRIDE(BlockAndCoinBase, MultiStateActor);
 
 public:
-    enum Content {
-        Content_FireMushroom = 0,
-        Content_MiniMushroom = 1,
-        Content_LifeMushroom = 2,
-        Content_Mushroom = 3,
-        Content_FireFlower = 4,
-        Content_IceMushroom = 5,
-        Content_PenguinMushroom = 6,
-        Content_PropellerMushroom = 7,
-        Content_Star = 8,
-        Content_ContinuousStar = 9,
-        Content_SquirrelMushroom = 10,
-        Content_LifeMoon = 11,
-        Content_Coin = 12,
-        Content_MultiCoin = 13,
-        Content_Vine = 15,
-        Content_Yoshi = 16,
-        Content_Spring = 17,
-        Content_MushroomIfSmall = 19,
-        Content_Nothing = 21
-    };
+    ENUM_CLASS(Content,
+        FireMushroom = 0,
+        MiniMushroom = 1,
+        LifeMushroom = 2,
+        Mushroom = 3,
+        FireFlower = 4,
+        IceMushroom = 5,
+        PenguinMushroom = 6,
+        PropellerMushroom = 7,
+        Star = 8,
+        ContinuousStar = 9,
+        SquirrelMushroom = 10,
+        LifeMoon = 11,
+        Coin = 12,
+        MultiCoin = 13,
+        Vine = 15,
+        Yoshi = 16,
+        Spring = 17,
+        MushroomIfSmall = 19,
+        Nothing = 21
+    );
 
 public:
     BlockAndCoinBase(const ActorBuildInfo* buildInfo);
@@ -95,7 +95,7 @@ public:
     u8 playerID2;
     u8 _1AB3;
     u32 _1AB4;
-    Content content;
+    Content::__type__ content;
     u32 hitPlayerID;
     u32 spawnDirection;
     u8 _1AC4;
@@ -157,12 +157,12 @@ class BlockBase : public MovementBlockAndCoinBase {
     SEAD_RTTI_OVERRIDE(BlockBase, MovementBlockAndCoinBase);
 
 public:
-    enum StateType {
-        StateType_QuestionBlock,
-        StateType_BrickBlock,
-        StateType_UsedBlock,
-        StateType_InvisibleBlock
-    };
+    ENUM_CLASS(StateType,
+        QuestionBlock,
+        BrickBlock,
+        UsedBlock,
+        InvisibleBlock
+    );
 
 public:
     BlockBase(const ActorBuildInfo* buildInfo);
@@ -211,7 +211,7 @@ public:
     f32 _1CB0;
     f32 _1CB4;
     f32 _1CB8;
-    StateType stateType;
+    StateType::__type__ stateType;
     u32 _1CC0;
     u8 _1CC4;
     u8 _1CC5;

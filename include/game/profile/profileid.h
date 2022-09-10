@@ -1,9 +1,9 @@
 #pragma once
 
-namespace ProfileID {
+#include "types.h"
 
 //* Remember to add your new profile to the profile array in profile.cpp as well as the end of the list below
-enum ProfileIDType {
+ENUM_CLASS(ProfileID,
     BowserAmpController = 19,
     MovingMushroomPlatform = 78,
     Water = 84,
@@ -279,8 +279,8 @@ enum ProfileIDType {
     Splunkin,
     SwitchBlock,
     PowerupSwitcher,
+    SwitchBlockEventActivator,
+    RedBlueBlock,
 
     Num
-};
-
-}
+);

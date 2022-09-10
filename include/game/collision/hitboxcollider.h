@@ -9,12 +9,12 @@ class HitboxCollider : public sead::IDisposer { // Size: 0x128
 public:
     typedef void (*Callback)(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 
-    enum HitboxShape {
-        HitboxShape_Rectangle      = 0,
-        HitboxShape_Circle         = 1,
-        HitboxShape_TrapezoidVert  = 2,
-        HitboxShape_TrapezoidHoriz = 3
-    };
+    ENUM_CLASS(Shape,
+        Rectangle,
+        Circle,
+        TrapezoidVert,
+        TrapezoidHoriz
+    );
 
     struct Info {
 
@@ -22,7 +22,7 @@ public:
 
         Vec2f distToCenter;     // 0
         Vec2f distToEdge;       // 8
-        HitboxShape shape;      // 10
+        Shape::__type__ shape;      // 10
         u32 _14;                // 14
         u32 _18;                // 18
         u32 _1C;                // 1C
@@ -30,7 +30,7 @@ public:
         u32 interactionMask;    // 24  Sets allowed interactions such as being pickup-able
         Callback callback;      // 28
     
-        void set(const Vec2f& distToCenter, const Vec2f& distToEdge, HitboxShape shape, u32 _14, u32 _18, u32 _1C, u32 collisionMask, u32 interactionMask, Callback callback) {
+        void set(const Vec2f& distToCenter, const Vec2f& distToEdge, Shape::__type__ shape, u32 _14, u32 _18, u32 _1C, u32 collisionMask, u32 interactionMask, Callback callback) {
             this->distToCenter = distToCenter;
             this->distToEdge = distToEdge;
             this->shape = shape;

@@ -61,14 +61,14 @@ CREATE_STATE(AngrySun, AttackSpin);
 CREATE_STATE(AngrySun, Spit);
 
 const HitboxCollider::Info AngrySun::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::HitboxShape_Circle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Shape::Circle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback
 };
 
 const Profile AngrySunProfile(&AngrySun::build, ProfileID::AngrySun);
 const Profile AngryMoonProfile(&AngrySun::build, ProfileID::AngryMoon);
 
-PROFILE_RESOURCES(ProfileID::AngrySun, Profile::LoadResourcesAt_Course, "star_coin");
-PROFILE_RESOURCES(ProfileID::AngryMoon, Profile::LoadResourcesAt_Course, "star_coin");
+PROFILE_RESOURCES(ProfileID::AngrySun, Profile::LoadResourcesAt::Course, "star_coin");
+PROFILE_RESOURCES(ProfileID::AngryMoon, Profile::LoadResourcesAt::Course, "star_coin");
 
 AngrySun::AngrySun(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)

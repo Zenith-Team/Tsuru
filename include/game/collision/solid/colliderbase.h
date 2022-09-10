@@ -68,78 +68,78 @@ public:
         s8* playerID;      // 10
     };
 
-    enum Type {
-        Type_Solid                          = 0,
-        Type_Coin                           = 1,
-        Type_GreenCoin                      = 2,
-        Type_BlueCoin                       = 3,
-        Type_CoinOutline                    = 4,
-        Type_Fence                          = 5,
-        Type_Vine                           = 6,
-        Type_QuestionBlock                  = 7,
-        Type_BrickBlock                     = 8,
-        Type_QuestionBlockBig               = 9,
-        Type_BrickBlockBig                  = 10,
-        Type_BlockUsedBig                   = 11,
-        Type_BlockUsed                      = 12,
-        Type_Unknown                        = 13,
-        Type_WoodStoneBlock                 = 14,
-        Type_Unknown2                       = 15,
-        Type_DonutBlock                     = 16,
-        Type_BoostBlock                     = 17,
-        Type_Unknown3                       = 18,
-        Type_Water                          = 19,
-        Type_Lava                           = 20,
-        Type_Poison                         = 21,
-        Type_Quicksand                      = 22,
-        Type_Carpet                         = 23, // Unused
-        Type_Leaves                         = 24, // Used by Palm Tree
-        Type_Wood                           = 25, // Used by Floating Barrel
-        Type_Bouncy                         = 26, // Used by Bouncy Cloud
-        Type_SwingingVine                   = 27,
-        Type_SwingingChain                  = 28,
-        Type_RopeLadder                     = 29,
-        Type_Ice                            = 30,
-        Type_Ice2                           = 31, // Used by frozen actors
-        Type_Ice3                           = 32, // Used by Portable Ice Block
-        Type_Unknown5                       = 33, // Used by Grrrol Passage and Grrrol Spawner
-        Type_Unknown6                       = 34,
-        Type_Unknown7                       = 35, // Used by Pipe Bubbles
-        Type_Unknown8                       = 36, // Used by Airship Hand
-        Type_Unknown9                       = 37, // Used by Water Geyser
-        Type_Unknown10                      = 38, // Used by Pipes
-        Type_Unknown11                      = 39, // Used by Spine Coaster
-        Type_Unknown12                      = 40, // Used by Urchin
-        Type_InvisibleBlock                 = 41
-    };
+    ENUM_CLASS(Type,
+        Solid                          = 0,
+        Coin                           = 1,
+        GreenCoin                      = 2,
+        BlueCoin                       = 3,
+        CoinOutline                    = 4,
+        Fence                          = 5,
+        Vine                           = 6,
+        QuestionBlock                  = 7,
+        BrickBlock                     = 8,
+        QuestionBlockBig               = 9,
+        BrickBlockBig                  = 10,
+        BlockUsedBig                   = 11,
+        BlockUsed                      = 12,
+        Unknown                        = 13,
+        WoodStoneBlock                 = 14,
+        Unknown2                       = 15,
+        DonutBlock                     = 16,
+        BoostBlock                     = 17,
+        Unknown3                       = 18,
+        Water                          = 19,
+        Lava                           = 20,
+        Poison                         = 21,
+        Quicksand                      = 22,
+        Carpet                         = 23, // Unused
+        Leaves                         = 24, // Used by Palm Tree
+        Wood                           = 25, // Used by Floating Barrel
+        Bouncy                         = 26, // Used by Bouncy Cloud
+        SwingingVine                   = 27,
+        SwingingChain                  = 28,
+        RopeLadder                     = 29,
+        Ice                            = 30,
+        Ice2                           = 31, // Used by frozen actors
+        Ice3                           = 32, // Used by Portable Ice Block
+        Unknown5                       = 33, // Used by Grrrol Passage and Grrrol Spawner
+        Unknown6                       = 34,
+        Unknown7                       = 35, // Used by Pipe Bubbles
+        Unknown8                       = 36, // Used by Airship Hand
+        Unknown9                       = 37, // Used by Water Geyser
+        Unknown10                      = 38, // Used by Pipes
+        Unknown11                      = 39, // Used by Spine Coaster
+        Unknown12                      = 40, // Used by Urchin
+        InvisibleBlock                 = 41
+    );
 
-    enum SolidityType {
-        SolidityType_None                   = 0,
-        SolidityType_Solid                  = 1,
-        SolidityType_SolidOnTop             = 2,
-        SolidityType_SolidOnBottom          = 3,
-        SolidityType_SolidOnTopAndBottom    = 4,
-        SolidityType_Slide                  = 17,
-        SolidityType_SteepSlide             = 18,
-        SolidityType_Staircase              = 33,
-        SolidityType_Staircase2             = 34
-    };
+    ENUM_CLASS(SolidityType,
+        None                            = 0,
+        Solid                           = 1,
+        SolidOnTop                      = 2,
+        SolidOnBottom                   = 3,
+        SolidOnTopAndBottom             = 4,
+        Slide                           = 17,
+        SteepSlide                      = 18,
+        Staircase                       = 33,
+        Staircase2                      = 34
+    );
 
-    enum SurfaceType {
-        SurfaceType_Regular                 = 0,
-        SurfaceType_Ice                     = 1,
-        SurfaceType_Snow                    = 2,
-        SurfaceType_Quicksand               = 3,
-        SurfaceType_Sand                    = 4,
-        SurfaceType_Grass                   = 5,
-        SurfaceType_Cloud                   = 6,
-        SurfaceType_BeachSand               = 7, // Unused
-        SurfaceType_Carpet                  = 8, // Unused
-        SurfaceType_Leaves                  = 9,
-        SurfaceType_Wood                    = 10,
-        SurfaceType_Water                   = 11,
-        SurfaceType_BeanstalkLeaf           = 12
-    };
+    ENUM_CLASS(SurfaceType,
+        Regular                         = 0,
+        Ice                             = 1,
+        Snow                            = 2,
+        Quicksand                       = 3,
+        Sand                            = 4,
+        Grass                           = 5,
+        Cloud                           = 6,
+        BeachSand                       = 7, // Unused
+        Carpet                          = 8, // Unused
+        Leaves                          = 9,
+        Wood                            = 10,
+        Water                           = 11,
+        BeanstalkLeaf                   = 12
+    );
 
 public:
     ColliderBase();
@@ -158,9 +158,9 @@ public:
     virtual void vf74(u32*) = 0;
     virtual bool vf7C(Vec2f*, f32) = 0;
 
-    void setType(Type type);
-    void setSolidityType(SolidityType solidityType);
-    void setSurfaceType(SurfaceType surfaceType);
+    void setType(Type::__type__ type);
+    void setSolidityType(SolidityType::__type__ solidityType);
+    void setSurfaceType(SurfaceType::__type__ surfaceType);
 
     List::Node _10[8];                          // 10
     Rect rect;                                  // 70
@@ -182,7 +182,7 @@ public:
     u32 rotation;                               // F4
     u32 _F8;                                    // F8
     List _FC[4];                                // FC
-    Type type;                                  // 12C
+    Type::__type__ type;                        // 12C
     u32 flags;                                  // 130
     u32 _134;                                   // 134
     Callback topCallback;                       // 138  PhysicsMgr Sensor colliding with top of the collider

@@ -51,11 +51,11 @@ const ActorInfo ScuttlebugActorInfo = {
 };
 
 const HitboxCollider::Info Scuttlebug::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &Enemy::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &Enemy::collisionCallback
 };
 
 const Profile ScuttlebugProfile(&Scuttlebug::build, ProfileID::Scuttlebug, "Scuttlebug", &ScuttlebugActorInfo);
-PROFILE_RESOURCES(ProfileID::Scuttlebug, Profile::LoadResourcesAt_Course, "gasagoso");
+PROFILE_RESOURCES(ProfileID::Scuttlebug, Profile::LoadResourcesAt::Course, "gasagoso");
 
 Scuttlebug::Scuttlebug(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)

@@ -39,6 +39,8 @@ Files:
   - actors/splunkin.cpp
   - actors/switchblock.cpp
   - actors/powerupswitcher.cpp
+  - actors/switchblockeventactivator.cpp
+  - actors/redblueblock.cpp
 #* Course Select Actors:
   - actors/cscustomactor.cpp
 Hooks:

@@ -97,7 +97,7 @@ public:
     // @param void* Unknown
     // @param setPowerupState Powerup state to set the colliding player to
     // @param u32 Unknown
-    u32 FUN_25196e8(void*, PlayerBase::PowerupState setPowerupState, u32);
+    u32 FUN_25196e8(void*, PlayerBase::PowerupState::__type__ setPowerupState, u32);
     // Related to player collision (plays get sound?)
     u32 FUN_2519580(u32, u32);
 

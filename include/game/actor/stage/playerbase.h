@@ -9,43 +9,43 @@ class PlayerBase : public StageActor { // Size: 0x2750
     SEAD_RTTI_OVERRIDE(PlayerBase, StageActor)
 
 public:
-    enum PowerupState {
-        PowerupState_Small      = 0,
-        PowerupState_Big        = 1,
-        PowerupState_Fire       = 2,
-        PowerupState_Mini       = 3,
-        PowerupState_Propeller  = 4,
-        PowerupState_Penguin    = 5,
-        PowerupState_Ice        = 6,
-        PowerupState_Acorn      = 7,
-        PowerupState_PAcorn     = 8
-    };
+    ENUM_CLASS(PowerupState,
+        Small,
+        Big,
+        Fire,
+        Mini,
+        Propeller,
+        Penguin,
+        Ice,
+        Acorn,
+        PAcorn
+    );
 
-    enum DamageType { // TODO: Figure out all these types
-        DamageType_SingleHit,
-        DamageType_SingleHit_2,
-        DamageType_SingleHitBounce,
-        DamageType_SingleHit_3,
-        DamageType_Bounce,
-        DamageType_Bounce_2,
-        DamageType_Unk1,
-        DamageType_Unk2,
-        DamageType_Unk3,
-        DamageType_LavaNoInstaKill,
-        DamageType_Lava,
-        DamageType_Ice,
-        DamageType_Ice_2,
-        DamageType_Electric,
-        DamageType_Poison,
-        DamageType_InstaKill,
-        DamageType_InstaKill_2
-    };
+    ENUM_CLASS(DamageType, // TODO: Figure out all these types
+        SingleHit,
+        SingleHit_2,
+        SingleHitBounce,
+        SingleHit_3,
+        Bounce,
+        Bounce_2,
+        Unk1,
+        Unk2,
+        Unk3,
+        LavaNoInstaKill,
+        Lava,
+        Ice,
+        Ice_2,
+        Electric,
+        Poison,
+        InstaKill,
+        InstaKill_2
+    );
 
-    enum TallType {
-        TallType_Mini,
-        TallType_Small,
-        TallType_Normal
-    };
+    ENUM_CLASS(TallType,
+        Mini,
+        Small,
+        Normal
+    );
 
 public:
     PlayerBase(const ActorBuildInfo* buildInfo);
@@ -73,11 +73,11 @@ public:
     virtual void vf10C() = 0;
     virtual void vf114() = 0;
     virtual u32 vf11C() = 0;
-    virtual void vf124(PowerupState, bool); // Calls vf12C
-    virtual void vf12C(PowerupState, bool) = 0;
+    virtual void vf124(PowerupState::__type__, bool); // Calls vf12C
+    virtual void vf12C(PowerupState::__type__, bool) = 0;
     virtual bool vf134();
     // @return The TallType value for the corresponding PowerupState
-    virtual TallType getTallType(PowerupState powerupState) = 0;
+    virtual TallType getTallType(PowerupState::__type__ powerupState) = 0;
     virtual void vf144() = 0;
     virtual void vf14C(Vec3f*, f32*) = 0;
     virtual u32 vf154();
@@ -270,10 +270,10 @@ public:
     virtual bool vf8B4() = 0;
     virtual void vf8BC() = 0;
     virtual bool tryDamage(HitboxCollider* hcOther) = 0;
-    virtual bool trySpecialDamage(StageActor* collidingActor, DamageType damageType) = 0;
-    virtual bool vf8D4(StageActor* collidingActor, DamageType damageType) = 0;
+    virtual bool trySpecialDamage(StageActor* collidingActor, DamageType::__type__ damageType) = 0;
+    virtual bool vf8D4(StageActor* collidingActor, DamageType::__type__ damageType) = 0;
     virtual void vf8DC(f32, f32, u32, u32, u32, u32) = 0;
-    virtual bool doDamage(StageActor* collidingActor, DamageType damageType) = 0;
+    virtual bool doDamage(StageActor* collidingActor, DamageType::__type__ damageType) = 0;
     virtual u32 vf8EC(u32, u32) = 0;
     virtual void vf8F4() = 0;
     virtual u8 vf8FC() = 0;
@@ -322,7 +322,7 @@ public:
     u8 _27C[0x2C];                        // 27C
     PlayerInput input;                    // 2A8
     u8 _33C[0x1C4];                       // 33C
-    PowerupState powerupState;            // 500
+    PowerupState::__type__ powerupState;  // 500
     u8 _504[0x4];                         // 504
     ActorPhysicsMgr playerPhysicsMgr;     // 508
     u8 _19E8[0xC0];                       // 19E8

@@ -14,15 +14,15 @@ public:
     typedef Actor* (*buildFunction)(const ActorBuildInfo*);
 
 public:
-    enum Flags {
-        Flag_DontRenderOffScreen = 1 << 1
-    };
+    ENUM_CLASS(Flags,
+        DontRenderOffScreen = 1 << 1
+    );
 
-    enum LoadResourcesAt {
-        LoadResourcesAt_Boot,
-        LoadResourcesAt_Course,
-        LoadResourcesAt_CourseSelect
-    };
+    ENUM_CLASS(LoadResourcesAt,
+        Boot,
+        Course,
+        CourseSelect
+    );
 
 public:
     Profile(buildFunction, u32 id, const sead::SafeString& name = "", const ActorInfo* actorInfo = nullptr, u32 flags = 0);
@@ -32,13 +32,16 @@ public:
     // @return Pointer to retrieved profile
     static Profile* get(u32 id);
     static s16 getPriority(u32 id);
-    static LoadResourcesAt getResourcesLoadAt(u32 id);
+    static LoadResourcesAt::__type__ getResourcesLoadAt(u32 id);
     static u8 getResourceCount(u32 id);
     static const sead::SafeString* getResourceList(u32 id);
     static u32 getNumProfiles();
-    static void loadProfileResources(LoadResourcesAt, sead::Heap* heap);
+    static void loadProfileResources(LoadResourcesAt::__type__, sead::Heap* heap);
 
     static u32 spriteToProfileList[];
+    static u32 sprite(u32 spriteID) {
+        return spriteToProfileList[spriteID];
+    }
 
     buildFunction buildFunc;    // Pointer to build function of the target actor
     u32 id;                     // Profile ID
@@ -67,7 +70,7 @@ private:
 };
 
 struct ProfileResources {
-    ProfileResources(u32 id, Profile::LoadResourcesAt loadAt, u32 count, const sead::SafeString resources[]) {
+    ProfileResources(u32 id, Profile::LoadResourcesAt::__type__ loadAt, u32 count, const sead::SafeString resources[]) {
         if (id < Profile::NUM_PROFILES_ORIGINAL) {
             Profile::resourcesLoadAtOriginal[id] = loadAt;
             Profile::resourceCountOriginal[id] = count;

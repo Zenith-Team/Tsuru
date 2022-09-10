@@ -27,7 +27,7 @@ public:
 };
 
 const Profile TimeClockProfile(&TimeClock::build, ProfileID::TimeClock);
-PROFILE_RESOURCES(ProfileID::TimeClock, Profile::LoadResourcesAt_Course, "timeclock");
+PROFILE_RESOURCES(ProfileID::TimeClock, Profile::LoadResourcesAt::Course, "timeclock");
 
 TimeClock::TimeClock(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
@@ -39,7 +39,7 @@ Actor* TimeClock::build(const ActorBuildInfo* buildInfo) {
 }
 
 const HitboxCollider::Info TimeClock::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(12.0f, 12.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &TimeClock::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(12.0f, 12.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &TimeClock::collisionCallback
 };
 
 u32 TimeClock::onCreate() {
@@ -70,7 +70,7 @@ void TimeClock::updateModel() {
 
 void TimeClock::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     TimeClock* self = static_cast<TimeClock*>(hcSelf->owner);
-    if (hcOther->owner->type == StageActorType_Player || hcOther->owner->type == StageActorType_Yoshi) {
+    if (hcOther->owner->type == StageActor::Type::Player || hcOther->owner->type == StageActor::Type::Yoshi) {
         Vec3f effectPos(self->position.x, self->position.y - 12.0f, 4500.0f);
         Effect::spawn(RP_FlagPass_1, &effectPos);
 

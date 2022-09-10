@@ -48,8 +48,8 @@ CREATE_STATE(Cataquack, Launch);
 const ActorInfo CataquackActorInfo = {
     Vec2i(8, -8), Vec2i(8, -8), Vec2i(32, 32), 0, 0, 0, 0, 0
 };
-const Profile CataquackProfile(&Cataquack::build, ProfileID::Cataquack, "Cataquack", &CataquackActorInfo, Profile::Flag_DontRenderOffScreen);
-PROFILE_RESOURCES(ProfileID::Cataquack, Profile::LoadResourcesAt_Course, "poihana");
+const Profile CataquackProfile(&Cataquack::build, ProfileID::Cataquack, "Cataquack", &CataquackActorInfo, Profile::Flags::DontRenderOffScreen);
+PROFILE_RESOURCES(ProfileID::Cataquack, Profile::LoadResourcesAt::Course, "poihana");
 
 Cataquack::Cataquack(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)
@@ -65,7 +65,7 @@ Actor* Cataquack::build(const ActorBuildInfo* buildInfo) {
 }
 
 const HitboxCollider::Info Cataquack::collisionInfo = {
-    Vec2f(0.0f, 14.0f), Vec2f(11.0f, 14.0f), HitboxCollider::HitboxShape_Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Cataquack::collisionCallback
+    Vec2f(0.0f, 14.0f), Vec2f(11.0f, 14.0f), HitboxCollider::Shape::Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Cataquack::collisionCallback
 };
 
 u32 Cataquack::onCreate() {
@@ -92,7 +92,7 @@ u32 Cataquack::onCreate() {
     };
 
     this->rectCollider.init(this, colliderInfo);
-    this->rectCollider.setType(ColliderBase::Type_Bouncy);
+    this->rectCollider.setType(ColliderBase::Type::Bouncy);
     //ColliderMgr::instance()->add(&rectCollider);
 
     this->doStateChange(&Cataquack::StateID_Walk);
@@ -227,7 +227,7 @@ void Cataquack::endState_Launch() {
 }
 
 void Cataquack::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    if (hcOther->owner->type != StageActorType_Player && hcOther->owner->type != StageActorType_Yoshi) return;
+    if (hcOther->owner->type != StageActor::Type::Player && hcOther->owner->type != StageActor::Type::Yoshi) return;
     Cataquack* self = static_cast<Cataquack*>(hcSelf->owner);
 
     self->target = hcOther->owner;

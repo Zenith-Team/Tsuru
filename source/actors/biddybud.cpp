@@ -52,28 +52,28 @@ CREATE_STATE(Biddybud, Die);
 CREATE_STATE(Biddybud, DieSquish);
 
 const Profile BiddybudProfile(&Biddybud::build, ProfileID::Biddybud);
-PROFILE_RESOURCES(ProfileID::Biddybud, Profile::LoadResourcesAt_Course, "tenten_w");
+PROFILE_RESOURCES(ProfileID::Biddybud, Profile::LoadResourcesAt::Course, "tenten_w");
 
 // collider related stuff
 
 HitboxCollider::Info Biddybud::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0xFFFFFFFF, 0, &Enemy::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFFFFFF, 0, &Enemy::collisionCallback
 };
 
 void Biddybud::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     u32 hitType = this->processCollision(hcSelf, hcOther, 0);
-    if (hitType == HitType_Collide)
+    if (hitType == HitType::Collide)
         this->damagePlayer(hcSelf, hcOther);
-    else if (hitType == HitType_NormalJump || hitType == HitType_SpinJump)
+    else if (hitType == HitType::NormalJump || hitType == HitType::SpinJump)
         this->killPlayerJump(hcOther->owner, 0.0f, &Biddybud::StateID_DieSquish);
 }
 
 void Biddybud::collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     u32 hitType = this->processCollision(hcSelf, hcOther, 0);
-    if (hitType == HitType_Collide) {
+    if (hitType == HitType::Collide) {
         this->damagePlayer(hcSelf, hcOther);
     }
-    if (hitType == HitType_NormalJump) {
+    if (hitType == HitType::NormalJump) {
         Biddybud::collisionStar(hcSelf, hcOther);
     }
 

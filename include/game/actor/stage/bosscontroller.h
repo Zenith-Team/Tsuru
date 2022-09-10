@@ -8,9 +8,9 @@ class BossController : public StateActor { // Size: 0x17E0
     SEAD_RTTI_OVERRIDE(BossController, StateActor)
 
 public:
-    enum EndSequenceState {
-        EndSequenceState_WaitingForBossDeath = 2
-    };
+    ENUM_CLASS(EndSequenceState,
+        WaitingForBossDeath = 2
+    );
 
 public:
     BossController(const ActorBuildInfo* ActorBuildInfo);
@@ -60,7 +60,7 @@ public:
     u8 _17CA;
     bool bossDoneDying;
     u32 _17CC;
-    EndSequenceState endSequenceState;
+    EndSequenceState::__type__ endSequenceState;
     u32 _17D4;
     s32 startSequenceWaitTimer;
     u8 _17DC;

@@ -4,19 +4,19 @@
 
 class PlatformModel {
 public:
-    enum PlatformType {
-        PlatformType_Wood           = 0,
-        PlatformType_Stone          = 1,
-        PlatformType_PinkMushroom   = 2,
-        PlatformType_BoltPlatform   = 3,
-        PlatformType_Crashes        = 4, // boss_koopa_lift
-        PlatformType_Bowser         = 5,
-        PlatformType_YellowMushroom = 6,
-        PlatformType_WoodSnow       = 7,
-        PlatformType_Sky            = 8,
-        PlatformType_Tower          = 9,
-        PlatformType_Karansha       = 10
-    };
+    ENUM_CLASS(Type,
+        Wood,
+        Stone,
+        PinkMushroom,
+        BoltPlatform,
+        KoopaLift, // boss_koopa_lift, crashes
+        Bowser,
+        YellowMushroom,
+        WoodSnow,
+        Sky,
+        Tower,
+        Karansha
+    );
 
 public:
     inline PlatformModel() {

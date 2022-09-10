@@ -26,7 +26,7 @@ public:
         for (Actor** current = ActorMgr::instance()->actors.start.buffer; current < ActorMgr::instance()->actors.end.buffer; current++) {
             Actor* actor = *current;
             if (actor) {
-                if (((StageActor*)actor)->type == StageActor::StageActorType_Boss) {
+                if (((StageActor*)actor)->type == StageActor::Type::Boss) {
                     return (Boss*)actor;
                 }
             }

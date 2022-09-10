@@ -18,13 +18,13 @@ class BasaltBones : public BossWrapper<18> {
     SEAD_RTTI_OVERRIDE_IMPL(BasaltBones, Boss)
 
 public:
-    enum SpawnStage {
-        SpawnStage_Wait,
-        SpawnStage_Shake,
-        SpawnStage_FlyOut,
-        SpawnStage_Assemble,
-        SpawnStage_Scream,
-    };
+    ENUM_CLASS(SpawnStage,
+        Wait,
+        Shake,
+        FlyOut,
+        Assemble,
+        Scream
+    );
 
     class Bone {
     public:
@@ -43,7 +43,7 @@ public:
                 return;
             }
 
-            if (hcOther->owner->type == StageActor::StageActorType_Player) {
+            if (hcOther->owner->type == StageActor::Type::Player) {
                 ((Player*)hcOther->owner)->tryDamage(hcSelf);
             }
         }
@@ -84,7 +84,7 @@ public:
 
     ModelWrapper* model;
     Vec3f startPosition;
-    SpawnStage spawnStage;
+    SpawnStage::__type__ spawnStage;
     Bone bones[6];
     union { u32 timer, assembler; };
     f32 down;
@@ -106,14 +106,14 @@ CREATE_STATE(BasaltBones, Assemble);
 CREATE_STATE(BasaltBones, AssembleFinalize);
 
 const Profile BasaltBonesProfile(&BasaltBones::build, ProfileID::BasaltBones);
-PROFILE_RESOURCES(ProfileID::BasaltBones, Profile::LoadResourcesAt_Course, "laron");
+PROFILE_RESOURCES(ProfileID::BasaltBones, Profile::LoadResourcesAt::Course, "laron");
 
 const HitboxCollider::Info BasaltBones::sCollisionInfo = {
-    Vec2f(0.0f, 6.0f), Vec2f(14.0f, 22.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &BasaltBones::collisionCallback
+    Vec2f(0.0f, 6.0f), Vec2f(14.0f, 22.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &BasaltBones::collisionCallback
 };
 
 const HitboxCollider::Info BasaltBones::Bone::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &BasaltBones::Bone::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &BasaltBones::Bone::collisionCallback
 };
 
 #define b(x) ((f32)(((f32)x) * 16.0f)) // Convert # of tiles to position value for it
@@ -158,7 +158,7 @@ BasaltBones::BasaltBones(const ActorBuildInfo* buildInfo)
     : BossWrapper<18>(buildInfo)
     , model(nullptr)
     , startPosition()
-    , spawnStage(SpawnStage_Wait)
+    , spawnStage(SpawnStage::Wait)
     , bones()
     , timer(0)
     , down(0.0f)
@@ -302,13 +302,13 @@ void BasaltBones::beginState_Spawn() {
 
 void BasaltBones::executeState_Spawn() {
     switch (this->spawnStage) {
-        case SpawnStage_Wait: {
+        case SpawnStage::Wait: {
             if (--this->timer == 0) {
-                this->spawnStage = SpawnStage_Shake;
+                this->spawnStage = SpawnStage::Shake;
                 this->timer = 60 * 2;
 
                 TileMgr::instance()->hasWaves = true;
-                TileMgr::instance()->waveType = TileMgr::WaveType_Lava;
+                TileMgr::instance()->waveType = TileMgr::WaveType::Lava;
 
                 defaultWaveRippleHeight = lava->effects.waveRippleHeight;
                 defaultWaveHorizontalSpeed = lava->effects.waveHorizontalSpeed;
@@ -319,11 +319,11 @@ void BasaltBones::executeState_Spawn() {
             break;
         }
 
-        case SpawnStage_Shake: {
+        case SpawnStage::Shake: {
             ZoneRumbleMgr::instance()->rumble(1);
 
             if (--this->timer == 0) {
-                this->spawnStage = SpawnStage_FlyOut;
+                this->spawnStage = SpawnStage::FlyOut;
                 this->timer = 63 * 5;
             }
 
@@ -333,7 +333,7 @@ void BasaltBones::executeState_Spawn() {
             break;
         }
 
-        case SpawnStage_FlyOut: {
+        case SpawnStage::FlyOut: {
             for (u32 i = 0; i < 6; i++) {
                 Bone& bone = this->bones[i];
                 
@@ -342,7 +342,7 @@ void BasaltBones::executeState_Spawn() {
                 bone.bezier.execute(&bone.position, bone.t);
             
                 if (done) {
-                    this->spawnStage = SpawnStage_Assemble;
+                    this->spawnStage = SpawnStage::Assemble;
                     bone.easer.set(Easing::cubicIn, 360.0f, 0.0f, 0.004f);
                 }
             }
@@ -350,7 +350,7 @@ void BasaltBones::executeState_Spawn() {
             break;
         }
 
-        case SpawnStage_Assemble: {
+        case SpawnStage::Assemble: {
             sead::Mathf::chase(&lava->effects.waveRippleHeight, defaultWaveRippleHeight, 0.2f);
             sead::Mathu::chase(&lava->effects.waveHorizontalSpeed, defaultWaveHorizontalSpeed, 42472454 / 40);
 
@@ -373,7 +373,7 @@ void BasaltBones::executeState_Spawn() {
             }
 
             if (change) {
-                this->spawnStage = SpawnStage_Scream;
+                this->spawnStage = SpawnStage::Scream;
                 this->draw = true;
                 for (u32 i = 0; i < 6; i++) {
                     Bone& bone = this->bones[i];
@@ -395,7 +395,7 @@ void BasaltBones::executeState_Spawn() {
             break;
         }
 
-        case SpawnStage_Scream: {
+        case SpawnStage::Scream: {
             if (--this->timer == 0) {
                 this->doStateChange(&BasaltBones::StateID_Active);
             }

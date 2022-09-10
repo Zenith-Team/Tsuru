@@ -39,7 +39,7 @@ CREATE_STATE(Splunkin, Die);
 
 const Profile SplunkinProfile(&Splunkin::build, ProfileID::Splunkin);
 // actual splunkin resource here, just waiting for rod to make it
-PROFILE_RESOURCES(ProfileID::Splunkin, Profile::LoadResourcesAt_Course, "kakibo");
+PROFILE_RESOURCES(ProfileID::Splunkin, Profile::LoadResourcesAt::Course, "kakibo");
 
 // collider stuff
 bool Splunkin::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
@@ -47,7 +47,7 @@ bool Splunkin::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther)
     return Enemy::collisionIceball(hcSelf, hcOther);
 }
 HitboxCollider::Info Splunkin::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0xFFFFFFFF, 0, &Enemy::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFFFFFF, 0, &Enemy::collisionCallback
 };
 
 // important

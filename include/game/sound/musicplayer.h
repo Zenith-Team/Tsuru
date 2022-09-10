@@ -8,41 +8,41 @@ class MusicPlayer { // Size: 0x74
 
 public:
     // Remember to add your custom music to the arrays in musicplayer.cpp
-    enum MusicIndex {
-        MusicIndex_Null,
-        MusicIndex_Chijou,
-        MusicIndex_Chika,
-        MusicIndex_Water,
-        MusicIndex_Athletic,
-        MusicIndex_Obake,
-        MusicIndex_Sabaku,
-        MusicIndex_Yuki,
-        MusicIndex_Kazan,
-        MusicIndex_Toride,
-        MusicIndex_Shiro,
-        MusicIndex_Hikousen,
-        MusicIndex_Bonus,
-        MusicIndex_RoadToLast,
-        MusicIndex_TorideBoss,
-        MusicIndex_ShiroBoss,
-        MusicIndex_Minigame,
-        MusicIndex_HikousenBoss,
-        MusicIndex_Mori,
-        MusicIndex_MGBTL,
-        MusicIndex_Sanbashi,
-        MusicIndex_KazanTika,
-        MusicIndex_Shadow,
-        MusicIndex_StaffCredit,
-        MusicIndex_HikousenRouka,
-        MusicIndex_LastBoss,
-        MusicIndex_LastBoss2,
-        MusicIndex_LastBoss2Harp,
-        MusicIndex_ShiroLast,
+    ENUM_CLASS(MusicIndex,
+        Null,
+        Chijou,
+        Chika,
+        Water,
+        Athletic,
+        Obake,
+        Sabaku,
+        Yuki,
+        Kazan,
+        Toride,
+        Shiro,
+        Hikousen,
+        Bonus,
+        RoadToLast,
+        TorideBoss,
+        ShiroBoss,
+        Minigame,
+        HikousenBoss,
+        Mori,
+        MGBTL,
+        Sanbashi,
+        KazanTika,
+        Shadow,
+        StaffCredit,
+        HikousenRouka,
+        LastBoss,
+        LastBoss2,
+        LastBoss2Harp,
+        ShiroLast,
 
         // Start of custom entries
 
-        MusicIndex_Num
-    };
+        Num
+    );
 
 public:
     MusicPlayer();
@@ -59,11 +59,11 @@ private:
 
 public:
 
-    static const char* strmListNormal[MusicIndex_Num];
-    static const char* strmListFast[MusicIndex_Num];
+    static const char* strmListNormal[MusicIndex::Num];
+    static const char* strmListFast[MusicIndex::Num];
 
-    static const char* seqListNormal[MusicIndex_Num];
-    static const char* seqListFast[MusicIndex_Num];
+    static const char* seqListNormal[MusicIndex::Num];
+    static const char* seqListFast[MusicIndex::Num];
 
     s32 streamID;           // Inited to -1
     const char* strmName;   // Inited to "SE_DUMMY"

@@ -5,9 +5,7 @@
 
 class LightSource : public sead::IDisposer { // Size: 0x48
 public:
-    enum LightType {
-        // TODO: Figure these out
-    };
+    ENUM_CLASS(Type); // TODO: Fill this in
 
 public:
     LightSource();

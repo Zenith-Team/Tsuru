@@ -23,7 +23,7 @@ public:
 };
 
 const Profile PAcornProfile(&PAcorn::build, ProfileID::PAcorn, "PAcorn", nullptr, 16406);
-PROFILE_RESOURCES(ProfileID::PAcorn, Profile::LoadResourcesAt_Course, "I_musasabi");
+PROFILE_RESOURCES(ProfileID::PAcorn, Profile::LoadResourcesAt::Course, "I_musasabi");
 
 PAcorn::PAcorn(const ActorBuildInfo* buildInfo)
     : Powerup(buildInfo)
@@ -84,7 +84,7 @@ void PAcorn::vf1B4() {
 u32 PAcorn::vf1C4() {
     u32 local;
 
-    if (FUN_25196e8(&local, PlayerBase::PowerupState_PAcorn, 1) != 0)
+    if (FUN_25196e8(&local, PlayerBase::PowerupState::PAcorn, 1) != 0)
         return FUN_2519580(local, this->_1830);
 
     return 0;

@@ -29,10 +29,10 @@ public:
 };
 
 const Profile PoisonMushroomProfile(&PoisonMushroom::build, ProfileID::PoisonMushroom, "PoisonMushroom", nullptr, 16406);
-PROFILE_RESOURCES(ProfileID::PoisonMushroom, Profile::LoadResourcesAt_Course, "I_kinxkx");
+PROFILE_RESOURCES(ProfileID::PoisonMushroom, Profile::LoadResourcesAt::Course, "I_kinxkx");
 
 const HitboxCollider::Info PoisonMushroom::collisionInfo = {
-    Vec2f(0.0f, 7.0f), Vec2f(7.0f, 7.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x42F, 0x420000, 0, &PoisonMushroom::collisionCallback
+    Vec2f(0.0f, 7.0f), Vec2f(7.0f, 7.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x42F, 0x420000, 0, &PoisonMushroom::collisionCallback
 };
 
 PoisonMushroom::PoisonMushroom(const ActorBuildInfo* buildInfo)
@@ -103,7 +103,7 @@ void PoisonMushroom::vf1FC() {
 }
 
 void PoisonMushroom::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    if (hcOther->owner->type == StageActor::StageActorType_Player) {
-        ((Player*)hcOther->owner)->doDamage(hcSelf->owner, PlayerBase::DamageType_Poison);
+    if (hcOther->owner->type == StageActor::Type::Player) {
+        ((Player*)hcOther->owner)->doDamage(hcSelf->owner, PlayerBase::DamageType::Poison);
     }
 }

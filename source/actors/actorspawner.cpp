@@ -38,7 +38,7 @@ u32 ActorSpawner::onCreate() {
     u16 inputID = linkID | ((movementID & 0xF) << 8);
 
     if (movementID & 0x10)
-        spawnProfileID = Profile::spriteToProfileList[inputID];
+        spawnProfileID = Profile::sprite(inputID);
     else
         spawnProfileID = inputID;
 

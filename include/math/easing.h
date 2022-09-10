@@ -15,39 +15,39 @@ public:
     typedef f32 (*EasingFunction)(f32);
 
 public:
-    enum EaseType {
-        EaseType_Linear,
-        EaseType_SineIn,
-        EaseType_SineOut,
-        EaseType_SineInOut,
-        EaseType_QuadIn,
-        EaseType_QuadOut,
-        EaseType_QuadInOut,
-        EaseType_CubicIn,
-        EaseType_CubicOut,
-        EaseType_CubicInOut,
-        EaseType_QuartIn,
-        EaseType_QuartOut,
-        EaseType_QuartInOut,
-        EaseType_QuintIn,
-        EaseType_QuintOut,
-        EaseType_QuintInOut,
-        EaseType_ExpoIn,
-        EaseType_ExpoOut,
-        EaseType_ExpoInOut,
-        EaseType_CircIn,
-        EaseType_CircOut,
-        EaseType_CircInOut,
-        EaseType_BackIn,
-        EaseType_BackOut,
-        EaseType_BackInOut,
-        EaseType_ElasticIn,
-        EaseType_ElasticOut,
-        EaseType_ElasticInOut,
-        EaseType_BounceIn,
-        EaseType_BounceOut,
-        EaseType_BounceInOut
-    };
+    ENUM_CLASS(Type,
+        Linear,
+        SineIn,
+        SineOut,
+        SineInOut,
+        QuadIn,
+        QuadOut,
+        QuadInOut,
+        CubicIn,
+        CubicOut,
+        CubicInOut,
+        QuartIn,
+        QuartOut,
+        QuartInOut,
+        QuintIn,
+        QuintOut,
+        QuintInOut,
+        ExpoIn,
+        ExpoOut,
+        ExpoInOut,
+        CircIn,
+        CircOut,
+        CircInOut,
+        BackIn,
+        BackOut,
+        BackInOut,
+        ElasticIn,
+        ElasticOut,
+        ElasticInOut,
+        BounceIn,
+        BounceOut,
+        BounceInOut
+    );
 
 public:
     Easing()
@@ -143,49 +143,49 @@ public:
     static f32 bounceOut(f32 x)    { return x < 1.0f / 2.75f ? 7.5625f * x * x : x < 2.0f / 2.75f ? 7.5625f * (x - 1.5f / 2.75f) * (x - 1.5f / 2.75f) + 0.75f : x < 2.5f / 2.75f ? 7.5625f * (x - 2.25f / 2.75f) * (x - 2.25f / 2.75f) + 0.9375f : 7.5625f * (x - 2.625f / 2.75f) * (x - 2.625f / 2.75f) + 0.984375f; }
     static f32 bounceInOut(f32 x)  { return x < 0.5f ? (1.0f - bounceOut(1.0f - 2.0f * x)) / 2.0f : (1.0f + bounceOut(2.0f * x - 1.0f)) / 2.0f; }
 
-    static EasingFunction EaseTypeToEaseFunc(EaseType type) {
+    static EasingFunction TypeToEaseFunc(Type::__type__ type) {
         switch (type) {
-            case EaseType_Linear: return &Easing::linear;
+            case Type::Linear: return &Easing::linear;
 
-            case EaseType_SineIn: return &Easing::sineIn;
-            case EaseType_SineOut: return &Easing::sineOut;
-            case EaseType_SineInOut: return &Easing::sineInOut;
+            case Type::SineIn: return &Easing::sineIn;
+            case Type::SineOut: return &Easing::sineOut;
+            case Type::SineInOut: return &Easing::sineInOut;
 
-            case EaseType_QuadIn: return &Easing::quadIn;
-            case EaseType_QuadOut: return &Easing::quadOut;
-            case EaseType_QuadInOut: return &Easing::quadInOut;
+            case Type::QuadIn: return &Easing::quadIn;
+            case Type::QuadOut: return &Easing::quadOut;
+            case Type::QuadInOut: return &Easing::quadInOut;
 
-            case EaseType_CubicIn: return &Easing::cubicIn;
-            case EaseType_CubicOut: return &Easing::cubicOut;
-            case EaseType_CubicInOut: return &Easing::cubicInOut;
+            case Type::CubicIn: return &Easing::cubicIn;
+            case Type::CubicOut: return &Easing::cubicOut;
+            case Type::CubicInOut: return &Easing::cubicInOut;
 
-            case EaseType_QuartIn: return &Easing::quartIn;
-            case EaseType_QuartOut: return &Easing::quartOut;
-            case EaseType_QuartInOut: return &Easing::quartInOut;
+            case Type::QuartIn: return &Easing::quartIn;
+            case Type::QuartOut: return &Easing::quartOut;
+            case Type::QuartInOut: return &Easing::quartInOut;
 
-            case EaseType_QuintIn: return &Easing::quintIn;
-            case EaseType_QuintOut: return &Easing::quintOut;
-            case EaseType_QuintInOut: return &Easing::quintInOut;
+            case Type::QuintIn: return &Easing::quintIn;
+            case Type::QuintOut: return &Easing::quintOut;
+            case Type::QuintInOut: return &Easing::quintInOut;
 
-            case EaseType_ExpoIn: return &Easing::expoIn;
-            case EaseType_ExpoOut: return &Easing::expoOut;
-            case EaseType_ExpoInOut: return &Easing::expoInOut;
+            case Type::ExpoIn: return &Easing::expoIn;
+            case Type::ExpoOut: return &Easing::expoOut;
+            case Type::ExpoInOut: return &Easing::expoInOut;
 
-            case EaseType_CircIn: return &Easing::circIn;
-            case EaseType_CircOut: return &Easing::circOut;
-            case EaseType_CircInOut: return &Easing::circInOut;
+            case Type::CircIn: return &Easing::circIn;
+            case Type::CircOut: return &Easing::circOut;
+            case Type::CircInOut: return &Easing::circInOut;
 
-            case EaseType_BackIn: return &Easing::backIn;
-            case EaseType_BackOut: return &Easing::backOut;
-            case EaseType_BackInOut: return &Easing::backInOut;
+            case Type::BackIn: return &Easing::backIn;
+            case Type::BackOut: return &Easing::backOut;
+            case Type::BackInOut: return &Easing::backInOut;
 
-            case EaseType_ElasticIn: return &Easing::elasticIn;
-            case EaseType_ElasticOut: return &Easing::elasticOut;
-            case EaseType_ElasticInOut: return &Easing::elasticInOut;
+            case Type::ElasticIn: return &Easing::elasticIn;
+            case Type::ElasticOut: return &Easing::elasticOut;
+            case Type::ElasticInOut: return &Easing::elasticInOut;
 
-            case EaseType_BounceIn: return &Easing::bounceIn;
-            case EaseType_BounceOut: return &Easing::bounceOut;
-            case EaseType_BounceInOut: return &Easing::bounceInOut;
+            case Type::BounceIn: return &Easing::bounceIn;
+            case Type::BounceOut: return &Easing::bounceOut;
+            case Type::BounceInOut: return &Easing::bounceInOut;
 
             default: return &Easing::linear;
         }
