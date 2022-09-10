@@ -279,6 +279,8 @@ enum ProfileIDType {
     Splunkin,
     SwitchBlock,
     PowerupSwitcher,
+    SwitchBlockEventActivator,
+    RedBlueBlock,
 
     Num
 };
