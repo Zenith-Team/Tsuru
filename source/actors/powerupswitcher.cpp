@@ -28,7 +28,7 @@ u32 PowerupSwitcher::onExecute() {
     if (EventMgr::instance()->isActive((this->eventID1 >> 0x4 & 0xF) - 1)) {
         for (u32 i = 0; i < 4; i++) {
             if (PlayerMgr::instance()->players[i]) {
-                PlayerMgr::instance()->players[i]->powerupState = static_cast<PlayerBase::PowerupState>(this->eventID1 & 0xF);
+                PlayerMgr::instance()->players[i]->powerupState = static_cast<PlayerBase::PowerupState::__type__>(this->eventID1 & 0xF);
                 this->isDeleted = true;
             }
         }

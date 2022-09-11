@@ -5,10 +5,6 @@
 
 // Workarounds to meet newer standards
 
-//! This is a hack, if you got here because of an error:
-//* To have override intellisense: Add \t-DOverride above \t-DCemu on compiler_cemu.py
-//? To just compile without override intellisense, uncomment #define below.
-//#define Override
 #ifdef Override
 #define override
 #define static_assert(condition, ...) typedef int TOKENPASTE2(static_assert_, __LINE__)[(condition) ? 1 : -1]
@@ -22,6 +18,11 @@
 #define aligned(x)  __attribute__((aligned(x)))
 
 #define nullptr NULL
+
+#define ENUM_CLASS(name, ...)              \
+    class name {virtual void This_error_means_you_forgot_to_write___type___in_an_object_instanciation()=0;public: \
+        enum __type__ { __VA_ARGS__ };     \
+    }
 
 // Primitive type shortcuts
 

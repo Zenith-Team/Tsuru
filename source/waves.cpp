@@ -6,15 +6,15 @@
 
 const ActorInfo WavyWaterActorInfo = { Vec2i(8, 0), Vec2i(0, 0), Vec2i(128, 128), 0, 0, 0, 0, 4 };
 const Profile WavyWaterProfile(&Water::build, ProfileID::WavyWater, "WavyWater", &WavyWaterActorInfo);
-PROFILE_RESOURCES(ProfileID::WavyWater, Profile::LoadResourcesAt_Course, "obj_waterfull", "obj_waterhalf");
+PROFILE_RESOURCES(ProfileID::WavyWater, Profile::LoadResourcesAt::Course, "obj_waterfull", "obj_waterhalf");
 
 const ActorInfo WavyPoisonActorInfo = { Vec2i(8, 0), Vec2i(0, 0), Vec2i(24, 24), 0, 0, 0, 0, 4 };
 const Profile WavyPoisonProfile(&Poison::build, ProfileID::WavyPoison, "WavyPoison", &WavyPoisonActorInfo);
-PROFILE_RESOURCES(ProfileID::WavyPoison, Profile::LoadResourcesAt_Course, "obj_poisonwater", "obj_magmadeco");
+PROFILE_RESOURCES(ProfileID::WavyPoison, Profile::LoadResourcesAt::Course, "obj_poisonwater", "obj_magmadeco");
 
 const ActorInfo WavyQuicksandActorInfo = { Vec2i(8, 0), Vec2i(0, 0), Vec2i(128, 128), 0, 0, 0, 0, 4 };
 const Profile WavyQuicksandProfile(&Quicksand::build, ProfileID::WavyQuicksand, "WavyQuicksand", &WavyQuicksandActorInfo);
-PROFILE_RESOURCES(ProfileID::WavyQuicksand, Profile::LoadResourcesAt_Course, "obj_quicksand");
+PROFILE_RESOURCES(ProfileID::WavyQuicksand, Profile::LoadResourcesAt::Course, "obj_quicksand");
 
 void setWaterWaveValues(EnvTerrain* _this) {
     if (_this->getProfileID() == ProfileID::WavyWater) {
@@ -29,7 +29,7 @@ void setWaterWaveValues(EnvTerrain* _this) {
 
         // Collision
         TileMgr::instance()->hasWaves = true;
-        TileMgr::instance()->waveType = TileMgr::WaveType_Water;
+        TileMgr::instance()->waveType = TileMgr::WaveType::Water;
         _this->effects.updateWaveCollisions();
     }
 }
@@ -50,7 +50,7 @@ u32 Poison_onExecute(EnvTerrain* _this) { // Replaces poison water onExecute()
 
         // Collision
         TileMgr::instance()->hasWaves = true;
-        TileMgr::instance()->waveType = TileMgr::WaveType_Poison;
+        TileMgr::instance()->waveType = TileMgr::WaveType::Poison;
         _this->effects.updateWaveCollisions();
     }
 
@@ -70,7 +70,7 @@ u32 Quicksand_onExecute(EnvTerrain* _this) { // Replaces quicksand onExecute()
 
         // Collision
         TileMgr::instance()->hasWaves = true;
-        TileMgr::instance()->waveType = TileMgr::WaveType_Quicksand;
+        TileMgr::instance()->waveType = TileMgr::WaveType::Quicksand;
         _this->effects.updateWaveCollisions();
     }
 

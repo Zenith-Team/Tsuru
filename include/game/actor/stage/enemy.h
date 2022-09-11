@@ -19,16 +19,12 @@ public:
         bool noRespawn;
     };
 
-    enum HitType { // applies to Yoshi as well
-        // Moving into the sprite; this includes penguin slides and slope slides
-        HitType_Collide,
-        // Jumping onto the sprite; this includes ground pounds
-        HitType_NormalJump,
-        // Jumping onto the sprite as Mini Mario; this includes Mini Mario spin-jump
-        HitType_MiniJump,
-        // Spin-jumping onto the sprite; this includes Propeller Mario drills
-        HitType_SpinJump
-    };
+    ENUM_CLASS(HitType,
+        Collide,    // Moving into the sprite; this includes penguin slides and slope slides
+        NormalJump, // Jumping onto the sprite; this includes ground pounds
+        MiniJump,   // Jumping onto the sprite as Mini Mario; this includes Mini Mario spin-jump
+        SpinJump    // Spin-jumping onto the sprite; this includes Propeller Mario drills
+    );
 
 public:
     Enemy(const ActorBuildInfo* buildInfo);
@@ -218,7 +214,7 @@ public:
     // @param hcSelf Pointer to self HitboxCollider
     // @param hcOther Pointer to colliding actor's HitboxCollider
     // @param u32 Unknown
-    HitType processCollision(HitboxCollider* hcSelf, HitboxCollider* hcOther, u32 = 0);
+    HitType::__type__ processCollision(HitboxCollider* hcSelf, HitboxCollider* hcOther, u32 = 0);
 
     // Bounces the colliding player when hit
     // @param player Colliding player

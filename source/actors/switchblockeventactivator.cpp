@@ -37,4 +37,6 @@ u32 SwitchBlockEventActivator::onExecute() {
         EventMgr::instance()->set(this->eventID1 >> 0x4 & 0xFF, 0, true);
         LOG("setting event %d to true", this->eventID1 >> 0x4 & 0xFF);
     }
+
+    return 1;
 }

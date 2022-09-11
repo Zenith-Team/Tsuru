@@ -12,11 +12,11 @@ class StringBank : public Actor {
     SEAD_RTTI_OVERRIDE_IMPL(StringBank, Actor)
 
 public:
-    enum Type {
-        Type_Primary   = 0, // Layer 1
-        Type_Secondary = 1, // Layer 2
-        Type_Ending    = 2, // Layer 0
-    };
+    ENUM_CLASS(Type,
+        Primary,
+        Secondary,
+        Ending
+    );
 
     StringBank(const ActorBuildInfo* buildInfo);
     virtual ~StringBank() { }
@@ -67,12 +67,12 @@ public:
             if (strBank == self || !strBank) continue;
             u8 nybbles[12]; StringBank::getNybbles(strBank, nybbles);
 
-            if (strBank->layer == StringBank::Type_Secondary && strBank->bankID == self->bankID + 1) {
+            if (strBank->layer == StringBank::Type::Secondary && strBank->bankID == self->bankID + 1) {
                 strybble::loadFromNybbles(nybbles, 16, strSecondary);
                 strybble::decode(strSecondary, 16);
                 strBank->isDeleted = true;
             }
-            if (strBank->layer == StringBank::Type_Ending && strBank->bankID == self->bankID + 2) {
+            if (strBank->layer == StringBank::Type::Ending && strBank->bankID == self->bankID + 2) {
                 strybble::loadFromNybbles(nybbles, 16, strLast);
                 strybble::decode(strLast, 16);
                 strBank->isDeleted = true;
@@ -89,11 +89,11 @@ public:
             u8 strBankID = strBankSpr->initialStateFlag;
             if (strBankSpr == self) continue;
 
-            if (strBankSpr->layer == StringBank::Type_Secondary && strBankID == self->initialStateFlag + 1) {
+            if (strBankSpr->layer == StringBank::Type::Secondary && strBankID == self->initialStateFlag + 1) {
                 strybble::loadFromNybbles(strBankSpr, 16, strSecondary);
                 strybble::decode(strSecondary, 16);
             }
-            if (strBankSpr->layer == StringBank::Type_Ending && strBankID == self->initialStateFlag + 2) {
+            if (strBankSpr->layer == StringBank::Type::Ending && strBankID == self->initialStateFlag + 2) {
                 strybble::loadFromNybbles(strBankSpr, 16, strLast);
                 strybble::decode(strLast, 16);
             }

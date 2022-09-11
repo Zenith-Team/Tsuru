@@ -51,14 +51,14 @@ s16 Profile::getPriority(u32 id) {
     return -1;
 }
 
-Profile::LoadResourcesAt Profile::getResourcesLoadAt(u32 id) {
+Profile::LoadResourcesAt::__type__ Profile::getResourcesLoadAt(u32 id) {
     if (id < NUM_PROFILES_ORIGINAL)
-        return (Profile::LoadResourcesAt) resourcesLoadAtOriginal[id];
+        return static_cast<Profile::LoadResourcesAt::__type__>(resourcesLoadAtOriginal[id]);
 
     if (id < NUM_PROFILES)
-        return (Profile::LoadResourcesAt) resourcesLoadAtCustom[id - NUM_PROFILES_ORIGINAL];
+        return static_cast<Profile::LoadResourcesAt::__type__>(resourcesLoadAtCustom[id - NUM_PROFILES_ORIGINAL]);
 
-    return LoadResourcesAt_Boot;
+    return LoadResourcesAt::Boot;
 }
 
 u8 Profile::getResourceCount(u32 id) {

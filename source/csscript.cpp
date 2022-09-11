@@ -6,7 +6,7 @@
     * Note: This is a modified version of the vanilla CS scripts, find those here: https://pastebin.com/f2MTPneY
 */
 
-namespace cmd = CSCommand;
+typedef CSCommand cmd;
 
 CSScriptCommand Script000[] = {
     {cmd::End, 0}

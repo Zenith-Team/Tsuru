@@ -6,13 +6,13 @@ class TileMgr { // Size: 0x9B88
     SEAD_SINGLETON_DISPOSER(TileMgr)
 
 public:
-    enum WaveType {
-        WaveType_None      = 0,
-        WaveType_Lava      = 1,
-        WaveType_Water     = 2,
-        WaveType_Poison    = 3,
-        WaveType_Quicksand = 4
-    };
+    ENUM_CLASS(WaveType,
+        None      = 0,
+        Lava      = 1,
+        Water     = 2,
+        Poison    = 3,
+        Quicksand = 4
+    );
 
 public:
     static u16* getTilePtr(u16 x, u16 y, u32 area, u8 layer, u32* blockIndexOut = nullptr);

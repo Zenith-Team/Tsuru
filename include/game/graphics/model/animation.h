@@ -14,18 +14,18 @@ public:
 
     bool checkFrame(f32) const;
 
-    enum Flags {
-        Flag_Repeat = 1 << 0,
-        Flag_Unk1   = 1 << 1,
-        Flag_IsDone = 1 << 5,
-    };
+    ENUM_CLASS(Flags,
+        Repeat = 1 << 0,
+        Unk1   = 1 << 1,
+        IsDone = 1 << 5
+    );
 
-    inline bool isDone() const {
-        return this->flags.bits & Flag_IsDone;
+    bool isDone() const {
+        return this->flags.bits & Flags::IsDone;
     }
 
-    inline bool isLooping() const {
-        return this->flags.bits & Flag_Repeat;
+    bool isLooping() const {
+        return this->flags.bits & Flags::Repeat;
     }
 
     f32 startFrame;

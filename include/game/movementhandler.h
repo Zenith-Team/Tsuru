@@ -5,13 +5,13 @@
 
 class MovementHandler {
 public:
-    enum MovementType {
-        MovementType_None       = 0,
-        MovementType_Rotation   = 1,
-        MovementType_Bolt       = 2,
-        MovementType_Path       = 3,
-        MovementType_BackForth  = 4
-    };
+    ENUM_CLASS(MovementType,
+        None,
+        Rotation,
+        Bolt,
+        Path,
+        BackForth
+    );
 
 public:
     MovementHandler();

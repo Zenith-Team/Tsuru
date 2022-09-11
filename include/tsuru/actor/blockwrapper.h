@@ -21,15 +21,15 @@ public:
         this->_1CC0 = 0;
         this->collisionMask = 1;
         
-        this->stateType = StateType_QuestionBlock;
-        this->rectCollider.setType(ColliderBase::Type_QuestionBlock);
+        this->stateType = StateType::QuestionBlock;
+        this->rectCollider.setType(ColliderBase::Type::QuestionBlock);
 
         if (!BlockBase::init(true, true)) {
             return false;
         }
 
         this->_1CAC = 0.0f;
-        this->content = Content_Nothing;
+        this->content = Content::Nothing;
         this->visibleAreaSize = Vec2f(2048.0f, 1024.0f);
     
         this->registerColliderActiveInfo();

@@ -5,7 +5,7 @@
 #include "ghs.h"
 
 const ActorInfo StringBankActorInfo = {
-    Vec2i(0, 0), Vec2i(0, 0), Vec2i(0, 0), 0, 0, 0, 0, ActorInfo::Flag_IgnoreSpawnRange
+    Vec2i(0, 0), Vec2i(0, 0), Vec2i(0, 0), 0, 0, 0, 0, ActorInfo::Flags::IgnoreSpawnRange
 };
 
 const Profile StringBankProfile(&StringBank::build, ProfileID::StringBank, "StringBank", &StringBankActorInfo);
@@ -26,11 +26,11 @@ u32 StringBank::onCreate() {
     if (this->bankID == 0) return 2;
 
     __memzero(this->string, 49);
-    if (this->layer != StringBank::Type_Primary) {
+    if (this->layer != StringBank::Type::Primary) {
         LOG(
             "%s(StringBank #%i) Initialized as %s bank for primary bank #%i.", LogColor::LightCyan, this->bankID,
-            this->layer == StringBank::Type_Ending ? "ending" : "secondary",
-            this->layer == StringBank::Type_Ending ? this->bankID - 2 : this->bankID - 1
+            this->layer == StringBank::Type::Ending ? "ending" : "secondary",
+            this->layer == StringBank::Type::Ending ? this->bankID - 2 : this->bankID - 1
         );
         return 1;
     }

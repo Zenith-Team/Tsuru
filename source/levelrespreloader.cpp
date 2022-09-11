@@ -25,7 +25,7 @@ void levelResPreloader() {
         while (strBankSpr = area->getSprite(StringBankSpriteID, strBankSpr)) {
             u8 strBankID = strBankSpr->initialStateFlag;
 
-            if (strBankID == 0 || (strBankID != modelFileBankID && strBankID != modelNameBankID) || strBankSpr->layer != StringBank::Type_Primary)
+            if (strBankID == 0 || (strBankID != modelFileBankID && strBankID != modelNameBankID) || strBankSpr->layer != StringBank::Type::Primary)
                 continue;
 
             char string[49]       = { 0 };

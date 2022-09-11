@@ -46,7 +46,7 @@ CREATE_STATE(FakeActor, GoalPole);
 CREATE_STATE(FakeActor, StarCoin);
 
 const Profile FakeCheckpointProfile(&FakeActor::build, ProfileID::FakeActor);
-PROFILE_RESOURCES(ProfileID::FakeActor, Profile::LoadResourcesAt_Course, "middle_flag", "star_coin", "goal_set");
+PROFILE_RESOURCES(ProfileID::FakeActor, Profile::LoadResourcesAt::Course, "middle_flag", "star_coin", "goal_set");
 
 FakeActor::FakeActor(const ActorBuildInfo* buildInfo)
     : MultiStateActor(buildInfo)
@@ -130,7 +130,7 @@ void FakeActor::goalpoleCollisionCallback(HitboxCollider* hcSelf, HitboxCollider
 /* STATE: Checkpoint */
 
 const HitboxCollider::Info FakeActor::sCheckpointCollisionInfo = {
-    Vec2f(0.0f, 24.0f), Vec2f(4.0f, 24.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &FakeActor::collisionCallback
+    Vec2f(0.0f, 24.0f), Vec2f(4.0f, 24.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &FakeActor::collisionCallback
 };
 
 void FakeActor::beginState_Checkpoint() {
@@ -149,7 +149,7 @@ void FakeActor::endState_Checkpoint() { }
 /* STATE: GoalPole */
 
 const HitboxCollider::Info FakeActor::sGoalpoleCollisionInfo = {
-    Vec2f(0.0f, 76.0f), Vec2f(4.0f, 76.0f), HitboxCollider::HitboxShape_Rectangle, 8, 0, 7, 0, 0, &FakeActor::collisionCallback
+    Vec2f(0.0f, 76.0f), Vec2f(4.0f, 76.0f), HitboxCollider::Shape::Rectangle, 8, 0, 7, 0, 0, &FakeActor::collisionCallback
 };
 
 void FakeActor::beginState_GoalPole() {
@@ -185,7 +185,7 @@ void FakeActor::endState_GoalPole() { }
 /* STATE: StarCoin */
 
 const HitboxCollider::Info FakeActor::sStarCoinCollisionInfo = {
-    Vec2f(0.0f, -3.0f), Vec2f(12.0f, 15.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &FakeActor::collisionCallback
+    Vec2f(0.0f, -3.0f), Vec2f(12.0f, 15.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &FakeActor::collisionCallback
 };
 
 void FakeActor::beginState_StarCoin() {

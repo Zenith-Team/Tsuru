@@ -32,16 +32,16 @@ class StageActor : public Actor {
     SEAD_RTTI_OVERRIDE(StageActor, Actor)
 
 public:
-    enum StageActorType {
-        StageActorType_Actor    = 0,
-        StageActorType_Player   = 1,
-        StageActorType_Yoshi    = 2,
-        StageActorType_Enemy    = 3,
-        StageActorType_Unknown  = 4,
-        
+    ENUM_CLASS(Type,
+        Actor,
+        Player,
+        Yoshi,
+        Enemy,
+        Unknown,
+
         // Custom types
-        StageActorType_Boss     = 5,
-    };
+        Boss
+    );
 
 public:
     StageActor(const ActorBuildInfo* buildInfo);

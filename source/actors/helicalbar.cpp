@@ -87,7 +87,7 @@ CREATE_STATE(HelicalBar, TwoBars);
 CREATE_STATE(HelicalBar, ThreeBars);
 
 const Profile HelicalBarProfile(&HelicalBar::build, ProfileID::HelicalBar);
-PROFILE_RESOURCES(ProfileID::HelicalBar, Profile::LoadResourcesAt_Course, "firebar_L", "center_firebar");
+PROFILE_RESOURCES(ProfileID::HelicalBar, Profile::LoadResourcesAt::Course, "firebar_L", "center_firebar");
 
 const ShapedCollider::Info HelicalBar::colliderInfo = {
     Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-8.0f, 8.0f), Vec2f(8.0f, -8.0f), 0
@@ -195,9 +195,9 @@ void HelicalBar::updateModel() {
 }
 
 void HelicalBar::fireCollision(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    if (hcOther->owner->type == StageActor::StageActorType_Player) {
+    if (hcOther->owner->type == StageActor::Type::Player) {
         PlayerBase* player = static_cast<PlayerBase*>(hcOther->owner);
-        player->trySpecialDamage(hcSelf->owner, PlayerBase::DamageType_LavaNoInstaKill);
+        player->trySpecialDamage(hcSelf->owner, PlayerBase::DamageType::LavaNoInstaKill);
     }
 }
 
@@ -211,7 +211,7 @@ void HelicalBar::beginState_OneBar() {
             const Vec2f& fp = this->firePositions[i][j];
 
             this->hcInfos[i][j].set(
-                Vec2f(this->position.x - fp.x, this->position.y - fp.y), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
+                Vec2f(this->position.x - fp.x, this->position.y - fp.y), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
             );
 
             this->fireHitboxes[i][j].init(this, &this->hcInfos[i][j]);
@@ -253,7 +253,7 @@ void HelicalBar::beginState_TwoBars() {
             const Vec2f& fp = this->firePositions[i][j];
 
             this->hcInfos[i][j].set(
-                Vec2f(this->position.x - fp.x, this->position.y - fp.y), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
+                Vec2f(this->position.x - fp.x, this->position.y - fp.y), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
             );
 
             this->fireHitboxes[i][j].init(this, &this->hcInfos[i][j]);
@@ -299,7 +299,7 @@ void HelicalBar::beginState_ThreeBars() {
             const Vec2f& fp = this->firePositions[i][j];
 
             this->hcInfos[i][j].set(
-                Vec2f(this->position.x - fp.x, this->position.y - fp.y), Vec2f(8.0f, 8.0f), HitboxCollider::HitboxShape_Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
+                Vec2f(this->position.x - fp.x, this->position.y - fp.y), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
             );
 
             this->fireHitboxes[i][j].init(this, &this->hcInfos[i][j]);

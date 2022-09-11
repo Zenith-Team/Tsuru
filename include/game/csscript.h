@@ -12,11 +12,7 @@ struct CSScript {
     CSScriptCommand* scriptStart;
 };
 
-namespace CSCommand {
-
-enum CSCommandType {
+ENUM_CLASS(CSCommand,
     ShowMiiverseSetup = 311,
     End = 344
-};
-
-}
+);

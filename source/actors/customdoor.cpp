@@ -22,8 +22,8 @@ const ActorInfo CustomDoorActorInfo = {
     Vec2i(16, -48), Vec2i(0, 24), Vec2i(16, 24), 64, 64, 0, 0, 0
 };
 
-const Profile CustomDoorProfile(&CustomDoor::build, ProfileID::CustomDoor, "CustomDoor", &CustomDoorActorInfo, Profile::Flag_DontRenderOffScreen);
-PROFILE_RESOURCES(ProfileID::CustomDoor, Profile::LoadResourcesAt_Course, "obj_door");
+const Profile CustomDoorProfile(&CustomDoor::build, ProfileID::CustomDoor, "CustomDoor", &CustomDoorActorInfo, Profile::Flags::DontRenderOffScreen);
+PROFILE_RESOURCES(ProfileID::CustomDoor, Profile::LoadResourcesAt::Course, "obj_door");
 
 CustomDoor::CustomDoor(const ActorBuildInfo* buildInfo)
     : DoorBase(buildInfo)
@@ -37,7 +37,7 @@ Actor* CustomDoor::build(const ActorBuildInfo* buildInfo) {
 }
 
 const HitboxCollider::Info CustomDoor::sCollisionInfo = {
-    Vec2f(0.0f, 20.0f), Vec2f(12.0f, 20.0f), HitboxCollider::HitboxShape_Rectangle, 3, 0, 1, 0, 0, &DoorBase::collisionCallback
+    Vec2f(0.0f, 20.0f), Vec2f(12.0f, 20.0f), HitboxCollider::Shape::Rectangle, 3, 0, 1, 0, 0, &DoorBase::collisionCallback
 };
 
 void CustomDoor::initHitboxCollider() {

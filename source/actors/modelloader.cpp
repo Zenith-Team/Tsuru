@@ -49,7 +49,7 @@ u32 ModelLoader::onCreate() {
     ActorBuffer* actors = &ActorMgr::instance()->actors;
     for (u32 i = 0; i < actors->start.size; i++) {
         StringBank* strBank = sead::DynamicCast<StringBank, Actor>(actors->start[i]);
-        if (!strBank || strBank->layer != StringBank::Type_Primary) continue;
+        if (!strBank || strBank->layer != StringBank::Type::Primary) continue;
 
         if (strBank->bankID == modelFileBankID) {
             strncpy(this->modelFile, strBank->string, 49);

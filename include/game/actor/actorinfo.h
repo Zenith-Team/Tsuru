@@ -3,12 +3,12 @@
 #include "types.h"
 
 struct ActorInfo {
-    enum Flags {
-        Flag_IgnoreSpawnRange = 1 << 1,
-        Flag_Unknown1         = 1 << 3,
-        Flag_Grouped          = 1 << 4,
-        Flag_Unknown2         = 1 << 8
-    };
+    ENUM_CLASS(Flags,
+        IgnoreSpawnRange = 1 << 1,
+        Unknown1         = 1 << 3,
+        Grouped          = 1 << 4,
+        Unknown2         = 1 << 8
+    );
 
     static ActorInfo sDefault;
 

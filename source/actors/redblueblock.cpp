@@ -34,7 +34,7 @@ CREATE_STATE(RedBlueBlock, Off);
 CREATE_STATE(RedBlueBlock, On);
 
 const Profile RedBlueBlockProfile(&RedBlueBlock::build, ProfileID::RedBlueBlock);
-PROFILE_RESOURCES(ProfileID::RedBlueBlock, Profile::LoadResourcesAt_Course, "star_coin");
+PROFILE_RESOURCES(ProfileID::RedBlueBlock, Profile::LoadResourcesAt::Course, "star_coin");
 
 const ShapedCollider::Info RedBlueBlock::colliderInfo = {
     Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-8.0f, 8.0f), Vec2f(8.0f, -8.0f), 0

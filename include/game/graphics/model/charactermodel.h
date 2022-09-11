@@ -46,12 +46,12 @@ static_assert(sizeof(CharacterModel) == 0xF0, "CharacterModel size mismatch");
 class YoshiModel : public CharacterModel {
 public:
     // All green in vanilla
-    enum TexColor {
+    ENUM_CLASS(TexColor,
         TexColor_Green,
         TexColor_Pink,
         TexColor_LightBlue,
         TexColor_Yellow
-    };
+    );
 
 public:
     YoshiModel(TexColor color);

@@ -35,10 +35,10 @@ public:
 };
 
 const Profile ColdFuzzyProfile(&ColdFuzzy::build, ProfileID::ColdFuzzy);
-PROFILE_RESOURCES(ProfileID::ColdFuzzy, Profile::LoadResourcesAt_Course, "coldobon");
+PROFILE_RESOURCES(ProfileID::ColdFuzzy, Profile::LoadResourcesAt::Course, "coldobon");
 
 HitboxCollider::Info ColdFuzzy::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::HitboxShape_Rectangle, 5, 0, 0x824F, 0x20208, 0, &Enemy::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &Enemy::collisionCallback
 };
 
 ColdFuzzy::ColdFuzzy(const ActorBuildInfo* buildInfo) 
@@ -80,6 +80,7 @@ u32 ColdFuzzy::onExecute() {
             this->playerTimers[i].timer++;
         }
     }
+
     // i copied all of this from the angry sun sprite
     if (this->projectileTimer == 30) {
         this->projectileTimer = 0;
@@ -133,7 +134,7 @@ void ColdFuzzy::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther)
     for (u32 i = 0; i < 4; i++) {
         if (hcOther->owner == this->playerTimers[i].player && this->playerTimers[i].timer >= 240) {
             this->playerTimers[i].timer = 0;
-            static_cast<PlayerBase*>(hcOther->owner)->doDamage(this, PlayerBase::DamageType_Ice);
+            static_cast<PlayerBase*>(hcOther->owner)->doDamage(this, PlayerBase::DamageType::Ice);
         }
     }
 }
