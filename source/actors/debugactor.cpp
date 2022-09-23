@@ -27,7 +27,7 @@ Actor* DebugActor::build(const ActorBuildInfo* buildInfo) {
 
 u32 DebugActor::onExecute() {
     if (this->settings1 >> 0x8 & 0xF) { // Nybble 10, Log player inputs
-        LOG("----Player Inputs----");
+        PRINT("----Player Inputs----");
         for (u32 i = 0; i < 4; i++) {
             Player* player = PlayerMgr::instance()->players[i];
             if (player) {
@@ -44,13 +44,13 @@ u32 DebugActor::onExecute() {
 
                 data[32] = 0;
 
-                LOG("Input data player %i: %s", i, data);
-                LOG("Player %i up: %u", i, input.getButtonUp());
-                LOG("Player %i down: %u", i, input.getButtonDown());
-                LOG("Player %i left: %u", i, input.getButtonLeft());
-                LOG("Player %i right: %u", i, input.getButtonRight());
-                LOG("Player %i dash: %u", i, input.getButtonDash());
-                LOG("Player %i jump: %u", i, input.getButtonJump());
+                PRINT("Input data player %i: %s", i, data);
+                PRINT("Player %i up: %u", i, input.getButtonUp());
+                PRINT("Player %i down: %u", i, input.getButtonDown());
+                PRINT("Player %i left: %u", i, input.getButtonLeft());
+                PRINT("Player %i right: %u", i, input.getButtonRight());
+                PRINT("Player %i dash: %u", i, input.getButtonDash());
+                PRINT("Player %i jump: %u", i, input.getButtonJump());
             }
         }
     }

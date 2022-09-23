@@ -180,7 +180,7 @@ u32 BasaltBones::onCreate() {
         }
     }
 
-    LOG("BasaltBones: Couldn't find lava!");
+    PRINT("BasaltBones: Couldn't find lava!");
 
     return BossWrapper<18>::onCreate();
 }

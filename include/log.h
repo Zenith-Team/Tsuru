@@ -2,21 +2,8 @@
 
 #include "sead/graphicscontext.h"
 #include "dynlibs/os/functions.h"
+#include "tsuru/utils.h"
 #include <cstring>
-
-#ifdef TSURU_DEBUG
-    #ifdef Cemu
-        #define LOG(FMT, ...) { \
-            __os_snprintf(logMsg, sizeof(logMsg), FMT, ## __VA_ARGS__); \
-            __os_snprintf(logMsg + strlen(logMsg), sizeof(logMsg) - strlen(logMsg), "%s", LogColor::Reset); \
-            OSConsoleWrite(logMsg, sizeof(logMsg)); } (void)0
-    #else
-        #define LOG(FMT, ...) \
-            { ((void (*)(const char* format, ...))(*(unsigned int*)(DATA_ADDR - 4)))(FMT, ## __VA_ARGS__); } (void)0
-    #endif
-#else
-    #define LOG(FMT, ...)
-#endif
 
 /* Logging Colors */
 namespace LogColor {
@@ -119,6 +106,112 @@ namespace LogColor {
 #endif
 };
 
-/* Specialized logging functions */
+template <typename T>
+void tprint(T t);
 
-void LogGraphicsContext(volatile sead::GraphicsContext& gc);
+#define PRINT_SINGLE(x) tprint(x);
+
+#if defined(TSURU_DEBUG) && defined(NO_INTELLISENSE_HACK) && defined(Cemu)
+    #define PRINT(...)                                                      \
+        do {                                                                \
+            PP_FOREACH(PRINT_SINGLE, __VA_ARGS__)                           \
+            PRINT_SINGLE(LogColor::Reset)                                   \
+            OSConsoleWrite(logMsg, sizeof(logMsg));                         \
+            for (size_t i = 0; i < sizeof(logMsg); i++) { logMsg[i] = 0; }  \
+        } while (0)
+
+    #define LOG(FMT, ...) \
+        {size_t len = strlen(logMsg); \
+        __os_snprintf(logMsg + len, sizeof(logMsg) - len, FMT, __VA_ARGS__);}
+#else
+    #define PRINT(...) do {;} while (0)
+    #define LOG(FMT, ...) do {;} while (0)
+#endif
+
+// Specializations
+
+template <>
+inline void tprint<u8>(u8 value) {
+    LOG("%u", value);
+}
+
+template <>
+inline void tprint<s8>(s8 value) {
+    LOG("%d", value);
+}
+
+template <>
+inline void tprint<u16>(u16 value) {
+    LOG("%u", value);
+}
+
+template <>
+inline void tprint<s16>(s16 value) {
+    LOG("%d", value);
+}
+
+template <>
+inline void tprint<u32>(u32 value) {
+    LOG("%u", value);
+}
+
+template <>
+inline void tprint<s32>(s32 value) {
+    LOG("%d", value);
+}
+
+template <>
+inline void tprint<u64>(u64 value) {
+    LOG("%llu", value);
+}
+
+template <>
+inline void tprint<s64>(s64 value) {
+    LOG("%lld", value);
+}
+
+template <>
+inline void tprint<f32>(f32 value) {
+    LOG("%f", value);
+}
+
+template <>
+inline void tprint<f64>(f64 value) {
+    LOG("%f", value);
+}
+
+template <>
+inline void tprint<bool>(bool value) {
+    LOG("%s", formatBool(value));
+}
+
+template <>
+inline void tprint<const char*>(const char* value) {
+    LOG("%s", value);
+}
+
+template <>
+inline void tprint<char*>(char* value) {
+    LOG("%s", value);
+}
+
+template <>
+inline void tprint<volatile sead::GraphicsContext&>(volatile sead::GraphicsContext& gc) {
+    LOG("------------------GraphicsContext------------------", "");
+    LOG("  alphaTest: Enable(%s), Func(%d), Ref(%f)", formatBool(gc.alphaTestEnable), gc.alphaTestFunc, gc.alphaTestRef);
+    LOG("  blendConstantColor: RGBA(%f, %f, %f, %f)", gc.blendConstantColor.r, gc.blendConstantColor.g, gc.blendConstantColor.b, gc.blendConstantColor.a);
+    LOG("  blendEnable:    %s", formatBool(gc.blendEnable));
+    LOG("  blendEquation:  RGB(%d), A(%d)", gc.blendEquationRGB, gc.blendEquationA);
+    LOG("  blendFactorDst: RGB(%d), A(%d)", gc.blendFactorDstRGB, gc.blendFactorDstA);
+    LOG("  blendFactorSrc: RGB(%d), A(%d)", gc.blendFactorSrcRGB, gc.blendFactorSrcA);
+    LOG("  colorMask: RGBA(%s, %s, %s, %s)", formatBool(gc.colorMaskR), formatBool(gc.colorMaskG), formatBool(gc.colorMaskB), formatBool(gc.colorMaskA));
+    LOG("  cullingMode: %d", gc.cullingMode);
+    LOG("  depthFunc:   %d", gc.depthFunc);
+    LOG("  depth(Test/Write)Enable: %s / %s", formatBool(gc.depthTestEnable), formatBool(gc.depthWriteEnable));
+    LOG("  renderStatePolygonMode: Back(%d), Front(%d)", gc.renderState.polygonModeBack, gc.renderState.polygonModeFront);
+    LOG("  renderStatePolyOffset(Back/Front)Enable: %d / %d", gc.renderState.polyOffsetBackEnable, gc.renderState.polyOffsetFrontEnable);
+    LOG("  renderStatePolyLineOffsetEnable: %d", gc.renderState.polyLineOffsetEnable);
+    LOG("  stencilOp: Fail(%d), ZFail(%d), ZPass(%d)", gc.stencilOpFail, gc.stencilOpZFail, gc.stencilOpZPass);
+    LOG("  stencilTest: Enable(%s), Func(%d), Mask(%d), Ref(%d)", formatBool(gc.stencilTestEnable), gc.stencilTestFunc, gc.stencilTestMask, gc.stencilTestRef);
+    LOG("---------------------------------------------------", "");
+}

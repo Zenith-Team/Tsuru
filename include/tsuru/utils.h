@@ -20,46 +20,16 @@ extern "C" s32 wcscmp(const wchar_t* str1, const wchar_t* str2);
 // @return Whether or not the variable has reached the target
 bool moveValueWithOverflowTo(u32& value, u32 target, u32 step, bool subtract);
 
-// Returns the nth bit of a 64 bit integer from the right
-// @param val The integer to be evaluated
-// @param nth The bit index from the right (1 indexed)
-// @return The value of the retrieved bit
+
 static inline bool nthBit64Right(u64 val, u64 nth) { return (val >> (nth - 1)) & 1; }
-// Returns the nth bit of a 32 bit integer from the right
-// @param val The integer to be evaluated
-// @param nth The bit index from the right (1 indexed)
-// @return The value of the retrieved bit
 static inline bool nthBit32Right(u32 val, u32 nth) { return (val >> (nth - 1)) & 1; }
-// Returns the nth bit of a 16 bit integer from the right
-// @param val The integer to be evaluated
-// @param nth The bit index from the right (1 indexed)
-// @return The value of the retrieved bit
 static inline bool nthBit16Right(u16 val, u16 nth) { return (val >> (nth - 1)) & 1; }
-// Returns the nth bit of a 8 bit integer from the right
-// @param val The integer to be evaluated
-// @param nth The bit index from the right (1 indexed)
-// @return The value of the retrieved bit
 static inline bool nthBit8Right(u8 val, u8 nth) { return (val >> (nth - 1)) & 1; }
 
-// Returns the nth bit of a 64 bit integer from the left
-// @param val The integer to be evaluated
-// @param nth The bit index from the right (1 indexed)
-// @return The value of the retrieved bit
+
 static inline bool nthBit64Left(u64 val, u64 nth) { return (val << (nth - 1)) & 1; }
-// Returns the nth bit of a 32 bit integer from the left
-// @param val The integer to be evaluated
-// @param nth The bit index from the right (1 indexed)
-// @return The value of the retrieved bit
 static inline bool nthBit32Left(u32 val, u32 nth) { return (val << (nth - 1)) & 1; }
-// Returns the nth bit of a 16 bit integer from the left
-// @param val The integer to be evaluated
-// @param nth The bit index from the right (1 indexed)
-// @return The value of the retrieved bit
 static inline bool nthBit16Left(u16 val, u16 nth) { return (val << (nth - 1)) & 1; }
-// Returns the nth bit of a 8 bit integer from the left
-// @param val The integer to be evaluated
-// @param nth The bit index from the right (1 indexed)
-// @return The value of the retrieved bit
 static inline bool nthBit8Left(u8 val, u8 nth) { return (val << (nth - 1)) & 1; }
 
 template <typename T>
@@ -67,6 +37,10 @@ static inline void swap(T& a, T& b) {
     const T temp = a;
     a = b;
     b = temp;
+}
+
+static inline const char* formatBool(bool value) {
+    return value ? "true" : "false";
 }
 
 // Converts an integer to a string of it's binary representation

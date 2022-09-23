@@ -81,7 +81,7 @@ public:
     // @return True if the value has reached the target value, false if not. Returns true if the easing values were not initialized to prevent infinite loops
     bool ease(f32& value) {
         if (!this->inited) {
-            LOG("%sWARNING > An Easing class instance was used with uninitialized values!", LogColor::Yellow);
+            PRINT(LogColor::Yellow, "WARNING > An Easing class instance was used with uninitialized values!");
             return true;
         }
 

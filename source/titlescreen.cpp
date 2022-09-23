@@ -15,6 +15,6 @@ void LevelInfo::setTitlescreenThemeEntrance() {
         case 8: this->setDestEntrance(8); return; // Superstar Road
         case 9: this->setDestEntrance(9); return; // Secret Island
 
-        default: LOG("Game saved in unknown world"); this->setDestEntrance(0); return;
+        default: PRINT("Game saved in unknown world"); this->setDestEntrance(0); return;
     }
 }

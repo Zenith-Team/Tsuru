@@ -2,7 +2,7 @@
 ---
 Name: Tsuru
 Modules:
-# - buffs.yaml                # What if we made the game a bit more tricky
+  - buffs.yaml                # What if we made the game a bit more tricky
   - cheats.yaml               # Cheat menu
   - collisionconditions.yaml  # Fixes collision conditions for some actors
   - csscripts.yaml            # Custom world map scripts
@@ -23,8 +23,8 @@ Modules:
   - sound.yaml                # Patches that affect sound
   - titlescreen.yaml          # Title screen patches
   - waves.yaml                # Wavy liquids
-  - yoshicolors.yaml          # Extra colors for Yoshi
+# - yoshicolors.yaml          # Extra colors for Yoshi
 Defines:
-  - Override
+  - NO_INTELLISENSE_HACK
   - Cemu
   - TSURU_DEBUG

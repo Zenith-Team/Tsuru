@@ -5,19 +5,18 @@
 
 // Workarounds to meet newer standards
 
-#ifdef Override
+#ifdef NO_INTELLISENSE_HACK
 #define override
 #define static_assert(condition, ...) typedef int TOKENPASTE2(static_assert_, __LINE__)[(condition) ? 1 : -1]
-#define forceinline __attribute__((always_inline))
+#define nullptr NULL
 #else
 #define static_assert(x, ...)
-#define forceinline
+#define __attribute__(...)
 #endif
 
+#define forceinline __attribute__((always_inline))
 #define packed      __attribute__((packed))
 #define aligned(x)  __attribute__((aligned(x)))
-
-#define nullptr NULL
 
 #define ENUM_CLASS(name, ...)              \
     class name {virtual void This_error_means_you_forgot_to_write___type___in_an_object_instanciation()=0;public: \

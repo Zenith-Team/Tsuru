@@ -4,14 +4,14 @@
 
 // Replaces __pure_virtual_called
 void handlePVC() {
-    LOG("A pure virtual function was called");
+    PRINT("A pure virtual function was called");
 
     OSFatal("Pure virtual function called");
 }
 
 // Replaces __deleted_virtual_called
 void handleDVC() {
-    LOG("A deleted virtual function was called");
+    PRINT("A deleted virtual function was called");
 
     OSFatal("A deleted virtual function was called");
 }
