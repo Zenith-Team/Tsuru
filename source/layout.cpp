@@ -15,7 +15,7 @@ extern "C" void initLayoutRenderer(sead::TaskBase* layermgr) {
 LayoutRenderer::LayoutRenderer() {
     BIND_DRAW_METHOD(this->drawMethod, "LayoutRenderer", &LayoutRenderer::render, 0xE, this);
 
-    LOG("LayoutRenderer initialized");
+    PRINT("LayoutRenderer initialized");
 }
 
 void LayoutRenderer::render(const agl::lyr::RenderInfo& renderInfo) {

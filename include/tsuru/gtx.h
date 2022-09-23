@@ -34,27 +34,27 @@ public:
         agl::TextureData textureData;
 
         if (!sead::FileDeviceMgr::instance()->tryOpen(&handle, path, sead::FileDevice::FileOpenFlag_ReadOnly, 0)) {
-            LOG("Texture file at %s does not exist.", path.cstr());
+            PRINT(LogColor::Red, "GTX Texture file at ", path.cstr(), " does not exist.");
             return false;
         }
 
         u32 filesize = handle.getFileSize();
 
         if (filesize == 0) {
-            LOG("Texture file at %s is empty", path.cstr());
+            PRINT(LogColor::Red, "GTX Texture file at ", path.cstr(), " is empty.");
             return false;
         }
 
         this->gtx = new(nullptr, 0x2000) u8[filesize];
 
         if (gtx == nullptr) {
-            LOG("Failed to allocate memory for texture \"%s\"", path.cstr());
+            PRINT(LogColor::Red, "Failed to allocate memory for GTX texture file: ", path.cstr());
             return false;
         }
 
         u32 bytesRead = handle.read(this->gtx, filesize);
         if (bytesRead != filesize) {
-            LOG("Read size mismatch occurred while reading file at %s, read size: 0x%x, expected size: 0x%x", path.cstr(), bytesRead, filesize);
+            LOG("%sRead size mismatch occurred while reading file at %s, read size: 0x%x, expected size: 0x%x", LogColor::Red, path.cstr(), bytesRead, filesize);
             return false;
         }
 

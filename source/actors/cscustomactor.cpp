@@ -58,7 +58,7 @@ u32 CSCustomActor::onExecute() {
 
     // Checks if player collided
     if (CSHitboxColliderMgr::instance()->FUN_21c5894(&this->hitboxCollider)) {
-        LOG("Player collided");
+        PRINT("Player collided");
 
         // Do a hack to get the colliding player
         CourseSelectActor* collidingPlayer = reinterpret_cast<CourseSelectActor*>(ActorMgr::instance()->actors.findActorByID(CSPlayerMgr::instance()->playerActorID));
@@ -89,5 +89,5 @@ void CSCustomActor::onCSScriptCommandUpdate() {
 
     CSScriptMgr::instance()->getCurrentScriptCommandType(&command);
 
-    LOG("%u", command);
+    PRINT("%u", command);
 }

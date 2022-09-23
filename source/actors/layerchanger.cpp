@@ -40,17 +40,17 @@ u32 LayerChanger::onCreate() {
     1 - Layer 2
     2 - Layer 0
     */
-    LOG("Event: %d", trigEvent);
+    PRINT("Event: ", trigEvent);
    
     return this->onExecute();
 }
 
 u32 LayerChanger::onExecute() {
     if (!this->isDone) {
-        LOG("Currently checking if Event ID %d was triggered...", trigEvent);
+        PRINT("Currently checking if Event ID ", trigEvent, " was triggered...");
         if (EventMgr::instance()->isActive(this->trigEvent)) {
             this->isDone = true;
-            LOG("Event ID %d was triggered", trigEvent);
+            PRINT("Event ID ", trigEvent, " was triggered");
             for (u32 i = 0; i < 4; i++) {
                 Player* player = PlayerMgr::instance()->players[i];
                 if (player) {
@@ -61,7 +61,7 @@ u32 LayerChanger::onExecute() {
     }
 
     if (EventMgr::instance()->isActive(this->eventID1)) {
-        LOG("Event activated");
+        PRINT("Event activated");
     }
 
     return 1;

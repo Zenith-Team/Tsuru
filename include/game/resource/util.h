@@ -5,21 +5,24 @@
 #include "log.h"
 
 static inline bool loadResource(const sead::SafeString& name, const sead::SafeString& path, bool isYaz0 = true, const char* requester = "*") {
-    LOG("%s(TsuruResLoader:%s) Attemping to load resource %s", LogColor::Yellow, requester, path.cstr());
+    PRINT(LogColor::Yellow, "TsuruResLoader: ", requester, " is attempting to load resource: ", path.cstr());
     bool validResource = ResMgr::instance()->loadRes(name, path, nullptr, isYaz0);
     if (!validResource) {
-        LOG("%s(TsuruResLoader:%s) Failed to load resource %s", LogColor::Red, requester, path.cstr());
+        PRINT(LogColor::Red, "TsuruResLoader: ", requester, " failed to load resource: ", path.cstr());
         return false;
     }
+    
     if (ResArchiveMgr::instance()->get(name)) {
-        LOG("%s(TsuruResLoader:%s) Resource %s is already loaded.", LogColor::LightGreen, requester, path.cstr());
+        PRINT(LogColor::Yellow, "TsuruResLoader: ", requester, " resource already loaded: ", path.cstr());
         return true;
     }
+
     bool validArchiveRes = ResArchiveMgr::instance()->loadResArchive(name, name, nullptr);
     if (!validArchiveRes) {
-        LOG("%s(TsuruResLoader:%s) Failed to load archive resource %s", LogColor::Red, requester, name.cstr());
+        PRINT(LogColor::Red, "TsuruResLoader: ", requester, " failed to load archive resource: ", path.cstr());
         return false;
     }
-    LOG("%s(TsuruResLoader:%s) Successfully loaded resource %s", LogColor::Green, requester, path.cstr());
+
+    PRINT(LogColor::Green, "TsuruResLoader: ", requester, " successfully loaded resource: ", path.cstr());
     return true;
 }

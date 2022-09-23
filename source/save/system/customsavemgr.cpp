@@ -12,14 +12,14 @@ bool CustomSaveMgr::write() {
     sead::FileDevice* device = sead::FileDeviceMgr::instance()->tryOpen(&handle, this->filepath, sead::FileDevice::FileOpenFlag_Create, 0);
 
     if (!handle.device) {
-        LOG("Handle device was null.");
+        PRINT("Handle device was null.");
         return false;
     }
 
     device->tryWrite(&bytesWritten, &handle, reinterpret_cast<u8*>(this->savestruct), this->getSaveDataSize());
 
     if (bytesWritten != this->getSaveDataSize()) {
-        LOG("Write size mismatch, wrote size: 0x%x, expected size: 0x%x", bytesWritten, this->getSaveDataSize());
+        PRINT("Write size mismatch, wrote size: 0x%x, expected size: 0x%x", bytesWritten, this->getSaveDataSize());
         return false;
     }
 
@@ -36,23 +36,23 @@ void CustomSaveMgr::init() {
     u32 bytesRead = readHandle.read(reinterpret_cast<u8*>(this->savestruct), this->getSaveDataSize());
 
     if (!readHandle.device) {
-        LOG("Custom save file at %s does not exist. Creating...", this->filepath.stringTop);
+        PRINT("Custom save file at %s does not exist. Creating...", this->filepath.stringTop);
 
         if (!this->write()) {
-            LOG("Write failed.");
+            PRINT("Write failed.");
             return;
         }
     }
 
     else if (bytesRead != this->getSaveDataSize()) {
-        LOG("Manager %s had a read size mismatch, read size: 0x%x, expected size: 0x%x", this->filepath.stringTop, bytesRead, this->getSaveDataSize());
+        PRINT("Manager %s had a read size mismatch, read size: 0x%x, expected size: 0x%x", this->filepath.stringTop, bytesRead, this->getSaveDataSize());
         this->remakeSaveData();
         this->write();
         return;
     }
 
     else if (this->savestruct->magic != 0xCAFEF00D) {
-        LOG("Custom save file at %s is corrupted. Recreating...", this->filepath.stringTop);
+        PRINT("Custom save file at %s is corrupted. Recreating...", this->filepath.stringTop);
         this->remakeSaveData();
         this->write();
         return;
@@ -61,7 +61,7 @@ void CustomSaveMgr::init() {
 
 void CustomSaveMgr::save() {
     if (!this->inited){
-        LOG("Save manager at %s was not inited before saving. Returning...", this->filepath.stringTop);
+        PRINT("Save manager at %s was not inited before saving. Returning...", this->filepath.stringTop);
         return;
     }
 
