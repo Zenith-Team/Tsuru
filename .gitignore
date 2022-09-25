@@ -4,6 +4,7 @@ syms/game_phys.x
 objs
 .vs
 .vscode
+.idea
 *.o
 *.d
 *.ti

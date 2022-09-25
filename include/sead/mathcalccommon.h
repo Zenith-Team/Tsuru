@@ -22,6 +22,35 @@ public:
     // @return Whether or not the variable has reached the target
     static bool chase(T* out, T target, T step);
 
+    static T abs(T x) {
+        return (x < 0) ? -x : x;
+    }
+
+    static T max(T a, T b) {
+        if (a < b) return b;
+        else       return a;
+    }
+
+    static T min(T a, T b) {
+        if (a < b) return a;
+        else       return b;
+    }
+
+    static T clampMax(T val, T max_) {
+        return min(val, max_);
+    }
+
+    static T clampMin(T val, T min_) {
+        return max(val, min_);
+    }
+
+    static T clamp2(T min_, T val, T max_) {
+        if (val < min_) return min_;
+        if (val > max_) return max_;
+
+        return val;
+    }
+
     static void sinCosIdx(T* outsin, T* outcos, u32 idx);
 
 public:

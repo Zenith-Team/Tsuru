@@ -3,7 +3,7 @@
 #include "log.h"
 #include "types.h"
 #include "math/constants.h"
-#include "math/functions.h"
+#include "sead/mathcalccommon.h"
 
 // Main class for all easing operations
 // @param func A reference to the easing function to be used
@@ -71,7 +71,7 @@ public:
         this->func = func;
         this->start = start;
         this->target = target;
-        this->step = abs(valueFromPercent(stepPercent, start, target) - start);
+        this->step = sead::Mathf::abs(valueFromPercent(stepPercent, start, target) - start);
         this->iteration = 0;
         this->totalIterations = abs(target - start) / this->step;
     }
@@ -86,7 +86,7 @@ public:
         }
 
         this->iteration++;
-        f32 progress = abs(percentFromValue(this->start + this->step * this->iteration, this->start, this->target));
+        f32 progress = sead::Mathf::abs(percentFromValue(this->start + this->step * this->iteration, this->start, this->target));
         f32 next = this->start + this->func(progress) * (this->target - this->start);
         //LOG("Easing (%i): %f -> %f [Change: %f | %f%]\n", this->iteration, value, next, next - value, progress * 100);
 

@@ -1,8 +1,6 @@
 #include "game/profile/profile.h"
 #include "game/actor/actor.h"
 
-#define RESERVED_ID 0xFFFF
-
 Profile* Profile::profilesCustom[Profile::NUM_PROFILES_CUSTOM];
 s16 Profile::prioritiesCustom[Profile::NUM_PROFILES_CUSTOM] = { 0 };
 u8 Profile::resourcesLoadAtCustom[Profile::NUM_PROFILES_CUSTOM] = { 0 };
@@ -832,7 +830,7 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::WavePlatform,                // 739
     ProfileID::DebugActor,                  // 740
     ProfileID::LiquidOverlay,               // 741
-    ProfileID::PhysicsModifier,             // 742
+    ProfileID::Stingby,                     // 742
     ProfileID::Kamiya,                      // 743
     ProfileID::ModelLoader,                 // 744
     ProfileID::StringBank,                  // 745

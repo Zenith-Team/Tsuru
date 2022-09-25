@@ -202,7 +202,7 @@ void AngrySun::executeState_Follow() {
             return;
         }
 
-        if (abs(distance.x) > 250.0f) {
+        if (sead::Mathf::abs(distance.x) > 250.0f) {
             this->timer -= 100;
         }
 

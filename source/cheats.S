@@ -1,7 +1,7 @@
 .include "macros.S"
 
 .macro CheckSaveMember offset
-    # Load SHSaveMgr::sSaveData.offset
+    # Load TsuruSaveMgr::sSaveData.offset
     lis   r3, sSaveData__12TsuruSaveMgr@ha
     addi  r3, r3, sSaveData__12TsuruSaveMgr@l
     lbz   r4, offset(r3)

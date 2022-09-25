@@ -14,6 +14,49 @@
 #include "sead/random.h"
 #include "log.h"
 
+class BasaltBoneProjectile : public Enemy {
+    SEAD_RTTI_OVERRIDE_IMPL(BasaltBoneProjectile, Enemy);
+
+public:
+    BasaltBoneProjectile(const ActorBuildInfo* buildInfo) : Enemy(buildInfo), effect() { }
+    virtual ~BasaltBoneProjectile() { }
+
+    static Actor* build(const ActorBuildInfo* buildInfo) {
+        return new BasaltBoneProjectile(buildInfo);
+    }
+
+    u32 onCreate() override {
+        this->hitboxCollider.init(this, &BasaltBoneProjectile::collisionInfo);
+        this->addHitboxColliders();
+
+        this->offscreenDelete(true);
+
+        Vec3u r; Vec3f s(1);
+
+        this->timer = 0;
+
+        return this->onExecute();
+    }
+
+    u32 onExecute() override {
+        this->position.x += this->direction ? -2.0f : 2.0f;
+
+        Vec3u r; Vec3f s(1);
+        this->effect.update(rp_Jr_FireBall, &this->position, &r, &s);
+
+        if (++this->timer > 520) {
+            this->isDeleted = true;
+        }
+
+        return 1;
+    }
+
+    static const HitboxCollider::Info collisionInfo;
+
+    EffectWrapper effect;
+    u32 timer;
+};
+
 class BasaltBones : public BossWrapper<18> {
     SEAD_RTTI_OVERRIDE_IMPL(BasaltBones, Boss)
 
@@ -22,8 +65,7 @@ public:
         Wait,
         Shake,
         FlyOut,
-        Assemble,
-        Scream
+        Assemble
     );
 
     class Bone {
@@ -76,7 +118,7 @@ public:
     void onStompDamage(StageActor*) override;
     void onStompKill(StageActor*) override;
 
-    static const HitboxCollider::Info sCollisionInfo;
+    static const HitboxCollider::Info collisionInfo;
     
     static const Vec3f launchKeyframes[6][2][3];
 
@@ -88,12 +130,15 @@ public:
     Bone bones[6];
     union { u32 timer, assembler; };
     f32 down;
-    bool dead, draw, first;
+    bool dead, draw, first, threw;
     EnvTerrain* lava;
     HeatDistorter heat;
+    EffectWrapper flames;
+    Vec3f flamesScale;
 
     DECLARE_STATE(BasaltBones, Spawn);
     DECLARE_STATE(BasaltBones, Active);
+    DECLARE_STATE(BasaltBones, Throw);
     DECLARE_STATE(BasaltBones, Disassemble);
     DECLARE_STATE(BasaltBones, Assemble);
     DECLARE_STATE(BasaltBones, AssembleFinalize);
@@ -101,14 +146,17 @@ public:
 
 CREATE_STATE(BasaltBones, Spawn);
 CREATE_STATE(BasaltBones, Active);
+CREATE_STATE(BasaltBones, Throw);
 CREATE_STATE(BasaltBones, Disassemble);
 CREATE_STATE(BasaltBones, Assemble);
 CREATE_STATE(BasaltBones, AssembleFinalize);
 
 const Profile BasaltBonesProfile(&BasaltBones::build, ProfileID::BasaltBones);
-PROFILE_RESOURCES(ProfileID::BasaltBones, Profile::LoadResourcesAt::Course, "laron");
+PROFILE_RESOURCES(ProfileID::BasaltBones, Profile::LoadResourcesAt::Course, "laron", "star_coin");
 
-const HitboxCollider::Info BasaltBones::sCollisionInfo = {
+const Profile BasaltBoneProjectileProfile(&BasaltBoneProjectile::build, ProfileID::BasaltBoneProjectile);
+
+const HitboxCollider::Info BasaltBones::collisionInfo = {
     Vec2f(0.0f, 6.0f), Vec2f(14.0f, 22.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &BasaltBones::collisionCallback
 };
 
@@ -116,7 +164,13 @@ const HitboxCollider::Info BasaltBones::Bone::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &BasaltBones::Bone::collisionCallback
 };
 
-#define b(x) ((f32)(((f32)x) * 16.0f)) // Convert # of tiles to position value for it
+const HitboxCollider::Info BasaltBoneProjectile::collisionInfo = {
+    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &BasaltBoneProjectile::collisionCallback
+};
+
+static const f32 __x16(const f32 x) { return x * 16.f; }
+
+#define b __x16
 
 const Vec3f BasaltBones::launchKeyframes[6][2][3] = { // 6 bones, 2 possible paths each containing 3 positions
     {
@@ -164,6 +218,7 @@ BasaltBones::BasaltBones(const ActorBuildInfo* buildInfo)
     , down(0.0f)
     , dead(false)
     , draw(false)
+    , threw(false)
     , lava(nullptr)
     , heat()
 { }
@@ -193,7 +248,15 @@ u32 BasaltBones::onExecute() {
         this->bones[i].rotation += Vec3u(fixDeg(1), fixDeg(1.25f), fixDeg(0.4f));
     }
 
-    this->heat.execute(this->position + Vec3f(0, 8, 0), Vec3f(1.75f));
+    if (this->draw) {
+        this->heat.execute(this->position + Vec3f(0, 8, 0), Vec3f(1.75f));
+
+        for (u32 i = 0; i < 6; i++) {
+            this->bones[i].hitbox.colliderInfo.distToCenter = 9999;
+        }
+    } else {
+        this->heat.execute(0, 0);
+    }
 
     return 1;
 }
@@ -211,12 +274,10 @@ u32 BasaltBones::onDraw() {
 }
 
 void BasaltBones::initHitboxCollider() {
-    this->hitboxCollider.init(this, &BasaltBones::sCollisionInfo);
+    this->hitboxCollider.init(this, &BasaltBones::collisionInfo);
 }
 
 void BasaltBones::initModels() {
-    LOG("Before: 0x%x", this->heap->getFreeSize());
-
     this->model = ModelWrapper::create("laron", "laron", 2);
 
     for (u32 i = 0; i < 6; i++) {
@@ -231,8 +292,6 @@ void BasaltBones::initModels() {
         
         this->bones[i].model = ModelWrapper::create("laron", boneModels[i]);
     }
-    
-    LOG("After: 0x%x", this->heap->getFreeSize());
 }
 
 void BasaltBones::updateModel() {
@@ -275,6 +334,10 @@ void BasaltBones::onStompKill(StageActor* collidingActor) {
 void BasaltBones::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     BasaltBones* self = (BasaltBones*)hcSelf->owner;
     
+    if (self->states.currentState()->ID == BasaltBones::StateID_Throw.ID && hcOther->owner->type == StageActor::Type::Player) {
+        return self->damagePlayer(hcSelf, hcOther);
+    }
+
     if (self->states.currentState()->ID != BasaltBones::StateID_Active.ID) {
         return;
     }
@@ -355,7 +418,7 @@ void BasaltBones::executeState_Spawn() {
             sead::Mathu::chase(&lava->effects.waveHorizontalSpeed, defaultWaveHorizontalSpeed, 42472454 / 40);
 
             Vec3f centerPoint = (this->bones[0].bezier.keyframes[2] + this->bones[1].bezier.keyframes[2] + this->bones[2].bezier.keyframes[2] + this->bones[3].bezier.keyframes[2] + this->bones[4].bezier.keyframes[2] + this->bones[5].bezier.keyframes[2]) / 6;
-            this->down += 0.0010 * this->bones[0].t;
+            this->down += 0.0012f * this->bones[0].t;
             centerPoint.y -= this->down;
 
             bool change = false;
@@ -373,7 +436,6 @@ void BasaltBones::executeState_Spawn() {
             }
 
             if (change) {
-                this->spawnStage = SpawnStage::Scream;
                 this->draw = true;
                 for (u32 i = 0; i < 6; i++) {
                     Bone& bone = this->bones[i];
@@ -385,21 +447,13 @@ void BasaltBones::executeState_Spawn() {
                     HitboxColliderMgr::instance()->safeAddToCreateList(&bone.hitbox);
                 }
 
-                this->timer = 45;
-                this->model->playSklAnim("big_stop");
+                this->timer = 16;
                 Vec3f scale = 2.3f;
                 Effect::spawn(RP_Cmn_FireballHit, &this->position, nullptr, &scale);
                 this->first = true;
+                this->doStateChange(&BasaltBones::StateID_Throw);
             }
 
-            break;
-        }
-
-        case SpawnStage::Scream: {
-            if (--this->timer == 0) {
-                this->doStateChange(&BasaltBones::StateID_Active);
-            }
-            
             break;
         }
     }
@@ -414,9 +468,10 @@ void BasaltBones::endState_Spawn() {
 void BasaltBones::beginState_Active() {
     this->model->playSklAnim("walk");
 
-    if (!first) {
+    if (!this->first && !this->threw) {
         Vec3f scale = 2.3f;
-        Effect::spawn(RP_Cmn_FireballHit, &this->position, nullptr, &scale);
+        Vec3f pos = this->position + Vec3f(0, 0, 4500.0f);
+        Effect::spawn(RP_Cmn_FireballHit, &pos, nullptr, &scale);
     }
 
     this->direction = sead::randBool();
@@ -432,6 +487,10 @@ void BasaltBones::executeState_Active() {
     sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[Direction::opposite((Direction::DirectionType)this->direction)], fixDeg(6.0f));
 
     static const f32 threshold = 8 * 16;
+
+    if (sead::randU32(100) == 0 && (this->rotation.y == Direction::directionToRotationList[Direction::Left] || this->rotation.y == Direction::directionToRotationList[Direction::Right])) {
+        this->doStateChange(&BasaltBones::StateID_Throw);
+    }
 
     if (this->position.x - this->startPosition.x < -threshold) {
         this->direction = Direction::Left;
@@ -450,14 +509,49 @@ void BasaltBones::endState_Active() {
     this->draw = false;
 }
 
-/** STATE:  */
+/** STATE: Throw */
+
+void BasaltBones::beginState_Throw() {
+    this->draw = true;
+    this->model->playSklAnim("big_stop");
+    this->model->sklAnims[0]->frameCtrl.speed = 1;
+    this->model->loopSklAnims(false);
+    this->flamesScale = 0;
+}
+
+void BasaltBones::executeState_Throw() {
+    sead::Mathf::chase(&this->flamesScale.x, 1.7f, 0.1367f);
+    sead::Mathf::chase(&this->flamesScale.y, 2.5f, 0.1367f);
+    sead::Mathf::chase(&this->flamesScale.z, 2.5f, 0.1367f);
+
+    Vec3f pos = this->position + Vec3f(0, 9, 0);
+    this->flames.update(rp_Jr_FireBall, &pos, nullptr, &this->flamesScale);
+
+    if (this->model->sklAnims[0]->frameCtrl.currentFrame / this->model->sklAnims[0]->frameCtrl.frameMax == 0.4f) {
+        ActorBuildInfo buildInfo = { 0 };
+        buildInfo.profile = Profile::get(ProfileID::BasaltBoneProjectile);
+        buildInfo.position = this->position + Vec3f(0, 20, 0);
+        static_cast<BasaltBoneProjectile*>(ActorMgr::instance()->create(buildInfo, false))->direction = Direction::opposite((Direction::DirectionType)this->direction);
+    } else if (this->model->sklAnims[0]->frameCtrl.isDone()) {
+        this->doStateChange(&BasaltBones::StateID_Active);
+    }
+}
+
+void BasaltBones::endState_Throw() {
+    this->threw = true;
+    this->flamesScale = 0;
+}
+
+/** STATE: Disassemble */
 
 void BasaltBones::beginState_Disassemble() {
-    this->bones[0].bezier.set(this->position, this->position + Vec3f(0, 0, 0), this->position + Vec3f(0, -3*16, 0));
-    this->bones[1].bezier.set(this->position, this->position + Vec3f(0, 0, 0), this->position + Vec3f(0, -3*16, 0));
-    this->bones[2].bezier.set(this->position, this->position + Vec3f(3*16, 3*16, 0), this->position + Vec3f(3*16, -7*16, 0));
+    this->threw = false;
+
+    this->bones[0].bezier.set(this->position, this->position + Vec3f(0, 0, 0),        this->position + Vec3f(0,     -3*16, 0));
+    this->bones[1].bezier.set(this->position, this->position + Vec3f(0, 0, 0),        this->position + Vec3f(0,     -3*16, 0));
+    this->bones[2].bezier.set(this->position, this->position + Vec3f(3*16, 3*16, 0),  this->position + Vec3f(3*16,  -7*16, 0));
     this->bones[3].bezier.set(this->position, this->position + Vec3f(-3*16, 3*16, 0), this->position + Vec3f(-3*16, -7*16, 0));
-    this->bones[4].bezier.set(this->position, this->position + Vec3f(5*16, 1*16, 0), this->position + Vec3f(5*16, -7*16, 0));
+    this->bones[4].bezier.set(this->position, this->position + Vec3f(5*16, 1*16, 0),  this->position + Vec3f(5*16,  -7*16, 0));
     this->bones[5].bezier.set(this->position, this->position + Vec3f(-5*16, 1*16, 0), this->position + Vec3f(-5*16, -7*16, 0));
     
     for (u32 i = 0; i < 6; i++) {
@@ -507,8 +601,10 @@ void BasaltBones::beginState_Assemble() {
 
     bone.bezier.set(this->position + keyframes[0], this->position + keyframes[1], this->position + keyframes[2]);
     bone.render = true;
-    bone.easer.set(Easing::quadInOut, 0, 1, 0.006f);
+    bone.easer.set(Easing::quadInOut, 0, 1, 0.008f);
 }
+
+#define xrb ((sead::randF32() * 2) - 1) * 3
 
 void BasaltBones::executeState_Assemble() {
     sead::Mathf::chase(&lava->effects.waveRippleHeight, 28.0f, 0.2f);
@@ -527,11 +623,11 @@ void BasaltBones::executeState_Assemble() {
                 
                 Bone& bone1next = this->bones[this->assembler];
                 bone1next.render = true;
-                bone1next.easer.set(Easing::quadInOut, 0.0f, 1.0f, 0.006f);
+                bone1next.easer.set(Easing::quadInOut, 0.0f, 1.0f, 0.008f);
                 bone1next.bezier.set(this->position + keyframes[0], this->position + keyframes[1], this->position + keyframes[2]);
 
-                bone1.bezier.set(bone1.position, this->position + Vec3f(0, 2*16, 0), this->position);
-                bone1.easer.set(Easing::quadInOut, 0.0f, 1.0f, 0.006f);   
+                bone1.bezier.set(bone1.position, this->position + Vec3f(0, 2*16, 0), this->position + Vec3f(xrb, xrb, 0.f));
+                bone1.easer.set(Easing::quadInOut, 0.0f, 1.0f, 0.008f);   
             }
         }
     }
@@ -559,6 +655,8 @@ void BasaltBones::executeState_Assemble() {
         this->doStateChange(&BasaltBones::StateID_AssembleFinalize);
     }
 }
+
+#undef xrb
 
 void BasaltBones::endState_Assemble() { }
 
