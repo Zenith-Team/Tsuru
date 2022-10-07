@@ -157,7 +157,7 @@ void Cataquack::executeState_Walk() {
     if (this->physicsMgr.isOnGround()) this->speed.y = 0.0f;
 
     Vec2f distToPlayer;
-    if (this->distanceToPlayer(distToPlayer) > -1 && abs(distToPlayer.x) < 8.0f * 16.0f && abs(distToPlayer.y) < 6.0f * 16.0f) {
+    if (this->distanceToPlayer(distToPlayer) > -1 && sead::Mathf::abs(distToPlayer.x) < 8.0f * 16.0f && sead::Mathf::abs(distToPlayer.y) < 6.0f * 16.0f) {
         if ((this->direction == Direction::Left && distToPlayer.x < 0) || (this->direction == Direction::Right && distToPlayer.x > 0)) {
             this->beginChase();
         }

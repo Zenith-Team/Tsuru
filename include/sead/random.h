@@ -10,7 +10,7 @@ public:
 };
 
 class GlobalRandom : public Random {
-    SEAD_SINGLETON_DISPOSER(GlobalRandom)
+    SEAD_SINGLETON_DISPOSER(GlobalRandom);
 };
 
 inline bool randBool() { return GlobalRandom::instance()->getU32() & 1; }

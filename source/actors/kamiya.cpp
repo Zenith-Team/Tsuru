@@ -283,16 +283,16 @@ void Kamiya::beginState_Flying() {
 
 void Kamiya::executeState_Flying() {
     // Stalk player
-
     f32 distance = this->targetPlayer->position.x - this->position.x;
     this->speed.x += distance / 1565.0f;
 
     this->direction = this->directionToPlayerH(this->position);
 
-    if (this->targetPlayer->direction == Direction::Right)
+    if (this->targetPlayer->direction == Direction::Right) {
         this->speed.x -= 0.045f;
-    else
+    } else {
         this->speed.x += 0.045f;
+    }
 
     // Clamp speed
     if (this->speed.x > 1.0f) this->speed.x -= 0.03f;   if (this->speed.x > 3.0f) this->speed.x -= 0.3f;
@@ -307,7 +307,7 @@ void Kamiya::executeState_Flying() {
 
     this->rotation.z = fixDeg(this->speed.x * 5.0f);
 
-    if (this->flyTimer > 240 && abs(this->speed.x) < 0.25f) {
+    if (this->flyTimer > 240 && sead::Mathf::abs(this->speed.x) < 0.25f) {
         switch (sead::randU32(3)) {
             case 0:  this->flyTimer = 120;                            break;
             case 1:  this->doStateChange(&Kamiya::StateID_Attacking); break;

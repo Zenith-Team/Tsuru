@@ -94,10 +94,10 @@ void FallingChestnut::beginState_Idle() { }
 void FallingChestnut::executeState_Idle() {
     Vec2f dist;
 
-    if (this->distanceToPlayer(dist) > -1 && abs(dist.x) < 48.0f)
+    if (this->distanceToPlayer(dist) > -1 && sead::Mathf::abs(dist.x) < 48.0f)
         this->doStateChange(&StateID_Falling);
 
-    else if (this->distanceToPlayer(dist) > -1 && abs(dist.x) < 80.0f)
+    else if (this->distanceToPlayer(dist) > -1 && sead::Mathf::abs(dist.x) < 80.0f)
         ;   // TODO: Shake
 }
 

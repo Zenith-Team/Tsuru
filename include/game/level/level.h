@@ -30,30 +30,8 @@ public:
             u16 x;                          // 2
             u16 y;                          // 4
             u16 eventID1_2;                 // 6
-            union { u32 settings1;          // 8
-                struct {                    // 8
-                    u32 nybble12 : 4;       // 8
-                    u32 nybble11 : 4;       // 8
-                    u32 nybble10 : 4;       // 8
-                    u32 nybble9  : 4;       // 8
-                    u32 nybble8  : 4;       // 8
-                    u32 nybble7  : 4;       // 8
-                    u32 nybble6  : 4;       // 8
-                    u32 nybble5  : 4;       // 8
-                };                          // 8
-            };                              // 8
-            union { u32 settings2;          // C
-                struct {                    // C
-                    u32 nybble20 : 4;       // C
-                    u32 nybble19 : 4;       // C
-                    u32 nybble18 : 4;       // C
-                    u32 nybble17 : 4;       // C
-                    u32 nybble16 : 4;       // C
-                    u32 nybble15 : 4;       // C
-                    u32 nybble14 : 4;       // C
-                    u32 nybble13 : 4;       // C
-                };                          // C
-            };                              // C
+            u32 settings1;                  // 8
+            u32 settings2;                  // C
             u8 zoneID;                      // 10
             u8 layer;                       // 11
             u8 movementID;                  // 12
@@ -91,21 +69,9 @@ public:
         };
 
     public:
-        // @param id Target sprite ID
-        // @return Pointer to the retrieved sprite
         Sprite* getSprite(u32 id, Sprite*);
-
-        // @param outRect Output rect which represents the location
-        // @param id Target location ID
-        // @return Pointer to the retrieved location
         Location* getLocation(Rect* outRect, u8 id);
-
-        // @param id Target path ID
-        // @return Pointer to the retrieved path
         Path* getPath(u8 id);
-
-        // @param id Target path node ID
-        // @return Pointer to the retrieved path node
         PathNode* getPathNodes(u32 id);
 
         u32 id;                             // 0
@@ -118,9 +84,6 @@ public:
     };
 
 public:
-
-    // @param id Target area ID
-    // @return Pointer to the retrieved area
     Area* getArea(u32 id);
 
     Area areas[4];

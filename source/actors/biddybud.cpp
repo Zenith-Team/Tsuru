@@ -54,88 +54,10 @@ CREATE_STATE(Biddybud, DieSquish);
 const Profile BiddybudProfile(&Biddybud::build, ProfileID::Biddybud);
 PROFILE_RESOURCES(ProfileID::Biddybud, Profile::LoadResourcesAt::Course, "tenten_w");
 
-// collider related stuff
-
 HitboxCollider::Info Biddybud::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFFFFFF, 0, &Enemy::collisionCallback
 };
 
-void Biddybud::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    u32 hitType = this->processCollision(hcSelf, hcOther, 0);
-    if (hitType == HitType::Collide)
-        this->damagePlayer(hcSelf, hcOther);
-    else if (hitType == HitType::NormalJump || hitType == HitType::SpinJump)
-        this->killPlayerJump(hcOther->owner, 0.0f, &Biddybud::StateID_DieSquish);
-}
-
-void Biddybud::collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    u32 hitType = this->processCollision(hcSelf, hcOther, 0);
-    if (hitType == HitType::Collide) {
-        this->damagePlayer(hcSelf, hcOther);
-    }
-    if (hitType == HitType::NormalJump) {
-        Biddybud::collisionStar(hcSelf, hcOther);
-    }
-
-}
-
-bool Biddybud::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Biddybud::collisionStar(hcSelf, hcOther);
-    return 1;
-}
-bool Biddybud::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
-    Vec3f effectPos(effectOrigin + this->effectOffset);
-    Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
-    this->isDeleted = true;
-    return 1;
-}
-
-bool Biddybud::collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    doStateChange(&Biddybud::StateID_Die);
-    return 1;
-}
-
-bool Biddybud::collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    doStateChange(&Biddybud::StateID_Die);
-    return 1;
-}
-
-bool Biddybud::collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Biddybud::collisionStar(hcSelf, hcOther);
-    return 1;
-}
-
-bool Biddybud::collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Biddybud::collisionStar(hcSelf, hcOther);
-    return 1;
-}
-
-bool Biddybud::collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
-    Vec3f effectPos(effectOrigin + this->effectOffset);
-    Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
-    this->isDeleted = true;
-    return 1;
-}
-
-bool Biddybud::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Enemy::collisionFireball(hcSelf, hcOther);
-    while (this->counter < 32) {
-        this->counter++;
-    }
-    return Biddybud::collisionStar(hcSelf, hcOther);
-}
-
-bool Biddybud::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Biddybud::collisionStar(hcSelf, hcOther);
-    return 1;
-}
-
-bool Biddybud::collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Biddybud::collisionFireball(hcSelf, hcOther);
-    return 1;
-}
 Biddybud::Biddybud(const ActorBuildInfo* buildInfo) 
     : Enemy(buildInfo)
     , model(nullptr)
@@ -212,7 +134,83 @@ void Biddybud::updateModel() {
 
 }
 
+void Biddybud::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    u32 hitType = this->processCollision(hcSelf, hcOther, 0);
+    if (hitType == HitType::Collide)
+        this->damagePlayer(hcSelf, hcOther);
+    else if (hitType == HitType::NormalJump || hitType == HitType::SpinJump)
+        this->killPlayerJump(hcOther->owner, 0.0f, &Biddybud::StateID_DieSquish);
+}
 
+void Biddybud::collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    u32 hitType = this->processCollision(hcSelf, hcOther, 0);
+    if (hitType == HitType::Collide) {
+        this->damagePlayer(hcSelf, hcOther);
+    }
+    if (hitType == HitType::NormalJump) {
+        Biddybud::collisionStar(hcSelf, hcOther);
+    }
+
+}
+
+bool Biddybud::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Biddybud::collisionStar(hcSelf, hcOther);
+    return 1;
+}
+
+bool Biddybud::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+    Vec3f effectPos(effectOrigin + this->effectOffset);
+    Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
+    this->isDeleted = true;
+    return 1;
+}
+
+bool Biddybud::collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    doStateChange(&Biddybud::StateID_Die);
+    return 1;
+}
+
+bool Biddybud::collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    doStateChange(&Biddybud::StateID_Die);
+    return 1;
+}
+
+bool Biddybud::collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Biddybud::collisionStar(hcSelf, hcOther);
+    return 1;
+}
+
+bool Biddybud::collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Biddybud::collisionStar(hcSelf, hcOther);
+    return 1;
+}
+
+bool Biddybud::collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+    Vec3f effectPos(effectOrigin + this->effectOffset);
+    Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
+    this->isDeleted = true;
+    return 1;
+}
+
+bool Biddybud::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Enemy::collisionFireball(hcSelf, hcOther);
+    while (this->counter < 32) {
+        this->counter++;
+    }
+    return Biddybud::collisionStar(hcSelf, hcOther);
+}
+
+bool Biddybud::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Biddybud::collisionStar(hcSelf, hcOther);
+    return 1;
+}
+
+bool Biddybud::collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Biddybud::collisionFireball(hcSelf, hcOther);
+    return 1;
+}
 
 /** STATE: Move */
 
@@ -268,4 +266,3 @@ void Biddybud::executeState_DieSquish() {
 }
 
 void Biddybud::endState_DieSquish() { }
-// plans to make a grounded one? maybe.

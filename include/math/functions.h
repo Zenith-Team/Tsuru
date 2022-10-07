@@ -3,9 +3,6 @@
 #include "math/constants.h"
 #include "types.h"
 
-// @return The given param without a sign
-inline f32 abs(f32 x) { return (x < 0.0f) ? -x : x; }
-
 #ifdef __cplusplus
 extern "C" {
 #endif

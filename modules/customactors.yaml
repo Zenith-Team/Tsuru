@@ -20,7 +20,6 @@ Files:
   - actors/waveplatform.cpp
   - actors/debugactor.cpp
   - actors/liquidoverlay.cpp
-  - actors/physicsmodifier.cpp
   - actors/kamiya.cpp
   - actors/modelloader.cpp
   - actors/stringbank.cpp
@@ -35,12 +34,12 @@ Files:
   - actors/biddybud.cpp
   - actors/helicalbar.cpp
   - actors/basaltbones.cpp
-  - actors/sizemodifieractivator.cpp
   - actors/splunkin.cpp
   - actors/switchblock.cpp
   - actors/powerupswitcher.cpp
   - actors/switchblockeventactivator.cpp
   - actors/redblueblock.cpp
+  - actors/stingby.cpp
 #* Course Select Actors:
   - actors/cscustomactor.cpp
 Hooks:

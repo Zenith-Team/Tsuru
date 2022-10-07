@@ -230,7 +230,7 @@ void ParaBones::beginState_Die() {
     this->removeHitboxColliders();
 
     ActorBuildInfo DryBones = { 0 };
-    DryBones.profile = Profile::get(Profile::spriteToProfileList[137]);
+    DryBones.profile = Profile::get(ProfileID::DryBones);
     DryBones.position = this->position + Vec3f(0.0f, -8.0f, 0.0f);
     ActorMgr::instance()->create(DryBones, 0);
     this->isDeleted = true;
