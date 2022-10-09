@@ -81,7 +81,6 @@ u32 ColdFuzzy::onExecute() {
         }
     }
 
-    // i copied all of this from the angry sun sprite
     if (this->projectileTimer == 30) {
         this->projectileTimer = 0;
         
@@ -102,9 +101,7 @@ u32 ColdFuzzy::onExecute() {
             iceball = reinterpret_cast<StageActor*>(ActorMgr::instance()->create(projectileBuildInfo, 0));
             iceball->speed.x = cosf(angle) * 3.0f;
             iceball->speed.y = sinf(angle) * 3.0f;
-        }
-
-        else {
+        } else {
             projectileBuildInfo.rotation = fixRad(angle);
             iceball = reinterpret_cast<StageActor*>(ActorMgr::instance()->create(projectileBuildInfo, 0));
             iceball->speed.x = cosf(angle) * 2.5f;
@@ -120,8 +117,10 @@ u32 ColdFuzzy::onExecute() {
             iceball->speed.x = cosf(angle - 0.4f) * 2.5f;
             iceball->speed.y = sinf(angle - 0.4f) * 2.5f;
         }
+
         this->projectileTimer++;
     }
+
     return 1;
 }
 

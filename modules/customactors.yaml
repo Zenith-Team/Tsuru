@@ -15,7 +15,6 @@ Files:
   - actors/taskchanger.cpp
   - actors/cataquack.cpp
   - actors/timeclock.cpp
-  - actors/angrysun.cpp
   - actors/rainbowlight.cpp
   - actors/waveplatform.cpp
   - actors/debugactor.cpp
@@ -40,7 +39,7 @@ Files:
   - actors/switchblockeventactivator.cpp
   - actors/redblueblock.cpp
   - actors/stingby.cpp
-  - actors/mantaray.cpp
+  - actors/jumboray.cpp
 #* Course Select Actors:
   - actors/cscustomactor.cpp
 Hooks:

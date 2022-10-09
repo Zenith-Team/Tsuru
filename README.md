@@ -11,7 +11,6 @@ Please note that a rewrite is currently in progress, so not everything listed he
 
 ## Custom Sprites:
 * Actor Spawner
-* Angry Sun/Moon
 * Beep Block
 * Bomb Bro *
 * Cataquack
@@ -92,10 +91,6 @@ Just create a new Pull Request on the designated page. We will review the PR and
 # Building
 This project is intended to be compiled with the [Tachyon](https://github.com/Zenith-Team/Tachyon) build system. Keep in mind that currently this project targets version 1.3.0 of the standalone copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not our top priority.
 
-# Usage
-If you would like to use the hacks from the Tsuru project in your own mods, all you need to do is to include a link to this repository somewhere in the credits of the mod.
-If you would like to fork the repo and build upon it, just provide a link to this repository and include the Credits section below in the readme.
-
 # Help
 If you require any assistance for anything related to Tsuru, feel free to join our [Discord server](https://discord.nsmbu.net) and ask for help in there.
 
@@ -106,7 +101,6 @@ If you require any assistance for anything related to Tsuru, feel free to join o
 * [jhmaster2000](https://github.com/jhmaster2000) - Code and headers
 * [Luminyx](https://github.com/Luminyx1) - Project lead, code, and headers
 * [Newer Team](https://github.com/Newer-Team) - [Newer U](https://github.com/Newer-Team/NewerSMBU) code and headers
-* [RicBent](https://github.com/RicBent) - [CodeDX](https://github.com/RicBent/codedx) code and headers
 * [RoadrunnerWMC](https://github.com/RoadrunnerWMC) - Customizable [world map scripts](https://github.com/RoadrunnerWMC/Cobra)
 * [rodmjorgeh](https://github.com/Rodmjorge) - Graphics
 * [shibboleet](https://github.com/shibbo) - [Headers](https://github.com/shibbo/NSMBU-Headers/)
