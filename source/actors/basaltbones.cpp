@@ -447,7 +447,6 @@ void BasaltBones::executeState_Spawn() {
                     HitboxColliderMgr::instance()->safeAddToCreateList(&bone.hitbox);
                 }
 
-                this->timer = 16;
                 Vec3f scale = 2.3f;
                 Effect::spawn(RP_Cmn_FireballHit, &this->position, nullptr, &scale);
                 this->first = true;
@@ -531,7 +530,7 @@ void BasaltBones::executeState_Throw() {
         ActorBuildInfo buildInfo = { 0 };
         buildInfo.profile = Profile::get(ProfileID::BasaltBoneProjectile);
         buildInfo.position = this->position + Vec3f(0, 20, 0);
-        static_cast<BasaltBoneProjectile*>(ActorMgr::instance()->create(buildInfo, false))->direction = Direction::opposite((Direction::DirectionType)this->direction);
+        static_cast<BasaltBoneProjectile*>(ActorMgr::instance()->create(buildInfo, false))->direction = !this->direction;
     } else if (this->model->sklAnims[0]->frameCtrl.isDone()) {
         this->doStateChange(&BasaltBones::StateID_Active);
     }
