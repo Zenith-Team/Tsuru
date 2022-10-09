@@ -1,5 +1,6 @@
 #include "game/actor/stage/stageactor.h"
 #include "game/collision/solid/solidontopcollider.h"
+#include "game/collision/collidermgr.h"
 #include "game/graphics/model/modelnw.h"
 #include "log.h"
 
@@ -37,11 +38,12 @@ u32 JumboRay::onCreate() {
     this->model = ModelWrapper::create("star_coin", "star_coinA");
     this->baseline = this->position.y;
 
-    Vec2f points[2] = { Vec2f(-32.0f, 8.0f), Vec2f(32.0f, -8.0f) };
+    Vec2f points[2] = { Vec2f(-32.0f, 0.0f), Vec2f(32.0f, 0.0f) };
     SolidOnTopCollider::Info collisionInfo = { Vec2f(0.0f, 0.0f), 0, 0, points, 0 };
 
     this->collider.init(this, collisionInfo, 2);
     this->collider.setType(ColliderBase::Type::Solid);
+    ColliderMgr::instance()->add(&this->collider);
 
     return this->onExecute();
 }
