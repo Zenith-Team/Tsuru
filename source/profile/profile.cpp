@@ -853,4 +853,5 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::StarCoinShardMgr,            // 762
     ProfileID::SwitchBlock,                 // 763
     ProfileID::PowerupSwitcher,             // 764
+    ProfileID::JumboRay,                    // 765
 };

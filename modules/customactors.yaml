@@ -40,6 +40,7 @@ Files:
   - actors/switchblockeventactivator.cpp
   - actors/redblueblock.cpp
   - actors/stingby.cpp
+  - actors/mantaray.cpp
 #* Course Select Actors:
   - actors/cscustomactor.cpp
 Hooks:

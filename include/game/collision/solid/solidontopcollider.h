@@ -31,7 +31,6 @@ public:
     void vf74(u32*) override;
     bool vf7C(Vec2f*, f32) override;
 
-    void init(StageActor* owner, const Info& info);
     void init(StageActor* owner, const Info& info, s32 numPoints, sead::Heap* heap = nullptr);
 
     sead::Buffer<Vec2f> points;

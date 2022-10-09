@@ -281,6 +281,7 @@ ENUM_CLASS(ProfileID,
     PowerupSwitcher,
     SwitchBlockEventActivator,
     RedBlueBlock,
+    JumboRay,
 
     Num
 );
