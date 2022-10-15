@@ -27,11 +27,7 @@ u32 StringBank::onCreate() {
 
     __memzero(this->string, 49);
     if (this->layer != StringBank::Type::Primary) {
-        LOG(
-            "%s(StringBank #%i) Initialized as %s bank for primary bank #%i.", LogColor::LightCyan, this->bankID,
-            this->layer == StringBank::Type::Ending ? "ending" : "secondary",
-            this->layer == StringBank::Type::Ending ? this->bankID - 2 : this->bankID - 1
-        );
+        PRINT(LogColor::LightCyan, "(StringBank #", this->bankID, ") Initialized as ", this->layer == StringBank::Type::Ending ? "ending" : "secondary", " bank for primary bank #", this->layer == StringBank::Type::Ending ? this->bankID - 2 : this->bankID - 1);
         return 1;
     }
 
@@ -42,6 +38,7 @@ u32 StringBank::onCreate() {
     StringBank::getAdjacentStrings(this, strSecondary, strLast);
     StringBank::constructFullString(this->string, strPrimary, strSecondary, strLast);
 
-    LOG("%s(StringBank #%i) Initialized with string: %s", LogColor::LightCyan, this->bankID, this->string);
+    PRINT(LogColor::LightCyan, "(StringBank #", this->bankID, ") Initialized with string: ", this->string);
+    
     return 1;
 }

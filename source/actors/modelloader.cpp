@@ -62,15 +62,19 @@ u32 ModelLoader::onCreate() {
     }
     if (this->modelFile[0] == '\0' || this->modelName[0] == '\0') return 2;
 
-    LOG("%s(ModelLoader #%i+%i) Loading model %s from %s", LogColor::Yellow, modelFileBankID, modelNameBankID, this->modelName, this->modelFile);
+    PRINT(LogColor::Yellow, "(ModelLoader #", modelFileBankID + modelNameBankID, ") Loading model ", this->modelName, " from ", this->modelFile);
+    
     ResArchive* archive = ResArchiveMgr::instance()->get(this->modelFile);
     if (!archive) {
-        LOG("%s(ModelLoader #%i+%i) Failed to load model %s from %s", LogColor::Red, modelFileBankID, modelNameBankID, this->modelName, this->modelFile);
+        PRINT(LogColor::Red, "(ModelLoader #", modelFileBankID + modelNameBankID, ") Failed to load model ", this->modelName, " from ", this->modelFile);
         return 2;
     }
+
     this->model = ModelWrapper::create(archive, this->modelName);
     this->updateModel();
-    LOG("%s(ModelLoader #%i+%i) Successfully loaded model %s from %s", LogColor::Green, modelFileBankID, modelNameBankID, this->modelName, this->modelFile);
+
+    PRINT(LogColor::Green, "(ModelLoader #", modelFileBankID + modelNameBankID, ") Successfully loaded model ", this->modelName, " from ", this->modelFile);
+
     return 1;
 }
 

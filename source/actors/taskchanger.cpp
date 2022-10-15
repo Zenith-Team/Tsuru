@@ -35,7 +35,7 @@ u32 TaskChanger::onCreate() {
 
     bool t = TaskMgr::instance()->changeTask(CourseTask::instance(), taskClassID, 0, 0);
 
-    LOG("TaskMgr says: %u", t);
+    PRINT("TaskMgr says: ", t);
 
     return 0;
 #else

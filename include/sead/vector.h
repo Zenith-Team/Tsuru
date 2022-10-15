@@ -4,7 +4,7 @@
 #include "sead/mathpolicies.h"
 #include "math/functions.h"
 
-//* Full disclosure: 75% of this is not from actual sead and I added it myself because sead vectors are heavily lacking.
+//* Full disclosure: A significant portion of this is not from actual sead and I added it myself because sead vectors are heavily lacking for my purposes.
 //* If you want an accurate sead header, go to https://github.dev/aboood40091/sead/
 
 namespace sead {

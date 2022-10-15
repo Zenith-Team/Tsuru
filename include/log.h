@@ -106,6 +106,13 @@ namespace LogColor {
 #endif
 };
 
+namespace fmt {
+    class _Hex {};
+
+    extern _Hex hex;
+    extern bool _hexActive;
+}
+
 template <typename T>
 void tprint(T t);
 
@@ -131,68 +138,137 @@ void tprint(T t);
 // Specializations
 
 template <>
+inline void tprint<fmt::_Hex>(fmt::_Hex) {
+    LOG("%s", "0x");
+
+    fmt::_hexActive = true;
+}
+
+template <>
 inline void tprint<u8>(u8 value) {
-    LOG("%u", value);
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+        LOG("%02X", value);
+    } else {
+        LOG("%u", value);
+    }
 }
 
 template <>
 inline void tprint<s8>(s8 value) {
-    LOG("%d", value);
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+        LOG("%02X", value);
+    } else {
+        LOG("%d", value);
+    }
 }
 
 template <>
 inline void tprint<u16>(u16 value) {
-    LOG("%u", value);
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+        LOG("%04X", value);
+    } else {
+        LOG("%u", value);
+    }
 }
 
 template <>
 inline void tprint<s16>(s16 value) {
-    LOG("%d", value);
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+        LOG("%04X", value);
+    } else {
+        LOG("%d", value);
+    }
 }
 
 template <>
 inline void tprint<u32>(u32 value) {
-    LOG("%u", value);
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+        LOG("%08X", value);
+    } else {
+        LOG("%u", value);
+    }
 }
 
 template <>
 inline void tprint<s32>(s32 value) {
-    LOG("%d", value);
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+        LOG("%08X", value);
+    } else {
+        LOG("%d", value);
+    }
 }
 
 template <>
 inline void tprint<u64>(u64 value) {
-    LOG("%llu", value);
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+        LOG("%016llX", value);
+    } else {
+        LOG("%llu", value);
+    }
 }
 
 template <>
 inline void tprint<s64>(s64 value) {
-    LOG("%lld", value);
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+        LOG("%016llX", value);
+    } else {
+        LOG("%lld", value);
+    }
 }
 
 template <>
 inline void tprint<f32>(f32 value) {
-    LOG("%f", value);
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+        LOG("%08X", *(u32*)&value);
+    } else {
+        LOG("%f", value);
+    }
 }
 
 template <>
 inline void tprint<f64>(f64 value) {
-    LOG("%f", value);
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+        LOG("%016llX", *(u64*)&value);
+    } else {
+        LOG("%f", value);
+    }
 }
 
 template <>
 inline void tprint<bool>(bool value) {
     LOG("%s", formatBool(value));
+
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+    }
 }
 
 template <>
 inline void tprint<const char*>(const char* value) {
     LOG("%s", value);
+
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+    }
 }
 
 template <>
 inline void tprint<char*>(char* value) {
     LOG("%s", value);
+
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+    }
 }
 
 template <>
@@ -214,4 +290,8 @@ inline void tprint<volatile sead::GraphicsContext&>(volatile sead::GraphicsConte
     LOG("  stencilOp: Fail(%d), ZFail(%d), ZPass(%d)", gc.stencilOpFail, gc.stencilOpZFail, gc.stencilOpZPass);
     LOG("  stencilTest: Enable(%s), Func(%d), Mask(%d), Ref(%d)", formatBool(gc.stencilTestEnable), gc.stencilTestFunc, gc.stencilTestMask, gc.stencilTestRef);
     LOG("---------------------------------------------------", "");
+
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+    }
 }
