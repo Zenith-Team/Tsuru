@@ -171,9 +171,7 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
             }
 
             else {
-                LOG("Found unknown collider for actor with ID 0x%X and profile ID 0x%X (vtable addr: 0x%08X)\n",
-                    colliderBase->owner->id, colliderBase->owner->profile->id, (u32)*vtable
-                );
+                PRINT(LogColor::Yellow, "Found unknown collider for actor with ID ", fmt::hex, colliderBase->owner->id, " and profile ID ", fmt::hex, colliderBase->owner->profile->id, " (vtable addr: ", (u32)*vtable, ")");
             }
         }
 

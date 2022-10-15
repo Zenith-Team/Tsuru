@@ -89,5 +89,5 @@ void CSCustomActor::onCSScriptCommandUpdate() {
 
     CSScriptMgr::instance()->getCurrentScriptCommandType(&command);
 
-    PRINT("%u", command);
+    PRINT(command);
 }

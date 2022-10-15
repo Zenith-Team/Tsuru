@@ -19,7 +19,7 @@ bool CustomSaveMgr::write() {
     device->tryWrite(&bytesWritten, &handle, reinterpret_cast<u8*>(this->savestruct), this->getSaveDataSize());
 
     if (bytesWritten != this->getSaveDataSize()) {
-        PRINT("Write size mismatch, wrote size: 0x%x, expected size: 0x%x", bytesWritten, this->getSaveDataSize());
+        PRINT("Write size mismatch, wrote size: ", fmt::hex, bytesWritten, ", expected size: ", fmt::hex, this->getSaveDataSize());
         return false;
     }
 
@@ -36,7 +36,7 @@ void CustomSaveMgr::init() {
     u32 bytesRead = readHandle.read(reinterpret_cast<u8*>(this->savestruct), this->getSaveDataSize());
 
     if (!readHandle.device) {
-        PRINT("Custom save file at %s does not exist. Creating...", this->filepath.stringTop);
+        PRINT("Custom save file at ", this->filepath.stringTop, " does not exist. Creating...");
 
         if (!this->write()) {
             PRINT("Write failed.");
@@ -45,14 +45,14 @@ void CustomSaveMgr::init() {
     }
 
     else if (bytesRead != this->getSaveDataSize()) {
-        PRINT("Manager %s had a read size mismatch, read size: 0x%x, expected size: 0x%x", this->filepath.stringTop, bytesRead, this->getSaveDataSize());
+        PRINT(LogColor::Red, "Manager ", this->filepath.stringTop, " had a read size mismatch, read size: ", fmt::hex, bytesRead, ", expected size: ", fmt::hex, this->getSaveDataSize());
         this->remakeSaveData();
         this->write();
         return;
     }
 
     else if (this->savestruct->magic != 0xCAFEF00D) {
-        PRINT("Custom save file at %s is corrupted. Recreating...", this->filepath.stringTop);
+        PRINT("Custom save file at ", this->filepath.stringTop, " is corrupted. Recreating...");
         this->remakeSaveData();
         this->write();
         return;
@@ -61,7 +61,7 @@ void CustomSaveMgr::init() {
 
 void CustomSaveMgr::save() {
     if (!this->inited){
-        PRINT("Save manager at %s was not inited before saving. Returning...", this->filepath.stringTop);
+        PRINT("Save manager at ", this->filepath.stringTop, " was not inited before saving. Returning...");
         return;
     }
 

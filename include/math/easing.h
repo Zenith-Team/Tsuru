@@ -81,14 +81,15 @@ public:
     // @return True if the value has reached the target value, false if not. Returns true if the easing values were not initialized to prevent infinite loops
     bool ease(f32& value) {
         if (!this->inited) {
-            PRINT(LogColor::Yellow, "WARNING > An Easing class instance was used with uninitialized values!");
+            PRINT(LogColor::Yellow, "An Easing class instance was used with uninitialized values!");
             return true;
         }
 
         this->iteration++;
         f32 progress = sead::Mathf::abs(percentFromValue(this->start + this->step * this->iteration, this->start, this->target));
         f32 next = this->start + this->func(progress) * (this->target - this->start);
-        //LOG("Easing (%i): %f -> %f [Change: %f | %f%]\n", this->iteration, value, next, next - value, progress * 100);
+
+        //PRINT("Easing (", this->iteration, ") ", value, " -> ", next, " [Change: ", next - value, " | ", progress * 100, "%]");
 
         if (this->iteration < totalIterations) {
             value = next;

@@ -54,7 +54,7 @@ public:
 
         u32 bytesRead = handle.read(this->gtx, filesize);
         if (bytesRead != filesize) {
-            LOG("%sRead size mismatch occurred while reading file at %s, read size: 0x%x, expected size: 0x%x", LogColor::Red, path.cstr(), bytesRead, filesize);
+            PRINT(LogColor::Red, "Read size mismatch occurred while reading file at ", path.cstr(), ", read size: ", fmt::hex,  bytesRead, ", expected size: ", fmt::hex, filesize);
             return false;
         }
 

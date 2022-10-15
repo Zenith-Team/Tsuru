@@ -44,13 +44,13 @@ u32 DebugActor::onExecute() {
 
                 data[32] = 0;
 
-                PRINT("Input data player %i: %s", i, data);
-                PRINT("Player %i up: %u", i, input.getButtonUp());
-                PRINT("Player %i down: %u", i, input.getButtonDown());
-                PRINT("Player %i left: %u", i, input.getButtonLeft());
-                PRINT("Player %i right: %u", i, input.getButtonRight());
-                PRINT("Player %i dash: %u", i, input.getButtonDash());
-                PRINT("Player %i jump: %u", i, input.getButtonJump());
+                PRINT("Input data player ", i, ": ", data);
+                PRINT("Player ", i, " up: ", input.getButtonUp());
+                PRINT("Player ", i, " down: ", input.getButtonDown());
+                PRINT("Player ", i, " left: ", input.getButtonLeft());
+                PRINT("Player ", i, " right: ", input.getButtonRight());
+                PRINT("Player ", i, " dash: ", input.getButtonDash());
+                PRINT("Player ", i, " jump: ", input.getButtonJump());
             }
         }
     }
