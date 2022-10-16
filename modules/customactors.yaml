@@ -33,7 +33,7 @@ Files:
   - actors/biddybud.cpp
   - actors/helicalbar.cpp
   - actors/basaltbones.cpp
-  - actors/splunkin.cpp
+  - actors/flaptor.cpp
   - actors/switchblock.cpp
   - actors/powerupswitcher.cpp
   - actors/switchblockeventactivator.cpp
