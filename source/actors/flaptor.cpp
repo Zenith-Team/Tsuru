@@ -226,13 +226,17 @@ void Flaptor::endState_Swoop() { }
 /** STATE: DieSquish */
 
 void Flaptor::beginState_DieSquish() { }
-void Flaptor::executeState_DieSquish() { }
+void Flaptor::executeState_DieSquish() {
+    this->isDeleted = true;
+}
 void Flaptor::endState_DieSquish() { }
 
 /** STATE: Die */
 
 void Flaptor::beginState_Die() { }
-void Flaptor::executeState_Die() { }
+void Flaptor::executeState_Die() { 
+    this->isDeleted = true;
+}
 void Flaptor::endState_Die() { }
 
 
