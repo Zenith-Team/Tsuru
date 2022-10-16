@@ -3,11 +3,11 @@
 #include "game/direction.h"
 #include "game/graphics/model/modelnw.h"
 #include "game/util.h"
-#include "log.h"
 #include "tsuru/utils.h"
 #include "math/functions.h"
 #include "game/collision/collidermgr.h"
 #include "game/collision/solid/rectcollider.h"
+#include "log.h"
 
 class Cataquack : public Enemy {
     SEAD_RTTI_OVERRIDE_IMPL(Cataquack, Enemy)
@@ -41,6 +41,7 @@ public:
     DECLARE_STATE(Cataquack, Turn);
     DECLARE_STATE(Cataquack, Launch);
 };
+
 CREATE_STATE(Cataquack, Walk);
 CREATE_STATE(Cataquack, Turn);
 CREATE_STATE(Cataquack, Launch);
@@ -48,6 +49,7 @@ CREATE_STATE(Cataquack, Launch);
 const ActorInfo CataquackActorInfo = {
     Vec2i(8, -8), Vec2i(8, -8), Vec2i(32, 32), 0, 0, 0, 0, 0
 };
+
 const Profile CataquackProfile(&Cataquack::build, ProfileID::Cataquack, "Cataquack", &CataquackActorInfo, Profile::Flags::DontRenderOffScreen);
 PROFILE_RESOURCES(ProfileID::Cataquack, Profile::LoadResourcesAt::Course, "poihana");
 
@@ -97,6 +99,7 @@ u32 Cataquack::onCreate() {
 
     this->doStateChange(&Cataquack::StateID_Walk);
     this->updateModel();
+
     return 1;
 }
 
@@ -107,10 +110,12 @@ u32 Cataquack::onExecute() {
             this->target = nullptr;
         }
     }
+
     this->states.execute();
     this->updateModel();
     this->offscreenDelete(0);
     this->rectCollider.execute();
+
     return 1;
 }
 
@@ -171,8 +176,13 @@ void Cataquack::executeState_Walk() {
         this->endChase();
     }
 
-    if (this->physicsMgr.isOnGround()) this->speed.y = 0.0f;
-    if (this->physicsMgr.isCollided(this->direction) && !this->chasing) this->doStateChange(&Cataquack::StateID_Turn);
+    if (this->physicsMgr.isOnGround()) {
+        this->speed.y = 0.0f;
+    }
+    
+    if (this->physicsMgr.isCollided(this->direction) && !this->chasing) {
+        this->doStateChange(&Cataquack::StateID_Turn);
+    }
 }
 
 void Cataquack::endState_Walk() { }
