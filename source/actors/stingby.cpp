@@ -32,7 +32,7 @@ CREATE_STATE(Stingby, Chase);
 CREATE_STATE(Stingby, Die);
 
 const Profile StingbyProfile(&Stingby::build, ProfileID::Stingby);
-PROFILE_RESOURCES(ProfileID::Stingby, Profile::LoadResourcesAt::Course, "hacchinA");
+PROFILE_RESOURCES(ProfileID::Stingby, Profile::LoadResourcesAt::Course, "star_coin");
 
 const HitboxCollider::Info Stingby::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFFFFFF, 0, &Enemy::collisionCallback
@@ -49,8 +49,10 @@ Actor* Stingby::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 Stingby::onCreate() {
-    this->model = ModelWrapper::create("hacchinA", "hacchinA");
+    this->model = ModelWrapper::create("star_coin", "star_coinA");
+    
     this->direction = Direction::Right;
+    this->scale = 0.5f;
 
     this->hitboxCollider.init(this, &collisionInfo);
     this->addHitboxColliders();
@@ -69,6 +71,7 @@ u32 Stingby::onExecute() {
     mtx.makeRTIdx(this->rotation, this->position);
 
     this->model->setMtx(mtx);
+    this->model->setScale(this->scale);
     this->model->updateModel();
     this->model->updateAnimations();
 

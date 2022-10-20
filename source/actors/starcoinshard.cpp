@@ -45,7 +45,7 @@ public:
 const Profile StarCoinShardProfile(&StarCoinShard::build, ProfileID::StarCoinShard);
 const Profile StarCoinShardMgrProfile(&StarCoinShardMgr::build, ProfileID::StarCoinShardMgr);
 
-PROFILE_RESOURCES(ProfileID::StarCoinShard, Profile::LoadResourcesAt::Course, "star_coin");
+PROFILE_RESOURCES(ProfileID::StarCoinShard, Profile::LoadResourcesAt::Course, "star_shard");
 
 const HitboxCollider::Info StarCoinShard::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(10.0f, 10.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &StarCoinShard::collisionCallback
@@ -62,7 +62,7 @@ Actor* StarCoinShard::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 StarCoinShard::onCreate() {
-    this->model = ModelWrapper::create("star_coin", "star_coinA");
+    this->model = ModelWrapper::create("star_shard", "star_shard");
 
     this->hitboxCollider.init(this, &StarCoinShard::collisionInfo);
     this->addHitboxColliders();

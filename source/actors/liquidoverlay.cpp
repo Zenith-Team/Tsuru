@@ -56,13 +56,15 @@ u32 LiquidOverlay::onCreate() {
 
     this->layout.init();
     this->layout.getArchive("Common");
-    this->layout.loadBFLYT("PaBattery.bflyt");
+    this->layout.loadBFLYT("input_binary_file_name.bflyt");
 
-    return 1;
+    return this->onExecute();
 }
 
 u32 LiquidOverlay::onExecute() {
     this->layout.update(0xE);
+
+    LayoutRenderer::instance()->addLayout(this->layout);
 
     for (u32 i = 0; i < 4; i++) {
         Player* player = PlayerMgr::instance()->players[i];
@@ -97,7 +99,6 @@ u32 LiquidOverlay::onExecute() {
 
 void LiquidOverlay::doOverlayCollision(u32 i, Player* player) {
     if (this->timers[i]++ >= 240) {
-
         switch (this->settings1 >> 0x18 & 0xF) { // Nybble 6, damage type
             default: case 0: player->trySpecialDamage(0, Player::DamageType::Ice); break;
             case 1: player->trySpecialDamage(0, Player::DamageType::Electric); break;
