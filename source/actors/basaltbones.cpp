@@ -118,6 +118,8 @@ public:
     void onStompDamage(StageActor*) override;
     void onStompKill(StageActor*) override;
 
+    u32 fireDamageAmount() override { return 0; }
+
     static const HitboxCollider::Info collisionInfo;
     
     static const Vec3f launchKeyframes[6][2][3];
@@ -342,6 +344,12 @@ void BasaltBones::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOt
         return;
     }
 
+    if (hcOther->owner->getProfileID() == ProfileID::PlayerFireball || hcOther->owner->getProfileID() == ProfileID::PlayerIceBall) {
+        self->collisionFireball(hcSelf, hcOther);
+        hcOther->owner->isDeleted = true;
+        return;
+    }
+
     return BossWrapper<18>::collisionCallback(hcSelf, hcOther);
 }
 
@@ -477,6 +485,8 @@ void BasaltBones::beginState_Active() {
 
     this->draw = true;
     this->first = false;
+
+    this->timer = 0;
 }
 
 void BasaltBones::executeState_Active() {
@@ -487,7 +497,9 @@ void BasaltBones::executeState_Active() {
 
     static const f32 threshold = 8 * 16;
 
-    if (sead::randU32(100) == 0 && (this->rotation.y == Direction::directionToRotationList[Direction::Left] || this->rotation.y == Direction::directionToRotationList[Direction::Right])) {
+    this->timer++;
+
+    if (this->timer > 60 && sead::randU32(100) == 0 && (this->rotation.y == Direction::directionToRotationList[Direction::Left] || this->rotation.y == Direction::directionToRotationList[Direction::Right])) {
         this->doStateChange(&BasaltBones::StateID_Throw);
     }
 
@@ -682,7 +694,7 @@ void BasaltBones::executeState_AssembleFinalize() {
             bone.render = false;
         }
 
-        this->doStateChange(&BasaltBones::StateID_Active);
+        this->doStateChange(&BasaltBones::StateID_Throw);
     }
 }
 

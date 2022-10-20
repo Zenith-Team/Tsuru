@@ -32,24 +32,23 @@ public:
     Vec3f startPosition;
     f32 threshold;
     f32 timer;
-    u32 wait;
     u8 moveType;
 
     DECLARE_STATE(Flaptor, Idle);
     DECLARE_STATE(Flaptor, Dive);
-    DECLARE_STATE(Flaptor, Swoop);
     DECLARE_STATE(Flaptor, DieSquish);
     DECLARE_STATE(Flaptor, Die);
+    DECLARE_STATE(Flaptor, Land);
 };
 
 CREATE_STATE(Flaptor, Idle);
 CREATE_STATE(Flaptor, Dive);
-CREATE_STATE(Flaptor, Swoop);
 CREATE_STATE(Flaptor, DieSquish);
 CREATE_STATE(Flaptor, Die);
+CREATE_STATE(Flaptor, Land);
 
 const Profile FlaptorProfile(&Flaptor::build, ProfileID::Flaptor);
-PROFILE_RESOURCES(ProfileID::Flaptor, Profile::LoadResourcesAt::Course, "moking");
+PROFILE_RESOURCES(ProfileID::Flaptor, Profile::LoadResourcesAt::Course, "mokinger");
 
 const HitboxCollider::Info Flaptor::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(8.0, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFFFFFF, 0, &Enemy::collisionCallback
@@ -69,8 +68,7 @@ Actor* Flaptor::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 Flaptor::onCreate() {
-    // this->model = ModelWrapper::create("star_coin", "star_coinA");
-    this->model = ModelWrapper::create("moking", "moking");
+    this->model = ModelWrapper::create("mokinger", "mokinger", 1);
     
     this->hitboxCollider.init(this, &Flaptor::collisionInfo);
     this->addHitboxColliders();
@@ -82,8 +80,8 @@ u32 Flaptor::onCreate() {
     this->threshold = (this->eventID1 >> 0x4 & 0xF) * 16.0f; // nybble 1
     this->moveType = this->eventID1 & 0xF; // nybble 2
 
-    model->setScale(0.001);
     this->direction = Direction::Right;
+    this->scale = 0.2f;
 
     if (this->moveType > MoveType::Vertical) {
         PRINT(LogColor::Red, "Flaptor invalid move type");
@@ -97,11 +95,12 @@ u32 Flaptor::onCreate() {
 
 u32 Flaptor::onExecute() {
     Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position);
+    mtx.makeRTIdx(this->rotation, this->position + Vec3f(0.0f, -8.0f, 0.0f));
 
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
     this->model->updateModel();
+    this->model->updateAnimations();
 
     this->timer++;
 
@@ -127,12 +126,17 @@ void Flaptor::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
 
 /** STATE: Idle */
 
-void Flaptor::beginState_Idle() { }
+void Flaptor::beginState_Idle() {
+    this->model->playSklAnim("Fly");
+}
 
 void Flaptor::executeState_Idle() {
     switch (this->moveType) {
         case MoveType::Stationary: {
             sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->directionToPlayerH(this->position)], fixDeg(4.0f));
+
+            sead::Mathf::chase(&this->position.x, this->startPosition.x, 1.0f);
+            sead::Mathf::chase(&this->position.y, this->startPosition.y, 1.0f);
 
             break;
         }
@@ -183,11 +187,7 @@ void Flaptor::executeState_Idle() {
     }
 
     if (this->distanceToPlayer().length() <= 5.f*16.f && this->distanceToPlayer().y < 4.0f) {
-        //if (this->moveType == MoveType::Vertical || this->moveType == MoveType::Horizontal) {
-            //this->doStateChange(&Flaptor::StateID_Swoop);   
-        //} else {
-            this->doStateChange(&Flaptor::StateID_Dive);
-        //}
+        this->doStateChange(&Flaptor::StateID_Dive);
     }
 }
 
@@ -199,7 +199,7 @@ void Flaptor::beginState_Dive() {
     this->gravity = -0.1875f;
     this->maxSpeed.y = -4.0f;
 
-    this->wait = 100;
+    this->model->playSklAnim("Attack");
 }
 
 void Flaptor::executeState_Dive() {
@@ -207,37 +207,50 @@ void Flaptor::executeState_Dive() {
     this->physicsMgr.processCollisions();
 
     if (this->physicsMgr.isOnGround()) {
-        this->wait--;
-    }
-
-    if (this->wait == 0) {
-        this->doStateChange(&Flaptor::StateID_Idle);
+        this->doStateChange(&Flaptor::StateID_Land);
     }
 }
 
 void Flaptor::endState_Dive() { }
 
-/** STATE: Swoop */
+/** STATE: Land */
 
-void Flaptor::beginState_Swoop() { }
-void Flaptor::executeState_Swoop() { }
-void Flaptor::endState_Swoop() { }
+void Flaptor::beginState_Land() {
+    this->model->playSklAnim("AttackLand");
+    this->model->loopSklAnims(false);
+}
+
+void Flaptor::executeState_Land() {
+    if (this->model->sklAnims[0]->frameCtrl.isDone()) {
+        this->doStateChange(&Flaptor::StateID_Idle);
+    }
+}
+
+void Flaptor::endState_Land() {
+    this->model->loopSklAnims(true);
+}
 
 /** STATE: DieSquish */
 
-void Flaptor::beginState_DieSquish() { }
-void Flaptor::executeState_DieSquish() {
-    this->isDeleted = true;
+void Flaptor::beginState_DieSquish() {
+    this->model->playSklAnim("PressDown");
+    this->model->loopSklAnims(false);
 }
+
+void Flaptor::executeState_DieSquish() {
+    if (this->model->sklAnims[0]->frameCtrl.isDone()) {
+        this->isDeleted = true;
+    }
+}
+
 void Flaptor::endState_DieSquish() { }
 
 /** STATE: Die */
 
 void Flaptor::beginState_Die() { }
+
 void Flaptor::executeState_Die() { 
     this->isDeleted = true;
 }
+
 void Flaptor::endState_Die() { }
-
-
-// 
