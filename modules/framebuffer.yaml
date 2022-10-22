@@ -13,3 +13,8 @@ Hooks:
     instr: bl
     addr: "0x24E11A8"
     func: drawCustomDRC__Q3_3agl3lyr8RendererCFQ3_3agl3lyr11DisplayType
+  # Heat distortion framebuffer
+  - type: branch
+    instr: b
+    addr: "0x2266E4C"
+    func: addDistorterFixer__Fv

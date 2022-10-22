@@ -81,7 +81,7 @@ u32 Flaptor::onCreate() {
     this->moveType = this->eventID1 & 0xF; // nybble 2
 
     this->direction = Direction::Right;
-    this->scale = 0.2f;
+    this->scale = 0.175f;
 
     if (this->moveType > MoveType::Vertical) {
         PRINT(LogColor::Red, "Flaptor invalid move type");
@@ -235,6 +235,8 @@ void Flaptor::endState_Land() {
 void Flaptor::beginState_DieSquish() {
     this->model->playSklAnim("PressDown");
     this->model->loopSklAnims(false);
+
+    this->removeHitboxColliders();
 }
 
 void Flaptor::executeState_DieSquish() {

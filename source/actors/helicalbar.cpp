@@ -140,8 +140,8 @@ u32 HelicalBar::onCreate() {
         }
     }
 
-    this->animate = this->eventID1 & 0x1;
-    this->helixMultiplier = (this->eventID2 & 0xF) + 1;
+    this->animate = this->eventID1 & 0x1; // Nybble 2
+    this->helixMultiplier = (this->eventID2 & 0xF) + 1; // Nybble 4
 
     return this->onExecute();
 }

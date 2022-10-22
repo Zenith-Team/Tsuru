@@ -23,7 +23,7 @@ public:
 
 public:
     u32 _18;
-    u32 _1C;
+    u32 priority;
     void* _20;
     TOwner* _24;
     PTMF method;
@@ -51,4 +51,16 @@ extern int SafeStringVtable;
         if (LAYERNUM < agl::lyr::Renderer::instance()->layers.size)                 \
             layer = agl::lyr::Renderer::instance()->layers.buffer[LAYERNUM];        \
         layer->pushBackDrawMethod(0, & ## OBJECT);                                  \
+    } (void)0
+
+#define BIND_DRAW_METHOD_TO_RENDERSTEP(OBJECT, NAME, METHOD, LAYERNUM, OWNERPTR, RS) \
+    OBJECT ## .INamableName = NAME ## ;                                              \
+    OBJECT ## ._18 = 1;                                                              \
+    OBJECT ## ._20 = &SafeStringVtable;                                              \
+    OBJECT ## ._24 = OWNERPTR;                                                       \
+    OBJECT ## .method = METHOD;                                                      \
+    {   agl::lyr::Layer* layer = agl::lyr::Renderer::instance()->layers.buffer[0];   \
+        if (LAYERNUM < agl::lyr::Renderer::instance()->layers.size)                  \
+            layer = agl::lyr::Renderer::instance()->layers.buffer[LAYERNUM];         \
+        layer->pushBackDrawMethod(RS, & ## OBJECT);                                  \
     } (void)0

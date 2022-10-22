@@ -13,7 +13,6 @@ public:
     static Actor* build(const ActorBuildInfo* buildInfo);
 
     u32 onCreate() override;
-    u32 onExecute() override;
     u32 onDraw() override;
 
     LightSource lightSource;
@@ -61,18 +60,12 @@ u32 RainbowLight::onCreate() {
     return 1;
 }
 
-u32 RainbowLight::onExecute() {
-    // TODO: Movement controller setup
-
+u32 RainbowLight::onDraw() {
     this->lightSource.update(0, &this->position, nullptr, &this->lightAttenuationRadius, nullptr, &this->lightColor);
 
     this->lightMask.position = this->position;
     this->lightMask.update();
 
-    return 1;
-}
-
-u32 RainbowLight::onDraw() {
     this->lightMask.draw();
 
     return 1;
