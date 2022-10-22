@@ -41,10 +41,16 @@ Files:
   - actors/stingby.cpp
   - actors/jumboray.cpp
 #* Course Select Actors:
-  - actors/cscustomactor.cpp
+  - actors/csrootspawner.cpp
+  - actors/csflames.cpp
 Hooks:
 # Update beep block states
   - type: branch
     instr: b
     func: UpdateBeepBlockStates
     addr: "0x24bfa4c" # CourseTask::calc()
+# Spawn CSRootSpawner
+  - type: branch
+    instr: b
+    func: createRootSpawner__Fv
+    addr: "0x21b9350" # CourseSelectCamera::onCreate()

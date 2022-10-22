@@ -575,6 +575,8 @@
     vf9C__17CourseSelectActorFv = 0x21D595C;
     vfA4__17CourseSelectActorFv = 0x21D5968;
     updateCSScriptInteractions__17CourseSelectActorFv = 0x21D4F1C;
+    RTTI__17CourseSelectActor = 0x101ea3f4;
+    onCSScriptCommandUpdate__17CourseSelectActorFv = 0x21d5968;
 
 # CourseSelectTask
     sInstance__16CourseSelectTask = 0x101CC96C;
@@ -584,6 +586,7 @@
 
 # CSPlayerMgr
     sInstance__11CSPlayerMgr = 0x101CC30C;
+    getPlayer__11CSPlayerMgrFv = 0x2231b00;
 
 # CSCollisionActor
     RTTI__16CSCollisionActor = 0x101ea3e8;
@@ -1119,6 +1122,10 @@
     resourceCountOriginal__7Profile = 0x100023F8;
     resourceListsOriginal__7Profile = 0x101C321C;
     loadProfileResources__7ProfileSFQ2_7Profile15LoadResourcesAtPQ2_4sead4Heap = 0x200A738;
+
+# PtclMgr
+    sInstance__7PtclMgr = 0x101cd3a8;
+    setFrameBufferTexture__7PtclMgrFRCQ2_3agl14TextureSamplerfN32 = 0x22ada08;
 
 # Quicksand
     build__9QuicksandSFPC14ActorBuildInfo = 0x26f7c84;

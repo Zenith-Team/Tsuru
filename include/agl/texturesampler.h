@@ -4,7 +4,7 @@
 #include "agl/texturedata.h"
 #include "sead/color.h"
 #include "sead/bitflag.h"
-#include "agl/samplerlocation.h"
+#include "agl/shaderlocation.h"
 
 namespace agl {
 
