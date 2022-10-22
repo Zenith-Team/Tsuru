@@ -854,6 +854,9 @@
     sInstance__8EventMgr = 0x101DB06C;
     set__8EventMgrFUiT1bN41 = 0x269CD68;
 
+# FrameBufferKeeper
+    sInstance__17FrameBufferKeeper = 0x101d2b88;
+
 # FrameCtrl
     shouldLoop__9FrameCtrlFb = 0x24DEED4;
     reset__9FrameCtrlFv = 0x24DEEAC;
