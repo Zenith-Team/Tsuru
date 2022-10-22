@@ -76,12 +76,19 @@ u32 FakeActor::onCreate() {
 u32 FakeActor::onExecute() {
     this->updateModel();
     this->states.execute();
+
     return 1;
 }
 
 u32 FakeActor::onDraw() {
-    if (this->model)  this->model->draw();
-    if (this->model2) this->model2->draw();
+    if (this->model) {
+        this->model->draw();
+    }
+    
+    if (this->model2) {
+        this->model2->draw();
+    }
+
     return 1;
 }
 
@@ -107,7 +114,10 @@ void FakeActor::touch() {
     Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
     Vec3f effectPos(effectOrigin + this->effectOffset);
     Effect::spawn(RP_ObakeDoor_Disapp, &effectPos, nullptr, &this->effectScale);
-    if (!(this->settings1 >> 0x1C & 0xF)) this->isDeleted = true;
+
+    if (!(this->settings1 >> 0x1C & 0xF)) {
+        this->isDeleted = true;
+    }
 }
 
 void FakeActor::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {

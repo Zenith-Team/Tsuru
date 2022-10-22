@@ -37,7 +37,6 @@ public:
     bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    void updateModel();
     void damage();
 
     ModelWrapper* model;
@@ -152,17 +151,22 @@ u32 Kamiya::onCreate() {
     this->model = ModelWrapper::create("kamiya", "kamiya", 1);
     this->model->playSklAnim("fly_appear");
     this->model->loopSklAnims(false);
-    this->updateModel();
 
     this->hitboxCollider.init(this, &Kamiya::hitboxInfo);
 
     this->deathInfo.state = &Kamiya::StateID_Dying;
 
-    return 1;
+    return this->onExecute();
 }
 
 u32 Kamiya::onExecute() {
-    this->updateModel();
+    Mtx34 mtx;
+    mtx.makeRTIdx(this->rotation, this->position);
+    this->model->setMtx(mtx);
+    this->model->setScale(this->scale);
+    this->model->updateAnimations();
+    this->model->updateModel();
+    
     this->states.execute();
 
     return 1;
@@ -172,15 +176,6 @@ u32 Kamiya::onDraw() {
     this->model->draw();
 
     return 1;
-}
-
-void Kamiya::updateModel() {
-    Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position);
-    this->model->setMtx(mtx);
-    this->model->setScale(this->scale);
-    this->model->updateAnimations();
-    this->model->updateModel();
 }
 
 void Kamiya::damage() {

@@ -829,7 +829,7 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::JumboRay,                    // 736
     RESERVED,                               // 737
     ProfileID::RainbowLight,                // 738
-    ProfileID::WavePlatform,                // 739
+    RESERVED,                               // 739
     ProfileID::DebugActor,                  // 740
     ProfileID::LiquidOverlay,               // 741
     ProfileID::Stingby,                     // 742

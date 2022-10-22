@@ -18,8 +18,6 @@ public:
     u32 onExecute() override;
     u32 onDraw() override;
 
-    void updateModel();
-
     static const HitboxCollider::Info collisionInfo;
 
     DECLARE_STATE(GiantSkewer, Idle);
@@ -30,11 +28,9 @@ public:
     DECLARE_STATE(GiantSkewer, PreMoveDelay);
 
     ModelWrapper* model;
-
     f32 targetDistance, targetPosition;
     f32 premoveDistance, premovePosition;
     f32 startPosition;
-
     u32 idleTimer, moveEndTimer, premoveDelayTimer;
 };
 
@@ -81,17 +77,21 @@ u32 GiantSkewer::onCreate() {
     this->addHitboxColliders();
 
     this->model = ModelWrapper::create("daikonbouBig", "daikonbouBig");
-    this->updateModel();
 
     this->doStateChange(&GiantSkewer::StateID_Idle);
 
     this->targetPosition = this->position.y + this->targetDistance;
     
-    return 1;
+    return this->onExecute();
 }
 
 u32 GiantSkewer::onExecute() {
-    this->updateModel();
+    Mtx34 mtx;
+    mtx.makeRTIdx(this->rotation, this->position);
+
+    this->model->setMtx(mtx);
+    this->model->setScale(this->scale);
+    this->model->updateModel();
 
     this->states.execute();
 
@@ -102,15 +102,6 @@ u32 GiantSkewer::onDraw() {
     this->model->draw();
 
     return 1;
-}
-
-void GiantSkewer::updateModel() {
-    Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position);
-
-    this->model->setMtx(mtx);
-    this->model->setScale(this->scale);
-    this->model->updateModel();
 }
 
 /** STATE: Idle */

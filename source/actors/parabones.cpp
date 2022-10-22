@@ -18,8 +18,6 @@ public:
 
     void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    void updateModel();
-
     ModelWrapper* model;
     ModelWrapper* wings;
     u32 timerIdleLowered;
@@ -97,8 +95,7 @@ u32 ParaBones::onCreate() {
         this->doStateChange(this->startRising ? &ParaBones::StateID_Rising : &ParaBones::StateID_Lowering);
     }
 
-    this->updateModel();
-    return 1;
+    return this->onExecute();
 }
 
 u32 ParaBones::onExecute() {
@@ -118,18 +115,7 @@ u32 ParaBones::onExecute() {
     }
 
     this->states.execute();
-    this->updateModel();
-
-    return 1;
-}
-
-u32 ParaBones::onDraw() {
-    this->model->draw();
-    this->wings->draw();
-    return 1;
-}
-
-void ParaBones::updateModel() {
+    
     Mtx34 mtx;
     mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
@@ -143,6 +129,15 @@ void ParaBones::updateModel() {
     this->wings->setScale(this->scale);
     this->wings->updateModel();
     this->wings->updateAnimations();
+
+    return 1;
+}
+
+u32 ParaBones::onDraw() {
+    this->model->draw();
+    this->wings->draw();
+
+    return 1;
 }
 
 void ParaBones::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {

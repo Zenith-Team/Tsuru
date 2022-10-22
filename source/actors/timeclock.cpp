@@ -18,8 +18,6 @@ public:
     u32 onExecute() override;
     u32 onDraw() override;
 
-    void updateModel();
-
     ModelWrapper* model;
 
     static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
@@ -46,26 +44,25 @@ u32 TimeClock::onCreate() {
     this->model = ModelWrapper::create("timeclock", "timeclockA", 0);
     this->hitboxCollider.init(this, &TimeClock::collisionInfo, nullptr);
     this->addHitboxColliders();
-    this->updateModel();
-    return 1;
+    
+    return this->onExecute();
 }
 
 u32 TimeClock::onExecute() {
     this->rotation.y -= 0x3FD27D2;
-    this->updateModel();
+
+    Mtx34 mtx;
+    mtx.makeRTIdx(this->rotation, this->position);
+    this->model->setMtx(mtx);
+    this->model->updateModel();
+
     return 1;
 }
 
 u32 TimeClock::onDraw() {
     this->model->draw();
-    return 1;
-}
 
-void TimeClock::updateModel() {
-    Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position);
-    this->model->setMtx(mtx);
-    this->model->updateModel();
+    return 1;
 }
 
 void TimeClock::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
