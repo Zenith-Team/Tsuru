@@ -20,8 +20,6 @@ public:
     u32 onExecute() override;
     u32 onDraw() override;
 
-    void updateModel();
-
     char modelFile[49];
     char modelName[49];
 
@@ -42,25 +40,36 @@ Actor* ModelLoader::build(const ActorBuildInfo* buildInfo) {
 u32 ModelLoader::onCreate() {
     u8 modelFileBankID = this->settings1 >> 0x18 & 0xFF; // Nybbles 5-6
     u8 modelNameBankID = this->settings1 >> 0x10 & 0xFF; // Nybbles 7-8
-    if (modelFileBankID == 0 || modelNameBankID == 0) return 2;
+    if (modelFileBankID == 0 || modelNameBankID == 0) {
+        return 2;
+    }
+
     __memzero(this->modelFile, 49);
     __memzero(this->modelName, 49);
 
     ActorBuffer* actors = &ActorMgr::instance()->actors;
     for (u32 i = 0; i < actors->start.size; i++) {
         StringBank* strBank = sead::DynamicCast<StringBank, Actor>(actors->start[i]);
-        if (!strBank || strBank->layer != StringBank::Type::Primary) continue;
+
+        if (!strBank || strBank->layer != StringBank::Type::Primary) {
+            continue;
+        }
 
         if (strBank->bankID == modelFileBankID) {
             strncpy(this->modelFile, strBank->string, 49);
             strBank->isDeleted = true;
         }
+
+        
         if (strBank->bankID == modelNameBankID) {
             strncpy(this->modelName, strBank->string, 49);
             strBank->isDeleted = true;
         }
     }
-    if (this->modelFile[0] == '\0' || this->modelName[0] == '\0') return 2;
+
+    if (this->modelFile[0] == '\0' || this->modelName[0] == '\0') {
+        return 2;
+    }
 
     PRINT(LogColor::Yellow, "(ModelLoader #", modelFileBankID + modelNameBankID, ") Loading model ", this->modelName, " from ", this->modelFile);
     
@@ -71,26 +80,27 @@ u32 ModelLoader::onCreate() {
     }
 
     this->model = ModelWrapper::create(archive, this->modelName);
-    this->updateModel();
 
     PRINT(LogColor::Green, "(ModelLoader #", modelFileBankID + modelNameBankID, ") Successfully loaded model ", this->modelName, " from ", this->modelFile);
 
-    return 1;
+    return this->onExecute();
 }
 
 u32 ModelLoader::onExecute() {
-    if (this->model) this->updateModel();
+    if (this->model) {
+        Mtx34 mtx;
+        mtx.makeRTIdx(this->rotation, this->position);
+        this->model->setMtx(mtx);
+        this->model->updateModel();
+    }
+
     return 1;
 }
 
 u32 ModelLoader::onDraw() {
-    if (this->model) this->model->draw();
-    return 1;
-}
+    if (this->model) {
+        this->model->draw();
+    }
 
-void ModelLoader::updateModel() {
-    Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position);
-    this->model->setMtx(mtx);
-    this->model->updateModel();
+    return 1;
 }

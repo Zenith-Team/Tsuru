@@ -22,7 +22,6 @@ public:
     u32 onExecute() override;
     u32 onDraw() override;
 
-    void updateModel();
     void beginChase();
     void endChase();
 
@@ -98,9 +97,8 @@ u32 Cataquack::onCreate() {
     //ColliderMgr::instance()->add(&rectCollider);
 
     this->doStateChange(&Cataquack::StateID_Walk);
-    this->updateModel();
 
-    return 1;
+    return this->onExecute();
 }
 
 u32 Cataquack::onExecute() {
@@ -112,7 +110,14 @@ u32 Cataquack::onExecute() {
     }
 
     this->states.execute();
-    this->updateModel();
+
+    Mtx34 mtx;
+    mtx.makeRTIdx(this->rotation, this->position + Vec3f(0.0f, 20.0f, 0.0f));
+    this->model->setMtx(mtx);
+    this->model->setScale(this->scale);
+    this->model->updateAnimations();
+    this->model->updateModel();
+
     this->offscreenDelete(0);
     this->rectCollider.execute();
 
@@ -122,15 +127,6 @@ u32 Cataquack::onExecute() {
 u32 Cataquack::onDraw() {
     this->model->draw();
     return 1;
-}
-
-void Cataquack::updateModel() {
-    Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position + Vec3f(0.0f, 20.0f, 0.0f));
-    this->model->setMtx(mtx);
-    this->model->setScale(this->scale);
-    this->model->updateAnimations();
-    this->model->updateModel();
 }
 
 void Cataquack::beginChase() {

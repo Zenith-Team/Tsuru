@@ -16,7 +16,6 @@ Files:
   - actors/cataquack.cpp
   - actors/timeclock.cpp
   - actors/rainbowlight.cpp
-  - actors/waveplatform.cpp
   - actors/debugactor.cpp
   - actors/liquidoverlay.cpp
   - actors/kamiya.cpp

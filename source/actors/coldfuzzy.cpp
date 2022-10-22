@@ -30,8 +30,6 @@ public:
         PlayerBase* player;
         u32 timer;
     } playerTimers[4];
-
-    u32 projectileTimer;
 };
 
 const Profile ColdFuzzyProfile(&ColdFuzzy::build, ProfileID::ColdFuzzy);
@@ -44,7 +42,6 @@ HitboxCollider::Info ColdFuzzy::collisionInfo = {
 ColdFuzzy::ColdFuzzy(const ActorBuildInfo* buildInfo) 
     : Enemy(buildInfo)
     , model(nullptr)
-    , projectileTimer(0)
 { }
 
 Actor* ColdFuzzy::build(const ActorBuildInfo* buildInfo) {
@@ -81,51 +78,12 @@ u32 ColdFuzzy::onExecute() {
         }
     }
 
-    if (this->projectileTimer == 30) {
-        this->projectileTimer = 0;
-        
-        Vec2f target;
-        this->distanceToPlayer(target);
-
-        f32 angle = atan2f(target.y, target.x);
-
-        StageActor* iceball;
-
-        ActorBuildInfo projectileBuildInfo = { 0 };
-        projectileBuildInfo.profile = Profile::get(ProfileID::PiranhaPlantIceBall);
-        projectileBuildInfo.position = this->position;
-        projectileBuildInfo.parentID = this->id;
-
-        if (sead::randBool()) {
-            projectileBuildInfo.rotation = fixRad(angle);
-            iceball = reinterpret_cast<StageActor*>(ActorMgr::instance()->create(projectileBuildInfo, 0));
-            iceball->speed.x = cosf(angle) * 3.0f;
-            iceball->speed.y = sinf(angle) * 3.0f;
-        } else {
-            projectileBuildInfo.rotation = fixRad(angle);
-            iceball = reinterpret_cast<StageActor*>(ActorMgr::instance()->create(projectileBuildInfo, 0));
-            iceball->speed.x = cosf(angle) * 2.5f;
-            iceball->speed.y = sinf(angle) * 2.5f;
-
-            projectileBuildInfo.rotation = fixRad(angle + 0.4f);
-            iceball = reinterpret_cast<StageActor*>(ActorMgr::instance()->create(projectileBuildInfo, 0));
-            iceball->speed.x = cosf(angle + 0.4f) * 2.5f;
-            iceball->speed.y = sinf(angle + 0.4f) * 2.5f;
-
-            projectileBuildInfo.rotation = fixRad(angle - 0.4f);
-            iceball = reinterpret_cast<StageActor*>(ActorMgr::instance()->create(projectileBuildInfo, 0));
-            iceball->speed.x = cosf(angle - 0.4f) * 2.5f;
-            iceball->speed.y = sinf(angle - 0.4f) * 2.5f;
-        }
-
-        this->projectileTimer++;
-    }
-
     return 1;
 }
 
 u32 ColdFuzzy::onDraw() {
     this->model->draw();
+
     return 1;
 }
 

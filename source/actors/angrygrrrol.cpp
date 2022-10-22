@@ -14,11 +14,8 @@ public:
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
-
-    void updateModel();
     
     static HitboxCollider::Info sCollisionInfo;
-    static const PhysicsMgr::Sensor bottomSensor;//, sideSensor, topSensor;
 
     ModelWrapper* model;
 };
@@ -28,10 +25,6 @@ PROFILE_RESOURCES(ProfileID::AngryGrrrol, Profile::LoadResourcesAt::Course, "gur
 
 HitboxCollider::Info AngryGrrrol::sCollisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &AngryGrrrol::collisionCallback
-};
-
-const PhysicsMgr::Sensor AngryGrrrol::bottomSensor = {
-    16.0f, 16.0f, 8.0f
 };
 
 AngryGrrrol::AngryGrrrol(const ActorBuildInfo* buildInfo)
@@ -45,17 +38,25 @@ Actor* AngryGrrrol::build(const ActorBuildInfo* buildInfo) {
 u32 AngryGrrrol::onCreate() {
     this->model = ModelWrapper::create("guruguru", "guruguru", 0, 0, 1);
     this->model->playTexSrtAnim("guruguru");
-    this->updateModel();
 
+    PhysicsMgr::Sensor belowSensor = { -16, 16, -16 };
+    PhysicsMgr::Sensor sideSensor = { -16, 16, 16 };
+    PhysicsMgr::Sensor aboveSensor = { -16, 16, 16 };
+    this->physicsMgr.init(this, &belowSensor, &aboveSensor, &sideSensor);
 
     this->hitboxCollider.init(this, &AngryGrrrol::sCollisionInfo);
     this->addHitboxColliders();
 
-    return 1;
+    return this->onExecute();
 }
 
 u32 AngryGrrrol::onExecute() {
-    this->updateModel();
+    Mtx34 mtx;
+    mtx.makeRTIdx(this->rotation, this->position);
+    this->model->setMtx(mtx);
+    this->model->updateAnimations();
+    this->model->setScale(this->scale);
+    this->model->updateModel();
 
     Vec2f d2p = this->distanceToPlayer();
 
@@ -71,6 +72,7 @@ u32 AngryGrrrol::onExecute() {
 
     this->rotation.z -= fixDeg(2.0f * this->speed.x);
 
+    this->physicsMgr.processCollisions();
     this->handleSpeed();
 
     return 1;
@@ -82,11 +84,3 @@ u32 AngryGrrrol::onDraw() {
     return 1;
 }
 
-void AngryGrrrol::updateModel() {
-    Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position);
-    this->model->setMtx(mtx);
-    this->model->updateAnimations();
-    this->model->setScale(this->scale);
-    this->model->updateModel();
-}

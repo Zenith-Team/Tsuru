@@ -19,8 +19,6 @@ public:
     bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
-    void updateModel();
-
     static const HitboxCollider::Info collisionInfo;
 
     ModelWrapper* model;
@@ -84,11 +82,9 @@ u32 Scuttlebug::onCreate() {
 
     this->dropDistance = ((this->eventID1 >> 0x4 & 0xF) + 1) * 100; // Nybble 1
 
-    this->updateModel();
-
     this->doStateChange(&Scuttlebug::StateID_OneTimeLowering);
 
-    return 1;
+    return this->onExecute();
 }
 
 u32 Scuttlebug::onExecute() {
@@ -103,7 +99,16 @@ u32 Scuttlebug::onExecute() {
 
     this->states.execute();
 
-    this->updateModel();
+    Mtx34 mtx;
+    mtx.makeRTIdx(this->rotation, this->position);
+
+    this->model->setMtx(mtx);
+    this->string->setMtx(mtx);
+    this->model->setScale(this->scale * 2.5);
+    this->string->setScale(this->scale * 2.5);
+    this->model->updateModel();
+    this->string->updateModel();
+    this->model->updateAnimations();
 
     return 1;
 }
@@ -134,19 +139,6 @@ bool Scuttlebug::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOth
     this->isDeleted = true;
 
     return true;
-}
-
-void Scuttlebug::updateModel() {
-    Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position);
-
-    this->model->setMtx(mtx);
-    this->string->setMtx(mtx);
-    this->model->setScale(this->scale * 2.5);
-    this->string->setScale(this->scale * 2.5);
-    this->model->updateModel();
-    this->string->updateModel();
-    this->model->updateAnimations();
 }
 
 /** STATE: OneTimeLowering */

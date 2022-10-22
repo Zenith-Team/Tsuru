@@ -3,7 +3,6 @@
 #include "game/movementhandler.h"
 #include "game/effect/effect.h"
 #include "game/graphics/model/animation.h"
-// #include "log.h"
 
 class Biddybud : public Enemy {
     SEAD_RTTI_OVERRIDE_IMPL(Biddybud, Enemy);
@@ -30,8 +29,6 @@ public:
     bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
-    void updateModel();
-
 
     static HitboxCollider::Info collisionInfo;
 
@@ -179,7 +176,7 @@ u32 Biddybud::onCreate() {
     this->movementHandler.link(this->position, movementMask, this->movementID); // nybble 21-22
 
     this->doStateChange(&Biddybud::StateID_Move);
-    this->updateModel();
+    
     return this->onExecute();
 }
 
@@ -190,17 +187,6 @@ u32 Biddybud::onExecute() {
     }
     this->states.execute();
 
-    this->updateModel();
-
-    return 1;
-}
-
-u32 Biddybud::onDraw() {
-    this->model->draw();
-    return 1;
-}
-
-void Biddybud::updateModel() {
     Mtx34 mtx;
     Vec3f modelPos = this->position;
     modelPos.y -= 8;
@@ -210,9 +196,13 @@ void Biddybud::updateModel() {
     this->model->updateAnimations();
     this->model->updateModel();
 
+    return 1;
 }
 
-
+u32 Biddybud::onDraw() {
+    this->model->draw();
+    return 1;
+}
 
 /** STATE: Move */
 

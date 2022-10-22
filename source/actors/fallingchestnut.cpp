@@ -87,7 +87,7 @@ u32 FallingChestnut::onDraw() {
     return 1;
 }
 
-/* STATE: Idle */
+/** STATE: Idle */
 
 void FallingChestnut::beginState_Idle() { }
 
@@ -103,7 +103,7 @@ void FallingChestnut::executeState_Idle() {
 
 void FallingChestnut::endState_Idle() { }
 
-/* STATE: Falling */
+/** STATE: Falling */
 
 void FallingChestnut::beginState_Falling() {
     this->gravity = -0.1875f;
@@ -124,7 +124,7 @@ void FallingChestnut::executeState_Falling() {
 
 void FallingChestnut::endState_Falling() { }
 
-/* STATE: OnGround */
+/** STATE: OnGround */
 
 void FallingChestnut::beginState_OnGround() { }
 
