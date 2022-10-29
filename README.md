@@ -1,6 +1,6 @@
 # <img src="https://media.discordapp.net/attachments/804348227482419230/901215136302395535/tsuru3_small.png" width="64"> Tsuru
 
-#### Let's build a platform for NSMBU custom code
+#### A platform for NSMBU custom code
 
 # Our goal
 The goal of this project is to provide a platform for New Super Mario Bros. U custom code for modders with the same toolset that Nintendo developers had when writing the game. We also have provided a ton of code examples and premade patches for new modders to learn from and for people who would just like to use them in their own personal mods. It also serves as a unification of multiple code hack projects in order to have a project with everything. All credits linked at the bottom of this readme.
