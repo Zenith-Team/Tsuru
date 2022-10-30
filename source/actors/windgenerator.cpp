@@ -18,7 +18,16 @@ public:
 const Profile FixedWindGeneratorProfile(&FixedWindGenerator::build, 793);
 
 const u32 affectedActors[] = {
-    467, 469, 512, 515, 381, 676, 517, 505, 447, 448, 449
+    ProfileID::Goomba,
+    ProfileID::Goombrat,
+    ProfileID::ParaGoomba,
+    ProfileID::KoopaTroopa,
+    ProfileID::ParaKoopa,
+    ProfileID::BuzzyBeetle,
+    ProfileID::SpikeTop,
+    ProfileID::Spiny,
+    ProfileID::Pokey,
+    447, 448, 449 // TODO: Add these to ProfileID
 };
 
 FixedWindGenerator::FixedWindGenerator(const ActorBuildInfo* buildInfo)

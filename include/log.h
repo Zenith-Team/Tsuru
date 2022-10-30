@@ -272,6 +272,16 @@ inline void tprint<char*>(char* value) {
 }
 
 template <>
+inline void tprint<void*>(void* value) {
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+        LOG("%p", value);
+    } else {
+        LOG("%p", value);
+    }
+}
+
+template <>
 inline void tprint<Vec3f>(Vec3f value) {
     LOG("X: %f, Y: %f, Z: %f", value.x, value.y, value.z);
 

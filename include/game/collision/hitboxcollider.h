@@ -1,7 +1,7 @@
 #pragma once
 
-#include "types.h"
 #include "dynlibs/os/functions.h"
+#include "sead/idisposer.h"
 
 class StageActor;
 
@@ -16,13 +16,31 @@ public:
         TrapezoidHoriz
     );
 
+    ENUM_CLASS(CollisionMask,
+        Fireball            = 1 << 1,
+        Iceball             = 1 << 2,
+        Star                = 1 << 3,
+        ButtSlide           = 1 << 5,
+        GroundPound         = 1 << 7,
+        FencePunch          = 1 << 8,
+        ThrowableObject     = 1 << 9,
+        PenguinSlide        = 1 << 10,
+        PropellerDrill      = 1 << 13,
+        Fire2               = 1 << 14,
+        Unknown             = 1 << 15, // Possibly eaten by yoshi?
+        PipeCannon          = 1 << 17,
+        YoshiHammer         = 1 << 19,
+        YoshiFireball       = 1 << 20,
+        YoshiIceball        = 1 << 21,
+    );
+
     struct Info {
 
         static Info sDefault;
 
         Vec2f distToCenter;     // 0
         Vec2f distToEdge;       // 8
-        Shape::__type__ shape;      // 10
+        Shape::__type__ shape;  // 10
         u32 _14;                // 14
         u32 _18;                // 18
         u32 _1C;                // 1C

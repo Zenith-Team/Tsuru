@@ -241,6 +241,7 @@ ENUM_CLASS(ProfileID,
 
     //* Start of custom entries
     CSRootSpawner = NumOriginal,
+    CSScriptLoader,
     CSFlames,
     ActorSpawner,
     ParaBones,
