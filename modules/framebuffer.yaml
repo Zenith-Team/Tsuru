@@ -16,5 +16,5 @@ Hooks:
   # Heat distortion framebuffer
   - type: branch
     instr: b
-    addr: "0x2266E4C"
+    addr: "0x2266E4C" # CourseSelectTask::enter()
     func: addDistorterFixer__Fv

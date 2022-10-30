@@ -55,7 +55,7 @@ PROFILE_RESOURCES(ProfileID::GiantSkewer, Profile::LoadResourcesAt::Course,"daik
 GiantSkewer::GiantSkewer(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)
     , model(nullptr)
-    , targetDistance(-(1728.0f * (f32)(this->settings1 >> 0x1C & 0xF)))
+    , targetDistance(-(1728.0f * (f32)(this->settings1 >> 0x1C & 0xF))) // Nybble 5
     , targetPosition(0.0f)
     , premoveDistance(0.0f)
     , premovePosition(0.0f)

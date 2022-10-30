@@ -1,14 +1,18 @@
 ---
 Files:
   - csscript.cpp
-  - csscript.S
+#  - csscript.S
 Hooks:
-  - type: branch
-    instr: bl
-    addr: "0x21E4368"
-    func: UseCustomCSScripts1
-  
+#  - type: branch
+#    instr: bl
+#    addr: "0x21E4368" # CSScriptMgr::getCurrentScriptCommandType()
+#    func: UseCustomCSScripts1
+#  - type: branch
+#    instr: b
+#    addr: "0x21E4B54" # CSScriptMgr::getScriptPriority()
+#    func: UseCustomCSScripts2
+# Load the custom scripts
   - type: branch
     instr: b
-    addr: "0x21E4B54"
-    func: UseCustomCSScripts2
+    addr: "0x21e3cfc"
+    func: loadCustomCSScripts__Fv

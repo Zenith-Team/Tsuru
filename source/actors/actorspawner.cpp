@@ -1,8 +1,6 @@
-#include "log.h"
-#include "game/eventmgr.h"
-#include "game/actor/actormgr.h"
-#include "game/profile/profileid.h"
 #include "game/actor/stage/stageactor.h"
+#include "game/actor/actormgr.h"
+#include "game/eventmgr.h"
 
 class ActorSpawner : public StageActor {
     SEAD_RTTI_OVERRIDE_IMPL(ActorSpawner, StageActor)
@@ -16,6 +14,7 @@ public:
     u32 onCreate() override;
     u32 onExecute() override;
 
+    Actor* child;    
     u16 spawnProfileID;
     bool spawned;
 };
@@ -32,26 +31,27 @@ Actor* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 ActorSpawner::onCreate() {
-    if (!eventID1)
+    if (!this->eventID1) {
         return 2;
+    }
+
+    this->child = nullptr;
 
     u16 inputID = linkID | ((movementID & 0xF) << 8);
 
-    if (movementID & 0x10)
-        spawnProfileID = Profile::sprite(inputID);
-    else
-        spawnProfileID = inputID;
+    if (movementID & 0x10) {
+        this->spawnProfileID = Profile::sprite(inputID);
+    } else {
+        this->spawnProfileID = inputID;
+    }
 
-    // Call onExecute to prevent the spawned actor to be missing for one frame if the event is already active
-    return onExecute();
+    return this->onExecute();
 }
 
 u32 ActorSpawner::onExecute() {
-    Actor* child = (childList.begin() != childList.end()) ? childList.begin().ptr : nullptr;
-
     if (EventMgr::instance()->isActive(this->eventID1 - 1)) {
-        if (initialStateFlag == 2 && child) {
-            StageActor* actor = sead::DynamicCast<StageActor, Actor>(child);
+        if (initialStateFlag == 2 && this->child) {
+            StageActor* actor = sead::DynamicCast<StageActor, Actor>(this->child);
 
             if (actor) {
                 actor->isActive = true;
@@ -62,7 +62,7 @@ u32 ActorSpawner::onExecute() {
             return 1;
         }
 
-        if (!spawned) {
+        if (!this->spawned) {
             ActorBuildInfo buildInfo = { 0 };
 
             buildInfo.settings1 = this->settings1;
@@ -71,19 +71,21 @@ u32 ActorSpawner::onExecute() {
             buildInfo.position = this->position;
             buildInfo.eventID1 = (this->eventID2 >> 4) & 0xF;
             buildInfo.eventID2 = this->eventID2 & 0xF;
-            ActorMgr::instance()->create(buildInfo, 0);
+            buildInfo.parentID = this->id;
+            this->child = ActorMgr::instance()->create(buildInfo, 0);
 
             this->spawned = true;
         }
     }
 
     else {
-        if (initialStateFlag == 1 && child) {
-            child->isDeleted = true;
+        if (this->initialStateFlag == 1 && this->child) {
+            this->child->isDeleted = true;
+            this->child = nullptr;
         }
 
-        else if (initialStateFlag == 2 && child) {
-            StageActor* actor = sead::DynamicCast<StageActor, Actor>(child);
+        else if (this->initialStateFlag == 2 && this->child) {
+            StageActor* actor = sead::DynamicCast<StageActor, Actor>(this->child);
 
             if (actor) {
                 actor->isActive = false;
@@ -92,7 +94,7 @@ u32 ActorSpawner::onExecute() {
             }
         }
 
-        spawned = false;
+        this->spawned = false;
     }
 
     return 1;

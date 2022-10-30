@@ -2,7 +2,7 @@
 ---
 Name: Tsuru
 Modules:
-  - buffs.yaml                # What if we made the game a bit more tricky
+# - buffs.yaml                # What if we made the game a bit more tricky...
   - cheats.yaml               # Cheat menu
   - collisionconditions.yaml  # Fixes collision conditions for some actors
   - csscripts.yaml            # Custom world map scripts
@@ -10,7 +10,7 @@ Modules:
   - deathfoo.yaml             # Toxic cloud foo patch
   - debug.yaml                # Debugging features
 # - experiments.yaml          # Experimental things
-  - framebuffer.yaml          # Clears the framebuffer before rendering
+  - framebuffer.yaml          # Framebuffer-related fixes
   - initializer.yaml          # Initializer
   - layout.yaml               # Custom layouts
   - misc.yaml                 # Miscellaneous items

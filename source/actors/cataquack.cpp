@@ -126,6 +126,7 @@ u32 Cataquack::onExecute() {
 
 u32 Cataquack::onDraw() {
     this->model->draw();
+
     return 1;
 }
 
@@ -155,7 +156,9 @@ void Cataquack::executeState_Walk() {
     this->handleGravity();
     this->handleSpeed();
     this->physicsMgr.processCollisions();
-    if (this->physicsMgr.isOnGround()) this->speed.y = 0.0f;
+    if (this->physicsMgr.isOnGround()) {
+        this->speed.y = 0.0f;
+    }
 
     Vec2f distToPlayer;
     if (this->distanceToPlayer(distToPlayer) > -1 && sead::Mathf::abs(distToPlayer.x) < 8.0f * 16.0f && sead::Mathf::abs(distToPlayer.y) < 6.0f * 16.0f) {
@@ -223,8 +226,13 @@ void Cataquack::executeState_Launch() {
     this->handleGravity();
     this->handleSpeed();
     this->physicsMgr.processCollisions();
-    if (this->physicsMgr.isOnGround()) this->speed.y = 0.0f;
-    if (this->model->sklAnims[0]->frameCtrl.isDone()) this->doStateChange(&Cataquack::StateID_Walk);
+    if (this->physicsMgr.isOnGround()) {
+        this->speed.y = 0.0f;
+    }
+    
+    if (this->model->sklAnims[0]->frameCtrl.isDone()) {
+        this->doStateChange(&Cataquack::StateID_Walk);
+    }
 }
 
 void Cataquack::endState_Launch() {
@@ -233,7 +241,10 @@ void Cataquack::endState_Launch() {
 }
 
 void Cataquack::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    if (hcOther->owner->type != StageActor::Type::Player && hcOther->owner->type != StageActor::Type::Yoshi) return;
+    if (hcOther->owner->type != StageActor::Type::Player && hcOther->owner->type != StageActor::Type::Yoshi){
+        return;
+    }
+    
     Cataquack* self = static_cast<Cataquack*>(hcSelf->owner);
 
     self->target = hcOther->owner;

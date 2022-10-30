@@ -51,8 +51,6 @@ CREATE_STATE(Biddybud, DieSquish);
 const Profile BiddybudProfile(&Biddybud::build, ProfileID::Biddybud);
 PROFILE_RESOURCES(ProfileID::Biddybud, Profile::LoadResourcesAt::Course, "tenten_w");
 
-// collider related stuff
-
 HitboxCollider::Info Biddybud::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFFFFFF, 0, &Enemy::collisionCallback
 };
@@ -67,13 +65,14 @@ void Biddybud::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) 
 
 void Biddybud::collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     u32 hitType = this->processCollision(hcSelf, hcOther, 0);
+
     if (hitType == HitType::Collide) {
         this->damagePlayer(hcSelf, hcOther);
     }
+
     if (hitType == HitType::NormalJump) {
         Biddybud::collisionStar(hcSelf, hcOther);
     }
-
 }
 
 bool Biddybud::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
@@ -113,6 +112,7 @@ bool Biddybud::collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* 
     Vec3f effectPos(effectOrigin + this->effectOffset);
     Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
     this->isDeleted = true;
+
     return 1;
 }
 
@@ -121,18 +121,22 @@ bool Biddybud::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther
     while (this->counter < 32) {
         this->counter++;
     }
+
     return Biddybud::collisionStar(hcSelf, hcOther);
 }
 
 bool Biddybud::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     Biddybud::collisionStar(hcSelf, hcOther);
+
     return 1;
 }
 
 bool Biddybud::collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     Biddybud::collisionFireball(hcSelf, hcOther);
+
     return 1;
 }
+
 Biddybud::Biddybud(const ActorBuildInfo* buildInfo) 
     : Enemy(buildInfo)
     , model(nullptr)
@@ -150,6 +154,7 @@ Actor* Biddybud::build(const ActorBuildInfo* buildInfo) {
 
 u32 Biddybud::onCreate() {
     this->color = (this->settings1 >> 0x1C & 0xF); // nybble 5
+
     this->model = ModelWrapper::create("tenten_w", "tenten_w", 3, 1, 1);
     this->model->playTexPatternAnim("bud", 0);
     this->model->playTexSrtAnim("FlyWait", 0);
@@ -158,13 +163,9 @@ u32 Biddybud::onCreate() {
     this->model->texPatternAnims[0]->frameCtrl.speed = 0.0;
     this->model->texSrtAnims[0]->frameCtrl.shouldLoop(true);
     this->model->loopSklAnims(true);
-    this->scale.x = .17;
-    this->scale.y = .17;
-    this->scale.z = .17;
-    model->setScale(0.001);
+    this->scale = .17f;
     this->position.y -= 8;
     this->position.x += 8;
-
 
     this->hitboxCollider.init(this, &Biddybud::collisionInfo);
     this->addHitboxColliders();
@@ -185,6 +186,7 @@ u32 Biddybud::onExecute() {
         this->movementHandler.execute();
         this->position = this->movementHandler.position;
     }
+    
     this->states.execute();
 
     Mtx34 mtx;
