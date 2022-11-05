@@ -2,6 +2,7 @@
 #include "game/actor/actormgr.h"
 #include "game/direction.h"
 #include "game/graphics/model/modelnw.h"
+#include "game/effect/effect.h"
 
 class ParaBones : public Enemy {
     SEAD_RTTI_OVERRIDE_IMPL(ParaBones, Enemy)
@@ -17,6 +18,17 @@ public:
     u32 onDraw() override;
 
     void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    void collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
     ModelWrapper* model;
     ModelWrapper* wings;
@@ -143,13 +155,87 @@ u32 ParaBones::onDraw() {
 void ParaBones::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     u32 hitType = this->processCollision(hcSelf, hcOther, 0);
 
-    if (hitType == 0)
+    if (hitType == Enemy::HitType::Collide) {
         this->damagePlayer(hcSelf, hcOther);
-    else if (hitType == 1 || hitType == 3)
+    } else if (hitType == Enemy::HitType::NormalJump || hitType == Enemy::HitType::SpinJump) {
         this->killPlayerJump(hcOther->owner, 0.0f, &ParaBones::StateID_Die);
+    }
 }
 
-// Lowering state
+void ParaBones::collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->killPlayerJump(hcOther->owner, 0.0f, &ParaBones::StateID_Die);
+}
+
+bool ParaBones::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->killPlayerJump(hcOther->owner, 0.0f, &ParaBones::StateID_Die);
+
+    return true;
+}
+
+bool ParaBones::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->doStateChange(&ParaBones::StateID_Die);
+
+    return true;
+}
+
+bool ParaBones::collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+    Vec3f effectScale = 0.5f;
+    Effect::spawn(RP_Jugemu_CloudDisapp, &effectOrigin, nullptr, &effectScale);
+    this->isDeleted = true;
+    
+    return true;
+}
+
+bool ParaBones::collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+    Vec3f effectScale = 0.5f;
+    Effect::spawn(RP_Jugemu_CloudDisapp, &effectOrigin, nullptr, &effectScale);
+    this->isDeleted = true;
+    
+    return true;
+}
+
+bool ParaBones::collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->killPlayerJump(hcOther->owner, 0.0f, &ParaBones::StateID_Die);
+
+    return true;
+}
+
+bool ParaBones::collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->killPlayerJump(hcOther->owner, 0.0f, &ParaBones::StateID_Die);
+
+    return true;
+}
+
+bool ParaBones::collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+    Vec3f effectScale = 0.5f;
+    Effect::spawn(RP_Jugemu_CloudDisapp, &effectOrigin, nullptr, &effectScale);
+    this->isDeleted = true;
+    
+    return true;
+}
+
+bool ParaBones::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    hcOther->owner->isDeleted = true;
+
+    return true;
+}
+
+bool ParaBones::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->doStateChange(&ParaBones::StateID_Die);
+
+    return true;
+}
+
+bool ParaBones::collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    hcOther->owner->isDeleted = true;
+
+    return true;
+}
+
+/** STATE: Lowering */
 
 void ParaBones::beginState_Lowering() {
     this->timerLowering = 0;
@@ -167,7 +253,7 @@ void ParaBones::executeState_Lowering() {
 
 void ParaBones::endState_Lowering() { }
 
-// IdleLowered state
+/** STATE: IdleLowered */
 
 void ParaBones::beginState_IdleLowered() {
     this->timerIdleLowered = 0;
@@ -184,7 +270,7 @@ void ParaBones::executeState_IdleLowered() {
 
 void ParaBones::endState_IdleLowered() { }
 
-// Rising state
+/** STATE: Rising */
 
 void ParaBones::beginState_Rising() {
     this->timerRising = 0;
@@ -202,7 +288,7 @@ void ParaBones::executeState_Rising() {
 
 void ParaBones::endState_Rising() { }
 
-// IdleRaised state
+/** STATE: IdleRaised */
 
 void ParaBones::beginState_IdleRaised() {
     this->timerIdleRaised = 0;
@@ -219,7 +305,7 @@ void ParaBones::executeState_IdleRaised() {
 
 void ParaBones::endState_IdleRaised() { }
 
-// Die state
+/** STATE: Die */
 
 void ParaBones::beginState_Die() {
     this->removeHitboxColliders();

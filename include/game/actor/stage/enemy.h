@@ -158,7 +158,6 @@ public:
     void killYoshiStomp(StageActor* player);
 
     DeathInfo deathInfo;            // 17C8
-    
     u16 _17E4[0x4];                 // 17E4
     u32 _17EC;                      // 17EC
     EnemyFreezeMgr freezeMgr;       // 17F0

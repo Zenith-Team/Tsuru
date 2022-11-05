@@ -121,6 +121,10 @@ void FakeActor::touch() {
 }
 
 void FakeActor::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    if (hcOther->owner->type != StageActor::Type::Player) {
+        return;
+    }
+    
     static_cast<FakeActor*>(hcSelf->owner)->touch();
 }
 

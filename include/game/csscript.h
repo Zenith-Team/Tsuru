@@ -12,6 +12,8 @@ struct CSScript {
     CSScriptCommand* scriptStart;
 };
 
+extern CSScript WorldMapScriptsTable[121];
+
 ENUM_CLASS(CSCommand,
     ShowMiiverseSetup = 311,
     End = 344

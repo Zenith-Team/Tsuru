@@ -37,7 +37,7 @@ const Profile FallingChestnutProfile(&FallingChestnut::build, ProfileID::Falling
 PROFILE_RESOURCES(ProfileID::FallingChestnut, Profile::LoadResourcesAt::Course, "iga_kuribo");
 
 const HitboxCollider::Info FallingChestnut::collisionInfo = {
-    Vec2f(0.0f, -3.0f), Vec2f(12.0f, 15.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &FallingChestnut::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(12.0f, 12.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &FallingChestnut::collisionCallback
 };
 
 const ActorPhysicsMgr::Sensor FallingChestnut::belowSensor = {
@@ -60,17 +60,14 @@ u32 FallingChestnut::onCreate() {
 
     this->physicsMgr.init(this, &FallingChestnut::belowSensor);
 
-    this->doStateChange(&StateID_Idle);
+    this->doStateChange(&FallingChestnut::StateID_Idle);
 
-    return 1;
+    return this->onExecute();
 }
 
 u32 FallingChestnut::onExecute() {
-    Vec3f posOffset(0.0f, -16.0f, 0.0f);
-    Vec3u rotOffset(fixDeg(90.0f), 0, 0);
-
     Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation + rotOffset, this->position + posOffset);
+    mtx.makeRTIdx(this->rotation, this->position + Vec3f(0.0f, -14.0f, 0.0f));
 
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);

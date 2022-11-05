@@ -20,7 +20,7 @@ public:
     void getCurrentScriptID(u32* out);
     // Gets the currently running script command type
     // @param out Pointer to output variable
-    void getCurrentScriptCommandType(u32* out);
+    u32* getCurrentScriptCommandType(u32* out);
 
     // @param tableIndex Index of script in CSScriptsTable
     // @return Priority of target script

@@ -1,18 +1,22 @@
 ---
 Files:
   - csscript.cpp
-#  - csscript.S
 Hooks:
-#  - type: branch
-#    instr: bl
-#    addr: "0x21E4368" # CSScriptMgr::getCurrentScriptCommandType()
-#    func: UseCustomCSScripts1
-#  - type: branch
-#    instr: b
-#    addr: "0x21E4B54" # CSScriptMgr::getScriptPriority()
-#    func: UseCustomCSScripts2
 # Load the custom scripts
   - type: branch
     instr: b
     addr: "0x21e3cfc"
     func: loadCustomCSScripts__Fv
+# Replace the script-related functions to allow usage of custom ones
+  - type: branch
+    instr: b
+    addr: "0x21E4AFC"
+    func: getCurrentCommandArg__FP11CSScriptMgr
+  - type: branch
+    instr: b
+    addr: "0x21e42fc"
+    func: getCurrentScriptCommandType__FP11CSScriptMgrPUi
+  - type: branch
+    instr: b
+    addr: "0x21e4b50"
+    func: getScriptPriority__FP11CSScriptMgrRUi  
