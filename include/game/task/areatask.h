@@ -4,7 +4,7 @@
 #include "agl/lyr/renderinfo.h"
 
 class AreaTask : public sead::CalculateTask { // Task which manages Zones (class name is official)
-    SEAD_SINGLETON_TASK(AreaTask)
+    SEAD_SINGLETON_TASK(AreaTask);
 
 public:
     // Draws the layer "3D"

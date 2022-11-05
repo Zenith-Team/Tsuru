@@ -6,7 +6,7 @@
 
 //! Pain
 class PlayerBase : public StageActor { // Size: 0x2750
-    SEAD_RTTI_OVERRIDE(PlayerBase, StageActor)
+    SEAD_RTTI_OVERRIDE(PlayerBase, StageActor);
 
 public:
     ENUM_CLASS(PowerupState,

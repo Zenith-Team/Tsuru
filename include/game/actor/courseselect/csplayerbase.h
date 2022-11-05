@@ -4,7 +4,7 @@
 #include "game/effect/effect.h"
 
 class CSPlayerBase : public CourseSelectActor {
-    SEAD_RTTI_OVERRIDE(CSPlayerBase, CourseSelectActor)
+    SEAD_RTTI_OVERRIDE(CSPlayerBase, CourseSelectActor);
 
 public:
     CSPlayerBase(const ActorBuildInfo* buildInfo);

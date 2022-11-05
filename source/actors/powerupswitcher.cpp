@@ -3,7 +3,7 @@
 #include "game/actor/stage/stageactor.h"
 
 class PowerupSwitcher : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(PowerupSwitcher, StageActor)
+    SEAD_RTTI_OVERRIDE_IMPL(PowerupSwitcher, StageActor);
 
 public:
     PowerupSwitcher(const ActorBuildInfo* buildInfo);

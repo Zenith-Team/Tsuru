@@ -13,7 +13,7 @@ public:
     RenderBuffer(const Vec2f& virtualSsize, f32 physicalX, f32 physicalY, f32 physicalW, f32 physicalH);
     virtual ~RenderBuffer();
 
-    SEAD_RTTI_OVERRIDE(RenderBuffer, sead::FrameBuffer)
+    SEAD_RTTI_OVERRIDE(RenderBuffer, sead::FrameBuffer);
     virtual void copyToDisplayBuffer(const sead::DisplayBuffer* displayBuffer) const;
     virtual void clear(u32 clearFlag, const sead::Color4f& color, f32 depth, u32 stencil) const;
     virtual void bindImpl_() const;

@@ -14,7 +14,7 @@
 #include "log.h"
 
 class Kamiya : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(Kamiya, Enemy)
+    SEAD_RTTI_OVERRIDE_IMPL(Kamiya, Enemy);
 
 public:
     Kamiya(const ActorBuildInfo* buildInfo);
@@ -485,7 +485,7 @@ void Kamiya::executeState_Snipe() {
 void Kamiya::endState_Snipe() { }
 
 class KamiyaMagic : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(KamiyaMagic, Enemy)
+    SEAD_RTTI_OVERRIDE_IMPL(KamiyaMagic, Enemy);
 
 public:
     KamiyaMagic(const ActorBuildInfo* buildInfo);

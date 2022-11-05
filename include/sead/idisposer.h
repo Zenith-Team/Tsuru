@@ -44,7 +44,7 @@ private:
                                                                                                                 \
         friend class SingletonDisposer_;                                                                        \
                                                                                                                 \
-        u32 singletonDisposerBuf_[sizeof(SingletonDisposer_) / sizeof(u32)];
+        u32 singletonDisposerBuf_[sizeof(SingletonDisposer_) / sizeof(u32)]
 
 #define SEAD_CREATE_SINGLETON_INSTANCE(CLASS)                                                                   \
     CLASS* CLASS::createInstance(sead::Heap* heap) {                                                            \
@@ -88,4 +88,4 @@ private:
     SEAD_CREATE_SINGLETON_INSTANCE(CLASS)                                                                       \
     SEAD_DELETE_SINGLETON_INSTANCE(CLASS)                                                                       \
     CLASS* CLASS::sInstance = nullptr;                                                                          \
-    CLASS::SingletonDisposer_* CLASS::SingletonDisposer_::sStaticDisposer = nullptr;
+    CLASS::SingletonDisposer_* CLASS::SingletonDisposer_::sStaticDisposer = nullptr

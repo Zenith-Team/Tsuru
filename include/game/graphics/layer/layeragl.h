@@ -3,7 +3,7 @@
 #include "agl/lyr/layer.h"
 
 class LayerAgl : public agl::lyr::Layer {
-    SEAD_RTTI_OVERRIDE(LayerAgl, agl::lyr::Layer)
+    SEAD_RTTI_OVERRIDE(LayerAgl, agl::lyr::Layer);
 
 public:
     LayerAgl();

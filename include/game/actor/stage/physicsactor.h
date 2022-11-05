@@ -4,7 +4,7 @@
 #include "game/collision/actorphysicsmgr.h"
 
 class PhysicsActor : public StageActor { // Size: 0x17A0
-    SEAD_RTTI_OVERRIDE(PhysicsActor, StageActor)
+    SEAD_RTTI_OVERRIDE(PhysicsActor, StageActor);
 
 public:
     PhysicsActor(const ActorBuildInfo* buildInfo);

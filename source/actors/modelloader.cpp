@@ -8,7 +8,7 @@
 #include <cstring>
 
 class ModelLoader : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(ModelLoader, StageActor)
+    SEAD_RTTI_OVERRIDE_IMPL(ModelLoader, StageActor);
 
 public:
     ModelLoader(const ActorBuildInfo* buildInfo);

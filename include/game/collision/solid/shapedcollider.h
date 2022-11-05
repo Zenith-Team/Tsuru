@@ -4,7 +4,7 @@
 #include "sead/buffer.h"
 
 class ShapedCollider : public ColliderBase {
-    SEAD_RTTI_OVERRIDE(ShapedCollider, ColliderBase)
+    SEAD_RTTI_OVERRIDE(ShapedCollider, ColliderBase);
 
 public:
     struct Info {

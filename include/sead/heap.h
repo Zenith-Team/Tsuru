@@ -80,7 +80,7 @@ public:
 };
 
 class UnitHeap : public Heap {
-    SEAD_RTTI_OVERRIDE(UnitHeap, Heap)
+    SEAD_RTTI_OVERRIDE(UnitHeap, Heap);
 
 public:
     UnitHeap(const SafeString& name, Heap* parent, void* address, u32 size, u32, bool);

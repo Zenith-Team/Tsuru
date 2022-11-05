@@ -3,7 +3,7 @@
 #include "game/collision/solid/colliderbase.h"
 
 class ColliderMgr {
-    SEAD_SINGLETON_DISPOSER(ColliderMgr)
+    SEAD_SINGLETON_DISPOSER(ColliderMgr);
 
 public:
     // Adds a collider to the lists

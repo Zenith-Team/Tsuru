@@ -6,8 +6,8 @@
 #include "agl/lyr/drawmethod.h"
 
 class CourseSelectTask : public sead::CalculateTask { // Size: 0xDD0
-    SEAD_RTTI_OVERRIDE(CourseSelectTask, sead::CalculateTask)
-    SEAD_SINGLETON_TASK(CourseSelectTask)
+    SEAD_RTTI_OVERRIDE(CourseSelectTask, sead::CalculateTask);
+    SEAD_SINGLETON_TASK(CourseSelectTask);
 
 public:
     virtual ~CourseSelectTask();

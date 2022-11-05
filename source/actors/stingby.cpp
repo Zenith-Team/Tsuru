@@ -23,16 +23,18 @@ public:
     Vec3f idleCenter;
 
     DECLARE_STATE(Stingby, Idle);
+    DECLARE_STATE(Stingby, Notice);
     DECLARE_STATE(Stingby, Chase);
     DECLARE_STATE(Stingby, Die);
 };
 
 CREATE_STATE(Stingby, Idle);
+CREATE_STATE(Stingby, Notice);
 CREATE_STATE(Stingby, Chase);
 CREATE_STATE(Stingby, Die);
 
 const Profile StingbyProfile(&Stingby::build, ProfileID::Stingby);
-PROFILE_RESOURCES(ProfileID::Stingby, Profile::LoadResourcesAt::Course, "star_coin");
+PROFILE_RESOURCES(ProfileID::Stingby, Profile::LoadResourcesAt::Course, "hacchin000");
 
 const HitboxCollider::Info Stingby::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFFFFFF, 0, &Enemy::collisionCallback
@@ -49,10 +51,10 @@ Actor* Stingby::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 Stingby::onCreate() {
-    this->model = ModelWrapper::create("star_coin", "star_coinA");
-    
+    this->model = ModelWrapper::create("hacchin000", "hacchin000", 4);
+
     this->direction = Direction::Right;
-    this->scale = 0.5f;
+    this->scale = 0.2f;
 
     this->hitboxCollider.init(this, &collisionInfo);
     this->addHitboxColliders();
@@ -65,7 +67,9 @@ u32 Stingby::onCreate() {
 u32 Stingby::onExecute() {
     this->states.execute();
 
-    sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->direction], 0x11FFFFF);
+    if (this->states.currentState()->ID != Stingby::StateID_Die.ID) {
+        sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->direction], 0x11FFFFF);
+    }
 
     Mtx34 mtx;
     mtx.makeRTIdx(this->rotation, this->position);
@@ -86,10 +90,12 @@ u32 Stingby::onDraw() {
 
 void Stingby::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     u32 hitType = this->processCollision(hcSelf, hcOther, 0);
-    if (hitType == HitType::Collide)
+
+    if (hitType == HitType::Collide) {
         this->damagePlayer(hcSelf, hcOther);
-    else if (hitType == HitType::NormalJump || hitType == HitType::SpinJump)
+    } else if (hitType == HitType::NormalJump || hitType == HitType::SpinJump) {
         this->killPlayerJump(hcOther->owner, 0.0f, &Stingby::StateID_Die);
+    }
 }
 
 /** STATE: Idle */
@@ -97,11 +103,13 @@ void Stingby::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
 void Stingby::beginState_Idle() {
     this->idleCenter = this->position;
     this->direction = Direction::Right;
+
+    this->model->playSklAnim("fly_idle");
 }
 
 void Stingby::executeState_Idle() {
     if (sead::Mathf::abs(this->distanceToPlayer().x) < 5.5*16) {
-        this->doStateChange(&Stingby::StateID_Chase);
+        this->doStateChange(&Stingby::StateID_Notice);
     }
 
     if (this->direction == Direction::Right) {
@@ -117,9 +125,25 @@ void Stingby::executeState_Idle() {
 
 void Stingby::endState_Idle() { }
 
+/** STATE: Notice */
+
+void Stingby::beginState_Notice() {
+    this->model->playSklAnim("notice");
+}
+
+void Stingby::executeState_Notice() {
+    if (this->model->sklAnims[0]->frameCtrl.currentFrame == (this->model->sklAnims[0]->frameCtrl.endFrame - 1.0f)) {
+        this->doStateChange(&Stingby::StateID_Chase);
+    }
+}
+
+void Stingby::endState_Notice() { }
+
 /** STATE: Chase */
 
-void Stingby::beginState_Chase() { }
+void Stingby::beginState_Chase() {
+    this->model->playSklAnim("fly_dash");
+}
 
 void Stingby::executeState_Chase() {
     if (sead::Mathf::abs(this->distanceToPlayer().x) > 6*16) {
@@ -134,13 +158,15 @@ void Stingby::endState_Chase() { }
 
 /** STATE: Die */
 
-void Stingby::beginState_Die() { }
+void Stingby::beginState_Die() {
+    this->model->playSklAnim("die_squish");
+    this->removeHitboxColliders();
+}
 
 void Stingby::executeState_Die() {
-    Vec3f effectPos(this->position.x, this->position.y, 4500.0f);
-    Vec3f effectScale = this->scale / 2;
-    Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &effectScale);
-    this->isDeleted = true;
+    if (this->model->sklAnims[0]->frameCtrl.currentFrame == (this->model->sklAnims[0]->frameCtrl.endFrame - 1.0f)) {
+        this->isDeleted = true;
+    }
 }
 
 void Stingby::endState_Die() { }

@@ -122,7 +122,7 @@ public:
 static_assert(sizeof(TaskBase) == 0x74, "sead::TaskBase size mismatch");
 
 class CalculateTask : public TaskBase { // Size: 0xC8
-    SEAD_RTTI_OVERRIDE(CalculateTask, TaskBase)
+    SEAD_RTTI_OVERRIDE(CalculateTask, TaskBase);
 
 public:
     CalculateTask(const TaskConstructArg& arg, const char* name);

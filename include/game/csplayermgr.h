@@ -4,7 +4,7 @@
 #include "game/actor/courseselect/csplayerbase.h"
 
 class CSPlayerMgr { // Size: 0x34
-    SEAD_SINGLETON_DISPOSER(CSPlayerMgr)
+    SEAD_SINGLETON_DISPOSER(CSPlayerMgr);
 
 public:
     CSPlayerMgr();

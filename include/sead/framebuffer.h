@@ -31,7 +31,7 @@ static_assert(sizeof(LogicalFrameBuffer) == 0x1C, "sead::LogicalFrameBuffer size
 class DisplayBuffer;
 
 class FrameBuffer : public LogicalFrameBuffer {
-    SEAD_RTTI_OVERRIDE(FrameBuffer, LogicalFrameBuffer)
+    SEAD_RTTI_OVERRIDE(FrameBuffer, LogicalFrameBuffer);
 
 public:
     FrameBuffer(const Vec2f& virtualSize, const BoundBox2<f32>& physicalArea)

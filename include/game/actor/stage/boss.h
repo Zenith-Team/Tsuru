@@ -5,7 +5,7 @@
 #include "game/actor/stage/stageactor.h"
 
 class Boss : public Enemy { // Size: 0x1B78
-    SEAD_RTTI_OVERRIDE(Boss, Enemy)
+    SEAD_RTTI_OVERRIDE(Boss, Enemy);
 
 public:
     Boss(const ActorBuildInfo* buildInfo);

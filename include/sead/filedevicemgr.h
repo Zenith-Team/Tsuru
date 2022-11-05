@@ -6,7 +6,7 @@
 namespace sead {
 
 class FileDeviceMgr {
-    SEAD_SINGLETON_DISPOSER(FileDeviceMgr)
+    SEAD_SINGLETON_DISPOSER(FileDeviceMgr);
 
 public:
     FileDevice* tryOpen(FileHandle* handle, const SafeString& path, FileDevice::FileOpenFlag flag, u32 divSize);

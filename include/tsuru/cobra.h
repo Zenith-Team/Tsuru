@@ -20,6 +20,7 @@ public:
         char version;
         char game;
         char gameVariant[3];
+        u32 fileSize;
         u32 numScripts;
     };
 
@@ -29,17 +30,12 @@ public:
 
         const s32 align = sead::FileDevice::sBufferMinAlignment;
 
-        u8* headerBuffer = (u8*)heap->tryAlloc(sizeof(Header), align);
-
         if (!handle.device) {
             PRINT(LogColor::Red, "scripts.wms not found.");
             return;
         }
 
-        u32 size = 0;
-        bool b = device->doGetFileSize_(&size, &handle);
-        PRINT(size);
-        PRINT(b);
+        u8* headerBuffer = (u8*)heap->tryAlloc(sizeof(Header), align);
 
         u32 bytesRead = handle.read(reinterpret_cast<u8*>(headerBuffer), sizeof(Header));
         OSBlockMove(&this->header, headerBuffer, sizeof(Header), false);
@@ -72,28 +68,31 @@ public:
         this->scripts = (CSScript*)heap->tryAlloc(sizeof(CSScript) * this->header.numScripts, sizeof(CSScript));
         OSBlockMove(this->scripts, scriptBuffer, sizeof(CSScript) * this->header.numScripts, false);
 
-        PRINT("Size of scripts.wms: ", fmt::hex, size);
-
-        size = size - sizeof(Header) - (sizeof(u32) * this->header.numScripts) - (sizeof(CSScript) * this->header.numScripts);
+        u32 dataSize = this->header.fileSize - sizeof(Header) - (sizeof(u32) * this->header.numScripts) - (sizeof(CSScript) * this->header.numScripts);
     
-        u8* scriptDataBuffer = (u8*)heap->tryAlloc(size, align);
+        u8* scriptDataBuffer = (u8*)heap->tryAlloc(dataSize, align);
 
-        bytesRead = handle.read(reinterpret_cast<u8*>(scriptDataBuffer), size);
+        bytesRead = handle.read(reinterpret_cast<u8*>(scriptDataBuffer), dataSize);
 
-        if (bytesRead != size) {
-            PRINT(LogColor::Red, "scripts.wms script data read size mismatch, read size: ", fmt::hex, bytesRead, ", expected size: ", fmt::hex, size);
+        if (bytesRead != dataSize) {
+            PRINT(LogColor::Red, "scripts.wms script data read size mismatch, read size: ", fmt::hex, bytesRead, ", expected size: ", fmt::hex, dataSize);
             return;
         }
 
-        this->scriptsData = (CSScriptCommand*)heap->tryAlloc(size, sizeof(CSScriptCommand));
-        OSBlockMove(this->scriptsData, scriptDataBuffer, size, false);
+        this->scriptsData = (CSScriptCommand*)heap->tryAlloc(dataSize, sizeof(CSScriptCommand));
+        OSBlockMove(this->scriptsData, scriptDataBuffer, dataSize, false);
     
+        u32 fileOffsetToScriptsData = sizeof(Header) + (sizeof(u32) * this->header.numScripts) + (sizeof(CSScript) * this->header.numScripts);
+        for (int i = 0; i < this->header.numScripts; i++) {
+            u32 *ptrToScriptStart = (u32*)(&this->scripts[i].scriptStart);
+            *ptrToScriptStart -= fileOffsetToScriptsData;
+            *ptrToScriptStart += (u32)(this->scriptsData);
+        }
+
         heap->free(headerBuffer);
         heap->free(scriptIDBuffer);
         heap->free(scriptBuffer);
         heap->free(scriptDataBuffer);
-
-        PRINT(header.numScripts, " scripts loaded.");
     }
 
     Header header;

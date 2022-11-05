@@ -22,7 +22,7 @@ public:
 };
 
 class ActorMgr { // Size: 0x6A44
-    SEAD_SINGLETON_DISPOSER(ActorMgr)
+    SEAD_SINGLETON_DISPOSER(ActorMgr);
 
 public:
     // Spawns an actor in the current level

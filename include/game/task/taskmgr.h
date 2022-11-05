@@ -4,7 +4,7 @@
 #include "sead/task.h"
 
 class TaskMgr {
-    SEAD_SINGLETON_DISPOSER(TaskMgr)
+    SEAD_SINGLETON_DISPOSER(TaskMgr);
 
 public:
     // Switches to CourseTask and starts a level

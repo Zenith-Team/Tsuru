@@ -3,7 +3,7 @@
 #include "game/collision/solid/colliderbase.h"
 
 class CircularCollider : public ColliderBase { // Size: 0x190
-    SEAD_RTTI_OVERRIDE(CircularCollider, ColliderBase)
+    SEAD_RTTI_OVERRIDE(CircularCollider, ColliderBase);
 
 public:
     struct Info {

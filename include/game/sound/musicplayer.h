@@ -4,7 +4,7 @@
 #include "sead/safestring.h"
 
 class MusicPlayer { // Size: 0x74
-    SEAD_SINGLETON_DISPOSER(MusicPlayer)
+    SEAD_SINGLETON_DISPOSER(MusicPlayer);
 
 public:
     // Remember to add your custom music to the arrays in musicplayer.cpp

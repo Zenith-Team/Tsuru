@@ -1,7 +1,7 @@
 #include "tsuru/save/managers/tsurusavemgr.h"
 #include "tsuru/save/system/savemgrsystem.h"
 
-SEAD_SINGLETON_DISPOSER_IMPL(TsuruSaveMgr)
+SEAD_SINGLETON_DISPOSER_IMPL(TsuruSaveMgr);
 
 TsuruSaveMgr::TsuruSaveData TsuruSaveMgr::sSaveData aligned(sead::FileDevice::sBufferMinAlignment);
 

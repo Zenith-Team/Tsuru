@@ -3,7 +3,7 @@
 #include "sead/idisposer.h"
 
 class LevelTimer {
-    SEAD_SINGLETON_DISPOSER(LevelTimer)
+    SEAD_SINGLETON_DISPOSER(LevelTimer);
 
 public:
     LevelTimer();

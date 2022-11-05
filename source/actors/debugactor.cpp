@@ -4,7 +4,7 @@
 #include "log.h"
 
 class DebugActor : public Actor {
-    SEAD_RTTI_OVERRIDE_IMPL(DebugActor, Actor)
+    SEAD_RTTI_OVERRIDE_IMPL(DebugActor, Actor);
 
 public:
     DebugActor(const ActorBuildInfo* buildInfo);

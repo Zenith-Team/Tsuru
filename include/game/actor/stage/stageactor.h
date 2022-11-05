@@ -29,7 +29,7 @@ struct StageActorCallbackTable {
 };
 
 class StageActor : public Actor {
-    SEAD_RTTI_OVERRIDE(StageActor, Actor)
+    SEAD_RTTI_OVERRIDE(StageActor, Actor);
 
 public:
     ENUM_CLASS(Type,

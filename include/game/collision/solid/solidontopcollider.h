@@ -4,7 +4,7 @@
 #include "sead/buffer.h"
 
 class SolidOnTopCollider : public ColliderBase { // Size: 0x178
-    SEAD_RTTI_OVERRIDE(SolidOnTopCollider, ColliderBase)
+    SEAD_RTTI_OVERRIDE(SolidOnTopCollider, ColliderBase);
 
 public:
     struct Info {
