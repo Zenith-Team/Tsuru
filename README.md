@@ -13,7 +13,7 @@ Just create a new Pull Request on the designated page. We will review the PR and
 This project is intended to be compiled with the [Tachyon](https://github.com/Zenith-Team/Tachyon) build system. Keep in mind that currently this project targets version 1.3.0 of the standalone copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not our top priority.
 
 # Usage
-To install Tsuru onto your game, simply use the preloaded installer available at the [website](https://tsuru.nsmbu.net).
+To install Tsuru onto your game, simply use the [Trailblazer](https://trailblazer.nsmbu.net) patchfile installer, and the latest patch available on the releases page.
 
 # Help
 If you require any assistance for anything related to Tsuru, feel free to join our [Discord server](https://discord.nsmbu.net) and ask for help in there.
