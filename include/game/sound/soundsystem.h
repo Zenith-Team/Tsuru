@@ -9,7 +9,7 @@ public:
 };
 
 class SoundSystem : public SoundSystemBase {
-    SEAD_SINGLETON_DISPOSER(SoundSystem)
+    SEAD_SINGLETON_DISPOSER(SoundSystem);
 
 public:
     nw::snd::SoundArchive* getSoundArchive();

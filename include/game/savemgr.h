@@ -6,7 +6,7 @@
 #include "sead/thread.h"
 
 class SaveMgr { // Size: 0x50
-    SEAD_SINGLETON_DISPOSER(SaveMgr)
+    SEAD_SINGLETON_DISPOSER(SaveMgr);
 
 public:
     SaveMgr(sead::Heap* heap);

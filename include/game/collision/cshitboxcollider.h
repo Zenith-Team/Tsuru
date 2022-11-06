@@ -29,7 +29,7 @@ public:
 };
 
 class CSHitboxColliderMgr {
-    SEAD_SINGLETON_DISPOSER(CSHitboxColliderMgr)
+    SEAD_SINGLETON_DISPOSER(CSHitboxColliderMgr);
 
 public:
     struct UnknownStruct : public sead::PtrArrayImpl {

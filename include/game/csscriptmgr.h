@@ -5,7 +5,7 @@
 #include "game/actor/actor.h"
 
 class CSScriptMgr { // Size: 0x570
-    SEAD_SINGLETON_DISPOSER(CSScriptMgr)
+    SEAD_SINGLETON_DISPOSER(CSScriptMgr);
 
 public:
     CSScriptMgr();

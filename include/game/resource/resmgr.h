@@ -4,7 +4,7 @@
 #include "sead/safestring.h"
 
 class ResMgr {
-    SEAD_SINGLETON_DISPOSER(ResMgr)
+    SEAD_SINGLETON_DISPOSER(ResMgr);
 
 public:
     ResMgr();

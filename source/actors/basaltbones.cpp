@@ -58,7 +58,7 @@ public:
 };
 
 class BasaltBones : public BossWrapper<18> {
-    SEAD_RTTI_OVERRIDE_IMPL(BasaltBones, Boss)
+    SEAD_RTTI_OVERRIDE_IMPL(BasaltBones, Boss);
 
 public:
     ENUM_CLASS(SpawnStage,

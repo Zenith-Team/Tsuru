@@ -1,7 +1,7 @@
 #include "game/actor/stage/powerup.h"
 
 class PAcorn : public Powerup {
-    SEAD_RTTI_OVERRIDE_IMPL(PAcorn, Powerup)
+    SEAD_RTTI_OVERRIDE_IMPL(PAcorn, Powerup);
 
 public:
     PAcorn(const ActorBuildInfo* buildInfo);

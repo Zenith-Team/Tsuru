@@ -2,7 +2,7 @@
 #include "game/actor/stage/player.h"
 
 class PoisonMushroom : public Powerup {
-    SEAD_RTTI_OVERRIDE_IMPL(PoisonMushroom, Powerup)
+    SEAD_RTTI_OVERRIDE_IMPL(PoisonMushroom, Powerup);
 
 public:
     PoisonMushroom(const ActorBuildInfo* buildInfo);

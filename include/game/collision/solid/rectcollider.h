@@ -3,7 +3,7 @@
 #include "game/collision/solid/shapedcollider.h"
 
 class RectCollider : public ShapedCollider {
-    SEAD_RTTI_OVERRIDE(RectCollider, ShapedCollider)
+    SEAD_RTTI_OVERRIDE(RectCollider, ShapedCollider);
 
 public:
     forceinline RectCollider() : ShapedCollider(4, points, nodes[0], nodes[1]) {

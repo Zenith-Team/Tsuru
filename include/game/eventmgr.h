@@ -3,7 +3,7 @@
 #include "sead/idisposer.h"
 
 class EventMgr { // Size: 0x940
-    SEAD_SINGLETON_DISPOSER(EventMgr)
+    SEAD_SINGLETON_DISPOSER(EventMgr);
 
 public:
     void set(u32 id, u32 time, bool active, u32 unk1 = 0, u32 unk2 = 0, u32 unk3 = 0, u32 unk4 = 0);

@@ -3,7 +3,7 @@
 #include "sead/idisposer.h"
 
 class Level {
-    SEAD_SINGLETON_DISPOSER(Level)
+    SEAD_SINGLETON_DISPOSER(Level);
 
 public:
     class Area {

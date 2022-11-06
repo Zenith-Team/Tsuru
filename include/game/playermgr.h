@@ -4,7 +4,7 @@
 #include "game/actor/stage/player.h"
 
 class PlayerMgr {
-    SEAD_SINGLETON_DISPOSER(PlayerMgr)
+    SEAD_SINGLETON_DISPOSER(PlayerMgr);
 
 public:
     inline Player* getRandomPlayer() {

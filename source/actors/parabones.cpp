@@ -5,7 +5,7 @@
 #include "game/effect/effect.h"
 
 class ParaBones : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(ParaBones, Enemy)
+    SEAD_RTTI_OVERRIDE_IMPL(ParaBones, Enemy);
 
 public:
     ParaBones(const ActorBuildInfo* buildInfo);

@@ -10,7 +10,7 @@
 #include "agl/utl/debugtexturepage.h"
 
 class TileTexMgr {
-    SEAD_SINGLETON_DISPOSER(TileTexMgr)
+    SEAD_SINGLETON_DISPOSER(TileTexMgr);
 
 public:
     struct TileAnimation {

@@ -9,7 +9,7 @@
 #include "log.h"
 
 class LiquidOverlay : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(LiquidOverlay, StageActor)
+    SEAD_RTTI_OVERRIDE_IMPL(LiquidOverlay, StageActor);
 
 public:
     LiquidOverlay(const ActorBuildInfo* buildInfo);

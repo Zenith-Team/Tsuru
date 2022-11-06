@@ -5,7 +5,7 @@
 #include "game/actor/courseselect/courseselectactor.h"
 
 class CSCollisionActor : public CourseSelectActor {
-    SEAD_RTTI_OVERRIDE(CSCollisionActor, CourseSelectActor)
+    SEAD_RTTI_OVERRIDE(CSCollisionActor, CourseSelectActor);
 
 public:
     CSCollisionActor(const ActorBuildInfo* buildInfo);

@@ -137,7 +137,7 @@ public:
 static_assert(sizeof(CafeRemoteController) == 0x164, "sead::CafeRemoteController size mismatch");
 
 class CafeDebugController : public Controller { // Size: 0x164
-    SEAD_RTTI_OVERRIDE(CafeDebugController, Controller)
+    SEAD_RTTI_OVERRIDE(CafeDebugController, Controller);
 
 public:
     CafeDebugController(ControllerMgr* manager, u32 _15C);
@@ -187,7 +187,7 @@ public:
 static_assert(sizeof(ControllerWrapperBase) == 0x174, "sead::ControllerWrapperBase size mismatch");
 
 class ControllerWrapper : public ControllerWrapperBase {
-    SEAD_RTTI_OVERRIDE(ControllerWrapper, ControllerWrapperBase)
+    SEAD_RTTI_OVERRIDE(ControllerWrapper, ControllerWrapperBase);
 
 public:
     ControllerWrapper();
@@ -204,7 +204,7 @@ public:
 // Type 2 controller classes
 
 class CafeVPadDevice : public ControllerInlineBase { // Size: 0xADC
-    SEAD_RTTI_OVERRIDE(CafeVPadDevice, ControllerInlineBase)
+    SEAD_RTTI_OVERRIDE(CafeVPadDevice, ControllerInlineBase);
 
 public:
     struct VPadInfo { // Size: 0xAC8
@@ -225,7 +225,7 @@ public:
 };
 
 class CafeWPadDevice : public ControllerInlineBase { // Size: 0x4D40
-    SEAD_RTTI_OVERRIDE(CafeVPadDevice, ControllerInlineBase)
+    SEAD_RTTI_OVERRIDE(CafeVPadDevice, ControllerInlineBase);
 
 public:
     struct KPadInfo { // Size: 0xF08

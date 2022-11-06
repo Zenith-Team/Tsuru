@@ -4,7 +4,7 @@
 #include "log.h"
 
 class RainbowLight : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(RainbowLight, StageActor)
+    SEAD_RTTI_OVERRIDE_IMPL(RainbowLight, StageActor);
 
 public:
     RainbowLight(const ActorBuildInfo* buildInfo);

@@ -6,7 +6,7 @@
 #include "log.h"
 
 class TimeClock : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(TimeClock, StageActor)
+    SEAD_RTTI_OVERRIDE_IMPL(TimeClock, StageActor);
 
 public:
     TimeClock(const ActorBuildInfo* buildInfo);

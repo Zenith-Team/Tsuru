@@ -27,7 +27,7 @@ public:
     };
 
 public:
-    SEAD_SINGLETON_DISPOSER(TsuruSaveMgr)
+    SEAD_SINGLETON_DISPOSER(TsuruSaveMgr);
 
 public:
     TsuruSaveMgr();

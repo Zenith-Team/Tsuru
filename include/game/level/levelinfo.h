@@ -4,7 +4,7 @@
 #include "sead/idisposer.h"
 
 class LevelInfo { // Size: 0x24
-    SEAD_SINGLETON_DISPOSER(LevelInfo)
+    SEAD_SINGLETON_DISPOSER(LevelInfo);
 
 public:
     LevelInfo();

@@ -21,7 +21,7 @@ public:
 };
 
 class LookAtCamera : public Camera {
-    SEAD_RTTI_OVERRIDE(LookAtCamera, Camera)
+    SEAD_RTTI_OVERRIDE(LookAtCamera, Camera);
 
 public:
     inline LookAtCamera()
@@ -43,7 +43,7 @@ public:
 };
 
 class OrthoCamera : public LookAtCamera {
-    SEAD_RTTI_OVERRIDE(OrthoCamera, LookAtCamera)
+    SEAD_RTTI_OVERRIDE(OrthoCamera, LookAtCamera);
 
 public:
     OrthoCamera();

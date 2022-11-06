@@ -4,7 +4,7 @@
 
 // TODO: Figure out a better name for this class (what does it do?)
 class CSSomethingActor : public CourseSelectActor {
-    SEAD_RTTI_OVERRIDE(CSSomethingActor, CourseSelectActor)
+    SEAD_RTTI_OVERRIDE(CSSomethingActor, CourseSelectActor);
 
 public:
     CSSomethingActor(const ActorBuildInfo* buildInfo);

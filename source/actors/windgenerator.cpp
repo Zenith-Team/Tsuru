@@ -4,7 +4,7 @@
 #include "log.h"
 
 class FixedWindGenerator : public WindGenerator {
-    SEAD_RTTI_OVERRIDE_IMPL(FixedWindGenerator, WindGenerator)
+    SEAD_RTTI_OVERRIDE_IMPL(FixedWindGenerator, WindGenerator);
 
 public:
     FixedWindGenerator(const ActorBuildInfo* buildInfo);

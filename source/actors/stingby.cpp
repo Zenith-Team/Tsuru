@@ -108,7 +108,6 @@ void Stingby::beginState_Idle() {
 }
 
 void Stingby::executeState_Idle() {
-    return;
     if (sead::Mathf::abs(this->distanceToPlayer().x) < 5.5*16) {
         this->doStateChange(&Stingby::StateID_Notice);
     }

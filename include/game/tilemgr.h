@@ -3,7 +3,7 @@
 #include "sead/idisposer.h"
 
 class TileMgr { // Size: 0x9B88
-    SEAD_SINGLETON_DISPOSER(TileMgr)
+    SEAD_SINGLETON_DISPOSER(TileMgr);
 
 public:
     ENUM_CLASS(WaveType,

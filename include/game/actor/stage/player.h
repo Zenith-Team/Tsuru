@@ -5,7 +5,7 @@
 // TODO: Player virtuals, members
 
 class Player : public PlayerBase { // Size: 0x34D8
-    SEAD_RTTI_OVERRIDE(Player, PlayerBase)
+    SEAD_RTTI_OVERRIDE(Player, PlayerBase);
 
 public:
     Player(const ActorBuildInfo* buildInfo);

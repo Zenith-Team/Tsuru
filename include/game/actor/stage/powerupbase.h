@@ -6,7 +6,7 @@
 #include "game/actor/stage/playerbase.h"
 
 class PowerupBase : public MultiStateActor { // Size: 0x1A90
-    SEAD_RTTI_OVERRIDE(PowerupBase, MultiStateActor)
+    SEAD_RTTI_OVERRIDE(PowerupBase, MultiStateActor);
 
 public:
     PowerupBase(const ActorBuildInfo* buildInfo);

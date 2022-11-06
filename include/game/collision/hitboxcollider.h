@@ -134,7 +134,7 @@ public:
 };
 
 class HitboxColliderMgr { // Size: 0x40
-    SEAD_SINGLETON_DISPOSER(HitboxColliderMgr)
+    SEAD_SINGLETON_DISPOSER(HitboxColliderMgr);
 
 public:
     // Constructor is inlined in HitboxCollider::createInstance

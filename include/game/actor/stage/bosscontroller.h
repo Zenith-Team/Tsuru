@@ -5,7 +5,7 @@
 class Boss;
 
 class BossController : public StateActor { // Size: 0x17E0
-    SEAD_RTTI_OVERRIDE(BossController, StateActor)
+    SEAD_RTTI_OVERRIDE(BossController, StateActor);
 
 public:
     ENUM_CLASS(EndSequenceState,

@@ -14,7 +14,7 @@ namespace agl { namespace lyr {
 class Layer;
 
 class Renderer { // Size: 0xF78
-    SEAD_SINGLETON_DISPOSER(Renderer)
+    SEAD_SINGLETON_DISPOSER(Renderer);
 
 public:
     Renderer();

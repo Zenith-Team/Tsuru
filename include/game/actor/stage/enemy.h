@@ -4,7 +4,7 @@
 #include "game/actor/stage/multistateactor.h"
 
 class Enemy : public MultiStateActor { // Size: 0x1880
-    SEAD_RTTI_OVERRIDE(Enemy, MultiStateActor)
+    SEAD_RTTI_OVERRIDE(Enemy, MultiStateActor);
 
 public:
     struct DeathInfo {

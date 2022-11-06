@@ -17,7 +17,7 @@
 #include "agl/renderbuffer.h"
 
 class TileRenderer { // Size: 0x12AFC
-    SEAD_SINGLETON_DISPOSER(TileRenderer)
+    SEAD_SINGLETON_DISPOSER(TileRenderer);
 
 public:
     enum EditorTileLayer { // Converts tile layer number from editor format to internal format

@@ -10,7 +10,7 @@
 #include "log.h"
 
 class Cataquack : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(Cataquack, Enemy)
+    SEAD_RTTI_OVERRIDE_IMPL(Cataquack, Enemy);
 
 public:
     Cataquack(const ActorBuildInfo* buildInfo);

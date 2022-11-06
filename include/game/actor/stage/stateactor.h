@@ -4,7 +4,7 @@
 #include "game/actor/stage/physicsactor.h"
 
 class StateActor : public PhysicsActor { // Size: 0x17C8
-    SEAD_RTTI_OVERRIDE(StateActor, PhysicsActor)
+    SEAD_RTTI_OVERRIDE(StateActor, PhysicsActor);
 
 public:
     StateActor(const ActorBuildInfo* buildInfo);

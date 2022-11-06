@@ -6,7 +6,7 @@ class Model;
 class ModelWrapper;
 
 class DrawMgr {
-    SEAD_SINGLETON_DISPOSER(DrawMgr)
+    SEAD_SINGLETON_DISPOSER(DrawMgr);
 
 public:
     // Draws a model to the screen

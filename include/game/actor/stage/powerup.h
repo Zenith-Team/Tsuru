@@ -3,7 +3,7 @@
 #include "game/actor/stage/powerupbase.h"
 
 class Powerup : public PowerupBase { // Size: 0x1A98
-    SEAD_RTTI_OVERRIDE(Powerup, PowerupBase)
+    SEAD_RTTI_OVERRIDE(Powerup, PowerupBase);
 
 public:
     Powerup(const ActorBuildInfo* buildInfo);

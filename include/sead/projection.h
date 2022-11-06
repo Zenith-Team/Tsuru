@@ -35,7 +35,7 @@ public:
 static_assert(sizeof(Projection) == 0x94, "sead::Projection size mismatch");
 
 class OrthoProjection : public Projection { // Size: 0xAC
-    SEAD_RTTI_OVERRIDE(OrthoProjection, Projection)
+    SEAD_RTTI_OVERRIDE(OrthoProjection, Projection);
 
 public:
     OrthoProjection();
@@ -66,7 +66,7 @@ public:
 static_assert(sizeof(OrthoProjection) == 0xAC, "sead::OrthoProjection size mismatch");
 
 class PerspectiveProjection : public Projection { // Size: 0xB8
-    SEAD_RTTI_OVERRIDE(PerspectiveProjection, Projection)
+    SEAD_RTTI_OVERRIDE(PerspectiveProjection, Projection);
 
 public:
     PerspectiveProjection();
@@ -96,7 +96,7 @@ public:
 static_assert(sizeof(PerspectiveProjection) == 0xB8, "sead::PerspectiveProjection size mismatch");
 
 class FrustumProjection : public Projection { // Size: 0xAC
-    SEAD_RTTI_OVERRIDE(FrustumProjection, Projection)
+    SEAD_RTTI_OVERRIDE(FrustumProjection, Projection);
 
 public:
     FrustumProjection(f32 nearClip, f32 farClip, f32 top, f32 bottom, f32 left, f32 right);

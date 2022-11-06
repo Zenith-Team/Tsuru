@@ -8,7 +8,7 @@
 #include "game/task/coursetask.h"
 
 class BeepBlock : public MultiStateActor {
-    SEAD_RTTI_OVERRIDE_IMPL(BeepBlock, MultiStateActor)
+    SEAD_RTTI_OVERRIDE_IMPL(BeepBlock, MultiStateActor);
 
 public:
     ENUM_CLASS(Color,
