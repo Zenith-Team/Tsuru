@@ -46,7 +46,7 @@ CREATE_STATE(BeepBlock, BlueEnabled);
 CREATE_STATE(BeepBlock, BlueDisabled);
 
 const Profile BeepBlockProfile(&BeepBlock::build, ProfileID::BeepBlock);
-PROFILE_RESOURCES(ProfileID::BeepBlock, Profile::LoadResourcesAt::Course, "star_coin");
+PROFILE_RESOURCES(ProfileID::BeepBlock, Profile::LoadResourcesAt::Course, "BeepBA");
 
 const ShapedCollider::Info BeepBlock::colliderInfo = {
     Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-8.0f, 8.0f), Vec2f(8.0f, -8.0f), 0
@@ -68,7 +68,8 @@ Actor* BeepBlock::build(const ActorBuildInfo* buildInfo) {
 u32 BeepBlock::onCreate() {
     this->rectCollider.init(this, colliderInfo);
 
-    this->model = ModelWrapper::create("star_coin", "star_coinA");
+    this->model = ModelWrapper::create("BeepBA", "BeepBA");
+    this->scale = 0.1f;
 
     this->beepBlockType = static_cast<BeepBlock::Color::__type__>(this->eventID1 >> 0x4 & 0xF); // Nybble 1
 
@@ -87,6 +88,7 @@ u32 BeepBlock::onExecute() {
     mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
     this->model->updateModel();
+    this->model->setScale(this->scale);
 
     this->states.execute();
 

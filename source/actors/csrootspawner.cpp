@@ -55,13 +55,15 @@ Actor* CSRootSpawner::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 CSRootSpawner::onExecute() {
-    //ts(ProfileID::CSFlames, 0,   Vec3f(-5840.0f, 170.0f, 2530.0f));
-    //ts(ProfileID::CSFlames, 70,  Vec3f(-5840.0f, 170.0f, 2530.0f + 100));
-    //ts(ProfileID::CSFlames, 140, Vec3f(-5840.0f - 190, 170.0f, 2530.0f));
-    //ts(ProfileID::CSFlames, 70,  Vec3f(-5840.0f, 170.0f, 2530.0f));
-    //ts(ProfileID::CSFlames, 140, Vec3f(-5840.0f, 170.0f, 2530.0f + 100));
-    //ts(ProfileID::CSFlames, 70,  Vec3f(-5840.0f - 190, 170.0f, 2530.0f));
-
+#ifdef GAME_TRICKY
+    // Worldmap fire
+    ts(ProfileID::CSFlames, 0,   Vec3f(-5840.0f, 170.0f, 2530.0f));
+    ts(ProfileID::CSFlames, 70,  Vec3f(-5840.0f, 170.0f, 2530.0f + 100));
+    ts(ProfileID::CSFlames, 140, Vec3f(-5840.0f - 190, 170.0f, 2530.0f));
+    ts(ProfileID::CSFlames, 70,  Vec3f(-5840.0f, 170.0f, 2530.0f));
+    ts(ProfileID::CSFlames, 140, Vec3f(-5840.0f, 170.0f, 2530.0f + 100));
+    ts(ProfileID::CSFlames, 70,  Vec3f(-5840.0f - 190, 170.0f, 2530.0f));
+#endif
 
     this->timer++;
 

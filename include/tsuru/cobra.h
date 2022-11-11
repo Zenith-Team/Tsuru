@@ -26,7 +26,7 @@ public:
 
     WMSFile(sead::Heap* heap) {
         sead::FileHandle handle;
-        sead::FileDevice* device = sead::FileDeviceMgr::instance()->tryOpen(&handle, "scripts.wms", sead::FileDevice::FileOpenFlag_ReadOnly, 0);
+        sead::FileDevice* device = sead::FileDeviceMgr::instance()->tryOpen(&handle, "course_select/scripts.wms", sead::FileDevice::FileOpenFlag_ReadOnly, 0);
 
         const s32 align = sead::FileDevice::sBufferMinAlignment;
 

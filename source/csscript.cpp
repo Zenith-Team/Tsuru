@@ -1,7 +1,6 @@
 #include "tsuru/cobra.h"
 #include "game/actor/actormgr.h"
 #include "game/csscriptmgr.h"
-#include "log.h"
 
 const Profile CSScriptLoaderProfile(&CSScriptLoader::build, ProfileID::CSScriptLoader);
 CSScriptLoader* CSScriptLoader::instance = nullptr;
@@ -72,7 +71,6 @@ u32* getCurrentScriptCommandType(CSScriptMgr* mgr, u32* out) {
         if (result.result) {
             if (out || (out = new u32, out)) {
                 *out = CSScriptLoader::instance->wmsFile->scripts[result.id].scriptStart[mgr->currentCommandIndex].type;
-                PRINT("script start: ", fmt::hex, (u32)&CSScriptLoader::instance->wmsFile->scripts[result.id].scriptStart[mgr->currentCommandIndex]);
             }
         } else {
             if (out || (out = new u32, out)) { // todo check
