@@ -16,6 +16,7 @@ public:
     u32 onDraw() override;
 
     void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    void collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
     static const HitboxCollider::Info collisionInfo;
 
@@ -37,7 +38,7 @@ const Profile StingbyProfile(&Stingby::build, ProfileID::Stingby);
 PROFILE_RESOURCES(ProfileID::Stingby, Profile::LoadResourcesAt::Course, "hacchin000");
 
 const HitboxCollider::Info Stingby::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFFFFFF, 0, &Enemy::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 Stingby::Stingby(const ActorBuildInfo* buildInfo)
@@ -98,6 +99,10 @@ void Stingby::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     }
 }
 
+void Stingby::collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->collisionPlayer(hcSelf, hcOther);
+}
+
 /** STATE: Idle */
 
 void Stingby::beginState_Idle() {
@@ -114,12 +119,14 @@ void Stingby::executeState_Idle() {
 
     if (this->direction == Direction::Right) {
         this->position.x += 0.5f;
-        if (this->position.x > this->idleCenter.x + 4*16)
+        if (this->position.x > this->idleCenter.x + 4*16) {
             this->direction = Direction::Left;
+        }
     } else {
         this->position.x -= 0.5f;
-        if (this->position.x < this->idleCenter.x - 4*16)
+        if (this->position.x < this->idleCenter.x - 4*16) {
             this->direction = Direction::Right;
+        }
     }
 }
 

@@ -44,7 +44,7 @@ const Profile ScuttlebugProfile(&Scuttlebug::build, ProfileID::Scuttlebug);
 PROFILE_RESOURCES(ProfileID::Scuttlebug, Profile::LoadResourcesAt::Course, "gasagoso");
 
 const HitboxCollider::Info Scuttlebug::collisionInfo = {
-    Vec2f(0.0f, -4.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0xFFFFFF, 0x20208, 0, &Enemy::collisionCallback
+    Vec2f(0.0f, -4.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0xFFFFFFFF, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 Scuttlebug::Scuttlebug(const ActorBuildInfo* buildInfo)
@@ -120,6 +120,9 @@ void Scuttlebug::collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther)
         this->damagePlayer(hcSelf, hcOther);
     } else if (hitType == Enemy::HitType::NormalJump || hitType == Enemy::HitType::SpinJump) {
         this->killPlayerJump(hcOther->owner, 0.0f, &Scuttlebug::StateID_Die);
+        Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+        Vec3f effectPos(effectOrigin);
+        Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->scale);
     }
 }
 
@@ -158,15 +161,11 @@ bool Scuttlebug::collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider
 }
 
 bool Scuttlebug::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Enemy::collisionFireball(hcSelf, hcOther);
-
-    return true;
+    return this->collisionStar(hcSelf, hcOther);
 }
 
 bool Scuttlebug::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    this->doStateChange(&Scuttlebug::StateID_Die);
-
-    return true;
+    return this->collisionStar(hcSelf, hcOther);
 }
 
 bool Scuttlebug::collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {

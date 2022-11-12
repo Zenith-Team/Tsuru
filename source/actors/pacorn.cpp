@@ -1,4 +1,6 @@
 #include "game/actor/stage/powerup.h"
+#include "game/playermgr.h"
+#include "game/effect/effect.h"
 
 class PAcorn : public Powerup {
     SEAD_RTTI_OVERRIDE_IMPL(PAcorn, Powerup);
@@ -79,8 +81,7 @@ void PAcorn::playFloatAnim() {
 void PAcorn::vf1B4() {
     this->model->playSklAnim("out2", 2);
 }
-#include "game/playermgr.h"
-#include "game/effect/effect.h"
+
 u32 PAcorn::vf1C4() {
     u32 local;
 

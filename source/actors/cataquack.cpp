@@ -66,7 +66,7 @@ Actor* Cataquack::build(const ActorBuildInfo* buildInfo) {
 }
 
 const HitboxCollider::Info Cataquack::collisionInfo = {
-    Vec2f(0.0f, 14.0f), Vec2f(11.0f, 14.0f), HitboxCollider::Shape::Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Cataquack::collisionCallback
+    Vec2f(0.0f, 14.0f), Vec2f(11.0f, 14.0f), HitboxCollider::Shape::Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFBFFFF, 0, &Cataquack::collisionCallback
 };
 
 u32 Cataquack::onCreate() {

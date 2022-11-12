@@ -53,7 +53,7 @@ const Profile BiddybudProfile(&Biddybud::build, ProfileID::Biddybud);
 PROFILE_RESOURCES(ProfileID::Biddybud, Profile::LoadResourcesAt::Course, "tenten_w");
 
 HitboxCollider::Info Biddybud::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFFFFFF, 0, &Enemy::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 Biddybud::Biddybud(const ActorBuildInfo* buildInfo) 

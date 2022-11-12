@@ -14,8 +14,16 @@ public:
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
-    
-    static HitboxCollider::Info sCollisionInfo;
+
+    bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+
+    static HitboxCollider::Info collisionInfo;
 
     ModelWrapper* model;
 };
@@ -23,8 +31,8 @@ public:
 const Profile AngryGrrrolProfile(&AngryGrrrol::build, ProfileID::AngryGrrrol);
 PROFILE_RESOURCES(ProfileID::AngryGrrrol, Profile::LoadResourcesAt::Course, "guruguru");
 
-HitboxCollider::Info AngryGrrrol::sCollisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &AngryGrrrol::collisionCallback
+HitboxCollider::Info AngryGrrrol::collisionInfo = {
+    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0xFFFFFFFF, 0xFFFBFFFF, 0, &AngryGrrrol::collisionCallback
 };
 
 AngryGrrrol::AngryGrrrol(const ActorBuildInfo* buildInfo)
@@ -44,7 +52,7 @@ u32 AngryGrrrol::onCreate() {
     PhysicsMgr::Sensor aboveSensor = { -16, 16, 16 };
     this->physicsMgr.init(this, &belowSensor, &aboveSensor, &sideSensor);
 
-    this->hitboxCollider.init(this, &AngryGrrrol::sCollisionInfo);
+    this->hitboxCollider.init(this, &AngryGrrrol::collisionInfo);
     this->addHitboxColliders();
 
     return this->onExecute();
@@ -84,3 +92,44 @@ u32 AngryGrrrol::onDraw() {
     return 1;
 }
 
+bool AngryGrrrol::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    hcOther->owner->isDeleted = true;
+    
+    return true;
+}
+
+bool AngryGrrrol::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->damagePlayer(hcSelf, hcOther);
+    
+    return true;
+}
+
+bool AngryGrrrol::collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->damagePlayer(hcSelf, hcOther);
+    
+    return true;
+}
+
+bool AngryGrrrol::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->damagePlayer(hcSelf, hcOther);
+    
+    return true;
+}
+
+bool AngryGrrrol::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    hcOther->owner->isDeleted = true;
+    
+    return true;
+}
+
+bool AngryGrrrol::collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->damagePlayer(hcSelf, hcOther);
+    
+    return true;
+}
+
+bool AngryGrrrol::collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->damagePlayer(hcSelf, hcOther);
+    
+    return true;
+}

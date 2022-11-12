@@ -108,13 +108,7 @@ const u32 Kamiya::possibleProjectiles[] = {
 };
 
 const HitboxCollider::Info Kamiya::hitboxInfo = {
-    Vec2f(0.0f, 8.0f),
-    Vec2f(16.0f, 10.0f),
-    HitboxCollider::Shape::Rectangle,
-    3, 0,
-    0xFFFFFFFF, 0xFFFFFFFF,
-    0,
-    &Enemy::collisionCallback
+    Vec2f(0.0f, 8.0f), Vec2f(16.0f, 10.0f), HitboxCollider::Shape::Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 Kamiya::Kamiya(const ActorBuildInfo* buildInfo)

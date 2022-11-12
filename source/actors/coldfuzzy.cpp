@@ -4,6 +4,7 @@
 #include "game/playermgr.h"
 #include "game/actor/actormgr.h"
 #include "game/direction.h"
+#include "game/effect/effect.h"
 #include "sead/random.h"
 #include "math/functions.h"
 
@@ -21,6 +22,9 @@ public:
     u32 onDraw() override;
 
     void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
     static HitboxCollider::Info collisionInfo;
 
@@ -36,7 +40,7 @@ const Profile ColdFuzzyProfile(&ColdFuzzy::build, ProfileID::ColdFuzzy);
 PROFILE_RESOURCES(ProfileID::ColdFuzzy, Profile::LoadResourcesAt::Course, "coldobon");
 
 HitboxCollider::Info ColdFuzzy::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &Enemy::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(12.0f, 12.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 ColdFuzzy::ColdFuzzy(const ActorBuildInfo* buildInfo) 
@@ -94,4 +98,24 @@ void ColdFuzzy::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther)
             static_cast<PlayerBase*>(hcOther->owner)->doDamage(this, PlayerBase::DamageType::Ice);
         }
     }
+}
+
+bool ColdFuzzy::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+    Vec3f effectPos(effectOrigin);
+    Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->scale);
+
+    this->isDeleted = true;
+
+    return true;
+}
+
+bool ColdFuzzy::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    return this->collisionStar(hcSelf, hcOther);
+}
+
+bool ColdFuzzy::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    hcOther->owner->isDeleted = true;
+    
+    return true;
 }
