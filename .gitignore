@@ -2,6 +2,7 @@ project.ld
 project.gpj
 syms/game_phys.x
 objs
+rpxs
 .vs
 .vscode
 .idea

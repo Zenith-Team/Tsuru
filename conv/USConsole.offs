@@ -1,0 +1,8 @@
+TextAddr = 0x0F800000
+DataAddr = 0x10400000
+SymsAddr = 0x00000000
+
+// text
+02000000 - 0FFFFFFF: +0xCBC0000
+// data
+10000000 - 20000000: +0x0502200
