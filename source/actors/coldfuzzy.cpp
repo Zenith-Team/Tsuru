@@ -8,6 +8,8 @@
 #include "sead/random.h"
 #include "math/functions.h"
 
+const u32 timerThreshold = 315;
+
 class ColdFuzzy : public Enemy {
     SEAD_RTTI_OVERRIDE_IMPL(ColdFuzzy, Enemy);
 
@@ -25,6 +27,9 @@ public:
     bool collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
     static HitboxCollider::Info collisionInfo;
 
@@ -62,7 +67,7 @@ u32 ColdFuzzy::onCreate() {
 
     for (u32 i = 0; i < 4; i++) {
         this->playerTimers[i].player = PlayerMgr::instance()->players[i];
-        this->playerTimers[i].timer = 240;
+        this->playerTimers[i].timer = timerThreshold;
     }
 
     return this->onExecute();
@@ -77,7 +82,7 @@ u32 ColdFuzzy::onExecute() {
     this->model->updateModel();
 
     for (u32 i = 0; i < 4; i++) {
-        if (this->playerTimers[i].timer <= 240) {
+        if (this->playerTimers[i].timer <= timerThreshold) {
             this->playerTimers[i].timer++;
         }
     }
@@ -93,7 +98,7 @@ u32 ColdFuzzy::onDraw() {
 
 void ColdFuzzy::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     for (u32 i = 0; i < 4; i++) {
-        if (hcOther->owner == this->playerTimers[i].player && this->playerTimers[i].timer >= 240) {
+        if (hcOther->owner == this->playerTimers[i].player && this->playerTimers[i].timer >= timerThreshold) {
             this->playerTimers[i].timer = 0;
             static_cast<PlayerBase*>(hcOther->owner)->doDamage(this, PlayerBase::DamageType::Ice);
         }
@@ -117,5 +122,23 @@ bool ColdFuzzy::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOthe
 bool ColdFuzzy::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     hcOther->owner->isDeleted = true;
     
+    return true;
+}
+
+bool ColdFuzzy::collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->collisionPlayer(hcSelf, hcOther);
+
+    return true;
+}
+
+bool ColdFuzzy::collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->collisionPlayer(hcSelf, hcOther);
+
+    return true;
+}
+
+bool ColdFuzzy::collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->collisionPlayer(hcSelf, hcOther);
+
     return true;
 }

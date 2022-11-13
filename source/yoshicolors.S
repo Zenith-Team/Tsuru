@@ -2,8 +2,13 @@
 
 .global RedirectToCustomYoshiTexArray
 RedirectToCustomYoshiTexArray:
+    # r4 = &YoshiTexArray + (r30 * 8)
     lis      r4, YoshiTexArray@ha
     addi     r4, r4, YoshiTexArray@l
+    mr       r3, r30
+    mulli    r3, r3, 8
+    add      r4, r4, r3
+    mr       r3, r31
     blr
 
 .global RandomYoshiColors

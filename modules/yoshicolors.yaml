@@ -7,7 +7,7 @@ Hooks:
 # Redirect the YoshiModel constructor to use the custom array instead of the default one
   - type: branch
     instr: bl
-    addr: "0x2967ae8" # YoshiModel::YoshiModel()
+    addr: "0x2967AE8" # YoshiModel::YoshiModel()
     func: RedirectToCustomYoshiTexArray
 
 # Randomize nybble 12 (color)

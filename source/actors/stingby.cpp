@@ -38,7 +38,7 @@ const Profile StingbyProfile(&Stingby::build, ProfileID::Stingby);
 PROFILE_RESOURCES(ProfileID::Stingby, Profile::LoadResourcesAt::Course, "hacchin000");
 
 const HitboxCollider::Info Stingby::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(8.5f, 8.5f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 Stingby::Stingby(const ActorBuildInfo* buildInfo)
@@ -55,7 +55,7 @@ u32 Stingby::onCreate() {
     this->model = ModelWrapper::create("hacchin000", "hacchin000", 4);
 
     this->direction = Direction::Right;
-    this->scale = 0.2f;
+    this->scale = 0.17f;
 
     this->hitboxCollider.init(this, &collisionInfo);
     this->addHitboxColliders();
