@@ -36,6 +36,8 @@ If you require any assistance for anything related to Tsuru, feel free to join o
 * shiftjis.h from [Apollo PS3](https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h)
 
 # Special Thanks
-* Joey for helping me set up CafeLoader when I first started
-* Abood and STUPID for basically teaching me everything I know about custom code
-* Toms and Kinnay for giving me early access to the Newer U source code
+* Abood
+* Joey
+* Kinnay
+* STUPID
+* Toms
