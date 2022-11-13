@@ -1,8 +1,11 @@
 
 ---
 Name: Tsuru
+ModulesDir: modules
+IncludeDir: include
+SourceDir: source
+RpxDir: +/rpxs
 Modules:
-# - buffs.yaml                # What if we made the game a bit more tricky...
   - cheats.yaml               # Cheat menu
   - collisionconditions.yaml  # Fixes collision conditions for some actors
   - csscripts.yaml            # Custom world map scripts
@@ -28,3 +31,24 @@ Defines:
   - NO_INTELLISENSE_HACK
   - Cemu
   - TSURU_DEBUG
+
+Targets:
+  US: ~
+  EU: ~
+  JP: ~
+  Buffs_US:
+    Extends: Buffs
+    AddrMap: US
+    BaseRpx: US
+  Buffs_EU:
+    Extends: Buffs
+    AddrMap: EU
+    BaseRpx: EU
+  Buffs_JP:
+    Extends: Buffs
+    AddrMap: JP
+    BaseRpx: JP
+
+  Template/Buffs:
+    Modules:
+      - buffs.yaml # What if we made the game a bit more tricky...
