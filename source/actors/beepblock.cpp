@@ -70,6 +70,7 @@ u32 BeepBlock::onCreate() {
 
     this->model = ModelWrapper::create("BeepBA", "BeepBA");
     this->scale = 0.1f;
+    this->position.y -= 8.0f;
 
     this->beepBlockType = static_cast<BeepBlock::Color::__type__>(this->eventID1 >> 0x4 & 0xF); // Nybble 1
 
@@ -87,8 +88,9 @@ u32 BeepBlock::onExecute() {
     Mtx34 mtx;
     mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
-    this->model->updateModel();
     this->model->setScale(this->scale);
+    this->model->updateModel();
+    this->model->updateAnimations();
 
     this->states.execute();
 
