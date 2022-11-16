@@ -1,4 +1,5 @@
 #include "game/actor/stage/enemy.h"
+#include "game/actor/stage/playerbase.h"
 #include "game/graphics/model/modelnw.h"
 #include "game/sound/sound.h"
 #include "game/zonerumblemgr.h"
@@ -17,6 +18,8 @@ public:
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
+
+    bool collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
     static const HitboxCollider::Info collisionInfo;
 
@@ -100,6 +103,14 @@ u32 GiantSkewer::onExecute() {
 
 u32 GiantSkewer::onDraw() {
     this->model->draw();
+
+    return 1;
+}
+
+bool GiantSkewer::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    PlayerBase* player = static_cast<PlayerBase*>(hcOther->owner);
+
+    player->vf8D4(hcSelf->owner, PlayerBase::DamageType::SingleHitBounce);
 
     return 1;
 }

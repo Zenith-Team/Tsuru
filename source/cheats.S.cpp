@@ -1,17 +1,18 @@
+#pragma asm
 .include "macros.S"
 
 .macro CheckSaveMember offset
-    # Load TsuruSaveMgr::sSaveData.offset
+    // Load TsuruSaveMgr::sSaveData.offset
     lis   r3, sSaveData__12TsuruSaveMgr@ha
     addi  r3, r3, sSaveData__12TsuruSaveMgr@l
     lbz   r4, offset(r3)
 
-    # If it's on then restore registers and return false
+    // If it's on then restore registers and return false
     cmpwi r4, 1
     beq   SafeReturn
 .endm
 
-# Enum of the save data members
+// Enum of the save data members
 .set infiniteLivesEnabled, 0x4
 .set infiniteTimeEnabled,  0x5
 .set noClipEnabled,        0x6
@@ -19,11 +20,14 @@
 
 .global InfiniteLives
 InfiniteLives:
+#ifdef TARGET_TRICKY
+    blr
+#else
     SaveVolatileRegisters
 
     CheckSaveMember infiniteLivesEnabled
 
-    # Otherwise restore replaced instruction and continue the function
+    // Otherwise restore replaced instruction and continue the function
     RestoreVolatileRegisters
     mflr    r0
     stwu    sp, -0x4(sp)
@@ -33,7 +37,8 @@ InfiniteLives:
     mtctr   r3
     lwz     r3, 0x8(sp)
     addi    sp, sp, 0x4
-    bctr    # 0x24C005C
+    bctr    // 0x24C005C
+#endif
 
 .global InfiniteTime
 InfiniteTime:
@@ -41,7 +46,7 @@ InfiniteTime:
 
     CheckSaveMember infiniteTimeEnabled
 
-    # Otherwise restore replaced instruction and continue the function
+    // Otherwise restore replaced instruction and continue the function
     RestoreVolatileRegisters
     mflr    r0
     stwu    sp, -0x4(sp)
@@ -51,7 +56,7 @@ InfiniteTime:
     mtctr   r3
     lwz     r3, 0x8(sp)
     addi    sp, sp, 0x4
-    bctr    # 0x24C1388
+    bctr    // 0x24C1388
 
 .global NoClip
 NoClip:
@@ -59,7 +64,7 @@ NoClip:
 
     CheckSaveMember noClipEnabled
 
-    # Otherwise continue to set the sensor
+    // Otherwise continue to set the sensor
     RestoreVolatileRegisters
     stwu    sp, -0x4(sp)
     mflr    r0
@@ -76,7 +81,7 @@ Invincibility:
 
     CheckSaveMember invincibilityEnabled
 
-    # Otherwise restore replaced instruction and continue the function
+    // Otherwise restore replaced instruction and continue the function
     RestoreVolatileRegisters
     mflr    r0
     stwu    sp, -0x4(sp)
@@ -86,8 +91,9 @@ Invincibility:
     mtctr   r3
     lwz     r3, 0x8(sp)
     addi    sp, sp, 0x4
-    bctr    # 0x2931180
+    bctr    // 0x2931180
 
 SafeReturn:
     RestoreVolatileRegisters
     blr
+#pragma endasm

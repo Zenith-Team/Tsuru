@@ -7,7 +7,7 @@ CSScriptLoader* CSScriptLoader::instance = nullptr;
 
 CSScriptLoader::CSScriptLoader(const ActorBuildInfo* buildInfo)
     : CourseSelectActor(buildInfo)
-    , wmsFile(nullptr)
+    , wmscFile(nullptr)
 { }
 
 Actor* CSScriptLoader::build(const ActorBuildInfo* buildInfo) {
@@ -16,7 +16,7 @@ Actor* CSScriptLoader::build(const ActorBuildInfo* buildInfo) {
 
 u32 CSScriptLoader::onCreate() {
     instance = this;
-    this->wmsFile = new WMSFile(this->heap);
+    this->wmscFile = new WMSFile(this->heap);
 
     return 1;
 }
@@ -37,8 +37,8 @@ struct ResultID {
 static ResultID customExists(u32 scriptID) {
     ResultID result;
 
-    for (u32 i = 0; i < CSScriptLoader::instance->wmsFile->header.numScripts; i++) {
-        if (CSScriptLoader::instance->wmsFile->scriptIDs[i] == scriptID) {
+    for (u32 i = 0; i < CSScriptLoader::instance->wmscFile->header.numScripts; i++) {
+        if (CSScriptLoader::instance->wmscFile->scriptIDs[i] == scriptID) {
             result.id = i;
             result.result = true;
 
@@ -56,7 +56,7 @@ u32 getCurrentCommandArg(CSScriptMgr* mgr) {
     if (mgr->isRunningScript()) {
         ResultID result = customExists(mgr->currentScriptID);
         if (result.result) {
-            out = CSScriptLoader::instance->wmsFile->scripts[result.id].scriptStart[mgr->currentCommandIndex].arg;
+            out = CSScriptLoader::instance->wmscFile->scripts[result.id].scriptStart[mgr->currentCommandIndex].arg;
         } else {
             out = WorldMapScriptsTable[mgr->currentScriptID].scriptStart[mgr->currentCommandIndex].arg;
         }
@@ -70,7 +70,7 @@ u32* getCurrentScriptCommandType(CSScriptMgr* mgr, u32* out) {
         ResultID result = customExists(mgr->currentScriptID);
         if (result.result) {
             if (out || (out = new u32, out)) {
-                *out = CSScriptLoader::instance->wmsFile->scripts[result.id].scriptStart[mgr->currentCommandIndex].type;
+                *out = CSScriptLoader::instance->wmscFile->scripts[result.id].scriptStart[mgr->currentCommandIndex].type;
             }
         } else {
             if (out || (out = new u32, out)) { // todo check
@@ -89,7 +89,7 @@ u32* getCurrentScriptCommandType(CSScriptMgr* mgr, u32* out) {
 u32 getScriptPriority(CSScriptMgr* mgr, u32& tableIndex) {
     ResultID result = customExists(tableIndex);
     if (result.result) {
-        return CSScriptLoader::instance->wmsFile->scripts[result.id].priority;
+        return CSScriptLoader::instance->wmscFile->scripts[result.id].priority;
     } else {
         return WorldMapScriptsTable[tableIndex].priority;
     }

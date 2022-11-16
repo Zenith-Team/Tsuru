@@ -36,19 +36,20 @@ Targets:
   US: ~
   EU: ~
   JP: ~
-  Buffs_US:
-    Extends: Buffs
-    AddrMap: US
-    BaseRpx: US
-  Buffs_EU:
-    Extends: Buffs
-    AddrMap: EU
-    BaseRpx: EU
-  Buffs_JP:
-    Extends: Buffs
-    AddrMap: JP
-    BaseRpx: JP
-
-  Template/Buffs:
+  Template/Tricky:
     Modules:
       - buffs.yaml # What if we made the game a bit more tricky...
+    Defines:
+      - TARGET_TRICKY
+  Tricky_US:
+    Extends: Tricky
+    AddrMap: US
+    BaseRpx: US
+  Tricky_EU:
+    Extends: Tricky
+    AddrMap: EU
+    BaseRpx: EU
+  Tricky_JP:
+    Extends: Tricky
+    AddrMap: JP
+    BaseRpx: JP

@@ -27,6 +27,7 @@ public:
     u32 onDraw() override;
 
     ModelWrapper* model;
+    ModelWrapper* frame;
     RectCollider rectCollider;
     Color::__type__ beepBlockType;
 
@@ -68,29 +69,36 @@ Actor* BeepBlock::build(const ActorBuildInfo* buildInfo) {
 u32 BeepBlock::onCreate() {
     this->rectCollider.init(this, colliderInfo);
 
-    this->model = ModelWrapper::create("BeepBA", "BeepBA");
-    this->scale = 0.1f;
+    this->model = ModelWrapper::create("BeepBA", "BeepBA", 0, 2);
+    this->frame = ModelWrapper::create("BeepBB", "BeepBB");
+    this->scale = 0.04f;
     this->position.y -= 8.0f;
+    this->position.x += 8.0f;
 
     this->beepBlockType = static_cast<BeepBlock::Color::__type__>(this->eventID1 >> 0x4 & 0xF); // Nybble 1
 
-    if (this->beepBlockType == BeepBlock::Color::Red)
+    if (this->beepBlockType == BeepBlock::Color::Red) {
         this->doStateChange(&StateID_RedDisabled);
-    else
+    } else {
         this->doStateChange(&StateID_BlueDisabled);
+    }
 
     return 1;
 }
 
 u32 BeepBlock::onExecute() {
-    this->model->updateAnimations();
-
     Mtx34 mtx;
     mtx.makeRTIdx(this->rotation, this->position);
-    this->model->setMtx(mtx);
+    
     this->model->setScale(this->scale);
-    this->model->updateModel();
     this->model->updateAnimations();
+    this->model->setMtx(mtx);
+    this->model->updateModel();
+
+    this->frame->setScale(this->scale);
+    this->frame->updateAnimations();
+    this->frame->setMtx(mtx);
+    this->frame->updateModel();
 
     this->states.execute();
 
@@ -98,7 +106,11 @@ u32 BeepBlock::onExecute() {
 }
 
 u32 BeepBlock::onDraw() {
-    this->model->draw();
+    if (this->states.currentState()->ID == StateID_RedDisabled.ID || this->states.currentState()->ID == StateID_BlueDisabled.ID) {
+        this->frame->draw();
+    } else {
+        this->model->draw();
+    }
 
     return 1;
 }

@@ -26,12 +26,12 @@ public:
 
     WMSFile(sead::Heap* heap) {
         sead::FileHandle handle;
-        sead::FileDevice* device = sead::FileDeviceMgr::instance()->tryOpen(&handle, "course_select/scripts.wms", sead::FileDevice::FileOpenFlag_ReadOnly, 0);
+        sead::FileDevice* device = sead::FileDeviceMgr::instance()->tryOpen(&handle, "course_select/scripts.wmsc", sead::FileDevice::FileOpenFlag_ReadOnly, 0);
 
         const s32 align = sead::FileDevice::sBufferMinAlignment;
 
         if (!handle.device) {
-            PRINT(LogColor::Red, "scripts.wms not found.");
+            PRINT(LogColor::Red, "scripts.wmsc not found.");
             return;
         }
 
@@ -41,7 +41,7 @@ public:
         OSBlockMove(&this->header, headerBuffer, sizeof(Header), false);
 
         if (bytesRead != sizeof(Header)) {
-            PRINT(LogColor::Red, "scripts.wms header read size mismatch, read size: ", fmt::hex, bytesRead, ", expected size: ", fmt::hex, sizeof(Header));
+            PRINT(LogColor::Red, "scripts.wmsc header read size mismatch, read size: ", fmt::hex, bytesRead, ", expected size: ", fmt::hex, sizeof(Header));
             return;
         }
 
@@ -51,14 +51,14 @@ public:
         bytesRead = handle.read(reinterpret_cast<u8*>(scriptIDBuffer), sizeof(u32) * this->header.numScripts);
 
         if (bytesRead != sizeof(u32) * this->header.numScripts) {
-            PRINT(LogColor::Red, "scripts.wms script ID read size mismatch, read size: ", fmt::hex, bytesRead, ", expected size: ", fmt::hex, sizeof(u32) * this->header.numScripts);
+            PRINT(LogColor::Red, "scripts.wmsc script ID read size mismatch, read size: ", fmt::hex, bytesRead, ", expected size: ", fmt::hex, sizeof(u32) * this->header.numScripts);
             return;
         }
 
         bytesRead = handle.read(reinterpret_cast<u8*>(scriptBuffer), sizeof(CSScript) * this->header.numScripts);
 
         if (bytesRead != sizeof(CSScript) * this->header.numScripts) {
-            PRINT(LogColor::Red, "scripts.wms script read size mismatch, read size: ", fmt::hex, bytesRead, ", expected size: ", fmt::hex, sizeof(CSScript) * this->header.numScripts);
+            PRINT(LogColor::Red, "scripts.wmsc script read size mismatch, read size: ", fmt::hex, bytesRead, ", expected size: ", fmt::hex, sizeof(CSScript) * this->header.numScripts);
             return;
         }
 
@@ -75,7 +75,7 @@ public:
         bytesRead = handle.read(reinterpret_cast<u8*>(scriptDataBuffer), dataSize);
 
         if (bytesRead != dataSize) {
-            PRINT(LogColor::Red, "scripts.wms script data read size mismatch, read size: ", fmt::hex, bytesRead, ", expected size: ", fmt::hex, dataSize);
+            PRINT(LogColor::Red, "scripts.wmsc script data read size mismatch, read size: ", fmt::hex, bytesRead, ", expected size: ", fmt::hex, dataSize);
             return;
         }
 
@@ -114,5 +114,5 @@ public:
 
     static CSScriptLoader* instance;
 
-    WMSFile* wmsFile;
+    WMSFile* wmscFile;
 };

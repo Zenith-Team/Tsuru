@@ -33,11 +33,24 @@ public:
 
     ModelWrapper* model;
     ModelWrapper* string;
-    Vec3f startPos;
+    u32 timerIdleLowered;
+    u32 timerIdleRaised;
+    u32 timerLowering;
+    u32 timerRising;
+    u16 moveDistance;
+    u16 idleTime;
 
+    DECLARE_STATE(Scuttlebug, Lowering);
+    DECLARE_STATE(Scuttlebug, IdleLowered);
+    DECLARE_STATE(Scuttlebug, Rising);
+    DECLARE_STATE(Scuttlebug, IdleRaised);
     DECLARE_STATE(Scuttlebug, Die);
 };
 
+CREATE_STATE(Scuttlebug, Lowering);
+CREATE_STATE(Scuttlebug, IdleLowered);
+CREATE_STATE(Scuttlebug, Rising);
+CREATE_STATE(Scuttlebug, IdleRaised);
 CREATE_STATE(Scuttlebug, Die);
 
 const Profile ScuttlebugProfile(&Scuttlebug::build, ProfileID::Scuttlebug);
@@ -57,13 +70,18 @@ Actor* Scuttlebug::build(const ActorBuildInfo* buildInfo) {
 
 u32 Scuttlebug::onCreate() {
     this->rotation = Vec3u(fixDeg(90.0f), 0, 0);
-    this->startPos = this->position;
 
     this->hitboxCollider.init(this, &collisionInfo);
     this->addHitboxColliders();
 
-    this->gravity = -0.1875f;
-    this->maxSpeed.y = -4.0f;
+    // 30 = 1 tile
+    this->moveDistance = 30 * (this->settings1 >> 0x1C & 0xF); // nybble 5
+    // 30 = 0.5 seconds
+    this->idleTime = 30 * (this->settings1 >> 0x18 & 0xF); // nybble 6
+
+    this->speed.y = 0.0f;
+    this->gravity = 0.0f;
+    this->maxSpeed.y = 0.0f;
 
     this->model = ModelWrapper::create("gasagoso", "gasagoso", 1);
     this->string = ModelWrapper::create("gasagoso", "string");
@@ -88,10 +106,6 @@ u32 Scuttlebug::onExecute() {
     this->string->updateModel();
 
     this->handlePhysics();
-
-    if (sead::Mathf::abs(this->position.y - this->startPos.y) > ((this->eventID1 >> 0x4 & 0xF) * 16.0f)) {
-        this->maxSpeed.y = 0;
-    }
 
     return 1;
 }
@@ -171,6 +185,76 @@ bool Scuttlebug::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOthe
 bool Scuttlebug::collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     return this->collisionFireball(hcSelf, hcOther);
 }
+
+/** STATE: Lowering */
+
+void Scuttlebug::beginState_Lowering() {
+    this->timerLowering = 0;
+    this->gravity = -1.0f;
+    this->maxSpeed.y = -1.0f;
+}
+
+void Scuttlebug::executeState_Lowering() {
+    if (this->timerLowering >= this->moveDistance / 2) {
+        this->speed.y = 0.0f;
+        this->doStateChange(&Scuttlebug::StateID_IdleLowered);
+    }
+    else this->timerLowering++;
+}
+
+void Scuttlebug::endState_Lowering() { }
+
+/** STATE: IdleLowered */
+
+void Scuttlebug::beginState_IdleLowered() {
+    this->timerIdleLowered = 0;
+    this->gravity = 0.0f;
+    this->maxSpeed.y = 0.0f;
+}
+
+void Scuttlebug::executeState_IdleLowered() {
+    if (this->timerIdleLowered >= this->idleTime)
+        this->doStateChange(&Scuttlebug::StateID_Rising);
+    else
+        this->timerIdleLowered++;
+}
+
+void Scuttlebug::endState_IdleLowered() { }
+
+/** STATE: Rising */
+
+void Scuttlebug::beginState_Rising() {
+    this->timerRising = 0;
+    this->gravity = 0.0875f;
+    this->maxSpeed.y = 1.0f;
+}
+
+void Scuttlebug::executeState_Rising() {
+    if (this->timerRising >= this->moveDistance / 2) {
+        this->speed.y = 0.0f;
+        this->doStateChange(&Scuttlebug::StateID_IdleRaised);
+    }
+    else this->timerRising++;
+}
+
+void Scuttlebug::endState_Rising() { }
+
+/** STATE: IdleRaised */
+
+void Scuttlebug::beginState_IdleRaised() {
+    this->timerIdleRaised = 0;
+    this->gravity = 0.0f;
+    this->maxSpeed.y = 0.0f;
+}
+
+void Scuttlebug::executeState_IdleRaised() {
+    if (this->timerIdleRaised >= this->idleTime)
+        this->doStateChange(&Scuttlebug::StateID_Lowering);
+    else
+        this->timerIdleRaised++;
+}
+
+void Scuttlebug::endState_IdleRaised() { }
 
 /** STATE: Die */
 

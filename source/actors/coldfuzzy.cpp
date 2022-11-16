@@ -116,6 +116,7 @@ bool ColdFuzzy::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
 }
 
 bool ColdFuzzy::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    hcOther->owner->isDeleted = true;
     return this->collisionStar(hcSelf, hcOther);
 }
 

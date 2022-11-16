@@ -111,8 +111,7 @@ u32 ParaBones::onCreate() {
 }
 
 u32 ParaBones::onExecute() {
-    this->handleGravity();
-    this->handleSpeed();
+    this->handlePhysics();
 
     if (this->startRising) {
         if (this->timerRising >= this->flyDistance)
@@ -247,8 +246,9 @@ void ParaBones::executeState_Lowering() {
     if (this->timerLowering >= this->flyDistance / (this->startRising + 1)) {
         this->speed.y = 0.0f;
         this->doStateChange(&ParaBones::StateID_IdleLowered);
+    } else {
+        this->timerLowering++;
     }
-    else this->timerLowering++;
 }
 
 void ParaBones::endState_Lowering() { }

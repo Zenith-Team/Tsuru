@@ -55,7 +55,7 @@ Actor* CSRootSpawner::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 CSRootSpawner::onExecute() {
-#ifdef GAME_TRICKY
+#ifdef TARGET_TRICKY
     // Worldmap fire
     ts(ProfileID::CSFlames, 0,   Vec3f(-5840.0f, 170.0f, 2530.0f));
     ts(ProfileID::CSFlames, 70,  Vec3f(-5840.0f, 170.0f, 2530.0f + 100));

@@ -2,7 +2,6 @@
 #include "game/graphics/model/modelnw.h"
 #include "game/actor/actormgr.h"
 #include "game/sound/sound.h"
-#include "game/effect/effect.h"
 #include "log.h"
 
 class StarCoinShardMgr;
