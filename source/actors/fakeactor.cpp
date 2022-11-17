@@ -84,7 +84,7 @@ u32 FakeActor::onDraw() {
     if (this->model) {
         this->model->draw();
     }
-    
+
     if (this->model2) {
         this->model2->draw();
     }
@@ -124,7 +124,7 @@ void FakeActor::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
     if (hcOther->owner->type != StageActor::Type::Player) {
         return;
     }
-    
+
     static_cast<FakeActor*>(hcSelf->owner)->touch();
 }
 

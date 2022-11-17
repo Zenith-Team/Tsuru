@@ -94,42 +94,42 @@ u32 AngryGrrrol::onDraw() {
 
 bool AngryGrrrol::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     hcOther->owner->isDeleted = true;
-    
+
     return true;
 }
 
 bool AngryGrrrol::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     this->damagePlayer(hcSelf, hcOther);
-    
+
     return true;
 }
 
 bool AngryGrrrol::collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     this->damagePlayer(hcSelf, hcOther);
-    
+
     return true;
 }
 
 bool AngryGrrrol::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     this->damagePlayer(hcSelf, hcOther);
-    
+
     return true;
 }
 
 bool AngryGrrrol::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     hcOther->owner->isDeleted = true;
-    
+
     return true;
 }
 
 bool AngryGrrrol::collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     this->damagePlayer(hcSelf, hcOther);
-    
+
     return true;
 }
 
 bool AngryGrrrol::collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     this->damagePlayer(hcSelf, hcOther);
-    
+
     return true;
 }

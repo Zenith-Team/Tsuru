@@ -56,7 +56,7 @@ HitboxCollider::Info Biddybud::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
-Biddybud::Biddybud(const ActorBuildInfo* buildInfo) 
+Biddybud::Biddybud(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)
     , model(nullptr)
     , counter(0)
@@ -96,7 +96,7 @@ u32 Biddybud::onCreate() {
     this->movementHandler.link(this->position, movementMask, this->movementID); // nybble 21-22
 
     this->doStateChange(&Biddybud::StateID_Move);
-    
+
     return this->onExecute();
 }
 
@@ -105,7 +105,7 @@ u32 Biddybud::onExecute() {
         this->movementHandler.execute();
         this->position = this->movementHandler.position;
     }
-    
+
     this->states.execute();
 
     Mtx34 mtx;
@@ -157,31 +157,31 @@ bool Biddybud::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     Vec3f effectPos(effectOrigin + this->effectOffset);
     Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
     this->isDeleted = true;
-    
+
     return 1;
 }
 
 bool Biddybud::collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     this->doStateChange(&Biddybud::StateID_Die);
-    
+
     return 1;
 }
 
 bool Biddybud::collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     doStateChange(&Biddybud::StateID_Die);
-    
+
     return 1;
 }
 
 bool Biddybud::collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     Biddybud::collisionStar(hcSelf, hcOther);
-    
+
     return 1;
 }
 
 bool Biddybud::collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     Biddybud::collisionStar(hcSelf, hcOther);
-    
+
     return 1;
 }
 

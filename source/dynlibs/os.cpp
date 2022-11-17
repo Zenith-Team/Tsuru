@@ -413,11 +413,11 @@ void InitOSFunctionPointers(void) {
     //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //! Energy Saver functions
     //!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //Burn-in Reduction
+    // Burn-in Reduction
     OS_FIND_EXPORT(coreinitHandle, IMEnableDim);
     OS_FIND_EXPORT(coreinitHandle, IMDisableDim);
     OS_FIND_EXPORT(coreinitHandle, IMIsDimEnabled);
-    //Auto power down
+    // Auto power down
     OS_FIND_EXPORT(coreinitHandle, IMEnableAPD);
     OS_FIND_EXPORT(coreinitHandle, IMDisableAPD);
     OS_FIND_EXPORT(coreinitHandle, IMIsAPDEnabled);

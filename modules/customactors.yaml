@@ -18,7 +18,7 @@ Files:
   - actors/rainbowlight.cpp
   - actors/debugactor.cpp
   - actors/liquidoverlay.cpp
-  - actors/kamiya.cpp
+  # - actors/kamiya.cpp
   - actors/modelloader.cpp
   - actors/stringbank.cpp
   - actors/universalbosscontroller.cpp

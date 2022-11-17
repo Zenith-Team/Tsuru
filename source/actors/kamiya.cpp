@@ -160,7 +160,7 @@ u32 Kamiya::onExecute() {
     this->model->setScale(this->scale);
     this->model->updateAnimations();
     this->model->updateModel();
-    
+
     this->states.execute();
 
     return 1;

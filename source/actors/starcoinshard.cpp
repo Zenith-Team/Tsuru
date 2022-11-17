@@ -94,7 +94,7 @@ u32 StarCoinShard::onExecute() {
             }
         }
     }
-    
+
     return 1;
 }
 
@@ -140,6 +140,6 @@ u32 StarCoinShardMgr::onExecute() {
 
         ActorMgr::instance()->create(buildInfo, 0);
     }
-    
+
     return 1;
 }

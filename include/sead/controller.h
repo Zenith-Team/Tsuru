@@ -219,7 +219,7 @@ public:
     virtual void calc();
 
     VPadInfo* vpadInfo;
-    u8 _18[0xAD4-0x18]; // Unknown values
+    u8 _18[0xAD4 - 0x18]; // Unknown values
     s32 storedDataSetsNum;
     s32 errorCode;
 };

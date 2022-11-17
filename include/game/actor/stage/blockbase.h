@@ -127,7 +127,7 @@ public:
     void spawnItemUp() override;
     void spawnItemDown() override;
     u32 vf1DC() override;
-    
+
     virtual void vf29C();
     virtual void setTileFlag();
     virtual u32 vf2AC();

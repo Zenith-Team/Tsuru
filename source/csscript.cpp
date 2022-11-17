@@ -73,7 +73,7 @@ u32* getCurrentScriptCommandType(CSScriptMgr* mgr, u32* out) {
                 *out = CSScriptLoader::instance->wmscFile->scripts[result.id].scriptStart[mgr->currentCommandIndex].type;
             }
         } else {
-            if (out || (out = new u32, out)) { // todo check
+            if (out || (out = new u32, out)) { // TODO: check
                 *out = WorldMapScriptsTable[mgr->currentScriptID].scriptStart[mgr->currentCommandIndex].type;
             }
         }

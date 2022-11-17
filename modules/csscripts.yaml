@@ -19,4 +19,4 @@ Hooks:
   - type: branch
     instr: b
     addr: "0x21e4b50"
-    func: getScriptPriority__FP11CSScriptMgrRUi  
+    func: getScriptPriority__FP11CSScriptMgrRUi

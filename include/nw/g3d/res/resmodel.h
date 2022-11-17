@@ -26,7 +26,7 @@ public:
     void Setup();
     void Cleanup();
     void Reset();
-    
+
     // TODO
 };
 

@@ -23,7 +23,7 @@ public:
 
 const Profile LayerChangerProfile(&LayerChanger::build, ProfileID::LayerChanger);
 
-LayerChanger::LayerChanger(const ActorBuildInfo* buildInfo) 
+LayerChanger::LayerChanger(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
 { }
 
@@ -41,7 +41,7 @@ u32 LayerChanger::onCreate() {
     2 - Layer 0
     */
     PRINT("Event: ", trigEvent);
-   
+
     return this->onExecute();
 }
 

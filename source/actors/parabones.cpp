@@ -126,7 +126,7 @@ u32 ParaBones::onExecute() {
     }
 
     this->states.execute();
-    
+
     Mtx34 mtx;
     mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
@@ -182,7 +182,7 @@ bool ParaBones::collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) 
     Vec3f effectScale = 0.5f;
     Effect::spawn(RP_Jugemu_CloudDisapp, &effectOrigin, nullptr, &effectScale);
     this->isDeleted = true;
-    
+
     return true;
 }
 
@@ -191,7 +191,7 @@ bool ParaBones::collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hc
     Vec3f effectScale = 0.5f;
     Effect::spawn(RP_Jugemu_CloudDisapp, &effectOrigin, nullptr, &effectScale);
     this->isDeleted = true;
-    
+
     return true;
 }
 
@@ -212,7 +212,7 @@ bool ParaBones::collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider*
     Vec3f effectScale = 0.5f;
     Effect::spawn(RP_Jugemu_CloudDisapp, &effectOrigin, nullptr, &effectScale);
     this->isDeleted = true;
-    
+
     return true;
 }
 

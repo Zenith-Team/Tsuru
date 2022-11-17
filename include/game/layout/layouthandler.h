@@ -9,7 +9,7 @@
 class LayoutAnimator {
 public:
     LayoutAnimator();
-    
+
     u32 _0;
     sead::SafeString _4;
     u32 _C;

@@ -44,7 +44,7 @@ u32 TimeClock::onCreate() {
     this->model = ModelWrapper::create("timeclock", "timeclockA", 0);
     this->hitboxCollider.init(this, &TimeClock::collisionInfo, nullptr);
     this->addHitboxColliders();
-    
+
     return this->onExecute();
 }
 

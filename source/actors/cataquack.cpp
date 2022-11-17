@@ -178,7 +178,7 @@ void Cataquack::executeState_Walk() {
     if (this->physicsMgr.isOnGround()) {
         this->speed.y = 0.0f;
     }
-    
+
     if (this->physicsMgr.isCollided(this->direction) && !this->chasing) {
         this->doStateChange(&Cataquack::StateID_Turn);
     }
@@ -229,7 +229,7 @@ void Cataquack::executeState_Launch() {
     if (this->physicsMgr.isOnGround()) {
         this->speed.y = 0.0f;
     }
-    
+
     if (this->model->sklAnims[0]->frameCtrl.isDone()) {
         this->doStateChange(&Cataquack::StateID_Walk);
     }
@@ -244,7 +244,7 @@ void Cataquack::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
     if (hcOther->owner->type != StageActor::Type::Player && hcOther->owner->type != StageActor::Type::Yoshi){
         return;
     }
-    
+
     Cataquack* self = static_cast<Cataquack*>(hcSelf->owner);
 
     self->target = hcOther->owner;

@@ -19,10 +19,10 @@
 
 static f32 calcFireRadius(const u32 j) {
     f32 result = 0;
-    
+
     for (u32 i = 0; i <= j; i++) {
         result += 16.0f - i;
-        
+
         if (i > 2)
             result += 1.0f - (i - 2);
     }
@@ -331,7 +331,7 @@ void HelicalBar::executeState_ThreeBars() {
             }
 
             this->fireHitboxes[i][j].colliderInfo.distToCenter = Vec2f(this->position.x - fp.x, this->position.y - fp.y);
-        
+
             Vec3f efp(fp.x, fp.y, 4000.0f);
             this->heatDistorters[i][j].update(RP_Firebar, &efp, &this->rotation, &this->scale);
         }

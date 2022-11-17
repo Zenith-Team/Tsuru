@@ -84,7 +84,7 @@ u32 GiantSkewer::onCreate() {
     this->doStateChange(&GiantSkewer::StateID_Idle);
 
     this->targetPosition = this->position.y + this->targetDistance;
-    
+
     return this->onExecute();
 }
 
@@ -161,7 +161,7 @@ void GiantSkewer::endState_PreMoveDelay() { }
 
 /** STATE: Moving */
 
-void GiantSkewer::beginState_Moving() { 
+void GiantSkewer::beginState_Moving() {
 }
 
 void GiantSkewer::executeState_Moving() {

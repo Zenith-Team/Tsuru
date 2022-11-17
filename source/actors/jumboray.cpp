@@ -55,7 +55,7 @@ u32 JumboRay::onExecute() {
     this->position.y = this->baseline + 5.0f * powf(sin, 2.0f) * 16.0f;
 
     sead::Mathf::sinCosIdx(&sin, nullptr, fixDeg(this->position.x / 3.0f));
-    this->rotation.z = fixRad(acosf(1.f/sqrtf(1.f+25.f/36.f*(sin*sin))) * (sin < 0.f ? -1.f : 1.f));
+    this->rotation.z = fixRad(acosf(1.0f / sqrtf(1.0f + 25.0f / 36.0f * (sin * sin))) * (sin < 0.0f ? -1.0f : 1.0f));
 
     Mtx34 mtx;
     mtx.makeRTIdx(this->rotation, this->position);

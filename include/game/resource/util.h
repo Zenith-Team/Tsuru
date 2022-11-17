@@ -11,7 +11,7 @@ static inline bool loadResource(const sead::SafeString& name, const sead::SafeSt
         PRINT(LogColor::Red, "TsuruResLoader: ", requester, " failed to load resource: ", path.cstr());
         return false;
     }
-    
+
     if (ResArchiveMgr::instance()->get(name)) {
         PRINT(LogColor::Yellow, "TsuruResLoader: ", requester, " resource already loaded: ", path.cstr());
         return true;

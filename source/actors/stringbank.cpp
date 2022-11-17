@@ -39,6 +39,6 @@ u32 StringBank::onCreate() {
     StringBank::constructFullString(this->string, strPrimary, strSecondary, strLast);
 
     PRINT(LogColor::LightCyan, "(StringBank #", this->bankID, ") Initialized with string: ", this->string);
-    
+
     return 1;
 }

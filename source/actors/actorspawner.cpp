@@ -14,7 +14,7 @@ public:
     u32 onCreate() override;
     u32 onExecute() override;
 
-    Actor* child;    
+    Actor* child;
     u16 spawnProfileID;
     bool spawned;
 };

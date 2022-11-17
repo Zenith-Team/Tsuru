@@ -68,8 +68,8 @@ public:
         u8 linkID = nybbles[11];
         u8 charcodes[17];
         charcodes[0] = eventID1 >> 2 & 63;   // 6 bits (char 1)
-        charcodes[1] = (eventID1 & 3) << 4 | eventID2 >> 4 & 15;     // 2+4 bits (char 2)
-        charcodes[2] = (eventID2 & 15) << 2 | settings1 >> 30 & 3;   // 4+2 bits (char 3)
+        charcodes[1] = (eventID1 & 3) << 4 | eventID2 >> 4 & 15;     // 2 + 4 bits (char 2)
+        charcodes[2] = (eventID2 & 15) << 2 | settings1 >> 30 & 3;   // 4 + 2 bits (char 3)
         charcodes[3] = settings1 >> 24 & 63; // 6 bits (char 4)
         charcodes[4] = settings1 >> 18 & 63; // 6 bits (char 5)
         charcodes[5] = settings1 >> 12 & 63; // 6 bits (char 6)
@@ -80,8 +80,8 @@ public:
         charcodes[10] = settings2 >> 14 & 63;// 6 bits (char 11)
         charcodes[11] = settings2 >> 8 & 63; // 6 bits (char 12)
         charcodes[12] = settings2 >> 2 & 63; // 6 bits (char 13)
-        charcodes[13] = (settings2 & 3) << 4 | movementID >> 4 & 15; // 2+4 bits (char 14)
-        charcodes[14] = (movementID & 15) << 2 | linkID >> 6 & 3;    // 4+2 bits (char 15)
+        charcodes[13] = (settings2 & 3) << 4 | movementID >> 4 & 15; // 2 + 4 bits (char 14)
+        charcodes[14] = (movementID & 15) << 2 | linkID >> 6 & 3;    // 4 + 2 bits (char 15)
         charcodes[15] = linkID & 63;         // 6 bits (char 16)
         charcodes[16] = '\0';
         charcodes[charcount] = '\0';

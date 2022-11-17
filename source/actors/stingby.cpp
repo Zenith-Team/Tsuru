@@ -85,7 +85,7 @@ u32 Stingby::onExecute() {
 
 u32 Stingby::onDraw() {
     this->model->draw();
-    
+
     return 1;
 }
 
@@ -113,18 +113,18 @@ void Stingby::beginState_Idle() {
 }
 
 void Stingby::executeState_Idle() {
-    if (sead::Mathf::abs(this->distanceToPlayer().x) < 5.5*16) {
+    if (sead::Mathf::abs(this->distanceToPlayer().x) < 5.5 * 16) {
         this->doStateChange(&Stingby::StateID_Notice);
     }
 
     if (this->direction == Direction::Right) {
         this->position.x += 0.5f;
-        if (this->position.x > this->idleCenter.x + 4*16) {
+        if (this->position.x > this->idleCenter.x + 4 * 16) {
             this->direction = Direction::Left;
         }
     } else {
         this->position.x -= 0.5f;
-        if (this->position.x < this->idleCenter.x - 4*16) {
+        if (this->position.x < this->idleCenter.x - 4 * 16) {
             this->direction = Direction::Right;
         }
     }
@@ -153,7 +153,7 @@ void Stingby::beginState_Chase() {
 }
 
 void Stingby::executeState_Chase() {
-    if (sead::Mathf::abs(this->distanceToPlayer().x) > 6*16) {
+    if (sead::Mathf::abs(this->distanceToPlayer().x) > 6 * 16) {
         this->doStateChange(&Stingby::StateID_Idle);
     }
 

@@ -38,7 +38,7 @@ public:
     u32 rotation;                         // 50
     u8 _54;                               // 54
     f32 _58;                              // 58
-    u8 _5C[0x74-0x5C];                    // 5C
+    u8 _5C[0x74 - 0x5C];                  // 5C
     u32 _74;                              // 74
     u32 _78;                              // 78
     u32 _7C;                              // 7C
@@ -52,7 +52,7 @@ public:
     u32 _8C;                              // 8C
     f32 _90;                              // 90
     u32 _94;                              // 94
-    u8 _98[0xA0-0x98];                    // 98
+    u8 _98[0xA0 - 0x98];                  // 98
     u32 _A0;                              // A0
     u32 _A4;                              // A4
     u32 _A8;                              // A8
@@ -61,6 +61,6 @@ public:
     u32 _B4;                              // B4
     u32 _B8;                              // B8
     u32 _BC;                              // BC
-    u8 _C0[0xD4-0xC0];                    // C0
+    u8 _C0[0xD4 - 0xC0];                  // C0
     StateWrapper<MovementHandler> states; // D4
 };

@@ -89,7 +89,7 @@ u32 BeepBlock::onCreate() {
 u32 BeepBlock::onExecute() {
     Mtx34 mtx;
     mtx.makeRTIdx(this->rotation, this->position);
-    
+
     this->model->setScale(this->scale);
     this->model->updateAnimations();
     this->model->setMtx(mtx);

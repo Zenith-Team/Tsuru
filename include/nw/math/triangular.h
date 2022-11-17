@@ -73,7 +73,7 @@ inline f32 SinRad(f32 rad) {
 
 // Does not match if using SinCosRad
 //
-// f32 cosVal; SinCosRad(NULL< &cosVal, rad)
+// f32 cosVal; SinCosRad(NULL < &cosVal, rad)
 // return cosVal;
 inline f32 CosRad(f32 rad) {
     return CosIdx(Rad2Idx(rad));

@@ -56,7 +56,7 @@ public:
     void clear();
 
     void bind(const nw::g3d::res::ResMaterial* resMat, const nw::g3d::res::ResShape* resShape, const ShaderProgram* program, bool useResAssign, bool useShaderSymbolID);
-    
+
     void activateVertexBuffer() const;
 
     u8 _0;

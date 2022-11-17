@@ -38,7 +38,7 @@ void levelResPreloader() {
 
             if (strBankID == modelFileBankID)
                 strncpy(modelFile, string, 49);
-            
+
             if (strBankID == modelNameBankID)
                 strncpy(modelName, string, 49);
         };

@@ -82,7 +82,7 @@ u32 MagicPlatform::onCreate() {
         PRINT(LogColor::Red, "MagicPlatform failed to get location");
         return 2;
     }
-    
+
     u32 locX = location->x & ~0xF;
     u32 locY = location->y & ~0xF;
     this->tileSize.x = (location->w + (location->x & 0xF) + 0xF) / 16;
@@ -92,7 +92,7 @@ u32 MagicPlatform::onCreate() {
         PRINT(LogColor::Red, "MagicPlatform failed to get tile size");
         return 2;
     }
-    
+
     this->tileData = new u16[this->tileSize.x * this->tileSize.y];
 
     for (u32 y = 0; y < this->tileSize.y; y++) {
@@ -105,15 +105,15 @@ u32 MagicPlatform::onCreate() {
     this->collisionType = (this->settings1 >> 8) & 0xF;
     if (this->collisionType > 2)
         return 2;
-    
+
     const ColliderBase::Type::__type__ colliderType = ColliderBase::Type::__type__((this->settings1 >> 16) & 0xFF);
     if (colliderType > ColliderBase::Type::InvisibleBlock)
         return 2;
-    
+
     ColliderBase::SurfaceType::__type__ colliderSurfaceType = ColliderBase::SurfaceType::__type__((this->settings1 >> 12) & 0xF);
     if (colliderSurfaceType > ColliderBase::SurfaceType::BeanstalkLeaf)
         return 2;
-    
+
     switch (collisionType) {
         case 0: {
             ShapedCollider::Info info = {
@@ -122,7 +122,7 @@ u32 MagicPlatform::onCreate() {
 
             this->rectCollider.init(this, info);
             this->rectCollider.callbackTable = &this->callbackTable;
-            
+
             this->rectCollider.setType(colliderType);
 
             if ((this->settings1 >> 8) & 1)
@@ -189,7 +189,7 @@ u32 MagicPlatform::onDraw() {
         for (s32 x = 0; x < this->tileSize.x; x++) {
             s32 offsetX = x * 16 - this->tileSize.x * 8 + 8;
             s32 offsetY = y * 16 - this->tileSize.y * 8 + 8;
-        
+
             f32 rotatedX =  offsetX * angleCos + offsetY * angleSin;
             f32 rotatedY = -offsetX * angleSin + offsetY * angleCos;
             Vec3f drawPos(this->position.x + rotatedX, this->position.y - rotatedY, this->position.z);

@@ -11,7 +11,7 @@ public:
     { }
 
     void ClearResult();
-    
+
     size_t LCMount(void* lc, size_t size, bool load);
     void LCUnmount(bool store);
 

@@ -127,9 +127,9 @@ public:
     void setMaterialVisible(s32 index, bool visible) override;
     bool isMaterialVisible(s32 index) const override; // deleted
 
-    void setBoundingEnable(bool enable) override; //todo
+    void setBoundingEnable(bool enable) override; // TODO
 
-    bool isBoundingEnable() const override; //todo
+    bool isBoundingEnable() const override; // TODO
 
     const sead::Sphere3f& getBounding() const override {
         return this->bounding;
@@ -137,7 +137,7 @@ public:
 
     void calcViewShapeShadowFlags(agl::sdw::DepthShadow* depthShadow, ObjLayer* shadowLayer, RenderMgr* renderMgr) override;
 
-    sead::SafeString getName() const override; //todo
+    sead::SafeString getName() const override; // TODO
 
     void setSklAnimBlendWeight(s32 index, f32 weight) override {
         this->sklAnimBlendWeights[index] = weight;

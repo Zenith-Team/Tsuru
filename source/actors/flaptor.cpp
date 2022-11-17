@@ -69,10 +69,10 @@ Actor* Flaptor::build(const ActorBuildInfo* buildInfo) {
 
 u32 Flaptor::onCreate() {
     this->model = ModelWrapper::create("mokinger", "mokinger", 1);
-    
+
     this->hitboxCollider.init(this, &Flaptor::collisionInfo);
     this->addHitboxColliders();
-    
+
     PhysicsMgr::Sensor belowSensor = { -8, 8, -8 };
     this->physicsMgr.init(this, &belowSensor);
 
@@ -143,7 +143,7 @@ void Flaptor::executeState_Idle() {
 
         case MoveType::Horizontal: {
             sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->direction], fixDeg(4.0f));
-        
+
             if (this->position.x - this->startPosition.x < -(this->threshold)) {
                 this->direction = Direction::Right;
             } else if (this->position.x - this->startPosition.x > (this->threshold)) {
@@ -165,7 +165,7 @@ void Flaptor::executeState_Idle() {
 
         case MoveType::Vertical: {
             sead::Mathu::chase(&this->rotation.x, Direction::directionToRotationList[this->direction], fixDeg(4.0f));
-        
+
             if (this->position.y - this->startPosition.y < -(this->threshold)) {
                 this->direction = Direction::Up;
             } else if (this->position.y - this->startPosition.y > (this->threshold)) {
@@ -177,7 +177,7 @@ void Flaptor::executeState_Idle() {
             } else {
                 this->position.y--;
             }
-        
+
             if (!sead::Mathf::chase(&this->position.x, this->startPosition.x, 1.0f)) {
                 return;
             }
@@ -186,7 +186,7 @@ void Flaptor::executeState_Idle() {
         }
     }
 
-    if (this->distanceToPlayer().length() <= 5.f*16.f && this->distanceToPlayer().y < 4.0f) {
+    if (this->distanceToPlayer().length() <= 5.0f * 16.0f && this->distanceToPlayer().y < 4.0f) {
         this->doStateChange(&Flaptor::StateID_Dive);
     }
 }
@@ -251,7 +251,7 @@ void Flaptor::endState_DieSquish() { }
 
 void Flaptor::beginState_Die() { }
 
-void Flaptor::executeState_Die() { 
+void Flaptor::executeState_Die() {
     this->isDeleted = true;
 }
 

@@ -60,7 +60,7 @@ u32 ModelLoader::onCreate() {
             strBank->isDeleted = true;
         }
 
-        
+
         if (strBank->bankID == modelNameBankID) {
             strncpy(this->modelName, strBank->string, 49);
             strBank->isDeleted = true;
@@ -72,7 +72,7 @@ u32 ModelLoader::onCreate() {
     }
 
     PRINT(LogColor::Yellow, "(ModelLoader #", modelFileBankID + modelNameBankID, ") Loading model ", this->modelName, " from ", this->modelFile);
-    
+
     ResArchive* archive = ResArchiveMgr::instance()->get(this->modelFile);
     if (!archive) {
         PRINT(LogColor::Red, "(ModelLoader #", modelFileBankID + modelNameBankID, ") Failed to load model ", this->modelName, " from ", this->modelFile);

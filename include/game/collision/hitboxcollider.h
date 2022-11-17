@@ -47,7 +47,7 @@ public:
         u32 collisionMask;      // 20  Sets allowed collisions such as colliding with Yoshi
         u32 interactionMask;    // 24  Sets allowed interactions such as being pickup-able
         Callback callback;      // 28
-    
+
         void set(const Vec2f& distToCenter, const Vec2f& distToEdge, Shape::__type__ shape, u32 _14, u32 _18, u32 _1C, u32 collisionMask, u32 interactionMask, Callback callback) {
             this->distToCenter = distToCenter;
             this->distToEdge = distToEdge;

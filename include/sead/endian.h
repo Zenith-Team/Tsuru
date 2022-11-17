@@ -15,7 +15,7 @@ public:
         u8* bom_ = reinterpret_cast<u8*>(&bom);
         if (*bom_ == 0xFF && *(bom_ + 1) == 0xFE)
             return EndianType_Little;
-        else if (*bom_ == 0xFE && *(bom_ +1) == 0xFF)
+        else if (*bom_ == 0xFE && *(bom_ + 1) == 0xFF)
             return EndianType_Big;
         return EndianType_Little;
     }

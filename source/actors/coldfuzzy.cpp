@@ -48,7 +48,7 @@ HitboxCollider::Info ColdFuzzy::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(12.0f, 12.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
-ColdFuzzy::ColdFuzzy(const ActorBuildInfo* buildInfo) 
+ColdFuzzy::ColdFuzzy(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)
     , model(nullptr)
 { }
@@ -61,7 +61,7 @@ u32 ColdFuzzy::onCreate() {
     this->model = ModelWrapper::create("coldobon", "coldobon", 1);
     this->model->playSklAnim("run");
     this->model->loopSklAnims(true);
-    
+
     this->hitboxCollider.init(this, &ColdFuzzy::collisionInfo);
     this->addHitboxColliders();
 
@@ -122,7 +122,7 @@ bool ColdFuzzy::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOthe
 
 bool ColdFuzzy::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     hcOther->owner->isDeleted = true;
-    
+
     return true;
 }
 

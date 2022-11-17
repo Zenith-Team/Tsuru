@@ -133,7 +133,7 @@ static inline void GX2InitDepthBuffer(GX2DepthBuffer* depthBuffer, s32 dimension
     depthBuffer->surface.numMips = 1;
     depthBuffer->surface.format = format;
     depthBuffer->surface.aa = aa;
-    depthBuffer->surface.use = ((format==GX2_SURFACE_FORMAT_D_D24_S8_UNORM) || (format==GX2_SURFACE_FORMAT_D_D24_S8_FLOAT)) ? GX2_SURFACE_USE_DEPTH_BUFFER : GX2_SURFACE_USE_DEPTH_BUFFER_TEXTURE;
+    depthBuffer->surface.use = ((format == GX2_SURFACE_FORMAT_D_D24_S8_UNORM) || (format == GX2_SURFACE_FORMAT_D_D24_S8_FLOAT)) ? GX2_SURFACE_USE_DEPTH_BUFFER : GX2_SURFACE_USE_DEPTH_BUFFER_TEXTURE;
     depthBuffer->surface.tile = GX2_TILE_MODE_DEFAULT;
     depthBuffer->surface.swizzle  = 0;
     depthBuffer->viewMip = 0;

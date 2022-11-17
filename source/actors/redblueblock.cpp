@@ -53,7 +53,7 @@ u32 RedBlueBlock::onCreate() {
 
     this->red = (this->eventID1 >> 0x4 & 0xF) == 0;
     this->collider.init(this, colliderInfo);
-    
+
     if (SwitchBlockState != this->red) {
         this->doStateChange(&StateID_On);
     } else {

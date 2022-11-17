@@ -69,7 +69,7 @@ public:
         OSBlockMove(this->scripts, scriptBuffer, sizeof(CSScript) * this->header.numScripts, false);
 
         u32 dataSize = this->header.fileSize - sizeof(Header) - (sizeof(u32) * this->header.numScripts) - (sizeof(CSScript) * this->header.numScripts);
-    
+
         u8* scriptDataBuffer = (u8*)heap->tryAlloc(dataSize, align);
 
         bytesRead = handle.read(reinterpret_cast<u8*>(scriptDataBuffer), dataSize);
@@ -81,10 +81,10 @@ public:
 
         this->scriptsData = (CSScriptCommand*)heap->tryAlloc(dataSize, sizeof(CSScriptCommand));
         OSBlockMove(this->scriptsData, scriptDataBuffer, dataSize, false);
-    
+
         u32 fileOffsetToScriptsData = sizeof(Header) + (sizeof(u32) * this->header.numScripts) + (sizeof(CSScript) * this->header.numScripts);
         for (int i = 0; i < this->header.numScripts; i++) {
-            u32 *ptrToScriptStart = (u32*)(&this->scripts[i].scriptStart);
+            u32* ptrToScriptStart = (u32*)(&this->scripts[i].scriptStart);
             *ptrToScriptStart -= fileOffsetToScriptsData;
             *ptrToScriptStart += (u32)(this->scriptsData);
         }

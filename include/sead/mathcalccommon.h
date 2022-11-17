@@ -69,7 +69,7 @@ void MathCalcCommon<f32>::sinCosIdx(f32* outsin, f32* outcos, u32 idx) {
 
     if (outsin)
         *outsin = sample.sinVal + sample.sinDelta * rest;
-    
+
     if (outcos)
         *outcos = sample.cosVal + sample.cosDelta * rest;
 }

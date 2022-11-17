@@ -20,7 +20,7 @@ public:
         this->_1AEC = 0;
         this->_1CC0 = 0;
         this->collisionMask = 1;
-        
+
         this->stateType = StateType::QuestionBlock;
         this->rectCollider.setType(ColliderBase::Type::QuestionBlock);
 
@@ -31,7 +31,7 @@ public:
         this->_1CAC = 0.0f;
         this->content = Content::Nothing;
         this->visibleAreaSize = Vec2f(2048.0f, 1024.0f);
-    
+
         this->registerColliderActiveInfo();
 
         this->doStateChange(&StateID_Active);
