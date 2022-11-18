@@ -1,8 +1,6 @@
 #include "game/profile/profile.h"
 #include "game/actor/actor.h"
 
-static const ProfileID::__type__ RESERVED = ProfileID::Num;
-
 Profile* Profile::profilesCustom[Profile::NUM_PROFILES_CUSTOM];
 s16 Profile::prioritiesCustom[Profile::NUM_PROFILES_CUSTOM] = { 0 };
 u8 Profile::resourcesLoadAtCustom[Profile::NUM_PROFILES_CUSTOM] = { 0 };
@@ -827,9 +825,9 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::TimeClock,                   // 734
     ProfileID::RedBlueBlock,                // 735
     ProfileID::JumboRay,                    // 736
-    RESERVED,                               // 737
+    ProfileID::EffectSpawner,               // 737
     ProfileID::RainbowLight,                // 738
-    RESERVED,                               // 739
+    ProfileID::SoundPlayer,                 // 739
     ProfileID::DebugActor,                  // 740
     ProfileID::LiquidOverlay,               // 741
     ProfileID::Stingby,                     // 742

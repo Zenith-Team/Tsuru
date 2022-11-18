@@ -537,36 +537,3 @@ void KamiyaMagic::updateModel() {
     this->model->updateAnimations();
     this->model->updateModel();
 }
-
-/* STATE: Following */
-
-void KamiyaArrow::beginState_Following() { }
-
-void KamiyaArrow::executeState_Following() {
-    this->position.x += this->targetDirection.x * this->speed.x;
-    this->position.y += this->targetDirection.y * this->speed.y;
-
-    if (this->adjustTimer++ > 30) {
-        this->adjustTimer = 0;
-        this->doStateChange(&KamiyaArrow::StateID_Adjusting);
-    }
-}
-
-void KamiyaArrow::endState_Following() { }
-
-/* STATE: Adjusting */
-
-void KamiyaArrow::beginState_Adjusting() {
-    this->targetRotation = unfixDeg(this->rotation.z);
-    this->angle = atan2f(this->parentKamiya->targetPlayer->position.y - this->position.y, this->parentKamiya->targetPlayer->position.x - this->position.x);
-    this->targetDirection = radToDirection(this->angle);
-}
-
-void KamiyaArrow::executeState_Adjusting() {
-    if (sead::Mathf::chase(&this->targetRotation, this->angle, 0.5f))
-        this->doStateChange(&KamiyaArrow::StateID_Following);
-
-    this->rotation.z = fixDeg(this->targetRotation);
-}
-
-void KamiyaArrow::endState_Adjusting() { }

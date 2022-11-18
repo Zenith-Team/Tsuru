@@ -34,7 +34,7 @@ CREATE_STATE(RedBlueBlock, Off);
 CREATE_STATE(RedBlueBlock, On);
 
 const Profile RedBlueBlockProfile(&RedBlueBlock::build, ProfileID::RedBlueBlock);
-PROFILE_RESOURCES(ProfileID::RedBlueBlock, Profile::LoadResourcesAt::Course, "star_coin");
+PROFILE_RESOURCES(ProfileID::RedBlueBlock, Profile::LoadResourcesAt::Course, "block_rdbl");
 
 const ShapedCollider::Info RedBlueBlock::colliderInfo = {
     Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-8.0f, 8.0f), Vec2f(8.0f, -8.0f), 0
@@ -49,12 +49,17 @@ Actor* RedBlueBlock::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 RedBlueBlock::onCreate() {
-    this->model = ModelWrapper::create("star_coin", "star_coinA");
+    this->position.y -= 8.0f;
+
+    this->model = ModelWrapper::create("block_rdbl", "block_rdbl", 0, 1);
+    this->model->playTexPatternAnim("switch");
+    this->model->texPatternAnims[0]->frameCtrl.speed = 0;
 
     this->red = (this->eventID1 >> 0x4 & 0xF) == 0;
     this->collider.init(this, colliderInfo);
 
     if (SwitchBlockState != this->red) {
+        this->model->texPatternAnims[0]->frameCtrl.currentFrame = 1;
         this->doStateChange(&StateID_On);
     } else {
         this->doStateChange(&StateID_Off);
@@ -69,6 +74,7 @@ u32 RedBlueBlock::onExecute() {
 
     this->model->setMtx(mtx);
     this->model->updateModel();
+    this->model->updateAnimations();
 
     this->states.execute();
 
@@ -76,7 +82,9 @@ u32 RedBlueBlock::onExecute() {
 }
 
 u32 RedBlueBlock::onDraw() {
-    this->model->draw();
+    if (this->states.currentState()->ID == StateID_On.ID) {
+        this->model->draw();
+    }
 
     return 1;
 }

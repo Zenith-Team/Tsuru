@@ -284,6 +284,8 @@ ENUM_CLASS(ProfileID,
     SwitchBlockEventActivator,
     RedBlueBlock,
     JumboRay,
+    EffectSpawner,
+    SoundPlayer,
 
     Num
 );
