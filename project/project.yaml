@@ -39,6 +39,8 @@ Targets:
   Template/Tricky:
     Modules:
       - buffs.yaml # What if we made the game a bit more tricky...
+    Remove/Modules:
+      - yoshicolors.yaml
     Defines:
       - TARGET_TRICKY
   Tricky_US:
