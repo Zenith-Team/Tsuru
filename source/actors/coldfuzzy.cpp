@@ -28,6 +28,7 @@ public:
     bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
@@ -127,6 +128,12 @@ bool ColdFuzzy::collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther
 }
 
 bool ColdFuzzy::collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->collisionPlayer(hcSelf, hcOther);
+
+    return true;
+}
+
+bool ColdFuzzy::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     this->collisionPlayer(hcSelf, hcOther);
 
     return true;
