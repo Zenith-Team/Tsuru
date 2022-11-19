@@ -317,7 +317,7 @@ void Kamiya::executeState_Attacking() {
         ActorBuildInfo buildInfo = { 0 };
         buildInfo.position = this->position;
         buildInfo.parentID = this->id;
-        sead::randBool() ? buildInfo.profile = Profile::get(Kamiya::possibleProjectiles[sead::randU32(4)]) : buildInfo.profile = Profile::get(ProfileID::KamiyaMagic);
+        buildInfo.profile = Profile::get(Kamiya::possibleProjectiles[sead::randU32(4)]);
         ActorMgr::instance()->create(buildInfo, 0);
 
         this->projectileSpawned = true;
@@ -477,63 +477,3 @@ void Kamiya::executeState_Snipe() {
 }
 
 void Kamiya::endState_Snipe() { }
-
-class KamiyaMagic : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(KamiyaMagic, Enemy);
-
-public:
-    KamiyaMagic(const ActorBuildInfo* buildInfo);
-    virtual ~KamiyaMagic() { }
-
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
-    u32 onCreate() override;
-    u32 onExecute() override;
-    u32 onDraw() override;
-
-    void updateModel();
-
-    ModelWrapper* model;
-    Vec2f targetDirection;
-};
-
-const Profile KamiyaMagicProfile(&KamiyaMagic::build, ProfileID::KamiyaMagic);
-
-KamiyaMagic::KamiyaMagic(const ActorBuildInfo* buildInfo)
-    : Enemy(buildInfo)
-    , model(nullptr)
-{ }
-
-Actor* KamiyaMagic::build(const ActorBuildInfo* buildInfo) {
-    return new KamiyaMagic(buildInfo);
-}
-
-u32 KamiyaMagic::onCreate() {
-    this->scale = (0.25f);
-    this->speed = 1.0f;
-    this->model = ModelWrapper::create("star_coin", "star_coinB");
-
-    return 1;
-}
-
-u32 KamiyaMagic::onExecute() {
-    this->updateModel();
-    this->states.execute();
-
-    return 1;
-}
-
-u32 KamiyaMagic::onDraw() {
-    this->model->draw();
-
-    return 1;
-}
-
-void KamiyaMagic::updateModel() {
-    Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position);
-    this->model->setMtx(mtx);
-    this->model->setScale(this->scale);
-    this->model->updateAnimations();
-    this->model->updateModel();
-}
