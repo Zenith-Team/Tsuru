@@ -6,7 +6,6 @@
 #include "game/direction.h"
 #include "game/effect/effect.h"
 #include "sead/random.h"
-#include "math/functions.h"
 
 const u32 timerThreshold = 315;
 
@@ -31,6 +30,7 @@ public:
     bool collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
     static HitboxCollider::Info collisionInfo;
 
@@ -147,6 +147,12 @@ bool ColdFuzzy::collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) 
 
 bool ColdFuzzy::collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     this->collisionPlayer(hcSelf, hcOther);
+
+    return true;
+}
+
+bool ColdFuzzy::collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->collisionStar(hcSelf, hcOther);
 
     return true;
 }
