@@ -6,27 +6,27 @@ IncludeDir: include
 SourceDir: source
 RpxDir: +/rpxs
 Modules:
-  - cheats.yaml               # Cheat menu
-  - collisionconditions.yaml  # Fixes collision conditions for some actors
-  - csscripts.yaml            # Custom world map scripts
-  - customactors.yaml         # Custom sprites/actors
-  - deathfoo.yaml             # Toxic cloud foo patch
-  - debug.yaml                # Debugging features
-# - experiments.yaml          # Experimental things
-  - framebuffer.yaml          # Framebuffer-related fixes
-  - initializer.yaml          # Initializer
-  - layout.yaml               # Custom layouts
-  - misc.yaml                 # Miscellaneous items
-  - profile.yaml              # Extra profile and sprite slots
-  - resloader.yaml            # Resource loader
-  - sarcloader.yaml           # Allow loading uncompressed .sarc levels
-  - savemgr.yaml              # Manages the custom savedata files
-  - sead.yaml                 # Patches for the sead library
-  - snowparticles.yaml        # Allows changing snow particle colors from spritedata
-  - sound.yaml                # Patches that affect sound
-  - titlescreen.yaml          # Title screen patches
-  - waves.yaml                # Wavy liquids
-  - yoshicolors.yaml          # Extra colors for Yoshi
+  - cheats               # Cheat menu
+  - collisionconditions  # Fixes collision conditions for some actors
+  - csscripts            # Custom world map scripts
+  - customactors         # Custom sprites/actors
+  - deathfoo             # Toxic cloud foo patch
+  - debug                # Debugging features
+# - experiments          # Experimental things
+  - framebuffer          # Framebuffer-related fixes
+  - initializer          # Initializer
+  - layout               # Custom layouts
+  - misc                 # Miscellaneous items
+  - profile              # Extra profile and sprite slots
+  - resloader            # Resource loader
+  - sarcloader           # Allow loading uncompressed .sarc levels
+  - savemgr              # Manages the custom savedata files
+  - sead                 # Patches for the sead library
+  - snowparticles        # Allows changing snow particle colors from spritedata
+  - sound                # Patches that affect sound
+  - titlescreen          # Title screen patches
+  - waves                # Wavy liquids
+  - yoshicolors          # Extra colors for Yoshi
 Defines:
   - NO_INTELLISENSE_HACK
   - Cemu
@@ -38,7 +38,7 @@ Targets:
   JP: ~
   Template/Tricky:
     Modules:
-      - buffs.yaml # What if we made the game a bit more tricky...
+      - buffs # What if we made the game a bit more tricky...
     Defines:
       - TARGET_TRICKY
   Tricky_US:
