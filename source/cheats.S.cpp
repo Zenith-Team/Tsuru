@@ -1,4 +1,6 @@
-#pragma asm
+#include "types.h"
+
+ASM_BEGIN
 .include "macros.S"
 
 .macro CheckSaveMember offset
@@ -96,4 +98,4 @@ Invincibility:
 SafeReturn:
     RestoreVolatileRegisters
     blr
-#pragma endasm
+ASM_END

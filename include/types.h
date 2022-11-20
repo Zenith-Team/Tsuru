@@ -6,10 +6,14 @@
 // Workarounds to meet newer standards
 
 #ifdef NO_INTELLISENSE_HACK
+#define ASM_BEGIN #pragma asm
+#define ASM_END #pragma endasm
 #define override
 #define static_assert(condition, ...) typedef int TOKENPASTE2(static_assert_, __LINE__)[(condition) ? 1 : -1]
 #define nullptr NULL
 #else
+#define ASM_BEGIN __asm {
+#define ASM_END }
 #define static_assert(x, ...)
 #define __attribute__(...)
 #endif
