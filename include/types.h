@@ -8,14 +8,14 @@
 #ifdef NO_INTELLISENSE_HACK
 #define ASM_BEGIN #pragma asm
 #define ASM_END #pragma endasm
-#define ASM_FUNC(ret, name, ...) asm ret name(__VA_ARGS__) {
+#define ASM_FUNC(ret, name, ...) asm ret name(__VA_ARGS__)
 #define override
 #define static_assert(condition, ...) typedef int TOKENPASTE2(static_assert_, __LINE__)[(condition) ? 1 : -1]
 #define nullptr NULL
 #else
 #define ASM_BEGIN __asm {
 #define ASM_END }
-#define ASM_FUNC(ret, name, ...) ASM_BEGIN
+#define ASM_FUNC(ret, name, ...) __asm
 #define static_assert(x, ...)
 #define __attribute__(...)
 #endif
