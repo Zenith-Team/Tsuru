@@ -50,6 +50,7 @@ Actor* RedBlueBlock::build(const ActorBuildInfo* buildInfo) {
 
 u32 RedBlueBlock::onCreate() {
     this->position.y -= 8.0f;
+    this->position.x += 8.0f;
 
     this->model = ModelWrapper::create("block_rdbl", "block_rdbl", 0, 1);
     this->model->playTexPatternAnim("switch");
@@ -59,9 +60,9 @@ u32 RedBlueBlock::onCreate() {
     this->collider.init(this, colliderInfo);
 
     if (SwitchBlockState != this->red) {
-        this->model->texPatternAnims[0]->frameCtrl.currentFrame = 1;
         this->doStateChange(&StateID_On);
     } else {
+        this->model->texPatternAnims[0]->frameCtrl.currentFrame = 1;
         this->doStateChange(&StateID_Off);
     }
 
