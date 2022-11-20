@@ -260,7 +260,6 @@ ENUM_CLASS(ProfileID,
     LiquidOverlay,
     Stingby,
     Kamiya,
-    KamiyaMagic,
     ModelLoader,
     StringBank,
     UniversalBossController,
@@ -284,6 +283,8 @@ ENUM_CLASS(ProfileID,
     SwitchBlockEventActivator,
     RedBlueBlock,
     JumboRay,
+    EffectSpawner,
+    SoundPlayer,
 
     Num
 );

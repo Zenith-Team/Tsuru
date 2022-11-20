@@ -233,7 +233,7 @@ u32 BasaltBones::onCreate() {
 
     for (Actor** i = ActorMgr::instance()->actors.start.buffer; i < ActorMgr::instance()->actors.end.buffer; i++) {
         if ((*i) != nullptr && (*i)->getProfileID() == ProfileID::Lava) {
-            this->lava = (EnvTerrain*) * i;
+            this->lava = static_cast<EnvTerrain*>(*i);
             return BossWrapper<18>::onCreate();
         }
     }
@@ -617,7 +617,7 @@ void BasaltBones::beginState_Assemble() {
     bone.easer.set(Easing::quadInOut, 0, 1, 0.008f);
 }
 
-#define xrb ((sead::randF32() * 2) - 1) * 3
+#define xrb ((sead::randF32() * 2) - 1) * 3 // It means x random bool
 
 void BasaltBones::executeState_Assemble() {
     sead::Mathf::chase(&lava->effects.waveRippleHeight, 28.0f, 0.2f);

@@ -6,7 +6,6 @@
 #include "game/direction.h"
 #include "game/effect/effect.h"
 #include "sead/random.h"
-#include "math/functions.h"
 
 const u32 timerThreshold = 315;
 
@@ -28,8 +27,10 @@ public:
     bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
 
     static HitboxCollider::Info collisionInfo;
 
@@ -132,6 +133,12 @@ bool ColdFuzzy::collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider
     return true;
 }
 
+bool ColdFuzzy::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->collisionPlayer(hcSelf, hcOther);
+
+    return true;
+}
+
 bool ColdFuzzy::collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     this->collisionPlayer(hcSelf, hcOther);
 
@@ -140,6 +147,12 @@ bool ColdFuzzy::collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) 
 
 bool ColdFuzzy::collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     this->collisionPlayer(hcSelf, hcOther);
+
+    return true;
+}
+
+bool ColdFuzzy::collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->collisionStar(hcSelf, hcOther);
 
     return true;
 }

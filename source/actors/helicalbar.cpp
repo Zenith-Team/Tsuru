@@ -226,7 +226,7 @@ void HelicalBar::executeState_OneBar() {
         for (u32 j = 0; j < 6; j++) {
             Vec2f& fp = this->firePositions[i][j];
 
-            this->fireHitboxes[i][j].colliderInfo.distToCenter = Vec2f(this->position.x - fp.x, this->position.y - fp.y);
+            this->fireHitboxes[i][j].colliderInfo.distToCenter = Vec2f(fp.x - this->position.x, fp.y - this->position.y);
 
             switch (i) {
                 case Direction::Right: {
@@ -253,7 +253,7 @@ void HelicalBar::beginState_TwoBars() {
             const Vec2f& fp = this->firePositions[i][j];
 
             this->hcInfos[i][j].set(
-                Vec2f(this->position.x - fp.x, this->position.y - fp.y), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
+                Vec2f(fp.x - this->position.x, fp.y - this->position.y), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
             );
 
             this->fireHitboxes[i][j].init(this, &this->hcInfos[i][j]);
@@ -267,7 +267,7 @@ void HelicalBar::executeState_TwoBars() {
         for (u32 j = 0; j < 6; j++) {
             Vec2f& fp = this->firePositions[i][j];
 
-            this->fireHitboxes[i][j].colliderInfo.distToCenter = Vec2f(this->position.x - fp.x, this->position.y - fp.y);
+            this->fireHitboxes[i][j].colliderInfo.distToCenter = Vec2f(fp.x - this->position.x, fp.y - this->position.y);
 
             switch (i) {
                 case Direction::Right: {
@@ -299,7 +299,7 @@ void HelicalBar::beginState_ThreeBars() {
             const Vec2f& fp = this->firePositions[i][j];
 
             this->hcInfos[i][j].set(
-                Vec2f(this->position.x - fp.x, this->position.y - fp.y), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
+                Vec2f(fp.x - this->position.x, fp.y - this->position.y), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
             );
 
             this->fireHitboxes[i][j].init(this, &this->hcInfos[i][j]);
@@ -330,7 +330,7 @@ void HelicalBar::executeState_ThreeBars() {
                 }
             }
 
-            this->fireHitboxes[i][j].colliderInfo.distToCenter = Vec2f(this->position.x - fp.x, this->position.y - fp.y);
+            this->fireHitboxes[i][j].colliderInfo.distToCenter = Vec2f(fp.x - this->position.x, fp.y - this->position.y);
 
             Vec3f efp(fp.x, fp.y, 4000.0f);
             this->heatDistorters[i][j].update(RP_Firebar, &efp, &this->rotation, &this->scale);

@@ -18,7 +18,7 @@ Files:
   - actors/rainbowlight.cpp
   - actors/debugactor.cpp
   - actors/liquidoverlay.cpp
-  # - actors/kamiya.cpp
+  - actors/kamiya.cpp
   - actors/modelloader.cpp
   - actors/stringbank.cpp
   - actors/universalbosscontroller.cpp
@@ -39,6 +39,8 @@ Files:
   - actors/redblueblock.cpp
   - actors/stingby.cpp
   - actors/jumboray.cpp
+  - actors/effectspawner.cpp
+  - actors/soundplayer.cpp
 #* Course Select Actors:
   - actors/csrootspawner.cpp
   - actors/csflames.cpp

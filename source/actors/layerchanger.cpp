@@ -18,7 +18,6 @@ public:
     u8 trigEvent;
     u32 layerDest;
     bool isDone;
-    EventMgr eventmgr;
 };
 
 const Profile LayerChangerProfile(&LayerChanger::build, ProfileID::LayerChanger);
@@ -32,36 +31,31 @@ Actor* LayerChanger::build(const ActorBuildInfo* buildInfo) {
 }
 
 u32 LayerChanger::onCreate() {
-    this->trigEvent = (this->eventID1 & 0xFF); // nybbles 1-2
+    this->trigEvent = (this->eventID1 & 0xFF) - 1; // nybbles 1-2
     this->layerDest = (this->settings1 >> 0x1C & 0xF); // nybble 5
     this->isDone = false;
+    
     /* Layer chart
     0 - Layer 1
     1 - Layer 2
     2 - Layer 0
     */
-    PRINT("Event: ", trigEvent);
 
     return this->onExecute();
 }
 
 u32 LayerChanger::onExecute() {
-    if (!this->isDone) {
-        PRINT("Currently checking if Event ID ", trigEvent, " was triggered...");
-        if (EventMgr::instance()->isActive(this->trigEvent)) {
-            this->isDone = true;
-            PRINT("Event ID ", trigEvent, " was triggered");
-            for (u32 i = 0; i < 4; i++) {
-                Player* player = PlayerMgr::instance()->players[i];
-                if (player) {
-                    player->layer = this->layerDest;
-                }
+    if (!EventMgr::instance()->isActive(trigEvent)) {
+        this->isDone = false;
+    } else if (!this->isDone) {
+        for (u32 i = 0; i < 4; i++) {
+            Player* player = PlayerMgr::instance()->players[i];
+            if (player) {
+                player->layer = this->layerDest;
             }
         }
-    }
-
-    if (EventMgr::instance()->isActive(this->eventID1)) {
-        PRINT("Event activated");
+        
+        this->isDone = true;
     }
 
     return 1;

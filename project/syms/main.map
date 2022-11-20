@@ -290,12 +290,9 @@
 # BlockAndCoinBase
     vf18C__16BlockAndCoinBaseFv = 0x2708EFC;
     vf194__16BlockAndCoinBaseFv = 0x2708F00;
-    setBelowSensor__9BlockBaseFv = 0x2708F04;
     vf1A4__16BlockAndCoinBaseFv = 0x2708F08;
-    spawnItemUp__9BlockBaseFv = 0x2708F0C;
     vf1B4__16BlockAndCoinBaseFv = 0x2708F10;
     spawnItemDown__13BlockCoinBaseFv = 0x2708F18;
-    vf1DC__24MovementBlockAndCoinBaseFv = 0x2708F20;
     vf1BC__16BlockAndCoinBaseFv = 0x2708F14;
     vf1D4__16BlockAndCoinBaseFb = 0x2704868;
     spawnCoinShower__16BlockAndCoinBaseFv = 0x27048E4;
@@ -322,11 +319,16 @@
     endState_BlockAndCoinBaseState7__16BlockAndCoinBaseFv = 0x2708F44;
 
 # BlockBase
+    activeBottomCollisionCallback__9BlockBaseSFP12ColliderBaseP10PhysicsMgrUi = 0x2705528;
+    activeTopCollisionCallback__9BlockBaseSFP12ColliderBaseP10PhysicsMgrUi = 0x2704ecc;
+    activeSideCollisionCallback__9BlockBaseSFP12ColliderBaseP10PhysicsMgrUi = 0x2705efc;
     __ct__9BlockBaseFPC14ActorBuildInfo = 0x269E614;
+    setBelowSensor__9BlockBaseFv = 0x2708F04;
     init__9BlockBaseFbT1 = 0x269F6C8;
     StateID_Active__9BlockBase = 0x1021E8E0;
     onExecute__9BlockBaseFv = 0x269E6C4;
     onDraw__9BlockBaseFv = 0x269E77C;
+    spawnItemUp__9BlockBaseFv = 0x2708F0C;
     vf1CC__9BlockBaseFv = 0x269EC04;
     vf1EC__9BlockBaseFv = 0x269F674;
     spawnItemDown__9BlockBaseFv = 0x269EBC4;
@@ -944,6 +946,7 @@
     vf2B4__24MovementBlockAndCoinBaseFv = 0x2727990;
     vf2BC__24MovementBlockAndCoinBaseFv = 0x2727994;
     vf2CC__24MovementBlockAndCoinBaseFv = 0x2726654;
+    vf1DC__24MovementBlockAndCoinBaseFv = 0x2708F20;
 
 # MovementHandler
     __ct__15MovementHandlerFv = 0x2849c40;
