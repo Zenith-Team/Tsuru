@@ -205,6 +205,26 @@ inline void tprint<s32>(s32 value) {
 }
 
 template <>
+inline void tprint<unsigned long>(unsigned long value) {
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+        LOG("%08X", value);
+    } else {
+        LOG("%lu", value);
+    }
+}
+
+template <>
+inline void tprint<long>(long value) {
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+        LOG("%08X", value);
+    } else {
+        LOG("%ld", value);
+    }
+}
+
+template <>
 inline void tprint<u64>(u64 value) {
     if (fmt::_hexActive) {
         fmt::_hexActive = false;
