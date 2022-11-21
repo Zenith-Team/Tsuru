@@ -2,7 +2,8 @@
 
 #include "game/terraineffects.h"
 #include "game/actor/stage/multistateactor.h"
-#include "game/collision/solid/shapedcollider.h"
+#include "game/collision/solid/rectcollider.h"
+#include "game/graphics/model/modelnw.h"
 
 class EnvTerrain : public MultiStateActor { // Size: 0x11A78
     // Base class for Zone-Wide-Effect actors such as liquids
@@ -13,19 +14,20 @@ public:
 
     u32 onExecute() override;
 
-    u8 _17C8[8]; // Unknown values
+    ModelWrapper* model;
+    u8 _17CC[4]; // Unknown values
     Vec3f _17D0;
     Vec3f _17DC;
-    u8 _17E8[0x290]; // Inlined struct
+    RectCollider rectCollider;
     ShapedCollider::Info colliderInfo;
     Vec2f _1A9C;
     u32 _1AA4;
     u32 _1AA8;
     f32 _1AAC;
     f32 _1AB0;
-    f32 _1AB4;
-    f32 _1AB8;
-    f32 _1ABC;
+    f32 width;
+    f32 baselineHeight;
+    f32 effectiveHeight;
     f32 _1AC0;
     f32 _1AC4;
     f32 _1AC8;

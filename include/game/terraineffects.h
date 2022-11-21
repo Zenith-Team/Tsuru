@@ -49,7 +49,7 @@ public:
     u32 waveRippleSpeed;
     u32 waveHorizontalSpeed;
     u32 _CC;
-    u32 __D0;
+    u32 _D0;
     u32 waveRippleCount;
     u32 waveWidth;
     f32 _DC;
