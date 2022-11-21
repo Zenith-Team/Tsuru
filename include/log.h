@@ -210,7 +210,7 @@ inline void tprint<unsigned long>(unsigned long value) {
         fmt::_hexActive = false;
         LOG("%08X", value);
     } else {
-        LOG("%lu", value);
+        LOG("%u", value);
     }
 }
 
@@ -220,7 +220,7 @@ inline void tprint<long>(long value) {
         fmt::_hexActive = false;
         LOG("%08X", value);
     } else {
-        LOG("%ld", value);
+        LOG("%d", value);
     }
 }
 
