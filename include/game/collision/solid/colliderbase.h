@@ -2,6 +2,7 @@
 
 #include "game/collision/physicsmgr.h"
 #include "sead/runtimetypeinfo.h"
+#include "sead/idisposer.h"
 
 struct StageActorCallbackTable;
 

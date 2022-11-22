@@ -17,7 +17,7 @@ struct StageActorCallbackTable {
 
     void (StageActor::*root)(); // nullptr
     typeHCCallbackB hcCallback0;
-    typeHCCallbackB hcCallback1;
+    typeHCCallbackB hcDRCTouchCallback; // Boost mode/gamepad touch
     typeHCCallbackB hcCallback2;
     typeHCCallbackV hcCallback3;
     typeHCCallbackV hcCallback4;
