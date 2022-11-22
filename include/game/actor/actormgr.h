@@ -8,7 +8,7 @@
 
 class ActorBuffer { // Size: 0x18
 public:
-    ActorBuffer();
+    ActorBuffer(sead::Heap* heap, s32 size);
 
     // Locates an actor by the Actor ID
     // @param id Actor ID of the intended target actor
