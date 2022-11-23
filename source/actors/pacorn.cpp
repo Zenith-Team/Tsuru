@@ -9,8 +9,6 @@ public:
     PAcorn(const ActorBuildInfo* buildInfo);
     virtual ~PAcorn() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
 
@@ -24,16 +22,12 @@ public:
     void vf1FC() override;
 };
 
-const Profile PAcornProfile(&PAcorn::build, ProfileID::PAcorn, "PAcorn", nullptr, 16406);
+REGISTER_PROFILE(PAcorn, ProfileID::PAcorn, "PAcorn", nullptr, 16406);
 PROFILE_RESOURCES(ProfileID::PAcorn, Profile::LoadResourcesAt::Course, "I_musasabi");
 
 PAcorn::PAcorn(const ActorBuildInfo* buildInfo)
     : Powerup(buildInfo)
 { }
-
-Actor* PAcorn::build(const ActorBuildInfo* buildInfo) {
-    return new PAcorn(buildInfo);
-}
 
 u32 PAcorn::onCreate() {
     this->_1827 = true;

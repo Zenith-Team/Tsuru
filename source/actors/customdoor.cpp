@@ -8,8 +8,6 @@ public:
     CustomDoor(const ActorBuildInfo* buildInfo);
     virtual ~CustomDoor() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     void loadModel() override;
     void initHitboxCollider() override;
     void playOpenDoorAnim() override;
@@ -22,7 +20,7 @@ const ActorInfo CustomDoorActorInfo = {
     Vec2i(16, -48), Vec2i(0, 24), Vec2i(16, 24), 64, 64, 0, 0, 0
 };
 
-const Profile CustomDoorProfile(&CustomDoor::build, ProfileID::CustomDoor, "CustomDoor", &CustomDoorActorInfo, Profile::Flags::DontRenderOffScreen);
+REGISTER_PROFILE(CustomDoor, ProfileID::CustomDoor, "CustomDoor", &CustomDoorActorInfo, Profile::Flags::DontRenderOffScreen);
 PROFILE_RESOURCES(ProfileID::CustomDoor, Profile::LoadResourcesAt::Course, "obj_door");
 
 CustomDoor::CustomDoor(const ActorBuildInfo* buildInfo)
@@ -30,10 +28,6 @@ CustomDoor::CustomDoor(const ActorBuildInfo* buildInfo)
 {
     this->_1890 = 0;
     this->_18A0 = 0x1E;
-}
-
-Actor* CustomDoor::build(const ActorBuildInfo* buildInfo) {
-    return new CustomDoor(buildInfo);
 }
 
 const HitboxCollider::Info CustomDoor::sCollisionInfo = {

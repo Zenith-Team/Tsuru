@@ -22,10 +22,6 @@ public:
     BasaltBoneProjectile(const ActorBuildInfo* buildInfo) : Enemy(buildInfo), effect() { }
     virtual ~BasaltBoneProjectile() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo) {
-        return new BasaltBoneProjectile(buildInfo);
-    }
-
     u32 onCreate() override {
         this->hitboxCollider.init(this, &BasaltBoneProjectile::collisionInfo);
         this->addHitboxColliders();
@@ -107,8 +103,6 @@ public:
     BasaltBones(const ActorBuildInfo* buildInfo);
     virtual ~BasaltBones() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -154,10 +148,10 @@ CREATE_STATE(BasaltBones, Disassemble);
 CREATE_STATE(BasaltBones, Assemble);
 CREATE_STATE(BasaltBones, AssembleFinalize);
 
-const Profile BasaltBonesProfile(&BasaltBones::build, ProfileID::BasaltBones);
+REGISTER_PROFILE(BasaltBones, ProfileID::BasaltBones);
 PROFILE_RESOURCES(ProfileID::BasaltBones, Profile::LoadResourcesAt::Course, "laron", "star_coin");
 
-const Profile BasaltBoneProjectileProfile(&BasaltBoneProjectile::build, ProfileID::BasaltBoneProjectile);
+REGISTER_PROFILE(BasaltBoneProjectile, ProfileID::BasaltBoneProjectile);
 
 const HitboxCollider::Info BasaltBones::collisionInfo = {
     Vec2f(0.0f, 6.0f), Vec2f(14.0f, 22.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &BasaltBones::collisionCallback
@@ -206,10 +200,6 @@ const Vec3f BasaltBones::launchKeyframes[6][2][3] = { // 6 bones, 2 possible pat
 
 static f32 defaultWaveRippleHeight = 0;
 static u32 defaultWaveHorizontalSpeed = 0;
-
-Actor* BasaltBones::build(const ActorBuildInfo* buildInfo) {
-    return new BasaltBones(buildInfo);
-}
 
 BasaltBones::BasaltBones(const ActorBuildInfo* buildInfo)
     : BossWrapper<18>(buildInfo)

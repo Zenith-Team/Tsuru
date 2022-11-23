@@ -13,8 +13,6 @@ public:
     GiantSkewer(const ActorBuildInfo* buildInfo);
     virtual ~GiantSkewer() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -52,7 +50,7 @@ const HitboxCollider::Info GiantSkewer::collisionInfo = {
     Vec2f(0.0f, 800.0f), Vec2f(96.0f, 1000.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &Enemy::collisionCallback
 };
 
-const Profile GiantSkewerProfile(&GiantSkewer::build, ProfileID::GiantSkewer, "GiantSkewer", &GiantSkewerActorInfo);
+REGISTER_PROFILE(GiantSkewer, ProfileID::GiantSkewer, "GiantSkewer", &GiantSkewerActorInfo);
 PROFILE_RESOURCES(ProfileID::GiantSkewer, Profile::LoadResourcesAt::Course,"daikonbouBig");
 
 GiantSkewer::GiantSkewer(const ActorBuildInfo* buildInfo)
@@ -67,10 +65,6 @@ GiantSkewer::GiantSkewer(const ActorBuildInfo* buildInfo)
     , moveEndTimer(0)
     , premoveDelayTimer(0)
 { }
-
-Actor* GiantSkewer::build(const ActorBuildInfo* buildInfo) {
-    return new GiantSkewer(buildInfo);
-}
 
 u32 GiantSkewer::onCreate() {
     this->startPosition = this->position.y;

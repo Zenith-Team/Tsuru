@@ -9,8 +9,6 @@ public:
     AngryGrrrol(const ActorBuildInfo* buildInfo);
     virtual ~AngryGrrrol() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -28,7 +26,7 @@ public:
     ModelWrapper* model;
 };
 
-const Profile AngryGrrrolProfile(&AngryGrrrol::build, ProfileID::AngryGrrrol);
+REGISTER_PROFILE(AngryGrrrol, ProfileID::AngryGrrrol);
 PROFILE_RESOURCES(ProfileID::AngryGrrrol, Profile::LoadResourcesAt::Course, "guruguru");
 
 HitboxCollider::Info AngryGrrrol::collisionInfo = {
@@ -38,10 +36,6 @@ HitboxCollider::Info AngryGrrrol::collisionInfo = {
 AngryGrrrol::AngryGrrrol(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)
 { }
-
-Actor* AngryGrrrol::build(const ActorBuildInfo* buildInfo) {
-    return new AngryGrrrol(buildInfo);
-}
 
 u32 AngryGrrrol::onCreate() {
     this->model = ModelWrapper::create("guruguru", "guruguru", 0, 0, 1);

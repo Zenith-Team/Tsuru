@@ -20,8 +20,6 @@ public:
     Kamiya(const ActorBuildInfo* buildInfo);
     virtual ~Kamiya() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -98,7 +96,7 @@ CREATE_STATE(Kamiya, Damage);
 CREATE_STATE(Kamiya, Teleport);
 CREATE_STATE(Kamiya, Snipe);
 
-const Profile KamiyaProfile(&Kamiya::build, ProfileID::Kamiya, "Kamiya", nullptr, 0);
+REGISTER_PROFILE(Kamiya, ProfileID::Kamiya);
 PROFILE_RESOURCES(ProfileID::Kamiya, Profile::LoadResourcesAt::Course, "kamiya");
 
 const u32 Kamiya::possibleProjectiles[] = {
@@ -135,10 +133,6 @@ Kamiya::Kamiya(const ActorBuildInfo* buildInfo)
     , isFirstSpawn(true)
     , snipeTimer(0)
 { }
-
-Actor* Kamiya::build(const ActorBuildInfo* buildInfo) {
-    return new Kamiya(buildInfo);
-}
 
 u32 Kamiya::onCreate() {
     this->doStateChange(&Kamiya::StateID_Spawning);

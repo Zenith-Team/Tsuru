@@ -14,8 +14,6 @@ public:
     SwitchBlock(const ActorBuildInfo* buildInfo);
     virtual ~SwitchBlock() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -30,16 +28,12 @@ const ActorInfo SwitchBlockActorInfo = {
     Vec2i(8, -16), Vec2i(8, -8), Vec2i(0x100, 0x100), 0, 0, 0, 0, ActorInfo::Flags::Unknown1
 };
 
-const Profile SwitchBlockProfile(&SwitchBlock::build, ProfileID::SwitchBlock, "SwitchBlock", &SwitchBlockActorInfo, 0x1002);
+REGISTER_PROFILE(SwitchBlock, ProfileID::SwitchBlock, "SwitchBlock", &SwitchBlockActorInfo, 0x1002);
 PROFILE_RESOURCES(ProfileID::SwitchBlock, Profile::LoadResourcesAt::Course, "block_stch");
 
 SwitchBlock::SwitchBlock(const ActorBuildInfo* buildInfo)
     : BlockWrapper(buildInfo)
 { }
-
-Actor* SwitchBlock::build(const ActorBuildInfo* buildInfo) {
-    return new SwitchBlock(buildInfo);
-}
 
 u32 SwitchBlock::onCreate() {
     if (!BlockWrapper::init()) {

@@ -18,8 +18,6 @@ public:
     CSRootSpawner(const ActorBuildInfo* buildInfo);
     virtual ~CSRootSpawner() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     CourseSelectActor* spawn(ProfileID::__type__ profile) {
         ActorBuildInfo buildInfo = { 0 };
         buildInfo.profile = Profile::get(profile);
@@ -43,16 +41,12 @@ public:
     u32 timer;
 };
 
-const Profile CSRootSpawnerProfile(&CSRootSpawner::build, ProfileID::CSRootSpawner);
+REGISTER_PROFILE(CSRootSpawner, ProfileID::CSRootSpawner);
 
 CSRootSpawner::CSRootSpawner(const ActorBuildInfo* buildInfo)
     : CourseSelectActor(buildInfo)
     , timer(0)
 { }
-
-Actor* CSRootSpawner::build(const ActorBuildInfo* buildInfo) {
-    return new CSRootSpawner(buildInfo);
-}
 
 u32 CSRootSpawner::onExecute() {
 #ifdef TARGET_TRICKY

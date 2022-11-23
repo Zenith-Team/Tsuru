@@ -10,12 +10,10 @@ public:
     FixedWindGenerator(const ActorBuildInfo* buildInfo);
     virtual ~FixedWindGenerator() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onExecute() override;
 };
 
-const Profile FixedWindGeneratorProfile(&FixedWindGenerator::build, 793);
+REGISTER_PROFILE(FixedWindGenerator, ProfileID::WindGenerator);
 
 const u32 affectedActors[] = {
     ProfileID::Goomba,
@@ -33,10 +31,6 @@ const u32 affectedActors[] = {
 FixedWindGenerator::FixedWindGenerator(const ActorBuildInfo* buildInfo)
     : WindGenerator(buildInfo)
 { }
-
-Actor* FixedWindGenerator::build(const ActorBuildInfo* buildInfo) {
-    return new FixedWindGenerator(buildInfo);
-}
 
 u32 FixedWindGenerator::onExecute() {
     // Blow players

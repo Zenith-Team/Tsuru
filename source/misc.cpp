@@ -20,12 +20,6 @@ void respawn() {
 volatile sead::GraphicsContext CurrentGraphicsContext;
 
 #ifdef TARGET_TRICKY
-namespace NullActor {
-    static Actor* build(const ActorBuildInfo* buildInfo) {
-        return new Actor(buildInfo);
-    }
-}
-
-const Profile CodeCheck(&NullActor::build, Profile::spriteToProfileList[479]);
+REGISTER_PROFILE(Actor, Profile::spriteToProfileList[479]);
 PROFILE_RESOURCES(Profile::spriteToProfileList[479], Profile::LoadResourcesAt::Course, "kuribo");
 #endif

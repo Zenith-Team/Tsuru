@@ -14,8 +14,6 @@ public:
     CSFlames(const ActorBuildInfo* buildInfo);
     virtual ~CSFlames() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override { return 1; }
@@ -23,16 +21,12 @@ public:
     EffectWrapper fx;
 };
 
-const Profile CSFlamesProfile(&CSFlames::build, ProfileID::CSFlames);
+REGISTER_PROFILE(CSFlames, ProfileID::CSFlames);
 
 CSFlames::CSFlames(const ActorBuildInfo* buildInfo)
     : CourseSelectActor(buildInfo)
     , fx()
 { }
-
-Actor* CSFlames::build(const ActorBuildInfo* buildInfo) {
-    return new CSFlames(buildInfo);
-}
 
 u32 CSFlames::onCreate() {
     return this->onExecute();

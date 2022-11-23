@@ -24,9 +24,10 @@ public:
         CourseSelect
     );
 
-public:
+protected:
     Profile(buildFunction, u32 id, const sead::SafeString& name = "", const ActorInfo* actorInfo = nullptr, u32 flags = 0);
 
+public:
     // Locates and gets a profile based on the ID
     // @param id Target profile ID
     // @return Pointer to retrieved profile
@@ -69,6 +70,19 @@ private:
     friend struct ProfileResources;
 };
 
+template <typename T>
+class RegisterProfile : Profile {
+private:
+    static Actor* build(const ActorBuildInfo* buildInfo) {
+        return new T(buildInfo);
+    }
+
+public:
+    RegisterProfile(u32 id, const sead::SafeString& name = "", const ActorInfo* actorInfo = nullptr, u32 flags = 0)
+        : Profile(&RegisterProfile::build, id, name, actorInfo, flags)
+    { }
+};
+
 struct ProfileResources {
     ProfileResources(u32 id, Profile::LoadResourcesAt::__type__ loadAt, u32 count, const sead::SafeString resources[]) {
         if (id < Profile::NUM_PROFILES_ORIGINAL) {
@@ -91,6 +105,9 @@ struct ProfileResources {
         }
     }
 };
+
+#define REGISTER_PROFILE(type, ...) \
+    static const RegisterProfile<type> __profile_##type(__VA_ARGS__) 
 
 #define PROFILE_RESOURCES_IDENT(ident, id, loadat, ...)                                                    \
     static const u32 PP_CONCAT(profileResourceCount, ident) = PP_ARG_N(0, ## __VA_ARGS__, 64, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0); \

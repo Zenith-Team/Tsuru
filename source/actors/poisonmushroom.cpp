@@ -8,8 +8,6 @@ public:
     PoisonMushroom(const ActorBuildInfo* buildInfo);
     virtual ~PoisonMushroom() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
 
@@ -28,7 +26,7 @@ public:
     static void collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 };
 
-const Profile PoisonMushroomProfile(&PoisonMushroom::build, ProfileID::PoisonMushroom, "PoisonMushroom", nullptr, 16406);
+REGISTER_PROFILE(PoisonMushroom, ProfileID::PoisonMushroom, "PoisonMushroom", nullptr, 16406);
 PROFILE_RESOURCES(ProfileID::PoisonMushroom, Profile::LoadResourcesAt::Course, "I_kinxkx");
 
 const HitboxCollider::Info PoisonMushroom::collisionInfo = {
@@ -38,10 +36,6 @@ const HitboxCollider::Info PoisonMushroom::collisionInfo = {
 PoisonMushroom::PoisonMushroom(const ActorBuildInfo* buildInfo)
     : Powerup(buildInfo)
 { }
-
-Actor* PoisonMushroom::build(const ActorBuildInfo* buildInfo) {
-    return new PoisonMushroom(buildInfo);
-}
 
 u32 PoisonMushroom::onCreate() {
     this->_1827 = true;

@@ -106,8 +106,6 @@ public:
     CSScriptLoader(const ActorBuildInfo* buildInfo);
     virtual ~CSScriptLoader() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override { return 1; }
     u32 onDraw() override { return 1; }

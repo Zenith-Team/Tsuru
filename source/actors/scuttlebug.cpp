@@ -10,8 +10,6 @@ public:
     Scuttlebug(const ActorBuildInfo* buildInfo);
     virtual ~Scuttlebug() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -53,7 +51,7 @@ CREATE_STATE(Scuttlebug, Rising);
 CREATE_STATE(Scuttlebug, IdleRaised);
 CREATE_STATE(Scuttlebug, Die);
 
-const Profile ScuttlebugProfile(&Scuttlebug::build, ProfileID::Scuttlebug);
+REGISTER_PROFILE(Scuttlebug, ProfileID::Scuttlebug);
 PROFILE_RESOURCES(ProfileID::Scuttlebug, Profile::LoadResourcesAt::Course, "gasagoso");
 
 const HitboxCollider::Info Scuttlebug::collisionInfo = {
@@ -63,10 +61,6 @@ const HitboxCollider::Info Scuttlebug::collisionInfo = {
 Scuttlebug::Scuttlebug(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)
 { }
-
-Actor* Scuttlebug::build(const ActorBuildInfo* buildInfo) {
-    return new Scuttlebug(buildInfo);
-}
 
 u32 Scuttlebug::onCreate() {
     this->rotation = Vec3u(fixDeg(90.0f), 0, 0);

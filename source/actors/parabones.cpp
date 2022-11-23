@@ -11,8 +11,6 @@ public:
     ParaBones(const ActorBuildInfo* buildInfo);
     virtual ~ParaBones() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -57,7 +55,7 @@ CREATE_STATE(ParaBones, IdleRaised);
 CREATE_STATE(ParaBones, Die);
 
 const ActorInfo ParaBonesActorInfo = { Vec2i(8, -16), Vec2i(0, 16), Vec2i(8, 16), 0, 0, 0, 0, 0 };
-const Profile ParaBonesProfile(&ParaBones::build, ProfileID::ParaBones, "ParaBones", &ParaBonesActorInfo);
+REGISTER_PROFILE(ParaBones, ProfileID::ParaBones, "ParaBones", &ParaBonesActorInfo);
 PROFILE_RESOURCES(ProfileID::ParaBones, Profile::LoadResourcesAt::Course, "nokonokoB", "karon", "wing");
 
 const HitboxCollider::Info ParaBones::sCollisionInfo = {
@@ -77,10 +75,6 @@ ParaBones::ParaBones(const ActorBuildInfo* buildInfo)
     , startRising(this->settings1 >> 0x14 & 0xF) // nybble 7
     , horizontal(this->settings1 >> 0x10 & 0xF) // nybble 8
 { }
-
-Actor* ParaBones::build(const ActorBuildInfo* buildInfo) {
-    return new ParaBones(buildInfo);
-}
 
 u32 ParaBones::onCreate() {
     this->rotation.y = Direction::directionToRotationList[Direction::Left] + 1000;

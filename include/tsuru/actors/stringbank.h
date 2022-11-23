@@ -21,8 +21,6 @@ public:
     StringBank(const ActorBuildInfo* buildInfo);
     virtual ~StringBank() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
 
     // Extracts the actor's nybbles array into the provided buffer.

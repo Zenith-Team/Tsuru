@@ -11,8 +11,6 @@ public:
     Biddybud(const ActorBuildInfo* buildInfo);
     virtual ~Biddybud() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -49,7 +47,7 @@ CREATE_STATE(Biddybud, Move);
 CREATE_STATE(Biddybud, Die);
 CREATE_STATE(Biddybud, DieSquish);
 
-const Profile BiddybudProfile(&Biddybud::build, ProfileID::Biddybud);
+REGISTER_PROFILE(Biddybud, ProfileID::Biddybud);
 PROFILE_RESOURCES(ProfileID::Biddybud, Profile::LoadResourcesAt::Course, "tenten_w");
 
 HitboxCollider::Info Biddybud::collisionInfo = {
@@ -66,10 +64,6 @@ Biddybud::Biddybud(const ActorBuildInfo* buildInfo)
     , effectScale(0.5, 0.5, 0.5)
     , effectOffset(0, 0, 0)
 { }
-
-Actor* Biddybud::build(const ActorBuildInfo* buildInfo) {
-    return new Biddybud(buildInfo);
-}
 
 u32 Biddybud::onCreate() {
     this->color = (this->settings1 >> 0x1C & 0xF); // nybble 5

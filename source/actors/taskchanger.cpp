@@ -10,20 +10,14 @@ public:
     TaskChanger(const ActorBuildInfo* buildInfo);
     virtual ~TaskChanger() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
 };
 
-const Profile TaskChangerProfile(&TaskChanger::build, ProfileID::TaskChanger);
+REGISTER_PROFILE(TaskChanger, ProfileID::TaskChanger);
 
 TaskChanger::TaskChanger(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
 { }
-
-Actor* TaskChanger::build(const ActorBuildInfo* buildInfo) {
-    return new TaskChanger(buildInfo);
-}
 
 #define DISABLE // Remove this line to use
 

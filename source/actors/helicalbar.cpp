@@ -44,8 +44,6 @@ public:
     HelicalBar(const ActorBuildInfo* buildInfo);
     virtual ~HelicalBar() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 beforeCreate() override;
     u32 onCreate() override;
     u32 onExecute() override;
@@ -86,7 +84,7 @@ CREATE_STATE(HelicalBar, OneBar);
 CREATE_STATE(HelicalBar, TwoBars);
 CREATE_STATE(HelicalBar, ThreeBars);
 
-const Profile HelicalBarProfile(&HelicalBar::build, ProfileID::HelicalBar);
+REGISTER_PROFILE(HelicalBar, ProfileID::HelicalBar);
 PROFILE_RESOURCES(ProfileID::HelicalBar, Profile::LoadResourcesAt::Course, "firebar_L", "center_firebar");
 
 const ShapedCollider::Info HelicalBar::colliderInfo = {
@@ -102,10 +100,6 @@ HelicalBar::HelicalBar(const ActorBuildInfo* buildInfo)
     , fireRotate(0)
     , animate(false)
 { }
-
-Actor* HelicalBar::build(const ActorBuildInfo* buildInfo) {
-    return new HelicalBar(buildInfo);
-}
 
 u32 HelicalBar::beforeCreate() {
     this->centerModel = ModelWrapper::create("center_firebar", "center_firebar");

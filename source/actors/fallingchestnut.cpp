@@ -12,8 +12,6 @@ public:
     FallingChestnut(const ActorBuildInfo* buildInfo);
     virtual ~FallingChestnut() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -33,7 +31,7 @@ CREATE_STATE(FallingChestnut, Idle);
 CREATE_STATE(FallingChestnut, Falling);
 CREATE_STATE(FallingChestnut, OnGround);
 
-const Profile FallingChestnutProfile(&FallingChestnut::build, ProfileID::FallingChestnut);
+REGISTER_PROFILE(FallingChestnut, ProfileID::FallingChestnut);
 PROFILE_RESOURCES(ProfileID::FallingChestnut, Profile::LoadResourcesAt::Course, "iga_kuribo");
 
 const HitboxCollider::Info FallingChestnut::collisionInfo = {
@@ -47,10 +45,6 @@ const ActorPhysicsMgr::Sensor FallingChestnut::belowSensor = {
 FallingChestnut::FallingChestnut(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)
 { }
-
-Actor* FallingChestnut::build(const ActorBuildInfo* buildInfo) {
-    return new FallingChestnut(buildInfo);
-}
 
 u32 FallingChestnut::onCreate() {
     this->model = ModelWrapper::create("iga_kuribo", "iga_kuribo");

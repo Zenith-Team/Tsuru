@@ -8,7 +8,7 @@ const ActorInfo StringBankActorInfo = {
     Vec2i(0, 0), Vec2i(0, 0), Vec2i(0, 0), 0, 0, 0, 0, ActorInfo::Flags::IgnoreSpawnRange
 };
 
-const Profile StringBankProfile(&StringBank::build, ProfileID::StringBank, "StringBank", &StringBankActorInfo);
+REGISTER_PROFILE(StringBank, ProfileID::StringBank, "StringBank", &StringBankActorInfo);
 
 StringBank::StringBank(const ActorBuildInfo* buildInfo)
     : Actor(buildInfo)
@@ -17,10 +17,6 @@ StringBank::StringBank(const ActorBuildInfo* buildInfo)
     , layer(buildInfo->layer)
     , bankID(this->initialStateFlag)
 { }
-
-Actor* StringBank::build(const ActorBuildInfo* buildInfo) {
-    return new StringBank(buildInfo);
-}
 
 u32 StringBank::onCreate() {
     if (this->bankID == 0) return 2;

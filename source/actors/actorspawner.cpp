@@ -9,8 +9,6 @@ public:
     ActorSpawner(const ActorBuildInfo* buildInfo);
     virtual ~ActorSpawner() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
 
@@ -19,16 +17,12 @@ public:
     bool spawned;
 };
 
-const Profile ActorSpawnerProfile(&ActorSpawner::build, ProfileID::ActorSpawner);
+REGISTER_PROFILE(ActorSpawner, ProfileID::ActorSpawner);
 
 ActorSpawner::ActorSpawner(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
     , spawned(false)
 { }
-
-Actor* ActorSpawner::build(const ActorBuildInfo* buildInfo) {
-    return new ActorSpawner(buildInfo);
-}
 
 u32 ActorSpawner::onCreate() {
     if (!this->eventID1) {

@@ -6,7 +6,7 @@ class Poison : public EnvTerrain {
     SEAD_RTTI_OVERRIDE(Poison, EnvTerrain);
 
 public:
-    // TODO
+    Poison(const ActorBuildInfo* buildInfo);
 
-    static Actor* build(const ActorBuildInfo* info);
+    // TODO
 };

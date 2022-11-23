@@ -16,8 +16,6 @@ public:
     Cataquack(const ActorBuildInfo* buildInfo);
     virtual ~Cataquack() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -49,7 +47,7 @@ const ActorInfo CataquackActorInfo = {
     Vec2i(8, -8), Vec2i(8, -8), Vec2i(32, 32), 0, 0, 0, 0, 0
 };
 
-const Profile CataquackProfile(&Cataquack::build, ProfileID::Cataquack, "Cataquack", &CataquackActorInfo, Profile::Flags::DontRenderOffScreen);
+REGISTER_PROFILE(Cataquack, ProfileID::Cataquack, "Cataquack", &CataquackActorInfo, Profile::Flags::DontRenderOffScreen);
 PROFILE_RESOURCES(ProfileID::Cataquack, Profile::LoadResourcesAt::Course, "poihana");
 
 Cataquack::Cataquack(const ActorBuildInfo* buildInfo)
@@ -60,10 +58,6 @@ Cataquack::Cataquack(const ActorBuildInfo* buildInfo)
     , targetInitialY(0.0f)
     , launchHeight(128.0f)
 { }
-
-Actor* Cataquack::build(const ActorBuildInfo* buildInfo) {
-    return new Cataquack(buildInfo);
-}
 
 const HitboxCollider::Info Cataquack::collisionInfo = {
     Vec2f(0.0f, 14.0f), Vec2f(11.0f, 14.0f), HitboxCollider::Shape::Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFBFFFF, 0, &Cataquack::collisionCallback

@@ -9,23 +9,17 @@ public:
     EffectSpawner(const ActorBuildInfo* buildInfo);
     virtual ~EffectSpawner() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
 
     bool spawned;
 };
 
-const Profile EffectSpawnerProfile(&EffectSpawner::build, ProfileID::EffectSpawner);
+REGISTER_PROFILE(EffectSpawner, ProfileID::EffectSpawner);
 
 EffectSpawner::EffectSpawner(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
 { }
-
-Actor* EffectSpawner::build(const ActorBuildInfo* buildInfo) {
-    return new EffectSpawner(buildInfo);
-}
 
 u32 EffectSpawner::onCreate() {
     return this->onExecute();

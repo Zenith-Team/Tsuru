@@ -13,10 +13,6 @@ public:
 
     virtual ~UniversalBossController() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo) {
-        return new UniversalBossController(buildInfo);
-    }
-
     Boss* getTargetBoss() override {
         if (this->firstIteration) {
             this->firstIteration = false;
@@ -45,4 +41,4 @@ public:
     bool firstIteration;
 };
 
-const Profile UniversalBossControllerProfile(&UniversalBossController::build, ProfileID::UniversalBossController);
+REGISTER_PROFILE(UniversalBossController, ProfileID::UniversalBossController);

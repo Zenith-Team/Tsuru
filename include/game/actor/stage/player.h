@@ -11,8 +11,6 @@ public:
     Player(const ActorBuildInfo* buildInfo);
     virtual ~Player();
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
 
     u32 beforeExecute() override;

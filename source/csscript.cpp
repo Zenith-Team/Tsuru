@@ -2,17 +2,13 @@
 #include "game/actor/actormgr.h"
 #include "game/csscriptmgr.h"
 
-const Profile CSScriptLoaderProfile(&CSScriptLoader::build, ProfileID::CSScriptLoader);
+REGISTER_PROFILE(CSScriptLoader, ProfileID::CSScriptLoader);
 CSScriptLoader* CSScriptLoader::instance = nullptr;
 
 CSScriptLoader::CSScriptLoader(const ActorBuildInfo* buildInfo)
     : CourseSelectActor(buildInfo)
     , wmscFile(nullptr)
 { }
-
-Actor* CSScriptLoader::build(const ActorBuildInfo* buildInfo) {
-    return new CSScriptLoader(buildInfo);
-}
 
 u32 CSScriptLoader::onCreate() {
     instance = this;

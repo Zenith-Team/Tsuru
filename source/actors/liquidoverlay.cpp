@@ -13,8 +13,6 @@ public:
     LiquidOverlay(const ActorBuildInfo* buildInfo);
     virtual ~LiquidOverlay() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
 
@@ -24,17 +22,13 @@ public:
     Rect targetLiquidLocation;
 };
 
-const Profile LiquidOverlayProfile(&LiquidOverlay::build, ProfileID::LiquidOverlay, "LiquidOverlay", nullptr, 0);
+REGISTER_PROFILE(LiquidOverlay, ProfileID::LiquidOverlay);
 
 LiquidOverlay::LiquidOverlay(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
     , timers()
     , targetLiquidLocation()
 { }
-
-Actor* LiquidOverlay::build(const ActorBuildInfo* buildInfo) {
-    return new LiquidOverlay(buildInfo);
-}
 
 u32 LiquidOverlay::onCreate() {
     // Retrieve the target location containing the liquid by the ID in nybble 5

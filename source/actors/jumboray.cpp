@@ -11,8 +11,6 @@ public:
     JumboRay(const ActorBuildInfo* buildInfo);
     virtual ~JumboRay() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -22,17 +20,13 @@ public:
     SolidOnTopCollider collider;
 };
 
-const Profile JumboRayProfile(&JumboRay::build, ProfileID::JumboRay);
+REGISTER_PROFILE(JumboRay, ProfileID::JumboRay);
 PROFILE_RESOURCES(ProfileID::JumboRay, Profile::LoadResourcesAt::Course, "star_coin");
 
 JumboRay::JumboRay(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
     , model(nullptr)
 { }
-
-Actor* JumboRay::build(const ActorBuildInfo* buildInfo) {
-    return new JumboRay(buildInfo);
-}
 
 u32 JumboRay::onCreate() {
     this->model = ModelWrapper::create("star_coin", "star_coinA");

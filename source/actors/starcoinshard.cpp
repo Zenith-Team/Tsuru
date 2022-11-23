@@ -13,8 +13,6 @@ public:
     StarCoinShard(const ActorBuildInfo* buildInfo);
     virtual ~StarCoinShard() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -35,16 +33,14 @@ public:
     StarCoinShardMgr(const ActorBuildInfo* buildInfo);
     virtual ~StarCoinShardMgr() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onExecute() override;
 
     u32 collectedCount;
     u32 id;
 };
 
-const Profile StarCoinShardProfile(&StarCoinShard::build, ProfileID::StarCoinShard);
-const Profile StarCoinShardMgrProfile(&StarCoinShardMgr::build, ProfileID::StarCoinShardMgr);
+REGISTER_PROFILE(StarCoinShard, ProfileID::StarCoinShard);
+REGISTER_PROFILE(StarCoinShardMgr, ProfileID::StarCoinShardMgr);
 
 PROFILE_RESOURCES(ProfileID::StarCoinShard, Profile::LoadResourcesAt::Course, "star_shard");
 PROFILE_RESOURCES(ProfileID::StarCoinShardMgr, Profile::LoadResourcesAt::Course, "star_coin");
@@ -58,10 +54,6 @@ StarCoinShard::StarCoinShard(const ActorBuildInfo* buildInfo)
     , model(nullptr)
     , mgr(nullptr)
 { }
-
-Actor* StarCoinShard::build(const ActorBuildInfo* buildInfo) {
-    return new StarCoinShard(buildInfo);
-}
 
 u32 StarCoinShard::onCreate() {
     this->model = ModelWrapper::create("star_shard", "star_shard");
@@ -125,10 +117,6 @@ StarCoinShardMgr::StarCoinShardMgr(const ActorBuildInfo* buildInfo)
     , collectedCount(0)
     , id(buildInfo->eventID1 >> 0x4 & 0xF)
 { }
-
-Actor* StarCoinShardMgr::build(const ActorBuildInfo* buildInfo) {
-    return new StarCoinShardMgr(buildInfo);
-}
 
 u32 StarCoinShardMgr::onExecute() {
     if (this->collectedCount >= (this->eventID1 & 0xF)) {

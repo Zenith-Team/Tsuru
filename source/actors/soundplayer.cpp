@@ -9,23 +9,17 @@ public:
     SoundPlayer(const ActorBuildInfo* buildInfo);
     virtual ~SoundPlayer() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
 
     bool played;
 };
 
-const Profile SoundPlayerProfile(&SoundPlayer::build, ProfileID::SoundPlayer);
+REGISTER_PROFILE(SoundPlayer, ProfileID::SoundPlayer);
 
 SoundPlayer::SoundPlayer(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
 { }
-
-Actor* SoundPlayer::build(const ActorBuildInfo* buildInfo) {
-    return new SoundPlayer(buildInfo);
-}
 
 u32 SoundPlayer::onCreate() {
     return this->onExecute();

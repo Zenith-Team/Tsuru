@@ -21,8 +21,6 @@ public:
     BeepBlock(const ActorBuildInfo* buildInfo);
     virtual ~BeepBlock() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -47,7 +45,7 @@ CREATE_STATE(BeepBlock, RedDisabled);
 CREATE_STATE(BeepBlock, BlueEnabled);
 CREATE_STATE(BeepBlock, BlueDisabled);
 
-const Profile BeepBlockProfile(&BeepBlock::build, ProfileID::BeepBlock);
+REGISTER_PROFILE(BeepBlock, ProfileID::BeepBlock);
 PROFILE_RESOURCES(ProfileID::BeepBlock, Profile::LoadResourcesAt::Course, "block_beep");
 
 const ShapedCollider::Info BeepBlock::colliderInfo = {
@@ -62,10 +60,6 @@ BeepBlock::BeepBlock(const ActorBuildInfo* buildInfo)
     , rectCollider()
     , beepBlockType(BeepBlock::Color::Blue)
 { }
-
-Actor* BeepBlock::build(const ActorBuildInfo* buildInfo) {
-    return new BeepBlock(buildInfo);
-}
 
 u32 BeepBlock::onCreate() {
     this->rectCollider.init(this, colliderInfo);

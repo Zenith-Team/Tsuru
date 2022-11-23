@@ -9,20 +9,14 @@ public:
     PowerupSwitcher(const ActorBuildInfo* buildInfo);
     virtual ~PowerupSwitcher() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onExecute() override;
 };
 
-const Profile PowerupSwitcherProfile(&PowerupSwitcher::build, ProfileID::PowerupSwitcher);
+REGISTER_PROFILE(PowerupSwitcher, ProfileID::PowerupSwitcher);
 
 PowerupSwitcher::PowerupSwitcher(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
 { }
-
-Actor* PowerupSwitcher::build(const ActorBuildInfo* buildInfo) {
-    return new PowerupSwitcher(buildInfo);
-}
 
 u32 PowerupSwitcher::onExecute() {
     if (EventMgr::instance()->isActive((this->eventID1 >> 0x4 & 0xF) - 1)) {

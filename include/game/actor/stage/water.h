@@ -6,7 +6,7 @@ class Water : public EnvTerrain {
     SEAD_RTTI_OVERRIDE(Water, EnvTerrain);
 
 public:
-    // TODO
+    Water(const ActorBuildInfo* buildInfo);
 
-    static Actor* build(const ActorBuildInfo* info);
+    // TODO
 };

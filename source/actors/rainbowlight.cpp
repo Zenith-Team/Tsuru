@@ -10,8 +10,6 @@ public:
     RainbowLight(const ActorBuildInfo* buildInfo);
     virtual ~RainbowLight() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onDraw() override;
 
@@ -21,19 +19,11 @@ public:
     f32 lightAttenuationRadius;
 };
 
-const ActorInfo RainbowLightActorInfo = {
-    Vec2i(0, 0), Vec2i(0, 0), Vec2i(240, 240), 0, 0, 0, 0, 0
-};
-
-const Profile RainbowLightProfile(&RainbowLight::build, ProfileID::RainbowLight, "RainbowLight", nullptr, 0);
+REGISTER_PROFILE(RainbowLight, ProfileID::RainbowLight);
 
 RainbowLight::RainbowLight(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
 { }
-
-Actor* RainbowLight::build(const ActorBuildInfo* buildInfo) {
-    return new RainbowLight(buildInfo);
-}
 
 u32 RainbowLight::onCreate() {
     // Nybble 2 squared

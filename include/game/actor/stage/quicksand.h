@@ -6,7 +6,7 @@ class Quicksand : public EnvTerrain {
     SEAD_RTTI_OVERRIDE(Quicksand, EnvTerrain);
 
 public:
-    // TODO
+    Quicksand(const ActorBuildInfo* buildInfo);
 
-    static Actor* build(const ActorBuildInfo* info);
+    // TODO
 };

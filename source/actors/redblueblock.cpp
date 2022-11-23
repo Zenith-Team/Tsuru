@@ -14,8 +14,6 @@ public:
     RedBlueBlock(const ActorBuildInfo* buildInfo);
     virtual ~RedBlueBlock() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -33,7 +31,7 @@ public:
 CREATE_STATE(RedBlueBlock, Off);
 CREATE_STATE(RedBlueBlock, On);
 
-const Profile RedBlueBlockProfile(&RedBlueBlock::build, ProfileID::RedBlueBlock);
+REGISTER_PROFILE(RedBlueBlock, ProfileID::RedBlueBlock);
 PROFILE_RESOURCES(ProfileID::RedBlueBlock, Profile::LoadResourcesAt::Course, "block_rdbl");
 
 const ShapedCollider::Info RedBlueBlock::colliderInfo = {
@@ -43,10 +41,6 @@ const ShapedCollider::Info RedBlueBlock::colliderInfo = {
 RedBlueBlock::RedBlueBlock(const ActorBuildInfo* buildInfo)
     : MultiStateActor(buildInfo)
 { }
-
-Actor* RedBlueBlock::build(const ActorBuildInfo* buildInfo) {
-    return new RedBlueBlock(buildInfo);
-}
 
 u32 RedBlueBlock::onCreate() {
     this->position.y -= 8.0f;

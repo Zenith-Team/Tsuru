@@ -14,8 +14,6 @@ public:
     ModelLoader(const ActorBuildInfo* buildInfo);
     virtual ~ModelLoader() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -26,16 +24,12 @@ public:
     ModelWrapper* model;
 };
 
-const Profile ModelLoaderProfile(&ModelLoader::build, ProfileID::ModelLoader);
+REGISTER_PROFILE(ModelLoader, ProfileID::ModelLoader);
 
 ModelLoader::ModelLoader(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
     , model(nullptr)
 { }
-
-Actor* ModelLoader::build(const ActorBuildInfo* buildInfo) {
-    return new ModelLoader(buildInfo);
-}
 
 u32 ModelLoader::onCreate() {
     u8 modelFileBankID = this->settings1 >> 0x18 & 0xFF; // Nybbles 5-6

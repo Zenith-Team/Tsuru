@@ -18,8 +18,6 @@ public:
     Flaptor(const ActorBuildInfo* buildInfo);
     virtual ~Flaptor() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -47,7 +45,7 @@ CREATE_STATE(Flaptor, DieSquish);
 CREATE_STATE(Flaptor, Die);
 CREATE_STATE(Flaptor, Land);
 
-const Profile FlaptorProfile(&Flaptor::build, ProfileID::Flaptor);
+REGISTER_PROFILE(Flaptor, ProfileID::Flaptor);
 PROFILE_RESOURCES(ProfileID::Flaptor, Profile::LoadResourcesAt::Course, "mokinger");
 
 const HitboxCollider::Info Flaptor::collisionInfo = {
@@ -62,10 +60,6 @@ Flaptor::Flaptor(const ActorBuildInfo* buildInfo)
     , timer(0.0f)
     , moveType()
 { }
-
-Actor* Flaptor::build(const ActorBuildInfo* buildInfo) {
-    return new Flaptor(buildInfo);
-}
 
 u32 Flaptor::onCreate() {
     this->model = ModelWrapper::create("mokinger", "mokinger", 1);

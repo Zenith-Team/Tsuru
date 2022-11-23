@@ -12,8 +12,6 @@ public:
     TimeClock(const ActorBuildInfo* buildInfo);
     virtual ~TimeClock() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -24,17 +22,13 @@ public:
     static const HitboxCollider::Info collisionInfo;
 };
 
-const Profile TimeClockProfile(&TimeClock::build, ProfileID::TimeClock);
+REGISTER_PROFILE(TimeClock, ProfileID::TimeClock);
 PROFILE_RESOURCES(ProfileID::TimeClock, Profile::LoadResourcesAt::Course, "timeclock");
 
 TimeClock::TimeClock(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
     , model(nullptr)
 { }
-
-Actor* TimeClock::build(const ActorBuildInfo* buildInfo) {
-    return new TimeClock(buildInfo);
-}
 
 const HitboxCollider::Info TimeClock::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(12.0f, 12.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &TimeClock::collisionCallback

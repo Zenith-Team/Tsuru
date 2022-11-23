@@ -11,21 +11,15 @@ public:
     SwitchBlockEventActivator(const ActorBuildInfo* buildInfo);
     virtual ~SwitchBlockEventActivator() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onExecute() override;
 };
 
-const Profile SwitchBlockEventActivatorProfile(&SwitchBlockEventActivator::build, ProfileID::SwitchBlockEventActivator);
+REGISTER_PROFILE(SwitchBlockEventActivator, ProfileID::SwitchBlockEventActivator);
 
 SwitchBlockEventActivator::SwitchBlockEventActivator(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
 {
     PRINT(this->eventID1 >> 0x4 & 0xFF);
-}
-
-Actor* SwitchBlockEventActivator::build(const ActorBuildInfo* buildInfo) {
-    return new SwitchBlockEventActivator(buildInfo);
 }
 
 u32 SwitchBlockEventActivator::onExecute() {

@@ -15,9 +15,6 @@ class ColdFuzzy : public Enemy {
 public:
     ColdFuzzy(const ActorBuildInfo* buildInfo);
     virtual ~ColdFuzzy() { }
-
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -42,7 +39,7 @@ public:
     } playerTimers[4];
 };
 
-const Profile ColdFuzzyProfile(&ColdFuzzy::build, ProfileID::ColdFuzzy);
+REGISTER_PROFILE(ColdFuzzy, ProfileID::ColdFuzzy);
 PROFILE_RESOURCES(ProfileID::ColdFuzzy, Profile::LoadResourcesAt::Course, "coldobon");
 
 HitboxCollider::Info ColdFuzzy::collisionInfo = {
@@ -53,10 +50,6 @@ ColdFuzzy::ColdFuzzy(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)
     , model(nullptr)
 { }
-
-Actor* ColdFuzzy::build(const ActorBuildInfo* buildInfo) {
-    return new ColdFuzzy(buildInfo);
-}
 
 u32 ColdFuzzy::onCreate() {
     this->model = ModelWrapper::create("coldobon", "coldobon", 1);

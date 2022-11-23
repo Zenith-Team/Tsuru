@@ -17,8 +17,6 @@ public:
     MagicPlatform(const ActorBuildInfo* buildInfo);
     virtual ~MagicPlatform() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -44,7 +42,7 @@ const ActorInfo MagicPlatformActorInfo = {
     Vec2i(0, 0), Vec2i(0, 0), Vec2i(0, 0), 0, 0, 0, 0, ActorInfo::Flags::IgnoreSpawnRange | ActorInfo::Flags::Unknown1
 };
 
-const Profile MagicPlatformProfile(&MagicPlatform::build, ProfileID::MagicPlatform, "MagicPlatform", &MagicPlatformActorInfo);
+REGISTER_PROFILE(MagicPlatform, ProfileID::MagicPlatform, "MagicPlatform", &MagicPlatformActorInfo);
 
 StageActorCallbackTable MagicPlatformCallbackTable = {
                                                          (nullptr),
@@ -70,10 +68,6 @@ MagicPlatform::MagicPlatform(const ActorBuildInfo* buildInfo)
     , callbackTable(&MagicPlatformCallbackTable)
     , solidOnTopCollider()
 { }
-
-Actor* MagicPlatform::build(const ActorBuildInfo* buildInfo) {
-    return new MagicPlatform(buildInfo);
-}
 
 u32 MagicPlatform::onCreate() {
     Level::Area::Location* location = Level::instance()->getArea(LevelInfo::instance()->area)->getLocation(nullptr, this->settings1 & 0xFF);

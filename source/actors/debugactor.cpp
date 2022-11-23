@@ -10,20 +10,14 @@ public:
     DebugActor(const ActorBuildInfo* buildInfo);
     virtual ~DebugActor() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onExecute() override;
 };
 
-const Profile DebugActorProfile(&DebugActor::build, ProfileID::DebugActor);
+REGISTER_PROFILE(DebugActor, ProfileID::DebugActor);
 
 DebugActor::DebugActor(const ActorBuildInfo* buildInfo)
     : Actor(buildInfo)
 { }
-
-Actor* DebugActor::build(const ActorBuildInfo* buildInfo) {
-    return new DebugActor(buildInfo);
-}
 
 u32 DebugActor::onExecute() {
     if (this->settings1 >> 0x8 & 0xF) { // Nybble 10, Log player inputs

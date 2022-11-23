@@ -1047,7 +1047,7 @@
     sInstance__9PlayerMgr = 0x101E6994;
 
 # Poison
-    build__6PoisonSFPC14ActorBuildInfo = 0x26f6e6c;
+    __ct__6PoisonFPC14ActorBuildInfo = 0x26f5f70;
 
 # Powerup
     RTTI__7Powerup = 0x101ead38;
@@ -1135,7 +1135,7 @@
     setFrameBufferTexture__7PtclMgrFRCQ2_3agl14TextureSamplerfN32 = 0x22ada08;
 
 # Quicksand
-    build__9QuicksandSFPC14ActorBuildInfo = 0x26f7c84;
+    __ct__9QuicksandFPC14ActorBuildInfo = 0x26f6e78;
 
 # RDashMgr
     sInstance__8RDashMgr = 0x101E7D9C;
@@ -1290,7 +1290,7 @@
     getTilePtrCurrentArea__7TileMgrSFUsT1UcPUi = 0x2685000;
 
 # Water
-    build__5WaterSFPC14ActorBuildInfo = 0x26f9af0;
+    __ct__5WaterFPC14ActorBuildInfo = 0x26f7c90;
 
 # WindGenerator
     __dt__13WindGeneratorFv = 0x288EFA0;

@@ -11,8 +11,6 @@ public:
     FakeActor(const ActorBuildInfo* buildInfo);
     virtual ~FakeActor() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -45,7 +43,7 @@ CREATE_STATE(FakeActor, Checkpoint);
 CREATE_STATE(FakeActor, GoalPole);
 CREATE_STATE(FakeActor, StarCoin);
 
-const Profile FakeCheckpointProfile(&FakeActor::build, ProfileID::FakeActor);
+REGISTER_PROFILE(FakeActor, ProfileID::FakeActor);
 PROFILE_RESOURCES(ProfileID::FakeActor, Profile::LoadResourcesAt::Course, "middle_flag", "star_coin", "goal_set");
 
 FakeActor::FakeActor(const ActorBuildInfo* buildInfo)
@@ -58,10 +56,6 @@ FakeActor::FakeActor(const ActorBuildInfo* buildInfo)
     , effectOffset(0.0f, 0.0f, 0.0f)
     , effectScale(1.0f, 1.0f, 1.0f)
 { }
-
-Actor* FakeActor::build(const ActorBuildInfo* buildInfo) {
-    return new FakeActor(buildInfo);
-}
 
 u32 FakeActor::onCreate() {
     switch (this->settings1 & 0xF) { // Nybble 12

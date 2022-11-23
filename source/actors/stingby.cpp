@@ -9,8 +9,6 @@ public:
     Stingby(const ActorBuildInfo* buildInfo);
     virtual ~Stingby() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
     u32 onDraw() override;
@@ -34,7 +32,7 @@ CREATE_STATE(Stingby, Notice);
 CREATE_STATE(Stingby, Chase);
 CREATE_STATE(Stingby, Die);
 
-const Profile StingbyProfile(&Stingby::build, ProfileID::Stingby);
+REGISTER_PROFILE(Stingby, ProfileID::Stingby);
 PROFILE_RESOURCES(ProfileID::Stingby, Profile::LoadResourcesAt::Course, "hacchin000");
 
 const HitboxCollider::Info Stingby::collisionInfo = {
@@ -46,10 +44,6 @@ Stingby::Stingby(const ActorBuildInfo* buildInfo)
     , model(nullptr)
     , idleCenter(buildInfo->position)
 { }
-
-Actor* Stingby::build(const ActorBuildInfo* buildInfo) {
-    return new Stingby(buildInfo);
-}
 
 u32 Stingby::onCreate() {
     this->model = ModelWrapper::create("hacchin000", "hacchin000", 4);

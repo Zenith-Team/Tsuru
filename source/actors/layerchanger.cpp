@@ -10,8 +10,6 @@ public:
     LayerChanger(const ActorBuildInfo* buildInfo);
     virtual ~LayerChanger() { }
 
-    static Actor* build(const ActorBuildInfo* buildInfo);
-
     u32 onCreate() override;
     u32 onExecute() override;
 
@@ -20,15 +18,11 @@ public:
     bool isDone;
 };
 
-const Profile LayerChangerProfile(&LayerChanger::build, ProfileID::LayerChanger);
+REGISTER_PROFILE(LayerChanger, ProfileID::LayerChanger);
 
 LayerChanger::LayerChanger(const ActorBuildInfo* buildInfo)
     : StageActor(buildInfo)
 { }
-
-Actor* LayerChanger::build(const ActorBuildInfo* buildInfo) {
-    return new LayerChanger(buildInfo);
-}
 
 u32 LayerChanger::onCreate() {
     this->trigEvent = (this->eventID1 & 0xFF) - 1; // nybbles 1-2
