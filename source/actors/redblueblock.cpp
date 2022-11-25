@@ -4,7 +4,6 @@
 #include "game/graphics/model/modelnw.h"
 #include "game/collision/solid/rectcollider.h"
 #include "game/collision/collidermgr.h"
-
 #define SwitchBlockState TsuruSaveMgr::sSaveData.switchBlockBlue[SaveMgr::instance()->saveData->header.lastSessionSaveSlot]
 
 class RedBlueBlock : public MultiStateActor {
@@ -25,7 +24,7 @@ public:
 
     ModelWrapper* model;
     RectCollider collider;
-    bool red; // else blue
+    bool redBlueState; // true for blue, false for red 
 };
 
 CREATE_STATE(RedBlueBlock, Off);
@@ -50,13 +49,16 @@ u32 RedBlueBlock::onCreate() {
     this->model->playTexPatternAnim("switch");
     this->model->texPatternAnims[0]->frameCtrl.speed = 0;
 
-    this->red = (this->eventID1 >> 0x4 & 0xF) == 0;
+    this->redBlueState = (this->eventID1 >> 0x4 & 0xF); // nybble 1
     this->collider.init(this, colliderInfo);
 
-    if (SwitchBlockState != this->red) {
+    if (this->redBlueState) { // make it blue if it's supposed to be
+        this->model->texPatternAnims[0]->frameCtrl.currentFrame = 1;
+    }
+    
+    if (this->redBlueState == SwitchBlockState) {
         this->doStateChange(&StateID_On);
     } else {
-        this->model->texPatternAnims[0]->frameCtrl.currentFrame = 1;
         this->doStateChange(&StateID_Off);
     }
 
@@ -91,7 +93,7 @@ void RedBlueBlock::beginState_Off() {
 }
 
 void RedBlueBlock::executeState_Off() {
-    if (SwitchBlockState != this->red) {
+    if (SwitchBlockState == this->redBlueState) {
         this->doStateChange(&StateID_On);
     }
 }
@@ -107,7 +109,7 @@ void RedBlueBlock::beginState_On() {
 void RedBlueBlock::executeState_On() {
     this->collider.execute();
 
-    if (SwitchBlockState == this->red) {
+    if (SwitchBlockState != this->redBlueState) {
         this->doStateChange(&StateID_Off);
     }
 }

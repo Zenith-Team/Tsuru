@@ -3,6 +3,7 @@
 #include "game/graphics/model/modelnw.h"
 #include "game/savemgr.h"
 #include "game/actor/actormgr.h"
+#include "game/sound/sound.h"
 #include "log.h"
 
 #define SwitchBlockState TsuruSaveMgr::sSaveData.switchBlockBlue[SaveMgr::instance()->saveData->header.lastSessionSaveSlot]
@@ -81,6 +82,12 @@ void SwitchBlock::spawnItemUp() {
 
         SwitchBlock* sb = static_cast<SwitchBlock*>(*actor);
         sb->model->texPatternAnims[0]->frameCtrl.currentFrame = isBlue ? 1 : 0;
+
+        if (isBlue) {
+            playSound("SE_SYS_CE_DEL_STARCOIN", this->position);
+        } else {
+            playSound("SE_SYS_CE_PUT_STARCOIN", this->position);    
+        }
     }
 }
 
@@ -102,5 +109,11 @@ void SwitchBlock::spawnItemDown() {
 
         SwitchBlock* sb = static_cast<SwitchBlock*>(*actor);
         sb->model->texPatternAnims[0]->frameCtrl.currentFrame = isBlue ? 1 : 0;
+
+        if (isBlue) {
+            playSound("SE_SYS_CE_DEL_STARCOIN", this->position);
+        } else {
+            playSound("SE_SYS_CE_PUT_STARCOIN", this->position);    
+        }
     }
 }
