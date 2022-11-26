@@ -32,7 +32,7 @@ public:
 
     static Color::__type__ CurrentBeepBlockState;
 
-    static const ShapedCollider::Info colliderInfo;
+    static const PolygonCollider::Info colliderInfo;
 
     DECLARE_STATE(BeepBlock, RedEnabled);
     DECLARE_STATE(BeepBlock, RedDisabled);
@@ -48,7 +48,7 @@ CREATE_STATE(BeepBlock, BlueDisabled);
 REGISTER_PROFILE(BeepBlock, ProfileID::BeepBlock);
 PROFILE_RESOURCES(ProfileID::BeepBlock, Profile::LoadResourcesAt::Course, "block_beep");
 
-const ShapedCollider::Info BeepBlock::colliderInfo = {
+const PolygonCollider::Info BeepBlock::colliderInfo = {
     Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-8.0f, 8.0f), Vec2f(8.0f, -8.0f), 0
 };
 

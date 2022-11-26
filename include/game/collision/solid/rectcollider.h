@@ -1,12 +1,12 @@
 #pragma once
 
-#include "game/collision/solid/shapedcollider.h"
+#include "game/collision/solid/polygoncollider.h"
 
-class RectCollider : public ShapedCollider {
-    SEAD_RTTI_OVERRIDE(RectCollider, ShapedCollider);
+class RectCollider : public PolygonCollider {
+    SEAD_RTTI_OVERRIDE(RectCollider, PolygonCollider);
 
 public:
-    forceinline RectCollider() : ShapedCollider(4, points, nodes[0], nodes[1]) {
+    forceinline RectCollider() : PolygonCollider(4, points, nodes[0], nodes[1]) {
         for (u32 i = 0; i < 4; i++) {
             points[i].x = 0.0f;
             points[i].y = 0.0f;

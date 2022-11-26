@@ -1,9 +1,9 @@
 #include "game/task/areatask.h"
 #include "game/task/courseselecttask.h"
 #include "game/collision/collidermgr.h"
-#include "game/collision/solid/shapedcollider.h"
+#include "game/collision/solid/polygoncollider.h"
 #include "game/collision/solid/circularcollider.h"
-#include "game/collision/solid/solidontopcollider.h"
+#include "game/collision/solid/polylinecollider.h"
 #include "game/collision/actorphysicsmgr.h"
 #include "game/actor/actormgr.h"
 #include "game/actor/courseselect/cscollisionactor.h"
@@ -140,8 +140,8 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                 sead::PrimitiveRenderer::instance()->drawCircle32(Vec3f(collider->ownerInfo.position->x + collider->distToCenter.x + collider->_160.x, collider->ownerInfo.position->y + collider->distToCenter.y + collider->_160.y, 4000.0f), collider->radius, sead::colorPurple);
             }
 
-            else if (sead::IsDerivedFrom<SolidOnTopCollider, ColliderBase>(colliderBase)) {
-                SolidOnTopCollider* collider = static_cast<SolidOnTopCollider*>(colliderBase);
+            else if (sead::IsDerivedFrom<PolylineCollider, ColliderBase>(colliderBase)) {
+                PolylineCollider* collider = static_cast<PolylineCollider*>(colliderBase);
                 if (collider->points.size < 2) continue;
 
                 const Vec2f center = Vec2f((*collider->ownerInfo.position).x, (*collider->ownerInfo.position).y) + collider->distToCenter;
@@ -152,8 +152,8 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                 }
             }
 
-            else if (sead::IsDerivedFrom<ShapedCollider, ColliderBase>(colliderBase)) {
-                ShapedCollider* collider = static_cast<ShapedCollider*>(colliderBase);
+            else if (sead::IsDerivedFrom<PolygonCollider, ColliderBase>(colliderBase)) {
+                PolygonCollider* collider = static_cast<PolygonCollider*>(colliderBase);
                 if (collider->points.size < 2) continue;
 
                 const Vec2f center = Vec2f((*collider->ownerInfo.position).x, (*collider->ownerInfo.position).y) + collider->distToCenter;

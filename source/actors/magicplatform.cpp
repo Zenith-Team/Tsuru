@@ -1,7 +1,7 @@
 #include "game/actor/stage/stageactor.h"
 #include "game/movementhandler.h"
 #include "game/collision/solid/rectcollider.h"
-#include "game/collision/solid/solidontopcollider.h"
+#include "game/collision/solid/polylinecollider.h"
 #include "game/collision/collidermgr.h"
 #include "game/level/level.h"
 #include "game/level/levelinfo.h"
@@ -35,7 +35,7 @@ public:
     u8 collisionType;
     RectCollider rectCollider;
     StageActorCallbackTable* callbackTable;
-    SolidOnTopCollider solidOnTopCollider;
+    PolylineCollider solidOnTopCollider;
 };
 
 const ActorInfo MagicPlatformActorInfo = {
@@ -110,7 +110,7 @@ u32 MagicPlatform::onCreate() {
 
     switch (collisionType) {
         case 0: {
-            ShapedCollider::Info info = {
+            PolygonCollider::Info info = {
                 Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(this->tileSize.x * -8.0f, this->tileSize.y * 8.0f), Vec2f(this->tileSize.x * 8.0f, this->tileSize.y * -8.0f), 0
             };
 
@@ -132,7 +132,7 @@ u32 MagicPlatform::onCreate() {
                 Vec2f(this->tileSize.x * 8.0f, this->tileSize.y * 8.0f)
             };
 
-            SolidOnTopCollider::Info info = {
+            PolylineCollider::Info info = {
                 Vec2f(0.0f, 0.0f), 0.0f, 0.0f, points, 0
             };
 

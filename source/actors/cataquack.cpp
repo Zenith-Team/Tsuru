@@ -82,7 +82,7 @@ u32 Cataquack::onCreate() {
     this->hitboxCollider.init(this, &Cataquack::collisionInfo, nullptr);
     this->addHitboxColliders();
 
-    ShapedCollider::Info colliderInfo = {
+    PolygonCollider::Info colliderInfo = {
         Vec2f(0.0f, 14.0f), 0.0f, 0.0f, Vec2f(-5.5f, 10.0f), Vec2f(5.5f, -12.0f), 0
     };
 

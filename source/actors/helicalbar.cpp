@@ -73,7 +73,7 @@ public:
     u32 helixMultiplier;
     bool animate;
 
-    static const ShapedCollider::Info colliderInfo;
+    static const PolygonCollider::Info colliderInfo;
 
     DECLARE_STATE(HelicalBar, OneBar);
     DECLARE_STATE(HelicalBar, TwoBars);
@@ -87,7 +87,7 @@ CREATE_STATE(HelicalBar, ThreeBars);
 REGISTER_PROFILE(HelicalBar, ProfileID::HelicalBar);
 PROFILE_RESOURCES(ProfileID::HelicalBar, Profile::LoadResourcesAt::Course, "firebar_L", "center_firebar");
 
-const ShapedCollider::Info HelicalBar::colliderInfo = {
+const PolygonCollider::Info HelicalBar::colliderInfo = {
     Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-8.0f, 8.0f), Vec2f(8.0f, -8.0f), 0
 };
 

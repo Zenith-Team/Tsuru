@@ -19,7 +19,7 @@ public:
     Vec3f _17D0;
     Vec3f _17DC;
     RectCollider rectCollider;
-    ShapedCollider::Info colliderInfo;
+    PolygonCollider::Info colliderInfo;
     Vec2f _1A9C;
     u32 _1AA4;
     u32 _1AA8;

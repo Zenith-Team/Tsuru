@@ -1,5 +1,5 @@
 #include "game/actor/stage/stageactor.h"
-#include "game/collision/solid/solidontopcollider.h"
+#include "game/collision/solid/polylinecollider.h"
 #include "game/collision/collidermgr.h"
 #include "game/graphics/model/modelnw.h"
 #include "log.h"
@@ -17,7 +17,7 @@ public:
 
     ModelWrapper* model;
     f32 baseline;
-    SolidOnTopCollider collider;
+    PolylineCollider collider;
 };
 
 REGISTER_PROFILE(JumboRay, ProfileID::JumboRay);
@@ -33,7 +33,7 @@ u32 JumboRay::onCreate() {
     this->baseline = this->position.y;
 
     Vec2f points[2] = { Vec2f(-32.0f, 0.0f), Vec2f(32.0f, 0.0f) };
-    SolidOnTopCollider::Info collisionInfo = { Vec2f(0.0f, 0.0f), 0, 0, points, 0 };
+    PolylineCollider::Info collisionInfo = { Vec2f(0.0f, 0.0f), 0, 0, points, 0 };
 
     this->collider.init(this, collisionInfo, 2);
     this->collider.setType(ColliderBase::Type::Solid);

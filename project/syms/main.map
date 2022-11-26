@@ -1049,6 +1049,22 @@
 # Poison
     __ct__6PoisonFPC14ActorBuildInfo = 0x26f5f70;
 
+# PolygonCollider
+    __CPR64__init__15PolygonColliderFP10StageActorRCQ2_J6J4Info = 0x21ad3bc;
+    execute__15PolygonColliderFv = 0x21a871c;
+    __dt__15PolygonColliderFv = 0x21A7A04;
+    RTTI__15PolygonCollider = 0x101e9fb4;
+
+    # //! THIS IS PROBABLY WRONG THE CTOR IS INLINED TODO: FIX THIS FIX THIS
+    __ct__15PolygonColliderFiPQ2_4sead16Vector2__tm__2_fPQ2_12ColliderBase4NodeT3 = 0x21A7904;
+
+# PolylineCollider
+    RTTI__16PolylineCollider = 0x101E9FA8;
+    __ct__16PolylineColliderFv = 0x21a1d38;
+    __dt__16PolylineColliderFv = 0x21a1f18;
+    execute__16PolylineColliderFv = 0x21a2e0c;
+    __CPR81__init__16PolylineColliderFP10StageActorRCQ2_J6J4InfoiPQ2_4sead4Heap = 0x21a2378;
+
 # Powerup
     RTTI__7Powerup = 0x101ead38;
     __ct__7PowerupFPC14ActorBuildInfo = 0x251EBFC;
@@ -1180,24 +1196,8 @@
     playTexSrtAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FEE50;
     play__16TextureAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x250B1EC;
 
-# ShapedCollider
-    __CPR62__init__14ShapedColliderFP10StageActorRCQ2_J6J4Info = 0x21ad3bc;
-    execute__14ShapedColliderFv = 0x21a871c;
-    __dt__14ShapedColliderFv = 0x21A7A04;
-    RTTI__14ShapedCollider = 0x101e9fb4;
-
-    # //! THIS IS PROBABLY WRONG THE CTOR IS INLINED TODO: FIX THIS FIX THIS
-    __ct__14ShapedColliderFiPQ2_4sead16Vector2__tm__2_fPQ2_12ColliderBase4NodeT3 = 0x21A7904;
-
 # SkeletalAnimation
     play__17SkeletalAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FDADC;
-
-# SolidOnTopCollider
-    RTTI__18SolidOnTopCollider = 0x101E9FA8;
-    __ct__18SolidOnTopColliderFv = 0x21a1d38;
-    __dt__18SolidOnTopColliderFv = 0x21a1f18;
-    execute__18SolidOnTopColliderFv = 0x21a2e0c;
-    __CPR85__init__18SolidOnTopColliderFP10StageActorRCQ2_J6J4InfoiPQ2_4sead4Heap = 0x21a2378;
 
 # SoundSystem
     sInstance__11SoundSystem = 0x101E7C84;

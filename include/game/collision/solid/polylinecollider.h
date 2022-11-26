@@ -3,8 +3,8 @@
 #include "game/collision/solid/colliderbase.h"
 #include "sead/buffer.h"
 
-class SolidOnTopCollider : public ColliderBase { // Size: 0x178
-    SEAD_RTTI_OVERRIDE(SolidOnTopCollider, ColliderBase);
+class PolylineCollider : public ColliderBase { // Size: 0x178
+    SEAD_RTTI_OVERRIDE(PolylineCollider, ColliderBase);
 
 public:
     struct Info {
@@ -16,9 +16,9 @@ public:
     };
 
 public:
-    SolidOnTopCollider();
-    SolidOnTopCollider(s32 numPoints, Vec2f* points, Node* nodes1, Node* nodes2);
-    virtual ~SolidOnTopCollider();
+    PolylineCollider();
+    PolylineCollider(s32 numPoints, Vec2f* points, Node* nodes1, Node* nodes2);
+    virtual ~PolylineCollider();
 
     void vf34() override;
     void execute() override;

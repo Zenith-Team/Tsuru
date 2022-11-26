@@ -20,7 +20,7 @@ public:
     DECLARE_STATE(RedBlueBlock, Off);
     DECLARE_STATE(RedBlueBlock, On);
 
-    static const ShapedCollider::Info colliderInfo;
+    static const PolygonCollider::Info colliderInfo;
 
     ModelWrapper* model;
     RectCollider collider;
@@ -33,7 +33,7 @@ CREATE_STATE(RedBlueBlock, On);
 REGISTER_PROFILE(RedBlueBlock, ProfileID::RedBlueBlock);
 PROFILE_RESOURCES(ProfileID::RedBlueBlock, Profile::LoadResourcesAt::Course, "block_rdbl");
 
-const ShapedCollider::Info RedBlueBlock::colliderInfo = {
+const PolygonCollider::Info RedBlueBlock::colliderInfo = {
     Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-8.0f, 8.0f), Vec2f(8.0f, -8.0f), 0
 };
 
