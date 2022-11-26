@@ -8,7 +8,7 @@ class PolylineCollider : public ColliderBase { // Size: 0x178
 
 public:
     struct Info {
-        Vec2f distToCenter;
+        Vec2f offset;
         f32 _8;
         f32 _C;
         Vec2f* points;

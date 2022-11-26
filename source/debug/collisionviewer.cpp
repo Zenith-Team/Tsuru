@@ -137,14 +137,14 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
             if (sead::IsDerivedFrom<CircularCollider, ColliderBase>(colliderBase)) {
                 CircularCollider* collider = static_cast<CircularCollider*>(colliderBase);
 
-                sead::PrimitiveRenderer::instance()->drawCircle32(Vec3f(collider->ownerInfo.position->x + collider->distToCenter.x + collider->_160.x, collider->ownerInfo.position->y + collider->distToCenter.y + collider->_160.y, 4000.0f), collider->radius, sead::colorPurple);
+                sead::PrimitiveRenderer::instance()->drawCircle32(Vec3f(collider->ownerInfo.position->x + collider->offset.x + collider->_160.x, collider->ownerInfo.position->y + collider->offset.y + collider->_160.y, 4000.0f), collider->radius, sead::colorPurple);
             }
 
             else if (sead::IsDerivedFrom<PolylineCollider, ColliderBase>(colliderBase)) {
                 PolylineCollider* collider = static_cast<PolylineCollider*>(colliderBase);
                 if (collider->points.size < 2) continue;
 
-                const Vec2f center = Vec2f((*collider->ownerInfo.position).x, (*collider->ownerInfo.position).y) + collider->distToCenter;
+                const Vec2f center = Vec2f((*collider->ownerInfo.position).x, (*collider->ownerInfo.position).y) + collider->offset;
 
                 for (u32 i = 0; i < collider->nodes1.size; i++) {
                     const ColliderBase::Node& node = collider->nodes1[i];
@@ -156,7 +156,7 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                 PolygonCollider* collider = static_cast<PolygonCollider*>(colliderBase);
                 if (collider->points.size < 2) continue;
 
-                const Vec2f center = Vec2f((*collider->ownerInfo.position).x, (*collider->ownerInfo.position).y) + collider->distToCenter;
+                const Vec2f center = Vec2f((*collider->ownerInfo.position).x, (*collider->ownerInfo.position).y) + collider->offset;
 
                 for (u32 i = 0; i < collider->nodes1.size; i++) {
                     const ColliderBase::Node& node = collider->nodes1[i];

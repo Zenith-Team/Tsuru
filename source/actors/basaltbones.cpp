@@ -245,7 +245,7 @@ u32 BasaltBones::onExecute() {
         this->heat.execute(this->position + Vec3f(0, 8, 0), Vec3f(1.75f));
 
         for (u32 i = 0; i < 6; i++) {
-            this->bones[i].hitbox.colliderInfo.distToCenter = 9999;
+            this->bones[i].hitbox.colliderInfo.offset = 9999;
         }
     } else {
         this->heat.execute(0, 0);
@@ -651,7 +651,7 @@ void BasaltBones::executeState_Assemble() {
 
     for (u32 i = 0; i < 6; i++) {
         Bone& bone = this->bones[i];
-        bone.hitbox.colliderInfo.distToCenter = Vec2f(bone.position.x - this->position.x, bone.position.y - this->position.y);
+        bone.hitbox.colliderInfo.offset = Vec2f(bone.position.x - this->position.x, bone.position.y - this->position.y);
     }
 
     if (change) {
@@ -678,7 +678,7 @@ void BasaltBones::executeState_AssembleFinalize() {
     bool done = bone.easer.ease(bone.t);
     bone.bezier.execute(&bone.position, bone.t);
 
-    bone.hitbox.colliderInfo.distToCenter = Vec2f(bone.position.x - this->position.x, bone.position.y - this->position.y);
+    bone.hitbox.colliderInfo.offset = Vec2f(bone.position.x - this->position.x, bone.position.y - this->position.y);
 
     if (done) {
         for (u32 i = 0; i < 6; i++) {

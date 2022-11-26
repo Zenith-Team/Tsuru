@@ -38,8 +38,8 @@ public:
 
         static Info sDefault;
 
-        Vec2f distToCenter;     // 0
-        Vec2f distToEdge;       // 8
+        Vec2f offset;     // 0
+        Vec2f radius;       // 8
         Shape::__type__ shape;  // 10
         u32 _14;                // 14
         u32 _18;                // 18
@@ -48,9 +48,9 @@ public:
         u32 interactionMask;    // 24  Sets allowed interactions such as being pickup-able
         Callback callback;      // 28
 
-        void set(const Vec2f& distToCenter, const Vec2f& distToEdge, Shape::__type__ shape, u32 _14, u32 _18, u32 _1C, u32 collisionMask, u32 interactionMask, Callback callback) {
-            this->distToCenter = distToCenter;
-            this->distToEdge = distToEdge;
+        void set(const Vec2f& offset, const Vec2f& radius, Shape::__type__ shape, u32 _14, u32 _18, u32 _1C, u32 collisionMask, u32 interactionMask, Callback callback) {
+            this->offset = offset;
+            this->radius = radius;
             this->shape = shape;
             this->_14 = _14;
             this->_18 = _18;

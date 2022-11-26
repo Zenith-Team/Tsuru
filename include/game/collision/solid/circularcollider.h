@@ -7,7 +7,7 @@ class CircularCollider : public ColliderBase { // Size: 0x190
 
 public:
     struct Info {
-        Vec2f distToCenter;
+        Vec2f offset;
         Vec2f _8;
         Vec2f _10;
         f32 radius;

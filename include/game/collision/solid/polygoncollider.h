@@ -8,7 +8,7 @@ class PolygonCollider : public ColliderBase {
 
 public:
     struct Info {
-        Vec2f distToCenter;    // 0
+        Vec2f offset;          // 0
         f32 _8;                // 8
         f32 _C;                // C
         Vec2f topLeft;         // 10

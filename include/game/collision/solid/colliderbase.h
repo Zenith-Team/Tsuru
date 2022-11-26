@@ -171,7 +171,7 @@ public:
     StageActor* owner;                          // 90
     u32 _94;                                    // 94
     OwnerInfo ownerInfo;                        // 98
-    Vec2f distToCenter;                         // AC
+    Vec2f offset;                               // AC
     Vec2f _B4;                                  // B4
     Vec2f _BC;                                  // BC
     Vec2f _C4;                                  // C4
