@@ -181,12 +181,7 @@ bool ParaBones::collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) 
 }
 
 bool ParaBones::collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
-    Vec3f effectScale = 0.5f;
-    Effect::spawn(RP_Jugemu_CloudDisapp, &effectOrigin, nullptr, &effectScale);
-    this->isDeleted = true;
-
-    return true;
+    return this->collisionSlide(hcSelf, hcOther);
 }
 
 bool ParaBones::collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
@@ -202,12 +197,7 @@ bool ParaBones::collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* 
 }
 
 bool ParaBones::collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
-    Vec3f effectScale = 0.5f;
-    Effect::spawn(RP_Jugemu_CloudDisapp, &effectOrigin, nullptr, &effectScale);
-    this->isDeleted = true;
-
-    return true;
+    return this->collisionSlide(hcSelf, hcOther);
 }
 
 bool ParaBones::collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
