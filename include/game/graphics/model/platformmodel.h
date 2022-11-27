@@ -23,6 +23,10 @@ public:
         this->scale = 1.0f;
     }
 
+    /**
+     * NOTE: The width must be a multiple of 16, or else the segments will clip into each other
+    */
+
     void init();
     void update(Vec3f& pos, f32 width);
     void draw();
