@@ -292,12 +292,57 @@ inline void tprint<char*>(char* value) {
 }
 
 template <>
+inline void tprint<const char>(const char value) {
+    LOG("%c", value);
+
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+    }
+}
+
+template <>
+inline void tprint<char>(char value) {
+    LOG("%c", value);
+
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+    }
+}
+
+template <>
 inline void tprint<void*>(void* value) {
     if (fmt::_hexActive) {
         fmt::_hexActive = false;
         LOG("%p", value);
     } else {
         LOG("%p", value);
+    }
+}
+
+template <>
+inline void tprint<Vec2u>(Vec2u value) {
+    LOG("X: %u, Y: %u", value.x, value.y);
+
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+    }
+}
+
+template <>
+inline void tprint<Vec3u>(Vec3u value) {
+    LOG("X: %u, Y: %u, Z: %u", value.x, value.y, value.z);
+
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+    }
+}
+
+template <>
+inline void tprint<Vec2f>(Vec2f value) {
+    LOG("X: %f, Y: %f", value.x, value.y);
+
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
     }
 }
 
