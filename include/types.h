@@ -29,6 +29,14 @@
         enum __type__ { __VA_ARGS__ };     \
     }
 
+#undef INF
+#undef NAN
+#define _INC_MATH
+#pragma ghs nowarning 222 // "floating-point operation result is out of range"
+forceinline float INF() { return ((float)(1e+300 * 1e+300)); }
+forceinline float NAN() { return ((float)(INF() * 0.0F)); }
+#pragma ghs endnowarning
+
 // Primitive type shortcuts
 
 typedef unsigned char       u8;
