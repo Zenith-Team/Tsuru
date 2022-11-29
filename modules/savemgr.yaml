@@ -7,12 +7,6 @@ Files:
 # Managers
   - save/managers/tsurusavemgr.cpp
 Hooks:
-# Initialize managers
-  - type: branch
-    instr: b
-    addr: "0x29d5b68" # RootTask::prepare()
-    func: initSystem__13SaveMgrSystemSFv
-
 # Save all managers' data
   - type: branch
     instr: b

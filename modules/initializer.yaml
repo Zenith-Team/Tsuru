@@ -3,8 +3,11 @@
 Files:
   - initializer.cpp
 Hooks:
-# Initialize things that need to do so
   - type: branch
     instr: b
     addr: "0x2AFA050" # __call_ctors()
     func: initialize__Fv
+  - type: branch
+    instr: b
+    addr: "0x29d5b68" # RootTask::prepare()
+    func: initialize2__Fv

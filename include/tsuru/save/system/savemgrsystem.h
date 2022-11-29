@@ -13,10 +13,10 @@ public:
     // @param createInstance Pointer to the createInstance function of the target manager
     SaveMgrSystem(CustomSaveMgr* (*createInstance)(sead::Heap* heap));
 
-private:
     // Creates all instances from the instances funcptr array and calls init() on each of them
     static void initSystem();
 
+private:
     // Calls save() on every manager in the managers pointer array
     static void saveSystem();
 

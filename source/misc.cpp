@@ -6,7 +6,7 @@
 #include "game/actor/actor.h"
 #include "log.h"
 
-fmt::_Hex hex;
+fmt::_Hex fmt::hex;
 bool fmt::_hexActive = false;
 
 void respawn() {

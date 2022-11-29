@@ -2,6 +2,7 @@
 #include "types.h"
 #include "dynlibs/os/functions.h"
 #include "dynlibs/gx2/functions.h"
+#include "tsuru/save/system/savemgrsystem.h"
 
 /*
     ______
@@ -52,4 +53,8 @@ void initialize() {
     PRINT("OSDynLoad_FindExport address: ", LogColor::Yellow, fmt::hex, OS_SPECIFICS->addr_OSDynLoad_FindExport);
 
     PRINT(LogColor::Green, "Custom code initialization complete!");
+}
+
+void initialize2() {
+    SaveMgrSystem::initSystem();
 }

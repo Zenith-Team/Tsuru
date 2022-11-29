@@ -76,6 +76,7 @@
     __ct__Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2A25A64;
     __dt__Q2_3agl14TextureSamplerFv = 0x2A25C60;
     applyTextureData___Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2A25990;
+    initBorderColor___Q2_3agl14TextureSamplerCFv = 0x2a25d94;
 
 # agl::driver::GX2Resource
     sInstance__Q3_3agl6driver11GX2Resource = 0x101E88C4;
@@ -94,7 +95,7 @@
     __ct__Q3_3agl3lyr10RenderInfoFQ3_3agl3lyr11DisplayTypePCQ2_4sead11FrameBufferbPCQ3_3agl3lyr5LayerPQ2_3agl11DisplayList = 0x2a3b2c0;
 
 # agl::utl::DevTools
-    drawTextureTexCoord__Q3_3agl3utl8DevToolsSFRCQ2_3agl14TextureSamplerRC5Mtx34RC5Mtx44RCQ2_4sead16Vector2__tm__2_ffT4Q2_3agl10ShaderMode = 0x2A51A28;
+    drawTextureTexCoord__Q3_3agl3utl8DevToolsSFRCQ2_3agl14TextureSamplerRCQ2_4sead17Matrix34__tm__2_fRCQ2_4sead17Matrix44__tm__2_fRCQ2_4sead16Vector2__tm__2_ffT4Q2_3agl10ShaderMode = 0x2A51A28;
 
 # agl::utl::ImageFilter2D
     drawTextureMSAA__Q3_3agl3utl13ImageFilter2DSFRCQ2_3agl14TextureSamplerRCQ2_4sead8ViewportRCQ2_4sead16Vector2__tm__2_fT3Ui = 0x2A533EC;
@@ -153,6 +154,7 @@
     sRootHeaps__Q2_4sead7HeapMgr = 0x105EA148;
     sInstancePtr__Q2_4sead7HeapMgr = 0x101E8040;
     getCurrentHeap__Q2_4sead7HeapMgrFv = 0x2A0D554;
+    setCurrentHeap__Q2_4sead7HeapMgrFPQ2_4sead4Heap = 0x2a0d584;
 
 # sead::IDisposer
     __ct__Q2_4sead9IDisposerFv = 0x2A0A2FC;

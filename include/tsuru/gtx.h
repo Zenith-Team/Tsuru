@@ -29,7 +29,7 @@ public:
         this->gtx = nullptr;
     }
 
-    bool load(const sead::SafeString& path) {
+    bool load(const sead::SafeString& path, sead::Heap* heap = nullptr) {
         sead::FileHandle handle;
         agl::TextureData textureData;
 
@@ -45,10 +45,10 @@ public:
             return false;
         }
 
-        this->gtx = new(nullptr, 0x2000) u8[filesize];
+        this->gtx = new(heap, 0x2000) u8[filesize];
 
         if (gtx == nullptr) {
-            PRINT(LogColor::Red, "Failed to allocate memory for GTX texture file: ", path.cstr());
+            PRINT(LogColor::Red, "Failed to allocate ", fmt::hex, filesize, " bytes of memory for GTX texture file: ", path.cstr());
             return false;
         }
 

@@ -60,15 +60,15 @@ void PrimitiveRenderer::drawCircle32(const Vec3f& position, f32 radius, const Co
 }
 
 void PrimitiveRendererCafe::drawCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) {
-    drawTriangles_(modelMtx, c0, c1, cubeVertexBuf, 8, cubeIndexBuf, 36, NULL);
+    this->drawTriangles_(modelMtx, c0, c1, cubeVertexBuf, 8, cubeIndexBuf, 36, NULL);
 }
 
 void PrimitiveRendererCafe::drawWireCubeImpl(const Mtx34& modelMtx, const Color4f& c0, const Color4f& c1) {
-    drawLines_(modelMtx, c0, c1, this->wireCubeVertexBuf, 8, this->wireCubeIndexBuf, 17);
+    this->drawLines_(modelMtx, c0, c1, this->wireCubeVertexBuf, 8, this->wireCubeIndexBuf, 17);
 }
 
 void PrimitiveRendererCafe::drawCircle16Impl(const Mtx34& modelMtx, const Color4f& edge) {
-    drawLines_(modelMtx, edge, edge, this->diskSVertexBuf, 17, this->circleSIndexBuf, 16);
+    this->drawLines_(modelMtx, edge, edge, this->diskSVertexBuf, 17, this->circleSIndexBuf, 16);
 }
 
 void PrimitiveRendererCafe::drawCircle32Impl(const Mtx34& modelMtx, const Color4f& edge) {
