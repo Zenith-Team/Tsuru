@@ -4,6 +4,7 @@
 #include "agl/lyr/renderinfo.h"
 #include "agl/lyr/drawmethod.h"
 #include "tsuru/gtx.h"
+#include "tsuru/font.h"
 
 class DebugScene : public sead::CalculateTask {
     SEAD_RTTI_OVERRIDE_IMPL(DebugScene, sead::CalculateTask);
@@ -22,5 +23,5 @@ public:
     void draw(const agl::lyr::RenderInfo& renderInfo);
 
     agl::lyr::DrawMethod drawMethod;
-    GTX texture;
+    BitmapFont font;
 };

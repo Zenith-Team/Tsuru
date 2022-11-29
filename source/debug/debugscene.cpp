@@ -2,6 +2,7 @@
 #include "agl/lyr/renderer.h" 
 #include "agl/utl/devtools.h"
 #include "sead/graphicscontext.h"
+#include "tsuru/fonts.h"
 
 SEAD_SINGLETON_TASK_IMPL(DebugScene);
 
@@ -18,7 +19,7 @@ sead::TaskBase* DebugScene::construct(const sead::TaskConstructArg& arg) {
 }
 
 void DebugScene::prepare() {
-    this->texture.load("tsuru/font.gtx");
+    this->font.load("tsuru/font.gtx", 10, 24, 40, Fonts::TestFont);
 }
 
 void DebugScene::enter() {
@@ -32,11 +33,17 @@ void DebugScene::calc() {
 }
 
 void DebugScene::draw(const agl::lyr::RenderInfo& renderInfo) {
+    renderInfo.frameBuffer->clear(1, sead::Color4f(0x1F2424FF), 1, 0);
+
     Mtx44 vp;
     sead::Matrix44CalcCommon<f32>::multiply(vp, renderInfo.projection->getDeviceProjectionMatrix(), renderInfo.camera->matrix);
 
-    Mtx34 qmtx;
-    qmtx.makeSRT(Vec2f(56, 46), 0, 0);
-
-    agl::utl::DevTools::drawTextureTexCoord(this->texture.texture, qmtx, vp, 0.125f, 0, Vec2f(0,0.5f));
+    this->font.renderBitmap(vp, Vec2f(-550.0f, 320.0f));
+    this->font.renderText(vp, "Hello World!", Vec2f(-200.0f, 320.0f));
+    this->font.newline(-200.0f);
+    this->font.renderText(vp, "Goodbye...");
+    this->font.renderText(vp, " world.");
+    this->font.newline(-200.0f);
+    this->font.newline(-200.0f);
+    this->font.renderText(vp, "2 + 2 = Fish");
 }
