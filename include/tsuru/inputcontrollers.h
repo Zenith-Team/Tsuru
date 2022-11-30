@@ -40,13 +40,12 @@ public:
     inline bool buttonDown(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x6); }
     inline bool buttonLeft(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x7); }
     inline bool buttonRight(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x8); }
-    inline bool buttonA(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x1) && nthBit32Right(this->controllers[controller].padHold.bits, 0xE); }
 
     // Buttons
+    inline bool buttonA(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x1) && nthBit32Right(this->controllers[controller].padHold.bits, 0xE); }
     inline bool buttonPlus(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0xC); }
 
     // Gamepad specific
-
     inline bool tap() const { return nthBit32Right(this->controllers[ControllerID::Gamepad].padHold.bits, 0xD); }
 
     // Checks if a direction on the D-Pad is pressed
