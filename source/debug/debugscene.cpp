@@ -62,7 +62,7 @@ void DebugScene::draw(const agl::lyr::RenderInfo& renderInfo) {
         return;
     }
 
-    renderInfo.frameBuffer->clear(1, sead::Color4f(0x24292EFF), 1, 0);
+    renderInfo.frameBuffer->clear(1, sead::Color4f(0x000000FF), 1, 0);
 
     Mtx44 vp;
     sead::Matrix44CalcCommon<f32>::multiply(vp, renderInfo.projection->getDeviceProjectionMatrix(), renderInfo.camera->matrix);
@@ -184,6 +184,10 @@ void DebugScene::executeState_LevelSelect() {
         if (this->controllers.buttonPlus(InputControllers::ControllerID::Gamepad)) {
             this->states.changeState(&DebugScene::StateID_MainMenu);
         }
+    }
+
+    if (this->controllers.buttonA(InputControllers::ControllerID::Gamepad)) {
+        this->states.changeState(&DebugScene::StateID_MainMenu);
     }
 
     if (this->controllers.tap()) {
