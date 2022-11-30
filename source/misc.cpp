@@ -20,6 +20,9 @@ void respawn() {
 volatile sead::GraphicsContext CurrentGraphicsContext;
 
 #ifdef TARGET_TRICKY
+static const RegisterProfile<Actor> __profifle_Actor(0x135);
+PROFILE_RESOURCES(0x135, Profile::LoadResourcesAt::Course, "kuribo");
+
 REGISTER_PROFILE(Actor, Profile::spriteToProfileList[479]);
 PROFILE_RESOURCES(Profile::spriteToProfileList[479], Profile::LoadResourcesAt::Course, "kuribo");
 #endif
