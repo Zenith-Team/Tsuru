@@ -286,6 +286,7 @@ ENUM_CLASS(ProfileID,
     JumboRay,
     EffectSpawner,
     SoundPlayer,
+    Minecart,
 
     Num
 );

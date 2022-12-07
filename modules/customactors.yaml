@@ -41,6 +41,7 @@ Files:
   - actors/jumboray.cpp
   - actors/effectspawner.cpp
   - actors/soundplayer.cpp
+  - actors/minecart.cpp
 #* Course Select Actors:
   - actors/csrootspawner.cpp
   - actors/csflames.cpp

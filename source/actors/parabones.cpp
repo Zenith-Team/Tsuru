@@ -59,7 +59,7 @@ REGISTER_PROFILE(ParaBones, ProfileID::ParaBones, "ParaBones", &ParaBonesActorIn
 PROFILE_RESOURCES(ProfileID::ParaBones, Profile::LoadResourcesAt::Course, "nokonokoB", "karon", "wing");
 
 const HitboxCollider::Info ParaBones::sCollisionInfo = {
-    Vec2f(0.0f, 8.0f), Vec2f(8.0f, 12.0f), HitboxCollider::Shape::Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, &Enemy::collisionCallback
+    Vec2f(0.0f, 8.0f), Vec2f(8.0f, 12.0f), HitboxCollider::Shape::Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 ParaBones::ParaBones(const ActorBuildInfo* buildInfo)

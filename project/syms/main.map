@@ -905,6 +905,8 @@
     getArea__5LevelFUi = 0x269A2DC;
     getLocation__Q2_5Level4AreaFP4RectUc = 0x269A020;
     getSprite__Q2_5Level4AreaFUiPQ3_5Level4Area6Sprite = 0x2699C08;
+    getPath__Q2_5Level4AreaFUc = 0x269A0A8;
+    getPathNodes__Q2_5Level4AreaFUi = 0x269A0F4;
 
 # LevelCamera
     sInstance__11LevelCamera = 0x101E7C54;
