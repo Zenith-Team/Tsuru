@@ -82,38 +82,15 @@ void SwitchBlock::spawnItemUp() {
 
         SwitchBlock* sb = static_cast<SwitchBlock*>(*actor);
         sb->model->texPatternAnims[0]->frameCtrl.currentFrame = isBlue ? 1 : 0;
+    }
 
-        if (isBlue) {
-            playSound("SE_SYS_CE_DEL_STARCOIN", this->position);
-        } else {
-            playSound("SE_SYS_CE_PUT_STARCOIN", this->position);    
-        }
+    if (isBlue) {
+        playSound("SE_SYS_CE_DEL_STARCOIN", this->position);
+    } else {
+        playSound("SE_SYS_CE_PUT_STARCOIN", this->position);    
     }
 }
 
 void SwitchBlock::spawnItemDown() {
-    this->doStateChange(&StateID_Active);
-
-    bool& isBlue = SwitchBlockState;
-
-    isBlue = !isBlue;
-
-    for (Actor** actor = ActorMgr::instance()->actors.start.buffer; actor != ActorMgr::instance()->actors.end.buffer; actor++) {
-        if (*actor == nullptr) {
-            continue;
-        }
-
-        if ((*actor)->getProfileID() != ProfileID::SwitchBlock) {
-            continue;
-        }
-
-        SwitchBlock* sb = static_cast<SwitchBlock*>(*actor);
-        sb->model->texPatternAnims[0]->frameCtrl.currentFrame = isBlue ? 1 : 0;
-
-        if (isBlue) {
-            playSound("SE_SYS_CE_DEL_STARCOIN", this->position);
-        } else {
-            playSound("SE_SYS_CE_PUT_STARCOIN", this->position);    
-        }
-    }
+    this->spawnItemUp();
 }
