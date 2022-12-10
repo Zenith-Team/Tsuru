@@ -186,11 +186,11 @@ void DebugScene::executeState_LevelSelect() {
         }
     }
 
-    if (this->controllers.buttonA(InputControllers::ControllerID::Gamepad)) {
+    if (this->controllers.buttonB(InputControllers::ControllerID::Gamepad)) {
         this->states.changeState(&DebugScene::StateID_MainMenu);
     }
 
-    if (this->controllers.tap()) {
+    if (this->controllers.buttonPlus()) {
         die = true;
         TaskMgr::instance()->startLevel(this, this->world - 1, this->level - 1);
     }
@@ -220,7 +220,7 @@ void DebugScene::executeState_Settings() {
     PrintText(TsuruSaveMgr::sSaveData.invincibilityEnabled ? trues : falses, xleft + 464, xtop - 50);
     PrintText(TsuruSaveMgr::sSaveData.noClipEnabled ? trues : falses, xleft + 464, xtop - 100);
 
-    if (this->controllers.tap()) {
+    if (this->controllers.buttonB(InputControllers::ControllerID::Gamepad)) {
         this->states.changeState(&DebugScene::StateID_MainMenu);
     }
 
