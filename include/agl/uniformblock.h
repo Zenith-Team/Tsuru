@@ -91,6 +91,6 @@ public:
     sead::BitFlag8 flag;
 };
 
-static_assert(sizeof(UniformBlock) == 0x20, "agl::UniformBlock size mismatch");
+static_assert(sizeof(UniformBlock) == 0x14, "agl::UniformBlock size mismatch");
 
 }

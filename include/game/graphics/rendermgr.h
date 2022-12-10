@@ -32,10 +32,10 @@ public:
     void init(u32 layersCount, u32 nodePtrCount, u32 nodeOpaBufferSize, u32 nodeXluBufferSize, sead::Heap* heap);
 
     u8 _18;
-    sead::PtrArray<RenderObjBaseLayer> renderObjects;
-    sead::Buffer<sead::PtrArray<RenderObjBaseLayer> > renderObjectsOpa;
-    sead::Buffer<sead::PtrArray<RenderObjBaseLayer> > renderObjectsXlu;
-    sead::PtrArray<RenderObjBaseLayer> renderObjectsShadow;
+    sead::PtrArray<RenderObj> renderObjects;
+    sead::Buffer<sead::PtrArray<RenderObj> > renderObjectsOpa;
+    sead::Buffer<sead::PtrArray<RenderObj> > renderObjectsXlu;
+    sead::PtrArray<RenderObj> renderObjectsShadow;
     u8 envObjMgr[1124]; // Is class
     ModelEnvView modelEnvView;
     void* _4B4;
@@ -46,4 +46,4 @@ public:
     sead::ListNode layerMgrNode;
 };
 
-static_assert(sizeof(ObjLayerRenderer) == 0x4D4, "ObjLayerRenderer size mismatch");
+static_assert(sizeof(RenderMgr) == 0x4D4, "ObjLayerRenderer size mismatch");
