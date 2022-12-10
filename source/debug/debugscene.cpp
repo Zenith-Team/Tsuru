@@ -181,7 +181,7 @@ void DebugScene::executeState_LevelSelect() {
             }
         }
 
-        if (this->controllers.buttonPlus(InputControllers::ControllerID::Gamepad)) {
+        if (this->controllers.buttonB(InputControllers::ControllerID::Gamepad)) {
             this->states.changeState(&DebugScene::StateID_MainMenu);
         }
     }
@@ -190,7 +190,7 @@ void DebugScene::executeState_LevelSelect() {
         this->states.changeState(&DebugScene::StateID_MainMenu);
     }
 
-    if (this->controllers.buttonPlus()) {
+    if (this->controllers.buttonPlus(InputControllers::ControllerID::Gamepad)) {
         die = true;
         TaskMgr::instance()->startLevel(this, this->world - 1, this->level - 1);
     }
