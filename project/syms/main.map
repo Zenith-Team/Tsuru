@@ -290,6 +290,12 @@
     playSound__15BasicSoundActorFPCcPQ2_4sead16Vector2__tm__2_fUi = 0x29BED48;
 
 # BlockAndCoinBase
+    spawnMultiPowerup__16BlockAndCoinBaseFRCQ2_4sead16Vector3__tm__2_fUiT2b = 0x2706FF4;
+    spawnPowerup__16BlockAndCoinBaseFRCQ2_4sead16Vector3__tm__2_fUiT2b = 0x2706D1C;
+    spawnPortableSpring__16BlockAndCoinBaseFv = 0x2706430;
+    spawnVine__16BlockAndCoinBaseFv = 0x27062A8;
+    spawnYoshiEgg__16BlockAndCoinBaseFb = 0x2706BA4;
+
     vf18C__16BlockAndCoinBaseFv = 0x2708EFC;
     vf194__16BlockAndCoinBaseFv = 0x2708F00;
     vf1A4__16BlockAndCoinBaseFv = 0x2708F08;
@@ -356,6 +362,7 @@
     checkDerivedRuntimeTypeInfo__9BlockBaseCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x26a0460;
     __dt__9BlockBaseFv = 0x26a062c;
     RTTI__9BlockBase = 0x101e9cf8;
+    StateID_Used__9BlockBase = 0x1021E904;
 
 # Boss
     RTTI__4Boss = 0x101e9f24;
@@ -550,6 +557,10 @@
 # CircularCollider
     RTTI__16CircularCollider = 0x101EA398;
 
+# CoinMgr
+    spawnItemCoin__7CoinMgrFRCQ2_4sead16Vector3__tm__2_fUiUc = 0x26CABB4;
+    sInstance__7CoinMgr = 0x101db43c;
+
 # ColliderBase
     RTTI__12ColliderBase = 0x101e9fa4;
     setType__12ColliderBaseFQ3_12ColliderBase4Type8__type__ = 0x21A5A70;
@@ -587,6 +598,7 @@
     drawLayer3D__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo = 0x22676A4;
     drawLayerCourseSelect__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo = 0x22672bc;
     construct__16CourseSelectTaskSFRCQ2_4sead16TaskConstructArg = 0x202B870;
+    drawLayer3D_World__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo = 0x22676C4;
 
 # CSPlayerMgr
     sInstance__11CSPlayerMgr = 0x101CC30C;

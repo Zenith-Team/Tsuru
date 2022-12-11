@@ -287,6 +287,7 @@ ENUM_CLASS(ProfileID,
     EffectSpawner,
     SoundPlayer,
     Minecart,
+    TripleBlock,
 
     Num
 );
