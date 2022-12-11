@@ -43,8 +43,17 @@ public:
 
     // Buttons
     inline bool buttonA(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x1) && nthBit32Right(this->controllers[controller].padHold.bits, 0xE); }
+    inline bool buttonB(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x1) && nthBit32Right(this->controllers[controller].padHold.bits, 0xF); }
+    inline bool buttonXY(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x3) && nthBit32Right(this->controllers[controller].padHold.bits, 0x2); }
     inline bool buttonPlus(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0xC); }
+    inline bool buttonMinus(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0xB); }
 
+    // Triggers
+    inline bool triggerL(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x4) && nthBit32Right(this->controllers[controller].padHold.bits, 0x9) && nthBit32Right(this->controllers[controller].padHold.bits, 0x11); }
+    inline bool triggerR(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x4) && nthBit32Right(this->controllers[controller].padHold.bits, 0xA) && nthBit32Right(this->controllers[controller].padHold.bits, 0x11); }
+    inline bool triggerZL(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x4) && nthBit32Right(this->controllers[controller].padHold.bits, 0x11) && nthBit32Right(this->controllers[controller].padHold.bits, 0x12); }
+    inline bool triggerZR(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x4) && nthBit32Right(this->controllers[controller].padHold.bits, 0x11) && !nthBit32Right(this->controllers[controller].padHold.bits, 0x9) && !nthBit32Right(this->controllers[controller].padHold.bits, 0x12) && !nthBit32Right(this->controllers[controller].padHold.bits, 0xA); }
+      
     // Gamepad specific
     inline bool tap() const { return nthBit32Right(this->controllers[ControllerID::Gamepad].padHold.bits, 0xD); }
 
@@ -56,7 +65,6 @@ public:
         return ((this)->*(DPadFuncTable[direction]))(controller);
     }
 
-private:
     static bool (InputControllers::*DPadFuncTable[4])(ControllerID::__type__) const;
 
     WrappedController controllers[5];
