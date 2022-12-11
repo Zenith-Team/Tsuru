@@ -9,6 +9,10 @@
 fmt::_Hex fmt::hex;
 bool fmt::_hexActive = false;
 
+extern "C" void* memcpy(void* dst, const void* src, size_t size) {
+    return OSBlockMove(dst, src, size, 0);
+}
+
 void respawn() {
     if (TsuruSaveMgr::sSaveData.instantRespawnEnabled) {
         TaskMgr::instance()->startLevel(CourseTask::instance(), LevelInfo::instance()->world, LevelInfo::instance()->level);
