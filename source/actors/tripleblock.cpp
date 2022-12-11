@@ -21,7 +21,7 @@ public:
     void spawnSideCoins();
 
     ModelWrapper* model;
-
+    bool wasHit;
     void beginState_Used() override;
 };
 
@@ -30,6 +30,7 @@ REGISTER_PROFILE(TripleBlock, ProfileID::TripleBlock);
 
 TripleBlock::TripleBlock(const ActorBuildInfo* buildInfo)
     : BlockWrapper(buildInfo)
+    , wasHit(false)
 { }
 
 u32 TripleBlock::onCreate() {
@@ -38,7 +39,7 @@ u32 TripleBlock::onCreate() {
     }
 
     this->model = ModelWrapper::create("block_trip", "block_stch", 0, 2);
-    this->model->playTexPatternAnim("switch");
+    this->model->playTexPatternAnim("triple_block");
 
     this->rectCollider.points[0].x -= 16.0f;
     this->rectCollider.points[1].x += 16.0f;
@@ -57,6 +58,9 @@ u32 TripleBlock::onExecute() {
     this->model->updateModel();
     this->model->updateAnimations();
 
+    if (this->model->texPatternAnims[0]->frameCtrl.currentFrame >= 50 && !this->wasHit) {
+        this->model->texPatternAnims[0]->frameCtrl.currentFrame = 0;
+    }
     return BlockWrapper::onExecute();
 }
 
@@ -136,7 +140,8 @@ void TripleBlock::spawnSideCoins() {
 }
 
 void TripleBlock::beginState_Used() {
-    this->model->playTexPatternAnim("used");
-
+    this->wasHit = true;
+    this->model->texPatternAnims[0]->frameCtrl.speed = 0.0;
+    this->model->texPatternAnims[0]->frameCtrl.currentFrame = 51; // the 51st frame of the texpat anim is the "used" one
     BlockWrapper::beginState_Used();
 }
