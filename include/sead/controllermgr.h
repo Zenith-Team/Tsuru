@@ -8,8 +8,8 @@
 namespace sead {
 
 class ControllerMgr : public CalculateTask { // Size: 0xE8
-    SEAD_RTTI_OVERRIDE(ControllerMgr, CalculateTask)
-    SEAD_SINGLETON_TASK(ControllerMgr)
+    SEAD_RTTI_OVERRIDE(ControllerMgr, CalculateTask);
+    SEAD_SINGLETON_TASK(ControllerMgr);
 
 public:
     ControllerMgr(const TaskConstructArg& arg);

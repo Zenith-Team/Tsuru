@@ -26,8 +26,8 @@ Hooks:
 # Instant respawn
   - type: branch
     instr: b
-    func: respawn__Fv
-    addr: "0x24c011c"
+    func: respawn
+    addr: "0x24bf08c"
 
 # Keep a copy of the currently active graphics context
   - type: branch

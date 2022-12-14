@@ -3,6 +3,8 @@
 #include "game/level/levelinfo.h"
 #include "tsuru/save/managers/tsurusavemgr.h"
 #include "sead/graphicscontext.h"
+#include "sead/controllermgr.h"
+#include "game/wrappedcontroller.h"
 #include "game/actor/actor.h"
 #include "log.h"
 
@@ -13,9 +15,11 @@ extern "C" void* memcpy(void* dst, const void* src, size_t size) {
     return OSBlockMove(dst, src, size, 0);
 }
 
-void respawn() {
-    if (TsuruSaveMgr::sSaveData.instantRespawnEnabled) {
+extern "C" void respawn(u32 _this, sead::TaskBase* currentTask, sead::TaskClassID& targetTask, u32 r6) {
+    if (TsuruSaveMgr::sSaveData.instantRespawnEnabled && (r6 == 0x30009)) {
         TaskMgr::instance()->startLevel(CourseTask::instance(), LevelInfo::instance()->world, LevelInfo::instance()->level);
+    } else {
+        TaskMgr::instance()->changeTask(currentTask, targetTask, r6, 0);
     }
 }
 
