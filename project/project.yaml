@@ -17,6 +17,7 @@ Modules:
   - initializer          # Initializer
   - layout               # Custom layouts
   - misc                 # Miscellaneous items
+  - powerup              # Custom powerups
   - profile              # Extra profile and sprite slots
   - resloader            # Resource loader
   - sarcloader           # Allow loading uncompressed .sarc levels
