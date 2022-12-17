@@ -22,6 +22,13 @@ public:
 
     ModelWrapper* model;
     bool wasHit;
+    enum Texture {
+        Texture_Standard = 0,
+        Texture_Chika = 1,
+        Texture_Yougan = 2,
+        Texture_Yougan2 = 3,
+    };
+
     void beginState_Used() override;
 };
 
@@ -37,9 +44,33 @@ u32 TripleBlock::onCreate() {
     if (!BlockWrapper::init()) {
         return 2;
     }
+    this->position.x += 8;
 
     this->model = ModelWrapper::create("block_trip", "block_stch", 0, 2);
-    this->model->playTexPatternAnim("triple_block");
+    
+    switch (eventID1 & 0xF) { // nybble 2
+        case Texture_Standard: {
+            this->model->playTexPatternAnim("standard");
+            break;
+        }
+        case Texture_Chika: {
+            this->model->playTexPatternAnim("chika");
+            break;
+        }
+        case Texture_Yougan: {
+            this->model->playTexPatternAnim("yougan");
+            break;
+        }
+        case Texture_Yougan2: {
+            this->model->playTexPatternAnim("yougan2");
+            break;
+        }
+        default: {
+            this->model->playTexPatternAnim("standard");
+            break;
+        }
+    }
+
 
     this->rectCollider.points[0].x -= 16.0f;
     this->rectCollider.points[1].x += 16.0f;
