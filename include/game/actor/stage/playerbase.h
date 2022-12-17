@@ -4,6 +4,13 @@
 #include "game/playerinput.h"
 #include "game/states.h"
 
+struct PlayerGravityData {
+    f32 groundPound;
+    f32 thresholds[5];
+    f32 fallStrengths[6];
+    f32 jumpStrengths[6];
+};
+
 //! Pain
 class PlayerBase : public StageActor { // Size: 0x2750
     SEAD_RTTI_OVERRIDE(PlayerBase, StageActor);
@@ -73,8 +80,8 @@ public:
     virtual void vf10C() = 0;
     virtual void vf114() = 0;
     virtual u32 vf11C() = 0;
-    virtual void vf124(PowerupState::__type__, bool); // Calls vf12C
-    virtual void vf12C(PowerupState::__type__, bool) = 0;
+    virtual void givePowerup(PowerupState::__type__, bool);
+    virtual void doGivePowerup(PowerupState::__type__, bool) = 0;
     virtual bool vf134();
     // @return The TallType value for the corresponding PowerupState
     virtual TallType getTallType(PowerupState::__type__ powerupState) = 0;
@@ -260,12 +267,12 @@ public:
     virtual void vf864(u32) = 0;
     virtual void vf86C() = 0;
     virtual bool vf874();
-    virtual u32 vf87C();
+    virtual PlayerGravityData* getGravityData();
     virtual void resetFallSpeed();
     virtual void vf88C() = 0;
-    virtual f32 vf894() = 0;
+    virtual f32 getJumpSpeed() = 0;
     virtual f32 vf89C() = 0;
-    virtual void vf8A4(u32) = 0;
+    virtual void playJumpSound(u32) = 0;
     virtual void vf8AC(u32) = 0;
     virtual bool vf8B4() = 0;
     virtual void vf8BC() = 0;
@@ -283,21 +290,21 @@ public:
     virtual void vf91C() = 0;
     virtual void vf924(PlayerBase*) = 0;
     virtual void vf92C();
-    virtual u32 vf934() = 0; // TallType related
-    virtual u32 vf93C() = 0; // TallType related
-    virtual u32 vf944() = 0; // TallType related
-    virtual u32 vf94C() = 0; // TallType related
-    virtual u32 vf954() = 0; // TallType related
-    virtual u32 vf95C() = 0; // TallType related
-    virtual u32 vf964() = 0; // TallType related
-    virtual u32 vf96C() = 0; // TallType related
-    virtual u32 vf974() = 0; // TallType related
-    virtual u32 vf97C() = 0; // TallType related
-    virtual u32 vf984(bool) = 0; // TallType related
-    virtual u32 vf98C() = 0; // TallType related
-    virtual u32 vf994(bool) = 0; // TallType related
-    virtual u32 vf99C(bool) = 0; // TallType related
-    virtual u32 vf9A4() = 0; // TallType related
+	virtual u32 getGroundPoundEffectID() = 0;
+	virtual u32 getGroundPoundEXEffectID() = 0;
+	virtual u32 getGroundPoundNormalEffectID() = 0;
+	virtual u32 getGroundPoundBlurEffectID() = 0;
+	virtual u32 getSlipSmokeEffectID() = 0;
+	virtual u32 getTurnBrakeEffectID() = 0;
+	virtual u32 getTurnBrakeSmokeEffectID() = 0;
+	virtual u32 vf96C() = 0;
+	virtual u32 getDashSmokeEffectID() = 0;
+	virtual u32 getLandingSmokeEffectID() = 0;
+	virtual u32 getWaterSplashEffectID(bool) = 0;
+	virtual u32 getWaterSplashSEffectID() = 0;
+	virtual u32 getPoisonSplashEffectID(bool) = 0;
+	virtual u32 getLavaSplashEffectID(bool) = 0;
+	virtual u32 getLavaSplash2EffectIDd(bool) = 0;
     virtual void vf9AC(bool);
     virtual void vf9B4();
     virtual void vf9BC();

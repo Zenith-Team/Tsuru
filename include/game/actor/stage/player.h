@@ -34,8 +34,8 @@ public:
     void vf10C() override;
     void vf114() override;
     u32 vf11C() override;
-    void vf124(PowerupState::__type__, bool) override;
-    void vf12C(PowerupState::__type__, bool) override;
+    void givePowerup(PowerupState::__type__, bool) override;
+    void doGivePowerup(PowerupState::__type__, bool) override;
     bool vf134() override;
     TallType getTallType(PowerupState::__type__ powerupState) override;
     void vf144() override;
@@ -181,12 +181,12 @@ public:
     void vf864(u32) override;
     void vf86C() override;
     bool vf874() override;
-    u32 vf87C() override;
+    PlayerGravityData* getGravityData() override;
     void resetFallSpeed() override;
     void vf88C() override;
-    f32 vf894() override;
+    f32 getJumpSpeed() override;
     f32 vf89C() override;
-    void vf8A4(u32) override;
+    void playJumpSound(u32) override;
     void vf8AC(u32) override;
     bool vf8B4() override;
 
@@ -204,24 +204,26 @@ public:
     void vf91C() override;
     void vf924(PlayerBase*) override;
     void vf92C() override;
-    u32 vf934() override;
-    u32 vf93C() override;
-    u32 vf944() override;
-    u32 vf94C() override;
-    u32 vf954() override;
-    u32 vf95C() override;
-    u32 vf964() override;
-    u32 vf96C() override;
-    u32 vf974() override;
-    u32 vf97C() override;
-    u32 vf984(bool) override;
-    u32 vf98C() override;
-    u32 vf994(bool) override;
-    u32 vf99C(bool) override;
-    u32 vf9A4() override;
+	u32 getGroundPoundEffectID() override;
+	u32 getGroundPoundEXEffectID() override;
+	u32 getGroundPoundNormalEffectID() override;
+	u32 getGroundPoundBlurEffectID() override;
+	u32 getSlipSmokeEffectID() override;
+	u32 getTurnBrakeEffectID() override;
+	u32 getTurnBrakeSmokeEffectID() override;
+	u32 vf96C() override;
+	u32 getDashSmokeEffectID() override;
+	u32 getLandingSmokeEffectID() override;
+	u32 getWaterSplashEffectID(bool) override;
+	u32 getWaterSplashSEffectID() override;
+	u32 getPoisonSplashEffectID(bool) override;
+	u32 getLavaSplashEffectID(bool) override;
+	u32 getLavaSplash2EffectIDd(bool) override;
 
     void vfA2C() override;
     void vfA34() override;
     void vfA3C() override;
     void vfA44() override;
+
+    u32 givePowerup(PlayerBase::PowerupState::__type__);
 };

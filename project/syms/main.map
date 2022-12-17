@@ -1050,6 +1050,7 @@
     draw__13PlatformModelFv = 0x27BE4FC;
 
 # Player
+    givePowerup__6PlayerFQ3_10PlayerBase12PowerupState8__type__ = 0x2931c1c;
     throwProjectile__6Player__PowerupStateNotFire = 0x293AE28;
     FUN_0293b080__6Player__IsProjectilePowerup = 0x293B198;
 

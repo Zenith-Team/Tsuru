@@ -1,0 +1,38 @@
+---
+Files:
+  - powerup.cpp
+Hooks:
+  - type: branch
+    instr: bl
+    addr: "0x2924CC8"
+    func: UseCustomPowerupCenterOffsetTable
+  
+  - type: branch
+    instr: b
+    addr: "0x2925128"
+    func: UseCustomPowerupTallTypeTable
+
+  - type: branch
+    instr: b
+    addr: "0x292EA6C"
+    func: UseCustomBlahTableOffsets
+
+  - type: branch
+    instr: bl
+    addr: "0x29279C4"
+    func: UseCustomArray_1016cd68
+
+  - type: branch
+    instr: bl
+    addr: "0x292916c"
+    func: UseCustomArray_1016ce20
+  
+  - type: branch
+    instr: bl
+    addr: "0x292918c"
+    func: UseCustomArray_1016ce44
+
+  - type: branch
+    instr: bl
+    addr: "0x292e474"
+    func: UseCustomArray_1016d7f8
