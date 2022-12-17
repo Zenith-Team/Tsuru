@@ -1339,7 +1339,6 @@
     BOSDynLoad_FindExport = 0x2A9F418;
     DefaultReverbHiParam = 0x1022D328;
     DefaultDelayParam = 0x1022D354;
-    moveValueTo__FPUiUiT2 = 0x29E0DE8;
     SFXReverb_0 = 0x101E7D14;
     SFXReverb_1 = 0x101E7D18;
     SFXReverbPlyJump_0 = 0x101E7D1C;
@@ -1347,12 +1346,7 @@
     nullterminator = 0x1018A56D;
     SE_VOC = 0x1018393C;
     __CPR77__mapPositionToScreen__FRQ2_4sead16Vector2__tm__2_fRCQ2_J26JJ31J = 0x2029368;
-    DAT_101c30d0 = 0x101C30D0;
     SafeStringVtable = 0x10177234;
-    PlayerJumpArc = 0x1016A800;
-    MiniPlayerJumpArc = 0x1016A848;
-    PlayerJumpMax = 0x10166E68;
-    PlayerDescentRate = 0x10166E74;
     InfiniteLivesContinue = 0x24C005C;
     InfiniteTimeContinue = 0x24C1388;
     InvincibilityContinue = 0x2931180;

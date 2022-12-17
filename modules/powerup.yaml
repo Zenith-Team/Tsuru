@@ -20,19 +20,19 @@ Hooks:
   - type: branch
     instr: bl
     addr: "0x29279C4"
-    func: UseCustomArray_1016cd68
+    func: UseCustomArray_1016CD68
 
   - type: branch
     instr: bl
     addr: "0x292916c"
-    func: UseCustomArray_1016ce20
+    func: UseCustomArray_1016CE20
   
   - type: branch
     instr: bl
     addr: "0x292918c"
-    func: UseCustomArray_1016ce44
+    func: UseCustomArray_1016CE44
 
   - type: branch
     instr: bl
     addr: "0x292e474"
-    func: UseCustomArray_1016d7f8
+    func: UseCustomArray_1016D7F8

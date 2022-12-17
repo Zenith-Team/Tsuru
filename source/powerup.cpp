@@ -1,103 +1,110 @@
-#include "types.h"
+#include "game/actor/stage/player.h"
 
-#define TallType_Small 1
-#define TallType_Normal 2
-#define TallType_Mini 0
+f32 PowerupCenterOffsetTable[] = {
+    16.0f,                          // Small
+    16.0f,                          // Big
+    31.0f,                          // Fire
+    31.0f,                          // Mini
+    6.0f,                           // Propeller
+    31.0f,                          // Penguin
+    31.0f,                          // Ice
+    31.0f,                          // Acorn
+    31.0f,                          // PAcorn
+    // Begin custom entries
+    31.0f
+};
+
+PlayerBase::TallType::__type__ PowerupTallTypeTable[] = {
+    PlayerBase::TallType::Small,    // Small
+    PlayerBase::TallType::Normal,   // Big
+    PlayerBase::TallType::Normal,   // Fire
+    PlayerBase::TallType::Mini,     // Mini
+    PlayerBase::TallType::Normal,   // Propeller
+    PlayerBase::TallType::Normal,   // Penguin
+    PlayerBase::TallType::Normal,   // Ice
+    PlayerBase::TallType::Normal,   // Acorn
+    PlayerBase::TallType::Normal,   // PAcorn
+    // Begin custom entries 
+    PlayerBase::TallType::Normal   
+};
+
+// YetAnotherTable
+f32 ARRAY_1016CD68[] = {
+     0.0f,                           // Small
+    -4.0f,                           // Big
+    -4.0f,                           // Fire
+     4.0f,                           // Mini
+    -5.0f,                           // Propeller
+    -2.0f,                           // Penguin
+    -4.0f,                           // Ice
+    -4.0f,                           // Acorn
+    -4.0f,                           // PAcorn
+    // Begin custom data
+    -4.0f
+};
+
+// BlahTableOffsets
+u32 PowerupBlahTableOffsets[] = {
+    1,                               // Small
+    2,                               // Big
+    2,                               // Fire
+    0,                               // Mini
+    3,                               // Propeller
+    2,                               // Penguin
+    2,                               // Ice
+    2,                               // Acorn
+    2,                               // PAcorn
+    // Begin custom data
+    2
+};
+
+f32 ARRAY_1016CE20[] = {
+    -10.0f,                          // Small
+    9.0f,                            // Big
+    0.0f,                            // Fire
+    -7.0f,                           // Mini
+    6.0f,                            // Propeller
+    15.9f,                           // Penguin
+    4.0f,                            // Ice
+    12.0f,                           // Acorn
+    15.9f,                           // PAcorn
+    // Begin custom data
+    9.0f
+};
+
+f32 ARRAY_1016CE44[] = {
+    -5.0f,                           // Small
+    4.0f,                            // Big
+    4.0f,                            // Fire
+    -2.0f,                           // Mini
+    1.0f,                            // Propeller
+    27.0f,                           // Penguin
+    8.0f,                            // Ice
+    23.0f,                           // Acorn
+    7.9f,                            // PAcorn
+    // Begin custom data
+    4.0f
+};
+
+f32 ARRAY_1016D7F8[] = {
+    0.6f,                            // Small
+    1.0f,                            // Big
+    1.0f,                            // Fire
+    0.1f,                            // Mini
+    0.6f,                            // Propeller
+    0.6f,                            // Penguin
+    0.1f,                            // Ice
+    0.6f,                            // Acorn
+    0.6f,                            // PAcorn
+    // Begin custom data
+    0.6f
+};
+
+extern "C" PlayerBase::TallType::__type__ UseCustomPowerupTallTypeTable(Player*, PlayerBase::PowerupState::__type__ powerupState) {
+    return PowerupTallTypeTable[powerupState];
+}
 
 ASM_BEGIN
-
-.rodata
-
-PowerupCenterOffsetTable:
-    .float 16.0             // Small
-    .float 16.0             // Big
-    .float 31.0             // Fire
-    .float 31.0             // Mini
-    .float 6.0              // Propeller
-    .float 31.0             // Penguin
-    .float 31.0             // Ice
-    .float 31.0             // Acorn
-    .float 31.0             // PAcorn
-    // Begin custom entries
-    .float 31.0
-
-PowerupTallTypeTable:
-    .long TallType_Small    // Small
-    .long TallType_Normal   // Big
-    .long TallType_Normal   // Fire
-    .long TallType_Mini     // Mini
-    .long TallType_Normal   // Propeller
-    .long TallType_Normal   // Penguin
-    .long TallType_Normal   // Ice
-    .long TallType_Normal   // Acorn
-    .long TallType_Normal   // PAcorn
-    // Begin custom entries 
-    .long TallType_Normal   
-
-ARRAY_1016cd68:
-    .float 0.0              // Small
-    .float -4.0             // Big
-    .float -4.0             // Fire
-    .float 4.0              // Mini
-    .float -5.0             // Propeller
-    .float -2.0             // Penguin
-    .float -4.0             // Ice
-    .float -4.0             // Acorn
-    .float -4.0             // PAcorn
-    // Begin custom data
-    .float -4.0
-
-PowerupBlahTableOffsets:
-    .long 1                 // Small
-    .long 2                 // Big
-    .long 2                 // Fire
-    .long 0                 // Mini
-    .long 3                 // Propeller
-    .long 2                 // Penguin
-    .long 2                 // Ice
-    .long 2                 // Acorn
-    .long 2                 // PAcorn
-    // Begin custom data
-    .long 2
-
-ARRAY_1016ce20:
-    .float -10.0 // Small
-    .float 9.0   // Big
-    .float 0.0   // Fire
-    .float -7.0  // Mini
-    .float 6.0   // Propeller
-    .float 15.9  // Penguin
-    .float 4.0   // Ice
-    .float 12.0  // Acorn
-    .float 15.9  // PAcorn
-    // Begin custom data
-    .float 9.0
-
-ARRAY_1016ce44:
-    .float -5.0 // Small
-    .float 4.0  // Big
-    .float 4.0  // Fire
-    .float -2.0 // Mini
-    .float 1.0  // Propeller
-    .float 27.0 // Penguin
-    .float 8.0  // Ice
-    .float 23.0 // Acorn
-    .float 7.9  // PAcorn
-    // Begin custom data
-    .float 4.0
-
-ARRAY_1016d7f8:
-    .float 0.6 // Small
-    .float 1.0 // Big
-    .float 1.0 // Fire
-    .float 0.1 // Mini
-    .float 0.6 // Propeller
-    .float 0.6 // Penguin
-    .float 0.1 // Ice
-    .float 0.6 // Acorn
-    .float 0.6 // PAcorn
-    // Begin custom data
-    .float 0.6
 
 .text
 
@@ -108,36 +115,28 @@ UseCustomPowerupCenterOffsetTable:
     
     blr
 
-.global UseCustomPowerupTallTypeTable
-UseCustomPowerupTallTypeTable:
-    lis r0, PowerupTallTypeTable@h
-    ori r0, r0, PowerupTallTypeTable@l
-    slwi r12, r4, 2
-    lwzx r3, r12, r0
+.global UseCustomArray_1016CD68
+UseCustomArray_1016CD68:
+    lis r0, ARRAY_1016CD68@h
+    ori r0, r0, ARRAY_1016CD68@l
     blr
 
-.global UseCustomArray_1016cd68
-UseCustomArray_1016cd68:
-    lis r0, ARRAY_1016cd68@h
-    ori r0, r0, ARRAY_1016cd68@l
+.global UseCustomArray_1016CE20
+UseCustomArray_1016CE20:
+    lis r3, ARRAY_1016CE20@ha
+    addi r3, r3, ARRAY_1016CE20@l
     blr
 
-.global UseCustomArray_1016ce20
-UseCustomArray_1016ce20:
-    lis r3, ARRAY_1016ce20@ha
-    addi r3, r3, ARRAY_1016ce20@l
+.global UseCustomArray_1016CE44
+UseCustomArray_1016CE44:
+    lis r3, ARRAY_1016CE44@ha
+    addi r3, r3, ARRAY_1016CE44@l
     blr
 
-.global UseCustomArray_1016ce44
-UseCustomArray_1016ce44:
-    lis r3, ARRAY_1016ce44@ha
-    addi r3, r3, ARRAY_1016ce44@l
-    blr
-
-.global UseCustomArray_1016d7f8
-UseCustomArray_1016d7f8:
-    lis r0, ARRAY_1016d7f8@h
-    ori r0, r0, ARRAY_1016d7f8@l
+.global UseCustomArray_1016D7F8
+UseCustomArray_1016D7F8:
+    lis r0, ARRAY_1016D7F8@h
+    ori r0, r0, ARRAY_1016D7F8@l
     blr
 
 .global UseCustomBlahTableOffsets
