@@ -43,6 +43,7 @@ Files:
   - actors/soundplayer.cpp
   - actors/minecart.cpp
   - actors/tripleblock.cpp
+  - actors/physicsmodifier.cpp
 #* Course Select Actors:
   - actors/csrootspawner.cpp
   - actors/csflames.cpp
@@ -57,3 +58,8 @@ Hooks:
     instr: b
     func: createRootSpawner__Fv
     addr: "0x21b9350" # CourseSelectCamera::onCreate()
+# Load Custom Gravity
+  - type: branch
+    instr: bl
+    addr: "0x292510c" # Player::getGravityData()
+    func: LoadCustomPlayerGravity

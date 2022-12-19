@@ -855,4 +855,5 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::PowerupSwitcher,             // 764
     ProfileID::Minecart,                    // 765
     ProfileID::TripleBlock,                 // 766
+    ProfileID::PhysicsModifier,             // 767
 };

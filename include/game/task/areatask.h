@@ -3,8 +3,14 @@
 #include "sead/task.h"
 #include "agl/lyr/renderinfo.h"
 
-class AreaTask : public sead::CalculateTask { // Task which manages Zones (class name is official)
+class AreaTask : public sead::CalculateTask {
     SEAD_SINGLETON_TASK(AreaTask);
+
+public:
+    ENUM_CLASS(Flag,
+        Wrap = 1 << 0,
+        LowGravity = 1 << 1
+    );
 
 public:
     // Draws the layer "3D"
@@ -15,7 +21,6 @@ public:
     // @param renderInfo Render info for drawing
     void renderCollisions(const agl::lyr::RenderInfo& renderInfo);
 
-    u8 _C8[1636];
-    u32 wrapFlag;
-    u8 _730[1204];
+    u8 _C8[0x72C - 0xCC];
+    u32 flags;
 };

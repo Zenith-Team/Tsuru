@@ -288,6 +288,7 @@ ENUM_CLASS(ProfileID,
     SoundPlayer,
     Minecart,
     TripleBlock,
+    PhysicsModifier,
 
     Num
 );
