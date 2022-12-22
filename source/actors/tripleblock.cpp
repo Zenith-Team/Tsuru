@@ -22,12 +22,6 @@ public:
 
     ModelWrapper* model;
     bool wasHit;
-    enum Texture {
-        Texture_Standard = 0,
-        Texture_Chika = 1,
-        Texture_Yougan = 2,
-        Texture_Yougan2 = 3,
-    };
 
     void beginState_Used() override;
 };
@@ -44,33 +38,19 @@ u32 TripleBlock::onCreate() {
     if (!BlockWrapper::init()) {
         return 2;
     }
+
     this->position.x += 8;
 
-    this->model = ModelWrapper::create("block_trip", "block_stch", 0, 2);
+    this->model = ModelWrapper::create("block_trip", "block_stch", 0, 4);
     
-    switch (eventID1 & 0xF) { // nybble 2
-        case Texture_Standard: {
-            this->model->playTexPatternAnim("standard");
-            break;
-        }
-        case Texture_Chika: {
-            this->model->playTexPatternAnim("chika");
-            break;
-        }
-        case Texture_Yougan: {
-            this->model->playTexPatternAnim("yougan");
-            break;
-        }
-        case Texture_Yougan2: {
-            this->model->playTexPatternAnim("yougan2");
-            break;
-        }
-        default: {
-            this->model->playTexPatternAnim("standard");
-            break;
-        }
-    }
+    static const char* animNames[] = {
+        "standard",
+        "chika",
+        "yougan",
+        "yougan2",
+    };
 
+    this->model->playTexPatternAnim(animNames[this->eventID1 & 0xF]); // nybble 2
 
     this->rectCollider.points[0].x -= 16.0f;
     this->rectCollider.points[1].x += 16.0f;
@@ -92,6 +72,7 @@ u32 TripleBlock::onExecute() {
     if (this->model->texPatternAnims[0]->frameCtrl.currentFrame >= 50 && !this->wasHit) {
         this->model->texPatternAnims[0]->frameCtrl.currentFrame = 0;
     }
+
     return BlockWrapper::onExecute();
 }
 
@@ -171,6 +152,8 @@ void TripleBlock::spawnSideCoins() {
 }
 
 void TripleBlock::beginState_Used() {
+    this->_1AAE = 0; // This fixes the bug where items will bounce off of the block as if its being bumped
+
     this->wasHit = true;
     this->model->texPatternAnims[0]->frameCtrl.speed = 0.0;
     this->model->texPatternAnims[0]->frameCtrl.currentFrame = 51; // the 51st frame of the texpat anim is the "used" one
