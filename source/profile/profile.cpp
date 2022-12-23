@@ -856,4 +856,6 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::Minecart,                    // 765
     ProfileID::TripleBlock,                 // 766
     ProfileID::PhysicsModifier,             // 767
+    ProfileID::MusicNote,                   // 768
+    ProfileID::MusicNoteMgr,                // 769
 };
