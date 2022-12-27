@@ -21,7 +21,6 @@ public:
     void spawnSideCoins();
 
     ModelWrapper* model;
-    bool wasHit;
 
     void beginState_Used() override;
 };
@@ -31,13 +30,13 @@ REGISTER_PROFILE(TripleBlock, ProfileID::TripleBlock);
 
 TripleBlock::TripleBlock(const ActorBuildInfo* buildInfo)
     : BlockWrapper(buildInfo)
-    , wasHit(false)
 { }
 
 u32 TripleBlock::onCreate() {
     if (!BlockWrapper::init()) {
         return 2;
     }
+
 
     this->position.x += 8;
 
@@ -57,6 +56,9 @@ u32 TripleBlock::onCreate() {
     this->rectCollider.points[2].x += 16.0f;
     this->rectCollider.points[3].x -= 16.0f;
 
+    if (BlockWrapper::stateType == StateType::UsedBlock) {
+        doStateChange(&TripleBlock::StateID_Used);
+    }
     return this->onExecute();
 }
 
@@ -69,7 +71,7 @@ u32 TripleBlock::onExecute() {
     this->model->updateModel();
     this->model->updateAnimations();
 
-    if (this->model->texPatternAnims[0]->frameCtrl.currentFrame >= 50 && !this->wasHit) {
+    if (this->model->texPatternAnims[0]->frameCtrl.currentFrame >= 50) {
         this->model->texPatternAnims[0]->frameCtrl.currentFrame = 0;
     }
 
@@ -153,8 +155,6 @@ void TripleBlock::spawnSideCoins() {
 
 void TripleBlock::beginState_Used() {
     this->_1AAE = 0; // This fixes the bug where items will bounce off of the block as if its being bumped
-
-    this->wasHit = true;
     this->model->texPatternAnims[0]->frameCtrl.speed = 0.0;
     this->model->texPatternAnims[0]->frameCtrl.currentFrame = 51; // the 51st frame of the texpat anim is the "used" one
     BlockWrapper::beginState_Used();
