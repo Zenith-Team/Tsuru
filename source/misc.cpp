@@ -17,7 +17,7 @@ extern "C" void* memcpy(void* dst, const void* src, size_t size) {
 }
 
 extern "C" void respawn(u32 _this, sead::TaskBase* currentTask, sead::TaskClassID& targetTask, u32 r6) {
-    if (TsuruSaveMgr::sSaveData.instantRespawnEnabled && r6 == 0x30009 && !(PlayerMgr::instance()->players[0]->input.getButtonDash() && PlayerMgr::instance()->players[0]->input.getButtonJump())) {
+    if (TsuruSaveMgr::sSaveData.instantRespawnEnabled && r6 == 0x30009 && !PlayerMgr::instance()->players[0]->input.getButtonJump()) {
         TaskMgr::instance()->startLevel(CourseTask::instance(), LevelInfo::instance()->world, LevelInfo::instance()->level);
     } else {
         TaskMgr::instance()->changeTask(currentTask, targetTask, r6, 0);
