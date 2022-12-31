@@ -40,11 +40,9 @@ public:
     int platformType;
     Vec3f effectScale;
     Vec3f effectOffset;
-    DECLARE_STATE(Peepa, Move);
     DECLARE_STATE(Peepa, Die);    
 };
 
-CREATE_STATE(Peepa, Move);
 CREATE_STATE(Peepa, Die);
 
 REGISTER_PROFILE(Peepa, ProfileID::Peepa);
@@ -110,7 +108,6 @@ u32 Peepa::onCreate() {
     u32 movementMask = this->movementHandler.getMaskForMovementType(this->settings2 & 0xFF);    // nybble 20
     this->movementHandler.link(this->position, movementMask, this->movementID);                 // nybble 21-22    
 
-    this->doStateChange(&Peepa::StateID_Move);
 
     return this->onExecute();
 }
@@ -228,20 +225,6 @@ bool Peepa::collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOth
     if (!this->hasPlatform)
         doStateChange(&Peepa::StateID_Die);
     return 1;
-}
-
-/** STATE: Move */
-
-void Peepa::beginState_Move() {
-
-}
-
-void Peepa::executeState_Move() {
-
-}
-
-void Peepa::endState_Move() {
-
 }
 
 /** STATE: Die */
