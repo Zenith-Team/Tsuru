@@ -858,4 +858,5 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::PhysicsModifier,             // 767
     ProfileID::MusicNote,                   // 768
     ProfileID::MusicNoteMgr,                // 769
+    ProfileID::Peepa,                       // 770
 };
