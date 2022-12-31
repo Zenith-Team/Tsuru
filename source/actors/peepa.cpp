@@ -40,6 +40,7 @@ public:
     int platformType;
     Vec3f effectScale;
     Vec3f effectOffset;
+    
     DECLARE_STATE(Peepa, Die);    
 };
 
@@ -75,6 +76,7 @@ u32 Peepa::onCreate() {
 
     if (this->platformType != PlatformModel::Type::Wood && this->platformType != PlatformModel::Type::Stone && this->platformType != PlatformModel::Type::BoltPlatform && this->platformType != PlatformModel::Type::Sky && this->platformType != PlatformModel::Type::WoodSnow)
         this->hasPlatform = false; // invalid platform types simply won't spawn one
+        
     this->peepaModel = ModelWrapper::create("teren", "teren", 6);
     this->peepaModel->playSklAnim("wait");
     this->cloudPlatformModel = ModelWrapper::create("lift_han_sky", "lift_han_sky_S", 2);
@@ -93,21 +95,23 @@ u32 Peepa::onCreate() {
         int t = 1;
         if (this->platformType == PlatformModel::Type::Sky)
             t = 2;
+        
         Vec2f points[2] = { Vec2f(-32.0f / t, 12.0f), Vec2f(32.0f / t, 12.0f) }; // the cloud platform will always be two tiles in length
         PolylineCollider::Info info = { Vec2f(0.0f, 0.0f), 0, 0, points, 0 };
         this->polylineCollider.init(this, info, 2);
         this->polylineCollider.setType(ColliderBase::Type::Solid);
+        
         if (this->platformType == PlatformModel::Type::WoodSnow)
             this->polylineCollider.setSurfaceType(ColliderBase::SurfaceType::Snow);
         else if (this->platformType == PlatformModel::Type::Sky) {
             this->polylineCollider.setSurfaceType(ColliderBase::SurfaceType::Cloud);
         }
+        
         ColliderMgr::instance()->add(&this->polylineCollider);
     }
 
     u32 movementMask = this->movementHandler.getMaskForMovementType(this->settings2 & 0xFF);    // nybble 20
     this->movementHandler.link(this->position, movementMask, this->movementID);                 // nybble 21-22    
-
 
     return this->onExecute();
 }
@@ -117,9 +121,7 @@ u32 Peepa::onExecute() {
     this->position = this->movementHandler.position;
     Mtx34 peepaMtx;
     Vec3f peepaModelPos = this->position;
-    peepaModelPos.y -= 8.0f;
-    if (this->hasPlatform)
-        peepaModelPos.y -= 2.0f;
+    peepaModelPos.y -= this->hasPlatform ? 10.0f : 8.0f;
     peepaMtx.makeRTIdx(this->rotation, peepaModelPos);
     this->peepaModel->setMtx(peepaMtx);
     this->peepaModel->setScale(this->scale);
@@ -147,15 +149,18 @@ u32 Peepa::onExecute() {
             this->platformModel.update(platformPos, platformModel.width * 16);
         }
     }
+    
     return 1;
 }
 
 u32 Peepa::onDraw() {
     this->peepaModel->draw();
+    
     if (this->platformType == PlatformModel::Type::Sky)
         this->cloudPlatformModel->draw();
     else
         this->platformModel.draw();
+        
     return 1;
 }
 
@@ -172,12 +177,14 @@ void Peepa::collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
 bool Peepa::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     if (!this->hasPlatform)
         doStateChange(&Peepa::StateID_Die);
+    
     return 1;
 }
 
 bool Peepa::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     if (!this->hasPlatform)
         this->damagePlayer(hcSelf, hcOther);
+        
     return 1;
 }
 
