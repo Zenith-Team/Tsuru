@@ -45,6 +45,7 @@ Files:
   - actors/tripleblock.cpp
   - actors/physicsmodifier.cpp
   - actors/musicnote.cpp
+  - actors/peepa.cpp
 #* Course Select Actors:
   - actors/csrootspawner.cpp
   - actors/csflames.cpp

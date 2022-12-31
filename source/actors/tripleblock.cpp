@@ -71,7 +71,7 @@ u32 TripleBlock::onExecute() {
     this->model->updateModel();
     this->model->updateAnimations();
 
-    if (this->model->texPatternAnims[0]->frameCtrl.currentFrame >= 50) {
+    if (this->model->texPatternAnims[0]->frameCtrl.currentFrame == 50) {
         this->model->texPatternAnims[0]->frameCtrl.currentFrame = 0;
     }
 
