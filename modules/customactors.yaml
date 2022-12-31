@@ -44,6 +44,7 @@ Files:
   - actors/minecart.cpp
   - actors/tripleblock.cpp
   - actors/physicsmodifier.cpp
+  - actors/musicnote.cpp
 #* Course Select Actors:
   - actors/csrootspawner.cpp
   - actors/csflames.cpp

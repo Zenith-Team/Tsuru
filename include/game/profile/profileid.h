@@ -289,6 +289,7 @@ ENUM_CLASS(ProfileID,
     Minecart,
     TripleBlock,
     PhysicsModifier,
-
+    MusicNote,
+    MusicNoteMgr,
     Num
 );
