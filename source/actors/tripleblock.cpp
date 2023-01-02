@@ -2,6 +2,7 @@
 #include "game/graphics/model/modelnw.h"
 #include "game/playermgr.h"
 #include "game/coinmgr.h"
+#include "sead/array.h"
 
 class TripleBlock : public BlockWrapper {
     SEAD_RTTI_OVERRIDE_IMPL(TripleBlock, BlockWrapper);
@@ -37,12 +38,11 @@ u32 TripleBlock::onCreate() {
         return 2;
     }
 
-
     this->position.x += 8;
 
     this->model = ModelWrapper::create("block_trip", "block_stch", 0, 4);
     
-    static const char* animNames[] = {
+    static const sead::SafeArray<const char*, 4> animNames = {
         "standard",
         "chika",
         "yougan",
