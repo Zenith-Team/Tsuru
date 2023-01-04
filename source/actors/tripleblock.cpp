@@ -59,6 +59,7 @@ u32 TripleBlock::onCreate() {
     if (BlockWrapper::stateType == StateType::UsedBlock) {
         doStateChange(&TripleBlock::StateID_Used);
     }
+
     return this->onExecute();
 }
 
