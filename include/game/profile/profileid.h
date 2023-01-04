@@ -292,5 +292,6 @@ ENUM_CLASS(ProfileID,
     MusicNote,
     MusicNoteMgr,
     Peepa,
+
     Num
 );
