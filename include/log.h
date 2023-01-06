@@ -3,6 +3,7 @@
 #include "sead/graphicscontext.h"
 #include "dynlibs/os/functions.h"
 #include "tsuru/utils.h"
+#include "game/collision/solid/polygoncollider.h"
 #include <cstring>
 
 /* Logging Colors */
@@ -353,6 +354,18 @@ inline void tprint<Vec3f>(Vec3f value) {
     if (fmt::_hexActive) {
         fmt::_hexActive = false;
     }
+}
+
+template <>
+inline void tprint<PolygonCollider::Info>(PolygonCollider::Info info) {
+    LOG("\n------------------PolygonCollider::Info------------------\n", "");
+    LOG("  offset: ", ""); tprint(info.offset); LOG("\n", "");
+    LOG("  _8: %f\n", info._8);
+    LOG("  _C: %f\n", info._C);
+    LOG("  topLeft: ", ""); tprint(info.topLeft); LOG("\n", "");
+    LOG("  bottomRight: ", ""); tprint(info.bottomRight); LOG("\n", "");
+    LOG("  rotation: %u\n", info.rotation);
+    LOG("--------------------------------------------------------", "");
 }
 
 template <>

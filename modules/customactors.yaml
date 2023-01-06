@@ -46,6 +46,7 @@ Files:
   - actors/physicsmodifier.cpp
   - actors/musicnote.cpp
   - actors/peepa.cpp
+  - actors/solid.cpp
 #* Course Select Actors:
   - actors/csrootspawner.cpp
   - actors/csflames.cpp

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "game/collision/tilechecker.h"
+#include "sead/runtimetypeinfo.h"
 
 class StageActor;
 
