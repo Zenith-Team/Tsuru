@@ -20,6 +20,10 @@
 #define __attribute__(...)
 #endif
 
+#define GEN_LAMBDA_BODY(...) { __VA_ARGS__ } }
+#define CAPTURE_LAMBDA_ARGS(...) (__VA_ARGS__) GEN_LAMBDA_BODY
+#define $(ret) struct { ret operator() CAPTURE_LAMBDA_ARGS
+
 #define forceinline __attribute__((always_inline))
 #define packed      __attribute__((packed))
 #define aligned(x)  __attribute__((aligned(x)))
