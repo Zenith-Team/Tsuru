@@ -890,6 +890,51 @@
     isInCreateList__17HitboxColliderMgrFP14HitboxCollider = 0x219dd88;
     addToCreateList__17HitboxColliderMgrFP14HitboxCollider = 0x219e028;
 
+# HoldableEnemy
+    __ct__13HoldableEnemyFPC14ActorBuildInfo = 0x22eb09c;
+    checkDerivedRuntimeTypeInfo__13HoldableEnemyCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x22ed510;
+    __dt__13HoldableEnemyFv = 0x22ed710;
+    StateID_Grabbed__13HoldableEnemy = 0x101ff7ec;
+    FUN_022EB724__13HoldableEnemyFP10StageActorb = 0x22EB724;
+    StateID_Down__13HoldableEnemy = 0x101ff810;
+    processCollision__13HoldableEnemyFP14HitboxColliderT1 = 0x22ebd88;
+    FUN_22EB888__13HoldableEnemyFP10StageActor = 0x22EB888;
+    getKickDirection__13HoldableEnemyFP10StageActor = 0x200c7e4;
+    RTTI__13HoldableEnemy = 0x101e9fc0;
+    beforeExecute__13HoldableEnemyFv = 0x22eb18c;
+    onDelete__13HoldableEnemyFv = 0x22eb218;
+    setPlayerID__13HoldableEnemyFSc = 0x22ed43c;
+    getActorPhysicsMgr__13HoldableEnemyFv= 0x22ed468;
+    vfAC__13HoldableEnemyFv = 0x22ed444;
+    vfB4__13HoldableEnemyFv = 0x22ed68c;
+    vfBC__13HoldableEnemyFv = 0x22eb368;
+    vfC4__13HoldableEnemyFv = 0x22ed448;
+    vfCC__13HoldableEnemyFv = 0x22ed44c;
+    vf10C__13HoldableEnemyFUc = 0x22ed450;
+    vf11C__13HoldableEnemyFv = 0x22ed458;
+    vf124__13HoldableEnemyFf = 0x22ed45c;
+    vf12C__13HoldableEnemyFv = 0x22ed460;
+    move__13HoldableEnemyFRQ2_4sead16Vector2__tm__2_f = 0x22ed470;
+    setYSpeed__13HoldableEnemyFf = 0x22ed484;
+    vf16C__13HoldableEnemyFv = 0x22ed48c;
+    vf174__13HoldableEnemyFv = 0x22ed494;
+    getRect__13HoldableEnemyFR4Rect = 0x22ed49c;
+    vf18C__13HoldableEnemyFv = 0x22ed508;
+    collisionPlayer__13HoldableEnemyFP14HitboxColliderT1 = 0x22ebc60;
+    collisionThrowableObject__13HoldableEnemyFP14HitboxColliderT1 = 0x22ec18c;
+    collisionIceball__13HoldableEnemyFP14HitboxColliderT1 = 0x22ec130;
+    onMiniJumpHit__13HoldableEnemyFP10StageActor = 0x22ebd80;
+    vf50C__13HoldableEnemyFP14HitboxColliderT1 = 0x22ec06c;
+    beginState_Grabbed__13HoldableEnemyFv = 0x22ecd00;
+    executeState_Grabbed__13HoldableEnemyFv = 0x22ecd8c;
+    endState_Grabbed__13HoldableEnemyFv = 0x22ecf84;
+    beginState_Down__13HoldableEnemyFv = 0x22ed700;
+    executeState_Down__13HoldableEnemyFv = 0x22ed704;
+    endState_Down__13HoldableEnemyFv = 0x22ed708;
+    beginState_HoldableEnemyState3__13HoldableEnemyFv = 0x22ed02c;
+    executeState_HoldableEnemyState3__13HoldableEnemyFv = 0x22ed70c;
+    endState_HoldableEnemyState3__13HoldableEnemyFv = 0x22ed07c;
+
 # LayerAGL
     vf44__8LayerAglFv = 0x24F9340;
     vf4C__8LayerAglFv = 0x24F9344;
