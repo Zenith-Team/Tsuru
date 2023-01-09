@@ -6,7 +6,7 @@ Hooks:
     instr: bl
     addr: "0x2924CC8"
     func: UseCustomPowerupCenterOffsetTable
-  
+
   - type: branch
     instr: b
     addr: "0x2925128"
@@ -26,7 +26,7 @@ Hooks:
     instr: bl
     addr: "0x292916c"
     func: UseCustomArray_1016CE20
-  
+
   - type: branch
     instr: bl
     addr: "0x292918c"

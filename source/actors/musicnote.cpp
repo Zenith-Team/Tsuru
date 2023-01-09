@@ -152,7 +152,7 @@ u32 MusicNoteMgr::onCreate() {
     this->clefModel = ModelWrapper::create("clef", "clef", 0, 1);
     this->clefModel->playTexPatternAnim("rainbow", 0);
     this->clefModel->texPatternAnims[0]->frameCtrl.shouldLoop(true);
-    this->scale = .17f;   
+    this->scale = .17f;
 
     this->hitboxCollider.init(this, &MusicNoteMgr::collisionInfo);
     this->addHitboxColliders();
@@ -225,39 +225,39 @@ void MusicNote::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
             // spawn specified powerup and play the assigned sound
             playSound((SoundEffects::IDs)(SoundEffects::SE_EMY_PATAMET_STEP + self->note), self->position);
             playSound(SoundEffects::SE_EMY_PATAMET_COMPLETE, self->position);
-            
+
             ActorBuildInfo buildInfo = { 0 };
             switch (self->mgr->powerup) {
                 case 1: { // fire flower
-                    buildInfo.profile = Profile::get(592); 
+                    buildInfo.profile = Profile::get(592);
                     break;
                 }
                 case 2: { // ice flower
-                    buildInfo.profile = Profile::get(594); 
+                    buildInfo.profile = Profile::get(594);
                     break;
                 }
                 case 3: { // mini mushroom
-                    buildInfo.profile = Profile::get(593); 
+                    buildInfo.profile = Profile::get(593);
                     break;
                 }
                 case 4: { // propeller
-                    buildInfo.profile = Profile::get(595); 
+                    buildInfo.profile = Profile::get(595);
                     break;
                 }
                 case 5: { // penguin
-                    buildInfo.profile = Profile::get(596); 
+                    buildInfo.profile = Profile::get(596);
                     break;
                 }
                 case 6: { // acorn
-                    buildInfo.profile = Profile::get(598); 
+                    buildInfo.profile = Profile::get(598);
                     break;
                 }
                 case 7: { // 1-up mushroom
-                    buildInfo.profile = Profile::get(597); 
+                    buildInfo.profile = Profile::get(597);
                     break;
                 }
                 case 8: { // 3-up moon
-                    buildInfo.profile = Profile::get(599); 
+                    buildInfo.profile = Profile::get(599);
                     break;
                 }
                 default: { // mushroom

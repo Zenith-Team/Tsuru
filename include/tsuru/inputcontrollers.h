@@ -53,7 +53,7 @@ public:
     inline bool triggerR(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x4) && nthBit32Right(this->controllers[controller].padHold.bits, 0xA) && nthBit32Right(this->controllers[controller].padHold.bits, 0x11); }
     inline bool triggerZL(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x4) && nthBit32Right(this->controllers[controller].padHold.bits, 0x11) && nthBit32Right(this->controllers[controller].padHold.bits, 0x12); }
     inline bool triggerZR(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x4) && nthBit32Right(this->controllers[controller].padHold.bits, 0x11) && !nthBit32Right(this->controllers[controller].padHold.bits, 0x9) && !nthBit32Right(this->controllers[controller].padHold.bits, 0x12) && !nthBit32Right(this->controllers[controller].padHold.bits, 0xA); }
-      
+
     // Gamepad specific
     inline bool tap() const { return nthBit32Right(this->controllers[ControllerID::Gamepad].padHold.bits, 0xD); }
 
