@@ -23,7 +23,7 @@
  ***************************************************************************/
 #include "dynlibs/os/functions.h"
 
-#ifdef Cemu
+#ifndef CONSOLE
 char logMsg[512];
 #endif
 u32 coreinitHandle = 0;

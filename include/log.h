@@ -8,7 +8,7 @@
 
 /* Logging Colors */
 namespace LogColor {
-#ifdef Cemu
+#ifndef CONSOLE
     static const char* Reset        = "\33[0m";
     static const char* Bold         = "\33[1m";
     static const char* NoBold       = "\33[22m";
@@ -119,7 +119,7 @@ void tprint(T t);
 
 #define PRINT_SINGLE(x) tprint(x);
 
-#if defined(TSURU_DEBUG) && defined(NO_INTELLISENSE_HACK) && defined(Cemu)
+#if defined(TSURU_DEBUG) && defined(NO_INTELLISENSE_HACK) && !defined(CONSOLE)
     #define PRINT(...)                                                      \
         do {                                                                \
             PP_FOREACH(PRINT_SINGLE, __VA_ARGS__)                           \
