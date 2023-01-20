@@ -132,8 +132,8 @@ void tprint(T t);
         {size_t len = strlen(logMsg); \
         __os_snprintf(logMsg + len, sizeof(logMsg) - len, FMT, __VA_ARGS__);}
 #else
-    #define PRINT(...) do {;} while (0)
-    #define LOG(FMT, ...) do {;} while (0)
+    #define PRINT(...) do { PRAGMA(ghs nowarning all); (__VA_ARGS__); PRAGMA(ghs endnowarning) } while (0)
+    #define LOG(FMT, ...) do { PRAGMA(ghs nowarning all); (FMT); (__VA_ARGS__); PRAGMA(ghs endnowarning) } while (0)
 #endif
 
 // Specializations
