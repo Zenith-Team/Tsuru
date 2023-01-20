@@ -16,4 +16,6 @@ rpxs
 *.x
 *.json
 linker
+build
+out
 __pycache__
