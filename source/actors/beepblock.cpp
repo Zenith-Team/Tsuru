@@ -112,7 +112,7 @@ u32 BeepBlock::onDraw() {
         } else {
             this->light.update(0, &this->position, nullptr, &radius, nullptr, &blue);
         }
-        
+
         this->model->draw();
     }
 

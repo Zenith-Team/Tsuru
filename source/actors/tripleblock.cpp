@@ -41,7 +41,7 @@ u32 TripleBlock::onCreate() {
     this->position.x += 8;
 
     this->model = ModelWrapper::create("block_trip", "block_stch", 0, 4);
-    
+
     static const sead::SafeArray<const char*, 4> animNames = {
         "standard",
         "chika",

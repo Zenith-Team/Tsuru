@@ -8,7 +8,7 @@
 
 /* Logging Colors */
 namespace LogColor {
-#ifdef Cemu
+#ifndef CONSOLE
     static const char* Reset        = "\33[0m";
     static const char* Bold         = "\33[1m";
     static const char* NoBold       = "\33[22m";
@@ -119,7 +119,7 @@ void tprint(T t);
 
 #define PRINT_SINGLE(x) tprint(x);
 
-#if defined(TSURU_DEBUG) && defined(NO_INTELLISENSE_HACK) && defined(Cemu)
+#if defined(TSURU_DEBUG) && defined(NO_INTELLISENSE_HACK) && !defined(CONSOLE)
     #define PRINT(...)                                                      \
         do {                                                                \
             PP_FOREACH(PRINT_SINGLE, __VA_ARGS__)                           \
@@ -132,8 +132,8 @@ void tprint(T t);
         {size_t len = strlen(logMsg); \
         __os_snprintf(logMsg + len, sizeof(logMsg) - len, FMT, __VA_ARGS__);}
 #else
-    #define PRINT(...) do {;} while (0)
-    #define LOG(FMT, ...) do {;} while (0)
+    #define PRINT(...) do { PRAGMA(ghs nowarning all); (__VA_ARGS__); PRAGMA(ghs endnowarning) } while (0)
+    #define LOG(FMT, ...) do { PRAGMA(ghs nowarning all); (FMT); (__VA_ARGS__); PRAGMA(ghs endnowarning) } while (0)
 #endif
 
 // Specializations

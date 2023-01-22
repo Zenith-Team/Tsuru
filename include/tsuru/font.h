@@ -19,7 +19,7 @@ public:
     // @param fontFile: The path of the GTX font texture file to load (Starting at ./content/Common)
     // @param identity: The number of characters in the main diagonal line of the font texture,
     // or the number of characters in a row, which must be the same as in a column.
-    // 
+    //
     // @warning Fonts with a different number of characters in a row and column are NOT supported.
     void load(const char* fontFile, u32 identity, u32 charWidthPixels, u32 charHeightPixels, const CharMapping charmap[] = nullptr) {
         this->cursor = 0.0f;

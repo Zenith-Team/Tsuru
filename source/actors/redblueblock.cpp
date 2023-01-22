@@ -24,7 +24,7 @@ public:
 
     ModelWrapper* model;
     RectCollider collider;
-    bool redBlueState; // true for blue, false for red 
+    bool redBlueState; // true for blue, false for red
 };
 
 CREATE_STATE(RedBlueBlock, Off);
@@ -55,7 +55,7 @@ u32 RedBlueBlock::onCreate() {
     if (this->redBlueState) { // make it blue if it's supposed to be
         this->model->texPatternAnims[0]->frameCtrl.currentFrame = 1;
     }
-    
+
     if (this->redBlueState == SwitchBlockState) {
         this->doStateChange(&StateID_On);
     } else {

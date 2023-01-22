@@ -87,7 +87,7 @@ void SwitchBlock::spawnItemUp() {
     if (isBlue) {
         playSound("SE_SYS_CE_DEL_STARCOIN", this->position);
     } else {
-        playSound("SE_SYS_CE_PUT_STARCOIN", this->position);    
+        playSound("SE_SYS_CE_PUT_STARCOIN", this->position);
     }
 }
 

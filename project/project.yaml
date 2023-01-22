@@ -30,7 +30,6 @@ Modules:
   - yoshicolors          # Extra colors for Yoshi
 Defines:
   - NO_INTELLISENSE_HACK
-  - Cemu
   - TSURU_DEBUG
 
 Targets:

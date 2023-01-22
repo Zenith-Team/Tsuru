@@ -24,8 +24,8 @@ PlayerBase::TallType::__type__ PowerupTallTypeTable[] = {
     PlayerBase::TallType::Normal,   // Ice
     PlayerBase::TallType::Normal,   // Acorn
     PlayerBase::TallType::Normal,   // PAcorn
-    // Begin custom entries 
-    PlayerBase::TallType::Normal   
+    // Begin custom entries
+    PlayerBase::TallType::Normal
 };
 
 // YetAnotherTable
@@ -112,7 +112,7 @@ ASM_BEGIN
 UseCustomPowerupCenterOffsetTable:
     lis r11, PowerupCenterOffsetTable@ha
     addi r11, r11, PowerupCenterOffsetTable@l
-    
+
     blr
 
 .global UseCustomArray_1016CD68
