@@ -6,7 +6,7 @@
 #include "game/direction.h"
 #include "game/effect/effect.h"
 #include "sead/random.h"
-
+#include "game/movementhandler.h"
 const u32 timerThreshold = 315;
 
 class ColdFuzzy : public Enemy {
@@ -20,19 +20,21 @@ public:
     u32 onDraw() override;
 
     void collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
-    bool collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
-    bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
-    bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
-    bool collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    void collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionGroundPoundYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     bool collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
-
+    bool collisionFireball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionIceball(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
+    bool collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) override;
     static HitboxCollider::Info collisionInfo;
 
     ModelWrapper* model;
-
+    MovementHandler movementHandler;
     struct {
         PlayerBase* player;
         u32 timer;
@@ -49,6 +51,7 @@ HitboxCollider::Info ColdFuzzy::collisionInfo = {
 ColdFuzzy::ColdFuzzy(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)
     , model(nullptr)
+    , movementHandler()
 { }
 
 u32 ColdFuzzy::onCreate() {
@@ -64,6 +67,9 @@ u32 ColdFuzzy::onCreate() {
         this->playerTimers[i].timer = timerThreshold;
     }
 
+    u32 movementMask = this->movementHandler.getMaskForMovementType(3); 
+    // path support because tsuru doesn't support line-controlled things just yet
+    this->movementHandler.link(this->position, movementMask, this->movementID);
     return this->onExecute();
 }
 
@@ -81,6 +87,8 @@ u32 ColdFuzzy::onExecute() {
         }
     }
 
+    this->movementHandler.execute();
+    this->position = this->movementHandler.position;
     return 1;
 }
 
@@ -98,6 +106,11 @@ void ColdFuzzy::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther)
         }
     }
 }
+
+void ColdFuzzy::collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->collisionPlayer(hcSelf, hcOther);
+}
+
 
 bool ColdFuzzy::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
@@ -132,6 +145,11 @@ bool ColdFuzzy::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcO
     return true;
 }
 
+bool ColdFuzzy::collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->collisionPlayer(hcSelf, hcOther);
+    return true;
+}
+
 bool ColdFuzzy::collisionSlide(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     this->collisionPlayer(hcSelf, hcOther);
 
@@ -145,6 +163,12 @@ bool ColdFuzzy::collisionPenguinSlide(HitboxCollider* hcSelf, HitboxCollider* hc
 }
 
 bool ColdFuzzy::collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
+    this->collisionStar(hcSelf, hcOther);
+
+    return true;
+}
+
+bool ColdFuzzy::collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     this->collisionStar(hcSelf, hcOther);
 
     return true;
