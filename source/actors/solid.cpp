@@ -40,12 +40,12 @@ u32 Solid::onCreate() {
 
     this->collider.init(this, info);
     ColliderMgr::instance()->add(&this->collider);
-    
+
     return 1;
 }
 
 u32 Solid::onExecute() {
     this->collider.execute();
-    
+
     return 1;
 }

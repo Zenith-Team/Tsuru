@@ -28,6 +28,9 @@
 #define packed      __attribute__((packed))
 #define aligned(x)  __attribute__((aligned(x)))
 
+#define PRAGMA(x)   _Pragma(#x)
+#define CUSTOM_SECTION(type, sect) PRAGMA(ghs section type = sect);
+
 #define ENUM_CLASS(name, ...)              \
     class name {virtual void This_error_means_you_forgot_to_write___type___in_an_object_instanciation()=0;public: \
         enum __type__ { __VA_ARGS__ };     \

@@ -1,5 +1,5 @@
 #include "tsuru/debug/debugscene.h"
-#include "agl/lyr/renderer.h" 
+#include "agl/lyr/renderer.h"
 #include "agl/utl/devtools.h"
 #include "sead/graphicscontext.h"
 #include "tsuru/fonts.h"
@@ -49,7 +49,7 @@ void DebugScene::enter() {
     BIND_DRAW_METHOD(drawMethod, "DebugMain", *((agl::lyr::DrawMethod::PTMF*)&drawFunc), 0xE, this);
 
     this->controllers.init();
-    
+
     this->states.changeState(&DebugScene::StateID_MainMenu);
 }
 
@@ -131,7 +131,7 @@ void DebugScene::executeState_LevelSelect() {
     PrintText("Level:", xleft, xtop - 50);
 
     PrintText(">", xleft - 50, xtop - (50 * this->cursor));
-    
+
     static char worldText[3] = { '0', '0', '\0' };
     static char levelText[3] = { '0', '0', '\0' };
 

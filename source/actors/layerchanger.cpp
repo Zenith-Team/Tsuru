@@ -28,7 +28,7 @@ u32 LayerChanger::onCreate() {
     this->trigEvent = (this->eventID1 & 0xFF) - 1; // nybbles 1-2
     this->layerDest = (this->settings1 >> 0x1C & 0xF); // nybble 5
     this->isDone = false;
-    
+
     /* Layer chart
     0 - Layer 1
     1 - Layer 2
@@ -48,7 +48,7 @@ u32 LayerChanger::onExecute() {
                 player->layer = this->layerDest;
             }
         }
-        
+
         this->isDone = true;
     }
 

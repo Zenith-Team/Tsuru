@@ -30,7 +30,7 @@
 extern "C" {
 #endif
 
-#ifdef Cemu
+#ifndef CONSOLE
 
 #define OS_FIRMWARE                 ((volatile u32)550)
 
@@ -104,7 +104,7 @@ typedef void* (*DisasmGetSym)(u32 addr, u8* symbolName, u32 nameBufSize);
 #define OS_MUTEX_SIZE                   44
 
 /* Message for logging */
-#ifdef Cemu
+#ifndef CONSOLE
 extern char logMsg[512];
 #endif
 
