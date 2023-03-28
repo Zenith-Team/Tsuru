@@ -249,6 +249,10 @@
     afterDelete__5ActorFUi = 0x2002F3C;
     getProfileID__5ActorFv = 0x2002C80;
 
+# ActorAdditionalHeap
+    create__19ActorAdditionalHeapFv = 0x2002C70;
+    destroy__19ActorAdditionalHeapFv = 0x2002C54;
+
 # ActorBuffer
     findActorByID__11ActorBufferFRCUi = 0x200A5C8;
 
