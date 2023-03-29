@@ -23,6 +23,8 @@ public:
     void updateMatrixImpl_() const;
     const Mtx44& getDeviceProjectionMatrix() const;
 
+    void cameraPosToScreenPos(Vec3f* out, const Vec3f& cameraPos) const;
+
     mutable bool dirty;
     mutable bool deviceDirty;
     Mtx44 matrix;

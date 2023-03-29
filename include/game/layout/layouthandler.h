@@ -5,6 +5,7 @@
 #include "sead/safestring.h"
 #include "sead/matrix.h"
 #include "game/layout/gamelayout.h"
+#include "game/layout/textboxwrapper.h"
 
 class LayoutAnimator {
 public:
@@ -26,6 +27,14 @@ public:
     void update(u32 layerID, Mtx34* mtx = nullptr);
     void initAnims(const sead::SafeString* names, u32& count);
     void playAnim(u32, const sead::SafeString& name, bool loop = false);
+
+    nw::lyt::Pane* getPane(const sead::SafeString& name) const;
+    void getPanes(nw::lyt::Pane** output, sead::SafeString* names, const u32& count) const;
+
+    nw::lyt::Pane* getRootPane() const;
+
+    TextBoxWrapper* getTextBoxPane(const sead::SafeString& name) const;
+    void getTextBoxPanes(TextBoxWrapper** output, sead::SafeString* names, const u32& count) const;
 
     GameLayout* layout;
     struct { void* _0; u32 _4; } allocator; // Likely a NW/Sead bridge class

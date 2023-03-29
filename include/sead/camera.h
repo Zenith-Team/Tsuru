@@ -17,6 +17,8 @@ public:
 
     virtual void doUpdateMatrix(Mtx34* mtx) const = 0;
 
+    void worldPosToCameraPosByMatrix(Vec3f* out, const Vec3f& worldPos) const;
+
     Mtx34 matrix;
 };
 
