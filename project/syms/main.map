@@ -958,6 +958,7 @@
     draw__13LayoutHandlerFRCQ2_4sead17Matrix44__tm__2_f = 0x2672d14;
     initAnims__13LayoutHandlerFPCQ2_4sead23SafeStringBase__tm__2_cRUi = 0x2671c54;
     playAnim__13LayoutHandlerFUiRCQ2_4sead23SafeStringBase__tm__2_cb = 0x2671680;
+    getTextBoxPane__13LayoutHandlerCFRCQ2_4sead23SafeStringBase__tm__2_c = 0x2671ef8;
 
 # Level
     sInstance__5Level = 0x101DB048;
@@ -1350,6 +1351,9 @@
 
 # TerrainEffects
     updateWaveCollisions__14TerrainEffectsFv = 0x28B8D5C;
+
+# TextBoxWrapper
+    setTextFromMSBT__14TextBoxWrapperFRCQ2_4sead23SafeStringBase__tm__2_cUie = 0x26819f8;
 
 # TileMgr
     sInstance__7TileMgr = 0x101DAB94;
