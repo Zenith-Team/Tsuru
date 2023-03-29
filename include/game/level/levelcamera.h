@@ -3,7 +3,7 @@
 #include "sead/idisposer.h"
 
 class LevelCamera {
-    SEAD_SINGLETON_DISPOSER(LevelCamera)
+    SEAD_SINGLETON_DISPOSER(LevelCamera);
 
 public:
     f32 _10;                // 10
