@@ -2,6 +2,7 @@
 #include "game/graphics/model/modelnw.h"
 #include "game/actor/actormgr.h"
 #include "game/sound/sound.h"
+#include "game/effect/effect.h"
 #include "log.h"
 
 class StarCoinShardMgr;
@@ -98,7 +99,7 @@ u32 StarCoinShard::onDraw() {
 }
 
 void StarCoinShard::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    if (hcOther->owner->type == StageActor::Type::Player) {
+    if (hcOther->owner->type == StageActor::Type::Player || hcOther->owner->type == StageActor::Type::Yoshi) {
         StarCoinShard* self = (StarCoinShard*)hcSelf->owner;
 
         if ((self->mgr->collectedCount + 1) >= (self->mgr->eventID1 & 0xF)) {
@@ -106,6 +107,8 @@ void StarCoinShard::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hc
         } else {
             playSound((SoundEffects::IDs)(SoundEffects::SE_OBJ_GET_RED_COIN + self->mgr->collectedCount), self->position);
         }
+
+        Effect::spawn(RP_CoinNormalGet, &self->position);
 
         self->mgr->collectedCount++;
         self->isDeleted = true;
