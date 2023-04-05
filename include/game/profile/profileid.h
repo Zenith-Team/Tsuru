@@ -294,6 +294,7 @@ ENUM_CLASS(ProfileID,
     Peepa,
     NullActor,
     Solid,
+    UniversalMovementController,
 
     Num
 );

@@ -862,7 +862,7 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::MusicNoteMgr,                // 769
     ProfileID::Peepa,                       // 770
     ProfileID::Solid,                       // 771
-    ProfileID::NullActor,                   // 772
+    ProfileID::UniversalMovementController, // 772
     ProfileID::NullActor,                   // 773
     ProfileID::NullActor,                   // 774
     ProfileID::NullActor,                   // 775
