@@ -26,10 +26,28 @@ UniversalMovementController::UniversalMovementController(const ActorBuildInfo* b
 { }
 
 u32 UniversalMovementController::onCreate() {
+    bool safeMode = this->eventID2 >> 0x4 & 0x1;
+
     for (Actor** actor = ActorMgr::instance()->actors.start.buffer; actor < ActorMgr::instance()->actors.end.buffer; actor++) {
         if (*actor && (*actor)->initialStateFlag == (this->eventID1 & 0xFF)) {
-            this->target = (StageActor*)*actor;
-            break;
+            if (safeMode) {
+                u32 targetID = 0;
+                u32 targetIDSearch = ((this->settings1 >> 0x1C & 0xF) << 8) | ((this->settings1 >> 0x18 & 0xF) << 4) | ((this->settings1 >> 0x14 & 0xF));
+
+                if ((this->eventID2 & 0xF) == 0) {
+                    targetID = Profile::spriteToProfileList[targetIDSearch];
+                } else {
+                    targetID = targetIDSearch;
+                }
+
+                if ((*actor)->getProfileID() == targetID) {
+                    this->target = (StageActor*)*actor;
+                    break;
+                }
+            } else {
+                this->target = (StageActor*)*actor;
+                break;
+            }
         }
     }
 
