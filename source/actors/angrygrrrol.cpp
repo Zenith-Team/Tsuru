@@ -41,9 +41,9 @@ u32 AngryGrrrol::onCreate() {
     this->model = ModelWrapper::create("guruguru", "guruguru", 0, 0, 1);
     this->model->playTexSrtAnim("guruguru");
 
-    PhysicsMgr::Sensor belowSensor = { -16, 16, -16 };
-    PhysicsMgr::Sensor sideSensor = { -16, 16, 16 };
-    PhysicsMgr::Sensor aboveSensor = { -16, 16, 16 };
+    PhysicsMgr::Sensor belowSensor = { -8, 8, -16 };
+    PhysicsMgr::Sensor sideSensor = { -8, 8, 16 };
+    PhysicsMgr::Sensor aboveSensor = { -8, 8, 16 };
     this->physicsMgr.init(this, &belowSensor, &aboveSensor, &sideSensor);
 
     this->hitboxCollider.init(this, &AngryGrrrol::collisionInfo);
@@ -75,7 +75,11 @@ u32 AngryGrrrol::onExecute() {
     this->rotation.z -= fixDeg(2.0f * this->speed.x);
 
     this->physicsMgr.processCollisions();
-    this->handleSpeed();
+    this->handlePhysics();
+
+    if (this->physicsMgr.isOnGround()) {
+        this->speed.y = 0;
+    }
 
     return 1;
 }
