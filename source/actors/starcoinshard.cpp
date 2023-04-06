@@ -40,8 +40,12 @@ public:
     u32 id;
 };
 
+const ActorInfo StarCoinShardMgrActorInfo = {
+    0, 0, 9000, 0, 0, 0, 0, 0
+};
+
 REGISTER_PROFILE(StarCoinShard, ProfileID::StarCoinShard);
-REGISTER_PROFILE(StarCoinShardMgr, ProfileID::StarCoinShardMgr);
+REGISTER_PROFILE(StarCoinShardMgr, ProfileID::StarCoinShardMgr, "StarCoinShardMgr", &StarCoinShardMgrActorInfo);
 
 PROFILE_RESOURCES(ProfileID::StarCoinShard, Profile::LoadResourcesAt::Course, "star_shard");
 PROFILE_RESOURCES(ProfileID::StarCoinShardMgr, Profile::LoadResourcesAt::Course, "star_coin");
@@ -75,6 +79,10 @@ u32 StarCoinShard::onExecute() {
 
     this->model->setMtx(mtx);
     this->model->updateModel();
+
+    if (this->mgr != nullptr) {
+        return 1;
+    }
 
     for (Actor** it = ActorMgr::instance()->actors.start.buffer; it != ActorMgr::instance()->actors.end.buffer; ++it) {
         if (*it != nullptr) {
