@@ -25,6 +25,7 @@ UniversalMovementController::UniversalMovementController(const ActorBuildInfo* b
     , movementHandler()
 { }
 
+
 u32 UniversalMovementController::onCreate() {
     bool safeMode = this->eventID2 >> 0x4 & 0x1;
 
@@ -54,7 +55,7 @@ u32 UniversalMovementController::onCreate() {
     if (!this->target) {
         PRINT("Unable to find target for universal movement controller with id: ", this->eventID1 & 0xFF, ", trying again...");
     } else {
-        this->movementHandler.link(this->position, this->movementHandler.getMaskForMovementType(this->settings2 & 0xFF), this->movementID);
+        this->movementHandler.link(this->target->position, this->movementHandler.getMaskForMovementType(this->settings2 & 0xFF), this->movementID);
     }
 
     return 1;
@@ -63,7 +64,6 @@ u32 UniversalMovementController::onCreate() {
 u32 UniversalMovementController::onExecute() {
     if (this->target) {
         this->movementHandler.execute();
-        this->position = this->movementHandler.position;
         this->target->position = this->movementHandler.position;
     } else {
         this->onCreate();
