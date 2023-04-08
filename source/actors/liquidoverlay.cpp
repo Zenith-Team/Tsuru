@@ -70,7 +70,13 @@ u32 LiquidOverlay::onExecute() {
 }
 
 void LiquidOverlay::doOverlayCollision(u32 i, Player* player) {
-    if (this->timers[i]++ >= 240) {
+    if ((this->settings1 >> 0x18 & 0xF) >= 4) { // nybble 6, water current
+        switch (this->settings1 >> 0x18 & 0xF) {
+            case 4: player->position.x -= 1.0f; break; //? add other actors in the same location maybe?
+            case 5: player->position.x += 1.0f; break;
+        }
+
+    } else if (this->timers[i]++ >= 240) {
         switch (this->settings1 >> 0x18 & 0xF) { // Nybble 6, damage type
             default: case 0: player->trySpecialDamage(0, Player::DamageType::Ice); break;
             case 1: player->trySpecialDamage(0, Player::DamageType::Electric); break;
@@ -80,4 +86,5 @@ void LiquidOverlay::doOverlayCollision(u32 i, Player* player) {
 
         this->timers[i] = 0;
     }
+
 }
