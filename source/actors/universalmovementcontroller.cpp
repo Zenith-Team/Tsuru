@@ -12,7 +12,7 @@ public:
 
     u32 onCreate() override;
     u32 onExecute() override;
-
+    
     StageActor* target;
     MovementHandler movementHandler;
 };
@@ -25,19 +25,19 @@ UniversalMovementController::UniversalMovementController(const ActorBuildInfo* b
     , movementHandler()
 { }
 
+
 u32 UniversalMovementController::onCreate() {
-    bool safeMode = this->eventID2 >> 0x4 & 0x1;
+    bool safeMode = this->eventID2 >> 0x4 & 0x1; // nybble 3
 
     for (Actor** actor = ActorMgr::instance()->actors.start.buffer; actor < ActorMgr::instance()->actors.end.buffer; actor++) {
-        if (*actor && (*actor)->initialStateFlag == (this->eventID1 & 0xFF)) {
+        if (*actor && (*actor)->initialStateFlag == (this->eventID1 & 0xFF)) { // nybbles 1-2
             if (safeMode) {
                 u32 targetID = 0;
-                u32 targetIDSearch = ((this->settings1 >> 0x1C & 0xF) << 8) | ((this->settings1 >> 0x18 & 0xF) << 4) | ((this->settings1 >> 0x14 & 0xF));
-
-                if ((this->eventID2 & 0xF) == 0) {
-                    targetID = Profile::spriteToProfileList[targetIDSearch];
+                u32 targetIDSearch = ((this->settings1 >> 0x1C & 0xF) << 8) | ((this->settings1 >> 0x18 & 0xF) << 4) | ((this->settings1 >> 0x14 & 0xF)); // nybbles 5-7
+                if ((this->eventID2 & 0xF) == 0) { // nybble 4
+                    targetID = Profile::spriteToProfileList[targetIDSearch]; // use profile id
                 } else {
-                    targetID = targetIDSearch;
+                    targetID = targetIDSearch; // use sprite id
                 }
 
                 if ((*actor)->getProfileID() == targetID) {
@@ -54,7 +54,7 @@ u32 UniversalMovementController::onCreate() {
     if (!this->target) {
         PRINT("Unable to find target for universal movement controller with id: ", this->eventID1 & 0xFF, ", trying again...");
     } else {
-        this->movementHandler.link(this->position, this->movementHandler.getMaskForMovementType(this->settings2 & 0xFF), this->movementID);
+        this->movementHandler.link(this->target->position, this->movementHandler.getMaskForMovementType(this->settings2 & 0xFF), this->movementID);
     }
 
     return 1;
@@ -63,7 +63,6 @@ u32 UniversalMovementController::onCreate() {
 u32 UniversalMovementController::onExecute() {
     if (this->target) {
         this->movementHandler.execute();
-        this->position = this->movementHandler.position;
         this->target->position = this->movementHandler.position;
     } else {
         this->onCreate();
