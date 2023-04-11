@@ -6,7 +6,7 @@
 class PlayerLookTarget;
 
 class PlayerLookTargetMgr {
-    SEAD_SINGLETON_DISPOSER(PlayerLookTargetMgr)
+    SEAD_SINGLETON_DISPOSER(PlayerLookTargetMgr);
 
 public:
     PlayerLookTargetMgr();
