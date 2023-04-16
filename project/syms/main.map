@@ -5,8 +5,8 @@
     fmodf = 0x2AFD97C;
     powf = 0x2AFDEA8;
     sqrtf = 0x2AFDCCC;
-    tanf = 0x2afdb84;
-    acosf = 0x2afe8f4;
+    tanf = 0x2AFDB84;
+    acosf = 0x2AFE8F4;
     globalSinCosTbl__Q3_2nw4math8internal = 0x10191538;
 
 # new/delete
@@ -76,7 +76,7 @@
     __ct__Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2A25A64;
     __dt__Q2_3agl14TextureSamplerFv = 0x2A25C60;
     applyTextureData___Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2A25990;
-    initBorderColor___Q2_3agl14TextureSamplerCFv = 0x2a25d94;
+    initBorderColor___Q2_3agl14TextureSamplerCFv = 0x2A25D94;
 
 # agl::driver::GX2Resource
     sInstance__Q3_3agl6driver11GX2Resource = 0x101E88C4;
@@ -92,7 +92,7 @@
     initLayer___Q3_3agl3lyr8RendererFPQ3_3agl3lyr5LayerUiRCQ2_4sead23SafeStringBase__tm__2_cT2PQ2_4sead4Heap = 0x2A3AEE8;
 
 # agl::lyr::RenderInfo
-    __ct__Q3_3agl3lyr10RenderInfoFQ3_3agl3lyr11DisplayTypePCQ2_4sead11FrameBufferbPCQ3_3agl3lyr5LayerPQ2_3agl11DisplayList = 0x2a3b2c0;
+    __ct__Q3_3agl3lyr10RenderInfoFQ3_3agl3lyr11DisplayTypePCQ2_4sead11FrameBufferbPCQ3_3agl3lyr5LayerPQ2_3agl11DisplayList = 0x2A3B2C0;
 
 # agl::utl::DevTools
     drawTextureTexCoord__Q3_3agl3utl8DevToolsSFRCQ2_3agl14TextureSamplerRCQ2_4sead17Matrix34__tm__2_fRCQ2_4sead17Matrix44__tm__2_fRCQ2_4sead16Vector2__tm__2_ffT4Q2_3agl10ShaderMode = 0x2A51A28;
@@ -101,7 +101,7 @@
     drawTextureMSAA__Q3_3agl3utl13ImageFilter2DSFRCQ2_3agl14TextureSamplerRCQ2_4sead8ViewportRCQ2_4sead16Vector2__tm__2_fT3Ui = 0x2A533EC;
 
 # sead::CalculateTask
-    RTTI__Q2_4sead13CalculateTask = 0x101ea764;
+    RTTI__Q2_4sead13CalculateTask = 0x101EA764;
     __ct__Q2_4sead13CalculateTaskFRCQ2_4sead16TaskConstructArgPCc = 0x29FC508;
     __dt__Q2_4sead13CalculateTaskFv = 0x29FC2F0;
     checkDerivedRuntimeTypeInfo__Q2_4sead13CalculateTaskCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x29FC7D8;
@@ -154,7 +154,7 @@
     sRootHeaps__Q2_4sead7HeapMgr = 0x105EA148;
     sInstancePtr__Q2_4sead7HeapMgr = 0x101E8040;
     getCurrentHeap__Q2_4sead7HeapMgrFv = 0x2A0D554;
-    setCurrentHeap__Q2_4sead7HeapMgrFPQ2_4sead4Heap = 0x2a0d584;
+    setCurrentHeap__Q2_4sead7HeapMgrFPQ2_4sead4Heap = 0x2A0D584;
 
 # sead::IDisposer
     __ct__Q2_4sead9IDisposerFv = 0x2A0A2FC;
@@ -217,7 +217,7 @@
     onDestroy__Q2_4sead8TaskBaseFv = __deleted_virtual_called;
     enterCommon__Q2_4sead8TaskBaseFv = 0x29FF818;
     adjustHeapAll__Q2_4sead8TaskBaseFv = 0x29FF9DC;
-    RTTI__Q2_4sead8TaskBase = 0x101ea768;
+    RTTI__Q2_4sead8TaskBase = 0x101EA768;
 
 # sead::Viewport
     __ct__Q2_4sead8ViewportFfN31 = 0x2A072FC;
@@ -225,7 +225,7 @@
     apply__Q2_4sead8ViewportCFRCQ2_4sead18LogicalFrameBuffer = 0x2A0783C;
 
 # Actor
-    RTTI__5Actor = 0x101e9cc8;
+    RTTI__5Actor = 0x101E9CC8;
     __ct__5ActorFPC14ActorBuildInfo = 0x2002CE0;
     __dt__5ActorFv = 0x2002E68;
     __vtbl__5Actor = 0x100006C0;
@@ -332,8 +332,8 @@
 
 # BlockBase
     activeBottomCollisionCallback__9BlockBaseSFP12ColliderBaseP10PhysicsMgrUi = 0x2705528;
-    activeTopCollisionCallback__9BlockBaseSFP12ColliderBaseP10PhysicsMgrUi = 0x2704ecc;
-    activeSideCollisionCallback__9BlockBaseSFP12ColliderBaseP10PhysicsMgrUi = 0x2705efc;
+    activeTopCollisionCallback__9BlockBaseSFP12ColliderBaseP10PhysicsMgrUi = 0x2704ECC;
+    activeSideCollisionCallback__9BlockBaseSFP12ColliderBaseP10PhysicsMgrUi = 0x2705EFC;
     __ct__9BlockBaseFPC14ActorBuildInfo = 0x269E614;
     setBelowSensor__9BlockBaseFv = 0x2708F04;
     init__9BlockBaseFbT1 = 0x269F6C8;
@@ -363,212 +363,212 @@
     beginState_Used__9BlockBaseFv = 0x26A0624;
     executeState_Used__9BlockBaseFv = 0x26A0074;
     endState_Used__9BlockBaseFv = 0x26A0628;
-    checkDerivedRuntimeTypeInfo__9BlockBaseCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x26a0460;
-    __dt__9BlockBaseFv = 0x26a062c;
-    RTTI__9BlockBase = 0x101e9cf8;
+    checkDerivedRuntimeTypeInfo__9BlockBaseCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x26A0460;
+    __dt__9BlockBaseFv = 0x26A062C;
+    RTTI__9BlockBase = 0x101E9CF8;
     StateID_Used__9BlockBase = 0x1021E904;
 
 # Boss
-    RTTI__4Boss = 0x101e9f24;
+    RTTI__4Boss = 0x101E9F24;
     getRuntimeTypeInfo__4BossCFv = __deleted_virtual_called;
     FUN_202D0F8__4BossFP10StageActorPQ2_4sead16Vector3__tm__2_fUi = 0x202D0F8;
     FUN_202D030__4BossFP10StageActorPQ2_4sead16Vector3__tm__2_fUi = 0x202D030;
-    checkDerivedRuntimeTypeInfo__4BossCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x202dab0;
-    StateID_BossState1__4Boss = 0x101f09e0;
-    StateID_BossState5__4Boss = 0x101f0a70;
-    onCreate__4BossFv = 0x202bb68;
-    setPlayerID__4BossFSc = 0x202d9c0;
-    removeHitboxColliders__4BossFv = 0x202ddf0;
-    addHitboxColliders__4BossFv = 0x202de7c;
-    getActorPhysicsMgr__4BossFv = 0x202d9f8;
-    move__4BossFRQ2_4sead16Vector2__tm__2_f = 0x202da00;
-    collisionPlayer__4BossFP14HitboxColliderT1 = 0x202bfdc;
-    collisionYoshi__4BossFP14HitboxColliderT1 = 0x202c2b4;
-    collisionStar__4BossFP14HitboxColliderT1 = 0x202dcc8;
-    collisionSlide__4BossFP14HitboxColliderT1 = 0x202dcd0;
-    collisionPropellerDrill__4BossFP14HitboxColliderT1 = 0x202c5d0;
-    vf244__4BossFP14HitboxColliderT1 = 0x202dcd8;
-    collisionGroundPound__4BossFP14HitboxColliderT1 = 0x202c3ac;
-    collisionPenguinSlide__4BossFP14HitboxColliderT1 = 0x202c5e0;
-    collisionThrowableObject__4BossFP14HitboxColliderT1 = 0x202c8e0;
-    collisionFireball__4BossFP14HitboxColliderT1 = 0x202c6d4;
-    collisionIceball__4BossFP14HitboxColliderT1 = 0x202cbcc;
-    addScoreWhenHit__4BossFv = 0x202dd38;
-    onStomp__4BossFP10StageActor = 0x202d214;
-    onStompKill__4BossFP10StageActor = 0x202df2c;
-    __ct__4BossFPC14ActorBuildInfo = 0x202b968;
-    __dt__4BossFv = 0x202e2e0;
-    beforeExecute__4BossFv = 0x202bd0c;
-    afterExecute__4BossFUi = 0x202bddc;
-    onDelete__4BossFv = 0x202dc2c;
-    setPlayerId__4BossFSc = 0x202d9c0;
-    removeActiveColliders__4BossFv = 0x202ddf0;
-    addActiveColliders__4BossFv = 0x202de7c;
-    getCollisionMgr__4BossFv = 0x202d9f8;
-    vfAC__4BossFv = 0x202d9c8;
-    vfB4__4BossFv = 0x202d9cc;
-    vfBC__4BossFv = 0x202d9d4;
-    vfC4__4BossFv = 0x202d9d8;
-    vfCC__4BossFv = 0x202d9dc;
-    vf10C__4BossFUc = 0x202d9e0;
-    vf11C__4BossFv = 0x202d9e8;
-    vf124__4BossFf = 0x202d9ec;
-    vf12C__4BossFv = 0x202d9f0;
-    vf154__4BossFv = 0x202ce40;
-    move__4BossFR4Vec2 = 0x202da00;
-    setYSpeed__4BossFf = 0x202da14;
-    vf16C__4BossFv = 0x202da1c;
-    vf174__4BossFv = 0x202da24;
-    getRect__4BossFR4Rect = 0x202e254;
-    vf18C__4BossFv = 0x202daa8;
-    freeze__4BossFv = 0x202ceac;
-    vf1BC__4BossFv = 0x202cf64;
-    vf1C4__4BossFv = 0x202e2d0;
-    collisionPlayer__4BossFP14ActiveColliderT1 = 0x202bfdc;
-    collisionYoshi__4BossFP14ActiveColliderT1 = 0x202c2b4;
-    collisionStar__4BossFP14ActiveColliderT1 = 0x202dcc8;
-    collisionSlide__4BossFP14ActiveColliderT1 = 0x202dcd0;
-    collisionPropellerDrill__4BossFP14ActiveColliderT1 = 0x202c5d0;
-    vf244__4BossFP14ActiveColliderT1 = 0x202dcd8;
-    collisionGroundPound__4BossFP14ActiveColliderT1 = 0x202c3ac;
-    collisionPenguinSlide__4BossFP14ActiveColliderT1 = 0x202c5e0;
-    collisionThrowableObject__4BossFP14ActiveColliderT1 = 0x202c8e0;
-    collisionFireball__4BossFP14ActiveColliderT1 = 0x202c6d4;
-    collisionIceball__4BossFP14ActiveColliderT1 = 0x202cbcc;
-    isOnGround__4BossFv = 0x202ce00;
-    vf2F4__4BossFv = 0x202dd38;
-    beginState_DieFumi__4BossFv = 0x202dc9c;
-    executeState_DieFumi__4BossFv = 0x202dca0;
-    endState_DieFumi__4BossFv = 0x202dca4;
-    beginState_BossState1__4BossFv = 0x202becc;
-    executeState_BossState1__4BossFv = 0x202bedc;
-    endState_BossState1__4BossFv = 0x202beec;
-    beginState_BossState2__4BossFv = 0x202befc;
-    executeState_BossState2__4BossFv = 0x202bf0c;
-    endState_BossState2__4BossFv = 0x202bf1c;
-    beginState_BossState3__4BossFv = 0x202bf2c;
-    executeState_BossState3__4BossFv = 0x202bf3c;
-    endState_BossState3__4BossFv = 0x202bf4c;
-    beginState_BossState4__4BossFv = 0x202bf5c;
-    executeState_BossState4__4BossFv = 0x202bf6c;
-    endState_BossState4__4BossFv = 0x202bf7c;
-    beginState_BossState5__4BossFv = 0x202bf8c;
-    executeState_BossState5__4BossFv = 0x202bf9c;
-    endState_BossState5__4BossFv = 0x202bfac;
-    startCutscene__4BossFv = 0x202dca8;
-    endCutscene__4BossFv = 0x202dcb4;
-    vf56C__4BossFv = 0x202dcc0;
-    vf574__4BossFv = 0x202bfbc;
-    vf57C__4BossFv = 0x202dcc4;
+    checkDerivedRuntimeTypeInfo__4BossCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x202DAB0;
+    StateID_BossState1__4Boss = 0x101F09E0;
+    StateID_BossState5__4Boss = 0x101F0A70;
+    onCreate__4BossFv = 0x202BB68;
+    setPlayerID__4BossFSc = 0x202D9C0;
+    removeHitboxColliders__4BossFv = 0x202DDF0;
+    addHitboxColliders__4BossFv = 0x202DE7C;
+    getActorPhysicsMgr__4BossFv = 0x202D9F8;
+    move__4BossFRQ2_4sead16Vector2__tm__2_f = 0x202DA00;
+    collisionPlayer__4BossFP14HitboxColliderT1 = 0x202BFDC;
+    collisionYoshi__4BossFP14HitboxColliderT1 = 0x202C2B4;
+    collisionStar__4BossFP14HitboxColliderT1 = 0x202DCC8;
+    collisionSlide__4BossFP14HitboxColliderT1 = 0x202DCD0;
+    collisionPropellerDrill__4BossFP14HitboxColliderT1 = 0x202C5D0;
+    vf244__4BossFP14HitboxColliderT1 = 0x202DCD8;
+    collisionGroundPound__4BossFP14HitboxColliderT1 = 0x202C3AC;
+    collisionPenguinSlide__4BossFP14HitboxColliderT1 = 0x202C5E0;
+    collisionThrowableObject__4BossFP14HitboxColliderT1 = 0x202C8E0;
+    collisionFireball__4BossFP14HitboxColliderT1 = 0x202C6D4;
+    collisionIceball__4BossFP14HitboxColliderT1 = 0x202CBCC;
+    addScoreWhenHit__4BossFv = 0x202DD38;
+    onStomp__4BossFP10StageActor = 0x202D214;
+    onStompKill__4BossFP10StageActor = 0x202DF2C;
+    __ct__4BossFPC14ActorBuildInfo = 0x202B968;
+    __dt__4BossFv = 0x202E2E0;
+    beforeExecute__4BossFv = 0x202BD0C;
+    afterExecute__4BossFUi = 0x202BDDC;
+    onDelete__4BossFv = 0x202DC2C;
+    setPlayerId__4BossFSc = 0x202D9C0;
+    removeActiveColliders__4BossFv = 0x202DDF0;
+    addActiveColliders__4BossFv = 0x202DE7C;
+    getCollisionMgr__4BossFv = 0x202D9F8;
+    vfAC__4BossFv = 0x202D9C8;
+    vfB4__4BossFv = 0x202D9CC;
+    vfBC__4BossFv = 0x202D9D4;
+    vfC4__4BossFv = 0x202D9D8;
+    vfCC__4BossFv = 0x202D9DC;
+    vf10C__4BossFUc = 0x202D9E0;
+    vf11C__4BossFv = 0x202D9E8;
+    vf124__4BossFf = 0x202D9EC;
+    vf12C__4BossFv = 0x202D9F0;
+    vf154__4BossFv = 0x202CE40;
+    move__4BossFR4Vec2 = 0x202DA00;
+    setYSpeed__4BossFf = 0x202DA14;
+    vf16C__4BossFv = 0x202DA1C;
+    vf174__4BossFv = 0x202DA24;
+    getRect__4BossFR4Rect = 0x202E254;
+    vf18C__4BossFv = 0x202DAA8;
+    freeze__4BossFv = 0x202CEAC;
+    vf1BC__4BossFv = 0x202CF64;
+    vf1C4__4BossFv = 0x202E2D0;
+    collisionPlayer__4BossFP14ActiveColliderT1 = 0x202BFDC;
+    collisionYoshi__4BossFP14ActiveColliderT1 = 0x202C2B4;
+    collisionStar__4BossFP14ActiveColliderT1 = 0x202DCC8;
+    collisionSlide__4BossFP14ActiveColliderT1 = 0x202DCD0;
+    collisionPropellerDrill__4BossFP14ActiveColliderT1 = 0x202C5D0;
+    vf244__4BossFP14ActiveColliderT1 = 0x202DCD8;
+    collisionGroundPound__4BossFP14ActiveColliderT1 = 0x202C3AC;
+    collisionPenguinSlide__4BossFP14ActiveColliderT1 = 0x202C5E0;
+    collisionThrowableObject__4BossFP14ActiveColliderT1 = 0x202C8E0;
+    collisionFireball__4BossFP14ActiveColliderT1 = 0x202C6D4;
+    collisionIceball__4BossFP14ActiveColliderT1 = 0x202CBCC;
+    isOnGround__4BossFv = 0x202CE00;
+    vf2F4__4BossFv = 0x202DD38;
+    beginState_DieFumi__4BossFv = 0x202DC9C;
+    executeState_DieFumi__4BossFv = 0x202DCA0;
+    endState_DieFumi__4BossFv = 0x202DCA4;
+    beginState_BossState1__4BossFv = 0x202BECC;
+    executeState_BossState1__4BossFv = 0x202BEDC;
+    endState_BossState1__4BossFv = 0x202BEEC;
+    beginState_BossState2__4BossFv = 0x202BEFC;
+    executeState_BossState2__4BossFv = 0x202BF0C;
+    endState_BossState2__4BossFv = 0x202BF1C;
+    beginState_BossState3__4BossFv = 0x202BF2C;
+    executeState_BossState3__4BossFv = 0x202BF3C;
+    endState_BossState3__4BossFv = 0x202BF4C;
+    beginState_BossState4__4BossFv = 0x202BF5C;
+    executeState_BossState4__4BossFv = 0x202BF6C;
+    endState_BossState4__4BossFv = 0x202BF7C;
+    beginState_BossState5__4BossFv = 0x202BF8C;
+    executeState_BossState5__4BossFv = 0x202BF9C;
+    endState_BossState5__4BossFv = 0x202BFAC;
+    startCutscene__4BossFv = 0x202DCA8;
+    endCutscene__4BossFv = 0x202DCB4;
+    vf56C__4BossFv = 0x202DCC0;
+    vf574__4BossFv = 0x202BFBC;
+    vf57C__4BossFv = 0x202DCC4;
     vf584__4BossFv =  __deleted_virtual_called;
-    vf58C__4BossFv = 0x202dd3c;
-    vf594__4BossFv = 0x202dd4c;
+    vf58C__4BossFv = 0x202DD3C;
+    vf594__4BossFv = 0x202DD4C;
     vf59C__4BossFv =  __deleted_virtual_called;
     isNextDamageKill__4BossFv =  __deleted_virtual_called;
     vf5AC__4BossFv =  __deleted_virtual_called;
-    isDamageHit__4BossFv = 0x202dd90;
-    processHits__4BossFUi = 0x202dd98;
-    playDamageAnim__4BossFv = 0x202ddbc;
-    timerEnd__4BossFv = 0x202ddc0;
-    beforeUpdate__4BossFv = 0x202ddc4;
-    fireTime__4BossFv = 0x202ddc8;
+    isDamageHit__4BossFv = 0x202DD90;
+    processHits__4BossFUi = 0x202DD98;
+    playDamageAnim__4BossFv = 0x202DDBC;
+    timerEnd__4BossFv = 0x202DDC0;
+    beforeUpdate__4BossFv = 0x202DDC4;
+    fireTime__4BossFv = 0x202DDC8;
     vf624__4BossFv =  __deleted_virtual_called;
-    stompTime__4BossFv = 0x202ddd0;
-    vf634__4BossFUi = 0x202ddd8;
-    vf63C__4BossFUi = 0x202dde4;
-    vf644__4BossFv = 0x202d120;
-    onStomp__4BossFP5Actor = 0x202d214;
-    onStompDamage__4BossFP5Actor = 0x202df28;
-    onStompKill__4BossFP5Actor = 0x202df2c;
-    vf664__4BossFv = 0x202df44;
-    changeState_BossState1__4BossFv = 0x202df48;
-    onGroundPoundDamage__4BossFv = 0x202df60;
-    onGroundPoundKill__4BossFv = 0x202df70;
+    stompTime__4BossFv = 0x202DDD0;
+    vf634__4BossFUi = 0x202DDD8;
+    vf63C__4BossFUi = 0x202DDE4;
+    vf644__4BossFv = 0x202D120;
+    onStomp__4BossFP5Actor = 0x202D214;
+    onStompDamage__4BossFP5Actor = 0x202DF28;
+    onStompKill__4BossFP5Actor = 0x202DF2C;
+    vf664__4BossFv = 0x202DF44;
+    changeState_BossState1__4BossFv = 0x202DF48;
+    onGroundPoundDamage__4BossFv = 0x202DF60;
+    onGroundPoundKill__4BossFv = 0x202DF70;
     vf684__4BossFv =  __deleted_virtual_called;
     vf68C__4BossFv =  __deleted_virtual_called;
     vf694__4BossFv =  __deleted_virtual_called;
     vf69C__4BossFv =  __deleted_virtual_called;
-    onStompDamageEx__4BossFv = 0x202df80;
-    onStompKillEx__4BossFv = 0x202df84;
-    onStompDamage2__4BossFv = 0x202df9c;
-    onStompKill2__4BossFv = 0x202dfa0;
+    onStompDamageEx__4BossFv = 0x202DF80;
+    onStompKillEx__4BossFv = 0x202DF84;
+    onStompDamage2__4BossFv = 0x202DF9C;
+    onStompKill2__4BossFv = 0x202DFA0;
     vf6C4__4BossFv =  __deleted_virtual_called;
     vf6CC__4BossFv =  __deleted_virtual_called;
-    vf6D4__4BossFv = 0x202dfb8;
-    onDamage__4BossFv = 0x202dfc0;
-    onKill__4BossFv = 0x202dfc4;
-    immuneToGroundPound__4BossFv = 0x202dfd4;
-    vf6F4__4BossFv = 0x202dfdc;
-    vf6FC__4BossFv = 0x202dfe4;
-    immuneToFire__4BossFv = 0x202dfec;
+    vf6D4__4BossFv = 0x202DFB8;
+    onDamage__4BossFv = 0x202DFC0;
+    onKill__4BossFv = 0x202DFC4;
+    immuneToGroundPound__4BossFv = 0x202DFD4;
+    vf6F4__4BossFv = 0x202DFDC;
+    vf6FC__4BossFv = 0x202DFE4;
+    immuneToFire__4BossFv = 0x202DFEC;
     vf70C__4BossFv =  __deleted_virtual_called;
     vf714__4BossFv =  __deleted_virtual_called;
     vf71C__4BossFv =  __deleted_virtual_called;
-    spawnDamageKillEffect__4BossFv = 0x202dff4;
-    spawnDamageNormalEffect__4BossFv = 0x202dff8;
-    vf734__4BossFv = 0x202dffc;
+    spawnDamageKillEffect__4BossFv = 0x202DFF4;
+    spawnDamageNormalEffect__4BossFv = 0x202DFF8;
+    vf734__4BossFv = 0x202DFFC;
     vf73C__4BossFv =  __deleted_virtual_called;
-    vf744__4BossFv = 0x202e000;
-    playStompSound__4BossFv = 0x202e004;
-    playStompKillSound__4BossFv = 0x202e01c;
+    vf744__4BossFv = 0x202E000;
+    playStompSound__4BossFv = 0x202E004;
+    playStompKillSound__4BossFv = 0x202E01C;
     vf75C__4BossFv =  __deleted_virtual_called;
-    playStarKillSound__4BossFv = 0x202e034;
+    playStarKillSound__4BossFv = 0x202E034;
     vf76C__4BossFv =  __deleted_virtual_called;
-    playDamageKillSound__4BossFv = 0x202e04c;
-    playFireDamageSound__4BossFv = 0x202e064;
-    playDamageKillFSound__4BossFv = 0x202e0d8;
-    playFireDamageSound2__4BossFv = 0x202e130;
-    playFireKillSound__4BossFv = 0x202e1a4;
-    playStarDamageSound__4BossFv = 0x202e1fc;
-    playDamageKillFSound2__4BossFv = 0x202e214;
-    playLoseSound__4BossFv = 0x202e22c;
+    playDamageKillSound__4BossFv = 0x202E04C;
+    playFireDamageSound__4BossFv = 0x202E064;
+    playDamageKillFSound__4BossFv = 0x202E0D8;
+    playFireDamageSound2__4BossFv = 0x202E130;
+    playFireKillSound__4BossFv = 0x202E1A4;
+    playStarDamageSound__4BossFv = 0x202E1FC;
+    playDamageKillFSound2__4BossFv = 0x202E214;
+    playLoseSound__4BossFv = 0x202E22C;
     vf7B4__4BossFv =  __deleted_virtual_called;
     vf7BC__4BossFv =  __deleted_virtual_called;
-    setLookTarget__4BossFv = 0x202e230;
-    vf7CC__4BossFv = 0x202d3bc;
-    initHitboxCollider__4BossFv = 0x202d3f4;
-    initModels__4BossFv = 0x202e2b8;
-    initHitsToDeath__4BossFv = 0x202e2c0;
-    initHitsToDamage__4BossFv = 0x202e2c4;
-    init__4BossFv = 0x202e2c8;
+    setLookTarget__4BossFv = 0x202E230;
+    vf7CC__4BossFv = 0x202D3BC;
+    initHitboxCollider__4BossFv = 0x202D3F4;
+    initModels__4BossFv = 0x202E2B8;
+    initHitsToDeath__4BossFv = 0x202E2C0;
+    initHitsToDamage__4BossFv = 0x202E2C4;
+    init__4BossFv = 0x202E2C8;
     updateModelTrampoline__4BossFv = 0x23291DC;
-    FUN_202D094__4BossFP10StageActorPQ2_4sead16Vector3__tm__2_fUi = 0x202d094;
+    FUN_202D094__4BossFP10StageActorPQ2_4sead16Vector3__tm__2_fUi = 0x202D094;
 
 # BossController
     getRuntimeTypeInfo__14BossControllerCFv = __deleted_virtual_called;
-    checkDerivedRuntimeTypeInfo__14BossControllerCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x202f644;
-    StateID_StartSequence__14BossController = 0x101f0ac4;
-    __ct__14BossControllerFPC14ActorBuildInfo = 0x202e448;
-    __dt__14BossControllerFv = 0x202f7c0;
-    onCreate__14BossControllerFv = 0x202e4dc;
-    onExecute__14BossControllerFv = 0x202e578;
-    beginState_Initialize__14BossControllerFv = 0x202e6d4;
-    executeState_Initialize__14BossControllerFv = 0x202e754;
-    endState_Initialize__14BossControllerFv = 0x202ee6c;
-    beginState_StartSequence__14BossControllerFv = 0x202e758;
-    executeState_StartSequence__14BossControllerFv = 0x202e7d8;
-    endState_StartSequence__14BossControllerFv = 0x202e948;
-    beginState_Wait__14BossControllerFv = 0x202e9b8;
-    executeState_Wait__14BossControllerFv = 0x202ead8;
-    endState_Wait__14BossControllerFv = 0x202f784;
-    beginState_EndSequence__14BossControllerFv = 0x202eb50;
-    executeState_EndSequence__14BossControllerFv = 0x202ee6c;
-    endState_EndSequence__14BossControllerFv = 0x202f788;
-    vf1E4__14BossControllerFv = 0x202f110;
-    vf1EC__14BossControllerFv = 0x202f158;
-    vf21C__14BossControllerFv = 0x202f7b0;
+    checkDerivedRuntimeTypeInfo__14BossControllerCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x202F644;
+    StateID_StartSequence__14BossController = 0x101F0AC4;
+    __ct__14BossControllerFPC14ActorBuildInfo = 0x202E448;
+    __dt__14BossControllerFv = 0x202F7C0;
+    onCreate__14BossControllerFv = 0x202E4DC;
+    onExecute__14BossControllerFv = 0x202E578;
+    beginState_Initialize__14BossControllerFv = 0x202E6D4;
+    executeState_Initialize__14BossControllerFv = 0x202E754;
+    endState_Initialize__14BossControllerFv = 0x202EE6C;
+    beginState_StartSequence__14BossControllerFv = 0x202E758;
+    executeState_StartSequence__14BossControllerFv = 0x202E7D8;
+    endState_StartSequence__14BossControllerFv = 0x202E948;
+    beginState_Wait__14BossControllerFv = 0x202E9B8;
+    executeState_Wait__14BossControllerFv = 0x202EAD8;
+    endState_Wait__14BossControllerFv = 0x202F784;
+    beginState_EndSequence__14BossControllerFv = 0x202EB50;
+    executeState_EndSequence__14BossControllerFv = 0x202EE6C;
+    endState_EndSequence__14BossControllerFv = 0x202F788;
+    vf1E4__14BossControllerFv = 0x202F110;
+    vf1EC__14BossControllerFv = 0x202F158;
+    vf21C__14BossControllerFv = 0x202F7B0;
 
 # CircularCollider
     RTTI__16CircularCollider = 0x101EA398;
 
 # CoinMgr
     spawnItemCoin__7CoinMgrFRCQ2_4sead16Vector3__tm__2_fUiUc = 0x26CABB4;
-    sInstance__7CoinMgr = 0x101db43c;
+    sInstance__7CoinMgr = 0x101DB43C;
 
 # ColliderBase
-    RTTI__12ColliderBase = 0x101e9fa4;
+    RTTI__12ColliderBase = 0x101E9FA4;
     setType__12ColliderBaseFQ3_12ColliderBase4Type8__type__ = 0x21A5A70;
-    __CPR70__setSurfaceType__12ColliderBaseFQ3_J16J11SurfaceType8__type__ = 0x21a5ad0;
+    __CPR70__setSurfaceType__12ColliderBaseFQ3_J16J11SurfaceType8__type__ = 0x21A5AD0;
 
 # ColliderBase::Node
     __ct__Q2_12ColliderBase4NodeFv = 0x21A1ACC;
@@ -594,22 +594,22 @@
     vf9C__17CourseSelectActorFv = 0x21D595C;
     vfA4__17CourseSelectActorFv = 0x21D5968;
     updateCSScriptInteractions__17CourseSelectActorFv = 0x21D4F1C;
-    RTTI__17CourseSelectActor = 0x101ea3f4;
-    onCSScriptCommandUpdate__17CourseSelectActorFv = 0x21d5968;
+    RTTI__17CourseSelectActor = 0x101EA3F4;
+    onCSScriptCommandUpdate__17CourseSelectActorFv = 0x21D5968;
 
 # CourseSelectTask
     sInstance__16CourseSelectTask = 0x101CC96C;
     drawLayer3D__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo = 0x22676A4;
-    drawLayerCourseSelect__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo = 0x22672bc;
+    drawLayerCourseSelect__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo = 0x22672BC;
     construct__16CourseSelectTaskSFRCQ2_4sead16TaskConstructArg = 0x202B870;
     drawLayer3D_World__16CourseSelectTaskFRCQ3_3agl3lyr10RenderInfo = 0x22676C4;
 
 # CSPlayerMgr
     sInstance__11CSPlayerMgr = 0x101CC30C;
-    getPlayer__11CSPlayerMgrFv = 0x2231b00;
+    getPlayer__11CSPlayerMgrFv = 0x2231B00;
 
 # CSCollisionActor
-    RTTI__16CSCollisionActor = 0x101ea3e8;
+    RTTI__16CSCollisionActor = 0x101EA3E8;
     __ct__16CSCollisionActorFPC14ActorBuildInfo = 0x21D596C;
     __dt__16CSCollisionActorFv = 0x21D60EC;
     checkDerivedRuntimeTypeInfo__16CSCollisionActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x21D5FF0;
@@ -646,7 +646,7 @@
 # CSScriptMgr
     sInstance__11CSScriptMgr = 0x101CBBC4;
     getCurrentScriptCommandType__11CSScriptMgrFPUi = 0x21E42FC;
-    isRunningScript__11CSScriptMgrFv = 0x21e3d8c;
+    isRunningScript__11CSScriptMgrFv = 0x21E3D8C;
 
 # CSSomethingActor
     __ct__16CSSomethingActorFPC14ActorBuildInfo = 0x2201C04;
@@ -665,7 +665,7 @@
     directionToRotationList__9Direction = 0x10200DD8;
 
 # DoorBase
-    RTTI__8DoorBase = 0x101eb330;
+    RTTI__8DoorBase = 0x101EB330;
     __ct__8DoorBaseFPC14ActorBuildInfo = 0x27583F0;
     __dt__8DoorBaseFv = 0x2759534;
     checkDerivedRuntimeTypeInfo__8DoorBaseCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x27593B8;
@@ -710,7 +710,7 @@
     drawTile__7DrawMgrFUsRC4Vec3RCUiT2 = 0x24FAD28;
     setTargetLayer__7DrawMgrFPQ3_3agl3lyr5LayerUi = 0x24FAA50;
     resetTargetLayer__7DrawMgrFv = 0x24FAB4C;
-    drawTile__7DrawMgrFUsRCQ2_4sead16Vector3__tm__2_fRCUiT2 = 0x24fad28;
+    drawTile__7DrawMgrFUsRCQ2_4sead16Vector3__tm__2_fRCUiT2 = 0x24FAD28;
 
 # DRCModeTask
     sInstance__11DRCModeTask = 0x101D1904;
@@ -719,13 +719,13 @@
     spawn__6EffectSFUiPCQ2_4sead16Vector3__tm__2_fPCQ2_4sead17Vector3__tm__3_UiT2 = 0x22AB080;
 
 # EffectWrapper
-    __ct__13EffectWrapperFv = 0x22ab868;
-    update__13EffectWrapperFUiPCQ2_4sead16Vector3__tm__2_fPCQ2_4sead17Vector3__tm__3_UiT2 = 0x22ab52c;
+    __ct__13EffectWrapperFv = 0x22AB868;
+    update__13EffectWrapperFUiPCQ2_4sead16Vector3__tm__2_fPCQ2_4sead17Vector3__tm__3_UiT2 = 0x22AB52C;
     __vtbl__13EffectWrapper = 0x10058734;
-    __dt__13EffectWrapperFv = 0x22ab7dc;
+    __dt__13EffectWrapperFv = 0x22AB7DC;
 
 # Enemy
-    RTTI__5Enemy = 0x101e9ef0;
+    RTTI__5Enemy = 0x101E9EF0;
     __ct__5EnemyFPC14ActorBuildInfo = 0x2328494;
     processCollision__5EnemyFP14HitboxColliderT1Ui = 0x2329B88;
     killPlayerJump__5EnemyFP10StageActorRCQ2_4sead16Vector2__tm__2_fP9StateBase = 0x232DA34;
@@ -876,7 +876,7 @@
     set__8EventMgrFUiT1bN41 = 0x269CD68;
 
 # FrameBufferKeeper
-    sInstance__17FrameBufferKeeper = 0x101d2b88;
+    sInstance__17FrameBufferKeeper = 0x101D2B88;
 
 # FrameCtrl
     shouldLoop__9FrameCtrlFb = 0x24DEED4;
@@ -890,75 +890,75 @@
 
 # HitboxColliderMgr
     sInstance__17HitboxColliderMgr = 0x101C95D8;
-    isInActiveList__17HitboxColliderMgrFP14HitboxCollider = 0x219dc5c;
-    isInCreateList__17HitboxColliderMgrFP14HitboxCollider = 0x219dd88;
-    addToCreateList__17HitboxColliderMgrFP14HitboxCollider = 0x219e028;
+    isInActiveList__17HitboxColliderMgrFP14HitboxCollider = 0x219DC5C;
+    isInCreateList__17HitboxColliderMgrFP14HitboxCollider = 0x219DD88;
+    addToCreateList__17HitboxColliderMgrFP14HitboxCollider = 0x219E028;
 
 # HoldableEnemy
-    __ct__13HoldableEnemyFPC14ActorBuildInfo = 0x22eb09c;
-    checkDerivedRuntimeTypeInfo__13HoldableEnemyCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x22ed510;
-    __dt__13HoldableEnemyFv = 0x22ed710;
-    StateID_Grabbed__13HoldableEnemy = 0x101ff7ec;
+    __ct__13HoldableEnemyFPC14ActorBuildInfo = 0x22EB09C;
+    checkDerivedRuntimeTypeInfo__13HoldableEnemyCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x22ED510;
+    __dt__13HoldableEnemyFv = 0x22ED710;
+    StateID_Grabbed__13HoldableEnemy = 0x101FF7EC;
     FUN_022EB724__13HoldableEnemyFP10StageActorb = 0x22EB724;
-    StateID_Down__13HoldableEnemy = 0x101ff810;
-    processCollision__13HoldableEnemyFP14HitboxColliderT1 = 0x22ebd88;
+    StateID_Down__13HoldableEnemy = 0x101FF810;
+    processCollision__13HoldableEnemyFP14HitboxColliderT1 = 0x22EBD88;
     FUN_22EB888__13HoldableEnemyFP10StageActor = 0x22EB888;
-    getKickDirection__13HoldableEnemyFP10StageActor = 0x200c7e4;
-    RTTI__13HoldableEnemy = 0x101e9fc0;
-    beforeExecute__13HoldableEnemyFv = 0x22eb18c;
-    onDelete__13HoldableEnemyFv = 0x22eb218;
-    setPlayerID__13HoldableEnemyFSc = 0x22ed43c;
-    getActorPhysicsMgr__13HoldableEnemyFv= 0x22ed468;
-    vfAC__13HoldableEnemyFv = 0x22ed444;
-    vfB4__13HoldableEnemyFv = 0x22ed68c;
-    vfBC__13HoldableEnemyFv = 0x22eb368;
-    vfC4__13HoldableEnemyFv = 0x22ed448;
-    vfCC__13HoldableEnemyFv = 0x22ed44c;
-    vf10C__13HoldableEnemyFUc = 0x22ed450;
-    vf11C__13HoldableEnemyFv = 0x22ed458;
-    vf124__13HoldableEnemyFf = 0x22ed45c;
-    vf12C__13HoldableEnemyFv = 0x22ed460;
-    move__13HoldableEnemyFRQ2_4sead16Vector2__tm__2_f = 0x22ed470;
-    setYSpeed__13HoldableEnemyFf = 0x22ed484;
-    vf16C__13HoldableEnemyFv = 0x22ed48c;
-    vf174__13HoldableEnemyFv = 0x22ed494;
-    getRect__13HoldableEnemyFR4Rect = 0x22ed49c;
-    vf18C__13HoldableEnemyFv = 0x22ed508;
-    collisionPlayer__13HoldableEnemyFP14HitboxColliderT1 = 0x22ebc60;
-    collisionThrowableObject__13HoldableEnemyFP14HitboxColliderT1 = 0x22ec18c;
-    collisionIceball__13HoldableEnemyFP14HitboxColliderT1 = 0x22ec130;
-    onMiniJumpHit__13HoldableEnemyFP10StageActor = 0x22ebd80;
-    vf50C__13HoldableEnemyFP14HitboxColliderT1 = 0x22ec06c;
-    beginState_Grabbed__13HoldableEnemyFv = 0x22ecd00;
-    executeState_Grabbed__13HoldableEnemyFv = 0x22ecd8c;
-    endState_Grabbed__13HoldableEnemyFv = 0x22ecf84;
-    beginState_Down__13HoldableEnemyFv = 0x22ed700;
-    executeState_Down__13HoldableEnemyFv = 0x22ed704;
-    endState_Down__13HoldableEnemyFv = 0x22ed708;
-    beginState_HoldableEnemyState3__13HoldableEnemyFv = 0x22ed02c;
-    executeState_HoldableEnemyState3__13HoldableEnemyFv = 0x22ed70c;
-    endState_HoldableEnemyState3__13HoldableEnemyFv = 0x22ed07c;
+    getKickDirection__13HoldableEnemyFP10StageActor = 0x200C7E4;
+    RTTI__13HoldableEnemy = 0x101E9FC0;
+    beforeExecute__13HoldableEnemyFv = 0x22EB18C;
+    onDelete__13HoldableEnemyFv = 0x22EB218;
+    setPlayerID__13HoldableEnemyFSc = 0x22ED43C;
+    getActorPhysicsMgr__13HoldableEnemyFv = 0x22ED468;
+    vfAC__13HoldableEnemyFv = 0x22ED444;
+    vfB4__13HoldableEnemyFv = 0x22ED68C;
+    vfBC__13HoldableEnemyFv = 0x22EB368;
+    vfC4__13HoldableEnemyFv = 0x22ED448;
+    vfCC__13HoldableEnemyFv = 0x22ED44C;
+    vf10C__13HoldableEnemyFUc = 0x22ED450;
+    vf11C__13HoldableEnemyFv = 0x22ED458;
+    vf124__13HoldableEnemyFf = 0x22ED45C;
+    vf12C__13HoldableEnemyFv = 0x22ED460;
+    move__13HoldableEnemyFRQ2_4sead16Vector2__tm__2_f = 0x22ED470;
+    setYSpeed__13HoldableEnemyFf = 0x22ED484;
+    vf16C__13HoldableEnemyFv = 0x22ED48C;
+    vf174__13HoldableEnemyFv = 0x22ED494;
+    getRect__13HoldableEnemyFR4Rect = 0x22ED49C;
+    vf18C__13HoldableEnemyFv = 0x22ED508;
+    collisionPlayer__13HoldableEnemyFP14HitboxColliderT1 = 0x22EBC60;
+    collisionThrowableObject__13HoldableEnemyFP14HitboxColliderT1 = 0x22EC18C;
+    collisionIceball__13HoldableEnemyFP14HitboxColliderT1 = 0x22EC130;
+    onMiniJumpHit__13HoldableEnemyFP10StageActor = 0x22EBD80;
+    vf50C__13HoldableEnemyFP14HitboxColliderT1 = 0x22EC06C;
+    beginState_Grabbed__13HoldableEnemyFv = 0x22ECD00;
+    executeState_Grabbed__13HoldableEnemyFv = 0x22ECD8C;
+    endState_Grabbed__13HoldableEnemyFv = 0x22ECF84;
+    beginState_Down__13HoldableEnemyFv = 0x22ED700;
+    executeState_Down__13HoldableEnemyFv = 0x22ED704;
+    endState_Down__13HoldableEnemyFv = 0x22ED708;
+    beginState_HoldableEnemyState3__13HoldableEnemyFv = 0x22ED02C;
+    executeState_HoldableEnemyState3__13HoldableEnemyFv = 0x22ED70C;
+    endState_HoldableEnemyState3__13HoldableEnemyFv = 0x22ED07C;
 
 # LayerAGL
     vf44__8LayerAglFv = 0x24F9340;
     vf4C__8LayerAglFv = 0x24F9344;
 
 # LayoutAnimator
-    __ct__14LayoutAnimatorFv = 0x25ce268;
+    __ct__14LayoutAnimatorFv = 0x25CE268;
 
 # LayoutContainer
-    __ct__15LayoutContainerFP14LayoutAnimatori = 0x2672f04;
+    __ct__15LayoutContainerFP14LayoutAnimatori = 0x2672F04;
     getArchive__15LayoutContainerFRCQ2_4sead23SafeStringBase__tm__2_c = 0x2673008;
     loadBFLYT__15LayoutContainerFRCQ2_4sead23SafeStringBase__tm__2_cUiN22 = 0x2673050;
-    __dt__15LayoutContainerFv = 0x2672f80;
+    __dt__15LayoutContainerFv = 0x2672F80;
 
 # LayoutHandler
-    init__13LayoutHandlerFPQ2_4sead4Heap = 0x26711c8;
-    update__13LayoutHandlerFUiPQ2_4sead17Matrix34__tm__2_f = 0x2672a4c;
-    draw__13LayoutHandlerFRCQ2_4sead17Matrix44__tm__2_f = 0x2672d14;
-    initAnims__13LayoutHandlerFPCQ2_4sead23SafeStringBase__tm__2_cRUi = 0x2671c54;
+    init__13LayoutHandlerFPQ2_4sead4Heap = 0x26711C8;
+    update__13LayoutHandlerFUiPQ2_4sead17Matrix34__tm__2_f = 0x2672A4C;
+    draw__13LayoutHandlerFRCQ2_4sead17Matrix44__tm__2_f = 0x2672D14;
+    initAnims__13LayoutHandlerFPCQ2_4sead23SafeStringBase__tm__2_cRUi = 0x2671C54;
     playAnim__13LayoutHandlerFUiRCQ2_4sead23SafeStringBase__tm__2_cb = 0x2671680;
-    getTextBoxPane__13LayoutHandlerCFRCQ2_4sead23SafeStringBase__tm__2_c = 0x2671ef8;
+    getTextBoxPane__13LayoutHandlerCFRCQ2_4sead23SafeStringBase__tm__2_c = 0x2671EF8;
 
 # Level
     sInstance__5Level = 0x101DB048;
@@ -980,7 +980,7 @@
     setDestLevel__9LevelInfoFUc = 0x24D2954;
     setDestArea__9LevelInfoFUc = 0x24D296C;
     setDestZone__9LevelInfoFUi = 0x24D299C;
-    worldLevelToIndex__9LevelInfoSFiT1b = 0x24d3ad4;
+    worldLevelToIndex__9LevelInfoSFiT1b = 0x24D3AD4;
 
 # LevelTimer
     sInstance__10LevelTimer = 0x101D15F4;
@@ -1015,10 +1015,10 @@
     vf1DC__24MovementBlockAndCoinBaseFv = 0x2708F20;
 
 # MovementHandler
-    __ct__15MovementHandlerFv = 0x2849c40;
-    execute__15MovementHandlerFv = 0x284b8c4;
-    getMaskForMovementType__15MovementHandlerFUi = 0x284a37c;
-    link__15MovementHandlerFRCQ2_4sead16Vector3__tm__2_fUiUc = 0x284b6f4;
+    __ct__15MovementHandlerFv = 0x2849C40;
+    execute__15MovementHandlerFv = 0x284B8C4;
+    getMaskForMovementType__15MovementHandlerFUi = 0x284A37C;
+    link__15MovementHandlerFRCQ2_4sead16Vector3__tm__2_fUiUc = 0x284B6F4;
 
 # Mtx34
     rotateAndTranslate__5Mtx34FRCQ2_4sead17Vector3__tm__3_UiRCQ2_4sead16Vector3__tm__2_f = 0x203C1C8;
@@ -1026,7 +1026,7 @@
     makeSRT__5Mtx34SFR5Mtx34RCQ2_4sead16Vector3__tm__2_fN22 = 0x2508424;
 
 # MultiStateActor
-    RTTI__15MultiStateActor = 0x101e9ce8;
+    RTTI__15MultiStateActor = 0x101E9CE8;
     __vtbl__15MultiStateActor = 0x10001048;
     __ct__15MultiStateActorFPC14ActorBuildInfo = 0x200AA8C;
     vfAC__15MultiStateActorFv = 0x200ABB0;
@@ -1100,7 +1100,7 @@
     draw__13PlatformModelFv = 0x27BE4FC;
 
 # Player
-    givePowerup__6PlayerFQ3_10PlayerBase12PowerupState8__type__ = 0x2931c1c;
+    givePowerup__6PlayerFQ3_10PlayerBase12PowerupState8__type__ = 0x2931C1C;
     throwProjectile__6Player__PowerupStateNotFire = 0x293AE28;
     FUN_0293b080__6Player__IsProjectilePowerup = 0x293B198;
 
@@ -1114,26 +1114,26 @@
     sInstance__9PlayerMgr = 0x101E6994;
 
 # Poison
-    __ct__6PoisonFPC14ActorBuildInfo = 0x26f5f70;
+    __ct__6PoisonFPC14ActorBuildInfo = 0x26F5F70;
 
 # PolygonCollider
-    __CPR64__init__15PolygonColliderFP10StageActorRCQ2_J6J4Info = 0x21ad3bc;
-    execute__15PolygonColliderFv = 0x21a871c;
+    __CPR64__init__15PolygonColliderFP10StageActorRCQ2_J6J4Info = 0x21AD3BC;
+    execute__15PolygonColliderFv = 0x21A871C;
     __dt__15PolygonColliderFv = 0x21A7A04;
-    RTTI__15PolygonCollider = 0x101e9fb4;
+    RTTI__15PolygonCollider = 0x101E9FB4;
 
     # //! THIS IS PROBABLY WRONG THE CTOR IS INLINED TODO: FIX THIS FIX THIS
     __ct__15PolygonColliderFiPQ2_4sead16Vector2__tm__2_fPQ2_12ColliderBase4NodeT3 = 0x21A7904;
 
 # PolylineCollider
     RTTI__16PolylineCollider = 0x101E9FA8;
-    __ct__16PolylineColliderFv = 0x21a1d38;
-    __dt__16PolylineColliderFv = 0x21a1f18;
-    execute__16PolylineColliderFv = 0x21a2e0c;
-    __CPR81__init__16PolylineColliderFP10StageActorRCQ2_J6J4InfoiPQ2_4sead4Heap = 0x21a2378;
+    __ct__16PolylineColliderFv = 0x21A1D38;
+    __dt__16PolylineColliderFv = 0x21A1F18;
+    execute__16PolylineColliderFv = 0x21A2E0C;
+    __CPR81__init__16PolylineColliderFP10StageActorRCQ2_J6J4InfoiPQ2_4sead4Heap = 0x21A2378;
 
 # Powerup
-    RTTI__7Powerup = 0x101ead38;
+    RTTI__7Powerup = 0x101EAD38;
     __ct__7PowerupFPC14ActorBuildInfo = 0x251EBFC;
     __dt__7PowerupFv = 0x251FE04;
     checkDerivedRuntimeTypeInfo__7PowerupCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x251FC68;
@@ -1214,11 +1214,11 @@
     loadProfileResources__7ProfileSFQ2_7Profile15LoadResourcesAtPQ2_4sead4Heap = 0x200A738;
 
 # PtclMgr
-    sInstance__7PtclMgr = 0x101cd3a8;
-    setFrameBufferTexture__7PtclMgrFRCQ2_3agl14TextureSamplerfN32 = 0x22ada08;
+    sInstance__7PtclMgr = 0x101CD3A8;
+    setFrameBufferTexture__7PtclMgrFRCQ2_3agl14TextureSamplerfN32 = 0x22ADA08;
 
 # Quicksand
-    __ct__9QuicksandFPC14ActorBuildInfo = 0x26f6e78;
+    __ct__9QuicksandFPC14ActorBuildInfo = 0x26F6E78;
 
 # RDashMgr
     sInstance__8RDashMgr = 0x101E7D9C;
@@ -1273,11 +1273,11 @@
     getAudioFx__15SoundSystemBaseFv = 0x29B1AA4;
 
 # StageActor
-    actorHCCallback0__10StageActorFP14HitboxColliderPQ2_4sead16Vector2__tm__2_f = 0x219e7e8;
-    actorHCCallback2__10StageActorFP14HitboxColliderPQ2_4sead16Vector2__tm__2_f = 0x219e8a4;
-    actorCBCallback0__10StageActorFP12ColliderBasePQ2_4sead16Vector2__tm__2_f = 0x219e8b8;
-    actorCBCallback2__10StageActorFP12ColliderBasePQ2_4sead16Vector2__tm__2_f = 0x219e974;
-    RTTI__10StageActor = 0x101e9cc0;
+    actorHCCallback0__10StageActorFP14HitboxColliderPQ2_4sead16Vector2__tm__2_f = 0x219E7E8;
+    actorHCCallback2__10StageActorFP14HitboxColliderPQ2_4sead16Vector2__tm__2_f = 0x219E8A4;
+    actorCBCallback0__10StageActorFP12ColliderBasePQ2_4sead16Vector2__tm__2_f = 0x219E8B8;
+    actorCBCallback2__10StageActorFP12ColliderBasePQ2_4sead16Vector2__tm__2_f = 0x219E974;
+    RTTI__10StageActor = 0x101E9CC0;
     __vtbl__10StageActor = 0x10000268;
     __LSG__typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x101E9CBC;
     typeInfo__L0__getRuntimeTypeInfoStatic__10StageActorSFv = 0x101E9CC0;
@@ -1353,18 +1353,18 @@
     updateWaveCollisions__14TerrainEffectsFv = 0x28B8D5C;
 
 # TextBoxWrapper
-    setTextFromMSBT__14TextBoxWrapperFRCQ2_4sead23SafeStringBase__tm__2_cUie = 0x26819f8;
+    setTextFromMSBT__14TextBoxWrapperFRCQ2_4sead23SafeStringBase__tm__2_cUie = 0x26819F8;
 
 # TileMgr
     sInstance__7TileMgr = 0x101DAB94;
     getTilePtrCurrentArea__7TileMgrSFUsT1UcPUi = 0x2685000;
 
 # Water
-    __ct__5WaterFPC14ActorBuildInfo = 0x26f7c90;
+    __ct__5WaterFPC14ActorBuildInfo = 0x26F7C90;
 
 # WindGenerator
     __dt__13WindGeneratorFv = 0x288EFA0;
-    RTTI__13WindGenerator = 0x101e9cc0;
+    RTTI__13WindGenerator = 0x101E9CC0;
     checkDerivedRuntimeTypeInfo__13WindGeneratorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x288EEFC;
     getRuntimeTypeInfo__13WindGeneratorCFv = __deleted_virtual_called;
     onCreate__13WindGeneratorFv = 0x288EBC4;
@@ -1403,4 +1403,4 @@
     InfiniteLivesContinue = 0x24C005C;
     InfiniteTimeContinue = 0x24C1388;
     InvincibilityContinue = 0x2931180;
-    WorldMapScriptsTable = 0x100458b8;
+    WorldMapScriptsTable = 0x100458B8;

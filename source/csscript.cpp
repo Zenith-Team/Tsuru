@@ -48,7 +48,7 @@ static ResultID customExists(u32 scriptID) {
 // TODO: Move these into the real class
 
 u32 getCurrentCommandArg(CSScriptMgr* mgr) {
-    u32 out = 0xffffffff;
+    u32 out = 0xFFFFFFFF;
     if (mgr->isRunningScript()) {
         ResultID result = customExists(mgr->currentScriptID);
         if (result.result) {

@@ -9,14 +9,14 @@ Hooks:
   - type: branch
     instr: b
     func: worldMapProjection__Fv
-    addr: "0x21b94b0" # CSCamera::onExecute()
+    addr: "0x21B94B0" # CSCamera::onExecute()
 
 # Perspective projection in levels
   # Set the projection in the draw layer
   - type: branch
     instr: bl
     func: MakePerspectiveLevel
-    addr: "0x24b83e0" # AreaTask::drawLayerGather()
+    addr: "0x24B83E0" # AreaTask::drawLayerGather()
   # Delete a sead::DynamicCast RTTI check fail to prevent null pointer crash
   - type: nop
     addr: "0x2693324"
@@ -24,8 +24,8 @@ Hooks:
   - type: branch
     instr: b
     func: __ct__Q2_4sead17FrustumProjectionFfN51
-    addr: "0x2a065ac" # sead::OrthoProjection::OrthoProjection()
+    addr: "0x2A065AC" # sead::OrthoProjection::OrthoProjection()
   - type: branch
     instr: b
     func: __dt__Q2_4sead17FrustumProjectionFv
-    addr: "0x2a067c4" # sead::OrthoProjection::~OrthoProjection()
+    addr: "0x2A067C4" # sead::OrthoProjection::~OrthoProjection()

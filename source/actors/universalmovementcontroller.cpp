@@ -12,7 +12,7 @@ public:
 
     u32 onCreate() override;
     u32 onExecute() override;
-    
+
     StageActor* target;
     MovementHandler movementHandler;
 };

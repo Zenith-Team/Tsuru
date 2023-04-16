@@ -5,7 +5,7 @@ Hooks:
 # Load the custom scripts
   - type: branch
     instr: b
-    addr: "0x21e3cfc"
+    addr: "0x21E3CFC"
     func: loadCustomCSScripts__Fv
 # Replace the script-related functions to allow usage of custom ones
   - type: branch
@@ -14,9 +14,9 @@ Hooks:
     func: getCurrentCommandArg__FP11CSScriptMgr
   - type: branch
     instr: b
-    addr: "0x21e42fc"
+    addr: "0x21E42FC"
     func: getCurrentScriptCommandType__FP11CSScriptMgrPUi
   - type: branch
     instr: b
-    addr: "0x21e4b50"
+    addr: "0x21E4B50"
     func: getScriptPriority__FP11CSScriptMgrRUi

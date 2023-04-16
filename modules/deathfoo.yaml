@@ -6,17 +6,17 @@ Hooks:
 # Add the ability to spawn deathfoo clouds from Foo (replaces No Cloud setting)
   # Set type to spawned by death foo in onCreate
   - type: patch
-    addr: "0x23b4f4c" # Foo::onCreate()
+    addr: "0x23B4F4C" # Foo::onCreate()
     data: "3BA000B0" # li r29, 0xB0
   # Set type to spawned by death foo executeState_BreathIn
   - type: patch
-    addr: "0x23b5b5c" # Foo::executeState_BreathIn()
+    addr: "0x23B5B5C" # Foo::executeState_BreathIn()
     data: "3BA000B0" # li r29, 0xB0
 # Add custom deathfoo cloud type
   # Redirect the custom cloud type to call the foo type function, we can patch it there
   - type: branch
     instr: bl
-    addr: "0x230011c" # Cloud::onExecute()
+    addr: "0x230011C" # Cloud::onExecute()
     func: RedirectCloudType
   # Set the cloud texture
   - type: branch
@@ -36,5 +36,5 @@ Hooks:
   # Apply collision
   - type: branch
     instr: bl
-    addr: "0x22fba68" # Cloud::onExecute_SpawnedByFoo()
+    addr: "0x22FBA68" # Cloud::onExecute_SpawnedByFoo()
     func: CloudCollision

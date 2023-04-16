@@ -110,7 +110,7 @@ public:
 
     static f32 quadIn(f32 x)       { return x * x; }
     static f32 quadOut(f32 x)      { return 1.0f - (1.0f - x) * (1.0f - x); }
-    static f32 quadInOut(f32 x)    { return x < 0.5 ? 2 * x * x : 1 - powf(-2 * x + 2, 2) / 2; }
+    static f32 quadInOut(f32 x)    { return x < 0.5f ? 2 * x * x : 1 - powf(-2 * x + 2, 2) / 2; }
 
     static f32 cubicIn(f32 x)      { return x * x * x; }
     static f32 cubicOut(f32 x)     { return 1.0f - powf(1.0f - x, 3.0f); }

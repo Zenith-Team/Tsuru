@@ -4,12 +4,12 @@ Files: []
 Hooks:
 # Fire retardent Bowser
   - type: patch
-    addr: "0x20e9448"  # Bowser::getFireDamage()
+    addr: "0x20E9448"  # Bowser::getFireDamage()
     data: "38600000" # li r3, 0
 # Checkpoint no powerup
   # No powerup for player
   - type: nop
-    addr: "0x2728f28" # CheckpointFlag::collisionCallback()
+    addr: "0x2728F28" # CheckpointFlag::collisionCallback()
   # No powerup for player when riding Yoshi
   - type: nop
-    addr: "0x2728fac" # CheckpointFlag::collisionCallback()
+    addr: "0x2728FAC" # CheckpointFlag::collisionCallback()

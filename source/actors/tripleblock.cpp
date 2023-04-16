@@ -156,7 +156,7 @@ void TripleBlock::spawnSideCoins() {
 
 void TripleBlock::beginState_Used() {
     this->_1AAE = 0; // This fixes the bug where items will bounce off of the block as if its being bumped
-    this->model->texPatternAnims[0]->frameCtrl.speed = 0.0;
+    this->model->texPatternAnims[0]->frameCtrl.speed = 0.0f;
     this->model->texPatternAnims[0]->frameCtrl.currentFrame = 51; // the 51st frame of the texpat anim is the "used" one
     BlockWrapper::beginState_Used();
 }

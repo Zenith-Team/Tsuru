@@ -604,7 +604,7 @@ void BasaltBones::beginState_Assemble() {
 
     bone.bezier.set(this->position + keyframes[0], this->position + keyframes[1], this->position + keyframes[2]);
     bone.render = true;
-    bone.easer.set(Easing::quadInOut, 0, 1, 0.008f);
+    bone.easer.set(Easing::quadInOut, 0.0f, 1.0f, 0.008f);
 }
 
 #define xrb ((sead::randF32() * 2) - 1) * 3 // It means x random bool

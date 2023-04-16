@@ -71,7 +71,7 @@ void TimeClock::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
         if (self->settings1 >> 0x1C & 0xF /* Nybble 5 */)
             time = -time;
 
-        if ((LevelTimer::instance()->timeLimit >> 0xc) + time < 3) {
+        if ((LevelTimer::instance()->timeLimit >> 0xC) + time < 3) {
             LevelTimer::instance()->addTime(-LevelTimer::instance()->timeLimit + 3);
         } else {
             LevelTimer::instance()->addTime(time);

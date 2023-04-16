@@ -67,7 +67,7 @@ u32 ColdFuzzy::onCreate() {
         this->playerTimers[i].timer = timerThreshold;
     }
 
-    u32 movementMask = this->movementHandler.getMaskForMovementType(3); 
+    u32 movementMask = this->movementHandler.getMaskForMovementType(3);
     // path support because tsuru doesn't support line-controlled things just yet
     this->movementHandler.link(this->position, movementMask, this->movementID);
     return this->onExecute();

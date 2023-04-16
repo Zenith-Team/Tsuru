@@ -12,5 +12,5 @@ Hooks:
 # Pick the entrance based on the world last saved in
   - type: branch
     instr: bl
-    addr: "0x24d3a74"
+    addr: "0x24D3A74"
     func: setTitlescreenThemeEntrance__9LevelInfoFv

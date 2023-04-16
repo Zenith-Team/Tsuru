@@ -65,8 +65,8 @@ Peepa::Peepa(const ActorBuildInfo* buildInfo)
     , hasPlatform(false)
     , platformType()
     , polylineCollider()
-    , effectScale(0.7, 0.7, 0.7)
-    , effectOffset(0, 0, 0)
+    , effectScale(0.7f, 0.7f, 0.7f)
+    , effectOffset(0.0f, 0.0f, 0.0f)
 { }
 
 

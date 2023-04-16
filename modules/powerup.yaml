@@ -24,15 +24,15 @@ Hooks:
 
   - type: branch
     instr: bl
-    addr: "0x292916c"
+    addr: "0x292916C"
     func: UseCustomArray_1016CE20
 
   - type: branch
     instr: bl
-    addr: "0x292918c"
+    addr: "0x292918C"
     func: UseCustomArray_1016CE44
 
   - type: branch
     instr: bl
-    addr: "0x292e474"
+    addr: "0x292E474"
     func: UseCustomArray_1016D7F8

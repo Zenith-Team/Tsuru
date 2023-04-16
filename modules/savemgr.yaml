@@ -10,5 +10,5 @@ Hooks:
 # Save all managers' data
   - type: branch
     instr: b
-    addr: "0x29d97b8"
+    addr: "0x29D97B8"
     func: saveSystem__13SaveMgrSystemSFv

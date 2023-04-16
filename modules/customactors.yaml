@@ -56,14 +56,14 @@ Hooks:
   - type: branch
     instr: b
     func: UpdateBeepBlockStates
-    addr: "0x24bfa4c" # CourseTask::calc()
+    addr: "0x24BFA4C" # CourseTask::calc()
 # Spawn CSRootSpawner
   - type: branch
     instr: b
     func: createRootSpawner__Fv
-    addr: "0x21b9350" # CourseSelectCamera::onCreate()
+    addr: "0x21B9350" # CourseSelectCamera::onCreate()
 # Load Custom Gravity
   - type: branch
     instr: bl
-    addr: "0x292510c" # Player::getGravityData()
+    addr: "0x292510C" # Player::getGravityData()
     func: LoadCustomPlayerGravity

@@ -4,5 +4,5 @@ Files:
 Hooks:
   - type: branch
     instr: bl
-    addr: "0x24e0db8"
+    addr: "0x24E0DB8"
     func: initLayoutRenderer

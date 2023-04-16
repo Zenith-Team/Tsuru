@@ -51,7 +51,7 @@ const HitboxCollider::Info GiantSkewer::collisionInfo = {
 };
 
 REGISTER_PROFILE(GiantSkewer, ProfileID::GiantSkewer, "GiantSkewer", &GiantSkewerActorInfo);
-PROFILE_RESOURCES(ProfileID::GiantSkewer, Profile::LoadResourcesAt::Course,"daikonbouBig");
+PROFILE_RESOURCES(ProfileID::GiantSkewer, Profile::LoadResourcesAt::Course, "daikonbouBig");
 
 GiantSkewer::GiantSkewer(const ActorBuildInfo* buildInfo)
     : Enemy(buildInfo)

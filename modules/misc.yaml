@@ -21,19 +21,19 @@ Hooks:
 
 # stupid dynamic cast
   - type: nop
-    addr: "0x2328cc8"
+    addr: "0x2328CC8"
 
 # Instant respawn
   - type: branch
     instr: b
     func: respawn
-    addr: "0x24bf08c"
+    addr: "0x24BF08C"
 
 # Keep a copy of the currently active graphics context
   - type: branch
     instr: bl
     func: "SetCurrentGraphicsContext"
-    addr: "0x2a07cbc"
+    addr: "0x2A07CBC"
 
 # Fix background offset settings
   - type: branch
@@ -44,5 +44,5 @@ Hooks:
 # Set boss type in stageactor
   - type: branch
     instr: b
-    addr: "0x202bdc4" # Boss::beforeExecute()
+    addr: "0x202BDC4" # Boss::beforeExecute()
     func: SetBossActorType

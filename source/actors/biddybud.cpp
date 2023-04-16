@@ -61,8 +61,8 @@ Biddybud::Biddybud(const ActorBuildInfo* buildInfo)
     , movementHandler()
     , isDead(false)
     , color(0)
-    , effectScale(0.5, 0.5, 0.5)
-    , effectOffset(0, 0, 0)
+    , effectScale(0.5f, 0.5f, 0.5f)
+    , effectOffset(0.0f, 0.0f, 0.0f)
 { }
 
 u32 Biddybud::onCreate() {
@@ -73,7 +73,7 @@ u32 Biddybud::onCreate() {
     this->model->playTexSrtAnim("FlyWait", 0);
     this->model->playSklAnim("FlyWait");
     this->model->texPatternAnims[0]->frameCtrl.startFrame = this->color;
-    this->model->texPatternAnims[0]->frameCtrl.speed = 0.0;
+    this->model->texPatternAnims[0]->frameCtrl.speed = 0.0f;
     this->model->texSrtAnims[0]->frameCtrl.shouldLoop(true);
     this->model->loopSklAnims(true);
     this->scale = .17f;

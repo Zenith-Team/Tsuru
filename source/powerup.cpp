@@ -164,7 +164,7 @@ LAB_292EAB0:
     b         LAB_292EB34
 LAB_292EAB8:
     lwz       r11, 0xC4(r7)
-    extrwi.   r6, r11, 1,27
+    extrwi.   r6, r11, 1, 27
     beq       LAB_292EAE4
     cmplwi    r12, 0
     beq       LAB_292EADC
@@ -177,19 +177,19 @@ LAB_292EADC:
     b         LAB_292EB34
 LAB_292EAE4:
     lwz       r9, 0x49C(r3)
-    extrwi.   r10, r9, 1,28
+    extrwi.   r10, r9, 1, 28
     beq       LAB_292EAF8
     li        r0, 0xB
     b         LAB_292EB34
 LAB_292EAF8:
     lwz       r6, 0x494(r3)
-    extrwi.   r7, r6, 1,1
+    extrwi.   r7, r6, 1, 1
     beq       LAB_292EB0C
     li        r0, 0xC
     b         LAB_292EB34
 LAB_292EB0C:
     lwz       r9, 0x498(r3)
-    extrwi.   r11, r9, 1,11
+    extrwi.   r11, r9, 1, 11
     beq       LAB_292EB34
     cmplwi    r12, 0
     beq       LAB_292EB30

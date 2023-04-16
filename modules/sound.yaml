@@ -13,15 +13,15 @@ Hooks:
   # Replace call to isValidStrmID to call our custom one
   - type: branch
     instr: bl
-    addr: "0x29b85fc"
+    addr: "0x29B85FC"
     func: isValidStrmID__11MusicPlayerFi
   # Replace call to getStrmName to call our custom one
   - type: branch
     instr: bl
-    addr: "0x29b862c"
+    addr: "0x29B862C"
     func: getStrmName__11MusicPlayerFi
   # Replace call to getSeqName to call our custom one
   - type: branch
     instr: bl
-    addr: "0x29b863c"
+    addr: "0x29B863C"
     func: getSeqName__11MusicPlayerFi

@@ -49,7 +49,7 @@ REGISTER_PROFILE(Flaptor, ProfileID::Flaptor);
 PROFILE_RESOURCES(ProfileID::Flaptor, Profile::LoadResourcesAt::Course, "mokinger");
 
 const HitboxCollider::Info Flaptor::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(10.0, 10.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(10.0f, 10.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 Flaptor::Flaptor(const ActorBuildInfo* buildInfo)
