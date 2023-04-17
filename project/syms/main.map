@@ -293,6 +293,12 @@
     GlobalBasicSoundActorB__15BasicSoundActor = 0x101C63D0;
     playSound__15BasicSoundActorFPCcPQ2_4sead16Vector2__tm__2_fUi = 0x29BED48;
 
+# BlendingModel
+    __ct__13BlendingModelFP5ModelUiN42 = 0x24dfbf0;
+    updateModel__13BlendingModelFv = 0x24dfd04;
+    setSklAnim__13BlendingModelFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_cf = 0x24dff9c;
+    setSklAnim__13BlendingModelFRCQ2_4sead23SafeStringBase__tm__2_cfbN22 = 0x24dffb4;
+
 # BlockAndCoinBase
     spawnMultiPowerup__16BlockAndCoinBaseFRCQ2_4sead16Vector3__tm__2_fUiT2b = 0x2706FF4;
     spawnPowerup__16BlockAndCoinBaseFRCQ2_4sead16Vector3__tm__2_fUiT2b = 0x2706D1C;

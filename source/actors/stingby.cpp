@@ -1,5 +1,5 @@
 #include "game/actor/stage/enemy.h"
-#include "game/graphics/model/modelnw.h"
+#include "game/graphics/model/blendingmodel.h"
 #include "game/effect/effect.h"
 
 class Stingby : public Enemy {
@@ -18,7 +18,7 @@ public:
 
     static const HitboxCollider::Info collisionInfo;
 
-    ModelWrapper* model;
+    BlendingModel* model;
     Vec3f idleCenter;
 
     DECLARE_STATE(Stingby, Idle);
@@ -46,7 +46,7 @@ Stingby::Stingby(const ActorBuildInfo* buildInfo)
 { }
 
 u32 Stingby::onCreate() {
-    this->model = ModelWrapper::create("hacchin000", "hacchin000", 4);
+    this->model = BlendingModel::create("hacchin000", "hacchin000", 2);
 
     this->direction = Direction::Right;
     this->scale = 0.17f;
@@ -103,7 +103,7 @@ void Stingby::beginState_Idle() {
     this->idleCenter = this->position;
     this->direction = Direction::Right;
 
-    this->model->playSklAnim("fly_idle");
+    this->model->setSklAnim("fly_idle", 10.0f);
 }
 
 void Stingby::executeState_Idle() {
@@ -129,7 +129,7 @@ void Stingby::endState_Idle() { }
 /** STATE: Notice */
 
 void Stingby::beginState_Notice() {
-    this->model->playSklAnim("notice");
+    this->model->setSklAnim("notice", 3.0f);
 }
 
 void Stingby::executeState_Notice() {
@@ -143,7 +143,7 @@ void Stingby::endState_Notice() { }
 /** STATE: Chase */
 
 void Stingby::beginState_Chase() {
-    this->model->playSklAnim("fly_dash");
+    this->model->setSklAnim("fly_dash", 10.0f);
 }
 
 void Stingby::executeState_Chase() {
@@ -160,7 +160,7 @@ void Stingby::endState_Chase() { }
 /** STATE: Die */
 
 void Stingby::beginState_Die() {
-    this->model->playSklAnim("die_squish");
+    this->model->setSklAnim("die_squish", 0.0f);
     this->removeHitboxColliders();
 }
 
