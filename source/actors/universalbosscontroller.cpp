@@ -42,3 +42,4 @@ public:
 };
 
 REGISTER_PROFILE(UniversalBossController, ProfileID::UniversalBossController);
+PROFILE_RESOURCES(ProfileID::UniversalBossController, Profile::LoadResourcesAt::Course, "kameck");
