@@ -1,8 +1,11 @@
-
 ---
 Files:
   - deathfoo.S
+  - waves.S
+  - waves.cpp
+  - coinring.cpp
 Hooks:
+#* Death Foo
 # Add the ability to spawn deathfoo clouds from Foo (replaces No Cloud setting)
   # Set type to spawned by death foo in onCreate
   - type: patch
@@ -38,3 +41,38 @@ Hooks:
     instr: bl
     addr: "0x22FBA68" # Cloud::onExecute_SpawnedByFoo()
     func: CloudCollision
+
+#* Waves
+# Apply waves
+  # Water
+  - type: branch
+    instr: bl
+    addr: "0x26F9444" # Water::onExecute()
+    func: SetWaterWaveValues
+  # Poison
+  - type: funcptr
+    addr: "0x100FDDDC" # vtable entry for Poison::onExecute
+    func: Poison_onExecute__FP10EnvTerrain
+  # Quicksand
+  - type: funcptr
+    addr: "0x100FE19C" # vtable entry for Quicksand::onExecute
+    func: Quicksand_onExecute__FP10EnvTerrain
+# Apply proper collision to waves through TileMgr waveType member
+  - type: branch
+    instr: bl
+    addr: "0x218F150"
+    func: WaveCollision_r4
+  - type: branch
+    instr: bl
+    addr: "0x218F884"
+    func: WaveCollision_r12
+# Fix ripples only appearing at troughs
+  - type: nop
+    addr: "0x28B7FC4"
+
+#* Coin Ring
+# Customizable timer
+  - type: branch
+    instr: b
+    addr: "0x28716BC" # RingBase::activate()
+    func: RingActivateCustom

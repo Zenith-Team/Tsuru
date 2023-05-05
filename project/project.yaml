@@ -10,13 +10,13 @@ Modules:
   - collisionconditions  # Fixes collision conditions for some actors
   - csscripts            # Custom world map scripts
   - customactors         # Custom sprites/actors
-  - deathfoo             # Toxic cloud foo patch
   - debug                # Debugging features
 # - experiments          # Experimental things
   - framebuffer          # Framebuffer-related fixes
   - initializer          # Initializer
   - layout               # Custom layouts
   - misc                 # Miscellaneous items
+  - patchedactors        # Patches for existing actors
   - powerup              # Custom powerups
   - profile              # Extra profile and sprite slots
   - resloader            # Resource loader
@@ -26,7 +26,6 @@ Modules:
   - snowparticles        # Allows changing snow particle colors from spritedata
   - sound                # Patches that affect sound
   - titlescreen          # Title screen patches
-  - waves                # Wavy liquids
   - yoshicolors          # Extra colors for Yoshi
 Defines:
   - NO_INTELLISENSE_HACK
