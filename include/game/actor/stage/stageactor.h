@@ -37,7 +37,7 @@ public:
         Player,
         Yoshi,
         Enemy,
-        Unknown,
+        BabyYoshi,
 
         // Custom types
         Boss
