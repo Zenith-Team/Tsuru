@@ -37,13 +37,22 @@ void initialize() {
         (*_ctors[i])();
 
     // Set OSDynLoad_Acquire and OSDynLoad_FindExport
-    OS_SPECIFICS->addr_OSDynLoad_Acquire    = (u32)(BLOSDynLoad_Acquire   & 0x03FFFFFC);
-    OS_SPECIFICS->addr_OSDynLoad_FindExport = (u32)(BOSDynLoad_FindExport & 0x03FFFFFC);
+    $(uintptr_t)(const u32* instr)(
+        uintptr_t ret = *instr & 0x03FFFFFCU;
 
-    if (!(BLOSDynLoad_Acquire & 2))
-        OS_SPECIFICS->addr_OSDynLoad_Acquire    += (u32)&BLOSDynLoad_Acquire;
-    if (!(BOSDynLoad_FindExport & 2))
-        OS_SPECIFICS->addr_OSDynLoad_FindExport += (u32)&BOSDynLoad_FindExport;
+        if (!(*instr & 2)) {
+            // sign extend offset
+            if (ret & 0x02000000U)
+            ret |= 0xFE000000U;
+
+            // make relative
+            ret += (uintptr_t)instr;
+        }
+
+        return ret;
+    ) extractAddrFromInstr;
+    OS_SPECIFICS->addr_OSDynLoad_Acquire = extractAddrFromInstr(&BLOSDynLoad_Acquire);
+    OS_SPECIFICS->addr_OSDynLoad_FindExport = extractAddrFromInstr(&BOSDynLoad_FindExport);
 
     // Init RPL libraries
     InitOSFunctionPointers();
