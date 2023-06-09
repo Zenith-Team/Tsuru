@@ -48,6 +48,7 @@ Files:
   - actors/peepa.cpp
   - actors/solid.cpp
   - actors/universalmovementcontroller.cpp
+  - actors/onewayplatform.cpp
 #* Course Select Actors:
   - actors/csrootspawner.cpp
   - actors/csflames.cpp
