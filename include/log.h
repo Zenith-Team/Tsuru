@@ -275,6 +275,15 @@ inline void tprint<bool>(bool value) {
 }
 
 template <>
+inline void tprint<const unsigned char*>(const unsigned char* value) {
+    LOG("%s", value);
+
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+    }
+}
+
+template <>
 inline void tprint<const char*>(const char* value) {
     LOG("%s", value);
 
@@ -304,6 +313,24 @@ inline void tprint<const char>(const char value) {
 template <>
 inline void tprint<char>(char value) {
     LOG("%c", value);
+
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+    }
+}
+
+template <>
+inline void tprint<wchar_t>(wchar_t value) {
+    LOG("%C", value);
+
+    if (fmt::_hexActive) {
+        fmt::_hexActive = false;
+    }
+}
+
+template <>
+inline void tprint<const wchar_t*>(const wchar_t* value) {
+    LOG("%S", value);
 
     if (fmt::_hexActive) {
         fmt::_hexActive = false;
