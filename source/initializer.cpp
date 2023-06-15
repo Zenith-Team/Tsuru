@@ -67,3 +67,4 @@ void initialize() {
 void initialize2() {
     SaveMgrSystem::initSystem();
 }
+
