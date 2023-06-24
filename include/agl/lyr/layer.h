@@ -8,6 +8,9 @@
 
 namespace agl { namespace lyr {
 
+class Renderer;
+class RenderStep;
+
 class Layer : public sead::IDisposer { // Size: 0x41C
 private:
     struct DebugInfo {
@@ -33,25 +36,23 @@ public:
     DrawMethodImplBase* pushBackDrawMethod(u32 renderStepIdx, DrawMethodImplBase* drawMethod);
     DrawMethodImplBase* pushBackDrawMethod(DrawMethodImplBase* drawMethod);
 
-    u8 _10[0x4];
-    sead::Viewport _14;
+    agl::lyr::Renderer* renderer;
+    sead::Viewport viewport;
     sead::Viewport scissor;
     sead::Camera* camera;
     sead::Projection* projection;
     u32 _4C;
     u32 _50;
-    u32 _54;
-    u8 _58[0x4];
-    s32 _5C;
-    u32 _60;
-    u32 _64;
+    u32 displayType;
+    u32 renderDisplayFlag;
+    s32 displayType2;
+    sead::BitFlag32 flags;
+    s32 index;
     u32 _68;
-    f32 _6C;
-    f32 _70;
-    f32 _74;
-    f32 _78;
-    f32 _7C;
-    Vec2i _80;
+    sead::Color4f clearColor;
+    f32 clearDepth;
+    s32 renderStepCount;
+    agl::lyr::RenderStep* renderSteps;
     u32 _88;
     DebugInfo debugInfo;
 };
