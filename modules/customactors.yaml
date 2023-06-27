@@ -67,3 +67,8 @@ Hooks:
     instr: bl
     addr: "0x292510C" # Player::getGravityData()
     func: LoadCustomPlayerGravity
+# Create custom layer for parallax
+  - type: branch
+    instr: b
+    addr: "0x24b4cc8" # AreaLayerMgr::createMainLayers()
+    func: CreateParallaxLayer
