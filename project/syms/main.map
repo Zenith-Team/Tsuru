@@ -1068,11 +1068,6 @@
     vf5C__8ObjLayerFv = 0x24FD0F4;
     setParentRenderer__8ObjLayerFP16ObjLayerRenderer = 0x24FCA24;
 
-# ObjLayerRenderer
-    __dt__16ObjLayerRendererFv = 0x24FB0AC;
-    __ct__16ObjLayerRendererFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FAF58;
-    init__16ObjLayerRendererFUiN31PQ2_4sead4Heap = 0x24FB128;
-
 # PhysicsActor
     __vtbl__12PhysicsActor = 0x1000084C;
     __ct__12PhysicsActorFPC14ActorBuildInfo = 0x2002FB8;
@@ -1234,6 +1229,12 @@
 
 # RectCollider
     __vtbl__12RectCollider = 0x100FB820;
+
+# RenderMgr
+    __dt__9RenderMgrFv = 0x24FB0AC;
+    __ct__9RenderMgrFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FAF58;
+    init__9RenderMgrFUiN31PQ2_4sead4Heap = 0x24FB128;
+    setParentRenderer__8ObjLayerFP9RenderMgr = 0x24FCA24;
 
 # RenderObjLayer
     __ct__14RenderObjLayerFv = 0x24FCA6C;
