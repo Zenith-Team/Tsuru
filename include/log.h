@@ -124,7 +124,7 @@ void tprint(T t);
         do {                                                                \
             PP_FOREACH(PRINT_SINGLE, __VA_ARGS__)                           \
             PRINT_SINGLE(LogColor::Reset)                                   \
-            OSConsoleWrite(logMsg, sizeof(logMsg));                         \
+            OSConsoleWrite(logMsg, strlen(logMsg));                         \
             for (size_t i = 0; i < sizeof(logMsg); i++) { logMsg[i] = 0; }  \
         } while (0)
 
