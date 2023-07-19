@@ -12,6 +12,11 @@ struct BoundBox2 {
         , max(t)
     { }
 
+    BoundBox2(const Vector2<T>& minV, const Vector2<T>& maxV)
+        : min(minV)
+        , max(maxV)
+    { }
+
     sead::Vector2<T> min;
     sead::Vector2<T> max;
 

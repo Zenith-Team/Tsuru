@@ -1,0 +1,175 @@
+#include "dynlibs/os/functions.h"
+#include "dynlibs/vpad/functions.h"
+
+u32 vpadbaseHandle = 0;
+u32 vpadHandle = 0;
+
+EXPORT_DECL(void, VPADBASEInit);
+EXPORT_DECL(void, VPADBASEShutdown);
+EXPORT_DECL(bool, VPADBASEIsInit);
+EXPORT_DECL(int32_t, VPADBASEGetMotorOnRemainingCount, VPADChan chan);
+EXPORT_DECL(int32_t, VPADBASESetMotorOnRemainingCount, VPADChan chan, int32_t counter);
+EXPORT_DECL(void, VPADBASESetSensorBarSetting, VPADChan chan, int8_t setting);
+EXPORT_DECL(void, VPADBASEGetSensorBarSetting, VPADChan chan, int8_t* outSetting);
+EXPORT_DECL(int32_t, VPADBASEGetHeadphoneStatus, VPADChan chan);
+EXPORT_DECL(void, VPADBASEGetGameControllerMode, VPADChan chan, int32_t* mode);
+EXPORT_DECL(void, VPADBASESetGameControllerMode, VPADChan chan, int32_t mode);
+EXPORT_DECL(void, VPADBASEGetPowerButtonPressStatus, VPADChan chan, uint32_t* tick, uint32_t* status);
+EXPORT_DECL(void, VPADBASESetPowerButtonPressStatus, VPADChan chan, uint32_t tick, uint32_t status);
+EXPORT_DECL(void, VPADBASESetPowerButtonDisableMode, VPADChan chan, uint32_t mode);
+EXPORT_DECL(void, VPADBASEClearIRCEvent, VPADChan chan);
+EXPORT_DECL(VPADIRCStatusFlags, VPADBASEGetIRCStatus, VPADChan chan);
+EXPORT_DECL(void, VPADInit);
+EXPORT_DECL(void, VPADShutdown);
+EXPORT_DECL(int32_t, VPADRead, VPADChan chan, VPADStatus* buffers, uint32_t count, VPADReadError* outError);
+EXPORT_DECL(void, VPADGetTPCalibrationParam, VPADChan chan, VPADTouchCalibrationParam* outParam);
+EXPORT_DECL(void, VPADSetTPCalibrationParam, VPADChan chan, const VPADTouchCalibrationParam* param);
+EXPORT_DECL(void, VPADGetTPCalibratedPoint, VPADChan chan, VPADTouchData* calibratedData, const VPADTouchData* uncalibratedData);
+EXPORT_DECL(void, VPADGetTPCalibratedPointEx, VPADChan chan, VPADTouchPadResolution tpResolution, VPADTouchData* calibratedData, const VPADTouchData* uncalibratedData);
+EXPORT_DECL(void, VPADSetAccParam, VPADChan chan, float playRadius, float sensitivity);
+EXPORT_DECL(void, VPADGetAccParam, VPADChan chan, float* outPlayRadius, float* outSensitivity);
+EXPORT_DECL(void, VPADSetBtnRepeat, VPADChan chan, float delaySec, float pulseSec);
+EXPORT_DECL(void, VPADEnableStickCrossClamp, VPADChan chan);
+EXPORT_DECL(void, VPADDisableStickCrossClamp, VPADChan chan);
+EXPORT_DECL(void, VPADSetLStickClampThreshold, VPADChan chan, int32_t max, int32_t min);
+EXPORT_DECL(void, VPADSetRStickClampThreshold, VPADChan chan, int32_t max, int32_t min);
+EXPORT_DECL(void, VPADGetGyroDirReviseParam, VPADChan chan, float* param);
+EXPORT_DECL(void, VPADGetGyroZeroDriftMode, VPADChan chan, VPADGyroZeroDriftMode* mode);
+EXPORT_DECL(void, VPADGetLStickClampThreshold, VPADChan chan, int32_t* max, int32_t* min);
+EXPORT_DECL(void, VPADGetRStickClampThreshold, VPADChan chan, int32_t* max, int32_t* min);
+EXPORT_DECL(void, VPADSetStickOrigin, VPADChan chan);
+EXPORT_DECL(void, VPADDisableLStickZeroClamp, VPADChan chan);
+EXPORT_DECL(void, VPADDisableRStickZeroClamp, VPADChan chan);
+EXPORT_DECL(void, VPADEnableLStickZeroClamp, VPADChan chan);
+EXPORT_DECL(void, VPADEnableRStickZeroClamp, VPADChan chan);
+EXPORT_DECL(void, VPADSetCrossStickEmulationParamsL, VPADChan chan, float rotationDegree, float range, float radius);
+EXPORT_DECL(void, VPADSetCrossStickEmulationParamsR, VPADChan chan, float rotationDegree, float range, float radius);
+EXPORT_DECL(void, VPADGetCrossStickEmulationParamsL, VPADChan chan, float* outRotationDegree, float* outRange, float* outRadius);
+EXPORT_DECL(void, VPADGetCrossStickEmulationParamsR, VPADChan chan, float* outRotationDegree, float* outRange, float* outRadius);
+EXPORT_DECL(void, VPADSetGyroAngle, VPADChan chan, float ax, float ay, float az);
+EXPORT_DECL(void, VPADSetGyroDirReviseBase, VPADChan chan, VPADDirection* base);
+EXPORT_DECL(void, VPADSetGyroDirReviseParam, VPADChan chan, float param);
+EXPORT_DECL(void, VPADSetGyroDirection, VPADChan chan, VPADDirection* dir);
+EXPORT_DECL(void, VPADSetGyroDirectionMag, VPADChan chan, float mag);
+EXPORT_DECL(void, VPADSetGyroMagnification, VPADChan chan, float pitch, float yaw, float roll);
+EXPORT_DECL(void, VPADSetGyroZeroDriftMode, VPADChan chan, VPADGyroZeroDriftMode mode);
+EXPORT_DECL(void, VPADEnableGyroZeroPlay, VPADChan chan);
+EXPORT_DECL(void, VPADEnableGyroDirRevise, VPADChan chan);
+EXPORT_DECL(void, VPADEnableGyroAccRevise, VPADChan chan);
+EXPORT_DECL(void, VPADDisableGyroZeroPlay, VPADChan chan);
+EXPORT_DECL(void, VPADDisableGyroDirRevise, VPADChan chan);
+EXPORT_DECL(void, VPADDisableGyroAccRevise, VPADChan chan);
+EXPORT_DECL(float, VPADIsEnableGyroZeroPlay, VPADChan chan);
+EXPORT_DECL(float, VPADIsEnableGyroZeroDrift, VPADChan chan);
+EXPORT_DECL(float, VPADIsEnableGyroDirRevise, VPADChan chan);
+EXPORT_DECL(float, VPADIsEnableGyroAccRevise, VPADChan chan);
+EXPORT_DECL(void, VPADSetGyroZeroPlayParam, VPADChan chan, float radius);
+EXPORT_DECL(void, VPADInitGyroZeroPlayParam, VPADChan chan);
+EXPORT_DECL(void, VPADInitGyroDirReviseParam, VPADChan chan);
+EXPORT_DECL(void, VPADInitGyroAccReviseParam, VPADChan chan);
+EXPORT_DECL(void, VPADStartGyroMagRevise, VPADChan chan);
+EXPORT_DECL(void, VPADStopGyroMagRevise, VPADChan chan);
+EXPORT_DECL(void, VPADInitGyroZeroDriftMode, VPADChan chan);
+EXPORT_DECL(bool, VPADGetTVMenuStatus, VPADChan chan);
+EXPORT_DECL(void, VPADSetTVMenuInvalid, VPADChan chan, bool invalid);
+EXPORT_DECL(void, VPADDisablePowerButton, VPADChan chan);
+EXPORT_DECL(void, VPADEnablePowerButton, VPADChan chan);
+EXPORT_DECL(int32_t, VPADControlMotor, VPADChan chan, uint8_t* pattern, uint8_t length);
+EXPORT_DECL(void, VPADStopMotor, VPADChan chan);
+EXPORT_DECL(int32_t, VPADSetLcdMode, VPADChan chan, VPADLcdMode lcdMode);
+EXPORT_DECL(int32_t, VPADGetLcdMode, VPADChan chan, VPADLcdMode* outLcdMode);
+EXPORT_DECL(int32_t, VPADSetSensorBar, VPADChan chan, bool on);
+EXPORT_DECL(VPADSamplingCallback, VPADSetSamplingCallback, VPADChan chan, VPADSamplingCallback callback);
+
+void InitAcquireVPAD(void)
+{
+    if (coreinitHandle == 0)
+        InitAcquireOS();
+
+    OSDynLoad_Acquire("vpadbase.rpl", &vpadbaseHandle);
+    OSDynLoad_Acquire("vpad.rpl", &vpadHandle);
+}
+
+void InitVPADFunctionPointers(void)
+{
+    u32* funcPointer = 0;
+
+    InitAcquireVPAD();
+
+    OS_FIND_EXPORT(vpadbaseHandle, VPADBASEInit);
+    OS_FIND_EXPORT(vpadbaseHandle, VPADBASEShutdown);
+    OS_FIND_EXPORT(vpadbaseHandle, VPADBASEIsInit);
+    OS_FIND_EXPORT(vpadbaseHandle, VPADBASEGetMotorOnRemainingCount);
+    OS_FIND_EXPORT(vpadbaseHandle, VPADBASESetMotorOnRemainingCount);
+    OS_FIND_EXPORT(vpadbaseHandle, VPADBASESetSensorBarSetting);
+    OS_FIND_EXPORT(vpadbaseHandle, VPADBASEGetSensorBarSetting);
+    OS_FIND_EXPORT(vpadbaseHandle, VPADBASEGetHeadphoneStatus);
+    OS_FIND_EXPORT(vpadbaseHandle, VPADBASEGetGameControllerMode);
+    OS_FIND_EXPORT(vpadbaseHandle, VPADBASESetGameControllerMode);
+    OS_FIND_EXPORT(vpadbaseHandle, VPADBASEGetPowerButtonPressStatus);
+    OS_FIND_EXPORT(vpadbaseHandle, VPADBASESetPowerButtonPressStatus);
+    OS_FIND_EXPORT(vpadbaseHandle, VPADBASESetPowerButtonDisableMode);
+    OS_FIND_EXPORT(vpadbaseHandle, VPADBASEClearIRCEvent);
+    OS_FIND_EXPORT(vpadbaseHandle, VPADBASEGetIRCStatus);
+    OS_FIND_EXPORT(vpadHandle, VPADInit);
+    OS_FIND_EXPORT(vpadHandle, VPADShutdown);
+    OS_FIND_EXPORT(vpadHandle, VPADRead);
+    OS_FIND_EXPORT(vpadHandle, VPADGetTPCalibrationParam);
+    OS_FIND_EXPORT(vpadHandle, VPADSetTPCalibrationParam);
+    OS_FIND_EXPORT(vpadHandle, VPADGetTPCalibratedPoint);
+    OS_FIND_EXPORT(vpadHandle, VPADGetTPCalibratedPointEx);
+    OS_FIND_EXPORT(vpadHandle, VPADSetAccParam);
+    OS_FIND_EXPORT(vpadHandle, VPADGetAccParam);
+    OS_FIND_EXPORT(vpadHandle, VPADSetBtnRepeat);
+    OS_FIND_EXPORT(vpadHandle, VPADEnableStickCrossClamp);
+    OS_FIND_EXPORT(vpadHandle, VPADDisableStickCrossClamp);
+    OS_FIND_EXPORT(vpadHandle, VPADSetLStickClampThreshold);
+    OS_FIND_EXPORT(vpadHandle, VPADSetRStickClampThreshold);
+    OS_FIND_EXPORT(vpadHandle, VPADGetGyroDirReviseParam);
+    OS_FIND_EXPORT(vpadHandle, VPADGetGyroZeroDriftMode);
+    OS_FIND_EXPORT(vpadHandle, VPADGetLStickClampThreshold);
+    OS_FIND_EXPORT(vpadHandle, VPADGetRStickClampThreshold);
+    OS_FIND_EXPORT(vpadHandle, VPADSetStickOrigin);
+    OS_FIND_EXPORT(vpadHandle, VPADDisableLStickZeroClamp);
+    OS_FIND_EXPORT(vpadHandle, VPADDisableRStickZeroClamp);
+    OS_FIND_EXPORT(vpadHandle, VPADEnableLStickZeroClamp);
+    OS_FIND_EXPORT(vpadHandle, VPADEnableRStickZeroClamp);
+    OS_FIND_EXPORT(vpadHandle, VPADSetCrossStickEmulationParamsL);
+    OS_FIND_EXPORT(vpadHandle, VPADSetCrossStickEmulationParamsR);
+    OS_FIND_EXPORT(vpadHandle, VPADGetCrossStickEmulationParamsL);
+    OS_FIND_EXPORT(vpadHandle, VPADGetCrossStickEmulationParamsR);
+    OS_FIND_EXPORT(vpadHandle, VPADSetGyroAngle);
+    OS_FIND_EXPORT(vpadHandle, VPADSetGyroDirReviseBase);
+    OS_FIND_EXPORT(vpadHandle, VPADSetGyroDirReviseParam);
+    OS_FIND_EXPORT(vpadHandle, VPADSetGyroDirection);
+    OS_FIND_EXPORT(vpadHandle, VPADSetGyroDirectionMag);
+    OS_FIND_EXPORT(vpadHandle, VPADSetGyroMagnification);
+    OS_FIND_EXPORT(vpadHandle, VPADSetGyroZeroDriftMode);
+    OS_FIND_EXPORT(vpadHandle, VPADEnableGyroZeroPlay);
+    OS_FIND_EXPORT(vpadHandle, VPADEnableGyroDirRevise);
+    OS_FIND_EXPORT(vpadHandle, VPADEnableGyroAccRevise);
+    OS_FIND_EXPORT(vpadHandle, VPADDisableGyroZeroPlay);
+    OS_FIND_EXPORT(vpadHandle, VPADDisableGyroDirRevise);
+    OS_FIND_EXPORT(vpadHandle, VPADDisableGyroAccRevise);
+    OS_FIND_EXPORT(vpadHandle, VPADIsEnableGyroZeroPlay);
+    OS_FIND_EXPORT(vpadHandle, VPADIsEnableGyroZeroDrift);
+    OS_FIND_EXPORT(vpadHandle, VPADIsEnableGyroDirRevise);
+    OS_FIND_EXPORT(vpadHandle, VPADIsEnableGyroAccRevise);
+    OS_FIND_EXPORT(vpadHandle, VPADSetGyroZeroPlayParam);
+    OS_FIND_EXPORT(vpadHandle, VPADInitGyroZeroPlayParam);
+    OS_FIND_EXPORT(vpadHandle, VPADInitGyroDirReviseParam);
+    OS_FIND_EXPORT(vpadHandle, VPADInitGyroAccReviseParam);
+    OS_FIND_EXPORT(vpadHandle, VPADStartGyroMagRevise);
+    OS_FIND_EXPORT(vpadHandle, VPADStopGyroMagRevise);
+    OS_FIND_EXPORT(vpadHandle, VPADInitGyroZeroDriftMode);
+    OS_FIND_EXPORT(vpadHandle, VPADGetTVMenuStatus);
+    OS_FIND_EXPORT(vpadHandle, VPADSetTVMenuInvalid);
+    OS_FIND_EXPORT(vpadHandle, VPADDisablePowerButton);
+    OS_FIND_EXPORT(vpadHandle, VPADEnablePowerButton);
+    OS_FIND_EXPORT(vpadHandle, VPADControlMotor);
+    OS_FIND_EXPORT(vpadHandle, VPADStopMotor);
+    OS_FIND_EXPORT(vpadHandle, VPADSetLcdMode);
+    OS_FIND_EXPORT(vpadHandle, VPADGetLcdMode);
+    OS_FIND_EXPORT(vpadHandle, VPADSetSensorBar);
+    OS_FIND_EXPORT(vpadHandle, VPADSetSamplingCallback);
+}

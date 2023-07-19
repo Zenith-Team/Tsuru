@@ -1,5 +1,5 @@
 .macro SaveVolatileRegisters
-    stwu sp, -0x38(sp)
+    stwu sp, -0x3C(sp)
     stw  r0,  0x08(sp)
     stw  r3,  0x0C(sp)
     stw  r4,  0x10(sp)
@@ -13,14 +13,18 @@
     stw  r12, 0x30(sp)
     mfcr r0
     stw  r0,  0x34(sp)
+    mfctr r0
+    stw  r0,  0x38(sp)
     mflr r0
-    stw  r0,  0x3C(sp)
+    stw  r0,  0x40(sp)
 .endm
 
 .macro RestoreVolatileRegisters
+    lwz  r0,  0x38(sp)
+    mtctr r0
     lwz  r0,  0x34(sp)
     mtcr r0
-    lwz  r0,  0x3C(sp)
+    lwz  r0,  0x40(sp)
     mtlr r0
     lwz  r0,  0x08(sp)
     lwz  r3,  0x0C(sp)
@@ -33,7 +37,7 @@
     lwz  r10, 0x28(sp)
     lwz  r11, 0x2C(sp)
     lwz  r12, 0x30(sp)
-    addi sp,  sp, 0x38
+    addi sp,  sp, 0x3C
 .endm
 
 .macro SafeBranch __Function__

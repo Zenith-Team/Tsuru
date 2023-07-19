@@ -4,7 +4,7 @@ Files:
   - debug/collisionviewer.S
   - debug/collisionviewer.cpp
   - debug/exceptions.cpp
-  - debug/debugscene.cpp
+  - debug/debugmenu.cpp
 Hooks:
 # Draw debug layer for levels
   # Hijack funcptr of AreaTask::drawLayer3D to point to a custom function
@@ -36,3 +36,9 @@ Hooks:
     instr: b
     addr: "0x2AFA5E8"
     func: handleDVC__Fv
+
+# Show debug menu
+  - type: branch
+    instr: b
+    addr: "0x29F3918" # sead::ControllerMgr::calc()
+    func: tsuruDebugMenu__Fv

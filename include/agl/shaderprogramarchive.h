@@ -40,7 +40,7 @@ public:
     ShaderProgramArchive();
     virtual ~ShaderProgramArchive();
 
-    u32 searchShaderProgramIndex(sead::SafeString& programName);
+    s32 searchShaderProgramIndex(const sead::SafeString& programName) const;
 
     // Probably ShaderProgramArchive::ShaderSource::initialize() or ShaderProgramArchive::ShaderProgramEx::initialize()
     void FUN_2A23f1C(u8* filedata, u32*, u32, sead::Heap* heap);

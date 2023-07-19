@@ -42,5 +42,6 @@ static const Color4f colorPurple  (0xC000FFFF);
 static const Color4f colorMagenta (0xFF00FFFF);
 static const Color4f colorBlack   (0x000000FF);
 static const Color4f colorWhite   (0xFFFFFFFF);
+static const Color4f colorGray    (0x808080FF);
 
 }

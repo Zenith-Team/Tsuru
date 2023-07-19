@@ -18,6 +18,9 @@
 #include "sead/mathcalccommon.h"
 #include "agl/lyr/renderer.h"
 #include "game/graphics/model/modelnw.h"
+#include "game/tilemgr.h"
+#include "game/level/levelcamera.h"
+#include <cmath>
 
 void drawLine3D(const Vec3f& position, const u32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
     Vec3f scale(lineLength, lineThickness, lineThickness);
@@ -52,8 +55,75 @@ void drawLine(const Vec2f& point1, const Vec2f& point2, const sead::Color4f& col
     drawLine(leftPoint, angle, color, length, lineThickness);
 }
 
+void drawBox(const sead::BoundBox2f& box, const f32 z, const sead::Color4f& color, const f32 lineWidth) {
+    Rect* rect = (Rect*)&box;
+
+    Vec2f point1(rect->left, rect->top);
+    Vec2f point2(rect->right, rect->top);
+    Vec2f point3(rect->right, rect->bottom);
+    Vec2f point4(rect->left, rect->bottom);
+
+    drawLine(point1, point2, color, lineWidth);
+    drawLine(point2, point3, color, lineWidth);
+    drawLine(point3, point4, color, lineWidth);
+    drawLine(point1, point4, color, lineWidth);
+}
+
+const sead::Color4f& getBgCollisionColor(const TileDataInfo& bc_data) {
+    switch (bc_data.getUnitSolidType()) {
+        case TileDataInfo::cSolidType_None:
+        default:
+            return sead::colorBlack;
+        case TileDataInfo::cSolidType_Fill:
+            return sead::colorBlue;
+        case TileDataInfo::cSolidType_Outer:
+            return sead::colorMagenta;
+        case TileDataInfo::cSolidType_Inner:
+            return sead::colorGreen;
+        case TileDataInfo::cSolidType_OuterAndInner:
+            return sead::colorGray;
+    }
+}
+
+void drawTilesCollision() {
+    LevelCamera* levelCamera = LevelCamera::instance();
+    TileMgr* tileMgr = TileMgr::instance();
+
+    const s32 unit_size = 16;
+    const s32 delta = unit_size - 1;
+    const u32 mask = ~delta;
+
+    const s32 left   =  s32(std::floor( levelCamera->cameraLeft  ))          & mask;
+    const s32 right  = (s32(std::ceil ( levelCamera->cameraRight )) + delta) & mask;
+    const s32 bottom = (s32(std::ceil (-levelCamera->cameraBottom)) + delta) & mask;
+    const s32 top    =  s32(std::floor(-levelCamera->cameraTop   ))          & mask;
+
+    for (s32 y = top; y < bottom; y += unit_size)
+    {
+        for (s32 x = left; x < right; x += unit_size)
+        {
+            const TileDataInfo bc_data = tileMgr->getTileData(x, y, 0);
+            if (bc_data.getUnitKind() == TileDataInfo::cKind_Normal && bc_data.getUnitSolidType() == TileDataInfo::cSolidType_None)
+                continue;
+
+            const sead::Color4f& color = getBgCollisionColor(bc_data);
+
+            const sead::BoundBox2f box(
+                sead::Vector2<f32>(static_cast<f32>(x),             -static_cast<f32>(y + unit_size)),
+                sead::Vector2<f32>(static_cast<f32>(x + unit_size), -static_cast<f32>(y))
+            );
+            const f32 z = 0.0f;
+
+            drawBox(box, z, color, 1.0f);
+        }
+    }
+}
+
 void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
+
+    if (renderInfo.renderStepIndex != 5) // PostFx
+        return;
 
     sead::GraphicsContext graphicsContext;
     graphicsContext.apply();
@@ -175,6 +245,8 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
             }
         }
 
+        //drawTilesCollision();
+
         ActorBuffer* actors = &ActorMgr::instance()->actors;
         for (u32 i = 0; i < actors->start.size; i++) {
             StageActor* actor = sead::DynamicCast<StageActor, Actor>(actors->start[i]);
@@ -220,6 +292,9 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
 
 void CourseSelectTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
     this->drawLayer3D(renderInfo);
+
+    if (renderInfo.renderStepIndex != 5) // PostFx
+        return;
 
     sead::GraphicsContext graphicsContext;
     graphicsContext.cullingMode = sead::Graphics::CullingMode_None;
