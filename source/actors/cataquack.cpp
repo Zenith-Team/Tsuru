@@ -7,7 +7,7 @@
 #include "math/functions.h"
 #include "game/collision/collidermgr.h"
 #include "game/collision/solid/rectcollider.h"
-#include "log.h"
+#include "game/sound/sound.h"
 
 class Cataquack : public Enemy {
     SEAD_RTTI_OVERRIDE_IMPL(Cataquack, Enemy);
@@ -214,6 +214,8 @@ void Cataquack::beginState_Launch() {
     this->model->sklAnims[0]->frameCtrl.shouldLoop(false);
     this->speed.x = 0.0f;
     this->target->speed.y = 1.0f + this->launchHeight / 14.0f;
+
+    playSound(SoundEffects::SE_PLY_RIDE_CLOUD, this->position);
 }
 
 void Cataquack::executeState_Launch() {
