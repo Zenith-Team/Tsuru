@@ -20,6 +20,8 @@
 #include "game/graphics/model/modelnw.h"
 #include "game/tilemgr.h"
 #include "game/level/levelcamera.h"
+#include "game/level/level.h"
+#include "game/level/levelinfo.h"
 #include <cmath>
 
 void drawLine3D(const Vec3f& position, const u32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
@@ -98,10 +100,8 @@ void drawTilesCollision() {
     const s32 bottom = (s32(std::ceil (-levelCamera->cameraBottom)) + delta) & mask;
     const s32 top    =  s32(std::floor(-levelCamera->cameraTop   ))          & mask;
 
-    for (s32 y = top; y < bottom; y += unit_size)
-    {
-        for (s32 x = left; x < right; x += unit_size)
-        {
+    for (s32 y = top; y < bottom; y += unit_size) {
+        for (s32 x = left; x < right; x += unit_size) {
             const TileDataInfo bc_data = tileMgr->getTileData(x, y, 0);
             if (bc_data.getUnitKind() == TileDataInfo::cKind_Normal && bc_data.getUnitSolidType() == TileDataInfo::cSolidType_None)
                 continue;
@@ -128,13 +128,57 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
     sead::GraphicsContext graphicsContext;
     graphicsContext.apply();
 
-    if (TsuruSaveMgr::sSaveData.collisionViewerEnabled) {
+    if (TsuruSaveMgr::sSaveData.locationViewerEnabled || TsuruSaveMgr::sSaveData.collisionViewerEnabled || TsuruSaveMgr::sSaveData.pathViewerEnabled) {
         sead::PrimitiveRenderer::instance()->setCamera(*renderInfo.camera);
         sead::PrimitiveRenderer::instance()->setProjection(*renderInfo.projection);
         sead::PrimitiveRenderer::instance()->begin();
+    }
 
-        HitboxCollider::List::Node* hColliderNode;
-        hColliderNode = HitboxColliderMgr::instance()->activeList.first;
+    if (TsuruSaveMgr::sSaveData.locationViewerEnabled) {
+        for (u32 i = 1; i <= 256; i++) {
+            Rect rect;
+            void* a = Level::instance()->getArea(LevelInfo::instance()->area)->getLocation(&rect, i);
+
+            if (!a) {
+                continue;
+            }
+
+            Vec2f point1(rect.left, rect.top);
+            Vec2f point2(rect.right, rect.top);
+            Vec2f point3(rect.right, rect.bottom);
+            Vec2f point4(rect.left, rect.bottom);
+
+            drawLine(point1, point2, sead::colorPurple, 1.0f);
+            drawLine(point2, point3, sead::colorPurple, 1.0f);
+            drawLine(point3, point4, sead::colorPurple, 1.0f);
+            drawLine(point1, point4, sead::colorPurple, 1.0f);
+            drawLine(point1, point3, sead::colorPurple, 1.0f);   // Diagonal line
+        }
+    }
+
+    if (TsuruSaveMgr::sSaveData.pathViewerEnabled) {
+        for (u32 i = 1; i <= 256; i++) {
+            Level::Area::PathNode* path = Level::instance()->getArea(LevelInfo::instance()->area)->getPathNodes(i);
+
+            if (!path) {
+                continue;
+            }
+
+            u32 nodeCount = Level::instance()->getArea(LevelInfo::instance()->area)->getPath(i)->nodeCount;
+
+            for (u32 node = 0; node < nodeCount; node++) {
+                if (node == nodeCount - 1) {
+                    // TODO: don't break and draw line from last node to first node if path loops
+                    break;
+                }
+
+                drawLine(Vec2f(path[node].x, -path[node].y), Vec2f(path[node+1].x, -path[node+1].y), sead::colorGreen, 1.0f);
+            }
+        }
+    }
+
+    if (TsuruSaveMgr::sSaveData.collisionViewerEnabled) {
+        HitboxCollider::List::Node* hColliderNode = HitboxColliderMgr::instance()->activeList.first;
 
         while (hColliderNode != nullptr) {
             HitboxCollider* hCollider = hColliderNode->owner;
@@ -285,7 +329,9 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                 }
             }
         }
+    }
 
+    if (TsuruSaveMgr::sSaveData.locationViewerEnabled || TsuruSaveMgr::sSaveData.collisionViewerEnabled || TsuruSaveMgr::sSaveData.pathViewerEnabled) {
         sead::PrimitiveRenderer::instance()->end();
     }
 }
