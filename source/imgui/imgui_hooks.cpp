@@ -1,13 +1,13 @@
-#include "imgui/imgui.h"
-#include "imgui/imgui_impl_gx2.h"
-#include "imgui/imgui_impl_wiiu.h"
-
-#include "dynlibs/os/functions.h"
-
 #include "sead/taskmgr.h"
 #include "sead/viewport.h"
 #include "agl/lyr/renderer.h"
 #include "dynlibs/gx2/functions.h"
+
+#include "dynlibs/os/functions.h"
+
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_gx2.h"
+#include "imgui/imgui_impl_wiiu.h"
 
 static void* imguiAlloc(size_t size, void* userData) {
     return MEMAllocFromDefaultHeap(size);
@@ -33,11 +33,6 @@ void initImGui() {
 
     ImGui::StyleColorsDark();
     setupDarkTheme();
-
-    f32 scale = 1.1f;
-
-    ImGui::GetStyle().ScaleAllSizes(scale);
-    io.FontGlobalScale = scale;
 }
 
 static ImGui_ImplWiiU_ControllerInput imguiInput;
@@ -71,20 +66,19 @@ void grabVPADInput(VPADChan chan, VPADStatus* buffers, uint32_t count, VPADReadE
     imguiInput.vpad = status;
 }
 
-void setupDarkTheme()
-{
+static void setupDarkTheme() {
     ImVec4* colors = ImGui::GetStyle().Colors;
     colors[ImGuiCol_Text]                   = ImVec4(1.00f, 1.00f, 1.00f, 1.00f);
     colors[ImGuiCol_TextDisabled]           = ImVec4(0.50f, 0.50f, 0.50f, 1.00f);
-    colors[ImGuiCol_WindowBg]               = ImVec4(0.10f, 0.10f, 0.10f, 1.00f);
-    colors[ImGuiCol_ChildBg]                = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
+    colors[ImGuiCol_WindowBg]               = ImVec4(0.10f, 0.10f, 0.10f, 0.50f);
+    colors[ImGuiCol_ChildBg]                = ImVec4(0.00f, 0.00f, 0.00f, 0.50f);
     colors[ImGuiCol_PopupBg]                = ImVec4(0.19f, 0.19f, 0.19f, 0.92f);
     colors[ImGuiCol_Border]                 = ImVec4(0.54f, 0.54f, 0.54f, 0.29f);
     colors[ImGuiCol_BorderShadow]           = ImVec4(0.00f, 0.00f, 0.00f, 0.24f);
     colors[ImGuiCol_FrameBg]                = ImVec4(0.05f, 0.05f, 0.05f, 0.54f);
     colors[ImGuiCol_FrameBgHovered]         = ImVec4(0.19f, 0.19f, 0.19f, 0.54f);
     colors[ImGuiCol_FrameBgActive]          = ImVec4(0.20f, 0.22f, 0.23f, 1.00f);
-    colors[ImGuiCol_TitleBg]                = ImVec4(0.00f, 0.00f, 0.00f, 1.00f);
+    colors[ImGuiCol_TitleBg]                = ImVec4(0.00f, 0.00f, 0.00f, 0.50f);
     colors[ImGuiCol_TitleBgActive]          = ImVec4(0.06f, 0.06f, 0.06f, 1.00f);
     colors[ImGuiCol_TitleBgCollapsed]       = ImVec4(0.00f, 0.00f, 0.00f, 1.00f);
     colors[ImGuiCol_MenuBarBg]              = ImVec4(0.14f, 0.14f, 0.14f, 1.00f);

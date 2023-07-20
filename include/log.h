@@ -6,9 +6,10 @@
 #include "game/collision/solid/polygoncollider.h"
 #include <cstring>
 
-/* Logging Colors */
+/* Logging Colors */ 
 namespace LogColor {
-#ifndef CONSOLE
+#if false
+// #ifndef CONSOLE // temporarily disabled due to no colors in imgui
     static const char* Reset        = "\33[0m";
     static const char* Bold         = "\33[1m";
     static const char* NoBold       = "\33[22m";
@@ -120,11 +121,14 @@ void tprint(T t);
 #define PRINT_SINGLE(x) tprint(x);
 
 #if defined(TSURU_DEBUG) && defined(NO_INTELLISENSE_HACK) && !defined(CONSOLE)
+    void printToDebugMenu(const char* msg);
+
     #define PRINT(...)                                                      \
         do {                                                                \
             PP_FOREACH(PRINT_SINGLE, __VA_ARGS__)                           \
             PRINT_SINGLE(LogColor::Reset)                                   \
-            OSConsoleWrite(logMsg, strlen(logMsg));                         \
+            PRINT_SINGLE("\n");                                             \
+            printToDebugMenu(logMsg);                                       \
             for (size_t i = 0; i < sizeof(logMsg); i++) { logMsg[i] = 0; }  \
         } while (0)
 

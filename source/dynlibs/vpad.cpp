@@ -81,8 +81,7 @@ EXPORT_DECL(int32_t, VPADGetLcdMode, VPADChan chan, VPADLcdMode* outLcdMode);
 EXPORT_DECL(int32_t, VPADSetSensorBar, VPADChan chan, bool on);
 EXPORT_DECL(VPADSamplingCallback, VPADSetSamplingCallback, VPADChan chan, VPADSamplingCallback callback);
 
-void InitAcquireVPAD(void)
-{
+void InitAcquireVPAD(void) {
     if (coreinitHandle == 0)
         InitAcquireOS();
 
@@ -90,8 +89,7 @@ void InitAcquireVPAD(void)
     OSDynLoad_Acquire("vpad.rpl", &vpadHandle);
 }
 
-void InitVPADFunctionPointers(void)
-{
+void InitVPADFunctionPointers(void) {
     u32* funcPointer = 0;
 
     InitAcquireVPAD();

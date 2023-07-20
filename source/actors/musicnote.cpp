@@ -4,7 +4,7 @@
 #include "game/eventmgr.h"
 #include "game/sound/sound.h"
 #include "game/movementhandler.h"
-#include "log.h"
+
 class MusicNoteMgr;
 
 class MusicNote : public StageActor {

@@ -21,16 +21,14 @@ EXPORT_DECL(void, KPADShutdown);
 EXPORT_DECL(int32_t, KPADRead, KPADChan chan, KPADStatus* data, uint32_t size);
 EXPORT_DECL(int32_t, KPADReadEx, KPADChan chan, KPADStatus* data, uint32_t size, KPADError* error);
 
-void InitAcquirePadscore(void)
-{
+void InitAcquirePadscore(void) {
     if (coreinitHandle == 0)
         InitAcquireOS();
 
     OSDynLoad_Acquire("padscore.rpl", &padscoreHandle);
 }
 
-void InitPadscoreFunctionPointers(void)
-{
+void InitPadscoreFunctionPointers(void) {
     u32* funcPointer = 0;
 
     InitAcquirePadscore();
