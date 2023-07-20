@@ -8,6 +8,8 @@
 #include "math/functions.h"
 #include "game/level/levelinfo.h"
 
+#include "dynlibs/gx2/functions.h"
+
 #define ORTHO
 
 u32 worldMapProjection() {
@@ -70,4 +72,46 @@ void makePerspectiveLevel() {
     cam->pos.z = cosf(timer) * radius;
 
     cam->doUpdateMatrix(&cam->matrix);
+}
+
+sead::Matrix44<f32>* getIdentMtx44()
+{
+    static sead::Matrix44<f32> mtx;
+    mtx.m[0][0] = 1.0f;
+    mtx.m[0][1] = 0.0f;
+    mtx.m[0][2] = 0.0f;
+    mtx.m[0][3] = 0.0f;
+
+    mtx.m[1][0] = 0.0f;
+    mtx.m[1][1] = 1.0f;
+    mtx.m[1][2] = 0.0f;
+    mtx.m[1][3] = 0.0f;
+    
+    mtx.m[2][0] = 0.0f;
+    mtx.m[2][1] = 0.0f;
+    mtx.m[2][2] = 1.0f;
+    mtx.m[2][3] = 0.0f;
+    
+    mtx.m[3][0] = 0.0f;
+    mtx.m[3][1] = 0.0f;
+    mtx.m[3][2] = 0.0f;
+    mtx.m[3][3] = 1.0f;
+
+    return &mtx;
+}
+
+void projThingV(u32 r3, u32 r4, u32 r5)
+{
+    static sead::FrustumProjection frustumProj(0.1f, 5000000000.0f, 360.0f / 24000.0f, -360.0f / 24000.0f, -640.0f / 24000.0f, 640.0f / 24000.0f);
+
+    agl::lyr::Renderer::instance()->layers.buffer[9]->projection = &frustumProj;
+
+    const Mtx44& mtx = agl::lyr::Renderer::instance()->layers[9]->projection->getDeviceProjectionMatrix();
+    GX2SetVertexUniformReg(r3, r4, (void*)r5);
+}
+
+void projThingF(u32 r3, u32 r4, u32 r5)
+{
+    const Mtx44& mtx = agl::lyr::Renderer::instance()->layers[9]->projection->getDeviceProjectionMatrix();
+    GX2SetPixelUniformReg(r3, r4, (void*)r5);
 }

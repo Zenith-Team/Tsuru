@@ -6,7 +6,7 @@ class LevelCamera {
     SEAD_SINGLETON_DISPOSER(LevelCamera);
 
 public:
-    f32 _10;                // 10
+    f32 zoom;                // 10
     f32 _14;                // 14
     Rect zoneBox;           // 18
     Rect _28[4];            // 28

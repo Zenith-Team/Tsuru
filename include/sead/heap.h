@@ -63,6 +63,8 @@ public:
 };
 
 class ExpHeap : public Heap {
+    SEAD_RTTI_OVERRIDE(ExpHeap, Heap);
+
 public:
     ExpHeap(const SafeString& name, Heap* parent, void* start, u32 size, HeapDirection direction, bool enableLock);
 
@@ -118,6 +120,10 @@ public:
     u32 areaSize;
     u32 freeSize;
     FreeList freeList;
+};
+
+class FrameHeap : public Heap {
+    SEAD_RTTI_OVERRIDE(FrameHeap, Heap);
 };
 
 }

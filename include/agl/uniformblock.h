@@ -59,7 +59,10 @@ public:
     void setInt(s32 index, const s32* data, s32 arrayNum, s32 arrayIndex = 0) const;
 
     void setFloat(void* memory, s32 index, f32 data, s32 arrayIndex = 0) const;
-    void setFloat(s32 index, f32 data, s32 arrayIndex = 0) const;
+    void setFloat(s32 index, f32 data, s32 arrayIndex = 0) const
+    {
+        setData_(currentBuffer, index, &data, arrayIndex, 1);
+    }
     void setFloat(void* memory, s32 index, const f32* data, s32 arrayNum, s32 arrayIndex = 0) const;
     void setFloat(s32 index, const f32* data, s32 arrayNum, s32 arrayIndex = 0) const;
 
@@ -69,12 +72,18 @@ public:
     void setVector2f(s32 index, const sead::Vector2<f32>* data, s32 arrayNum, s32 arrayIndex = 0) const;
 
     void setVector3f(void* memory, s32 index, const sead::Vector3<f32>& data, s32 arrayIndex = 0) const;
-    void setVector3f(s32 index, const sead::Vector3<f32>& data, s32 arrayIndex = 0) const;
+    void setVector3f(s32 index, const sead::Vector3<f32>& data, s32 arrayIndex = 0) const
+    {
+        setData_(currentBuffer, index, &data, arrayIndex, 1);
+    }
     void setVector3f(void* memory, s32 index, const sead::Vector3<f32>* data, s32 arrayNum, s32 arrayIndex = 0) const;
     void setVector3f(s32 index, const sead::Vector3<f32>* data, s32 arrayNum, s32 arrayIndex = 0) const;
 
     void setVector4f(void* memory, s32 index, const sead::Vector4<f32>& data, s32 arrayIndex = 0) const;
-    void setVector4f(s32 index, const sead::Vector4<f32>& data, s32 arrayIndex = 0) const;
+    void setVector4f(s32 index, const sead::Vector4<f32>& data, s32 arrayIndex = 0) const
+    {
+        setData_(currentBuffer, index, &data, arrayIndex, 1);
+    }
     void setVector4f(void* memory, s32 index, const sead::Vector4<f32>* data, s32 arrayNum, s32 arrayIndex = 0) const;
     void setVector4f(s32 index, const sead::Vector4<f32>* data, s32 arrayNum, s32 arrayIndex = 0) const;
 

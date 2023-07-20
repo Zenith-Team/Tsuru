@@ -39,6 +39,7 @@ extern "C" {
 #define GX2_CONTEXT_STATE_ALIGNMENT                     0x100
 #define GX2_DISPLAY_LIST_ALIGNMENT                      0x20
 #define GX2_VERTEX_BUFFER_ALIGNMENT                     0x40
+#define GX2_SHADER_PROGRAM_ALIGNMENT                    (0x100)
 #define GX2_INDEX_BUFFER_ALIGNMENT                      0x20
 
 #define GX2_CONTEXT_STATE_SIZE                          0xA100
@@ -73,6 +74,35 @@ extern "C" {
 #define GX2_COMPARE_NOTEQUAL                            5
 #define GX2_COMPARE_GEQUAL                              6
 #define GX2_COMPARE_ALWAYS                              7
+
+//!-----------------------------------------------------------------------------------------------------------------------
+//! GX2R resource flags
+//!-----------------------------------------------------------------------------------------------------------------------
+#define GX2R_RESOURCE_BIND_NONE 0
+#define GX2R_RESOURCE_BIND_TEXTURE 1 << 0
+#define GX2R_RESOURCE_BIND_COLOR_BUFFER 1 << 1
+#define GX2R_RESOURCE_BIND_DEPTH_BUFFER 1 << 2
+#define GX2R_RESOURCE_BIND_SCAN_BUFFER 1 << 3
+#define GX2R_RESOURCE_BIND_VERTEX_BUFFER 1 << 4
+#define GX2R_RESOURCE_BIND_INDEX_BUFFER 1 << 5
+#define GX2R_RESOURCE_BIND_UNIFORM_BLOCK 1 << 6
+#define GX2R_RESOURCE_BIND_SHADER_PROGRAM 1 << 7
+#define GX2R_RESOURCE_BIND_STREAM_OUTPUT 1 << 8
+#define GX2R_RESOURCE_BIND_DISPLAY_LIST 1 << 9
+#define GX2R_RESOURCE_BIND_GS_RING_BUFFER 1 << 10
+#define GX2R_RESOURCE_USAGE_CPU_READ 1 << 11
+#define GX2R_RESOURCE_USAGE_CPU_WRITE 1 << 12
+#define GX2R_RESOURCE_USAGE_GPU_READ 1 << 13
+#define GX2R_RESOURCE_USAGE_GPU_WRITE 1 << 14
+#define GX2R_RESOURCE_USAGE_DMA_READ 1 << 15
+#define GX2R_RESOURCE_USAGE_DMA_WRITE 1 << 16
+#define GX2R_RESOURCE_USAGE_FORCE_MEM1 1 << 17
+#define GX2R_RESOURCE_USAGE_FORCE_MEM2 1 << 18
+#define GX2R_RESOURCE_DISABLE_CPU_INVALIDATE 1 << 20
+#define GX2R_RESOURCE_DISABLE_GPU_INVALIDATE 1 << 21
+#define GX2R_RESOURCE_LOCKED_READ_ONLY 1 << 22
+#define GX2R_RESOURCE_GX2R_ALLOCATED 1 << 29
+#define GX2R_RESOURCE_LOCKED 1 << 30
 
 //!-----------------------------------------------------------------------------------------------------------------------
 //! GX2 stencil functions
@@ -254,6 +284,12 @@ extern "C" {
 #define GX2_COMP_SEL_WWWW                               0x03030303
 #define GX2_COMP_SEL_WZYX                               0x03020100
 #define GX2_COMP_SEL_WXYZ                               0x03000102
+
+#define GX2_SQ_SEL_R 0
+#define GX2_SQ_SEL_G 1
+#define GX2_SQ_SEL_B 2
+#define GX2_SQ_SEL_A 3
+#define GX2_COMP_MAP(x, y, z, w)                        (((x) << 24) | ((y) << 16) | ((z) << 8) | (w))
 
 //!-----------------------------------------------------------------------------------------------------------------------
 //! GX2 variable types

@@ -8,6 +8,8 @@ Files:
   - dynlibs/os.cpp
   - dynlibs/gx2.cpp
   - dynlibs/h264.cpp
+  - dynlibs/padscore.cpp
+  - dynlibs/vpad.cpp
   - hitboxcollider.cpp
   - utils.cpp
   - profileres.cpp
@@ -46,3 +48,35 @@ Hooks:
     instr: b
     addr: "0x202BDC4" # Boss::beforeExecute()
     func: SetBossActorType
+
+# Disable baphs
+  - type: patch
+    addr: "0x0202b110"
+    data: "38600000" # li r3, 0
+  - type: patch
+    addr: "0x0202b11c"
+    data: "38600000" # li r3, 0
+  - type: patch
+    addr: "0x0202b128"
+    data: "38600000" # li r3, 0
+  - type: patch
+    addr: "0x0202b0f8"
+    data: "38600000" # li r3, 0
+  - type: nop
+    addr: "0x0202b104"
+
+# Fix BG shake bug
+  - type: patch
+    addr: "0x22a7974"
+    data: "7C094800" # cmpw r9, r9
+
+# Save task instances
+  # GameSetupScene
+  - type: branch
+    instr: bl
+    addr: "0x29852ec"
+    func: GameSetupScene_SetInstance
+  - type: branch
+    instr: b
+    addr: "0x2984d00"
+    func: GameSetupScene_ClearInstance

@@ -1,6 +1,27 @@
 .include "macros.S"
 
+.rodata
+
+.global sInstance__14GameSetupScene
+sInstance__14GameSetupScene: .long 0
+
 .text
+
+.global GameSetupScene_SetInstance
+GameSetupScene_SetInstance:
+    lis r3, sInstance__14GameSetupScene@ha
+    addi r3, r3, sInstance__14GameSetupScene@l
+    stw r30, 0x0(r3)
+    mr r3, r31
+    blr
+
+.global GameSetupScene_ClearInstance
+GameSetupScene_ClearInstance:
+    lis r3, sInstance__14GameSetupScene@ha
+    addi r3, r3, sInstance__14GameSetupScene@l
+    li r31, 0
+    stw r31, 0x0(r3)
+    blr
 
 .global SetCurrentGraphicsContext
 SetCurrentGraphicsContext:

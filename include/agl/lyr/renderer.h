@@ -37,6 +37,7 @@ public:
 
     void initLayer_(Layer* layer, u32 layerID, const sead::SafeString& layerName, u32 displayType, sead::Heap* heap);
 
+    void calc(bool);
     bool draw(DisplayType displayType) const;
 
     // Custom functions

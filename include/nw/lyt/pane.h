@@ -19,7 +19,11 @@ public:
 class Pane : public internal::PaneBase {
 public:
     Pane* parent;
-    u8 _10[148]; // Unknown values
+    u8 childList[0xC];
+    Vec3f translate;
+    Vec3f rotate;
+    Vec2f scale;
+    u8 _3C[0xa4-0x3c];
 };
 
 static_assert(sizeof(Pane) == 0xA4, "nw::lyt::Pane size mismatch");

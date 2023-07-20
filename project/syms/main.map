@@ -3,7 +3,21 @@
     cosf = 0x2AFE528;
     atan2f = 0x2AFE670;
     fmodf = 0x2AFD97C;
+    pow = 0x2AFDEA8;
+    floorf = 0x02AFDA5C;
+    ceilf = 0x02AFDAF8;
+    sscanf = 0x02afcd14;
+    __gh_float_scanf = 0x02afbd20;
+    __va_arg = 0x02aff0a8;
+    logf = 0x02afe104;
+    _f_ftoll = 0x02AFEBFC;
+    _f_ftoull = 0x02afebf4;
+    _d_dtoull = 0x02afebf4;
+    _f_ulltof = 0x02afead8;
+    
+    # TODO: this is wrong
     powf = 0x2AFDEA8;
+
     sqrtf = 0x2AFDCCC;
     tanf = 0x2AFDB84;
     acosf = 0x2AFE8F4;
@@ -25,13 +39,17 @@
     __record_needed_destruction = 0x2AFA52C;
     __gh_float_printf = 0x2AFABA8;
     __gh_long_long_printf = 0x2AFAB84;
-    __gh_memclr32 = 0x2AFF1E0;
+    __gh_memclr32 = 0x02afede0;
     __ghs_strcmp = 0x2AFA60C;
     __memzero = 0x2AFA55C;
-    vsnprintf = 0x2AFBD54;
     _f_ftoll = 0x2AFEBFC;
     __array_new_prefix_size = 0x101E9338;
     __placement_array_new = 0x2AFA30C;
+
+# C
+    vsnprintf = 0x2afb954;
+    snprintf = 0x02afb9b4;
+    qsort = 0x2afd2a4;
 
 # Cafe SDK Static
     ASM_MTXConcat = 0x2AF98A0;
@@ -62,6 +80,10 @@
 # agl::ShaderProgramArchive
     __ct__Q2_3agl20ShaderProgramArchiveFv = 0x2A22934;
     FUN_2A23f1C__Q2_3agl20ShaderProgramArchiveFPUcRCUiUiPQ2_4sead4Heap = 0x2A23F1C;
+    searchShaderProgramIndex__Q2_3agl20ShaderProgramArchiveCFRCQ2_4sead23SafeStringBase__tm__2_c = 0x02a245a8;
+
+# agl::ShaderProgram
+    activate__Q2_3agl13ShaderProgramCFQ2_3agl10ShaderModeb = 0x02a213e8;
 
 # agl::TextureData
     __ct__Q2_3agl11TextureDataFv = 0x2A249A0;
@@ -78,18 +100,25 @@
     applyTextureData___Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2A25990;
     initBorderColor___Q2_3agl14TextureSamplerCFv = 0x2A25D94;
 
+# agl::UniformBlock
+    dcbz__Q2_3agl12UniformBlockCFv = 0x02a263c8;
+    flush__Q2_3agl12UniformBlockCFPvb = 0x02a263f4;
+    setUniform__Q2_3agl12UniformBlockCFPCvRCQ2_3agl20UniformBlockLocationUiT3 = 0x02a264bc;
+    setData___Q2_3agl12UniformBlockCFPviPCvN22 = 0x02a26588;
+
 # agl::driver::GX2Resource
     sInstance__Q3_3agl6driver11GX2Resource = 0x101E88C4;
     restoreContextState__Q3_3agl6driver11GX2ResourceFv = 0x2A283C4;
 
 # agl::lyr::Layer
     pushBackDrawMethod__Q3_3agl3lyr5LayerFUiPQ3_3agl3lyr18DrawMethodImplBase = 0x2A376B8;
-    pushBackDrawMethod__Q3_3agl3lyr5LayerFPQ3_3agl3lyr10DrawMethod = 0x2A37710;
+    pushBackDrawMethod__Q3_3agl3lyr5LayerFPQ3_3agl3lyr18DrawMethodImplBase = 0x2A37710;
 
 # agl::lyr::Renderer
     draw__Q3_3agl3lyr8RendererCFQ3_3agl3lyr11DisplayType = 0x2A3AB90;
     sInstance__Q3_3agl3lyr8Renderer = 0x101E8A2C;
     initLayer___Q3_3agl3lyr8RendererFPQ3_3agl3lyr5LayerUiRCQ2_4sead23SafeStringBase__tm__2_cT2PQ2_4sead4Heap = 0x2A3AEE8;
+    calc__Q3_3agl3lyr8RendererFb = 0x02a3a334;
 
 # agl::lyr::RenderInfo
     __ct__Q3_3agl3lyr10RenderInfoFQ3_3agl3lyr11DisplayTypePCQ2_4sead11FrameBufferbPCQ3_3agl3lyr5LayerPQ2_3agl11DisplayList = 0x2A3B2C0;
@@ -122,6 +151,10 @@
 # sead::ControllerMgr
     sInstance__Q2_4sead13ControllerMgr = 0x101E7EFC;
 
+# sead::CriticalSection
+    lock__Q2_4sead15CriticalSectionFv = 0x02a18f20;
+    unlock__Q2_4sead15CriticalSectionFv = 0x02a18f54;
+
 # sead::FileDevice
     tryClose__Q2_4sead10FileDeviceFPQ2_4sead10FileHandle = 0x29F78C0;
     tryWrite__Q2_4sead10FileDeviceFPUiPQ2_4sead10FileHandlePCUcUi = 0x29F7AE8;
@@ -150,8 +183,26 @@
     __ct__Q2_4sead15GraphicsContextFv = 0x2A07BBC;
     apply__Q2_4sead15GraphicsContextFv = 0x2A07CB0;
 
+# sead::ExpHeap
+    tryCreate__Q2_4sead7ExpHeapSFUiRCQ2_4sead23SafeStringBase__tm__2_cPQ2_4sead4HeapQ3_4sead4Heap13HeapDirectionb = 0x02a0a7ac;
+#    RTTI__Q2_4sead7ExpHeap = 0x
+    expHeapVtable = 0x10191028;
+
+# sead::FrameHeap
+#    RTTI__Q2_4sead9FrameHeap = 0x
+    frameHeapVtable = 0x10191158;
+
+# sead::UnitHeap
+#    RTTI__Q2_4sead8UnitHeap = 0x
+    unitHeapVtable = 0x10191448;
+
+# sead::SeparateHeap
+#    RTTI__Q2_4sead12SeparateHeap = 0x
+    separateHeapVtable = 0x101a45fc;
+
 # sead::HeapMgr
     sRootHeaps__Q2_4sead7HeapMgr = 0x105EA148;
+    sHeapTreeLockCS__Q2_4sead7HeapMgr = 0x105ea164;
     sInstancePtr__Q2_4sead7HeapMgr = 0x101E8040;
     getCurrentHeap__Q2_4sead7HeapMgrFv = 0x2A0D554;
     setCurrentHeap__Q2_4sead7HeapMgrFPQ2_4sead4Heap = 0x2A0D584;
@@ -218,6 +269,9 @@
     enterCommon__Q2_4sead8TaskBaseFv = 0x29FF818;
     adjustHeapAll__Q2_4sead8TaskBaseFv = 0x29FF9DC;
     RTTI__Q2_4sead8TaskBase = 0x101EA768;
+
+# sead::TaskMgr
+    afterCalc__Q2_4sead7TaskMgrFv = 0x02a0183c;
 
 # sead::Viewport
     __ct__Q2_4sead8ViewportFfN31 = 0x2A072FC;
@@ -1068,11 +1122,6 @@
     vf5C__8ObjLayerFv = 0x24FD0F4;
     setParentRenderer__8ObjLayerFP16ObjLayerRenderer = 0x24FCA24;
 
-# ObjLayerRenderer
-    __dt__16ObjLayerRendererFv = 0x24FB0AC;
-    __ct__16ObjLayerRendererFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FAF58;
-    init__16ObjLayerRendererFUiN31PQ2_4sead4Heap = 0x24FB128;
-
 # PhysicsActor
     __vtbl__12PhysicsActor = 0x1000084C;
     __ct__12PhysicsActorFPC14ActorBuildInfo = 0x2002FB8;
@@ -1235,6 +1284,12 @@
 # RectCollider
     __vtbl__12RectCollider = 0x100FB820;
 
+# RenderMgr
+    __dt__9RenderMgrFv = 0x24FB0AC;
+    __ct__9RenderMgrFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FAF58;
+    init__9RenderMgrFUiN31PQ2_4sead4Heap = 0x24FB128;
+    setParentRenderer__8ObjLayerFP9RenderMgr = 0x24FCA24;
+
 # RenderObjLayer
     __ct__14RenderObjLayerFv = 0x24FCA6C;
     __dt__14RenderObjLayerFv = 0x24FCB18;
@@ -1268,6 +1323,11 @@
     playColorAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FECC8;
     playTexSrtAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FEE50;
     play__16TextureAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x250B1EC;
+
+# ShaderHolder
+    sInstance__12ShaderHolder = 0x101d2d9c;
+    getNw4fShaderArchive__12ShaderHolderCFv = 0x024fe5cc;
+    getNw4fBasicShaderProgram__12ShaderHolderCFv = 0x024fe608;
 
 # SkeletalAnimation
     play__17SkeletalAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FDADC;
@@ -1364,6 +1424,7 @@
 # TileMgr
     sInstance__7TileMgr = 0x101DAB94;
     getTilePtrCurrentArea__7TileMgrSFUsT1UcPUi = 0x2685000;
+    getTileData__7TileMgrFUsT1Ucb = 0x02685148;
 
 # Water
     __ct__5WaterFPC14ActorBuildInfo = 0x26F7C90;

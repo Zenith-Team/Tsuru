@@ -1,0 +1,26 @@
+
+---
+Files:
+  - imgui/imgui.cpp
+  - imgui/imgui_demo.cpp
+  - imgui/imgui_draw.cpp
+  - imgui/imgui_tables.cpp
+  - imgui/imgui_widgets.cpp
+  - imgui/imgui_impl_wiiu.cpp
+  - imgui/imgui_impl_gx2.cpp
+  - imgui/wut/whb/gfx_shader.cpp
+  - imgui/imgui_hooks.cpp
+Hooks:
+  - type: branch
+    instr: bl
+    addr: "0x029f4fd8"
+    func: grabVPADInput__F8VPADChanP10VPADStatusUiP13VPADReadError
+
+  - type: branch
+    instr: bl
+    addr: "0x02a031c8"
+    func: beginImGui__FPQ2_4sead7TaskMgr
+  - type: branch
+    instr: bl
+    addr: "0x029c5120"
+    func: endImGui__Fv
