@@ -61,13 +61,11 @@ const ActorInfo MusicNoteActorInfo = {
 REGISTER_PROFILE(MusicNote, ProfileID::MusicNote, "MusicNote", &MusicNoteActorInfo);
 REGISTER_PROFILE(MusicNoteMgr, ProfileID::MusicNoteMgr);
 
-PROFILE_RESOURCES(ProfileID::MusicNote, Profile::LoadResourcesAt::Course, "note");
-PROFILE_RESOURCES(ProfileID::MusicNoteMgr, Profile::LoadResourcesAt::Course, "clef");
-
+PROFILE_RESOURCES(ProfileID::MusicNote, Profile::LoadResourcesAt::Course, "note", "star_coin");
+PROFILE_RESOURCES(ProfileID::MusicNoteMgr, Profile::LoadResourcesAt::Course, "clef", "star_coin");
 
 
 // Music Note
-
 
 const HitboxCollider::Info MusicNote::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &MusicNote::collisionCallback
