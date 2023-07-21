@@ -265,7 +265,7 @@ void MusicNote::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
                     break;
                 }
                 case 9: { // star coin - 1
-                buildInfo.profile = Profile::get(426);
+                    buildInfo.profile = Profile::get(426);
                     // we dont need to set the settings1 value because the nybble is already set to 0 for star coin 1
                     buildInfo.position = self->mgr->position;
                     break;
