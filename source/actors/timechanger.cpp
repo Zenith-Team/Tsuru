@@ -16,8 +16,6 @@ public:
     u32 time;
     u32 timeMode;
 
-    bool activated; 
-
     u32 onCreate() override;
     u32 onExecute() override;
 };
@@ -29,8 +27,6 @@ TimeChanger::TimeChanger(const ActorBuildInfo* buildInfo)
 { }
 
 u32 TimeChanger::onCreate() {
-    this->activated = false;
-
     this->eventId = this->eventID1 - 1;
 
     // time uses 3 nybbles 
@@ -43,8 +39,6 @@ u32 TimeChanger::onCreate() {
 }
 
 u32 TimeChanger::onExecute() {
-    if (this->activated) return 1;
-
     if (EventMgr::instance()->isActive(this->eventId)) {
         switch (this->timeMode) {
             case 0: {
@@ -66,7 +60,7 @@ u32 TimeChanger::onExecute() {
             }
         }
 
-        this->activated = true;
+        this->isDeleted = true;
 
         PRINT("[TimeChanger] ", (this->timeMode == 0 ? "Added " : this->timeMode == 1 ? "Subtracted " : "Set "), this->time, " seconds to the timer.");
     }
