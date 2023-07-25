@@ -6,6 +6,7 @@
 namespace sead {
 
 class Projection;
+class Viewport;
 
 class Camera {
     SEAD_RTTI_BASE(Camera);
