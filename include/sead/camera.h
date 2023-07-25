@@ -5,6 +5,8 @@
 
 namespace sead {
 
+class Projection;
+
 class Camera {
     SEAD_RTTI_BASE(Camera);
 
@@ -18,6 +20,8 @@ public:
     virtual void doUpdateMatrix(Mtx34* mtx) const = 0;
 
     void worldPosToCameraPosByMatrix(Vec3f* out, const Vec3f& worldPos) const;
+
+    void projectByMatrix(Vec2f* out, const Vec3f& worldPos, const Projection& projection, const Viewport& viewport);
 
     Mtx34 matrix;
 };
