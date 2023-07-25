@@ -124,6 +124,9 @@ public:
 
 class FrameHeap : public Heap {
     SEAD_RTTI_OVERRIDE(FrameHeap, Heap);
+
+public:
+    static FrameHeap* tryCreate(u32 size, const SafeString& name, Heap* parent, HeapDirection direction, bool enableLock);
 };
 
 }

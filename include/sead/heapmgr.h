@@ -39,4 +39,31 @@ public:
     void* allocFailedCallback;
 };
 
+class CurrentHeapSetter {
+public:
+    explicit CurrentHeapSetter(Heap* heap) {
+        if (heap) {
+            this->setPreviousHeap_(HeapMgr::instance()->getCurrentHeap());
+            HeapMgr::instance()->setCurrentHeap(heap);
+        } else {
+            this->setPreviousHeapToNone_();
+        }
+    }
+
+    ~CurrentHeapSetter() {
+        if (this->hasPreviousHeap_())
+            HeapMgr::instance()->setCurrentHeap(this->getPreviousHeap_());
+    }
+
+protected:
+    Heap* getPreviousHeap_() const { return reinterpret_cast<Heap*>(previousHeap); }
+
+    void setPreviousHeap_(Heap* heap) { previousHeap = reinterpret_cast<uintptr_t>(heap); }
+    void setPreviousHeapToNone_() { previousHeap = 1; }
+
+    bool hasPreviousHeap_() const { return reinterpret_cast<Heap*>(previousHeap) != reinterpret_cast<Heap*>(1); }
+
+    uintptr_t previousHeap;
+};
+
 }

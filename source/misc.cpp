@@ -4,8 +4,10 @@
 #include "tsuru/save/managers/tsurusavemgr.h"
 #include "sead/graphicscontext.h"
 #include "sead/controllermgr.h"
+#include "sead/heapmgr.h"
 #include "game/wrappedcontroller.h"
 #include "game/actor/actor.h"
+#include "game/actor/actormgr.h"
 #include "game/playermgr.h"
 #include "log.h"
 
@@ -113,3 +115,27 @@ PROFILE_RESOURCES(0x135, Profile::LoadResourcesAt::Course, "kuribo");
 REGISTER_PROFILE(Actor, Profile::spriteToProfileList[479]);
 PROFILE_RESOURCES(Profile::spriteToProfileList[479], Profile::LoadResourcesAt::Course, "kuribo");
 #endif
+
+Actor* ActorMgr::instanciateActor(const ActorBuildInfo& buildInfo, bool dontDefer) {
+    Actor* actor = nullptr;
+    sead::Heap* actorHeap = nullptr;
+
+    u32 id = buildInfo.profile->id;
+    if (id == 0x1BC || id == 0x1BB || id == 0x356 || id == 0x357) // Add extra profile ids here
+        actorHeap = sead::FrameHeap::tryCreate(0, "PlayerHeap", this->playerUnitHeap, sead::Heap::HeapDirection_Forward, false);
+    else
+        actorHeap = sead::FrameHeap::tryCreate(0, "ActorHeap", this->actorUnitHeap, sead::Heap::HeapDirection_Forward, false);
+
+    if (actorHeap) {
+        this->currentID = this->actors.end.size << 0x16 | this->actors._10;
+        this->currentWasNotDeferred = dontDefer;
+
+        sead::CurrentHeapSetter currentHeap(actorHeap);
+
+        actor = buildInfo.profile->buildFunc(&buildInfo);
+
+        this->actors.addActor(actor);
+    }
+
+    return actor;
+}

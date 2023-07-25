@@ -192,6 +192,7 @@
 # sead::FrameHeap
 #    RTTI__Q2_4sead9FrameHeap = 0x
     frameHeapVtable = 0x10191158;
+    tryCreate__Q2_4sead9FrameHeapSFUiRCQ2_4sead23SafeStringBase__tm__2_cPQ2_4sead4HeapQ3_4sead4Heap13HeapDirectionb = 0x2a0c1fc;
 
 # sead::UnitHeap
 #    RTTI__Q2_4sead8UnitHeap = 0x
@@ -221,6 +222,9 @@
     chase__Q2_4sead23MathCalcCommon__tm__2_fSFPZ1ZZ1ZT2_b = 0x2027984;
     chase__Q2_4sead24MathCalcCommon__tm__3_UiSFPZ1ZZ1ZT2_b = 0x29E0DE8;
     cSinCosTbl__Q2_4sead23MathCalcCommon__tm__2_f = 0x10191538;
+
+# sead::Matrix34CalcCommon
+    makeSRTIdx__Q2_4sead27Matrix34CalcCommon__tm__2_fSFRQ2_4sead19Matrix34__tm__4_Z1ZRCQ2_4sead18Vector3__tm__4_Z1ZRCQ2_4sead17Vector3__tm__3_UiT2_v = 0x221361c;
 
 # sead::OrthoCamera
     __ct__Q2_4sead11OrthoCameraFv = 0x2A04D54;
@@ -310,6 +314,7 @@
 
 # ActorBuffer
     findActorByID__11ActorBufferFRCUi = 0x200A5C8;
+    addActor__11ActorBufferFP5Actor = 0x200a3a8;
 
 # ActorGlobalsHolder
     sInstance__18ActorGlobalsHolder = 0x101C30D0;
@@ -618,6 +623,12 @@
     vf1E4__14BossControllerFv = 0x202F110;
     vf1EC__14BossControllerFv = 0x202F158;
     vf21C__14BossControllerFv = 0x202F7B0;
+
+# CharacterModel
+    setMtx__14CharacterModelFRCQ2_4sead17Matrix34__tm__2_f = 0x2922304;
+
+# CharacterModelMgr
+    draw__17CharacterModelMgrFv = 0x2922ca0;
 
 # CircularCollider
     RTTI__16CircularCollider = 0x101EA398;
@@ -1082,7 +1093,6 @@
     link__15MovementHandlerFRCQ2_4sead16Vector3__tm__2_fUiUc = 0x284B6F4;
 
 # Mtx34
-    rotateAndTranslate__5Mtx34FRCQ2_4sead17Vector3__tm__3_UiRCQ2_4sead16Vector3__tm__2_f = 0x203C1C8;
     makeST__5Mtx34SFR5Mtx34RCQ2_4sead16Vector3__tm__2_fT2 = 0x2222A88;
     makeSRT__5Mtx34SFR5Mtx34RCQ2_4sead16Vector3__tm__2_fN22 = 0x2508424;
 
@@ -1168,6 +1178,9 @@
 
 # PlayerMgr
     sInstance__9PlayerMgr = 0x101E6994;
+
+# PlayerModelMgr
+    __ct__14PlayerModelMgrFUiN21b = 0x2922f3c;
 
 # Poison
     __ct__6PoisonFPC14ActorBuildInfo = 0x26F5F70;

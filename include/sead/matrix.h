@@ -108,6 +108,12 @@ template <typename T> inline void Matrix34<T>::makeRTIdx(const Vector3<u32>& r, 
 template <typename T> inline void Matrix34<T>::makeSRzxyTIdx(const Vector3<T>& s, const Vector3<u32>& r, const Vector3<T>& t) { Matrix34CalcCommon<T>::makeSRzxyTIdx(*this, s, r, t); }
 template <typename T> inline void Matrix34<T>::makeST(const Vector3<T>& s, const Vector3<T>& t) { Matrix34CalcCommon<T>::makeST(*this, s, t); }
 template <typename T> inline void Matrix34<T>::makeSRT(const Vector3<T>& s, const Vector3<T>& r, const Vector3<T>& t) { Matrix34CalcCommon<T>::makeSRT(*this, s, r, t); }
+template <typename T> inline void Matrix34<T>::makeSRTIdx(const Vector3<T>& s, const Vector3<u32>& r, const Vector3<T>& t) { Matrix34CalcCommon<T>::makeSRTIdx(*this, s, r, t); }
+template <typename T> inline void Matrix34<T>::makeIdentity() {
+    m[0][0] = (T)1.0; m[0][1] = (T)0.0; m[0][2] = (T)0.0; m[0][3] = (T)0.0;
+    m[1][0] = (T)0.0; m[1][1] = (T)1.0; m[1][2] = (T)0.0; m[1][3] = (T)0.0;
+    m[2][0] = (T)0.0; m[2][1] = (T)0.0; m[2][2] = (T)1.0; m[2][3] = (T)0.0;
+}
 
 }
 

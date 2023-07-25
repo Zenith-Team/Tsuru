@@ -101,6 +101,8 @@ public:
         o.m[1][3] = t.y;
         o.m[2][3] = t.z;
     }
+
+    static void makeSRTIdx(Matrix34<T>& o, const Vector3<T>& s, const Vector3<u32>& r, const Vector3<T>& t);
 };
 
 template <typename T>
