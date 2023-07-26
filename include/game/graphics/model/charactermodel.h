@@ -123,6 +123,8 @@ public:
     SEAD_RTTI_OVERRIDE(PlayerModel, CharacterModel);
 
     // TODO: vf overrides
+    
+    void changePowerup(u32 powerupState); // Uses PlayerBase enum
 
     ModelWrapper* bodyModels[5];
     ModelWrapper* headModels[5];

@@ -1196,6 +1196,9 @@
 # PlayerMgr
     sInstance__9PlayerMgr = 0x101E6994;
 
+# PlayerModel
+    changePowerup__11PlayerModelFUi = 0x291AC9C;
+
 # PlayerModelMgr
     __ct__14PlayerModelMgrFUiN21b = 0x2922f3c;
 
