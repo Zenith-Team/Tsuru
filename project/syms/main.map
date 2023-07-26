@@ -642,6 +642,7 @@
 
 # CharacterModelMgr
     draw__17CharacterModelMgrFv = 0x2922ca0;
+    __CPR71__playAnim__17CharacterModelMgrFQ3_J10J9Animation8__type__ = 0x2922a84;
 
 # CircularCollider
     RTTI__16CircularCollider = 0x101EA398;
