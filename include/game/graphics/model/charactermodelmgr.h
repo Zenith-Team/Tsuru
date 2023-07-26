@@ -28,7 +28,7 @@ class PlayerModelMgr : public CharacterModelMgr { // Size: 0x10
 public:
     PlayerModelMgr(u32 character, u32, u32, bool useLightMaps);
 
-    CharacterModel* playerModel;
+    PlayerModel* playerModel;
 };
 
 static_assert(sizeof(PlayerModelMgr) == 0x10, "PlayerModelMgr size mismatch");
