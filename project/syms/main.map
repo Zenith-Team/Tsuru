@@ -971,6 +971,9 @@
     shouldLoop__9FrameCtrlFb = 0x24DEED4;
     reset__9FrameCtrlFv = 0x24DEEAC;
 
+# GlobalStateKeeper
+    sInstance__17GlobalStateKeeper = 0x101e7d7c;
+
 # HitboxCollider
     __ct__14HitboxColliderFv = 0x219A960;
     __dt__14HitboxColliderFv = 0x219AB90;
