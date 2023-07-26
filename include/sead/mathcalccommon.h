@@ -1,6 +1,8 @@
 #pragma once
 
 #include "types.h"
+#include <cmath>
+#include <limits>
 
 namespace sead {
 
@@ -50,6 +52,20 @@ public:
 
         return val;
     }
+
+    static T epsilon()
+    {
+        return std::numeric_limits<T>::epsilon();
+    }
+
+    static T sqrt(T t)
+    {
+        return std::sqrt(t);
+    }
+    
+    static T rsqrt(T t);
+
+    static T pow(T x, T y);
 
     static void sinCosIdx(T* outsin, T* outcos, u32 idx);
 

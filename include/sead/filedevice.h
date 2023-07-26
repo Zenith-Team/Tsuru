@@ -2,7 +2,7 @@
 
 #include "sead/idisposer.h"
 #include "sead/safestring.h"
-#include "sead/list.h"
+#include "sead/tlist.h"
 #include "sead/runtimetypeinfo.h"
 
 namespace sead {

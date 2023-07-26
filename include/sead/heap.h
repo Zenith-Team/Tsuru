@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/list.h"
+#include "sead/offsetlist.h"
 #include "sead/bitflag.h"
 #include "sead/inamable.h"
 #include "sead/idisposer.h"

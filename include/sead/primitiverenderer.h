@@ -6,6 +6,7 @@
 #include "sead/color.h"
 #include "sead/safestring.h"
 #include "sead/idisposer.h"
+#include "sead/boundbox.h"
 
 namespace sead {
 
@@ -37,6 +38,7 @@ public:
     virtual void drawCylinder16Impl(const Mtx34& modelMtx, const Color4f& top, const Color4f& btm) = 0;
     virtual void drawCylinder32Impl(const Mtx34& modelMtx, const Color4f& top, const Color4f& btm) = 0;
 };
+static_assert(sizeof(PrimitiveRendererBase) == 0x4, "sead::PrimitiveRendererBase size mismatch");
 
 class PrimitiveRenderer : public IDisposer {
     SEAD_SINGLETON_DISPOSER(PrimitiveRenderer);
@@ -44,7 +46,27 @@ class PrimitiveRenderer : public IDisposer {
 public:
     class QuadArg {
     public:
-        QuadArg();
+        QuadArg()
+            : center(0.0f)
+            , size(1.0f, 1.0f)
+            , color0(sead::colorWhite)
+            , color1(sead::colorWhite)
+            , horizontal(false)
+        {
+        }
+        
+        QuadArg& setCornerAndSize(const Vec3f& p, const Vec2f& size);
+        QuadArg& setBoundBox(const BoundBox2f& box, f32 z)
+        {
+            Vec2f p;
+            box.getCenter(&p);
+
+            center.set(p.x, p.y, z);
+            size.set(box.getSizeX(), box.getSizeY());
+            return *this;
+        }
+        QuadArg& setColor(const Color4f& colorT, const Color4f& colorB);
+        QuadArg& setColor(const Color4f& color) { return setColor(color, color); }
 
         Vec3f center;
         Vec2f size;
@@ -52,6 +74,22 @@ public:
         Color4f color1;
         bool horizontal;
     };
+    static_assert(sizeof(QuadArg) == 0x38, "sead::PrimitiveRenderer::QuadArg size mismatch");
+    
+    class CubeArg
+    {
+    public:
+        CubeArg();
+
+        CubeArg& setCornerAndSize(const Vec3f& p, const Vec3f& size);
+        CubeArg& setBoundBox(const BoundBox3f& box);
+
+        Vec3f center;
+        Vec3f size;
+        Color4f color0;
+        Color4f color1;
+    };
+    static_assert(sizeof(CubeArg) == 0x38, "sead::PrimitiveRenderer::CubeArg size mismatch");
 
 public:
     void setCamera(const Camera& camera);
@@ -62,14 +100,22 @@ public:
     void end();
 
     void drawQuad(const QuadArg& arg);
+    void drawBox(const QuadArg& arg);
+    void drawCube(const CubeArg& arg);
+    void drawWireCube(const CubeArg& arg);
+    void drawLine(const Vec3f& from, const Vec3f& to, const Color4f& c0, const Color4f& c1);
+    void drawLine(const Vec3f& from, const Vec3f& to, const Color4f& color) { drawLine(from, to, color, color); }
+
     void drawCube(const Vec3f& position, f32 size, const Color4f& color);
     void drawWireCube(const Vec3f& position, f32 size, const Color4f& color);
+
     void drawCircle16(const Vec3f& position, f32 radius, const Color4f& color);
     void drawCircle32(const Vec3f& position, f32 radius, const Color4f& color);
 
     PrimitiveRendererBase* rendererImpl;
     Mtx34 modelMtx;
 };
+static_assert(sizeof(PrimitiveRenderer) == 0x54, "sead::PrimitiveRenderer size mismatch");
 
 namespace PrimitiveRendererUtil {
 
@@ -82,9 +128,10 @@ public:
     { }
 
     Vec3f pos;
-    Vec3f UV;
+    Vec2f UV;
     Color4f color;
 };
+static_assert(sizeof(Vertex) == 0x24, "sead::PrimitiveRendererUtil::Vertex size mismatch");
 
 }
 
@@ -176,5 +223,6 @@ public:
     PrimitiveRendererUtil::Vertex* cylinderLVertexBuf;
     u16*                           cylinderLIndexBuf;
 };
+static_assert(sizeof(PrimitiveRendererCafe) == 0x18C, "sead::PrimitiveRendererCafe size mismatch");
 
 }

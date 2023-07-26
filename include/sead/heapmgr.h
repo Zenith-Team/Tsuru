@@ -25,7 +25,11 @@ public:
 
     static CriticalSection sHeapTreeLockCS;
 
-    static FixedPtrArray<Heap, 4> sRootHeaps;
+    static const u32 cRootHeapsNumMax = 4;
+    static const u32 cIndependentHeapsNumMax = 4;
+
+    static FixedPtrArray<Heap, cRootHeapsNumMax> sRootHeaps;
+    static FixedPtrArray<Heap, cIndependentHeapsNumMax> sIndependentHeaps;
 
 protected:
     static HeapMgr sInstance;

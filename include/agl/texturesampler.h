@@ -8,6 +8,11 @@
 
 namespace agl {
 
+enum TextureFilterType { };
+enum TextureMipFilterType { };
+enum TextureWrapType { };
+enum TextureAnisoRatio { };
+
 class TextureSampler { // Size: 0x1A0
 public:
     TextureSampler();
@@ -17,10 +22,14 @@ public:
 
     bool activate(const SamplerLocation& samplerLocation, s32 = -1) const;
 
-    void applyTextureData_(const TextureData& data);
+    void setup() const // custom
+    {
+        if (flags != 0)
+            this->initRegs_();
+    }
 
     void applyTextureData(const TextureData& data) {
-        if (!this->isTexValid ||
+        if (!this->isTextureSet ||
                 this->textureData.surface.dimension != data.surface.dimension ||
                 this->textureData.surface.width     != data.surface.width     ||
                 this->textureData.surface.height    != data.surface.height    ||
@@ -40,36 +49,40 @@ public:
         }
     }
 
-    void initBorderColor_() const;
-    void initDepthComp_() const;
-    void initFilter_() const;
-    void initMipParam_() const;
-    void initTexture_() const;
-    void initWrap_() const;
+private:
+    void applyTextureData_(const TextureData& data);
 
     void initRegs_() const;
 
+    void initTexture_() const;
+    void initWrap_() const;
+    void initFilter_() const;
+    void initMipParam_() const;
+    void initDepthComp_() const;
+    void initBorderColor_() const;
+
+public:
     TextureData textureData;
-    u32 magFilter;
-    u32 minFilter;
-    u32 mipFilter;
-    u32 wrapX;
-    u32 wrapY;
-    u32 wrapZ;
+    TextureFilterType magFilter;
+    TextureFilterType minFilter;
+    TextureMipFilterType mipFilter;
+    TextureWrapType wrapX;
+    TextureWrapType wrapY;
+    TextureWrapType wrapZ;
     sead::Color4f borderColor;
     f32 minLOD;
     f32 maxLOD;
     f32 LODBias;
-    u32 maxAnisoRatio;
+    TextureAnisoRatio maxAnisoRatio;
     bool overrideCompSel;
-    u32 redComp;
-    u32 greenComp;
-    u32 blueComp;
-    u32 alphaComp;
-    bool isTexValid;
+    TextureCompSel compR;
+    TextureCompSel compG;
+    TextureCompSel compB;
+    TextureCompSel compA;
+    bool isTextureSet;
     u8 _E9;
-    u8 _EA;
-    u32 depthCompare;
+    bool depthCompareEnable;
+    sead::Graphics::DepthFunc depthCompareFunc;
     GX2Sampler sampler;
     GX2Texture texture;
     bool hasBorder;

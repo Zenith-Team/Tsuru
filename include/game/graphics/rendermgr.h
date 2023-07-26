@@ -2,7 +2,7 @@
 
 #include "sead/idisposer.h"
 #include "sead/safestring.h"
-#include "sead/list.h"
+#include "sead/listimpl.h"
 #include "sead/ptrarray.h"
 #include "sead/buffer.h"
 #include "agl/texturesampler.h"

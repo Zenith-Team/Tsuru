@@ -1,9 +1,12 @@
 #include "sead/taskmgr.h"
 #include "sead/viewport.h"
+#include "sead/filedevicemgr.h"
+#include "sead/heap.h"
+#include "sead/heapmgr.h"
 #include "agl/lyr/renderer.h"
 #include "dynlibs/gx2/functions.h"
-
 #include "dynlibs/os/functions.h"
+#include "log.h"
 
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_gx2.h"
@@ -17,7 +20,19 @@ static void imguiFree(void* ptr, void* userData) {
     MEMFreeToDefaultHeap(ptr);
 }
 
-void setupDarkTheme();
+static void setupDarkTheme();
+
+static sead::Heap* sImGuiHeap = nullptr;
+
+extern "C" sead::Heap* createImGuiHeap(u32, u32, sead::Heap* parent)
+{
+    u32 size = 0x50000;
+    //void* mem = MEMAllocFromDefaultHeap(size);
+    //sImGuiHeap = sead::ExpHeap::tryCreate(mem, size, "ImGuiHeap", false);
+    sImGuiHeap = sead::ExpHeap::tryCreate(size, "ImGuiHeap", parent, sead::Heap::HeapDirection_Forward, false);
+
+    return sead::ExpHeap::tryCreate(0x0, "sead::MethodTreeMgr", parent, sead::Heap::HeapDirection_Forward, false);
+}
 
 void initImGui() {
     ImGui::SetAllocatorFunctions(&imguiAlloc, &imguiFree);
@@ -33,6 +48,23 @@ void initImGui() {
 
     ImGui::StyleColorsDark();
     setupDarkTheme();
+
+    sead::FileDevice::LoadArg loadArg;
+    loadArg.path = "fonts/font.ttf";
+    loadArg.heap = sImGuiHeap;
+
+    u8* fontFile = sead::FileDeviceMgr::instance()->tryLoad(loadArg);
+
+    if (fontFile)
+    {
+        PRINT("Font file loaded");
+        
+	    ImFontConfig fontConfig;
+	    fontConfig.FontDataOwnedByAtlas = loadArg.needUnload;
+	    ImFont* font = io.Fonts->AddFontFromMemoryTTF(fontFile, loadArg.readSize, 17.0f, &fontConfig);
+
+        PRINT("ImGui font loaded");
+    }
 }
 
 static ImGui_ImplWiiU_ControllerInput imguiInput;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/list.h"
+#include "sead/offsetlist.h"
 #include "sead/heap.h"
 #include "sead/buffer.h"
 #include "sead/ptrarray.h"

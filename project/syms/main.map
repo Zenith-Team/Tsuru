@@ -99,6 +99,7 @@
     __dt__Q2_3agl14TextureSamplerFv = 0x2A25C60;
     applyTextureData___Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2A25990;
     initBorderColor___Q2_3agl14TextureSamplerCFv = 0x2A25D94;
+    initRegs___Q2_3agl14TextureSamplerCFv = 0x02a25e70;
 
 # agl::UniformBlock
     dcbz__Q2_3agl12UniformBlockCFv = 0x02a263c8;
@@ -186,6 +187,7 @@
 
 # sead::ExpHeap
     tryCreate__Q2_4sead7ExpHeapSFUiRCQ2_4sead23SafeStringBase__tm__2_cPQ2_4sead4HeapQ3_4sead4Heap13HeapDirectionb = 0x02a0a7ac;
+    tryCreate__Q2_4sead7ExpHeapSFPvUiRCQ2_4sead23SafeStringBase__tm__2_cb = 0x02a0a914;
 #    RTTI__Q2_4sead7ExpHeap = 0x
     expHeapVtable = 0x10191028;
 
@@ -204,6 +206,7 @@
 
 # sead::HeapMgr
     sRootHeaps__Q2_4sead7HeapMgr = 0x105EA148;
+    sIndependentHeaps__Q2_4sead7HeapMgr = 0x105ea1a0;
     sHeapTreeLockCS__Q2_4sead7HeapMgr = 0x105ea164;
     sInstancePtr__Q2_4sead7HeapMgr = 0x101E8040;
     getCurrentHeap__Q2_4sead7HeapMgrFv = 0x2A0D554;
@@ -226,6 +229,10 @@
 # sead::Matrix34CalcCommon
     makeSRTIdx__Q2_4sead27Matrix34CalcCommon__tm__2_fSFRQ2_4sead19Matrix34__tm__4_Z1ZRCQ2_4sead18Vector3__tm__4_Z1ZRCQ2_4sead17Vector3__tm__3_UiT2_v = 0x221361c;
 
+# sead::MethodTreeNode
+    lock___Q2_4sead14MethodTreeNodeFv = 0x029ff410;
+    unlock___Q2_4sead14MethodTreeNodeFv = 0x029ff420;
+
 # sead::OrthoCamera
     __ct__Q2_4sead11OrthoCameraFv = 0x2A04D54;
 
@@ -245,9 +252,11 @@
     sInstance__Q2_4sead17PrimitiveRenderer = 0x101E8010;
     setCamera__Q2_4sead17PrimitiveRendererFRCQ2_4sead6Camera = 0x2A083D0;
     setProjection__Q2_4sead17PrimitiveRendererFRCQ2_4sead10Projection = 0x2A083E4;
-    setModelMatrix__Q2_4sead17PrimitiveRendererFRC5Mtx34 = 0x2A083F8;
+    setModelMatrix__Q2_4sead17PrimitiveRendererFRCQ2_4sead17Matrix34__tm__2_f = 0x2A083F8;
     begin__Q2_4sead17PrimitiveRendererFv = 0x2A08408;
     end__Q2_4sead17PrimitiveRendererFv = 0x2A0841C;
+    __CPR75__drawQuad__Q2_4sead17PrimitiveRendererFRCQ3_J13JJ18J7QuadArg = 0x02a08430;
+    setColor__Q3_4sead17PrimitiveRenderer7QuadArgFRCQ2_4sead7Color4fT1 = 0x02a08628;
 
 # sead::PrimitiveRendererCafe
     drawTriangles___Q2_4sead21PrimitiveRendererCafeFRCQ2_4sead17Matrix34__tm__2_fRCQ2_4sead7Color4fT2PQ3_4sead21PrimitiveRendererUtil6VertexUiPUsT5PC11_GX2Texture = 0x2A0A190;
@@ -274,9 +283,13 @@
     enterCommon__Q2_4sead8TaskBaseFv = 0x29FF818;
     adjustHeapAll__Q2_4sead8TaskBaseFv = 0x29FF9DC;
     RTTI__Q2_4sead8TaskBase = 0x101EA768;
+    getMethodTreeMgr__Q2_4sead8TaskBaseFv = 0x029ff888;
 
 # sead::TaskMgr
     afterCalc__Q2_4sead7TaskMgrFv = 0x02a0183c;
+
+# sead::ThreadMgr
+    sInstance__Q2_4sead9ThreadMgr = 0x101e80a0;
 
 # sead::Viewport
     __ct__Q2_4sead8ViewportFfN31 = 0x2A072FC;
@@ -653,6 +666,9 @@
 # CourseTask
     sInstance__10CourseTask = 0x101D15F0;
     construct__10CourseTaskSFRCQ2_4sead16TaskConstructArg = 0x202B4C8;
+
+# CourseSelectActorBase
+    RTTI__21CourseSelectActorBase = 0x101ea3c8;
 
 # CourseSelectActor
     __ct__17CourseSelectActorFPC14ActorBuildInfo = 0x21D4CB4;
@@ -1423,6 +1439,7 @@
     __ct__8StateMgrFP17StateExecutorBaseP9StateBase = 0x29C4A08;
     execute__8StateMgrFv = 0x29C4A80;
     changeState__8StateMgrFP9StateBase = 0x29C4AF0;
+    getCurrentState__8StateMgrFv = 0x029c4b88;
 
 # TaskMgr
     sInstance__7TaskMgr = 0x101E7B28;
@@ -1439,6 +1456,9 @@
     sInstance__7TileMgr = 0x101DAB94;
     getTilePtrCurrentArea__7TileMgrSFUsT1UcPUi = 0x2685000;
     getTileData__7TileMgrFUsT1Ucb = 0x02685148;
+
+# TileTexMgr
+    sInstance__10TileTexMgr = 0x101db014;
 
 # Water
     __ct__5WaterFPC14ActorBuildInfo = 0x26F7C90;

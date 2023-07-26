@@ -7,6 +7,7 @@
 #include "game/playermgr.h"
 #include "math/functions.h"
 #include "game/level/levelinfo.h"
+#include "imgui/imgui.h"
 
 #include "dynlibs/gx2/functions.h"
 
@@ -100,18 +101,67 @@ sead::Matrix44<f32>* getIdentMtx44()
     return &mtx;
 }
 
-void projThingV(u32 r3, u32 r4, u32 r5)
+void lerpMtx44(Mtx44* out, const Mtx44& mtx1, const Mtx44& mtx2, float c)
 {
-    static sead::FrustumProjection frustumProj(0.1f, 5000000000.0f, 360.0f / 24000.0f, -360.0f / 24000.0f, -640.0f / 24000.0f, 640.0f / 24000.0f);
+    if (!out)
+        return;
 
-    agl::lyr::Renderer::instance()->layers.buffer[9]->projection = &frustumProj;
+    for (u32 i = 0; i < 4; i++)
+    {
+        for (u32 j = 0; j < 4; j++)
+        {
+            float a = mtx1.m[i][j];
+            float b = mtx2.m[i][j];
 
-    const Mtx44& mtx = agl::lyr::Renderer::instance()->layers[9]->projection->getDeviceProjectionMatrix();
-    GX2SetVertexUniformReg(r3, r4, (void*)r5);
+            float d = a - b;
+
+            if (d < 0)
+                d = b - a;
+
+            if (a < b)
+                out->m[i][j] = a + ((d / 100) * c * 100);
+            else
+                out->m[i][j] = a - ((d / 100) * c * 100);
+        }
+    }
 }
 
-void projThingF(u32 r3, u32 r4, u32 r5)
+void mtx34ImGui(Mtx34& mtx, const char* str)
 {
-    const Mtx44& mtx = agl::lyr::Renderer::instance()->layers[9]->projection->getDeviceProjectionMatrix();
-    GX2SetPixelUniformReg(r3, r4, (void*)r5);
+    ImGui::Text(str);
+    ImGui::DragFloat4("[0]", &mtx.m[0][0], 0.05f, -500.0f, 500.0f);
+    ImGui::DragFloat4("[1]", &mtx.m[1][0], 0.05f, -500.0f, 500.0f);
+    ImGui::DragFloat4("[2]", &mtx.m[2][0], 0.05f, -500.0f, 500.0f);
+}
+
+void mtx44ImGui(Mtx44& mtx, const char* str)
+{
+    ImGui::Text(str);
+    ImGui::DragFloat4("[0]", &mtx.m[0][0], 1.1f, -500.0f, 500.0f);
+    ImGui::DragFloat4("[1]", &mtx.m[1][0], 1.1f, -500.0f, 500.0f);
+    ImGui::DragFloat4("[2]", &mtx.m[2][0], 1.1f, -500.0f, 500.0f);
+    ImGui::DragFloat4("[3]", &mtx.m[3][0], 1.1f, -500.0f, 500.0f);
+}
+
+void projThing(u32 offset, u32 count, Mtx44* projMtx)
+{
+    const Mtx44& perspProj = agl::lyr::Renderer::instance()->layers[5]->projection->getDeviceProjectionMatrix();
+
+    static f32 slider = 0.0f;
+    static Mtx44 mtx;
+
+    ImGui::Begin("proj");
+    {
+        static f32 f = -1.0f;
+        ImGui::DragFloat("a", &f);
+        ImGui::SliderFloat("slider", &slider, 0.0f, 1.0f);
+        lerpMtx44(&mtx, *projMtx, perspProj, slider);
+        mtx44ImGui(*projMtx, "projMtx");
+        mtx44ImGui(const_cast<Mtx44&>(perspProj), "perspProj");
+        mtx44ImGui(mtx, "mtx");
+        ImGui::ShowDemoWindow();
+    }
+    ImGui::End();
+
+    GX2SetVertexUniformReg(offset, count, (void*)&mtx);
 }

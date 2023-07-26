@@ -17,6 +17,26 @@ struct BoundBox2 {
         , max(maxV)
     { }
 
+    T getSizeX() const
+    {
+        return max.x - min.x;
+    }
+
+    T getSizeY() const
+    {
+        return max.y - min.y;
+    }
+
+    Vector2<T> getCenter() const
+    {
+        return Vector2((min.x + max.x) / 2.0f, (min.y + max.y) / 2.0f);
+    }
+
+    void getCenter(Vector2<T>* center) const
+    {
+        center->set((min.x + max.x) / 2.0f, (min.y + max.y) / 2.0f);
+    }
+
     sead::Vector2<T> min;
     sead::Vector2<T> max;
 
@@ -25,6 +45,11 @@ struct BoundBox2 {
 
 template <typename T>
 struct BoundBox3 {
+    BoundBox3(const Vector3<T>& minV, const Vector3<T>& maxV)
+        : min(minV)
+        , max(maxV)
+    { }
+
     sead::Vector3<T> min;
     sead::Vector3<T> max;
 

@@ -2,8 +2,7 @@
 
 #include "sead/idisposer.h"
 #include "sead/framebuffer.h"
-#include "agl/rendertargetcolor.h"
-#include "agl/rendertargetdepth.h"
+#include "agl/rendertarget.h"
 
 namespace agl {
 
@@ -21,8 +20,8 @@ public:
     void initialize();
     void setRenderTargetColorNullAll();
 
-    void* targetColors[8]; // agl::RenderTarget<agl::RenderTargetColor>*[8]
-    void* targetDepth;     // agl::RenderTarget<agl::RenderTargetDepth>*
+    RenderTarget<RenderTargetColor>* targetColors[8];
+    RenderTarget<RenderTargetDepth>* targetDepth;
 };
 
 static_assert(sizeof(RenderBuffer) == 0x50, "agl::RenderBuffer size mismatch");

@@ -33,12 +33,8 @@ Hooks:
 
 #  - type: branch
 #    instr: bl
-#    func: projThingV__FUiN21
+#    func: projThing__FUiT1PQ2_4sead17Matrix44__tm__2_f
 #    addr: "0x02691114"
-#  - type: branch
-#    instr: bl
-#    func: projThingF__FUiN21
-#    addr: "0x0269112c"
 
 # shader
 #  - type: branch
