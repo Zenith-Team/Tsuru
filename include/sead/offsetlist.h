@@ -32,7 +32,7 @@ public:
         { }
 
         bool operator==(const iterator& other) const {
-            return ptr == other.ptr;
+            return this->ptr == other.ptr;
         }
 
         bool operator!=(const iterator& other) const {
@@ -40,17 +40,17 @@ public:
         }
 
         iterator& operator++() {
-            ListNode* node = reinterpret_cast<ListNode*>((uintptr_t)ptr + offset)->next;
-            ptr = reinterpret_cast<T*>((uintptr_t)node - offset);
+            ListNode* node = reinterpret_cast<ListNode*>((uintptr_t)this->ptr + this->offset)->next;
+            this->ptr = reinterpret_cast<T*>((uintptr_t)node - this->offset);
             return *this;
         }
 
         T& operator*() const {
-            return *ptr;
+            return *this->ptr;
         }
 
         T* operator->() const {
-            return ptr;
+            return this->ptr;
         }
 
         T* ptr;
@@ -58,27 +58,26 @@ public:
     };
 
     iterator begin() const {
-        return iterator(listNodeToObj(startEnd.next), offset);
+        return iterator(this->listNodeToObj(this->startEnd.next), this->offset);
     }
 
     iterator end() const {
-        return iterator(listNodeToObj(const_cast<ListNode*>(&startEnd)), offset);
+        return iterator(this->listNodeToObj(const_cast<ListNode*>(&this->startEnd)), this->offset);
     }
 
 protected:
-    ListNode* objToListNode(const T* obj) const
-    {
-        return reinterpret_cast<ListNode*>((uintptr_t)obj + offset);
+    ListNode* objToListNode(const T* obj) const {
+        return reinterpret_cast<ListNode*>((uintptr_t)obj + this->offset);
     }
 
-    T* listNodeToObj(const ListNode* node) const
-    {
-        return reinterpret_cast<T*>((uintptr_t)node - offset);
+    T* listNodeToObj(const ListNode* node) const {
+        return reinterpret_cast<T*>((uintptr_t)node - this->offset);
     }
 
 public:
     s32 offset;
 };
-static_assert(sizeof(OffsetList<int>) == 0x10);
+
+static_assert(sizeof(OffsetList<int>) == 0x10, "sead::OffsetList size mismatch");
 
 }

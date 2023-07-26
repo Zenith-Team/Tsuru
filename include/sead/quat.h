@@ -6,15 +6,13 @@
 namespace sead {
 
 template <typename T>
-class Quat : public Policies<T>::QuatBase
-{
+class Quat : public Policies<T>::QuatBase {
 private:
     typedef Quat<T> Self;
     typedef Vector3<T> Vec3;
 
 public:
-    Quat()
-    {
+    Quat() {
         this->x = 0;
         this->y = 0;
         this->z = 0;
@@ -38,6 +36,7 @@ template <>
 extern const Quat<f32> Quat<f32>::unit;
 
 }
+
 #include "sead/quatcalccommon.h"
 
 namespace sead {

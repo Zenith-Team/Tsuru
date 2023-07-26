@@ -10,8 +10,7 @@ namespace sead {
 
 class Thread : public IDisposer, public INamable {
 public:
-    enum State
-    {
+    enum State {
         State_Initialized = 0,
         State_Running,
         State_Quitting,

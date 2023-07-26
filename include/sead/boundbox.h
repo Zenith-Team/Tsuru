@@ -17,24 +17,20 @@ struct BoundBox2 {
         , max(maxV)
     { }
 
-    T getSizeX() const
-    {
-        return max.x - min.x;
+    T getSizeX() const {
+        return this->max.x - this->min.x;
     }
 
-    T getSizeY() const
-    {
-        return max.y - min.y;
+    T getSizeY() const {
+        return this->max.y - this->min.y;
     }
 
-    Vector2<T> getCenter() const
-    {
-        return Vector2((min.x + max.x) / 2.0f, (min.y + max.y) / 2.0f);
+    Vector2<T> getCenter() const {
+        return Vector2((this->min.x + this->max.x) / 2.0f, (this->min.y + this->max.y) / 2.0f);
     }
 
-    void getCenter(Vector2<T>* center) const
-    {
-        center->set((min.x + max.x) / 2.0f, (min.y + max.y) / 2.0f);
+    void getCenter(Vector2<T>* center) const {
+        center->set((this->min.x + this->max.x) / 2.0f, (this->min.y + this->max.y) / 2.0f);
     }
 
     sead::Vector2<T> min;

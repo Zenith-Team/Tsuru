@@ -52,8 +52,7 @@ class TaskBase : public TTreeNode<TaskBase*>, public IDisposer, public INamable 
     SEAD_RTTI_BASE(TaskBase);
 
 public:
-    enum Flags
-    {
+    enum Flags {
         Flag_Fading = 1 << 0,
         Flag_Unk1   = 1 << 1,
         Flag_Unk2   = 1 << 2,
@@ -123,7 +122,7 @@ public:
 
     TaskParameter* parameter;               // 2C
     BitFlag32 internalFlag;                 // 30
-    ListNode taskListNode;      // 34
+    ListNode taskListNode;                  // 34
     HeapArray heapArray;                    // 44
     TaskMgr* taskMgr;                       // 5C
     State state;                            // 60

@@ -5,6 +5,8 @@
 
 namespace sead {
 
+class Heap;
+
 class MessageQueue {
 public:
     enum BlockType {
@@ -31,6 +33,7 @@ public:
     u32* buffer;
     OSMessageQueue messageQueueInner;
 };
-static_assert(sizeof(MessageQueue) == 0x40);
+
+static_assert(sizeof(MessageQueue) == 0x40, "sead::MessageQueue size mismatch");
 
 }

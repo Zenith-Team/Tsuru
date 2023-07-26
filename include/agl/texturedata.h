@@ -1,6 +1,7 @@
 #pragma once
 
 #include "dynlibs/gx2/types.h"
+#include "sead/mathcalccommon.h"
 
 namespace agl {
 
@@ -14,25 +15,25 @@ public:
     TextureData();
     virtual ~TextureData(); // deleted
 
-    u32 getWidth(s32 mipLevel = 0) const { return sead::Mathi::max(surface.width >> mipLevel, minWidth); }
-    u32 getHeight(s32 mipLevel = 0) const { return sead::Mathi::max(surface.height >> mipLevel, minHeight); }
+    u32 getWidth(s32 mipLevel = 0) const { return sead::Mathi::max(this->surface.width >> mipLevel, this->minWidth); }
+    u32 getHeight(s32 mipLevel = 0) const { return sead::Mathi::max(this->surface.height >> mipLevel, this->minHeight); }
 
-    void* getImagePtr() const { return surface.imageData; }
-    void setImagePtr(void* ptr) { surface.imageData = ptr; }
+    void* getImagePtr() const { return this->surface.imageData; }
+    void setImagePtr(void* ptr) { this->surface.imageData = ptr; }
 
-    u32 getImageByteSize() const { return surface.imageSize; }
+    u32 getImageByteSize() const { return this->surface.imageSize; }
 
-    void* getMipPtr() const { return surface.mipData; }
-    void setMipPtr(void* ptr) { surface.mipData = ptr; }
+    void* getMipPtr() const { return this->surface.mipData; }
+    void setMipPtr(void* ptr) { this->surface.mipData = ptr; }
 
-    u32 getMipByteSize() const { return surface.mipSize; }
+    u32 getMipByteSize() const { return this->surface.mipSize; }
 
-    u32 getAlignment() const { return surface.align; }
+    u32 getAlignment() const { return this->surface.align; }
 
     void initializeFromSurface(const GX2Surface& surface);
     void invalidateGPUCache();
 
-    u32 getMipLevelNum() const { return surface.numMips; }
+    u32 getMipLevelNum() const { return this->surface.numMips; }
     void setMipLevelNum(u32 mipLevelNum);
 
 private:

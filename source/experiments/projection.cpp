@@ -75,8 +75,7 @@ void makePerspectiveLevel() {
     cam->doUpdateMatrix(&cam->matrix);
 }
 
-sead::Matrix44<f32>* getIdentMtx44()
-{
+sead::Matrix44<f32>* getIdentMtx44() {
     static sead::Matrix44<f32> mtx;
     mtx.m[0][0] = 1.0f;
     mtx.m[0][1] = 0.0f;
@@ -101,19 +100,16 @@ sead::Matrix44<f32>* getIdentMtx44()
     return &mtx;
 }
 
-void lerpMtx44(Mtx44* out, const Mtx44& mtx1, const Mtx44& mtx2, float c)
-{
+void lerpMtx44(Mtx44* out, const Mtx44& mtx1, const Mtx44& mtx2, f32 c) {
     if (!out)
         return;
 
-    for (u32 i = 0; i < 4; i++)
-    {
-        for (u32 j = 0; j < 4; j++)
-        {
-            float a = mtx1.m[i][j];
-            float b = mtx2.m[i][j];
+    for (u32 i = 0; i < 4; i++) {
+        for (u32 j = 0; j < 4; j++) {
+            f32 a = mtx1.m[i][j];
+            f32 b = mtx2.m[i][j];
 
-            float d = a - b;
+            f32 d = a - b;
 
             if (d < 0)
                 d = b - a;
@@ -126,16 +122,14 @@ void lerpMtx44(Mtx44* out, const Mtx44& mtx1, const Mtx44& mtx2, float c)
     }
 }
 
-void mtx34ImGui(Mtx34& mtx, const char* str)
-{
+void mtx34ImGui(Mtx34& mtx, const char* str) {
     ImGui::Text(str);
     ImGui::DragFloat4("[0]", &mtx.m[0][0], 0.05f, -500.0f, 500.0f);
     ImGui::DragFloat4("[1]", &mtx.m[1][0], 0.05f, -500.0f, 500.0f);
     ImGui::DragFloat4("[2]", &mtx.m[2][0], 0.05f, -500.0f, 500.0f);
 }
 
-void mtx44ImGui(Mtx44& mtx, const char* str)
-{
+void mtx44ImGui(Mtx44& mtx, const char* str) {
     ImGui::Text(str);
     ImGui::DragFloat4("[0]", &mtx.m[0][0], 1.1f, -500.0f, 500.0f);
     ImGui::DragFloat4("[1]", &mtx.m[1][0], 1.1f, -500.0f, 500.0f);
@@ -143,15 +137,13 @@ void mtx44ImGui(Mtx44& mtx, const char* str)
     ImGui::DragFloat4("[3]", &mtx.m[3][0], 1.1f, -500.0f, 500.0f);
 }
 
-void projThing(u32 offset, u32 count, Mtx44* projMtx)
-{
+void projThing(u32 offset, u32 count, Mtx44* projMtx) {
     const Mtx44& perspProj = agl::lyr::Renderer::instance()->layers[5]->projection->getDeviceProjectionMatrix();
 
     static f32 slider = 0.0f;
     static Mtx44 mtx;
 
-    ImGui::Begin("proj");
-    {
+    ImGui::Begin("proj"); {
         static f32 f = -1.0f;
         ImGui::DragFloat("a", &f);
         ImGui::SliderFloat("slider", &slider, 0.0f, 1.0f);

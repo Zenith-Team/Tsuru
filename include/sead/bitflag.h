@@ -15,10 +15,10 @@ public:
         : bits(t)
     { }
 
-    void setDirect(T bitsV) { bits = bitsV; }
-    T getDirect() const { return bits; }
-    T* getPtr() { return &bits; }
-    const T* getPtr() const { return &bits; }
+    void setDirect(T bitsV) { this->bits = bitsV; }
+    T getDirect() const { return this->bits; }
+    T* getPtr() { return &this->bits; }
+    const T* getPtr() const { return &this->bits; }
     size_t getByteSize() const { return sizeof(T); }
 
     T getMask(T mask) const { return this->bits & mask; }

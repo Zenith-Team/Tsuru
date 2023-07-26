@@ -10,20 +10,16 @@ static Mtx34* ASM_MTXMultiply(Mtx34* out, Mtx34* p1, Mtx34* p2) {
 
 namespace sead {
 
-void PrimitiveRenderer::drawBox(const QuadArg& arg)
-{
+void PrimitiveRenderer::drawBox(const QuadArg& arg) {
     Mtx34 mtx;
 
-    if (arg.horizontal)
-    {
+    if (arg.horizontal) {
         const Vec2f& size = arg.size;
         Vec3f scale(size.x, size.y, 1.0f); // No flipping of x and y. Bug?
         Vec3f rotation(0.0f, 0.0f, degToRad(90));
 
         mtx.makeSRT(scale, rotation, arg.center);
-    }
-    else
-    {
+    } else {
         const Vec2f& size = arg.size;
         Vec3f scale(size.x, size.y, 1.0f);
 
@@ -36,8 +32,7 @@ void PrimitiveRenderer::drawBox(const QuadArg& arg)
     rendererImpl->drawBoxImpl(outMtx, arg.color0, arg.color1);
 }
 
-void PrimitiveRenderer::drawCube(const CubeArg& arg)
-{
+void PrimitiveRenderer::drawCube(const CubeArg& arg) {
     Mtx34 mtx;
     mtx.makeST(arg.size, arg.center);
 
@@ -47,8 +42,7 @@ void PrimitiveRenderer::drawCube(const CubeArg& arg)
     rendererImpl->drawCubeImpl(outMtx, arg.color0, arg.color1);
 }
 
-void PrimitiveRenderer::drawWireCube(const CubeArg& arg)
-{
+void PrimitiveRenderer::drawWireCube(const CubeArg& arg) {
     Mtx34 mtx;
     mtx.makeST(arg.size, arg.center);
 
@@ -57,8 +51,7 @@ void PrimitiveRenderer::drawWireCube(const CubeArg& arg)
     rendererImpl->drawWireCubeImpl(outMtx, arg.color0, arg.color1);
 }
 
-void PrimitiveRenderer::drawLine(const Vec3f& from, const Vec3f& to, const Color4f& c0, const Color4f& c1)
-{
+void PrimitiveRenderer::drawLine(const Vec3f& from, const Vec3f& to, const Color4f& c0, const Color4f& c1) {
     Vec3f dir = to - from;
 
     Mtx34 mtxS;
@@ -135,8 +128,6 @@ void PrimitiveRenderer::drawCircle32(const Vec3f& position, f32 radius, const Co
 
     this->rendererImpl->drawCircle32Impl(outMtx, color);
 }
-
-// --------
 
 void PrimitiveRendererCafe::drawBoxImpl(const Mtx34& modelMtx, const Color4f& colorL, const Color4f& colorR) {
     this->drawLines_(modelMtx, colorL, colorR, quadVertexBuf, 4, boxIndexBuf, 4);

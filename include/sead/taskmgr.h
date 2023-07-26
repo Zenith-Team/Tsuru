@@ -8,11 +8,9 @@ class Framework;
 class DelegateThread;
 class NullFaderTask;
 
-class TaskMgr
-{
+class TaskMgr {
 public:
-    struct InitializeArg
-    {
+    struct InitializeArg {
         InitializeArg(const TaskBase::CreateArg& rootTaskArg)
             : createQueueSize(0x20)
             , prepareStackSize(0x8000)
@@ -20,8 +18,7 @@ public:
             , rootTaskCreateArg(rootTaskArg)
             , heap(nullptr)
             , parentFramework(nullptr)
-        {
-        }
+        { }
 
         u32 createQueueSize;
         u32 prepareStackSize;
@@ -30,7 +27,8 @@ public:
         Heap* heap;
         Framework* parentFramework;
     };
-    static_assert(sizeof(InitializeArg) == 0x18);
+
+    static_assert(sizeof(InitializeArg) == 0x18, "sead::TaskMgr::InitializeArg size mismatch");
 
     class TaskCreateContextMgr;
 
@@ -62,6 +60,7 @@ public:
     u32 _1A0;
     u32 _1A4;
 };
-static_assert(sizeof(TaskMgr) == 0x1A8);
+
+static_assert(sizeof(TaskMgr) == 0x1A8, "sead::TaskMgr size mismatch");
 
 }

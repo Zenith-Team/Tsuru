@@ -30,14 +30,13 @@ public:
     void lock_();
     void unlock_();
 
-    void setPauseFlag(PauseFlag flag)
-    {
+    void setPauseFlag(PauseFlag flag) {
         this->lock_();
 
-        if (pauseEventDelegate)
-            pauseEventDelegate->invoke(this, flag);
+        if (this->pauseEventDelegate)
+            this->pauseEventDelegate->invoke(this, flag);
 
-        pauseFlag.setDirect(flag);
+        this->pauseFlag.setDirect(flag);
 
         this->unlock_();
     }
@@ -52,8 +51,7 @@ public:
     void* userID;
 };
 
-class MethodTreeMgr
-{
+class MethodTreeMgr {
     SEAD_RTTI_BASE(MethodTreeMgr);
 
 public:
@@ -67,10 +65,10 @@ public:
 
     CriticalSection criticalSection;
 };
-static_assert(sizeof(MethodTreeMgr) == 0x40);
 
-class DualScreenMethodTreeMgr : public MethodTreeMgr
-{
+static_assert(sizeof(MethodTreeMgr) == 0x40, "sead::MethodTreeMgr size mismatch");
+
+class DualScreenMethodTreeMgr : public MethodTreeMgr {
     SEAD_RTTI_OVERRIDE(DualScreenMethodTreeMgr, MethodTreeMgr);
 
 public:
@@ -96,6 +94,7 @@ public:
     u32 _3DC;
     u32 _3E0;
 };
-static_assert(sizeof(DualScreenMethodTreeMgr) == 0x3E4);
+
+static_assert(sizeof(DualScreenMethodTreeMgr) == 0x3E4, "sead::DualScreenMethodTreeMgr size mismatch");
 
 }

@@ -24,11 +24,8 @@ static void setupDarkTheme();
 
 static sead::Heap* sImGuiHeap = nullptr;
 
-extern "C" sead::Heap* createImGuiHeap(u32, u32, sead::Heap* parent)
-{
-    u32 size = 0x50000;
-    //void* mem = MEMAllocFromDefaultHeap(size);
-    //sImGuiHeap = sead::ExpHeap::tryCreate(mem, size, "ImGuiHeap", false);
+extern "C" sead::Heap* createImGuiHeap(u32, u32, sead::Heap* parent) {
+    const u32 size = 0x50000;
     sImGuiHeap = sead::ExpHeap::tryCreate(size, "ImGuiHeap", parent, sead::Heap::HeapDirection_Forward, false);
 
     return sead::ExpHeap::tryCreate(0x0, "sead::MethodTreeMgr", parent, sead::Heap::HeapDirection_Forward, false);
@@ -50,13 +47,12 @@ void initImGui() {
     setupDarkTheme();
 
     sead::FileDevice::LoadArg loadArg;
-    loadArg.path = "fonts/font.ttf";
+    loadArg.path = "tsuru/imgui.ttf";
     loadArg.heap = sImGuiHeap;
 
     u8* fontFile = sead::FileDeviceMgr::instance()->tryLoad(loadArg);
 
-    if (fontFile)
-    {
+    if (fontFile) {
         PRINT("Font file loaded");
         
 	    ImFontConfig fontConfig;

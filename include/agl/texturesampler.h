@@ -4,6 +4,7 @@
 #include "agl/texturedata.h"
 #include "sead/color.h"
 #include "sead/bitflag.h"
+#include "sead/graphics.h"
 #include "agl/shaderlocation.h"
 
 namespace agl {
@@ -22,9 +23,9 @@ public:
 
     bool activate(const SamplerLocation& samplerLocation, s32 = -1) const;
 
-    void setup() const // custom
-    {
-        if (flags != 0)
+    // Custom function
+    void setup() const {
+        if (this->flags != 0)
             this->initRegs_();
     }
 
@@ -39,7 +40,7 @@ public:
                 this->textureData.surface.swizzle   != data.surface.swizzle   ||
                 this->textureData.surface.tile      != data.surface.tile      ||
                 this->textureData.surface.aa        != data.surface.aa) {
-            applyTextureData_(data);
+            this->applyTextureData_(data);
         } else {
             this->textureData.surface.imageData = data.surface.imageData;
             this->textureData.surface.mipData   = data.surface.mipData;

@@ -5,8 +5,7 @@
 
 namespace sead {
 
-class ThreadMgr
-{
+class ThreadMgr {
     SEAD_SINGLETON_DISPOSER(ThreadMgr);
 
 public:
@@ -17,13 +16,14 @@ public:
     void destroy();
 
     //bool isMainThread() const { return getCurrentThread() == mainThread; };
-    Thread* getMainThread() const { return mainThread; }
+    Thread* getMainThread() const { return this->mainThread; }
     //Thread* getCurrentThread() const { return reinterpret_cast<Thread*>(threadPtrTLS.getValue()); }
 
     Thread::List list;
     Thread* mainThread;
     ThreadLocalStorage threadPtrTLS;
 };
-static_assert(sizeof(ThreadMgr) == 0x28);
+
+static_assert(sizeof(ThreadMgr) == 0x28, "sead::ThreadMgr size mismatch");
 
 }

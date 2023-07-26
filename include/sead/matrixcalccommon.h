@@ -140,8 +140,7 @@ public:
 
     static void makeSRTIdx(Matrix34<T>& o, const Vector3<T>& s, const Vector3<u32>& r, const Vector3<T>& t);
 
-    static void makeQ(Matrix34<T>& o, const Quat<T>& q)
-    {
+    static void makeQ(Matrix34<T>& o, const Quat<T>& q) {
         // Assuming the quaternion "q" is normalized
 
         const T yy = 2 * q.y * q.y;
@@ -171,23 +170,20 @@ public:
         o.m[2][3] = 0;
     }
 
-    static void setBase(Matrix34<T>& n, s32 axis, const Vector3<T>& v)
-    {
+    static void setBase(Matrix34<T>& n, s32 axis, const Vector3<T>& v) {
         n.m[0][axis] = v.x;
         n.m[1][axis] = v.y;
         n.m[2][axis] = v.z;
     }
 
-    static void setRow(Matrix34<T>& n, const Vector4<T>& v, s32 row)
-    {
+    static void setRow(Matrix34<T>& n, const Vector4<T>& v, s32 row) {
         n.m[row][0] = v.x;
         n.m[row][1] = v.y;
         n.m[row][2] = v.z;
         n.m[row][3] = v.w;
     }
 
-    static void setTranslation(Matrix34<T>& n, const Vector3<T>& v)
-    {
+    static void setTranslation(Matrix34<T>& n, const Vector3<T>& v) {
         setBase(n, 3, v);
     }
 };

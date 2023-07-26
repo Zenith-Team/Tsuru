@@ -53,13 +53,11 @@ public:
         return val;
     }
 
-    static T epsilon()
-    {
+    static T epsilon() {
         return std::numeric_limits<T>::epsilon();
     }
 
-    static T sqrt(T t)
-    {
+    static T sqrt(T t) {
         return std::sqrt(t);
     }
     

@@ -18,7 +18,8 @@ public:
     ListNode* prev;
     ListNode* next;
 };
-static_assert(sizeof(ListNode) == 0x8);
+
+static_assert(sizeof(ListNode) == 0x8, "sead::ListNode size mismatch");
 
 class ListImpl {
 public:
@@ -26,28 +27,27 @@ public:
         : startEnd()
         , count(0)
     {
-        startEnd.next = &startEnd;
-        startEnd.prev = &startEnd;
+        this->startEnd.next = &this->startEnd;
+        this->startEnd.prev = &this->startEnd;
     }
 
     void pushBack(ListNode* n) {
-        startEnd.insertFront_(n);
-        count += 1;
+        this->startEnd.insertFront_(n);
+        this->count += 1;
     }
 
-    void pushFront(ListNode* n)
-    {
-        startEnd.insertBack_(n);
-        count += 1;
+    void pushFront(ListNode* n) {
+        this->startEnd.insertBack_(n);
+        this->count += 1;
     }
 
     void erase(ListNode* n) {
         n->erase_();
-        count -= 1;
+        this->count -= 1;
     }
 
-    ListNode* front() const { return count > 0 ? startEnd.next : nullptr; }
-    ListNode* back() const { return count > 0 ? startEnd.prev : nullptr; }
+    ListNode* front() const { return this->count > 0 ? this->startEnd.next : nullptr; }
+    ListNode* back() const { return this->count > 0 ? this->startEnd.prev : nullptr; }
 
     ListNode startEnd;
     s32 count;

@@ -34,8 +34,7 @@ public:
         this->y = other.y;
     }
 
-    void set(T x_, T y_)
-    {
+    void set(T x_, T y_) {
         this->x = x_;
         this->y = y_;
     }
@@ -69,8 +68,7 @@ public:
         return *this;
     }
 
-    void multScalar(T t)
-    {
+    void multScalar(T t) {
         this->x *= t;
         this->y *= t;
     }
@@ -156,8 +154,7 @@ public:
         this->z = 0;
     }
 
-    void set(T x_, T y_, T z_)
-    {
+    void set(T x_, T y_, T z_) {
         this->x = x_;
         this->y = y_;
         this->z = z_;
@@ -206,8 +203,7 @@ public:
         *this = this->crossedWith(other);
     }
 
-    void multScalar(T t)
-    {
+    void multScalar(T t) {
         this->x *= t;
         this->y *= t;
         this->z *= t;

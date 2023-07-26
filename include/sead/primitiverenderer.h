@@ -38,6 +38,7 @@ public:
     virtual void drawCylinder16Impl(const Mtx34& modelMtx, const Color4f& top, const Color4f& btm) = 0;
     virtual void drawCylinder32Impl(const Mtx34& modelMtx, const Color4f& top, const Color4f& btm) = 0;
 };
+
 static_assert(sizeof(PrimitiveRendererBase) == 0x4, "sead::PrimitiveRendererBase size mismatch");
 
 class PrimitiveRenderer : public IDisposer {
@@ -52,19 +53,18 @@ public:
             , color0(sead::colorWhite)
             , color1(sead::colorWhite)
             , horizontal(false)
-        {
-        }
+        { }
         
         QuadArg& setCornerAndSize(const Vec3f& p, const Vec2f& size);
-        QuadArg& setBoundBox(const BoundBox2f& box, f32 z)
-        {
+        QuadArg& setBoundBox(const BoundBox2f& box, f32 z) {
             Vec2f p;
             box.getCenter(&p);
 
-            center.set(p.x, p.y, z);
-            size.set(box.getSizeX(), box.getSizeY());
+            this->center.set(p.x, p.y, z);
+            this->size.set(box.getSizeX(), box.getSizeY());
             return *this;
         }
+
         QuadArg& setColor(const Color4f& colorT, const Color4f& colorB);
         QuadArg& setColor(const Color4f& color) { return setColor(color, color); }
 
@@ -74,10 +74,10 @@ public:
         Color4f color1;
         bool horizontal;
     };
+
     static_assert(sizeof(QuadArg) == 0x38, "sead::PrimitiveRenderer::QuadArg size mismatch");
     
-    class CubeArg
-    {
+    class CubeArg {
     public:
         CubeArg();
 
@@ -89,6 +89,7 @@ public:
         Color4f color0;
         Color4f color1;
     };
+
     static_assert(sizeof(CubeArg) == 0x38, "sead::PrimitiveRenderer::CubeArg size mismatch");
 
 public:
@@ -115,6 +116,7 @@ public:
     PrimitiveRendererBase* rendererImpl;
     Mtx34 modelMtx;
 };
+
 static_assert(sizeof(PrimitiveRenderer) == 0x54, "sead::PrimitiveRenderer size mismatch");
 
 namespace PrimitiveRendererUtil {
@@ -131,6 +133,7 @@ public:
     Vec2f UV;
     Color4f color;
 };
+
 static_assert(sizeof(Vertex) == 0x24, "sead::PrimitiveRendererUtil::Vertex size mismatch");
 
 }
@@ -223,6 +226,7 @@ public:
     PrimitiveRendererUtil::Vertex* cylinderLVertexBuf;
     u16*                           cylinderLIndexBuf;
 };
+
 static_assert(sizeof(PrimitiveRendererCafe) == 0x18C, "sead::PrimitiveRendererCafe size mismatch");
 
 }

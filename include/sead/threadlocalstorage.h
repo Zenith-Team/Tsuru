@@ -4,13 +4,13 @@
 
 namespace sead {
 
-class ThreadLocalStorage
-{
+class ThreadLocalStorage {
 public:
     ThreadLocalStorage();
 
     s32 threadLocalStorageInner;
 };
-static_assert(sizeof(ThreadLocalStorage) == 0x4);
+
+static_assert(sizeof(ThreadLocalStorage) == 0x4, "sead::ThreadLocalStorage size mismatch");
 
 }

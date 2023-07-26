@@ -5,8 +5,7 @@
 namespace agl {
 
 template <typename T>
-class RenderTarget
-{
+class RenderTarget {
 public:
     RenderTarget();
 
@@ -22,6 +21,7 @@ public:
     u32 mipLevel;
     u32 slice;
 };
+
 static_assert(sizeof(RenderTarget<void>) == 0xA8, "agl::RenderTarget size mismatch");
 
 class RenderTargetColor : public RenderTarget<RenderTargetColor> { // Size: 0x154
@@ -43,6 +43,7 @@ public:
     void* auxBuffer;
     GX2ColorBuffer colorBuffer;
 };
+
 static_assert(sizeof(RenderTargetColor) == 0x154, "agl::RenderTargetColor size mismatch");
 
 class RenderTargetDepth : public RenderTarget<RenderTargetDepth> { // Size: 0x160
@@ -63,6 +64,7 @@ public:
     void* hiZBuffer;
     GX2DepthBuffer depthBuffer;
 };
+
 static_assert(sizeof(RenderTargetDepth) == 0x160, "agl::RenderTargetDepth size mismatch");
 
 }

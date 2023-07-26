@@ -26,13 +26,14 @@ public:
     void insertFront(TListNode<T>* n);
 
     void erase() {
-        if (list)
-            list->erase(this);
+        if (this->list)
+            this->list->erase(this);
     }
 
     T data;
     TList<T>* list;
 };
+
 static_assert(sizeof(TListNode<int*>) == 0x10, "sead::TListNode<T> size mismatch");
 
 template <typename T>
@@ -124,11 +125,11 @@ public:
 
 public:
     iterator begin() const {
-        return iterator(static_cast<TListNode<T>*>(startEnd.next));
+        return iterator(static_cast<TListNode<T>*>(this->startEnd.next));
     }
 
     iterator end() const {
-        return iterator(static_cast<TListNode<T>*>(const_cast<ListNode*>(&startEnd)));
+        return iterator(static_cast<TListNode<T>*>(const_cast<ListNode*>(&this->startEnd)));
     }
 
     iterator toIterator(TListNode<T>*) const;
