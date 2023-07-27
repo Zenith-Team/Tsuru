@@ -1,7 +1,7 @@
 #pragma once
 
 #include "sead/task.h"
-#include "sead/list.h"
+#include "sead/offsetlist.h"
 #include "sead/ptrarray.h"
 #include "sead/controller.h"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/list.h"
+#include "sead/offsetlist.h"
 #include "sead/heap.h"
 #include "sead/buffer.h"
 #include "sead/ptrarray.h"
@@ -14,6 +14,8 @@ public:
     // @param id Actor ID of the intended target actor
     // @return Pointer to located actor
     Actor* findActorByID(const u32& id);
+
+    void addActor(Actor* actor);
 
     sead::Buffer<Actor*> start;
     sead::Buffer<Actor*> end;
@@ -34,7 +36,7 @@ public:
     // Creates an instance of an actor class using the build info
     // @param buildInfo ActorBuildInfo to build the actor with
     // @return Pointer to created actor
-    Actor* instanciateActor(ActorBuildInfo& buildInfo, bool dontDefer);
+    Actor* instanciateActor(const ActorBuildInfo& buildInfo, bool dontDefer);
 
     // Creates and set player and actor unit heaps via sead::UnitHeap::tryCreateWithBlockNum
     void createHeaps(sead::Heap* heap);

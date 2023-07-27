@@ -1,7 +1,7 @@
 #pragma once
 
 #include "sead/idisposer.h"
-#include "sead/list.h"
+#include "sead/listimpl.h"
 #include "agl/texturesampler.h"
 
 class PtclMgr {

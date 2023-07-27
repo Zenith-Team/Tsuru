@@ -22,6 +22,8 @@
 #include "game/level/levelcamera.h"
 #include "game/level/level.h"
 #include "game/level/levelinfo.h"
+#include "imgui/imgui.h"
+
 #include <cmath>
 
 void drawLine3D(const Vec3f& position, const u32 rotation, const sead::Color4f& color, const f32 lineLength, const f32 lineThickness) {
@@ -57,7 +59,7 @@ void drawLine(const Vec2f& point1, const Vec2f& point2, const sead::Color4f& col
     drawLine(leftPoint, angle, color, length, lineThickness);
 }
 
-void drawBox(const sead::BoundBox2f& box, const f32 z, const sead::Color4f& color, const f32 lineWidth) {
+void drawBox(const sead::BoundBox2f& box, const sead::Color4f& color, const f32 lineWidth) {
     Rect* rect = (Rect*)&box;
 
     Vec2f point1(rect->left, rect->top);
@@ -71,18 +73,18 @@ void drawBox(const sead::BoundBox2f& box, const f32 z, const sead::Color4f& colo
     drawLine(point1, point4, color, lineWidth);
 }
 
-const sead::Color4f& getBgCollisionColor(const TileDataInfo& bc_data) {
-    switch (bc_data.getUnitSolidType()) {
-        case TileDataInfo::cSolidType_None:
+const sead::Color4f& getTileCollisionColor(const TileDataInfo& bcData) {
+    switch (bcData.getUnitSolidType()) {
+        case TileDataInfo::SolidType_None:
         default:
             return sead::colorBlack;
-        case TileDataInfo::cSolidType_Fill:
+        case TileDataInfo::SolidType_Fill:
             return sead::colorBlue;
-        case TileDataInfo::cSolidType_Outer:
+        case TileDataInfo::SolidType_Outer:
             return sead::colorMagenta;
-        case TileDataInfo::cSolidType_Inner:
+        case TileDataInfo::SolidType_Inner:
             return sead::colorGreen;
-        case TileDataInfo::cSolidType_OuterAndInner:
+        case TileDataInfo::SolidType_OuterAndInner:
             return sead::colorGray;
     }
 }
@@ -91,8 +93,8 @@ void drawTilesCollision() {
     LevelCamera* levelCamera = LevelCamera::instance();
     TileMgr* tileMgr = TileMgr::instance();
 
-    const s32 unit_size = 16;
-    const s32 delta = unit_size - 1;
+    const s32 unitSize = 16;
+    const s32 delta = unitSize - 1;
     const u32 mask = ~delta;
 
     const s32 left   =  s32(std::floor( levelCamera->cameraLeft  ))          & mask;
@@ -100,21 +102,20 @@ void drawTilesCollision() {
     const s32 bottom = (s32(std::ceil (-levelCamera->cameraBottom)) + delta) & mask;
     const s32 top    =  s32(std::floor(-levelCamera->cameraTop   ))          & mask;
 
-    for (s32 y = top; y < bottom; y += unit_size) {
-        for (s32 x = left; x < right; x += unit_size) {
-            const TileDataInfo bc_data = tileMgr->getTileData(x, y, 0);
-            if (bc_data.getUnitKind() == TileDataInfo::cKind_Normal && bc_data.getUnitSolidType() == TileDataInfo::cSolidType_None)
+    for (s32 y = top; y < bottom; y += unitSize) {
+        for (s32 x = left; x < right; x += unitSize) {
+            const TileDataInfo bcData = tileMgr->getTileData(x, y, 0);
+            if (bcData.getUnitKind() == TileDataInfo::Kind_Normal && bcData.getUnitSolidType() == TileDataInfo::SolidType_None)
                 continue;
 
-            const sead::Color4f& color = getBgCollisionColor(bc_data);
+            const sead::Color4f& color = getTileCollisionColor(bcData);
 
             const sead::BoundBox2f box(
-                sead::Vector2<f32>(static_cast<f32>(x),             -static_cast<f32>(y + unit_size)),
-                sead::Vector2<f32>(static_cast<f32>(x + unit_size), -static_cast<f32>(y))
+                sead::Vector2<f32>(static_cast<f32>(x),            -static_cast<f32>(y + unitSize)),
+                sead::Vector2<f32>(static_cast<f32>(x + unitSize), -static_cast<f32>(y))
             );
-            const f32 z = 0.0f;
 
-            drawBox(box, z, color, 1.0f);
+            drawBox(box, color, 1.0f);
         }
     }
 }
@@ -132,6 +133,29 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
         sead::PrimitiveRenderer::instance()->setCamera(*renderInfo.camera);
         sead::PrimitiveRenderer::instance()->setProjection(*renderInfo.projection);
         sead::PrimitiveRenderer::instance()->begin();
+    }
+
+    if (TsuruSaveMgr::sSaveData.collisionViewerEnabled)
+    {
+        ActorBuffer* actors = &ActorMgr::instance()->actors;
+        for (u32 i = 0; i < actors->start.size; i++)
+        {
+            StageActor* actor = sead::DynamicCast<StageActor>(actors->start[i]);
+            if (actor)
+            {
+                Vec2f pos;
+                renderInfo.camera->projectByMatrix(&pos, actor->position, *renderInfo.projection, *renderInfo.viewport);
+                pos.x = pos.x + 1280.0f / 2.0f;
+                pos.y = pos.y +  720.0f / 2.0f;
+                pos.y = -pos.y + 720.0f;
+
+                char buf[128] = { 0 };
+                __os_snprintf(buf, 128, "0x%08X", actor->id);
+                ImGui::GetForegroundDrawList()->AddText(ImVec2(pos.x, pos.y), ImColor(1.0f, 0.0f, 1.0f, 1.0f), buf);
+                //__os_snprintf(buf, 128, "%f, %f", actor->position.x, actor->position.y);
+                //ImGui::GetForegroundDrawList()->AddText(ImVec2(pos.x, pos.y + 20.0f), ImColor(1.0f, 0.0f, 1.0f, 1.0f), buf);
+            }
+        }
     }
 
     if (TsuruSaveMgr::sSaveData.locationViewerEnabled) {
@@ -152,7 +176,14 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
             drawLine(point2, point3, sead::colorPurple, 1.0f);
             drawLine(point3, point4, sead::colorPurple, 1.0f);
             drawLine(point1, point4, sead::colorPurple, 1.0f);
-            drawLine(point1, point3, sead::colorPurple, 1.0f);   // Diagonal line
+            //drawLine(point1, point3, sead::colorPurple, 1.0f);   // Diagonal line
+
+            sead::BoundBox2f box(*(sead::BoundBox2f*)&rect);
+            sead::PrimitiveRenderer::instance()->drawQuad(
+                sead::PrimitiveRenderer::QuadArg()
+                    .setBoundBox(box, 4000.0f)
+                    .setColor(sead::Color4f(1.0f, 0.0f, 1.0f, 0.3f))
+            );
         }
     }
 
@@ -197,7 +228,14 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                     drawLine(point2, point3, sead::colorRed, 1.0f);
                     drawLine(point3, point4, sead::colorRed, 1.0f);
                     drawLine(point1, point4, sead::colorRed, 1.0f);
-                    drawLine(point1, point3, sead::colorRed, 1.0f);   // Diagonal line
+                    //drawLine(point1, point3, sead::colorRed, 1.0f);   // Diagonal line
+
+                    sead::BoundBox2f box(*(sead::BoundBox2f*)&rect);
+                    sead::PrimitiveRenderer::instance()->drawQuad(
+                        sead::PrimitiveRenderer::QuadArg()
+                            .setBoundBox(box, 4000.0f)
+                            .setColor(sead::Color4f(1.0f, 0.0f, 0.0f, 0.3f))
+                    );
                 }
 
                 else if (hCollider->colliderInfo.shape == HitboxCollider::Shape::Circle) {
@@ -228,7 +266,14 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                 drawLine(point2, point3, sead::colorRed, 1.0f);
                 drawLine(point3, point4, sead::colorRed, 1.0f);
                 drawLine(point1, point4, sead::colorRed, 1.0f);
-                drawLine(point1, point3, sead::colorRed, 1.0f); // Diagonal line
+                //drawLine(point1, point3, sead::colorRed, 1.0f); // Diagonal line
+
+                sead::BoundBox2f box(*(sead::BoundBox2f*)&rect);
+                sead::PrimitiveRenderer::instance()->drawQuad(
+                    sead::PrimitiveRenderer::QuadArg()
+                        .setBoundBox(box, 4000.0f)
+                        .setColor(sead::Color4f(1.0f, 0.0f, 0.0f, 0.3f))
+                );
             }
 
             else if (hCollider->colliderInfo.shape == HitboxCollider::Shape::Circle) {
@@ -277,10 +322,24 @@ void AreaTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) {
                     drawLine(center + node.sensor.point1, center + node.sensor.point2, sead::colorBlue, 1.0f);
                 }
 
+                // if it's a rectangle
                 if (collider->points.size >= 4 && !(collider->points.size & 1)) {
                     const ColliderBase::Node& node1 = collider->nodes1[0];
                     const ColliderBase::Node& node2 = collider->nodes1[collider->points.size / 2 - 1];
                     drawLine(center + node1.sensor.point1, center + node2.sensor.point2, sead::colorBlue, 1.0f);
+
+                    // TODO: fix rotated quads
+                    /* //sead::BoundBox2f box(center + Vec2f(node1.sensor.point1.x, node2.sensor.point2.y), center + Vec2f(node2.sensor.point2.x, node2.sensor.point1.y));
+                    sead::BoundBox2f box(*(sead::BoundBox2f*)&collider->rect);
+                    sead::PrimitiveRenderer::QuadArg quadArg;
+                    quadArg.setBoundBox(box, 4000.0f);
+                    quadArg.setColor(sead::Color4f(0.0f, 0.0f, 1.0f, 0.3f));
+
+                    Mtx34 mtx;
+                    mtx.makeSRTIdx(Vec3f(quadArg.size.x, quadArg.size.y, 1.0f), Vec3u(0, 0, collider->rotation), quadArg.center);
+                    //sead::PrimitiveRenderer::instance()->setModelMatrix(mtx);
+
+                    sead::PrimitiveRenderer::instance()->rendererImpl->drawQuadImpl(mtx, quadArg.color0, quadArg.color1); */
                 }
             }
 
@@ -348,6 +407,26 @@ void CourseSelectTask::renderCollisions(const agl::lyr::RenderInfo& renderInfo) 
     graphicsContext.apply();
 
     if (TsuruSaveMgr::sSaveData.collisionViewerEnabled) {
+        ActorBuffer* actors = &ActorMgr::instance()->actors;
+        for (u32 i = 0; i < actors->start.size; i++)
+        {
+            CourseSelectActorBase* actor = sead::DynamicCast<CourseSelectActorBase>(actors->start[i]);
+            if (actor)
+            {
+                Vec2f pos;
+                renderInfo.camera->projectByMatrix(&pos, actor->position, *renderInfo.projection, *renderInfo.viewport);
+                pos.x = pos.x + 1280.0f / 2.0f;
+                pos.y = pos.y +  720.0f / 2.0f;
+                pos.y = -pos.y + 720.0f;
+
+                char buf[128] = { 0 };
+                __os_snprintf(buf, 128, "0x%08X", actor->id);
+                ImGui::GetForegroundDrawList()->AddText(ImVec2(pos.x, pos.y), ImColor(1.0f, 0.0f, 1.0f, 1.0f), buf);
+                //__os_snprintf(buf, 128, "%f, %f", actor->position.x, actor->position.y);
+                //ImGui::GetForegroundDrawList()->AddText(ImVec2(pos.x, pos.y + 20.0f), ImColor(1.0f, 0.0f, 1.0f, 1.0f), buf);
+            }
+        }
+
         sead::PrimitiveRenderer::instance()->setCamera(*renderInfo.camera);
         sead::PrimitiveRenderer::instance()->setProjection(*renderInfo.projection);
         sead::PrimitiveRenderer::instance()->begin();

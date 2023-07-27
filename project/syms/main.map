@@ -99,6 +99,7 @@
     __dt__Q2_3agl14TextureSamplerFv = 0x2A25C60;
     applyTextureData___Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2A25990;
     initBorderColor___Q2_3agl14TextureSamplerCFv = 0x2A25D94;
+    initRegs___Q2_3agl14TextureSamplerCFv = 0x02a25e70;
 
 # agl::UniformBlock
     dcbz__Q2_3agl12UniformBlockCFv = 0x02a263c8;
@@ -147,6 +148,7 @@
 
 # sead::Camera
     __vtbl__Q2_4sead6Camera = 0x10190824;
+    projectByMatrix__Q2_4sead6CameraFPQ2_4sead16Vector2__tm__2_fRCQ2_4sead16Vector3__tm__2_fRCQ2_4sead10ProjectionRCQ2_4sead8Viewport = 0x2A04A34;
 
 # sead::ControllerMgr
     sInstance__Q2_4sead13ControllerMgr = 0x101E7EFC;
@@ -185,12 +187,14 @@
 
 # sead::ExpHeap
     tryCreate__Q2_4sead7ExpHeapSFUiRCQ2_4sead23SafeStringBase__tm__2_cPQ2_4sead4HeapQ3_4sead4Heap13HeapDirectionb = 0x02a0a7ac;
+    tryCreate__Q2_4sead7ExpHeapSFPvUiRCQ2_4sead23SafeStringBase__tm__2_cb = 0x02a0a914;
 #    RTTI__Q2_4sead7ExpHeap = 0x
     expHeapVtable = 0x10191028;
 
 # sead::FrameHeap
 #    RTTI__Q2_4sead9FrameHeap = 0x
     frameHeapVtable = 0x10191158;
+    tryCreate__Q2_4sead9FrameHeapSFUiRCQ2_4sead23SafeStringBase__tm__2_cPQ2_4sead4HeapQ3_4sead4Heap13HeapDirectionb = 0x2a0c1fc;
 
 # sead::UnitHeap
 #    RTTI__Q2_4sead8UnitHeap = 0x
@@ -202,6 +206,7 @@
 
 # sead::HeapMgr
     sRootHeaps__Q2_4sead7HeapMgr = 0x105EA148;
+    sIndependentHeaps__Q2_4sead7HeapMgr = 0x105ea1a0;
     sHeapTreeLockCS__Q2_4sead7HeapMgr = 0x105ea164;
     sInstancePtr__Q2_4sead7HeapMgr = 0x101E8040;
     getCurrentHeap__Q2_4sead7HeapMgrFv = 0x2A0D554;
@@ -220,6 +225,13 @@
     chase__Q2_4sead23MathCalcCommon__tm__2_fSFPZ1ZZ1ZT2_b = 0x2027984;
     chase__Q2_4sead24MathCalcCommon__tm__3_UiSFPZ1ZZ1ZT2_b = 0x29E0DE8;
     cSinCosTbl__Q2_4sead23MathCalcCommon__tm__2_f = 0x10191538;
+
+# sead::Matrix34CalcCommon
+    makeSRTIdx__Q2_4sead27Matrix34CalcCommon__tm__2_fSFRQ2_4sead19Matrix34__tm__4_Z1ZRCQ2_4sead18Vector3__tm__4_Z1ZRCQ2_4sead17Vector3__tm__3_UiT2_v = 0x221361c;
+
+# sead::MethodTreeNode
+    lock___Q2_4sead14MethodTreeNodeFv = 0x029ff410;
+    unlock___Q2_4sead14MethodTreeNodeFv = 0x029ff420;
 
 # sead::OrthoCamera
     __ct__Q2_4sead11OrthoCameraFv = 0x2A04D54;
@@ -240,9 +252,11 @@
     sInstance__Q2_4sead17PrimitiveRenderer = 0x101E8010;
     setCamera__Q2_4sead17PrimitiveRendererFRCQ2_4sead6Camera = 0x2A083D0;
     setProjection__Q2_4sead17PrimitiveRendererFRCQ2_4sead10Projection = 0x2A083E4;
-    setModelMatrix__Q2_4sead17PrimitiveRendererFRC5Mtx34 = 0x2A083F8;
+    setModelMatrix__Q2_4sead17PrimitiveRendererFRCQ2_4sead17Matrix34__tm__2_f = 0x2A083F8;
     begin__Q2_4sead17PrimitiveRendererFv = 0x2A08408;
     end__Q2_4sead17PrimitiveRendererFv = 0x2A0841C;
+    __CPR75__drawQuad__Q2_4sead17PrimitiveRendererFRCQ3_J13JJ18J7QuadArg = 0x02a08430;
+    setColor__Q3_4sead17PrimitiveRenderer7QuadArgFRCQ2_4sead7Color4fT1 = 0x02a08628;
 
 # sead::PrimitiveRendererCafe
     drawTriangles___Q2_4sead21PrimitiveRendererCafeFRCQ2_4sead17Matrix34__tm__2_fRCQ2_4sead7Color4fT2PQ3_4sead21PrimitiveRendererUtil6VertexUiPUsT5PC11_GX2Texture = 0x2A0A190;
@@ -269,9 +283,13 @@
     enterCommon__Q2_4sead8TaskBaseFv = 0x29FF818;
     adjustHeapAll__Q2_4sead8TaskBaseFv = 0x29FF9DC;
     RTTI__Q2_4sead8TaskBase = 0x101EA768;
+    getMethodTreeMgr__Q2_4sead8TaskBaseFv = 0x029ff888;
 
 # sead::TaskMgr
     afterCalc__Q2_4sead7TaskMgrFv = 0x02a0183c;
+
+# sead::ThreadMgr
+    sInstance__Q2_4sead9ThreadMgr = 0x101e80a0;
 
 # sead::Viewport
     __ct__Q2_4sead8ViewportFfN31 = 0x2A072FC;
@@ -309,6 +327,7 @@
 
 # ActorBuffer
     findActorByID__11ActorBufferFRCUi = 0x200A5C8;
+    addActor__11ActorBufferFP5Actor = 0x200a3a8;
 
 # ActorGlobalsHolder
     sInstance__18ActorGlobalsHolder = 0x101C30D0;
@@ -618,6 +637,13 @@
     vf1EC__14BossControllerFv = 0x202F158;
     vf21C__14BossControllerFv = 0x202F7B0;
 
+# CharacterModel
+    setMtx__14CharacterModelFRCQ2_4sead17Matrix34__tm__2_f = 0x2922304;
+
+# CharacterModelMgr
+    draw__17CharacterModelMgrFv = 0x2922ca0;
+    __CPR71__playAnim__17CharacterModelMgrFQ3_J10J9Animation8__type__ = 0x2922a84;
+
 # CircularCollider
     RTTI__16CircularCollider = 0x101EA398;
 
@@ -641,6 +667,9 @@
 # CourseTask
     sInstance__10CourseTask = 0x101D15F0;
     construct__10CourseTaskSFRCQ2_4sead16TaskConstructArg = 0x202B4C8;
+
+# CourseSelectActorBase
+    RTTI__21CourseSelectActorBase = 0x101ea3c8;
 
 # CourseSelectActor
     __ct__17CourseSelectActorFPC14ActorBuildInfo = 0x21D4CB4;
@@ -942,6 +971,9 @@
     shouldLoop__9FrameCtrlFb = 0x24DEED4;
     reset__9FrameCtrlFv = 0x24DEEAC;
 
+# GlobalStateKeeper
+    sInstance__17GlobalStateKeeper = 0x101e7d7c;
+
 # HitboxCollider
     __ct__14HitboxColliderFv = 0x219A960;
     __dt__14HitboxColliderFv = 0x219AB90;
@@ -1081,7 +1113,6 @@
     link__15MovementHandlerFRCQ2_4sead16Vector3__tm__2_fUiUc = 0x284B6F4;
 
 # Mtx34
-    rotateAndTranslate__5Mtx34FRCQ2_4sead17Vector3__tm__3_UiRCQ2_4sead16Vector3__tm__2_f = 0x203C1C8;
     makeST__5Mtx34SFR5Mtx34RCQ2_4sead16Vector3__tm__2_fT2 = 0x2222A88;
     makeSRT__5Mtx34SFR5Mtx34RCQ2_4sead16Vector3__tm__2_fN22 = 0x2508424;
 
@@ -1167,6 +1198,12 @@
 
 # PlayerMgr
     sInstance__9PlayerMgr = 0x101E6994;
+
+# PlayerModel
+    changePowerup__11PlayerModelFUi = 0x291AC9C;
+
+# PlayerModelMgr
+    __ct__14PlayerModelMgrFUiN21b = 0x2922f3c;
 
 # Poison
     __ct__6PoisonFPC14ActorBuildInfo = 0x26F5F70;
@@ -1409,6 +1446,7 @@
     __ct__8StateMgrFP17StateExecutorBaseP9StateBase = 0x29C4A08;
     execute__8StateMgrFv = 0x29C4A80;
     changeState__8StateMgrFP9StateBase = 0x29C4AF0;
+    getCurrentState__8StateMgrFv = 0x029c4b88;
 
 # TaskMgr
     sInstance__7TaskMgr = 0x101E7B28;
@@ -1425,6 +1463,9 @@
     sInstance__7TileMgr = 0x101DAB94;
     getTilePtrCurrentArea__7TileMgrSFUsT1UcPUi = 0x2685000;
     getTileData__7TileMgrFUsT1Ucb = 0x02685148;
+
+# TileTexMgr
+    sInstance__10TileTexMgr = 0x101db014;
 
 # Water
     __ct__5WaterFPC14ActorBuildInfo = 0x26F7C90;

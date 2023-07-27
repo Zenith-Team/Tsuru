@@ -4,7 +4,7 @@
 #include "nw/eft.h"
 #include "game/effect/effectid.h"
 #include "sead/idisposer.h"
-#include "sead/list.h"
+#include "sead/tlist.h"
 #include "sead/runtimetypeinfo.h"
 #include "sead/matrix.h"
 

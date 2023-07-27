@@ -80,3 +80,9 @@ Hooks:
     instr: b
     addr: "0x2984d00"
     func: GameSetupScene_ClearInstance
+
+# Allow creating custom actors with PlayerHeap
+  - type: branch
+    instr: b
+    addr: "0x20090cc" # ActorMgr::instanciateActor()
+    func: instanciateActor__8ActorMgrFRC14ActorBuildInfob

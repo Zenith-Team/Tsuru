@@ -1,6 +1,7 @@
 #pragma once
 
 #include "sead/vector.h"
+#include "sead/quat.h"
 
 namespace sead {
 
@@ -46,6 +47,7 @@ public:
     void makeST(const Vector3<T>& s, const Vector3<T>& t);
     void makeT(const Vector3<T>& t);
     void makeT(T x, T y, T z);
+    void fromQuat(const Quat<T>& quat);
 
     void getBase(Vector3<T>& o, s32 axis) const;
     void getTranslation(Vector3<T>& o) const;
@@ -106,8 +108,18 @@ namespace sead {
 
 template <typename T> inline void Matrix34<T>::makeRTIdx(const Vector3<u32>& r, const Vector3<T>& t) { Matrix34CalcCommon<T>::makeRTIdx(*this, r, t); }
 template <typename T> inline void Matrix34<T>::makeSRzxyTIdx(const Vector3<T>& s, const Vector3<u32>& r, const Vector3<T>& t) { Matrix34CalcCommon<T>::makeSRzxyTIdx(*this, s, r, t); }
+template <typename T> inline void Matrix34<T>::makeS(const Vector3<T>& s) { Matrix34CalcCommon<T>::makeS(*this, s); }
+template <typename T> inline void Matrix34<T>::makeS(T x, T y, T z) { Matrix34CalcCommon<T>::makeS(*this, x, y, z); }
 template <typename T> inline void Matrix34<T>::makeST(const Vector3<T>& s, const Vector3<T>& t) { Matrix34CalcCommon<T>::makeST(*this, s, t); }
 template <typename T> inline void Matrix34<T>::makeSRT(const Vector3<T>& s, const Vector3<T>& r, const Vector3<T>& t) { Matrix34CalcCommon<T>::makeSRT(*this, s, r, t); }
+template <typename T> inline void Matrix34<T>::makeSRTIdx(const Vector3<T>& s, const Vector3<u32>& r, const Vector3<T>& t) { Matrix34CalcCommon<T>::makeSRTIdx(*this, s, r, t); }
+template <typename T> inline void Matrix34<T>::fromQuat(const Quat<T>& quat) { Matrix34CalcCommon<T>::makeQ(*this, quat); }
+template <typename T> inline void Matrix34<T>::setTranslation(const Vector3<T>& t) { Matrix34CalcCommon<T>::setTranslation(*this, t); }
+template <typename T> inline void Matrix34<T>::makeIdentity() {
+    m[0][0] = (T)1.0; m[0][1] = (T)0.0; m[0][2] = (T)0.0; m[0][3] = (T)0.0;
+    m[1][0] = (T)0.0; m[1][1] = (T)1.0; m[1][2] = (T)0.0; m[1][3] = (T)0.0;
+    m[2][0] = (T)0.0; m[2][1] = (T)0.0; m[2][2] = (T)1.0; m[2][3] = (T)0.0;
+}
 
 }
 

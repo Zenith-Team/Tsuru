@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/list.h"
+#include "sead/offsetlist.h"
 #include "sead/bitflag.h"
 #include "sead/inamable.h"
 #include "sead/idisposer.h"
@@ -124,6 +124,9 @@ public:
 
 class FrameHeap : public Heap {
     SEAD_RTTI_OVERRIDE(FrameHeap, Heap);
+
+public:
+    static FrameHeap* tryCreate(u32 size, const SafeString& name, Heap* parent, HeapDirection direction, bool enableLock);
 };
 
 }

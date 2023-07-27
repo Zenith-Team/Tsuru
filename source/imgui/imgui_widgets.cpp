@@ -1,3 +1,5 @@
+#pragma ghs nowarning all
+
 // dear imgui, v1.89.6 WIP
 // (widgets code)
 
