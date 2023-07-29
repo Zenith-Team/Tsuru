@@ -1051,6 +1051,7 @@
     initAnims__13LayoutHandlerFPCQ2_4sead23SafeStringBase__tm__2_cRUi = 0x2671C54;
     playAnim__13LayoutHandlerFUiRCQ2_4sead23SafeStringBase__tm__2_cb = 0x2671680;
     getTextBoxPane__13LayoutHandlerCFRCQ2_4sead23SafeStringBase__tm__2_c = 0x2671EF8;
+    getPane__13LayoutHandlerCFRCQ2_4sead23SafeStringBase__tm__2_c = 0x2671ccc;
 
 # Level
     sInstance__5Level = 0x101DB048;
@@ -1077,6 +1078,10 @@
 # LevelTimer
     sInstance__10LevelTimer = 0x101D15F4;
     addTime__10LevelTimerFi = 0x24C14C0;
+
+# LightMapMgr
+    sInstance__11LightMapMgr = 0x101d2c60;
+    setCSLightMaps__11LightMapMgrFUi = 0x24e51c8;
 
 # LightMask
     __ct__9LightMaskFv = 0x2815C9C;
