@@ -44,6 +44,8 @@ void CustomSaveMgr::init() {
         }
     }
 
+    this->inited = true;
+
     else if (bytesRead != this->getSaveDataSize()) {
         PRINT(LogColor::Red, "Manager ", this->filepath.stringTop, " had a read size mismatch, read size: ", fmt::hex, bytesRead, ", expected size: ", fmt::hex, this->getSaveDataSize());
         this->remakeSaveData();
@@ -60,7 +62,7 @@ void CustomSaveMgr::init() {
 }
 
 void CustomSaveMgr::save() {
-    if (!this->inited){
+    if (!this->inited) {
         PRINT("Save manager at ", this->filepath.stringTop, " was not inited before saving. Returning...");
         return;
     }
