@@ -3,7 +3,7 @@
 **A platform for NSMBU custom code**
 
 # Our goal
-The goal of this project is to provide a platform for New Super Mario Bros. U custom code for modders with the same toolset that Nintendo developers had when writing the game. We also have provided a ton of code examples and premade patches for new modders to learn from and for people who would just like to use them in their own personal mods. Additionaly, it serves as a unification of multiple code hack projects in order to have a project with everything. All credits linked at the bottom of this README.
+The goal of this project is to provide a platform for New Super Mario Bros. U custom code for modders with the same toolset that Nintendo developers had when writing the game. We also have provided a ton of code examples and premade patches for new modders to learn from and for people who would just like to use them in their own personal mods. Additionally, it serves as a unification of multiple code hack projects in order to have a project with everything. All credits linked at the bottom of this README.
 
 Project started on March 9, 2021.
 
