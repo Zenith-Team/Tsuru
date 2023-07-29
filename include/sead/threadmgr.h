@@ -15,9 +15,9 @@ public:
     void initialize(Heap* heap);
     void destroy();
 
-    //bool isMainThread() const { return getCurrentThread() == mainThread; };
+    bool isMainThread() const { return getCurrentThread() == mainThread; };
     Thread* getMainThread() const { return this->mainThread; }
-    //Thread* getCurrentThread() const { return reinterpret_cast<Thread*>(threadPtrTLS.getValue()); }
+    Thread* getCurrentThread() const { return reinterpret_cast<Thread*>(threadPtrTLS.getValue()); }
 
     Thread::List list;
     Thread* mainThread;
