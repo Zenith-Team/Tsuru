@@ -44,12 +44,11 @@ void CustomSaveMgr::init() {
         }
     }
 
-    this->inited = true;
-
     else if (bytesRead != this->getSaveDataSize()) {
         PRINT(LogColor::Red, "Manager ", this->filepath.stringTop, " had a read size mismatch, read size: ", fmt::hex, bytesRead, ", expected size: ", fmt::hex, this->getSaveDataSize());
         this->remakeSaveData();
         this->write();
+        this->inited = true;
         return;
     }
 
@@ -57,8 +56,11 @@ void CustomSaveMgr::init() {
         PRINT("Custom save file at ", this->filepath.stringTop, " is corrupted. Recreating...");
         this->remakeSaveData();
         this->write();
+        this->inited = true;
         return;
     }
+
+    this->inited = true;
 }
 
 void CustomSaveMgr::save() {
