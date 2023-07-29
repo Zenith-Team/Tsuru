@@ -189,7 +189,7 @@ public:
     //{ }
 
     FixedSafeString<N>& operator=(const FixedSafeString<N>& rhs) {
-        this->copy(rhs);
+        copy(rhs);
         return *this;
     }
 

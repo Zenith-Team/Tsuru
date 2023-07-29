@@ -11,10 +11,17 @@ class ResMgr {
 public:
     ResMgr();
 
+    bool loadLevelResPack(const sead::SafeString& levelName, sead::Heap* heap);
+    bool isLevelArchiveResLoaded() const { return levelArchiveRes != nullptr; }
+    sead::ArchiveRes* getLevelArchiveRes() const { return levelArchiveRes; }
+    void* getFileFromLevelArchiveRes(const sead::SafeString& fileName, u32* length = nullptr) const;
+
     bool loadArchiveRes(const sead::SafeString& key, const sead::SafeString& filePath, sead::Heap* heap, bool isYaz0);
-    void remove(const sead::SafeString& key);
     bool isArchiveResLoaded(const sead::SafeString& key) const;
     sead::ArchiveRes* getArchiveRes(const sead::SafeString& key) const;
+    void* getFileFromArchiveRes(const sead::SafeString& key, const sead::SafeString& fileName, u32* length = nullptr) const;
+    void* getFileFromArchiveRes(sead::ArchiveRes* archive, const sead::SafeString& fileName, u32* length = nullptr) const;
+    void remove(const sead::SafeString& key);
 
     sead::ArchiveRes* levelArchiveRes;
     u8 resHolderTreeMap[0x4414]; // sead::FixedStrTreeMap<32, ResHolder*, 256>
