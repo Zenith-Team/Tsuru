@@ -9,13 +9,11 @@ class ThreadLocalStorage {
 public:
     ThreadLocalStorage();
 
-    void* getValue() const
-    {
+    void* getValue() const {
         return OSGetThreadSpecific(threadLocalStorageInner);
     }
     
-    void setValue(void* value)
-    {
+    void setValue(void* value) {
         OSSetThreadSpecific(threadLocalStorageInner, value);
     }
 
