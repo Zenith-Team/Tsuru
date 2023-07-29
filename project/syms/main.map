@@ -1351,7 +1351,7 @@
 
 # ResMgr
     sInstance__6ResMgr = 0x101E7D94;
-    loadRes__6ResMgrFRCQ2_4sead23SafeStringBase__tm__2_cT1PQ2_4sead4Heapb = 0x29D34A8;
+    loadArchiveRes__6ResMgrFRCQ2_4sead23SafeStringBase__tm__2_cT1PQ2_4sead4Heapb = 0x29D34A8;
     ResMgr_LoadLevelResource = 0x29D2A20;
     ResMgr_LoadLevelArchiveFail = 0x29D333C;
     ResMgr_LoadLevelArchiveSuccess = 0x29D3354;
