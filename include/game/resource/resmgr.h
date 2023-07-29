@@ -8,6 +8,23 @@
 class ResMgr {
     SEAD_SINGLETON_DISPOSER(ResMgr);
 
+private:
+    class ResHolder : public sead::IDisposer
+    {
+    public:
+        ResHolder(const sead::SafeString& key, sead::ArchiveRes* archive);
+
+        virtual ~ResHolder()
+        {
+            ResMgr::instance()->remove(key);
+        }
+
+        sead::FixedSafeString<32> key;
+        sead::ArchiveRes* archiveRes;
+    };
+    
+    static_assert(sizeof(ResHolder) == 0x40);
+
 public:
     ResMgr();
 
