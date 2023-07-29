@@ -103,6 +103,8 @@ public:
         return bufferSize;
     }
 
+    inline s32 copy(const SafeStringBase<T>& rhs, s32 size = -1);
+
     inline void clear() {
         getMutableStringTop_()[0] = 0;
     }
@@ -187,7 +189,7 @@ public:
     //{ }
 
     FixedSafeString<N>& operator=(const FixedSafeString<N>& rhs) {
-        copy(rhs);
+        this->copy(rhs);
         return *this;
     }
 
