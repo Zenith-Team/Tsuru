@@ -59,15 +59,14 @@ public:
         : SafeStringBase<T>(buffer)
         , bufferSize(size)
     {
-        if (size <= 0)
-        {
+        if (size <= 0) {
             //SEAD_ASSERT_MSG(false, "Invalied buffer size(%d).\n", size);
-            stringTop = nullptr;
-            bufferSize = 0;
+            this->stringTop = nullptr;
+            this->bufferSize = 0;
             return;
         }
 
-        assureTerminationImpl_();
+        this->assureTerminationImpl_();
     }
 
     BufferedSafeStringBase(BufferedSafeStringBase<T>* original, s32 pos)
@@ -76,17 +75,16 @@ public:
     {
         //SEAD_ASSERT_MSG(original, "original string must not be nullptr.");
 
-        if (pos >= original->getBufferSize() || pos < 0)
-        {
+        if (pos >= original->getBufferSize() || pos < 0) {
             //SEAD_ASSERT_MSG(false, "pos(%d) out of bounds[0,%d)", pos, original->getBufferSize());
-            stringTop = nullptr;
-            bufferSize = 0;
+            this->stringTop = nullptr;
+            this->bufferSize = 0;
             return;
         }
 
-        stringTop = original->stringTop + pos;
-        bufferSize = original->getBufferSize() - pos;
-        assureTerminationImpl_();
+        this->stringTop = original->stringTop + pos;
+        this->bufferSize = original->getBufferSize() - pos;
+        this->assureTerminationImpl_();
     }
 
 private:
@@ -100,10 +98,10 @@ public:
     inline const T& operator[](s32 idx) const;
 
     s32 getBufferSize() const {
-        return bufferSize;
+        return this->bufferSize;
     }
 
-    inline s32 copy(const SafeStringBase<T>& rhs, s32 size = -1);
+    /* inline */ s32 copy(const SafeStringBase<T>& rhs, s32 size = -1);
 
     inline void clear() {
         getMutableStringTop_()[0] = 0;
@@ -116,7 +114,7 @@ public:
 
 private:
     T* getMutableStringTop_() {
-        return const_cast<T*>(stringTop);
+        return const_cast<T*>(this->stringTop);
     }
 
 protected:
@@ -137,33 +135,33 @@ template <typename T, s32 N>
 class FixedSafeStringBase : public BufferedSafeStringBase<T> {
 public:
     FixedSafeStringBase()
-        : BufferedSafeStringBase<T>(buffer, N)
+        : BufferedSafeStringBase<T>(this->buffer, N)
     {
-        clear();
+        this->clear();
     }
 
     explicit FixedSafeStringBase(const SafeStringBase<T>& rhs)
-        : BufferedSafeStringBase<T>(buffer, N)
+        : BufferedSafeStringBase<T>(this->buffer, N)
     {
-        copy(rhs);
+        this->copy(rhs);
     }
 
     FixedSafeStringBase(const FixedSafeStringBase<T, N>& rhs)
-        : BufferedSafeStringBase<T>(buffer, N)
+        : BufferedSafeStringBase<T>(this->buffer, N)
     {
-        copy(rhs);
+        this->copy(rhs);
     }
 
     virtual ~FixedSafeStringBase()
     { }
 
     FixedSafeStringBase<T, N>& operator=(const FixedSafeStringBase<T, N>& rhs) {
-        copy(rhs);
+        this->copy(rhs);
         return *this;
     }
 
     FixedSafeStringBase<T, N>& operator=(const SafeStringBase<T>& rhs) {
-        copy(rhs);
+        this->copy(rhs);
         return *this;
     }
 
@@ -189,12 +187,12 @@ public:
     //{ }
 
     FixedSafeString<N>& operator=(const FixedSafeString<N>& rhs) {
-        copy(rhs);
+        this->copy(rhs);
         return *this;
     }
 
     FixedSafeString<N>& operator=(const SafeString& rhs) {
-        copy(rhs);
+        this->copy(rhs);
         return *this;
     }
 };
