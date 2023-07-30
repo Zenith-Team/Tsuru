@@ -86,3 +86,14 @@ Hooks:
     instr: b
     addr: "0x20090cc" # ActorMgr::instanciateActor()
     func: instanciateActor__8ActorMgrFRC14ActorBuildInfob
+
+# Fix star coin hitbox (OCD)
+  - type: patch
+    addr: "0x1010d0b0" # HitboxCollider::Info::Shape
+    data: "00000001" # HitboxCollider::Shape::Circle  
+  - type: patch
+    addr: "0x1010d0a4" # HitboxCollider::Info::Offset.y
+    data: "00000000" # 0.0f
+  - type: patch
+    addr: "0x1010d0a8" # HitboxCollider::Info::Size.x
+    data: "41700000" # 15.0f
