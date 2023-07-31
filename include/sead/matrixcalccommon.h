@@ -8,8 +8,7 @@ namespace sead {
 template <typename T>
 class Matrix34CalcCommon {
 public:
-    static void makeRIdx(Matrix34<T>& o, u32 xr, u32 yr, u32 zr)
-    {
+    static void makeRIdx(Matrix34<T>& o, u32 xr, u32 yr, u32 zr) {
         T sinV[3];
         T cosV[3];
 
