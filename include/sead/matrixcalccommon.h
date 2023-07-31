@@ -8,6 +8,31 @@ namespace sead {
 template <typename T>
 class Matrix34CalcCommon {
 public:
+    static void makeRIdx(Matrix34<T>& o, u32 xr, u32 yr, u32 zr) {
+        T sinV[3];
+        T cosV[3];
+
+        MathCalcCommon<T>::sinCosIdx(&sinV[0], &cosV[0], xr);
+        MathCalcCommon<T>::sinCosIdx(&sinV[1], &cosV[1], yr);
+        MathCalcCommon<T>::sinCosIdx(&sinV[2], &cosV[2], zr);
+
+        o.m[0][0] = (cosV[1] * cosV[2]);
+        o.m[1][0] = (cosV[1] * sinV[2]);
+        o.m[2][0] = -sinV[1];
+
+        o.m[0][1] = (sinV[0] * sinV[1] * cosV[2] - cosV[0] * sinV[2]);
+        o.m[1][1] = (sinV[0] * sinV[1] * sinV[2] + cosV[0] * cosV[2]);
+        o.m[2][1] = (sinV[0] * cosV[1]);
+
+        o.m[0][2] = (cosV[0] * cosV[2] * sinV[1] + sinV[0] * sinV[2]);
+        o.m[1][2] = (cosV[0] * sinV[2] * sinV[1] - sinV[0] * cosV[2]);
+        o.m[2][2] = (cosV[0] * cosV[1]);
+
+        o.m[0][3] = 0;
+        o.m[1][3] = 0;
+        o.m[2][3] = 0;
+    }
+
     static void makeRTIdx(Matrix34<T>& o, const Vector3<u32>& r, const Vector3<T>& t) {
         T sinV[3];
         T cosV[3];
@@ -58,6 +83,42 @@ public:
         o.m[2][3] = t.z;
     }
 
+    static void makeS(Matrix34<T>& o, const Vector3<T>& s) {
+        o.m[0][0] = s.x;
+        o.m[1][0] = 0;
+        o.m[2][0] = 0;
+
+        o.m[0][1] = 0;
+        o.m[1][1] = s.y;
+        o.m[2][1] = 0;
+
+        o.m[0][2] = 0;
+        o.m[1][2] = 0;
+        o.m[2][2] = s.z;
+
+        o.m[0][3] = 0;
+        o.m[1][3] = 0;
+        o.m[2][3] = 0;
+    }
+
+    static void makeS(Matrix34<T>& o, T x, T y, T z) {
+        o.m[0][0] = x;
+        o.m[1][0] = 0;
+        o.m[2][0] = 0;
+
+        o.m[0][1] = 0;
+        o.m[1][1] = y;
+        o.m[2][1] = 0;
+
+        o.m[0][2] = 0;
+        o.m[1][2] = 0;
+        o.m[2][2] = z;
+
+        o.m[0][3] = 0;
+        o.m[1][3] = 0;
+        o.m[2][3] = 0;
+    }
+
     static void makeST(Matrix34<T>& o, const Vector3<T>& s, const Vector3<T>& t) {
         o.m[0][0] = s.x;
         o.m[1][0] = 0;
@@ -100,6 +161,55 @@ public:
         o.m[0][3] = t.x;
         o.m[1][3] = t.y;
         o.m[2][3] = t.z;
+    }
+
+    static void makeSRTIdx(Matrix34<T>& o, const Vector3<T>& s, const Vector3<u32>& r, const Vector3<T>& t);
+
+    static void makeQ(Matrix34<T>& o, const Quat<T>& q) {
+        // Assuming the quaternion "q" is normalized
+
+        const T yy = 2 * q.y * q.y;
+        const T zz = 2 * q.z * q.z;
+        const T xx = 2 * q.x * q.x;
+        const T xy = 2 * q.x * q.y;
+        const T xz = 2 * q.x * q.z;
+        const T yz = 2 * q.y * q.z;
+        const T wz = 2 * q.w * q.z;
+        const T wx = 2 * q.w * q.x;
+        const T wy = 2 * q.w * q.y;
+
+        o.m[0][0] = 1 - yy - zz;
+        o.m[0][1] =     xy - wz;
+        o.m[0][2] =     xz + wy;
+
+        o.m[1][0] =     xy + wz;
+        o.m[1][1] = 1 - xx - zz;
+        o.m[1][2] =     yz - wx;
+
+        o.m[2][0] =     xz - wy;
+        o.m[2][1] =     yz + wx;
+        o.m[2][2] = 1 - xx - yy;
+
+        o.m[0][3] = 0;
+        o.m[1][3] = 0;
+        o.m[2][3] = 0;
+    }
+
+    static void setBase(Matrix34<T>& n, s32 axis, const Vector3<T>& v) {
+        n.m[0][axis] = v.x;
+        n.m[1][axis] = v.y;
+        n.m[2][axis] = v.z;
+    }
+
+    static void setRow(Matrix34<T>& n, const Vector4<T>& v, s32 row) {
+        n.m[row][0] = v.x;
+        n.m[row][1] = v.y;
+        n.m[row][2] = v.z;
+        n.m[row][3] = v.w;
+    }
+
+    static void setTranslation(Matrix34<T>& n, const Vector3<T>& v) {
+        setBase(n, 3, v);
     }
 };
 

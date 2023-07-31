@@ -6,16 +6,20 @@
 #include "game/graphics/drawmgr.h"
 #include "game/graphics/model/model.h"
 #include "game/graphics/model/materialnw.h"
+#include "game/graphics/lightmapmgr.h"
 #include "agl/shaderprogram.h"
 #include "agl/shaderprogramarchive.h"
 #include "agl/shaderlocation.h"
+#include "agl/uniformblock.h"
 #include "agl/g3d/modelshaderassign.h"
 #include "agl/g3d/modelex.h"
 #include "nw/g3d/shapeobj.h"
 #include "nw/g3d/materialobj.h"
 #include "nw/g3d/skeletalanimobj.h"
 #include "nw/g3d/res/resmodel.h"
+#include "nw/g3d/fnd/buffer.h"
 #include "sead/ptrarray.h"
+#include "dynlibs/os/functions.h"
 
 class CullViewFrustum;
 
@@ -65,8 +69,23 @@ public:
 
     static_assert(sizeof(ShapeRenderInfo) == 0x30, "ModelNW::ShapeRenderInfo size mismatch");
 
-    struct LightMap; // TODO
-    struct Shape; // TODO
+    struct LightMap {
+        void clear() {
+            OSBlockSet(this->idxLightMap, u8(-1), sizeof(this->idxLightMap));
+            OSBlockSet(this->idxSampler, u8(-1), sizeof(this->idxSampler));
+        }
+
+        s32 idxLightMap[LightMapMgr::cLightMapNum];
+        s32 idxSampler[LightMapMgr::cLightMapNum];
+    };
+
+    static_assert(sizeof(LightMap) == 0x10, "ModelNW::LightMap size mismatch");
+
+    struct Shape {
+        agl::UniformBlock uniformBlock;
+        LightMap lightMap;
+        sead::Buffer<nw::g3d::fnd::GfxBuffer> vtxBuffer;
+    };
 
     struct DrawInfo {
         s32 viewIndex;

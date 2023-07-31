@@ -4,6 +4,7 @@
 #include "game/eventmgr.h"
 #include "game/sound/sound.h"
 #include "game/movementhandler.h"
+#include "game/eventmgr.h"
 
 class MusicNoteMgr;
 
@@ -60,13 +61,11 @@ const ActorInfo MusicNoteActorInfo = {
 REGISTER_PROFILE(MusicNote, ProfileID::MusicNote, "MusicNote", &MusicNoteActorInfo);
 REGISTER_PROFILE(MusicNoteMgr, ProfileID::MusicNoteMgr);
 
-PROFILE_RESOURCES(ProfileID::MusicNote, Profile::LoadResourcesAt::Course, "note");
-PROFILE_RESOURCES(ProfileID::MusicNoteMgr, Profile::LoadResourcesAt::Course, "clef");
-
+PROFILE_RESOURCES(ProfileID::MusicNote, Profile::LoadResourcesAt::Course, "note", "star_coin");
+PROFILE_RESOURCES(ProfileID::MusicNoteMgr, Profile::LoadResourcesAt::Course, "clef", "star_coin");
 
 
 // Music Note
-
 
 const HitboxCollider::Info MusicNote::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &MusicNote::collisionCallback
@@ -144,7 +143,7 @@ MusicNoteMgr::MusicNoteMgr(const ActorBuildInfo* buildInfo)
     , powerup(buildInfo->settings1 >> 0x1C & 0xF) // nybble 5
     , movementHandler()
     , clefModel(nullptr)
-    , timeLimit((buildInfo->settings1 >> 0x14 & 0xFF) * 60) // nybbles 6-7
+    , timeLimit((buildInfo->settings1 >> 0x14 & 0xFF ? buildInfo->settings1 >> 0x14 & 0xFF : 5) * 60) // nybbles 6-7 
     , touched(false)
 { }
 
@@ -227,6 +226,9 @@ void MusicNote::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
             playSound(SoundEffects::SE_EMY_PATAMET_COMPLETE, self->position);
 
             ActorBuildInfo buildInfo = { 0 };
+
+            buildInfo.settings1 = 100663296;
+
             switch (self->mgr->powerup) {
                 case 1: { // fire flower
                     buildInfo.profile = Profile::get(592);
@@ -260,19 +262,36 @@ void MusicNote::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
                     buildInfo.profile = Profile::get(599);
                     break;
                 }
+                case 9: { // star coin - 1
+                    buildInfo.profile = Profile::get(426);
+                    // we dont need to set the settings1 value because the nybble is already set to 0 for star coin 1
+                    buildInfo.position = self->mgr->position;
+                    break;
+                }
+                case 10: { // star coin - 2
+                    buildInfo.profile = Profile::get(426);
+                    buildInfo.settings1 = 4096;
+                    buildInfo.position = self->mgr->position;
+                    break;
+                }
+                case 11: { // star coin - 3
+                    buildInfo.profile = Profile::get(426);
+                    buildInfo.settings1 = 8192;
+                    buildInfo.position = self->mgr->position;
+                    break;
+                }
                 default: { // mushroom
                     buildInfo.profile = Profile::get(591);
                     break;
                 }
             }
-            buildInfo.settings1 = 100663296;
-
+            
+            
             ActorMgr::instance()->create(buildInfo, 0);
         }
         else {
             playSound((SoundEffects::IDs)(SoundEffects::SE_EMY_PATAMET_STEP + self->note), self->position);
         }
-
         self->mgr->collectedCount++;
         self->isDeleted = true;
     }

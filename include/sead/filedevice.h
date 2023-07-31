@@ -2,16 +2,17 @@
 
 #include "sead/idisposer.h"
 #include "sead/safestring.h"
-#include "sead/list.h"
+#include "sead/tlist.h"
 #include "sead/runtimetypeinfo.h"
+#include "sead/array.h"
 
 namespace sead {
+
+typedef SafeArray<u8, 32> HandleBuffer;
 
 class FileHandle;
 class DirectoryHandle;
 struct DirectoryEntry;
-
-class BufferedSafeString;
 
 class FileDevice : public TListNode<FileDevice*>, public IDisposer {
     SEAD_RTTI_BASE(FileDevice);

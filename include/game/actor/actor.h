@@ -3,6 +3,7 @@
 #include "sead/runtimetypeinfo.h"
 #include "game/actor/actorinfo.h"
 #include "game/actor/actorbuildinfo.h"
+#include "sead/offsetlist.h"
 
 class Actor { // Size: 0x50
     SEAD_RTTI_BASE(Actor);

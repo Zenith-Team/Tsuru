@@ -18,6 +18,10 @@ Hooks:
 
   - type: branch
     instr: bl
+    addr: "0x029ff0f4"
+    func: createImGuiHeap
+  - type: branch
+    instr: bl
     addr: "0x02a031c8"
     func: beginImGui__FPQ2_4sead7TaskMgr
   - type: branch
