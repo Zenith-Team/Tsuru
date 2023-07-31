@@ -2,6 +2,8 @@
 
 namespace sead {
 
+class Heap;
+
 template <typename T, typename METHODPTR, typename IDELEGATE>
 class DelegateBase : public IDELEGATE {
 private:
@@ -19,25 +21,25 @@ public:
     { }
 
     void bind(T* o, METHODPTR m) {
-        object = o;
-        method = m;
+        this->object = o;
+        this->method = m;
     }
 
     void bind(T* o) {
-        object = o;
+        this->object = o;
     }
 
     void bind(METHODPTR m) {
-        method = m;
+        this->method = m;
     }
 
     void unbind() {
-        object = nullptr;
-        method = nullptr;
+        this->object = nullptr;
+        this->method = nullptr;
     }
 
     T* getObject() const {
-        return object;
+        return this->object;
     }
 
 protected:
@@ -90,17 +92,17 @@ public:
     { }
 
     virtual void invoke() {
-        if (object && method)
-            (object->*method)();
+        if (this->object && this->method)
+            (this->object->*(this->method))();
     }
 
     void invoke() const {
-        if (object && method)
-            (object->*method)();
+        if (this->object && this->method)
+            (this->object->*(this->method))();
     }
 
     void operator()() const {
-        invoke();
+        this->invoke();
     }
 
     virtual IDelegate* clone(Heap* heap) const {
@@ -124,17 +126,17 @@ public:
     { }
 
     virtual void invoke() {
-        if (method)
-            (method)();
+        if (this->method)
+            (this->method)();
     }
 
     void invoke() const {
-        if (method)
-            (method)();
+        if (this->method)
+            (this->method)();
     }
 
     void operator()() const {
-        invoke();
+        this->invoke();
     }
 
     virtual IDelegate* clone(Heap* heap) const {
@@ -186,7 +188,7 @@ public:
     virtual void invoke(A a) = 0;
 
     void operator() (A a) {
-        return invoke(a);
+        return this->invoke(a);
     }
 };
 
@@ -205,17 +207,17 @@ public:
     { }
 
     virtual void invoke(A a) {
-        if (object && method)
-            (object->*method)(a);
+        if (this->object && this->method)
+            (this->object->*(this->method))(a);
     }
 
     void invoke(A a) const {
-        if (object && method)
-            (object->*method)(a);
+        if (this->object && this->method)
+            (this->object->*(this->method))(a);
     }
 
     void operator()(A a) const {
-        invoke(a);
+        this->invoke(a);
     }
 };
 
@@ -234,17 +236,17 @@ public:
     { }
 
     virtual void invoke(A a) {
-        if (method)
-            (method)(a);
+        if (this->method)
+            (this->method)(a);
     }
 
     void invoke(A a) const {
-        if (method)
-            (method)(a);
+        if (this->method)
+            (this->method)(a);
     }
 
     void operator()(A a) const {
-        invoke(a);
+        this->invoke(a);
     }
 };
 
@@ -313,17 +315,17 @@ public:
     { }
 
     virtual void invoke(A1 a1, A2 a2) {
-        if (object && method)
-            (object->*method)(a1, a2);
+        if (this->object && this->method)
+            (this->object->*(this->method))(a1, a2);
     }
 
     void invoke(A1 a1, A2 a2) const {
-        if (object && method)
-            (object->*method)(a1, a2);
+        if (this->object && this->method)
+            (this->object->*(this->method))(a1, a2);
     }
 
     void operator()(A1 a1, A2 a2) const {
-        invoke(a1, a2);
+        this->invoke(a1, a2);
     }
 };
 
@@ -342,17 +344,17 @@ public:
     { }
 
     virtual void invoke(A1 a1, A2 a2) {
-        if (method)
-            (method)(a1, a2);
+        if (this->method)
+            (this->method)(a1, a2);
     }
 
     void invoke(A1 a1, A2 a2) const {
-        if (method)
-            (method)(a1, a2);
+        if (this->method)
+            (this->method)(a1, a2);
     }
 
     void operator()(A1 a1, A2 a2) const {
-        invoke(a1, a2);
+        this->invoke(a1, a2);
     }
 };
 

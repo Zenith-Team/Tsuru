@@ -18,35 +18,35 @@ public:
 
         const s32 idxMultiplier = elemSize / 4;
 
-        free = workV;
+        this->free = workV;
 
         for (s32 i = 0; i < num - 1; ++i)
             static_cast<void**>(workV)[idxMultiplier * i] = &static_cast<void**>(workV)[idxMultiplier * (i + 1)];
 
         static_cast<void**>(workV)[(num - 1) * idxMultiplier] = nullptr;
 
-        work = workV;
+        this->work = workV;
     }
 
     void* get() {
-        if (free == nullptr)
+        if (this->free == nullptr)
             return nullptr;
 
-        void* ptr = free;
-        free = *static_cast<void**>(free);
+        void* ptr = this->free;
+        this->free = *static_cast<void**>(this->free);
         return ptr;
     }
 
     void cleanup() {
-        free = nullptr;
-        work = nullptr;
+        this->free = nullptr;
+        this->work = nullptr;
     }
 
     //void* work() const { return work; }
 
     void put(void* ptr) {
-        *static_cast<void**>(ptr) = free;
-        free = ptr;
+        *static_cast<void**>(ptr) = this->free;
+        this->free = ptr;
     }
 
     void* free;

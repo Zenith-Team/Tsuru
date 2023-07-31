@@ -31,14 +31,14 @@ public:
     { }
 
     void insert(TreeMapNode<Key>* node) {
-        root = insert(root, node);
-        root->color_ = false;
+        this->root = this->insert(this->root, node);
+        this->root->color_ = false;
     }
 
     TreeMapNode<Key>* insert(TreeMapNode<Key>* h, TreeMapNode<Key>* node);
 
     TreeMapNode<Key>* find(const Key& key) const {
-        return find(root, key);
+        return find(this->root, key);
     }
 
     TreeMapNode<Key>* find(TreeMapNode<Key>* node, const Key& key) const;
@@ -50,8 +50,8 @@ public:
 
     template <typename T> // T = {*}Delegate1<..., TreeMapNode<Key>*>
     void forEach(const T& fun) const {
-        if (root != nullptr)
-            forEach(root, fun);
+        if (this->root != nullptr)
+            this->forEach(this->root, fun);
     }
 
     template <typename T> // T = {*}Delegate1<..., TreeMapNode<Key>*>

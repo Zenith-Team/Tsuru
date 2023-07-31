@@ -3,24 +3,24 @@
 
 namespace sead {
 
-// custom
+//* Custom function
 void SharcArchiveRes::getFATEntryName(BufferedSafeString* outName, const FATEntry& entry) const {
     if (!outName)
         return;
 
-    u32 offset = Endian::toHost(endianType, entry.nameOffset);
+    u32 offset = Endian::toHost(this->endianType, entry.nameOffset);
     if (offset == 0) {
-        __os_snprintf(outName->getBuffer(), outName->getBufferSize(), "%08x", Endian::toHost(endianType, entry.hash));
+        __os_snprintf(outName->getBuffer(), outName->getBufferSize(), "%08x", Endian::toHost(this->endianType, entry.hash));
         //outName->format("%08x", Endian::toHost(endianType, entry.hash));
     }
     else {
-        if ((u8*)fntBlock + (offset & 0xFFFFFF) > dataBlock) {
+        if ((u8*)this->fntBlock + (offset & 0xFFFFFF) > this->dataBlock) {
             PRINT("Invalid data start offset");
             outName->clear();
         }
         else {
             //outName->copy(fntBlock + (offset & 0xFFFFFF) * cFileNameTableAlign);
-            strncpy(outName->getBuffer(), fntBlock + (offset & 0xFFFFFF) * cFileNameTableAlign, outName->getBufferSize());
+            strncpy(outName->getBuffer(), this->fntBlock + (offset & 0xFFFFFF) * cFileNameTableAlign, outName->getBufferSize());
         }
     }
 }

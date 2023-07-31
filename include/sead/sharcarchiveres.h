@@ -24,6 +24,7 @@ public:
         u16 version;
         u16 reserved;
     };
+
     static_assert(sizeof(ArchiveBlockHeader) == 0x14, "sead::SharcArchiveRes::ArchiveBlockHeader size mismatch");
 
     struct FATBlockHeader {
@@ -32,6 +33,7 @@ public:
         u16 fileNum;
         u32 hashKey;
     };
+
     static_assert(sizeof(FATBlockHeader) == 0xC, "sead::SharcArchiveRes::FATBlockHeader size mismatch");
 
     struct FATEntry {
@@ -40,6 +42,7 @@ public:
         u32 dataStartOffset;
         u32 dataEndOffset;
     };
+
     static_assert(sizeof(FATEntry) == 0x10, "sead::SharcArchiveRes::FATEntry size mismatch");
 
     struct FNTBlockHeader {
@@ -47,6 +50,7 @@ public:
         u16 headerSize;
         u16 reserved;
     };
+
     static_assert(sizeof(FNTBlockHeader) == 8, "sead::SharcArchiveRes::FNTBlockHeader size mismatch");
 
 public:
@@ -64,7 +68,8 @@ protected:
     virtual bool prepareArchive_(const void* archive);
 
 public:
-    void getFATEntryName(BufferedSafeString* outName, const FATEntry& entry) const; // custom
+    //* Custom function
+    void getFATEntryName(BufferedSafeString* outName, const FATEntry& entry) const;
 
     const ArchiveBlockHeader* archiveBlockHeader;
     const FATBlockHeader* fatBlockHeader;
