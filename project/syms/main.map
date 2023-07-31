@@ -185,6 +185,10 @@
     __ct__Q2_4sead15GraphicsContextFv = 0x2A07BBC;
     apply__Q2_4sead15GraphicsContextFv = 0x2A07CB0;
 
+# sead::Endian
+    convFuncTable__Q2_4sead6Endian = 0x101929a8;
+    hostEndian__Q2_4sead6Endian = 0x105eaa78;
+
 # sead::ExpHeap
     tryCreate__Q2_4sead7ExpHeapSFUiRCQ2_4sead23SafeStringBase__tm__2_cPQ2_4sead4HeapQ3_4sead4Heap13HeapDirectionb = 0x02a0a7ac;
     tryCreate__Q2_4sead7ExpHeapSFPvUiRCQ2_4sead23SafeStringBase__tm__2_cb = 0x02a0a914;

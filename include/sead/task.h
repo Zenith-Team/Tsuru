@@ -1,7 +1,7 @@
 #pragma once
 
 #include "sead/tlist.h"
-#include "sead/tree.h"
+#include "sead/treenode.h"
 #include "sead/heappolicies.h"
 #include "sead/idisposer.h"
 #include "sead/bitflag.h"

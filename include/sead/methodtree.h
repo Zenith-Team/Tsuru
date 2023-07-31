@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/tree.h"
+#include "sead/treenode.h"
 #include "sead/idisposer.h"
 #include "sead/bitflag.h"
 #include "sead/inamable.h"

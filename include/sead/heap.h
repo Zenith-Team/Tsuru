@@ -7,6 +7,7 @@
 #include "sead/safestring.h"
 #include "sead/criticalsection.h"
 #include "sead/runtimetypeinfo.h"
+#include "sead/freelist.h"
 
 namespace sead { namespace hostio {
 
@@ -73,12 +74,6 @@ public:
 
     static ExpHeap* tryCreate(void* address, u32 size, const SafeString& name, bool enableLock);
     static ExpHeap* tryCreate(u32 size, const SafeString& name, Heap* parent, HeapDirection direction, bool enableLock);
-};
-
-class FreeList {
-public:
-    void* free;
-    void* work;
 };
 
 class UnitHeap : public Heap {
