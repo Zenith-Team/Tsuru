@@ -1095,6 +1095,13 @@
     __dt__11LightSourceFv = 0x24E2580;
     update__11LightSourceFUiPQ2_4sead16Vector3__tm__2_fPUiPfT4PQ2_4sead7Color4fN24 = 0x24E26BC;
 
+# LineFollower
+    __ct__12LineFollowerFv = 0x0200dc14;
+    init__12LineFollowerFRCQ2_4sead16Vector2__tm__2_fUcbT3f = 0x0200df60;
+    start__12LineFollowerFb = 0x0200e178;
+    reverseDirection__12LineFollowerFv = 0x0200df44;
+    setLineSpeed__12LineFollowerFf = 0x0200e0c0;
+
 # ModelWrapper
     __ct__12ModelWrapperFP5ModelUiN42 = 0x24D4798;
     setup__12ModelWrapperFP10ResArchivePvPQ2_4sead4Heap = 0x24D49A0;
