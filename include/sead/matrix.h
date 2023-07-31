@@ -106,6 +106,7 @@ public:
 
 namespace sead {
 
+template <typename T> inline void Matrix34<T>::makeRIdx(u32 xr, u32 yr, u32 zr) { Matrix34CalcCommon<T>::makeRIdx(*this, xr, yr, zr); }
 template <typename T> inline void Matrix34<T>::makeRTIdx(const Vector3<u32>& r, const Vector3<T>& t) { Matrix34CalcCommon<T>::makeRTIdx(*this, r, t); }
 template <typename T> inline void Matrix34<T>::makeSRzxyTIdx(const Vector3<T>& s, const Vector3<u32>& r, const Vector3<T>& t) { Matrix34CalcCommon<T>::makeSRzxyTIdx(*this, s, r, t); }
 template <typename T> inline void Matrix34<T>::makeS(const Vector3<T>& s) { Matrix34CalcCommon<T>::makeS(*this, s); }

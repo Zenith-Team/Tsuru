@@ -8,6 +8,32 @@ namespace sead {
 template <typename T>
 class Matrix34CalcCommon {
 public:
+    static void makeRIdx(Matrix34<T>& o, u32 xr, u32 yr, u32 zr)
+    {
+        T sinV[3];
+        T cosV[3];
+
+        MathCalcCommon<T>::sinCosIdx(&sinV[0], &cosV[0], xr);
+        MathCalcCommon<T>::sinCosIdx(&sinV[1], &cosV[1], yr);
+        MathCalcCommon<T>::sinCosIdx(&sinV[2], &cosV[2], zr);
+
+        o.m[0][0] = (cosV[1] * cosV[2]);
+        o.m[1][0] = (cosV[1] * sinV[2]);
+        o.m[2][0] = -sinV[1];
+
+        o.m[0][1] = (sinV[0] * sinV[1] * cosV[2] - cosV[0] * sinV[2]);
+        o.m[1][1] = (sinV[0] * sinV[1] * sinV[2] + cosV[0] * cosV[2]);
+        o.m[2][1] = (sinV[0] * cosV[1]);
+
+        o.m[0][2] = (cosV[0] * cosV[2] * sinV[1] + sinV[0] * sinV[2]);
+        o.m[1][2] = (cosV[0] * sinV[2] * sinV[1] - sinV[0] * cosV[2]);
+        o.m[2][2] = (cosV[0] * cosV[1]);
+
+        o.m[0][3] = 0;
+        o.m[1][3] = 0;
+        o.m[2][3] = 0;
+    }
+
     static void makeRTIdx(Matrix34<T>& o, const Vector3<u32>& r, const Vector3<T>& t) {
         T sinV[3];
         T cosV[3];
