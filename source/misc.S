@@ -7,6 +7,22 @@ sInstance__14GameSetupScene: .long 0
 
 .text
 
+.global CastleSwingUpdateModel
+CastleSwingUpdateModel:
+    SaveVolatileRegisters
+    lwz r12, 0x4C(r31) # vtable
+    lwz r0, 0x44(r12)
+    mtctr r0
+    mr r3, r31
+    bctrl
+    RestoreVolatileRegisters
+    lwz r0, 0x14(r1) # Replaced instruction
+    lwz r31, 0xC(r1)
+    mtlr r0
+    addi r1, r1, 0x10
+    li r3, 1
+    blr
+
 .global GameSetupScene_SetInstance
 GameSetupScene_SetInstance:
     lis r3, sInstance__14GameSetupScene@ha

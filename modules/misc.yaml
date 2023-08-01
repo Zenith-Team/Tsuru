@@ -97,3 +97,9 @@ Hooks:
   - type: patch
     addr: "0x1010d0a8" # HitboxCollider::Info::Size.x
     data: "41700000" # 15.0f
+
+# Fix castle swing not rendering on the first frame
+  - type: branch
+    instr: b
+    addr: "0x2875444"
+    func: CastleSwingUpdateModel
