@@ -2,37 +2,88 @@
 Files:
   - powerup.cpp
 Hooks:
+# Table extensions
   - type: branch
     instr: bl
     addr: "0x2924CC8"
     func: UseCustomPowerupCenterOffsetTable
-
   - type: branch
     instr: b
     addr: "0x2925128"
     func: UseCustomPowerupTallTypeTable
-
   - type: branch
     instr: b
     addr: "0x292EA6C"
     func: UseCustomBlahTableOffsets
-
   - type: branch
     instr: bl
     addr: "0x29279C4"
     func: UseCustomArray_1016CD68
-
   - type: branch
     instr: bl
     addr: "0x292916C"
     func: UseCustomArray_1016CE20
-
   - type: branch
     instr: bl
     addr: "0x292918C"
     func: UseCustomArray_1016CE44
-
   - type: branch
     instr: bl
     addr: "0x292E474"
     func: UseCustomArray_1016D7F8
+
+#! Temp blr to not change model because we haven't implemented that yet
+#  - type: return
+#    addr: "0x291ac9c"
+
+# Patch checks
+  - type: branch
+    instr: b
+    addr: "0x2931b34" # Player::shouldKeepNewPowerup()
+    func: ShouldKeepNewPowerup
+
+# Throwing
+  # Spawn the custom projectile
+  - type: branch
+    instr: bl
+    addr: "0x293ade0"
+    func: ProjectileProfileIDs
+  # Allow checking if we can throw projectile from custom type
+  - type: branch
+    instr: b
+    addr: "0x293acc0"
+    func: ShouldThrowProjectile
+  - type: branch
+    instr: bl
+    addr: "0x293b148"
+    func: AllowThrowingProjectile
+  - type: branch
+    instr: bl
+    addr: "0x293abc8"
+    func: AnotherProjectilePowerupCheck
+  - type: branch
+    instr: b
+    addr: "0x293ac38"
+    func: ShouldThrowProjectile_2
+  - type: branch
+    instr: bl
+    addr: "0x293adbc"
+    func: ProjectileExtraTypes
+  # Set projectile parent
+  - type: branch
+    instr: bl
+    addr: "0x293adb8"
+    func: ProjectileParentID
+
+# Projectile patches
+  # Hammer
+  - type: branch
+    instr: bl
+    addr: "0x217CF98" # Hammer::build()
+    func: HammerSetParentID
+  - type: nop
+    addr: "0x217D080" # Hammer::build()
+  - type: branch
+    instr: b
+    addr: "0x217D128"
+    func: HammerShootInit

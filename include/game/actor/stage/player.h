@@ -226,4 +226,7 @@ public:
     void vfA44() override;
 
     u32 givePowerup(PlayerBase::PowerupState::__type__);
+
+    u8 _2750[0x2770 - 0x2750];
+    PlayerBase::PowerupState::__type__ powerupState2; // 0x2770
 };

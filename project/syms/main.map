@@ -1435,6 +1435,7 @@
     distanceToPlayer__10StageActorFRQ2_4sead16Vector2__tm__2_f = 0x20005A4;
 
 # StateActor
+    __ct__10StateActorFPC14ActorBuildInfo = 0x200A9C0;
     vfAC__10StateActorFv = 0x200ABB0;
     vfB4__10StateActorFv = 0x200ABB4;
     vfBC__10StateActorFv = 0x200ABBC;
