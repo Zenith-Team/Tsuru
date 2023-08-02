@@ -160,7 +160,7 @@ extern "C" void HammerShootState(StateMgr* stateMgr, StateBase* state, StageActo
     StageActor* parent = static_cast<StageActor*>(ActorMgr::instance()->actors.findActorByID(parentActorID));
 
     if (parentActorID != 0 && parent && parent->type == StageActor::Type::Player) {
-        YoshiEatData* eatData = *(YoshiEatData**)(((u32)hammer)+0x17E0); // Hammer::parentActorID
+        YoshiEatData* eatData = *(YoshiEatData**)(((u32)hammer)+0x17E0); // Hammer::yoshiEatData
         eatData->vf4C(parent);
     }
     else {
