@@ -12,12 +12,12 @@ public:
     TimeChanger(const ActorBuildInfo* buildInfo);
     virtual ~TimeChanger() { }
 
+    u32 onCreate() override;
+    u32 onExecute() override;
+
     u32 eventId;
     u32 time;
     u32 timeMode;
-
-    u32 onCreate() override;
-    u32 onExecute() override;
 };
 
 REGISTER_PROFILE(TimeChanger, ProfileID::TimeChanger);
@@ -49,7 +49,6 @@ u32 TimeChanger::onExecute() {
                 LevelTimer::instance()->addTime(-static_cast<s32>(this->time));
                 break;
             }
-            // This cannot be used until setTime is implemented in LevelTimer
             //case 2: { 
             //    LevelTimer::instance()->setTime(this->time);
             //    break;
@@ -61,8 +60,6 @@ u32 TimeChanger::onExecute() {
         }
 
         this->isDeleted = true;
-
-        PRINT("[TimeChanger] ", (this->timeMode == 0 ? "Added " : this->timeMode == 1 ? "Subtracted " : "Set "), this->time, " seconds to the timer.");
     }
 
     return 1;
