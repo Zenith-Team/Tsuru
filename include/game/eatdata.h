@@ -28,7 +28,7 @@ public:
     u32 score;      // 1C
 };
 
-static_assert(sizeof(YoshiEatData) == 0x24, "YoshiEatData size mismatch")
+static_assert(sizeof(YoshiEatData) == 0x24, "YoshiEatData size mismatch");
 
 class BabyYoshiEatData {  // Size: 0x24
 public:
@@ -50,4 +50,4 @@ public:
     u32 scoreReward;    // 1C
 };
 
-static_assert(sizeof(BabyYoshiEatData) == 0x24, "BabyYoshiEatData size mismatch")
+static_assert(sizeof(BabyYoshiEatData) == 0x24, "BabyYoshiEatData size mismatch");

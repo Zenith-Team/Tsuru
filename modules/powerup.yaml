@@ -33,8 +33,8 @@ Hooks:
     func: UseCustomArray_1016D7F8
 
 #! Temp blr to not change model because we haven't implemented that yet
-#  - type: return
-#    addr: "0x291ac9c"
+  - type: return
+    addr: "0x291ac9c"
 
 # Patch checks
   - type: branch
@@ -46,33 +46,38 @@ Hooks:
   # Spawn the custom projectile
   - type: branch
     instr: bl
-    addr: "0x293ade0"
+    addr: "0x293ade0" # Player::throwProjectile()
     func: ProjectileProfileIDs
+  # Pick a sound effect
+  - type: branch
+    instr: bl
+    addr: "0x293ADD4"
+    func: ProjectileSelectSFX
   # Allow checking if we can throw projectile from custom type
   - type: branch
+    instr: bl
+    addr: "0x293adbc" # Player::throwProjectile()
+    func: ProjectileExtraTypes
+  - type: branch
     instr: b
-    addr: "0x293acc0"
+    addr: "0x293acc0" # Player::shouldThrowProjectile()
     func: ShouldThrowProjectile
   - type: branch
     instr: bl
-    addr: "0x293b148"
+    addr: "0x293b148" # Player::FUN_293b080()
     func: AllowThrowingProjectile
   - type: branch
     instr: bl
-    addr: "0x293abc8"
+    addr: "0x293abc8" # Player::FUN_293abb8()
     func: AnotherProjectilePowerupCheck
   - type: branch
     instr: b
-    addr: "0x293ac38"
+    addr: "0x293ac38" # Player::FUN_293AC38()
     func: ShouldThrowProjectile_2
-  - type: branch
-    instr: bl
-    addr: "0x293adbc"
-    func: ProjectileExtraTypes
   # Set projectile parent
   - type: branch
     instr: bl
-    addr: "0x293adb8"
+    addr: "0x293adb8" # Player::throwProjectile
     func: ProjectileParentID
 
 # Projectile patches
@@ -85,9 +90,9 @@ Hooks:
     addr: "0x217D080" # Hammer::build()
   - type: branch
     instr: b
-    addr: "0x217D128"
+    addr: "0x217D128" # Hammer::build()
     func: HammerShootInit
   - type: branch
     instr: bl
-    addr: "0x217b700"
+    addr: "0x217b700" # Hammer::executeState_Unk0N
     func: HammerShootStateASM

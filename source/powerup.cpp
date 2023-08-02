@@ -161,8 +161,7 @@ extern "C" void HammerShootState(StateMgr* stateMgr, StateBase* state, StageActo
     if (parentActorID != 0 && parent && parent->type == StageActor::Type::Player) {
         YoshiEatData* eatData = *(YoshiEatData**)(((u32)hammer)+0x17E0); // Hammer::yoshiEatData
         eatData->vf4C(parent);
-    }
-    else {
+    } else {
         stateMgr->changeState(state);
     }
 }
@@ -235,6 +234,34 @@ ProjectileExtraTypes:
     beqlr
 
     //* ------ End extra types ------
+
+    blr
+
+.global ProjectileSelectSFX
+ProjectileSelectSFX:
+    // r0 = powerupState
+    // r4 = const char* sfxName
+    mr r7, r0
+
+    SaveVolatileRegisters
+    
+    //* Fire Flower
+    cmpwi r7, 2
+    beq ProjectileSelectSFX_Go
+
+    //* ------ Begin extra types ------
+
+    // Hammer Suit
+    cmpwi r7, 9
+    beq ProjectileSelectSFX_None
+
+    //* ------ End extra types ------
+
+ProjectileSelectSFX_Go:
+    bl playSfx__6PlayerFPCcUi
+
+ProjectileSelectSFX_None:
+    RestoreVolatileRegisters
 
     blr
 
