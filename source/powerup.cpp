@@ -154,8 +154,7 @@ extern "C" void* HammerShootInit(StageActor* _this) {
     return _this;
 }
 
-extern "C" void HammerShootState(StateMgr* stateMgr, StateBase* state, StageActor* hammer)
-{
+extern "C" void HammerShootState(StateMgr* stateMgr, StateBase* state, StageActor* hammer) {
     u32 parentActorID = *(u32*)(((u32)hammer)+0x2E60); // Hammer::parentActorID
     StageActor* parent = static_cast<StageActor*>(ActorMgr::instance()->actors.findActorByID(parentActorID));
 
