@@ -2,6 +2,8 @@
 
 #include "types.h"
 
+class StageActor;
+
 class YoshiEatData {  // Size: 0x20
 public:
     YoshiEatData(u32& id);
@@ -14,7 +16,7 @@ public:
     virtual bool handleEaten();
     virtual void vf3C();
     virtual void vf44();
-    virtual u32 vf4C();
+    virtual bool vf4C(StageActor* actor);
     virtual bool vf54(void*);
     virtual void* vf5C(void*);
 

@@ -146,14 +146,26 @@ extern "C" void* HammerShootInit(StageActor* _this) {
     u32 parentActorID = *(u32*)(((u32)_this)+0x2E60); // Hammer::parentActorID
     StageActor* parent = static_cast<StageActor*>(ActorMgr::instance()->actors.findActorByID(parentActorID));
 
-    if (parentActorID != 0 && parent->type == StageActor::Type::Player) {
+    if (parentActorID != 0 && parent && parent->type == StageActor::Type::Player) {
         *(bool*)(((u32)_this)+0x2E2C) = true; // Hammer::readyToThrow
         _this->settings1 = parent->direction == Direction::Left;
-
-        
     }
 
     return _this;
+}
+
+extern "C" void HammerShootState(StateMgr* stateMgr, StateBase* state, StageActor* hammer)
+{
+    u32 parentActorID = *(u32*)(((u32)hammer)+0x2E60); // Hammer::parentActorID
+    StageActor* parent = static_cast<StageActor*>(ActorMgr::instance()->actors.findActorByID(parentActorID));
+
+    if (parentActorID != 0 && parent && parent->type == StageActor::Type::Player) {
+        YoshiEatData* eatData = *(YoshiEatData**)(((u32)hammer)+0x17E0); // Hammer::parentActorID
+        eatData->vf4C(parent);
+    }
+    else {
+        stateMgr->changeState(state);
+    }
 }
 
 ASM_BEGIN
@@ -169,6 +181,13 @@ HammerSetParentID:
     mr  r3, r31
 
     b __ct__10StateActorFPC14ActorBuildInfo
+
+.global HammerShootStateASM
+HammerShootStateASM:
+    mr r5, r30
+    SafeBranch HammerShootState
+
+    blr
 
 .global AnotherProjectilePowerupCheck
 AnotherProjectilePowerupCheck:

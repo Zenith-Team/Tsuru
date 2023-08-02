@@ -87,3 +87,7 @@ Hooks:
     instr: b
     addr: "0x217D128"
     func: HammerShootInit
+  - type: branch
+    instr: bl
+    addr: "0x217b700"
+    func: HammerShootStateASM
