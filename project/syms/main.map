@@ -1201,6 +1201,9 @@
     update__13PlatformModelFRQ2_4sead16Vector3__tm__2_ff = 0x27BE428;
     draw__13PlatformModelFv = 0x27BE4FC;
 
+# PlayerBase
+    RTTI__10PlayerBase = 0x101e9cd0;
+
 # Player
     givePowerup__6PlayerFQ3_10PlayerBase12PowerupState8__type__ = 0x2931C1C;
     throwProjectile__6Player__PowerupStateNotFire = 0x293AE28;

@@ -1,4 +1,5 @@
 #include "game/actor/actormgr.h"
+#include "game/actor/stage/player.h"
 #include "game/actor/courseselect/courseselectactorbase.h"
 #include "sead/heapmgr.h"
 #include "sead/taskmgr.h"
@@ -599,6 +600,18 @@ static void drawActorImGui(Actor* actor) {
             ImGui::DragFloat3("MaxSpeed", &stageActor->maxSpeed.x);
             ImGui::DragFloat3("Scale", &stageActor->scale.x);
             ImGui::DragInt3("Rotation", (int*)&stageActor->rotation.x);
+        }
+
+        PlayerBase* player = sead::DynamicCast<PlayerBase>(actor);
+        if (player) {
+            static int powerup = 0;
+
+            static const char* const powerups[] = { "Small", "Big", "Fire", "Mini", "Propeller", "Penguin", "Ice", "Acorn", "PAcorn", "Hammer" };
+
+            ImGui::Combo("Powerup", &powerup, powerups, sizeof(powerups) / sizeof(powerups[0]));
+            
+            if (ImGui::Button("Set Powerup"))
+                player->givePowerup((PlayerBase::PowerupState::__type__)powerup, false);
         }
 
         CourseSelectActorBase* csActor = sead::DynamicCast<CourseSelectActorBase>(actor);

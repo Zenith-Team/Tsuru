@@ -1,12 +1,14 @@
 #include "game/actor/stage/player.h"
+#include "game/actor/stage/multistateactor.h"
 #include "game/actor/actormgr.h"
+#include "log.h"
 
-f32 PowerupCenterOffsetTable[] = {
+f32 PowerupCenterOffsetTable[PlayerBase::PowerupState::Num] = {
     16.0f,                          // Small
-    16.0f,                          // Big
+    31.0f,                          // Big
     31.0f,                          // Fire
-    31.0f,                          // Mini
-    6.0f,                           // Propeller
+    6.0f,                           // Mini
+    31.0f,                          // Propeller
     31.0f,                          // Penguin
     31.0f,                          // Ice
     31.0f,                          // Acorn
@@ -15,7 +17,7 @@ f32 PowerupCenterOffsetTable[] = {
     31.0f                           // Hammer Suit
 };
 
-PlayerBase::TallType::__type__ PowerupTallTypeTable[] = {
+PlayerBase::TallType::__type__ PowerupTallTypeTable[PlayerBase::PowerupState::Num] = {
     PlayerBase::TallType::Small,    // Small
     PlayerBase::TallType::Normal,   // Big
     PlayerBase::TallType::Normal,   // Fire
@@ -30,7 +32,7 @@ PlayerBase::TallType::__type__ PowerupTallTypeTable[] = {
 };
 
 // YetAnotherTable
-f32 ARRAY_1016CD68[] = {
+f32 ARRAY_1016CD68[PlayerBase::PowerupState::Num] = {
      0.0f,                          // Small
     -4.0f,                          // Big
     -4.0f,                          // Fire
@@ -45,7 +47,7 @@ f32 ARRAY_1016CD68[] = {
 };
 
 // BlahTableOffsets
-u32 PowerupBlahTableOffsets[] = {
+u32 PowerupBlahTableOffsets[PlayerBase::PowerupState::Num] = {
     1,                              // Small
     2,                              // Big
     2,                              // Fire
@@ -59,7 +61,7 @@ u32 PowerupBlahTableOffsets[] = {
     2                               // Hammer Suit
 };
 
-f32 ARRAY_1016CE20[] = {
+f32 ARRAY_1016CE20[PlayerBase::PowerupState::Num] = {
     -10.0f,                         // Small
     9.0f,                           // Big
     0.0f,                           // Fire
@@ -70,10 +72,10 @@ f32 ARRAY_1016CE20[] = {
     12.0f,                          // Acorn
     15.9f,                          // PAcorn
     //* Begin custom entries
-    9.0f                            // Hammer Suit
+    0.0f                            // Hammer Suit (Unknown)
 };
 
-f32 ARRAY_1016CE44[] = {
+f32 ARRAY_1016CE44[PlayerBase::PowerupState::Num] = {
     -5.0f,                          // Small
     4.0f,                           // Big
     4.0f,                           // Fire
@@ -84,10 +86,10 @@ f32 ARRAY_1016CE44[] = {
     23.0f,                          // Acorn
     7.9f,                           // PAcorn
     //* Begin custom entries
-    4.0f                            // Hammer Suit
+    4.0f                            // Hammer Suit (Unknown)
 };
 
-f32 ARRAY_1016D7F8[] = {
+f32 ARRAY_1016D7F8[PlayerBase::PowerupState::Num] = {
     0.6f,                           // Small
     1.0f,                           // Big
     1.0f,                           // Fire
@@ -98,11 +100,43 @@ f32 ARRAY_1016D7F8[] = {
     0.6f,                           // Acorn
     0.6f,                           // PAcorn
     //* Begin custom entries
-    0.6f                            // Hammer Suit
+    1.0f                            // Hammer Suit
 };
+
+u32 ARRAY_101750A4[PlayerBase::PowerupState::Num] = {
+    1,                              // Small
+    2,                              // Big
+    2,                              // Fire
+    0,                              // Mini
+    2,                              // Propeller
+    2,                              // Penguin
+    2,                              // Ice
+    2,                              // Acorn
+    2,                              // PAcorn
+    //* Begin custom entries
+    2                               // Hammer Suit
+};
+
+/* u32 ARRAY_101750C8[PlayerBase::PowerupState::Num] = {
+    0,                              // Small
+    0,                              // Big
+    2,                              // Fire
+    3,                              // Mini
+    0,                              // Propeller
+    4,                              // Penguin
+    5,                              // Ice
+    6,                              // Acorn
+    7,                              // PAcorn
+    // * Begin custom entries
+    8                               // Hammer Suit
+}; */
 
 extern "C" PlayerBase::TallType::__type__ UseCustomPowerupTallTypeTable(Player*, PlayerBase::PowerupState::__type__ powerupState) {
     return PowerupTallTypeTable[powerupState];
+}
+
+extern "C" u32 UseCustomArray_101750A4(PlayerBase::PowerupState::__type__ powerupState) {
+    return ARRAY_101750A4[powerupState];
 }
 
 extern "C" bool ShouldKeepNewPowerup(Player* _this, PlayerBase::PowerupState::__type__ newPowerupState) {
@@ -133,7 +167,7 @@ extern "C" bool ShouldKeepNewPowerup(Player* _this, PlayerBase::PowerupState::__
                 return true;
         
         // Custom powerup states
-        case PlayerBase::PowerupState::PAcorn+1:
+        case PlayerBase::PowerupState::Hammer:
             return true;
 
         default:
@@ -141,7 +175,60 @@ extern "C" bool ShouldKeepNewPowerup(Player* _this, PlayerBase::PowerupState::__
     }
 }
 
-#include "log.h"
+extern "C" const char* PowerupChangeSoundEffect(void* _this) {
+    PlayerBase::PowerupState::__type__ v1 = *(PlayerBase::PowerupState::__type__*)(((u32)_this) + 0x4);
+    PlayerBase::PowerupState::__type__ v2 = *(PlayerBase::PowerupState::__type__*)(((u32)_this) + 0x24);
+    
+    if (v2 < PlayerBase::PowerupState::Propeller) {
+        if (v2 == PlayerBase::PowerupState::Small)
+            return "SE_PLY_CHANGE_SMALL";
+        if (v2 > PlayerBase::PowerupState::Fire)
+            return "SE_PLY_CHANGE_MAME";
+    } else if (v2 > PlayerBase::PowerupState::Propeller) {
+        if (v2 == PlayerBase::PowerupState::Penguin)
+            return "SE_PLY_CHANGE_MAME";
+        if (v2 > PlayerBase::PowerupState::Acorn)
+            return "SE_PLY_CHANGE_SMALL";
+
+        if (v1 == PlayerBase::PowerupState::Fire)
+            return "SE_PLY_CHANGE_BIG";
+        if (v1 < PlayerBase::PowerupState::Propeller)
+            return "SE_PLY_CHANGE_SMALL";
+        if (v1 < (PlayerBase::PowerupState::Big | PlayerBase::PowerupState::PAcorn)) {
+            static const char* const strarr[] = {
+                "SE_PLY_CHANGE_PRPL",   // Propeller
+                "SE_PLY_CHANGE_PNGN",   // Penguin
+                "SE_PLY_CHANGE_BIG",    // Ice Flower
+                "SE_PLY_CHANGE_MSSB",   // Acorn
+                "SE_PLY_CHANGE_P_MSSB", // P-Acorn
+            };
+
+            return strarr[v1 - PlayerBase::PowerupState::Propeller];
+        }
+
+        // Custom powerups
+        if (v1 > PlayerBase::PowerupState::PAcorn && v1 < PlayerBase::PowerupState::Num)
+            return "SE_PLY_CHANGE_BIG";
+
+        return "SE_PLY_CHANGE_SMALL";
+    }
+
+    if (v1 == PlayerBase::PowerupState::Propeller)
+        return "SE_PLY_CHANGE_PRPL";
+    if (v1 == PlayerBase::PowerupState::Penguin)
+        return "SE_PLY_CHANGE_PNGN";
+    if (v1 == PlayerBase::PowerupState::Acorn)
+        return "SE_PLY_CHANGE_MSSB";
+    if (v1 == PlayerBase::PowerupState::PAcorn)
+        return "SE_PLY_CHANGE_P_MSSB";
+
+    // Custom powerups
+    if (v1 > PlayerBase::PowerupState::PAcorn && v1 < PlayerBase::PowerupState::Num)
+        return "SE_PLY_CHANGE_BIG";
+
+    return "SE_PLY_CHANGE_BIG";
+}
+
 extern "C" void* HammerShootInit(StageActor* _this) {
     u32 parentActorID = *(u32*)(((u32)_this)+0x2E60); // Hammer::parentActorID
     StageActor* parent = static_cast<StageActor*>(ActorMgr::instance()->actors.findActorByID(parentActorID));
@@ -152,6 +239,13 @@ extern "C" void* HammerShootInit(StageActor* _this) {
     }
 
     return _this;
+}
+
+extern "C" StateBase* HammerStateCheck(MultiStateActor* actor) {
+    if (actor->type == StageActor::Type::Player)
+        return &StateBase::sNullState;
+
+    return actor->states.manager.getCurrentState();
 }
 
 extern "C" void HammerShootState(StateMgr* stateMgr, StateBase* state, StageActor* hammer) {
@@ -179,6 +273,11 @@ HammerSetParentID:
     mr  r3, r31
 
     b __ct__10StateActorFPC14ActorBuildInfo
+
+.global HammerStateCheckASM
+HammerStateCheckASM:
+    mr r3, r31
+    b HammerStateCheck
 
 .global HammerShootStateASM
 HammerShootStateASM:
@@ -399,8 +498,15 @@ ProjectileParentID:
 UseCustomPowerupCenterOffsetTable:
     lis r11, PowerupCenterOffsetTable@ha
     addi r11, r11, PowerupCenterOffsetTable@l
+    subi r11, r11, 0x4
 
     blr
+
+//.global UseCustomArray_101750C8
+//UseCustomArray_101750C8:
+//    addis r10, r9, ARRAY_101750C8@ha
+//    lwz r11, ARRAY_101750C8@l(r10)
+//    blr
 
 .global UseCustomArray_1016CD68
 UseCustomArray_1016CD68:

@@ -25,7 +25,10 @@ public:
         Penguin,
         Ice,
         Acorn,
-        PAcorn
+        PAcorn,
+        Hammer,
+
+        Num
     );
 
     ENUM_CLASS(DamageType, // TODO: Figure out all these types

@@ -31,16 +31,30 @@ Hooks:
     instr: bl
     addr: "0x292E474"
     func: UseCustomArray_1016D7F8
+  - type: branch
+    instr: b
+    addr: "0x2975C94"
+    func: UseCustomArray_101750A4
+#  - type: branch
+#    instr: bl
+#    addr: "0x2975ce4"
+#    func: UseCustomArray_101750C8
 
 #! Temp blr to not change model because we haven't implemented that yet
   - type: return
     addr: "0x291ac9c"
 
 # Patch checks
+  # Keep when got
   - type: branch
     instr: b
     addr: "0x2931b34" # Player::shouldKeepNewPowerup()
     func: ShouldKeepNewPowerup
+  # Correct change sound
+  - type: branch
+    instr: b
+    addr: "0x2975b90"
+    func: PowerupChangeSoundEffect
 
 # Throwing
   # Spawn the custom projectile
@@ -92,6 +106,10 @@ Hooks:
     instr: b
     addr: "0x217D128" # Hammer::build()
     func: HammerShootInit
+  - type: branch
+    instr: bl
+    addr: "0x217b684" # Hammer::executeState_Unk0N
+    func: HammerStateCheckASM
   - type: branch
     instr: bl
     addr: "0x217b700" # Hammer::executeState_Unk0N
