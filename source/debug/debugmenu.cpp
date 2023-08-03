@@ -602,7 +602,7 @@ static void drawActorImGui(Actor* actor) {
             ImGui::DragInt3("Rotation", (int*)&stageActor->rotation.x);
         }
 
-        PlayerBase* player = sead::DynamicCast<PlayerBase>(actor);
+        Player* player = sead::DynamicCast<Player>(actor);
         if (player) {
             static int powerup = 0;
 
@@ -611,7 +611,7 @@ static void drawActorImGui(Actor* actor) {
             ImGui::Combo("Powerup", &powerup, powerups, sizeof(powerups) / sizeof(powerups[0]));
             
             if (ImGui::Button("Set Powerup"))
-                player->givePowerup((PlayerBase::PowerupState::__type__)powerup, false);
+                player->givePowerup((PlayerBase::PowerupState::__type__)powerup);
         }
 
         CourseSelectActorBase* csActor = sead::DynamicCast<CourseSelectActorBase>(actor);

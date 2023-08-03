@@ -1205,6 +1205,7 @@
     RTTI__10PlayerBase = 0x101e9cd0;
 
 # Player
+    RTTI__6Player = 0x101e9ca0;
     givePowerup__6PlayerFQ3_10PlayerBase12PowerupState8__type__ = 0x2931C1C;
     throwProjectile__6Player__PowerupStateNotFire = 0x293AE28;
     FUN_0293b080__6Player__IsProjectilePowerup = 0x293B198;
