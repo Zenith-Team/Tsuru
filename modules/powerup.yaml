@@ -35,14 +35,10 @@ Hooks:
     instr: b
     addr: "0x2975C94"
     func: UseCustomArray_101750A4
-#  - type: branch
-#    instr: bl
-#    addr: "0x2975ce4"
-#    func: UseCustomArray_101750C8
 
 #! Temp blr to not change model because we haven't implemented that yet
-  - type: return
-    addr: "0x291ac9c"
+#  - type: return
+#    addr: "0x291ac9c"
 
 # Patch checks
   # Keep when got

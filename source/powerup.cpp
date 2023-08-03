@@ -366,7 +366,7 @@ ProjectileSelectSFX_None:
 
 .global ShouldThrowProjectile
 ShouldThrowProjectile: // Custom version of Player::shouldThrowProjectile
-    lis       r11, sInstance__18ActorGlobalsHolder@ha
+    lis       r12, sInstance__18ActorGlobalsHolder@ha
     lwz       r0, 0x500(r3)
 
     cmpwi     r0, 2
@@ -374,10 +374,13 @@ ShouldThrowProjectile: // Custom version of Player::shouldThrowProjectile
 
     //* ------ Begin extra types ------
 
+    // Hammer Suit
     cmpwi     r0, 9
-    bne       ShouldThrowProjectileIsNotFire
+    beq       ShouldThrowProjectileIsFire // should shoot
 
     //* ------ End extra types ------
+
+    b         ShouldThrowProjectileIsNotFire // should not shoot
 
 .global ShouldThrowProjectile_2
 ShouldThrowProjectile_2:
@@ -389,10 +392,13 @@ ShouldThrowProjectile_2:
 
     //* ------ Begin extra types ------
 
+    // Hammer Suit
     cmpwi     r0, 9
-    bne       ShouldThrowProjectile_2NotFire
+    beq       ShouldThrowProjectile_2IsFire // should shoot
 
     //* ------ End extra types ------
+
+    b         ShouldThrowProjectile_2NotFire // should not shoot
 
 ShouldThrowProjectileIsFire:
     cmpwi     r4, 0
