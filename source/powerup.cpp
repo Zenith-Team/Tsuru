@@ -165,7 +165,7 @@ extern "C" u32 UseCustomArray_101750A4(PlayerBase::PowerupState::__type__ poweru
     return ARRAY_101750A4[powerupState];
 }
 
-extern "C" bool ShouldKeepNewPowerup(Player* _this, PlayerBase::PowerupState::__type__ newPowerupState) {
+extern "C" bool ShouldGiveNewPowerup(Player* _this, PlayerBase::PowerupState::__type__ newPowerupState) {
     PlayerBase::PowerupState::__type__ selfPowerupState = _this->powerupState2;
 
     switch (newPowerupState) {
@@ -175,30 +175,35 @@ extern "C" bool ShouldKeepNewPowerup(Player* _this, PlayerBase::PowerupState::__
         case PlayerBase::PowerupState::Big: // Only become big if we are small or mini
             if (selfPowerupState != PlayerBase::PowerupState::Small && selfPowerupState != PlayerBase::PowerupState::Mini)
                 return false;
-            else
-                return true;
+            return true;
         
         case PlayerBase::PowerupState::Fire:
         case PlayerBase::PowerupState::Mini:
         case PlayerBase::PowerupState::Propeller:
         case PlayerBase::PowerupState::Penguin:
         case PlayerBase::PowerupState::Ice:
-        case PlayerBase::PowerupState::PAcorn:
-            return true;
+            break;
         
         case PlayerBase::PowerupState::Acorn: // Don't downgrade from P-Acorn
             if (selfPowerupState == PlayerBase::PowerupState::PAcorn)
                 return false;
-            else
-                return true;
-        
-        // Custom powerup states
+            break;
+
+        case PlayerBase::PowerupState::PAcorn:
+            break;
+
+        //* Custom powerup states
         case PlayerBase::PowerupState::Hammer:
-            return true;
+            break;
 
         default:
             return false;
     }
+
+    if (selfPowerupState == newPowerupState)
+        return false;
+
+    return true;
 }
 
 extern "C" const char* PowerupChangeSoundEffect(void* _this) {

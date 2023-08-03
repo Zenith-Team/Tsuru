@@ -56,11 +56,11 @@ Hooks:
     func: UseCustomPowerupSwitchTexAnimArray4
 
 # Patch checks
-  # Keep when got
+  # Check if we should give new powerup
   - type: branch
     instr: b
-    addr: "0x2931b34" # Player::shouldKeepNewPowerup()
-    func: ShouldKeepNewPowerup
+    addr: "0x2931b34" # Player::shouldGiveNewPowerup()
+    func: ShouldGiveNewPowerup
   # Correct change sound
   - type: branch
     instr: b
