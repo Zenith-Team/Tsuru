@@ -61,20 +61,7 @@ u32 PowerupBlahTableOffsets[PlayerBase::PowerupState::Num] = {
     2                               // Hammer Suit
 };
 
-f32 ARRAY_1016D7F8[PlayerBase::PowerupState::Num] = {
-    0.6f,                           // Small
-    1.0f,                           // Big
-    1.0f,                           // Fire
-    0.1f,                           // Mini
-    0.6f,                           // Propeller
-    0.6f,                           // Penguin
-    0.1f,                           // Ice
-    0.6f,                           // Acorn
-    0.6f,                           // PAcorn
-    //* Begin custom entries
-    1.0f                            // Hammer Suit (Unknown)
-};
-
+// Sound related
 u32 ARRAY_101750A4[PlayerBase::PowerupState::Num] = {
     1,                              // Small
     2,                              // Big
@@ -558,12 +545,6 @@ UseCustomPowerupCenterOffsetTable:
 UseCustomArray_1016CD68:
     lis r0, ARRAY_1016CD68@h
     ori r0, r0, ARRAY_1016CD68@l
-    blr
-
-.global UseCustomArray_1016D7F8
-UseCustomArray_1016D7F8:
-    lis r0, ARRAY_1016D7F8@h
-    ori r0, r0, ARRAY_1016D7F8@l
     blr
 
 .global UseCustomBlahTableOffsets

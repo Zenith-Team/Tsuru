@@ -20,10 +20,6 @@ Hooks:
     addr: "0x29279C4"
     func: UseCustomArray_1016CD68
   - type: branch
-    instr: bl
-    addr: "0x292E474"
-    func: UseCustomArray_1016D7F8
-  - type: branch
     instr: b
     addr: "0x2975C94"
     func: UseCustomArray_101750A4
