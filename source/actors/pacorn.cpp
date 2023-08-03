@@ -79,8 +79,8 @@ void PAcorn::vf1B4() {
 u32 PAcorn::vf1C4() {
     u32 local;
 
-    if (FUN_25196e8(&local, (PlayerBase::PowerupState::__type__)(PlayerBase::PowerupState::PAcorn + 1), 1) != 0)
-        return FUN_2519580(local, this->_1830);
+    if (this->FUN_25196e8(&local, PlayerBase::PowerupState::PAcorn, 1) != 0)
+        return this->FUN_2519580(local, this->_1830);
 
     return 0;
 }

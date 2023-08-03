@@ -117,19 +117,45 @@ u32 ARRAY_101750A4[PlayerBase::PowerupState::Num] = {
     2                               // Hammer Suit
 };
 
-/* u32 ARRAY_101750C8[PlayerBase::PowerupState::Num] = {
-    0,                              // Small
-    0,                              // Big
-    2,                              // Fire
-    3,                              // Mini
-    0,                              // Propeller
-    4,                              // Penguin
-    5,                              // Ice
-    6,                              // Acorn
-    7,                              // PAcorn
-    // * Begin custom entries
-    8                               // Hammer Suit
-}; */
+sead::SafeString PowerupSwitchTexAnimArray1[] = {
+    "PH_switch",
+    "PH_switch",
+    "PH_switch",
+    "PH_switch",
+    "MMH_model_switch",
+    
+    "PH_switch",
+};
+
+sead::SafeString PowerupSwitchTexAnimArray2[] = {
+    "PB_switch",
+    "PB_switch",
+    "PB_switch",
+    "PB_switch",
+    "MMB_model_switch",
+
+    "PB_switch",
+};
+
+sead::SafeString PowerupSwitchTexAnimArray3[] = {
+    "PH_switch",
+    "PH_switch",
+    "PH_switch",
+    "PH_switch",
+    "MLH_model_switch",
+
+    "PH_switch",
+};
+
+sead::SafeString PowerupSwitchTexAnimArray4[] = {
+    "PB_switch",
+    "PB_switch",
+    "PB_switch",
+    "PB_switch",
+    "MLB_model_switch",
+
+    "PB_switch",
+};
 
 extern "C" PlayerBase::TallType::__type__ UseCustomPowerupTallTypeTable(Player*, PlayerBase::PowerupState::__type__ powerupState) {
     return PowerupTallTypeTable[powerupState];
@@ -551,12 +577,6 @@ UseCustomPowerupCenterOffsetTable:
 
     blr
 
-//.global UseCustomArray_101750C8
-//UseCustomArray_101750C8:
-//    addis r10, r9, ARRAY_101750C8@ha
-//    lwz r11, ARRAY_101750C8@l(r10)
-//    blr
-
 .global UseCustomArray_1016CD68
 UseCustomArray_1016CD68:
     lis r0, ARRAY_1016CD68@h
@@ -643,6 +663,30 @@ LAB_292EB30:
     li        r0, 9
 LAB_292EB34:
     mr        r3, r0
+    blr
+
+.global UseCustomPowerupSwitchTexAnimArray1
+UseCustomPowerupSwitchTexAnimArray1:
+    lis r9, PowerupSwitchTexAnimArray1@ha
+    addi r9, r9, PowerupSwitchTexAnimArray1@l
+    blr
+
+.global UseCustomPowerupSwitchTexAnimArray2
+UseCustomPowerupSwitchTexAnimArray2:
+    lis r10, PowerupSwitchTexAnimArray2@ha
+    addi r10, r10, PowerupSwitchTexAnimArray2@l
+    blr
+
+.global UseCustomPowerupSwitchTexAnimArray3
+UseCustomPowerupSwitchTexAnimArray3:
+    lis r9, PowerupSwitchTexAnimArray3@ha
+    addi r9, r9, PowerupSwitchTexAnimArray3@l
+    blr
+
+.global UseCustomPowerupSwitchTexAnimArray4
+UseCustomPowerupSwitchTexAnimArray4:
+    lis r10, PowerupSwitchTexAnimArray4@ha
+    addi r10, r10, PowerupSwitchTexAnimArray4@l
     blr
 
 ASM_END
