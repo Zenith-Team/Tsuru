@@ -1211,6 +1211,11 @@
     FUN_0293b080__6Player__IsProjectilePowerup = 0x293B198;
     playSfx__6PlayerFPCcUi = 0x290b9a4;
     Player_vfA5C_continue = 0x0292ea84;
+    Player_throwProjectile_throwIce = 0x0293ae38;
+    Player_throwProjectile_return = 0x0293affc;
+    Player_throwProjectile_continue = 0x0293ae98;
+    Player_hasLessThan6OldProjectiles_continue = 0x0293ac40;
+    Player_hasLessThan2NewProjectiles_continue = 0x0293acc8;
 
 # PlayerInput
     isUpHeld__11PlayerInputCFv = 0x2916114;

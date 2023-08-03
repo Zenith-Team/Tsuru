@@ -56,37 +56,23 @@ Hooks:
     func: PowerupChangeSoundEffect
 
 # Throwing
-  # Spawn the custom projectile
-  - type: branch
-    instr: bl
-    addr: "0x293ade0" # Player::throwProjectile()
-    func: ProjectileProfileIDs
-  # Pick a sound effect
-  - type: branch
-    instr: bl
-    addr: "0x293ADD4"
-    func: ProjectileSelectSFX
   # Allow checking if we can throw projectile from custom type
   - type: branch
-    instr: bl
-    addr: "0x293adbc" # Player::throwProjectile()
-    func: ProjectileExtraTypes
-  - type: branch
     instr: b
-    addr: "0x293acc0" # Player::shouldThrowProjectile()
-    func: ShouldThrowProjectile
+    addr: "0x293ae28" # Player::throwProjectile()
+    func: ThrowProjectileASM
   - type: branch
     instr: bl
     addr: "0x293b148" # Player::FUN_293b080()
     func: AllowThrowingProjectile
   - type: branch
-    instr: bl
-    addr: "0x293abc8" # Player::FUN_293abb8()
-    func: AnotherProjectilePowerupCheck
+    instr: b
+    addr: "0x293ac3c" # Player::hasLessThan6OldProjectiles()
+    func: HasLessThan6OldProjectiles
   - type: branch
     instr: b
-    addr: "0x293ac38" # Player::FUN_293AC38()
-    func: ShouldThrowProjectile_2
+    addr: "0x293acc4" # Player::hasLessThan2NewProjectiles()
+    func: HasLessThan2NewProjectiles
   # Set projectile parent
   - type: branch
     instr: bl

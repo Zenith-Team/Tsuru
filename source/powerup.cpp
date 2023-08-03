@@ -31,21 +31,6 @@ PlayerBase::TallType::__type__ PowerupTallTypeTable[PlayerBase::PowerupState::Nu
     PlayerBase::TallType::Normal    // Hammer Suit
 };
 
-// YetAnotherTable
-f32 ARRAY_1016CD68[PlayerBase::PowerupState::Num] = {
-     0.0f,                          // Small
-    -4.0f,                          // Big
-    -4.0f,                          // Fire
-     4.0f,                          // Mini
-    -5.0f,                          // Propeller
-    -2.0f,                          // Penguin
-    -4.0f,                          // Ice
-    -4.0f,                          // Acorn
-    -4.0f,                          // PAcorn
-    //* Begin custom entries
-    -4.0f                           // Hammer Suit
-};
-
 // BlahTableOffsets
 u32 PowerupBlahTableOffsets[PlayerBase::PowerupState::Num] = {
     1,                              // Small
@@ -59,6 +44,21 @@ u32 PowerupBlahTableOffsets[PlayerBase::PowerupState::Num] = {
     2,                              // PAcorn
     //* Begin custom entries
     2                               // Hammer Suit
+};
+
+// YetAnotherTable
+f32 ARRAY_1016CD68[PlayerBase::PowerupState::Num] = {
+     0.0f,                          // Small
+    -4.0f,                          // Big
+    -4.0f,                          // Fire
+     4.0f,                          // Mini
+    -5.0f,                          // Propeller
+    -2.0f,                          // Penguin
+    -4.0f,                          // Ice
+    -4.0f,                          // Acorn
+    -4.0f,                          // PAcorn
+    //* Begin custom entries
+    -4.0f                           // Hammer Suit
 };
 
 // Sound related
@@ -184,7 +184,7 @@ extern "C" const char* PowerupChangeSoundEffect(void* _this) {
             return "SE_PLY_CHANGE_BIG";
         if (v1 < PlayerBase::PowerupState::Propeller)
             return "SE_PLY_CHANGE_SMALL";
-        if (v1 < PlayerBase::PowerupState::NumOrignal) {
+        if (v1 < PlayerBase::PowerupState::NumOriginal) {
             static const char* const strArr[] = {
                 "SE_PLY_CHANGE_PRPL",   // Propeller
                 "SE_PLY_CHANGE_PNGN",   // Penguin
@@ -240,6 +240,15 @@ extern "C" bool CheckProjectileSpawnLimits(Player* _this, PlayerBase::PowerupSta
 
         default: return true;
     }
+}
+
+extern "C" bool PlayerThrowProjectile(PlayerBase::PowerupState::__type__ powerup, ActorBuildInfo* projectile) {
+    if (powerup == PlayerBase::PowerupState::Hammer) {
+        projectile->profile = Profile::get(ProfileID::Hammer);
+        return true;
+    }
+
+    return false;
 }
 
 extern "C" void* HammerShootInit(StageActor* _this) {
@@ -299,23 +308,36 @@ HammerShootStateASM:
 
     blr
 
-.global AnotherProjectilePowerupCheck
-AnotherProjectilePowerupCheck:
-    cmpwi r8, 2
-    beqlr
+.global ThrowProjectileASM
+ThrowProjectileASM:
+    cmpwi r0, 0x5 # Penguin
+    beq ThrowProjectileASM_Ice
+    cmpwi r0, 0x6 # Ice
+    beq ThrowProjectileASM_Ice
 
-    //* ------ Begin extra types ------
+    mr r3, r0
+    addi r4, r1, 0x3C
+    SaveVolatileRegisters
+    bl PlayerThrowProjectile
+    cmpwi r3, 0
+    beq ThrowProjectileASM_return
+    RestoreVolatileRegisters
+    b Player_throwProjectile_continue
 
-    cmpwi r8, 9
-    beqlr
+ThrowProjectileASM_Ice:
+    lis   r3, Player_throwProjectile_throwIce@ha
+    addi  r3, r3, Player_throwProjectile_throwIce@l
+    mtctr r3
+    bctr
 
-    //* ------ End extra types ------
-
-    blr
+ThrowProjectileASM_return:
+    RestoreVolatileRegisters
+    b Player_throwProjectile_return
 
 .global AllowThrowingProjectile
 AllowThrowingProjectile:
     // If comparison is true we will continue to throw
+    // Fire and Penguin is already checked
 
     // Ice flower
     cmpwi r0, 6
@@ -331,200 +353,54 @@ AllowThrowingProjectile:
 
     blr
 
-.global ProjectileExtraTypes
-ProjectileExtraTypes:
-    // If comparison is true we will throw a fireball (or the hijacked equivalent)
-
-    //* Fire Flower
+.global HasLessThan6OldProjectiles
+HasLessThan6OldProjectiles:
+    // Fire flower
     cmpwi r0, 2
-    beqlr
+    beq HasLessThan6OldProjectiles_Continue
 
     //* ------ Begin extra types ------
 
     // Hammer Suit
     cmpwi r0, 9
-    beqlr
+    beq HasLessThan6OldProjectiles_ReturnTrue
 
     //* ------ End extra types ------
 
+HasLessThan6OldProjectiles_Continue:
+    lis   r3, Player_hasLessThan6OldProjectiles_continue@ha
+    addi  r3, r3, Player_hasLessThan6OldProjectiles_continue@l
+    mtctr r3
+    bctr
+
+HasLessThan6OldProjectiles_ReturnTrue:
+    li r3, 1
     blr
 
-.global ProjectileSelectSFX
-ProjectileSelectSFX:
-    // r0 = powerupState
-    // r4 = const char* sfxName
-    mr r7, r0
-
-    SaveVolatileRegisters
-    
-    //* Fire Flower
-    cmpwi r7, 2
-    beq ProjectileSelectSFX_Go
+.global HasLessThan2NewProjectiles
+HasLessThan2NewProjectiles:
+    // Fire flower
+    cmpwi r0, 2
+    beq HasLessThan2NewProjectiles_Continue
 
     //* ------ Begin extra types ------
 
     // Hammer Suit
-    cmpwi r7, 9
-    beq ProjectileSelectSFX_None
+    cmpwi r0, 9
+    beq HasLessThan2NewProjectiles_CheckProjectileLimit
 
     //* ------ End extra types ------
 
-ProjectileSelectSFX_Go:
-    bl playSfx__6PlayerFPCcUi
+HasLessThan2NewProjectiles_Continue:
+    lis   r3, Player_hasLessThan2NewProjectiles_continue@ha
+    addi  r3, r3, Player_hasLessThan2NewProjectiles_continue@l
+    mtctr r3
+    bctr
 
-ProjectileSelectSFX_None:
-    RestoreVolatileRegisters
-
-    blr
-
-.global ShouldThrowProjectile
-ShouldThrowProjectile: // Custom version of Player::shouldThrowProjectile
-    lis       r12, sInstance__18ActorGlobalsHolder@ha
-    lwz       r0, 0x500(r3)
-
-    cmpwi     r0, 2
-    beq       ShouldThrowProjectileIsFire
-
-    //* ------ Begin extra types ------
-
-    // Hammer Suit
-    cmpwi     r0, 9
-    beq       ShouldThrowProjectileIsFire // should shoot
-
-    //* ------ End extra types ------
-
-    b         ShouldThrowProjectileIsNotFire // should not shoot
-
-.global ShouldThrowProjectile_2
-ShouldThrowProjectile_2:
-    lis       r12, sInstance__18ActorGlobalsHolder@ha
-    lwz       r0, 0x500(r3)
-
-    cmpwi     r0, 2
-    beq       ShouldThrowProjectile_2IsFire
-
-    //* ------ Begin extra types ------
-
-    // Hammer Suit
-    cmpwi     r0, 9
-    beq       ShouldThrowProjectile_2IsFire // should shoot
-
-    //* ------ End extra types ------
-
-    b         ShouldThrowProjectile_2NotFire // should not shoot
-
-ShouldThrowProjectileIsFire:
-    mr        r10, r0
-    SaveVolatileRegisters
-    mr        r4, r10
-    bl        CheckProjectileSpawnLimits
-    cmpwi     r3, 0
-    beq       DontShoot
-    RestoreVolatileRegisters
-
-    cmpwi     r4, 0
-    bne       ShouldThrowProjectileReturn1
-    lbz       r10, 0x54(r3)
-    lwz       r12, sInstance__18ActorGlobalsHolder@l(r12)
-    extsb     r10, r10
-    cmplwi    r10, 4
-    addi      r11, r12, 0x64
-    bge       ShouldThrowProjectilePreReturn1
-    slwi      r12, r10, 3
-    add       r11, r11, r12
-ShouldThrowProjectilePreReturn1:
-    lwz       r0, 4(r11)
-    cmpwi     r0, 2
-    blt       ShouldThrowProjectileReturn1
-ShouldThrowProjectileReturn0:
-    li        r3, 0
-    blr
-ShouldThrowProjectileIsNotFire:
-    cmpwi     r0, 5
-    beq       ShouldThrowProjectileIsNotIce
-    cmpwi     r0, 6
-    bne       ShouldThrowProjectileReturn0
-ShouldThrowProjectileIsNotIce:
-    cmpwi     r4, 0
-    bne       ShouldThrowProjectileReturn1
-    lbz       r0, 0x54(r3)
-    lwz       r12, sInstance__18ActorGlobalsHolder@l(r11)
-    extsb     r0, r0
-    cmplwi    r0, 4
-    addi      r12, r12, 0x84
-    bge       ShouldThrowProjectilePreReturn0
-    slwi      r0, r0, 3
-    add       r12, r12, r0
-ShouldThrowProjectilePreReturn0:
-    lwz       r11, 4(r12)
-    cmpwi     r11, 2
-    bge       ShouldThrowProjectileReturn0
-ShouldThrowProjectileReturn1:
-    li        r3, 1
-    blr
-
-ShouldThrowProjectile_2IsFire:
-    SaveVolatileRegisters
-    mr        r4, r0
-    bl        CheckProjectileSpawnLimits
-    cmpwi     r3, 0
-    beq       DontShoot
-    RestoreVolatileRegisters
-
-    lbz       r11, 0x54(r3)
-    lwz       r12, sInstance__18ActorGlobalsHolder@l(r12)
-    extsb     r11, r11
-    cmplwi    r11, 4
-    addi      r12, r12, 0x64
-    bge       ShouldThrowProjectile_2PreReturn1
-    slwi      r0, r11, 3
-    add       r12, r12, r0
-ShouldThrowProjectile_2PreReturn1:
-    lwz       r11, 0(r12)
-    cmpwi     r11, 6
-    blt       ShouldThrowProjectileReturn1
-ShouldThrowProjectile_2NotFire:
-    cmpwi     r0, 5
-    beq       ShouldThrowProjectile_2NotIce
-    cmpwi     r0, 6
-    bne       ShouldThrowProjectileReturn0
-ShouldThrowProjectile_2NotIce:
-    lbz       r0, 0x54(r3)
-    lwz       r12, sInstance__18ActorGlobalsHolder@l(r12)
-    extsb     r0, r0
-    cmplwi    r0, 4
-    addi      r11, r12, 0x84
-    bge       ShouldThrowProjectile_2PreReturn0
-    slwi      r12, r0, 3
-    add       r11, r11, r12
-ShouldThrowProjectile_2PreReturn0:
-    lwz       r0, 0(r11)
-    cmpwi     r0, 6
-    bge       ShouldThrowProjectileReturn0
-
-DontShoot:
-    RestoreVolatileRegisters
-    li        r3, 0
-    blr
-
-.global ProjectileProfileIDs
-ProjectileProfileIDs:
-    // Load powerup state
-    lwz r3, 0x500(r30)
-
-    //* ------ Begin extra types ------
-
-    // Hammer Suit
-    cmpwi r3, 9
-    li r3, 758 // hammer
-    beq SpawnProjectile
-
-    //* ------ End extra types ------
-
-    // Otherwise fire
-    li r3, 0x1DC
-SpawnProjectile:
-    b get__7ProfileSFUi
+HasLessThan2NewProjectiles_CheckProjectileLimit:
+    // r3 is already Player*
+    mr r4, r0
+    b CheckProjectileSpawnLimits
 
 .global ProjectileParentID
 ProjectileParentID:
@@ -541,17 +417,17 @@ UseCustomPowerupCenterOffsetTable:
 
     blr
 
-.global UseCustomArray_1016CD68
-UseCustomArray_1016CD68:
-    lis r0, ARRAY_1016CD68@h
-    ori r0, r0, ARRAY_1016CD68@l
-    blr
-
 .global UseCustomBlahTableOffsets
 UseCustomBlahTableOffsets:
     lis r0, PowerupBlahTableOffsets@h
     ori r0, r0, PowerupBlahTableOffsets@l
     b Player_vfA5C_continue
+
+.global UseCustomArray_1016CD68
+UseCustomArray_1016CD68:
+    lis r0, ARRAY_1016CD68@h
+    ori r0, r0, ARRAY_1016CD68@l
+    blr
 
 .global UseCustomPowerupSwitchTexAnimArray1
 UseCustomPowerupSwitchTexAnimArray1:

@@ -27,9 +27,9 @@ public:
         Acorn,
         PAcorn,
 
-        NumOrignal = 9,
+        NumOriginal = 9,
 
-        Hammer = NumOrignal,
+        Hammer = NumOriginal,
 
         Num
     );
