@@ -113,7 +113,9 @@ public:
         Small,
         Propeller,
         Penguin,
-        Squirrel
+        Squirrel,
+
+        NumOriginal = 5
     );
 
 public:
@@ -126,8 +128,8 @@ public:
     
     void changePowerup(u32 powerupState); // Uses PlayerBase enum
 
-    ModelWrapper* bodyModels[5];
-    ModelWrapper* headModels[5];
+    ModelWrapper* bodyModels[PowerupModel::NumOriginal];
+    ModelWrapper* headModels[PowerupModel::NumOriginal];
     PlayerModel::ResInfo* resInfo;
     u8 _11C[0x120 - 0x11C]; //? unknown values
     PlayerModel::PowerupModel::__type__ prevPowerupModel;

@@ -1,6 +1,7 @@
 #include "game/actor/stage/player.h"
 #include "game/actor/stage/multistateactor.h"
 #include "game/actor/actormgr.h"
+#include "game/graphics/model/charactermodel.h"
 #include "log.h"
 
 f32 PowerupCenterOffsetTable[PlayerBase::PowerupState::Num] = {
@@ -76,44 +77,50 @@ u32 ARRAY_101750A4[PlayerBase::PowerupState::Num] = {
     2                               // Hammer Suit
 };
 
-sead::SafeString PowerupSwitchTexAnimArray1[] = {
+PlayerModel::PowerupModel::__type__ PlayerModelPowerupTable[PlayerBase::PowerupState::Num] = {
+    PlayerModel::PowerupModel::Small,       // Small
+    PlayerModel::PowerupModel::Normal,      // Big
+    PlayerModel::PowerupModel::Normal,      // Fire
+    PlayerModel::PowerupModel::Small,       // Mini
+    PlayerModel::PowerupModel::Propeller,   // Propeller
+    PlayerModel::PowerupModel::Penguin,     // Penguin
+    PlayerModel::PowerupModel::Normal,      // Ice
+    PlayerModel::PowerupModel::Squirrel,    // Acorn
+    PlayerModel::PowerupModel::Squirrel,    // PAcorn
+    //* Begin custom entries
+    PlayerModel::PowerupModel::Normal       // Hammer Suit
+};
+
+sead::SafeString PowerupSwitchTexAnimArray1[PlayerModel::PowerupModel::NumOriginal] = {
     "PH_switch",
     "PH_switch",
     "PH_switch",
     "PH_switch",
     "MMH_model_switch",
-    
-    "PH_switch",
 };
 
-sead::SafeString PowerupSwitchTexAnimArray2[] = {
+sead::SafeString PowerupSwitchTexAnimArray2[PlayerModel::PowerupModel::NumOriginal] = {
     "PB_switch",
     "PB_switch",
     "PB_switch",
     "PB_switch",
     "MMB_model_switch",
-
-    "PB_switch",
 };
 
-sead::SafeString PowerupSwitchTexAnimArray3[] = {
+sead::SafeString PowerupSwitchTexAnimArray3[PlayerModel::PowerupModel::NumOriginal] = {
     "PH_switch",
     "PH_switch",
     "PH_switch",
     "PH_switch",
     "MLH_model_switch",
-
-    "PH_switch",
 };
 
-sead::SafeString PowerupSwitchTexAnimArray4[] = {
+sead::SafeString PowerupSwitchTexAnimArray4[PlayerModel::PowerupModel::NumOriginal] = {
     "PB_switch",
     "PB_switch",
     "PB_switch",
     "PB_switch",
     "MLB_model_switch",
-
-    "PB_switch",
 };
 
 extern "C" PlayerBase::TallType::__type__ UseCustomPowerupTallTypeTable(Player*, PlayerBase::PowerupState::__type__ powerupState) {
@@ -179,7 +186,6 @@ extern "C" const char* PowerupChangeSoundEffect(void* _this) {
             return "SE_PLY_CHANGE_MAME";
         if (v2 > PlayerBase::PowerupState::Acorn)
             return "SE_PLY_CHANGE_SMALL";
-
         if (v1 == PlayerBase::PowerupState::Fire)
             return "SE_PLY_CHANGE_BIG";
         if (v1 < PlayerBase::PowerupState::Propeller)
@@ -190,7 +196,7 @@ extern "C" const char* PowerupChangeSoundEffect(void* _this) {
                 "SE_PLY_CHANGE_PNGN",   // Penguin
                 "SE_PLY_CHANGE_BIG",    // Ice Flower
                 "SE_PLY_CHANGE_MSSB",   // Acorn
-                "SE_PLY_CHANGE_P_MSSB", // P-Acorn
+                "SE_PLY_CHANGE_P_MSSB", // PAcorn
             };
 
             return strArr[v1 - PlayerBase::PowerupState::Propeller];
@@ -451,6 +457,12 @@ UseCustomPowerupSwitchTexAnimArray3:
 UseCustomPowerupSwitchTexAnimArray4:
     lis r10, PowerupSwitchTexAnimArray4@ha
     addi r10, r10, PowerupSwitchTexAnimArray4@l
+    blr
+
+.global UseCustomPowerupModelTable
+UseCustomPowerupModelTable:
+    addis r12, r11, PlayerModelPowerupTable@ha
+    lwz r4, PlayerModelPowerupTable@l(r12)
     blr
 
 ASM_END

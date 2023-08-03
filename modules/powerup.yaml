@@ -32,6 +32,10 @@ Hooks:
     func: UseCustomPowerupSwitchTexAnimArray1
   - type: branch
     instr: bl
+    addr: "0x296d5ac"
+    func: UseCustomPowerupSwitchTexAnimArray1
+  - type: branch
+    instr: bl
     addr: "0x296D5BC"
     func: UseCustomPowerupSwitchTexAnimArray3
   - type: branch
@@ -42,6 +46,10 @@ Hooks:
     instr: bl
     addr: "0x296D618"
     func: UseCustomPowerupSwitchTexAnimArray4
+  - type: branch
+    instr: bl
+    addr: "0x291a9a8"
+    func: UseCustomPowerupModelTable
 
 # Patch checks
   # Check if we should give new powerup
@@ -79,7 +87,7 @@ Hooks:
     addr: "0x293adb8" # Player::throwProjectile
     func: ProjectileParentID
 
-# Projectile patches
+# User patches
   # Hammer
   - type: branch
     instr: bl
