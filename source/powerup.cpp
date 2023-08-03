@@ -100,7 +100,7 @@ f32 ARRAY_1016D7F8[PlayerBase::PowerupState::Num] = {
     0.6f,                           // Acorn
     0.6f,                           // PAcorn
     //* Begin custom entries
-    1.0f                            // Hammer Suit
+    1.0f                            // Hammer Suit (Unknown)
 };
 
 u32 ARRAY_101750A4[PlayerBase::PowerupState::Num] = {
@@ -226,7 +226,7 @@ extern "C" const char* PowerupChangeSoundEffect(void* _this) {
         if (v1 < PlayerBase::PowerupState::Propeller)
             return "SE_PLY_CHANGE_SMALL";
         if (v1 < (PlayerBase::PowerupState::Big | PlayerBase::PowerupState::PAcorn)) {
-            static const char* const strarr[] = {
+            static const char* const strArr[] = {
                 "SE_PLY_CHANGE_PRPL",   // Propeller
                 "SE_PLY_CHANGE_PNGN",   // Penguin
                 "SE_PLY_CHANGE_BIG",    // Ice Flower
@@ -234,10 +234,10 @@ extern "C" const char* PowerupChangeSoundEffect(void* _this) {
                 "SE_PLY_CHANGE_P_MSSB", // P-Acorn
             };
 
-            return strarr[v1 - PlayerBase::PowerupState::Propeller];
+            return strArr[v1 - PlayerBase::PowerupState::Propeller];
         }
 
-        // Custom powerups
+        //* Custom powerups
         if (v1 > PlayerBase::PowerupState::PAcorn && v1 < PlayerBase::PowerupState::Num)
             return "SE_PLY_CHANGE_BIG";
 
@@ -253,7 +253,7 @@ extern "C" const char* PowerupChangeSoundEffect(void* _this) {
     if (v1 == PlayerBase::PowerupState::PAcorn)
         return "SE_PLY_CHANGE_P_MSSB";
 
-    // Custom powerups
+    //* Custom powerups
     if (v1 > PlayerBase::PowerupState::PAcorn && v1 < PlayerBase::PowerupState::Num)
         return "SE_PLY_CHANGE_BIG";
 
@@ -607,68 +607,10 @@ UseCustomArray_1016D7F8:
     blr
 
 .global UseCustomBlahTableOffsets
-UseCustomBlahTableOffsets: // Custom version of Player::vfA5C
-    lwz       r7, 0x2750(r3)
-    lwz       r12, 0x500(r3)
-    lis       r0, PowerupBlahTableOffsets@h
-    lwz       r10, 0xC4(r7)
-    slwi      r11, r12, 2
-    ori       r0, r0, PowerupBlahTableOffsets@l
-    clrlwi.   r8, r10, 31
-    lwzx      r0, r11, r0
-    beq       LAB_292EAB8
-    cmplwi    r12, 0
-    beq       LAB_292EAA8
-    cmplwi    r12, 3
-    bne       LAB_292EAB0
-    li        r0, 4
-    b         LAB_292EB34
-LAB_292EAA8:
-    li        r0, 5
-    b         LAB_292EB34
-LAB_292EAB0:
-    li        r0, 6
-    b         LAB_292EB34
-LAB_292EAB8:
-    lwz       r11, 0xC4(r7)
-    extrwi.   r6, r11, 1, 27
-    beq       LAB_292EAE4
-    cmplwi    r12, 0
-    beq       LAB_292EADC
-    cmplwi    r12, 3
-    beq       LAB_292EB34
-    li        r0, 8
-    b         LAB_292EB34
-LAB_292EADC:
-    li        r0, 7
-    b         LAB_292EB34
-LAB_292EAE4:
-    lwz       r9, 0x49C(r3)
-    extrwi.   r10, r9, 1, 28
-    beq       LAB_292EAF8
-    li        r0, 0xB
-    b         LAB_292EB34
-LAB_292EAF8:
-    lwz       r6, 0x494(r3)
-    extrwi.   r7, r6, 1, 1
-    beq       LAB_292EB0C
-    li        r0, 0xC
-    b         LAB_292EB34
-LAB_292EB0C:
-    lwz       r9, 0x498(r3)
-    extrwi.   r11, r9, 1, 11
-    beq       LAB_292EB34
-    cmplwi    r12, 0
-    beq       LAB_292EB30
-    cmplwi    r12, 3
-    beq       LAB_292EB34
-    li        r0, 0xA
-    b         LAB_292EB34
-LAB_292EB30:
-    li        r0, 9
-LAB_292EB34:
-    mr        r3, r0
-    blr
+UseCustomBlahTableOffsets:
+    lis r0, PowerupBlahTableOffsets@h
+    ori r0, r0, PowerupBlahTableOffsets@l
+    b Player_vfA5C_continue
 
 .global UseCustomPowerupSwitchTexAnimArray1
 UseCustomPowerupSwitchTexAnimArray1:

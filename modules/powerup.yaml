@@ -13,7 +13,7 @@ Hooks:
     func: UseCustomPowerupTallTypeTable
   - type: branch
     instr: b
-    addr: "0x292EA6C"
+    addr: "0x292ea80"
     func: UseCustomBlahTableOffsets
   - type: branch
     instr: bl

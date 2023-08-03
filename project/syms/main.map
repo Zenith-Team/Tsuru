@@ -1210,6 +1210,7 @@
     throwProjectile__6Player__PowerupStateNotFire = 0x293AE28;
     FUN_0293b080__6Player__IsProjectilePowerup = 0x293B198;
     playSfx__6PlayerFPCcUi = 0x290b9a4;
+    Player_vfA5C_continue = 0x0292ea84;
 
 # PlayerInput
     isUpHeld__11PlayerInputCFv = 0x2916114;
