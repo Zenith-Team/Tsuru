@@ -184,7 +184,7 @@ extern "C" const char* PowerupChangeSoundEffect(void* _this) {
             return "SE_PLY_CHANGE_BIG";
         if (v1 < PlayerBase::PowerupState::Propeller)
             return "SE_PLY_CHANGE_SMALL";
-        if (v1 < (PlayerBase::PowerupState::Big | PlayerBase::PowerupState::PAcorn)) {
+        if (v1 < PlayerBase::PowerupState::NumOrignal) {
             static const char* const strArr[] = {
                 "SE_PLY_CHANGE_PRPL",   // Propeller
                 "SE_PLY_CHANGE_PNGN",   // Penguin

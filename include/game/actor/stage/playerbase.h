@@ -26,7 +26,10 @@ public:
         Ice,
         Acorn,
         PAcorn,
-        Hammer,
+
+        NumOrignal = 9,
+
+        Hammer = NumOrignal,
 
         Num
     );
