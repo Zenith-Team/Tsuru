@@ -229,6 +229,29 @@ extern "C" const char* PowerupChangeSoundEffect(void* _this) {
     return "SE_PLY_CHANGE_BIG";
 }
 
+extern "C" bool CheckProjectileSpawnLimits(Player* _this, PlayerBase::PowerupState::__type__ powerup) {
+    switch (powerup) {
+        case PlayerBase::PowerupState::Hammer: {
+            u32 myHammerCount = 0;
+
+            for (Actor** i = ActorMgr::instance()->actors.start.buffer; i < ActorMgr::instance()->actors.end.buffer; i++) {
+                if ((*i) != nullptr && (*i)->getProfileID() == ProfileID::Hammer) {
+                    u32 parentActorID = *(u32*)(((u32)(*i))+0x2E60); // Hammer::parentActorID
+                    Actor* parent = ActorMgr::instance()->actors.findActorByID(parentActorID);
+
+                    if (parent == _this)
+                        myHammerCount++;
+                }
+            }
+
+            if (myHammerCount >= 2)
+                return false;
+        }
+
+        default: return true;
+    }
+}
+
 extern "C" void* HammerShootInit(StageActor* _this) {
     u32 parentActorID = *(u32*)(((u32)_this)+0x2E60); // Hammer::parentActorID
     StageActor* parent = static_cast<StageActor*>(ActorMgr::instance()->actors.findActorByID(parentActorID));
@@ -401,6 +424,14 @@ ShouldThrowProjectile_2:
     b         ShouldThrowProjectile_2NotFire // should not shoot
 
 ShouldThrowProjectileIsFire:
+    mr        r10, r0
+    SaveVolatileRegisters
+    mr        r4, r10
+    bl        CheckProjectileSpawnLimits
+    cmpwi     r3, 0
+    beq       DontShoot
+    RestoreVolatileRegisters
+
     cmpwi     r4, 0
     bne       ShouldThrowProjectileReturn1
     lbz       r10, 0x54(r3)
@@ -443,6 +474,13 @@ ShouldThrowProjectileReturn1:
     blr
 
 ShouldThrowProjectile_2IsFire:
+    SaveVolatileRegisters
+    mr        r4, r0
+    bl        CheckProjectileSpawnLimits
+    cmpwi     r3, 0
+    beq       DontShoot
+    RestoreVolatileRegisters
+
     lbz       r11, 0x54(r3)
     lwz       r12, sInstance__18ActorGlobalsHolder@l(r12)
     extsb     r11, r11
@@ -473,6 +511,11 @@ ShouldThrowProjectile_2PreReturn0:
     lwz       r0, 0(r11)
     cmpwi     r0, 6
     bge       ShouldThrowProjectileReturn0
+
+DontShoot:
+    RestoreVolatileRegisters
+    li        r3, 0
+    blr
 
 .global ProjectileProfileIDs
 ProjectileProfileIDs:
