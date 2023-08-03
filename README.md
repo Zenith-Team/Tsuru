@@ -1,4 +1,4 @@
-# <img src="https://media.discordapp.net/attachments/804348227482419230/901215136302395535/tsuru3_small.png" width="64"> Tsuru
+# <img src="https://media.discordapp.net/attachments/804348227482419230/901215136302395535/tsuru3_small.png" width="64"> [Tsuru](https://github.com/Zenith-Team/Tsuru)
 
 **A platform for NSMBU custom code**
 
