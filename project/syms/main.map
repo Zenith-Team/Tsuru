@@ -1254,6 +1254,7 @@
 
 # Powerup
     RTTI__7Powerup = 0x101EAD38;
+    StateID_PowerupState2__7Powerup = 0x1020ac70;
     __ct__7PowerupFPC14ActorBuildInfo = 0x251EBFC;
     __dt__7PowerupFv = 0x251FE04;
     checkDerivedRuntimeTypeInfo__7PowerupCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x251FC68;

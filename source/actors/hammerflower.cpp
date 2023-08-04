@@ -54,27 +54,40 @@ u32 HammerFlower::onExecute() {
 }
 
 void HammerFlower::vf18C() {
-    this->model->playSklAnim("wait");
+    this->doStateChange(&Powerup::StateID_PowerupState2);
 }
 
 void HammerFlower::playBlockReleaseUpAnim() {
-    this->model->playSklAnim("out", 1);
+    this->model->playSklAnim("out", 0);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(false);
+    this->_1810 = 1;
 }
 
 void HammerFlower::playBlockReleaseDownAnim() {
-    this->model->playSklAnim("out3", 3);
+    this->model->playSklAnim("out3", 0);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(false);
+    this->_1810 = 3;
 }
 
 void HammerFlower::playIdleAnim() {
-    this->model->playSklAnim("wait", 4);
+    if (this->_1810 == 4)
+        return;
+
+    this->model->playSklAnim("wait", 0);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(true);
+    this->_1810 = 4;
 }
 
 void HammerFlower::playFloatAnim() {
-    this->model->playSklAnim("wait2", 5);
+    this->model->playSklAnim("wait2", 0);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(true);
+    this->_1810 = 5;
 }
 
 void HammerFlower::vf1B4() {
-    this->model->playSklAnim("out2", 2);
+    this->model->playSklAnim("out2", 0);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(true);
+    this->_1810 = 2;
 }
 
 u32 HammerFlower::vf1C4() {
@@ -87,7 +100,7 @@ u32 HammerFlower::vf1C4() {
 }
 
 void HammerFlower::vf1FC() {
-    this->model->playSklAnim("wait");
+    this->doStateChange(&Powerup::StateID_PowerupState2);
 }
 
 class HammerBlock : public BlockWrapper {
