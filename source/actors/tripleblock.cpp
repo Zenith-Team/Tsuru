@@ -27,8 +27,8 @@ public:
     void beginState_Used() override;
 };
 
-PROFILE_RESOURCES(ProfileID::TripleBlock, Profile::LoadResourcesAt::Course, "blocktripa", "blocktripb", "blocktripc");
 REGISTER_PROFILE(TripleBlock, ProfileID::TripleBlock);
+PROFILE_RESOURCES(ProfileID::TripleBlock, Profile::LoadResourcesAt::Course, "blocktripa", "blocktripb", "blocktripc");
 
 TripleBlock::TripleBlock(const ActorBuildInfo* buildInfo)
     : BlockWrapper(buildInfo)
@@ -47,7 +47,6 @@ u32 TripleBlock::onCreate() {
         this->model = ModelWrapper::create("blocktripb", "block_stch", 0, 1);
         this->model->playTexPatternAnim("chika");
     }  else if (this->modelType >= 2) {
-        
         this->model = ModelWrapper::create("blocktripc", "block_stch", 0, 2);
         if (this->modelType == 2) {
             this->model->playTexPatternAnim("yougan");
@@ -55,7 +54,6 @@ u32 TripleBlock::onCreate() {
             this->model->playTexPatternAnim("yougan2");
         }
     } else {
-
         this->model = ModelWrapper::create("blocktripa", "block_stch", 0, 1);
         this->model->playTexPatternAnim("standard");
     }
@@ -65,8 +63,8 @@ u32 TripleBlock::onCreate() {
     this->rectCollider.points[2].x += 16.0f;
     this->rectCollider.points[3].x -= 16.0f;
 
-    if (BlockWrapper::stateType == StateType::UsedBlock) {
-        doStateChange(&TripleBlock::StateID_Used);
+    if (this->stateType == BlockWrapper::StateType::UsedBlock) {
+        this->doStateChange(&TripleBlock::StateID_Used);
     }
 
     return this->onExecute();

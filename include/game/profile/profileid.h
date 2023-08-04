@@ -296,6 +296,8 @@ ENUM_CLASS(ProfileID,
     Solid,
     UniversalMovementController,
     TimeChanger,
+    HammerFlower,
+    HammerBlock,
 
     Num
 );

@@ -1281,6 +1281,8 @@
     vf29C__7PowerupFv = 0x251FDEC;
     vf2A4__7PowerupFv = 0x251FDF0;
     vf2AC__7PowerupFv = 0x251EC6C;
+    vf18C__7PowerupFv = 0x251fc34;
+    vf1FC__7PowerupFv = 0x251fc64;
 
 # PowerupBase
     setupActor__11PowerupBaseFv = 0x2517F90;

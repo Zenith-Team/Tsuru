@@ -227,7 +227,7 @@ void MusicNote::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
 
             ActorBuildInfo buildInfo = { 0 };
 
-            buildInfo.settings1 = 100663296;
+            buildInfo.settings1 = 0x6000000; // nybble 6 = reward spawn
 
             switch (self->mgr->powerup) {
                 case 1: { // fire flower

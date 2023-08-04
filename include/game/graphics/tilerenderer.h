@@ -12,8 +12,7 @@
 #include "agl/indexstream.h"
 #include "agl/texturesampler.h"
 #include "agl/shaderprogram.h"
-#include "agl/rendertargetcolor.h"
-#include "agl/rendertargetdepth.h"
+#include "agl/rendertarget.h"
 #include "agl/renderbuffer.h"
 
 class TileRenderer { // Size: 0x12AFC
