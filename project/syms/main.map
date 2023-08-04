@@ -1203,6 +1203,7 @@
 
 # PlayerBase
     RTTI__10PlayerBase = 0x101e9cd0;
+    onCreate__10PlayerBaseFv = 0x28f2e78;
 
 # Player
     RTTI__6Player = 0x101e9ca0;

@@ -15,6 +15,7 @@ Files:
   - profileres.cpp
   - cafe/gfd.cpp
   - inputcontrollers.cpp
+  - playeradditionalresource.cpp
 Hooks:
 # Embed crash fix into the RPX
   - type: patch
@@ -103,3 +104,9 @@ Hooks:
     instr: b
     addr: "0x2875444"
     func: CastleSwingUpdateModel
+
+# Init player additional resource class
+  - type: branch
+    instr: bl
+    addr: "0x2923EE0"
+    func: InitPlayerAdditionalResource

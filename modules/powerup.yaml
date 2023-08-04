@@ -1,6 +1,7 @@
 ---
 Files:
   - powerup.cpp
+  - custompowerupmodel.cpp
 Hooks:
 # Table extensions
   - type: branch
@@ -86,6 +87,12 @@ Hooks:
     instr: bl
     addr: "0x293adb8" # Player::throwProjectile
     func: ProjectileParentID
+
+# Model
+  - type: branch
+    instr: b
+    addr: "0x2923FE4" # Player::onDraw()
+    func: DrawCustomPowerupModel
 
 # User patches
   # Hammer
