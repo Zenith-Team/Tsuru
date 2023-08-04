@@ -1,6 +1,6 @@
 #include "tsuru/custompowerupmodel.h"
 #include "tsuru/playeradditionalresource.h"
-#include "game/actor/stage/player.h"\
+#include "game/actor/stage/player.h"
 
 CustomPowerupModel::CustomPowerupModel()
     : headBoneID(-1)

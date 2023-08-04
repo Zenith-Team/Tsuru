@@ -22,7 +22,8 @@ public:
     void vf1FC() override;
 };
 
-REGISTER_PROFILE(PAcorn, ProfileID::PAcorn, "PAcorn", nullptr, 16406);
+const ActorInfo PAcornActorInfo = { 0, 0, 0x20, 0x200, 0x200, 0x400, 0x400, 0 };
+REGISTER_PROFILE(PAcorn, ProfileID::PAcorn, "PAcorn", &PAcornActorInfo, 16406);
 PROFILE_RESOURCES(ProfileID::PAcorn, Profile::LoadResourcesAt::Course, "I_musasabi");
 
 PAcorn::PAcorn(const ActorBuildInfo* buildInfo)

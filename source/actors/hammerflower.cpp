@@ -24,7 +24,8 @@ public:
     void vf1FC() override;
 };
 
-REGISTER_PROFILE(HammerFlower, ProfileID::HammerFlower, "HammerFlower", nullptr, 16406);
+const ActorInfo HammerFlowerActorInfo = { 0, 0, 0x20, 0x200, 0x200, 0x400, 0x400, 0 };
+REGISTER_PROFILE(HammerFlower, ProfileID::HammerFlower, "HammerFlower", &HammerFlowerActorInfo, 16406);
 
 HammerFlower::HammerFlower(const ActorBuildInfo* buildInfo)
     : Powerup(buildInfo)
@@ -120,7 +121,6 @@ u32 HammerBlock::onCreate() {
     }
 
     this->position.x += 8;
-    this->position.y -= 8;
 
     if (this->stateType == BlockWrapper::StateType::UsedBlock) {
         this->doStateChange(&HammerBlock::StateID_Used);
@@ -130,10 +130,10 @@ u32 HammerBlock::onCreate() {
 }
 
 u32 HammerBlock::onDraw() {
-    if (this->stateType == BlockWrapper::StateType::UsedBlock) {
-        DrawMgr::instance()->drawTile(40, this->position, 0, 1.0f);
+    if (this->states.currentState()->isEqual(HammerBlock::StateID_Used)) {
+        DrawMgr::instance()->drawTile(50, this->position + Vec3f(0.0f, 8.0f, 0.0f), 0, 1.0f);
     } else {
-        DrawMgr::instance()->drawTile(28, this->position, 0, 1.0f);
+        DrawMgr::instance()->drawTile(49, this->position + Vec3f(0.0f, 8.0f, 0.0f), 0, 1.0f);
     }
     
     return 1;
