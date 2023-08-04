@@ -417,9 +417,10 @@ ProjectileParentID:
 
 .global UseCustomPowerupCenterOffsetTable
 UseCustomPowerupCenterOffsetTable:
-    lis r11, PowerupCenterOffsetTable@ha
-    addi r11, r11, PowerupCenterOffsetTable@l
-    subi r11, r11, 0x4
+    lis r9, PowerupCenterOffsetTable@ha
+    addi r9, r9, PowerupCenterOffsetTable@l
+
+    lfsx f12, r12, r9
 
     blr
 

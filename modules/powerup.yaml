@@ -5,7 +5,7 @@ Hooks:
 # Table extensions
   - type: branch
     instr: bl
-    addr: "0x2924CC8"
+    addr: "0x2924d0c"
     func: UseCustomPowerupCenterOffsetTable
   - type: branch
     instr: b
