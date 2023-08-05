@@ -251,7 +251,7 @@ extern "C" bool CheckProjectileSpawnLimits(Player* _this, PlayerBase::PowerupSta
 extern "C" bool PlayerThrowProjectile(PlayerBase::PowerupState::__type__ powerup, ActorBuildInfo* projectile, Player* player) {
     if (powerup == PlayerBase::PowerupState::Hammer) {
         projectile->profile = Profile::get(ProfileID::Hammer);
-        projectile->settings1 = player->_2A00;
+        projectile->settings1 = player->_2A00; // Spawn direction
         return true;
     }
 
