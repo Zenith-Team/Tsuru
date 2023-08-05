@@ -24,8 +24,9 @@ public:
     void vf1FC() override;
 };
 
-const ActorInfo HammerFlowerActorInfo = { 0, 0, 0x20, 0x200, 0x200, 0x400, 0x400, 0 };
-REGISTER_PROFILE(HammerFlower, ProfileID::HammerFlower, "HammerFlower", &HammerFlowerActorInfo, 16406);
+const ActorInfo HammerFlowerActorInfo = { Vec2i(8, -16), Vec2i(0x0, 0x10), Vec2i(0x20, 0x20), 0x200, 0x200, 0x400, 0x400, 0 };
+REGISTER_PROFILE(HammerFlower, ProfileID::HammerFlower, "HammerFlower", &HammerFlowerActorInfo, 0x4016);
+PROFILE_RESOURCES(ProfileID::HammerFlower, Profile::LoadResourcesAt::Course, "I_hmrflower");
 
 HammerFlower::HammerFlower(const ActorBuildInfo* buildInfo)
     : Powerup(buildInfo)
@@ -110,8 +111,7 @@ public:
     HammerBlock(const ActorBuildInfo* buildInfo);
     virtual ~HammerBlock() { }
 
-    u32 onCreate() override;\
-    u32 onDraw() override;
+    u32 onCreate() override;
 
     void spawnItemUp() override;
     void spawnItemDown() override;
@@ -121,7 +121,8 @@ public:
     void beginState_Used() override;
 };
 
-REGISTER_PROFILE(HammerBlock, ProfileID::HammerBlock);
+const ActorInfo HammerBlockActorInfo = { Vec2i(8, -16), Vec2i(8, -8), Vec2i(0x100, 0x100), 0x0, 0x0, 0x0, 0x0, 0x8 };
+REGISTER_PROFILE(HammerBlock, ProfileID::HammerBlock, "HammerBlock", &HammerBlockActorInfo, 0x1002);
 PROFILE_RESOURCES(ProfileID::HammerBlock, Profile::LoadResourcesAt::Course, "I_hmrflower");
 
 HammerBlock::HammerBlock(const ActorBuildInfo* buildInfo)
@@ -133,23 +134,13 @@ u32 HammerBlock::onCreate() {
         return 2;
     }
 
-    this->position.x += 8;
-
     if (this->stateType == BlockWrapper::StateType::UsedBlock) {
         this->doStateChange(&HammerBlock::StateID_Used);
     }
 
-    return this->onExecute();
-}
+    this->tileId = 49; // Question Block
 
-u32 HammerBlock::onDraw() {
-    if (this->states.currentState()->isEqual(HammerBlock::StateID_Used)) {
-        DrawMgr::instance()->drawTile(50, this->position + Vec3f(0.0f, 8.0f, 0.0f), 0, 1.0f);
-    } else {
-        DrawMgr::instance()->drawTile(49, this->position + Vec3f(0.0f, 8.0f, 0.0f), 0, 1.0f);
-    }
-    
-    return 1;
+    return this->onExecute();
 }
 
 void HammerBlock::spawnItemUp() {
@@ -178,5 +169,6 @@ void HammerBlock::spawnHammer(bool down) {
 
 void HammerBlock::beginState_Used() {
     this->_1AAE = 0;
+    this->tileId = 50; // Used Block
     BlockWrapper::beginState_Used();
 }
