@@ -63,6 +63,9 @@ Hooks:
     instr: b
     addr: "0x2975b90"
     func: PowerupChangeSoundEffect
+  # Disable powerup check for incremental powerups
+  - type: nop
+    addr: "0x251df84"
 
 # Throwing
   # Allow checking if we can throw projectile from custom type

@@ -248,9 +248,10 @@ extern "C" bool CheckProjectileSpawnLimits(Player* _this, PlayerBase::PowerupSta
     }
 }
 
-extern "C" bool PlayerThrowProjectile(PlayerBase::PowerupState::__type__ powerup, ActorBuildInfo* projectile) {
+extern "C" bool PlayerThrowProjectile(PlayerBase::PowerupState::__type__ powerup, ActorBuildInfo* projectile, Player* player) {
     if (powerup == PlayerBase::PowerupState::Hammer) {
         projectile->profile = Profile::get(ProfileID::Hammer);
+        projectile->settings1 = player->_2A00;
         return true;
     }
 
@@ -263,7 +264,6 @@ extern "C" void* HammerShootInit(StageActor* _this) {
 
     if (parentActorID != 0 && parent && parent->type == StageActor::Type::Player) {
         *(bool*)(((u32)_this)+0x2E2C) = true; // Hammer::readyToThrow
-        _this->settings1 = parent->direction == Direction::Left;
     }
 
     return _this;
@@ -282,7 +282,10 @@ extern "C" void HammerShootState(StateMgr* stateMgr, StateBase* state, StageActo
 
     if (parentActorID != 0 && parent && parent->type == StageActor::Type::Player) {
         YoshiEatData* eatData = *(YoshiEatData**)(((u32)hammer)+0x17E0); // Hammer::yoshiEatData
+        u32 playerDir = parent->direction;
+        parent->direction = hammer->settings1;
         eatData->vf4C(parent);
+        parent->direction = playerDir;
     } else {
         stateMgr->changeState(state);
     }
@@ -323,6 +326,7 @@ ThrowProjectileASM:
 
     mr r3, r0
     addi r4, r1, 0x3C
+    mr r5, r30
     SaveVolatileRegisters
     bl PlayerThrowProjectile
     cmpwi r3, 0
