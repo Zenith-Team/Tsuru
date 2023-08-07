@@ -22,6 +22,8 @@ EffectSpawner::EffectSpawner(const ActorBuildInfo* buildInfo)
 { }
 
 u32 EffectSpawner::onCreate() {
+    this->position.z += 60000.0f;
+
     return this->onExecute();
 }
 
