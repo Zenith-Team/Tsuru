@@ -32,9 +32,6 @@ typedef Quat<f32> Quatf;
 
 static_assert(sizeof(Quatf) == 0x10, "sead::Quat<T> size mismatch");
 
-template <>
-extern const Quat<f32> Quat<f32>::unit;
-
 }
 
 #include "sead/quatcalccommon.h"
