@@ -2,6 +2,35 @@
 #include "agl/shaderprogramarchive.h"
 #include "game/graphics/shaderholder.h"
 
+#include "sead/threadmgr.h"
+#include "agl/lyr/renderinfo.h"
+#include "log.h"
+
+ASM_BEGIN
+
+.include "macros.S"
+
+.global LayerFunc
+LayerFunc:
+    SaveVolatileRegisters
+    mr r3, r11
+    bl layerFunc__FPv
+    RestoreVolatileRegisters
+
+    lwz r0, 0x0(r11)
+    blr
+
+ASM_END
+
+void layerFunc(void* ptr)
+{
+    agl::lyr::RenderInfo* renderInfo = (agl::lyr::RenderInfo*)ptr;
+    s32 renderStep = renderInfo->renderStepIndex;
+
+    sead::Thread* thread = sead::ThreadMgr::instance()->getCurrentThread();
+    //PRINT(thread->getName().cstr(), " ", renderStep);
+}
+
 void uniformBlock(agl::UniformBlock* uniformBlock, void* buf, void* loc, u32 offs, u32 size)
 {
     //uniformBlock->dcbz();

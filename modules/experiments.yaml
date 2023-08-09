@@ -45,3 +45,7 @@ Hooks:
 #    instr: bl
 #    addr: "0x024f3244"
 #    func: shaderFunc__FPQ2_3agl13ShaderProgramQ2_3agl10ShaderMode
+#  - type: branch
+#    instr: bl
+#    addr: "0x024fcd00"
+#    func: LayerFunc
