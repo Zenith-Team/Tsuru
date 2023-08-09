@@ -52,19 +52,11 @@ Hooks:
 
 # Disable baphs
   - type: patch
-    addr: "0x0202b110"
-    data: "38600000" # li r3, 0
-  - type: patch
     addr: "0x0202b11c"
     data: "38600000" # li r3, 0
   - type: patch
     addr: "0x0202b128"
     data: "38600000" # li r3, 0
-  - type: patch
-    addr: "0x0202b0f8"
-    data: "38600000" # li r3, 0
-  - type: nop
-    addr: "0x0202b104"
 
 # Fix BG shake bug
   - type: patch
