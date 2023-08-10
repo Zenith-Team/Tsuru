@@ -2,7 +2,7 @@
 #include "game/graphics/model/modelnw.h"
 #include "game/actor/stage/stageactor.h"
 #include "game/level/leveltimer.h"
-#include "game/sound/sound.h"
+#include "game/audio/gameaudio.h"
 #include "log.h"
 
 class TimeClock : public StageActor {
@@ -65,7 +65,7 @@ void TimeClock::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
         Vec3f effectPos(self->position.x, self->position.y - 12.0f, 4500.0f);
         Effect::spawn(RP_FlagPass_1, &effectPos);
 
-        playSound(SoundEffects::SE_SYS_CONTINUE_DONE, self->position);
+        GameAudio::startSoundMap(SoundEffects::SE_SYS_CONTINUE_DONE, self->position);
 
         s16 time = self->settings1 & 0xFFF; // Nybbles 10-12
         if (self->settings1 >> 0x1C & 0xF /* Nybble 5 */)

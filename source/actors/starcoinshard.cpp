@@ -1,7 +1,7 @@
 #include "game/actor/stage/stageactor.h"
 #include "game/graphics/model/modelnw.h"
 #include "game/actor/actormgr.h"
-#include "game/sound/sound.h"
+#include "game/audio/gameaudio.h"
 #include "game/effect/effect.h"
 #include "log.h"
 
@@ -111,9 +111,9 @@ void StarCoinShard::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hc
         StarCoinShard* self = (StarCoinShard*)hcSelf->owner;
 
         if ((self->mgr->collectedCount + 1) >= (self->mgr->eventID1 & 0xF)) {
-            playSound(SoundEffects::SE_OBJ_GET_RED_COIN_COMPLETE, self->position);
+            GameAudio::startSoundMap(SoundEffects::SE_OBJ_GET_RED_COIN_COMPLETE, self->position);
         } else {
-            playSound((SoundEffects::IDs)(SoundEffects::SE_OBJ_GET_RED_COIN + self->mgr->collectedCount), self->position);
+            GameAudio::startSoundMap((SoundEffects::IDs)(SoundEffects::SE_OBJ_GET_RED_COIN + self->mgr->collectedCount), self->position);
         }
 
         Effect::spawn(RP_CoinNormalGet, &self->position);

@@ -2,7 +2,7 @@
 #include "game/graphics/model/modelnw.h"
 #include "game/actor/actormgr.h"
 #include "game/eventmgr.h"
-#include "game/sound/sound.h"
+#include "game/audio/gameaudio.h"
 #include "game/movementhandler.h"
 #include "game/eventmgr.h"
 
@@ -181,7 +181,7 @@ u32 MusicNoteMgr::onExecute() {
         this->timeLimit--;
     }
     if (this->touched && this->timeLimit <= 180 && this->timeLimit % 60 == 0 && this->timeLimit != 0) { // less than 3 seconds remaining, a sound effect plays once every second
-        playSound(SoundEffects::SE_SYS_SWITCH_CT_LAST, this->position);
+        GameAudio::startSoundMap(SoundEffects::SE_SYS_SWITCH_CT_LAST, this->position);
         for (Actor** it = ActorMgr::instance()->actors.start.buffer; it != ActorMgr::instance()->actors.end.buffer; ++it) { // search for MusicNote actors and make them flicker
             if (*it != nullptr) {
                 Actor& actor = **it;
@@ -192,7 +192,7 @@ u32 MusicNoteMgr::onExecute() {
             }
         }
     } else if (this->touched && this->timeLimit % 60 == 0 && this->timeLimit != 0) { // play sound effect every 2 seconds
-        playSound(SoundEffects::SE_SYS_SWITCH_CT, this->position);
+        GameAudio::startSoundMap(SoundEffects::SE_SYS_SWITCH_CT, this->position);
     } else if (this->timeLimit == 0) {
         for (Actor** it = ActorMgr::instance()->actors.start.buffer; it != ActorMgr::instance()->actors.end.buffer; ++it) { // search for MusicNote actors and delete them
             if (*it != nullptr) {
@@ -222,8 +222,8 @@ void MusicNote::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
 
         if ((self->mgr->collectedCount + 1) >= (self->mgr->targetCount)) {
             // spawn specified powerup and play the assigned sound
-            playSound((SoundEffects::IDs)(SoundEffects::SE_EMY_PATAMET_STEP + self->note), self->position);
-            playSound(SoundEffects::SE_EMY_PATAMET_COMPLETE, self->position);
+            GameAudio::startSoundMap((SoundEffects::IDs)(SoundEffects::SE_EMY_PATAMET_STEP + self->note), self->position);
+            GameAudio::startSoundMap(SoundEffects::SE_EMY_PATAMET_COMPLETE, self->position);
 
             ActorBuildInfo buildInfo = { 0 };
 
@@ -290,7 +290,7 @@ void MusicNote::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
             ActorMgr::instance()->create(buildInfo, 0);
         }
         else {
-            playSound((SoundEffects::IDs)(SoundEffects::SE_EMY_PATAMET_STEP + self->note), self->position);
+            GameAudio::startSoundMap((SoundEffects::IDs)(SoundEffects::SE_EMY_PATAMET_STEP + self->note), self->position);
         }
         self->mgr->collectedCount++;
         self->isDeleted = true;
@@ -300,7 +300,7 @@ void MusicNote::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
 void MusicNoteMgr::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     MusicNoteMgr* self = (MusicNoteMgr*)hcSelf->owner;
     self->touched = true;
-    playSound(SoundEffects::SE_SYS_RED_RING, hcSelf->owner->position);
+    GameAudio::startSoundMap(SoundEffects::SE_SYS_RED_RING, hcSelf->owner->position);
     hcSelf->owner->isVisible = false;
     hcSelf->owner->removeHitboxColliders();
     if (hcOther->owner->type == StageActor::Type::Player) {
