@@ -2,7 +2,6 @@
 #include "game/actor/actormgr.h"
 #include "game/direction.h"
 #include "game/graphics/model/modelnw.h"
-#include "game/util.h"
 #include "tsuru/utils.h"
 #include "math/functions.h"
 #include "game/collision/collidermgr.h"

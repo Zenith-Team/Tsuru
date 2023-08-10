@@ -365,11 +365,6 @@
     getReverbHiParam__7AudioFxFv = 0x29B2FD8;
     getDelayParam__7AudioFxFv = 0x29B2FE0;
 
-# BasicSoundActor
-    GlobalBasicSoundActorA__15BasicSoundActor = 0x101C63CC;
-    GlobalBasicSoundActorB__15BasicSoundActor = 0x101C63D0;
-    playSound__15BasicSoundActorFPCcPQ2_4sead16Vector2__tm__2_fUi = 0x29BED48;
-
 # BlendingModel
     __ct__13BlendingModelFP5ModelUiN42 = 0x24dfbf0;
     updateModel__13BlendingModelFv = 0x24dfd04;
@@ -975,6 +970,14 @@
     shouldLoop__9FrameCtrlFb = 0x24DEED4;
     reset__9FrameCtrlFv = 0x24DEEAC;
 
+# GameAudio
+    __CPR85__convertSndObjPos__9GameAudioSFPQ2_4sead16Vector2__tm__2_fRCQ2_J34JJ39J = 0x2029368;
+    getRemotePlayer__9GameAudioSFUi = 0x0202b144;
+
+# GameAudio::SndObjectCommonMap
+    sInstance__Q2_9GameAudio18SndObjectCommonMap = 0x101c63d0;
+    startSound__Q2_9GameAudio18SndObjectCommonMapFPCcRCQ2_4sead16Vector2__tm__2_fUi = 0x029bed48;
+
 # GlobalStateKeeper
     sInstance__17GlobalStateKeeper = 0x101e7d7c;
 
@@ -1538,7 +1541,6 @@
     SFXReverbPlyJump_1 = 0x101E7D20;
     nullterminator = 0x1018A56D;
     SE_VOC = 0x1018393C;
-    __CPR77__mapPositionToScreen__FRQ2_4sead16Vector2__tm__2_fRCQ2_J26JJ31J = 0x2029368;
     SafeStringVtable = 0x10177234;
     InfiniteLivesContinue = 0x24C005C;
     InfiniteTimeContinue = 0x24C1388;
