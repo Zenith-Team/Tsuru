@@ -361,9 +361,12 @@
 # ApplicationTask
     sInstance__15ApplicationTask = 0x101E7D40;
 
-# AudioFx
-    getReverbHiParam__7AudioFxFv = 0x29B2FD8;
-    getDelayParam__7AudioFxFv = 0x29B2FE0;
+# AudAudioMgr
+    getFxSocket__11AudAudioMgrFv = 0x29B1AA4;
+
+# AudFxSocket
+    getReverbHiParam__11AudFxSocketFv = 0x29B2FD8;
+    getDelayParam__11AudFxSocketFv = 0x29B2FE0;
 
 # BlendingModel
     __ct__13BlendingModelFP5ModelUiN42 = 0x24dfbf0;
@@ -971,11 +974,12 @@
     reset__9FrameCtrlFv = 0x24DEEAC;
 
 # GameAudio
-    __CPR85__convertSndObjPos__9GameAudioSFPQ2_4sead16Vector2__tm__2_fRCQ2_J34JJ39J = 0x2029368;
+    __CPR88__convertSndObjectPos__9GameAudioSFPQ2_4sead16Vector2__tm__2_fRCQ2_J37JJ42J = 0x2029368;
     getRemotePlayer__9GameAudioSFUi = 0x0202b144;
 
 # GameAudio::SndObjectCommonEmy
     sInstance__Q2_9GameAudio18SndObjectCommonEmy = 0x101c63cc;
+    startSound__Q2_9GameAudio18SndObjectCommonEmyFPCcRCQ2_4sead16Vector2__tm__2_fUi = 0x029beb48;
 
 # GameAudio::SndObjectCommonMap
     sInstance__Q2_9GameAudio18SndObjectCommonMap = 0x101c63d0;
@@ -1164,9 +1168,6 @@
     getActorPhysicsMgr__15MultiStateActorFv = 0x200ABE4;
     getRect__15MultiStateActorFR4Rect = 0x200AC20;
     doStateChange__15MultiStateActorFP9StateBase = 0x200B090;
-
-# MusicPlayer
-    shouldHurryUp__11MusicPlayerFv = 0x29B83D8;
 
 # ObjLayer
     checkDerivedRuntimeTypeInfo__8ObjLayerCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x24FCF4C;
@@ -1406,11 +1407,11 @@
 # SkeletalAnimation
     play__17SkeletalAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FDADC;
 
-# SoundSystem
-    sInstance__11SoundSystem = 0x101E7C84;
+# SndAudioMgr
+    sInstance__11SndAudioMgr = 0x101E7C84;
 
-# SoundSystemBase
-    getAudioFx__15SoundSystemBaseFv = 0x29B1AA4;
+# SndBgmMgr
+    shouldHurryUp__9SndBgmMgrFv = 0x29B83D8;
 
 # StageActor
     actorHCCallback0__10StageActorFP14HitboxColliderPQ2_4sead16Vector2__tm__2_f = 0x219E7E8;

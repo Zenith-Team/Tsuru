@@ -1,10 +1,10 @@
-#include "game/sound/musicplayer.h"
+#include "game/sound/sndbgmmgr.h"
 
-bool MusicPlayer::isValidStrmID(s32 strmID) {
+bool SndBgmMgr::isValidStrmID(s32 strmID) {
     return strmID < MusicIndex::Num;
 }
 
-const char* MusicPlayer::getStrmName(s32 strmID) {
+const char* SndBgmMgr::getStrmName(s32 strmID) {
     if (!this->isValidStrmID(strmID))
         return nullptr;
 
@@ -18,7 +18,7 @@ const char* MusicPlayer::getStrmName(s32 strmID) {
     return strmName;
 }
 
-const char* MusicPlayer::getSeqName(s32 seqID) {
+const char* SndBgmMgr::getSeqName(s32 seqID) {
     if (!this->isValidStrmID(seqID))
         return nullptr;
 
@@ -32,9 +32,9 @@ const char* MusicPlayer::getSeqName(s32 seqID) {
     return seqName;
 }
 
-// Remember to add your new music to the MusicIndex enum in musicplayer.h, and add it to every array below
+// Remember to add your new music to the MusicIndex enum in SndBgmMgr.h, and add it to every array below
 
-const char* MusicPlayer::strmListNormal[MusicPlayer::MusicIndex::Num] = {
+const char* SndBgmMgr::strmListNormal[SndBgmMgr::MusicIndex::Num] = {
     nullptr,
     "STRM_BGM_CHIJOU",
     "STRM_BGM_CHIKA",
@@ -66,7 +66,7 @@ const char* MusicPlayer::strmListNormal[MusicPlayer::MusicIndex::Num] = {
     "WSD_BGM_SHIRO_LAST",
 };
 
-const char* MusicPlayer::strmListFast[MusicPlayer::MusicIndex::Num] = {
+const char* SndBgmMgr::strmListFast[SndBgmMgr::MusicIndex::Num] = {
     nullptr,
     "STRM_BGM_CHIJOU_FAST",
     "STRM_BGM_CHIKA_FAST",
@@ -98,7 +98,7 @@ const char* MusicPlayer::strmListFast[MusicPlayer::MusicIndex::Num] = {
     "WSD_BGM_SHIRO_LAST_FAST",
 };
 
-const char* MusicPlayer::seqListNormal[MusicPlayer::MusicIndex::Num] = {
+const char* SndBgmMgr::seqListNormal[SndBgmMgr::MusicIndex::Num] = {
     nullptr,
     "SEQ_BGM_CHIJOU_V",
     "SEQ_BGM_CHIKA_V",
@@ -130,7 +130,7 @@ const char* MusicPlayer::seqListNormal[MusicPlayer::MusicIndex::Num] = {
     nullptr,
 };
 
-const char* MusicPlayer::seqListFast[MusicPlayer::MusicIndex::Num] = {
+const char* SndBgmMgr::seqListFast[SndBgmMgr::MusicIndex::Num] = {
     nullptr,
     "SEQ_BGM_CHIJOU_FAST_V",
     "SEQ_BGM_CHIKA_FAST_V",

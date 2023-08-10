@@ -1,25 +1,15 @@
 #pragma once
 
 #include "game/audio/gameaudio.h"
-#include "game/sound/audiofx.h"
 #include "game/sound/effects.h"
 #include "game/sound/sndobject.h"
-#include "game/sound/soundsystem.h"
-
-extern nw::snd::FxReverbHi::ReverbHiParam DefaultReverbHiParam;
-extern nw::snd::FxDelay::DelayParam DefaultDelayParam;
-
-extern f32 SFXReverb_0;
-extern f32 SFXReverb_1;
-extern f32 SFXReverbPlyJump_0;
-extern f32 SFXReverbPlyJump_1;
 
 // Plays a sound at a position
 // @param label Name of the sound to be played
 // @param position Position to play the sound at
 inline void playSound(const char* label, const Vec2f& position) {
     Vec2f screenPos;
-    GameAudio::convertSndObjPos(&screenPos, position);
+    GameAudio::convertSndObjectPos(&screenPos, position);
     GameAudio::SndObjectCommonMap::instance()->startSound(label, screenPos, 0);
 }
 

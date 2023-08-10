@@ -3,11 +3,11 @@
 #include "sead/idisposer.h"
 #include "sead/safestring.h"
 
-class MusicPlayer { // Size: 0x74
-    SEAD_SINGLETON_DISPOSER(MusicPlayer);
+class SndBgmMgr { // Size: 0x74
+    SEAD_SINGLETON_DISPOSER(SndBgmMgr);
 
 public:
-    // Remember to add your custom music to the arrays in musicplayer.cpp
+    // Remember to add your custom music to the arrays in sndbgmmgr.cpp
     ENUM_CLASS(MusicIndex,
         Null,
         Chijou,
@@ -45,10 +45,12 @@ public:
     );
 
 public:
-    MusicPlayer();
+    SndBgmMgr();
+    ~SndBgmMgr();
 
     void resetSomeThings();
     void setVolume(f32 volume, u32 frame);
+
     bool isValidStrmID(s32 id);
     bool shouldHurryUp();
     const char* getSeqName(s32 id);
@@ -58,7 +60,6 @@ private:
     void initMembers();
 
 public:
-
     static const char* strmListNormal[MusicIndex::Num];
     static const char* strmListFast[MusicIndex::Num];
 
@@ -68,7 +69,7 @@ public:
     s32 streamID;           // Inited to -1
     const char* strmName;   // Inited to "SE_DUMMY"
     const char* seqName;    // Inited to "SE_DUMMY"
-    u32 soundType;          // Inited to 0
+    u32 soundType;          // Inited to 0, nw::snd::SoundArchive::SoundType
     u32 _20;                // Inited to 0
     u32 _24;                // Inited to 0
     u32 _28;                // Inited to 0
@@ -92,4 +93,4 @@ public:
     f32 _70;                // Inited to 1.0f
 };
 
-static_assert(sizeof(MusicPlayer) == 0x74, "MusicPlayer size mismatch");
+static_assert(sizeof(SndBgmMgr) == 0x74, "SndBgmMgr size mismatch");

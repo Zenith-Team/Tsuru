@@ -1,15 +1,10 @@
 #pragma once
 
+#include "game/sound/audaudiomgr.h"
 #include "sead/idisposer.h"
-#include "game/sound/audiofx.h"
 
-class SoundSystemBase {
-public:
-    AudioFx* getAudioFx();
-};
-
-class SoundSystem : public SoundSystemBase {
-    SEAD_SINGLETON_DISPOSER(SoundSystem);
+class SndAudioMgr : public AudAudioMgr {
+    SEAD_SINGLETON_DISPOSER(SndAudioMgr);
 
 public:
     nw::snd::SoundArchive* getSoundArchive();

@@ -19,7 +19,8 @@ public:
     SndObjectBase(ObjType objType, void*);
     virtual ~SndObjectBase();
 
-    virtual u8 vf34(const char*, s32);
+    // isPlaying() ?
+    virtual bool vf34(const char* label, s32 playerIdx);
 
     u32 numHandles;         // Inited to 0
     u32 remotePlayer;       // Inited to 1
@@ -30,8 +31,44 @@ public:
 static_assert(sizeof(SndObjectBase) == 0x74, "SndObjectBase size mismatch");
 
 template <s32 PlayableSoundCount>
+class SndObject : public SndObjectBase {
+public:
+    // Idk if this inherits nw::snd::SoundHandle or just has it as a member
+    class SoundHandlePrm : public sead::IDisposer, public nw::snd::SoundHandle {
+    public:
+        f32 _14;
+    };
+
+    static_assert(sizeof(SoundHandlePrm) == 0x18, "SndObject::SoundHandlePrm size mismatch");
+
+public:
+    SndObject(ObjType objType, u32 remotePlayer);
+    virtual ~SndObject(); // deleted
+
+    virtual void vf3C(); // deleted
+    virtual void vf44(); // deleted
+    virtual void vf4C(); // deleted
+    virtual void vf54(); // deleted
+    virtual void vf5C(); // deleted
+    virtual void vf64(); // deleted
+    virtual void vf6C(); // deleted
+
+    nw::snd::SoundHandle* startSound(const char* label, u32 remotePlayer);
+
+    f32 _74;
+    u32 _78;
+    f32 _7C;
+    f32 _80;
+    SoundHandlePrm handles[6];
+    Vec2f position; // Screen position
+};
+
+static_assert(sizeof(SndObject<1>) == 0x11C, "SndObject size mismatch");
+
+template <s32 PlayableSoundCount>
 class SndObjectCommon : public SndObjectBase {
 public:
+    // Idk if this inherits nw::snd::SoundHandle or just has it as a member
     class SoundHandlePrm : public nw::snd::SoundHandle {
     public:
         SoundHandlePrm();
@@ -43,46 +80,24 @@ public:
         u32 _10;
     };
 
-    static_assert(sizeof(SoundHandlePrm) == 0x14, "SndObjectCommon::SoundHanldePrm size mismatch");
+    static_assert(sizeof(SoundHandlePrm) == 0x14, "SndObjectCommon::SoundHandlePrm size mismatch");
 
 public:
     SndObjectCommon(u32 remotePlayer);
     virtual ~SndObjectCommon(); // deleted
 
     // Does the stagePos -> screenPos conversion
-    virtual SoundHandlePrm* startSoundStage(const char* label, const Vec2f& stagePos, u32 remotePlayer); // deleted
+    virtual nw::snd::SoundHandle* startSoundStage(const char* label, const Vec2f& stagePos, u32 remotePlayer); // deleted
     // Does the stagePos -> screenPos conversion
-    virtual SoundHandlePrm* startSoundStage(const char* label, const Vec2f& stagePos, u16, u32 remotePlayer); // deleted
+    virtual nw::snd::SoundHandle* startSoundStage(const char* label, const Vec2f& stagePos, u16, u32 remotePlayer); // deleted
 
-    SoundHandlePrm* startSound(const char* label, const Vec2f& screenPos, u32 remotePlayer);
-    SoundHandlePrm* startSound(const char* label, const Vec2f& screenPos, u16, u32 remotePlayer);
+    nw::snd::SoundHandle* startSound(const char* label, const Vec2f& screenPos, u32 remotePlayer);
+    nw::snd::SoundHandle* startSound(const char* label, const Vec2f& screenPos, u16, u32 remotePlayer);
     
-    SoundHandlePrm* holdSound(const char* label, s32 id, const Vec2f& screenPos, u32 remotePlayer);
-    SoundHandlePrm* holdSound(const char* label, s32 id, const Vec2f& screenPos, u16, u32 remotePlayer);
+    nw::snd::SoundHandle* holdSound(const char* label, s32 id, const Vec2f& screenPos, u32 remotePlayer);
+    nw::snd::SoundHandle* holdSound(const char* label, s32 id, const Vec2f& screenPos, u16, u32 remotePlayer);
 
     SoundHandlePrm handles[14];
 };
 
 static_assert(sizeof(SndObjectCommon<1>) == 0x18C, "SndObjectCommon size mismatch");
-
-// TODO
-class MovingSoundActor : public SndObjectBase {
-public:
-    class Handle : public sead::IDisposer {
-    public:
-        u32 _10;
-        f32 _14;
-    };
-
-public:
-    MovingSoundActor(u32 unk1, u32 unk2);
-
-    void setPosition(const Vec2f& position);
-
-    f32 _74;
-    u32 _78;
-    f32 _7C;
-    f32 _80;
-    Handle handles[6];
-    Vec2f _114;
-};
