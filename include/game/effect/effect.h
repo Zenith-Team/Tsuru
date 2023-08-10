@@ -11,11 +11,13 @@
 class Effect {
 public:
     Effect() {
-        effectHandle.emitterSet = NULL;
-        this->init();
+        this->clear();
     }
 
-    void init();
+    void clear();
+
+    nw::eft::EmitterSet* getEmitterSet();
+
     void init(u32 effectID, const Mtx34* mtx, bool mtxHasScale);
     void init(u32 effectID, const Vec3f* position, const Vec3u* rotation, const Vec3f* scale);
 
@@ -40,6 +42,8 @@ public:
     void* shaderParam;            // 3C
 };
 
+static_assert(sizeof(Effect) == 0x40, "Effect size mismatch");
+
 class EffectWrapper : public sead::IDisposer, public Effect, public sead::TListNode<EffectWrapper*> {
 public:
     EffectWrapper();
@@ -52,6 +56,8 @@ public:
 
     void destroy();
 
-    u32 effectID;   // 60
+    EffectID effectID;   // 60
     bool isActive;  // 64
 };
+
+static_assert(sizeof(EffectWrapper) == 0x68, "EffectWrapper size mismatch");
