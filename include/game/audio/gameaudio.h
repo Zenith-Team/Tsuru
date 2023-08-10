@@ -15,10 +15,13 @@ public:
         // Does the stagePos -> screenPos conversion
         SoundHandlePrm* startSoundStage(const char* label, const Vec2f& stagePos, u32 remotePlayer) override;
         // Does the stagePos -> screenPos conversion
-        SoundHandlePrm* startSoundStage(const char* label, const Vec2f& stagePos, u32, u32 remotePlayer) override; // deleted
+        SoundHandlePrm* startSoundStage(const char* label, const Vec2f& stagePos, u16, u32 remotePlayer) override; // deleted
 
         SoundHandlePrm* startSound(const char* label, const Vec2f& screenPos, u32 remotePlayer);
-        SoundHandlePrm* startSound(const char* label, const Vec2f& screenPos, u32, u32 remotePlayer);
+        SoundHandlePrm* startSound(const char* label, const Vec2f& screenPos, u16, u32 remotePlayer);
+    
+        SoundHandlePrm* holdSound(const char* label, s32 id, const Vec2f& screenPos, u32 remotePlayer);
+        SoundHandlePrm* holdSound(const char* label, s32 id, const Vec2f& screenPos, u16, u32 remotePlayer);
 
         static SndObjectCommonEmy* instance() {
             return sInstance;
@@ -39,10 +42,13 @@ public:
         // Does the stagePos -> screenPos conversion
         SoundHandlePrm* startSoundStage(const char* label, const Vec2f& stagePos, u32 remotePlayer) override;
         // Does the stagePos -> screenPos conversion
-        SoundHandlePrm* startSoundStage(const char* label, const Vec2f& stagePos, u32, u32 remotePlayer) override;
+        SoundHandlePrm* startSoundStage(const char* label, const Vec2f& stagePos, u16, u32 remotePlayer) override;
 
         SoundHandlePrm* startSound(const char* label, const Vec2f& screenPos, u32 remotePlayer);
-        SoundHandlePrm* startSound(const char* label, const Vec2f& screenPos, u32, u32 remotePlayer);
+        SoundHandlePrm* startSound(const char* label, const Vec2f& screenPos, u16, u32 remotePlayer);
+    
+        SoundHandlePrm* holdSound(const char* label, s32 id, const Vec2f& screenPos, u32 remotePlayer);
+        SoundHandlePrm* holdSound(const char* label, s32 id, const Vec2f& screenPos, u16, u32 remotePlayer);
 
         static SndObjectCommonMap* instance() {
             return sInstance;
@@ -61,9 +67,7 @@ public:
     // @param out Output Vec2f variable
     // @param stagePos Position to be converted
     static inline void convertSndObjPos(Vec2f* out, const Vec3f& stagePos) {
-        Vec2f pos(stagePos.x, stagePos.y);
-
-        convertSndObjPos(out, pos);
+        convertSndObjPos(out, Vec2f(stagePos.x, stagePos.y));
     }
 
     // Gets the wii remote controller id corresponding to the player id

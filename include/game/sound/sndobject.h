@@ -52,10 +52,13 @@ public:
     // Does the stagePos -> screenPos conversion
     virtual SoundHandlePrm* startSoundStage(const char* label, const Vec2f& stagePos, u32 remotePlayer); // deleted
     // Does the stagePos -> screenPos conversion
-    virtual SoundHandlePrm* startSoundStage(const char* label, const Vec2f& stagePos, u32, u32 remotePlayer); // deleted
+    virtual SoundHandlePrm* startSoundStage(const char* label, const Vec2f& stagePos, u16, u32 remotePlayer); // deleted
 
     SoundHandlePrm* startSound(const char* label, const Vec2f& screenPos, u32 remotePlayer);
-    SoundHandlePrm* startSound(const char* label, const Vec2f& screenPos, u32, u32 remotePlayer);
+    SoundHandlePrm* startSound(const char* label, const Vec2f& screenPos, u16, u32 remotePlayer);
+    
+    SoundHandlePrm* holdSound(const char* label, s32 id, const Vec2f& screenPos, u32 remotePlayer);
+    SoundHandlePrm* holdSound(const char* label, s32 id, const Vec2f& screenPos, u16, u32 remotePlayer);
 
     SoundHandlePrm handles[14];
 };

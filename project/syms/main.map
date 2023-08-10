@@ -974,6 +974,9 @@
     __CPR85__convertSndObjPos__9GameAudioSFPQ2_4sead16Vector2__tm__2_fRCQ2_J34JJ39J = 0x2029368;
     getRemotePlayer__9GameAudioSFUi = 0x0202b144;
 
+# GameAudio::SndObjectCommonEmy
+    sInstance__Q2_9GameAudio18SndObjectCommonEmy = 0x101c63cc;
+
 # GameAudio::SndObjectCommonMap
     sInstance__Q2_9GameAudio18SndObjectCommonMap = 0x101c63d0;
     startSound__Q2_9GameAudio18SndObjectCommonMapFPCcRCQ2_4sead16Vector2__tm__2_fUi = 0x029bed48;
