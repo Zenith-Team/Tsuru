@@ -362,7 +362,7 @@
     sInstance__15ApplicationTask = 0x101E7D40;
 
 # AudAudioMgr
-    getFxSocket__11AudAudioMgrFv = 0x29B1AA4;
+    getFxSocket__11AudAudioMgrCFv = 0x29B1AA4;
 
 # AudFxSocket
     getReverbHiParam__11AudFxSocketFv = 0x29B2FD8;
