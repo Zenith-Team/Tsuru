@@ -3,6 +3,8 @@
 #include "nw/snd.h"
 #include "sead/idisposer.h"
 
+class AudAudioPlayer;
+
 class Snd2DCalc { };
 
 static_assert(sizeof(Snd2DCalc) == 0x1, "Snd2DCalc size mismatch");
@@ -11,12 +13,12 @@ class SndObjectBase : public nw::snd::SoundActor {
 public:
     enum ObjType {
         ObjType_0,
-        ObjType_1
+        ObjType_1,
+        ObjType_2
     };
 
 public:
-    // Second param is a class that has nw::snd::SoundArchivePlayer at 0x4
-    SndObjectBase(ObjType objType, void*);
+    SndObjectBase(ObjType objType, AudAudioPlayer* audioPlayer);
     virtual ~SndObjectBase();
 
     // isPlaying() ?
