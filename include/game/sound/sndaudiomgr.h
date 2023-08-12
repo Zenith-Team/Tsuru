@@ -32,7 +32,7 @@ public:
     const char* getSoundName(u32 id) const;
     u32 getSoundID(const char* label) const;
 
-    u32 getSoundType(const char* label) const; // nw::snd::SoundArchive::SoundType
+    nw::snd::SoundArchive::SoundType getSoundType(const char* label) const;
 
     u8 _28;
     u8 _29;
