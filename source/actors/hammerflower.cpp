@@ -134,11 +134,11 @@ u32 HammerBlock::onCreate() {
         return 2;
     }
 
+    this->tileId = 49; // Question Block
+
     if (this->stateType == BlockWrapper::StateType::UsedBlock) {
         this->doStateChange(&HammerBlock::StateID_Used);
     }
-
-    this->tileId = 49; // Question Block
 
     return this->onExecute();
 }
