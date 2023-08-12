@@ -26,10 +26,13 @@ public:
     virtual void calc();
     // ...
 
-    nw::snd::SoundArchive* getSoundArchive();
+    AudAudioPlayer* getAudioPlayer() const;
+    nw::snd::SoundArchive* getSoundArchive() const;
 
-    inline const char* getItemLabel(u32 id) { return getSoundArchive()->GetItemLabel(id); }
-    inline u32 getItemID(const char* label) { return getSoundArchive()->GetItemID(label); }
+    const char* getSoundName(u32 id) const;
+    u32 getSoundID(const char* label) const;
+
+    u32 getSoundType(const char* label) const; // nw::snd::SoundArchive::SoundType
 
     u8 _28;
     u8 _29;
