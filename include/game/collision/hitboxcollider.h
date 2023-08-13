@@ -35,11 +35,10 @@ public:
     );
 
     struct Info {
-
         static Info sDefault;
 
-        Vec2f offset;     // 0
-        Vec2f radius;       // 8
+        Vec2f offset;           // 0
+        Vec2f radius;           // 8
         Shape::__type__ shape;  // 10
         u32 _14;                // 14
         u32 _18;                // 18

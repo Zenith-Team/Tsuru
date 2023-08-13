@@ -231,6 +231,7 @@ ENUM_CLASS(ProfileID,
     IceBro = 763,
     IceBroIceBall = 764,
     SledgeBro = 765,
+    Foo = 785,
     WindGenerator = 793,
     Star = 853,
     CSWendyShip = 873,
@@ -295,6 +296,9 @@ ENUM_CLASS(ProfileID,
     NullActor,
     Solid,
     UniversalMovementController,
+    TimeChanger,
+    HammerFlower,
+    HammerBlock,
 
     Num
 );

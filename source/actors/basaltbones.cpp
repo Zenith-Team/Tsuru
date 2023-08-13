@@ -7,7 +7,7 @@
 #include "game/effect/effectid.h"
 #include "game/graphics/lightsource.h"
 #include "game/actor/stage/envterrain.h"
-#include "game/sound/sound.h"
+#include "game/audio/gameaudio.h"
 #include "tsuru/heatdistorter.h"
 #include "game/tilemgr.h"
 #include "math/bezier.h"
@@ -534,7 +534,7 @@ void BasaltBones::executeState_Throw() {
         buildInfo.profile = Profile::get(ProfileID::BasaltBoneProjectile);
         buildInfo.position = this->position + Vec3f(0, 20, 0);
         static_cast<BasaltBoneProjectile*>(ActorMgr::instance()->create(buildInfo, false))->direction = !this->direction;
-        playSound(SoundEffects::SE_BOSS_KOOPA_ATTACK, this->position);
+        GameAudio::startSoundEmy(SoundEffects::SE_BOSS_KOOPA_ATTACK, this->position);
     } else if (this->model->sklAnims[0]->frameCtrl.isDone()) {
         this->doStateChange(&BasaltBones::StateID_Active);
     }

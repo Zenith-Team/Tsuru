@@ -3,7 +3,21 @@
     cosf = 0x2AFE528;
     atan2f = 0x2AFE670;
     fmodf = 0x2AFD97C;
+    pow = 0x2AFDEA8;
+    floorf = 0x02AFDA5C;
+    ceilf = 0x02AFDAF8;
+    sscanf = 0x02afcd14;
+    __gh_float_scanf = 0x02afbd20;
+    __va_arg = 0x02aff0a8;
+    logf = 0x02afe104;
+    _f_ftoll = 0x02AFEBFC;
+    _f_ftoull = 0x02afebf4;
+    _d_dtoull = 0x02afebf4;
+    _f_ulltof = 0x02afead8;
+    
+    # TODO: this is wrong
     powf = 0x2AFDEA8;
+
     sqrtf = 0x2AFDCCC;
     tanf = 0x2AFDB84;
     acosf = 0x2AFE8F4;
@@ -25,13 +39,17 @@
     __record_needed_destruction = 0x2AFA52C;
     __gh_float_printf = 0x2AFABA8;
     __gh_long_long_printf = 0x2AFAB84;
-    __gh_memclr32 = 0x2AFF1E0;
+    __gh_memclr32 = 0x02afede0;
     __ghs_strcmp = 0x2AFA60C;
     __memzero = 0x2AFA55C;
-    vsnprintf = 0x2AFBD54;
     _f_ftoll = 0x2AFEBFC;
     __array_new_prefix_size = 0x101E9338;
     __placement_array_new = 0x2AFA30C;
+
+# C
+    vsnprintf = 0x2afb954;
+    snprintf = 0x02afb9b4;
+    qsort = 0x2afd2a4;
 
 # Cafe SDK Static
     ASM_MTXConcat = 0x2AF98A0;
@@ -62,6 +80,10 @@
 # agl::ShaderProgramArchive
     __ct__Q2_3agl20ShaderProgramArchiveFv = 0x2A22934;
     FUN_2A23f1C__Q2_3agl20ShaderProgramArchiveFPUcRCUiUiPQ2_4sead4Heap = 0x2A23F1C;
+    searchShaderProgramIndex__Q2_3agl20ShaderProgramArchiveCFRCQ2_4sead23SafeStringBase__tm__2_c = 0x02a245a8;
+
+# agl::ShaderProgram
+    activate__Q2_3agl13ShaderProgramCFQ2_3agl10ShaderModeb = 0x02a213e8;
 
 # agl::TextureData
     __ct__Q2_3agl11TextureDataFv = 0x2A249A0;
@@ -77,6 +99,13 @@
     __dt__Q2_3agl14TextureSamplerFv = 0x2A25C60;
     applyTextureData___Q2_3agl14TextureSamplerFRCQ2_3agl11TextureData = 0x2A25990;
     initBorderColor___Q2_3agl14TextureSamplerCFv = 0x2A25D94;
+    initRegs___Q2_3agl14TextureSamplerCFv = 0x02a25e70;
+
+# agl::UniformBlock
+    dcbz__Q2_3agl12UniformBlockCFv = 0x02a263c8;
+    flush__Q2_3agl12UniformBlockCFPvb = 0x02a263f4;
+    setUniform__Q2_3agl12UniformBlockCFPCvRCQ2_3agl20UniformBlockLocationUiT3 = 0x02a264bc;
+    setData___Q2_3agl12UniformBlockCFPviPCvN22 = 0x02a26588;
 
 # agl::driver::GX2Resource
     sInstance__Q3_3agl6driver11GX2Resource = 0x101E88C4;
@@ -84,12 +113,13 @@
 
 # agl::lyr::Layer
     pushBackDrawMethod__Q3_3agl3lyr5LayerFUiPQ3_3agl3lyr18DrawMethodImplBase = 0x2A376B8;
-    pushBackDrawMethod__Q3_3agl3lyr5LayerFPQ3_3agl3lyr10DrawMethod = 0x2A37710;
+    pushBackDrawMethod__Q3_3agl3lyr5LayerFPQ3_3agl3lyr18DrawMethodImplBase = 0x2A37710;
 
 # agl::lyr::Renderer
     draw__Q3_3agl3lyr8RendererCFQ3_3agl3lyr11DisplayType = 0x2A3AB90;
     sInstance__Q3_3agl3lyr8Renderer = 0x101E8A2C;
     initLayer___Q3_3agl3lyr8RendererFPQ3_3agl3lyr5LayerUiRCQ2_4sead23SafeStringBase__tm__2_cT2PQ2_4sead4Heap = 0x2A3AEE8;
+    calc__Q3_3agl3lyr8RendererFb = 0x02a3a334;
 
 # agl::lyr::RenderInfo
     __ct__Q3_3agl3lyr10RenderInfoFQ3_3agl3lyr11DisplayTypePCQ2_4sead11FrameBufferbPCQ3_3agl3lyr5LayerPQ2_3agl11DisplayList = 0x2A3B2C0;
@@ -118,9 +148,14 @@
 
 # sead::Camera
     __vtbl__Q2_4sead6Camera = 0x10190824;
+    projectByMatrix__Q2_4sead6CameraFPQ2_4sead16Vector2__tm__2_fRCQ2_4sead16Vector3__tm__2_fRCQ2_4sead10ProjectionRCQ2_4sead8Viewport = 0x2A04A34;
 
 # sead::ControllerMgr
     sInstance__Q2_4sead13ControllerMgr = 0x101E7EFC;
+
+# sead::CriticalSection
+    lock__Q2_4sead15CriticalSectionFv = 0x02a18f20;
+    unlock__Q2_4sead15CriticalSectionFv = 0x02a18f54;
 
 # sead::FileDevice
     tryClose__Q2_4sead10FileDeviceFPQ2_4sead10FileHandle = 0x29F78C0;
@@ -150,8 +185,33 @@
     __ct__Q2_4sead15GraphicsContextFv = 0x2A07BBC;
     apply__Q2_4sead15GraphicsContextFv = 0x2A07CB0;
 
+# sead::Endian
+    convFuncTable__Q2_4sead6Endian = 0x101929a8;
+    hostEndian__Q2_4sead6Endian = 0x105eaa78;
+
+# sead::ExpHeap
+    tryCreate__Q2_4sead7ExpHeapSFUiRCQ2_4sead23SafeStringBase__tm__2_cPQ2_4sead4HeapQ3_4sead4Heap13HeapDirectionb = 0x02a0a7ac;
+    tryCreate__Q2_4sead7ExpHeapSFPvUiRCQ2_4sead23SafeStringBase__tm__2_cb = 0x02a0a914;
+#    RTTI__Q2_4sead7ExpHeap = 0x
+    expHeapVtable = 0x10191028;
+
+# sead::FrameHeap
+#    RTTI__Q2_4sead9FrameHeap = 0x
+    frameHeapVtable = 0x10191158;
+    tryCreate__Q2_4sead9FrameHeapSFUiRCQ2_4sead23SafeStringBase__tm__2_cPQ2_4sead4HeapQ3_4sead4Heap13HeapDirectionb = 0x2a0c1fc;
+
+# sead::UnitHeap
+#    RTTI__Q2_4sead8UnitHeap = 0x
+    unitHeapVtable = 0x10191448;
+
+# sead::SeparateHeap
+#    RTTI__Q2_4sead12SeparateHeap = 0x
+    separateHeapVtable = 0x101a45fc;
+
 # sead::HeapMgr
     sRootHeaps__Q2_4sead7HeapMgr = 0x105EA148;
+    sIndependentHeaps__Q2_4sead7HeapMgr = 0x105ea1a0;
+    sHeapTreeLockCS__Q2_4sead7HeapMgr = 0x105ea164;
     sInstancePtr__Q2_4sead7HeapMgr = 0x101E8040;
     getCurrentHeap__Q2_4sead7HeapMgrFv = 0x2A0D554;
     setCurrentHeap__Q2_4sead7HeapMgrFPQ2_4sead4Heap = 0x2A0D584;
@@ -169,6 +229,13 @@
     chase__Q2_4sead23MathCalcCommon__tm__2_fSFPZ1ZZ1ZT2_b = 0x2027984;
     chase__Q2_4sead24MathCalcCommon__tm__3_UiSFPZ1ZZ1ZT2_b = 0x29E0DE8;
     cSinCosTbl__Q2_4sead23MathCalcCommon__tm__2_f = 0x10191538;
+
+# sead::Matrix34CalcCommon
+    makeSRTIdx__Q2_4sead27Matrix34CalcCommon__tm__2_fSFRQ2_4sead19Matrix34__tm__4_Z1ZRCQ2_4sead18Vector3__tm__4_Z1ZRCQ2_4sead17Vector3__tm__3_UiT2_v = 0x221361c;
+
+# sead::MethodTreeNode
+    lock___Q2_4sead14MethodTreeNodeFv = 0x029ff410;
+    unlock___Q2_4sead14MethodTreeNodeFv = 0x029ff420;
 
 # sead::OrthoCamera
     __ct__Q2_4sead11OrthoCameraFv = 0x2A04D54;
@@ -189,9 +256,11 @@
     sInstance__Q2_4sead17PrimitiveRenderer = 0x101E8010;
     setCamera__Q2_4sead17PrimitiveRendererFRCQ2_4sead6Camera = 0x2A083D0;
     setProjection__Q2_4sead17PrimitiveRendererFRCQ2_4sead10Projection = 0x2A083E4;
-    setModelMatrix__Q2_4sead17PrimitiveRendererFRC5Mtx34 = 0x2A083F8;
+    setModelMatrix__Q2_4sead17PrimitiveRendererFRCQ2_4sead17Matrix34__tm__2_f = 0x2A083F8;
     begin__Q2_4sead17PrimitiveRendererFv = 0x2A08408;
     end__Q2_4sead17PrimitiveRendererFv = 0x2A0841C;
+    __CPR75__drawQuad__Q2_4sead17PrimitiveRendererFRCQ3_J13JJ18J7QuadArg = 0x02a08430;
+    setColor__Q3_4sead17PrimitiveRenderer7QuadArgFRCQ2_4sead7Color4fT1 = 0x02a08628;
 
 # sead::PrimitiveRendererCafe
     drawTriangles___Q2_4sead21PrimitiveRendererCafeFRCQ2_4sead17Matrix34__tm__2_fRCQ2_4sead7Color4fT2PQ3_4sead21PrimitiveRendererUtil6VertexUiPUsT5PC11_GX2Texture = 0x2A0A190;
@@ -218,11 +287,21 @@
     enterCommon__Q2_4sead8TaskBaseFv = 0x29FF818;
     adjustHeapAll__Q2_4sead8TaskBaseFv = 0x29FF9DC;
     RTTI__Q2_4sead8TaskBase = 0x101EA768;
+    getMethodTreeMgr__Q2_4sead8TaskBaseFv = 0x029ff888;
+
+# sead::TaskMgr
+    afterCalc__Q2_4sead7TaskMgrFv = 0x02a0183c;
+
+# sead::ThreadMgr
+    sInstance__Q2_4sead9ThreadMgr = 0x101e80a0;
 
 # sead::Viewport
     __ct__Q2_4sead8ViewportFfN31 = 0x2A072FC;
     __ct__Q2_4sead8ViewportFRCQ2_4sead18LogicalFrameBuffer = 0x2A074C8;
     apply__Q2_4sead8ViewportCFRCQ2_4sead18LogicalFrameBuffer = 0x2A0783C;
+
+# nw::snd::internal::BasicSound
+    Stop__Q4_2nw3snd8internal10BasicSoundFi = 0x02aca048;
 
 # Actor
     RTTI__5Actor = 0x101E9CC8;
@@ -255,6 +334,7 @@
 
 # ActorBuffer
     findActorByID__11ActorBufferFRCUi = 0x200A5C8;
+    addActor__11ActorBufferFP5Actor = 0x200a3a8;
 
 # ActorGlobalsHolder
     sInstance__18ActorGlobalsHolder = 0x101C30D0;
@@ -284,14 +364,12 @@
 # ApplicationTask
     sInstance__15ApplicationTask = 0x101E7D40;
 
-# AudioFx
-    getReverbHiParam__7AudioFxFv = 0x29B2FD8;
-    getDelayParam__7AudioFxFv = 0x29B2FE0;
+# AudAudioMgr
+    getFxSocket__11AudAudioMgrCFv = 0x29B1AA4;
 
-# BasicSoundActor
-    GlobalBasicSoundActorA__15BasicSoundActor = 0x101C63CC;
-    GlobalBasicSoundActorB__15BasicSoundActor = 0x101C63D0;
-    playSound__15BasicSoundActorFPCcPQ2_4sead16Vector2__tm__2_fUi = 0x29BED48;
+# AudFxSocket
+    getReverbHiParam__11AudFxSocketFv = 0x29B2FD8;
+    getDelayParam__11AudFxSocketFv = 0x29B2FE0;
 
 # BlendingModel
     __ct__13BlendingModelFP5ModelUiN42 = 0x24dfbf0;
@@ -564,6 +642,13 @@
     vf1EC__14BossControllerFv = 0x202F158;
     vf21C__14BossControllerFv = 0x202F7B0;
 
+# CharacterModel
+    setMtx__14CharacterModelFRCQ2_4sead17Matrix34__tm__2_f = 0x2922304;
+
+# CharacterModelMgr
+    draw__17CharacterModelMgrFv = 0x2922ca0;
+    __CPR71__playAnim__17CharacterModelMgrFQ3_J10J9Animation8__type__ = 0x2922a84;
+
 # CircularCollider
     RTTI__16CircularCollider = 0x101EA398;
 
@@ -587,6 +672,9 @@
 # CourseTask
     sInstance__10CourseTask = 0x101D15F0;
     construct__10CourseTaskSFRCQ2_4sead16TaskConstructArg = 0x202B4C8;
+
+# CourseSelectActorBase
+    RTTI__21CourseSelectActorBase = 0x101ea3c8;
 
 # CourseSelectActor
     __ct__17CourseSelectActorFPC14ActorBuildInfo = 0x21D4CB4;
@@ -888,6 +976,21 @@
     shouldLoop__9FrameCtrlFb = 0x24DEED4;
     reset__9FrameCtrlFv = 0x24DEEAC;
 
+# GameAudio
+    __CPR88__convertSndObjectPos__9GameAudioSFPQ2_4sead16Vector2__tm__2_fRCQ2_J37JJ42J = 0x2029368;
+    getRemotePlayer__9GameAudioSFUi = 0x0202b144;
+
+# GameAudio::SndObjectCommonEmy
+    sInstance__Q2_9GameAudio18SndObjectCommonEmy = 0x101c63cc;
+    startSound__Q2_9GameAudio18SndObjectCommonEmyFPCcRCQ2_4sead16Vector2__tm__2_fUi = 0x029beb48;
+
+# GameAudio::SndObjectCommonMap
+    sInstance__Q2_9GameAudio18SndObjectCommonMap = 0x101c63d0;
+    startSound__Q2_9GameAudio18SndObjectCommonMapFPCcRCQ2_4sead16Vector2__tm__2_fUi = 0x029bed48;
+
+# GlobalStateKeeper
+    sInstance__17GlobalStateKeeper = 0x101e7d7c;
+
 # HitboxCollider
     __ct__14HitboxColliderFv = 0x219A960;
     __dt__14HitboxColliderFv = 0x219AB90;
@@ -965,6 +1068,7 @@
     initAnims__13LayoutHandlerFPCQ2_4sead23SafeStringBase__tm__2_cRUi = 0x2671C54;
     playAnim__13LayoutHandlerFUiRCQ2_4sead23SafeStringBase__tm__2_cb = 0x2671680;
     getTextBoxPane__13LayoutHandlerCFRCQ2_4sead23SafeStringBase__tm__2_c = 0x2671EF8;
+    getPane__13LayoutHandlerCFRCQ2_4sead23SafeStringBase__tm__2_c = 0x2671ccc;
 
 # Level
     sInstance__5Level = 0x101DB048;
@@ -992,6 +1096,10 @@
     sInstance__10LevelTimer = 0x101D15F4;
     addTime__10LevelTimerFi = 0x24C14C0;
 
+# LightMapMgr
+    sInstance__11LightMapMgr = 0x101d2c60;
+    setCSLightMaps__11LightMapMgrFUi = 0x24e51c8;
+
 # LightMask
     __ct__9LightMaskFv = 0x2815C9C;
     init__9LightMaskFPQ2_4sead4HeapUi = 0x2815D20;
@@ -1003,6 +1111,13 @@
     update__11LightSourceFPQ2_4sead16Vector3__tm__2_fPfN22PQ2_4sead7Color4fN22 = 0x24E25F4;
     __dt__11LightSourceFv = 0x24E2580;
     update__11LightSourceFUiPQ2_4sead16Vector3__tm__2_fPUiPfT4PQ2_4sead7Color4fN24 = 0x24E26BC;
+
+# LineFollower
+    __ct__12LineFollowerFv = 0x0200dc14;
+    init__12LineFollowerFRCQ2_4sead16Vector2__tm__2_fUcbT3f = 0x0200df60;
+    start__12LineFollowerFb = 0x0200e178;
+    reverseDirection__12LineFollowerFv = 0x0200df44;
+    setLineSpeed__12LineFollowerFf = 0x0200e0c0;
 
 # ModelWrapper
     __ct__12ModelWrapperFP5ModelUiN42 = 0x24D4798;
@@ -1027,7 +1142,6 @@
     link__15MovementHandlerFRCQ2_4sead16Vector3__tm__2_fUiUc = 0x284B6F4;
 
 # Mtx34
-    rotateAndTranslate__5Mtx34FRCQ2_4sead17Vector3__tm__3_UiRCQ2_4sead16Vector3__tm__2_f = 0x203C1C8;
     makeST__5Mtx34SFR5Mtx34RCQ2_4sead16Vector3__tm__2_fT2 = 0x2222A88;
     makeSRT__5Mtx34SFR5Mtx34RCQ2_4sead16Vector3__tm__2_fN22 = 0x2508424;
 
@@ -1058,20 +1172,12 @@
     getRect__15MultiStateActorFR4Rect = 0x200AC20;
     doStateChange__15MultiStateActorFP9StateBase = 0x200B090;
 
-# MusicPlayer
-    shouldHurryUp__11MusicPlayerFv = 0x29B83D8;
-
 # ObjLayer
     checkDerivedRuntimeTypeInfo__8ObjLayerCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x24FCF4C;
     getRuntimeTypeInfo__8ObjLayerCFv = __deleted_virtual_called;
     vf3C__8ObjLayerFv = 0x24FD0E8;
     vf5C__8ObjLayerFv = 0x24FD0F4;
     setParentRenderer__8ObjLayerFP16ObjLayerRenderer = 0x24FCA24;
-
-# ObjLayerRenderer
-    __dt__16ObjLayerRendererFv = 0x24FB0AC;
-    __ct__16ObjLayerRendererFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FAF58;
-    init__16ObjLayerRendererFUiN31PQ2_4sead4Heap = 0x24FB128;
 
 # PhysicsActor
     __vtbl__12PhysicsActor = 0x1000084C;
@@ -1105,10 +1211,22 @@
     update__13PlatformModelFRQ2_4sead16Vector3__tm__2_ff = 0x27BE428;
     draw__13PlatformModelFv = 0x27BE4FC;
 
+# PlayerBase
+    RTTI__10PlayerBase = 0x101e9cd0;
+    onCreate__10PlayerBaseFv = 0x28f2e78;
+
 # Player
+    RTTI__6Player = 0x101e9ca0;
     givePowerup__6PlayerFQ3_10PlayerBase12PowerupState8__type__ = 0x2931C1C;
     throwProjectile__6Player__PowerupStateNotFire = 0x293AE28;
     FUN_0293b080__6Player__IsProjectilePowerup = 0x293B198;
+    playSfx__6PlayerFPCcUi = 0x290b9a4;
+    Player_vfA5C_continue = 0x0292ea84;
+    Player_throwProjectile_throwIce = 0x0293ae38;
+    Player_throwProjectile_return = 0x0293affc;
+    Player_throwProjectile_continue = 0x0293ae98;
+    Player_hasLessThan6OldProjectiles_continue = 0x0293ac40;
+    Player_hasLessThan2NewProjectiles_continue = 0x0293acc8;
 
 # PlayerInput
     isUpHeld__11PlayerInputCFv = 0x2916114;
@@ -1118,6 +1236,12 @@
 
 # PlayerMgr
     sInstance__9PlayerMgr = 0x101E6994;
+
+# PlayerModel
+    changePowerup__11PlayerModelFUi = 0x291AC9C;
+
+# PlayerModelMgr
+    __ct__14PlayerModelMgrFUiN21b = 0x2922f3c;
 
 # Poison
     __ct__6PoisonFPC14ActorBuildInfo = 0x26F5F70;
@@ -1140,6 +1264,7 @@
 
 # Powerup
     RTTI__7Powerup = 0x101EAD38;
+    StateID_PowerupState2__7Powerup = 0x1020ac70;
     __ct__7PowerupFPC14ActorBuildInfo = 0x251EBFC;
     __dt__7PowerupFv = 0x251FE04;
     checkDerivedRuntimeTypeInfo__7PowerupCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x251FC68;
@@ -1168,6 +1293,8 @@
     vf29C__7PowerupFv = 0x251FDEC;
     vf2A4__7PowerupFv = 0x251FDF0;
     vf2AC__7PowerupFv = 0x251EC6C;
+    vf18C__7PowerupFv = 0x251fc34;
+    vf1FC__7PowerupFv = 0x251fc64;
 
 # PowerupBase
     setupActor__11PowerupBaseFv = 0x2517F90;
@@ -1235,6 +1362,12 @@
 # RectCollider
     __vtbl__12RectCollider = 0x100FB820;
 
+# RenderMgr
+    __dt__9RenderMgrFv = 0x24FB0AC;
+    __ct__9RenderMgrFRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FAF58;
+    init__9RenderMgrFUiN31PQ2_4sead4Heap = 0x24FB128;
+    setParentRenderer__8ObjLayerFP9RenderMgr = 0x24FCA24;
+
 # RenderObjLayer
     __ct__14RenderObjLayerFv = 0x24FCA6C;
     __dt__14RenderObjLayerFv = 0x24FCB18;
@@ -1254,7 +1387,7 @@
 
 # ResMgr
     sInstance__6ResMgr = 0x101E7D94;
-    loadRes__6ResMgrFRCQ2_4sead23SafeStringBase__tm__2_cT1PQ2_4sead4Heapb = 0x29D34A8;
+    loadArchiveRes__6ResMgrFRCQ2_4sead23SafeStringBase__tm__2_cT1PQ2_4sead4Heapb = 0x29D34A8;
     ResMgr_LoadLevelResource = 0x29D2A20;
     ResMgr_LoadLevelArchiveFail = 0x29D333C;
     ResMgr_LoadLevelArchiveSuccess = 0x29D3354;
@@ -1269,14 +1402,19 @@
     playTexSrtAnim__15ShaderAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FEE50;
     play__16TextureAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x250B1EC;
 
+# ShaderHolder
+    sInstance__12ShaderHolder = 0x101d2d9c;
+    getNw4fShaderArchive__12ShaderHolderCFv = 0x024fe5cc;
+    getNw4fBasicShaderProgram__12ShaderHolderCFv = 0x024fe608;
+
 # SkeletalAnimation
     play__17SkeletalAnimationFP10ResArchiveRCQ2_4sead23SafeStringBase__tm__2_c = 0x24FDADC;
 
-# SoundSystem
-    sInstance__11SoundSystem = 0x101E7C84;
+# SndAudioMgr
+    sInstance__11SndAudioMgr = 0x101E7C84;
 
-# SoundSystemBase
-    getAudioFx__15SoundSystemBaseFv = 0x29B1AA4;
+# SndBgmMgr
+    shouldHurryUp__9SndBgmMgrFv = 0x29B83D8;
 
 # StageActor
     actorHCCallback0__10StageActorFP14HitboxColliderPQ2_4sead16Vector2__tm__2_f = 0x219E7E8;
@@ -1322,6 +1460,7 @@
     distanceToPlayer__10StageActorFRQ2_4sead16Vector2__tm__2_f = 0x20005A4;
 
 # StateActor
+    __ct__10StateActorFPC14ActorBuildInfo = 0x200A9C0;
     vfAC__10StateActorFv = 0x200ABB0;
     vfB4__10StateActorFv = 0x200ABB4;
     vfBC__10StateActorFv = 0x200ABBC;
@@ -1349,6 +1488,7 @@
     __ct__8StateMgrFP17StateExecutorBaseP9StateBase = 0x29C4A08;
     execute__8StateMgrFv = 0x29C4A80;
     changeState__8StateMgrFP9StateBase = 0x29C4AF0;
+    getCurrentState__8StateMgrFv = 0x029c4b88;
 
 # TaskMgr
     sInstance__7TaskMgr = 0x101E7B28;
@@ -1364,6 +1504,10 @@
 # TileMgr
     sInstance__7TileMgr = 0x101DAB94;
     getTilePtrCurrentArea__7TileMgrSFUsT1UcPUi = 0x2685000;
+    getTileData__7TileMgrFUsT1Ucb = 0x02685148;
+
+# TileTexMgr
+    sInstance__10TileTexMgr = 0x101db014;
 
 # Water
     __ct__5WaterFPC14ActorBuildInfo = 0x26F7C90;
@@ -1404,7 +1548,6 @@
     SFXReverbPlyJump_1 = 0x101E7D20;
     nullterminator = 0x1018A56D;
     SE_VOC = 0x1018393C;
-    __CPR77__mapPositionToScreen__FRQ2_4sead16Vector2__tm__2_fRCQ2_J26JJ31J = 0x2029368;
     SafeStringVtable = 0x10177234;
     InfiniteLivesContinue = 0x24C005C;
     InfiniteTimeContinue = 0x24C1388;

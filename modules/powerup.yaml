@@ -1,38 +1,119 @@
 ---
 Files:
   - powerup.cpp
+  - custompowerupmodel.cpp
 Hooks:
+# Table extensions
   - type: branch
     instr: bl
-    addr: "0x2924CC8"
+    addr: "0x2924d0c"
     func: UseCustomPowerupCenterOffsetTable
-
   - type: branch
     instr: b
     addr: "0x2925128"
     func: UseCustomPowerupTallTypeTable
-
   - type: branch
     instr: b
-    addr: "0x292EA6C"
+    addr: "0x292ea80"
     func: UseCustomBlahTableOffsets
-
   - type: branch
     instr: bl
     addr: "0x29279C4"
     func: UseCustomArray_1016CD68
+  - type: branch
+    instr: b
+    addr: "0x2975C94"
+    func: UseCustomArray_101750A4
 
+# Model
+  # Redirect tex anim arrays
   - type: branch
     instr: bl
-    addr: "0x292916C"
-    func: UseCustomArray_1016CE20
-
+    addr: "0x296D570"
+    func: UseCustomPowerupSwitchTexAnimArray1
   - type: branch
     instr: bl
-    addr: "0x292918C"
-    func: UseCustomArray_1016CE44
-
+    addr: "0x296d5ac"
+    func: UseCustomPowerupSwitchTexAnimArray1
   - type: branch
     instr: bl
-    addr: "0x292E474"
-    func: UseCustomArray_1016D7F8
+    addr: "0x296D5BC"
+    func: UseCustomPowerupSwitchTexAnimArray3
+  - type: branch
+    instr: bl
+    addr: "0x296D608"
+    func: UseCustomPowerupSwitchTexAnimArray2
+  - type: branch
+    instr: bl
+    addr: "0x296D618"
+    func: UseCustomPowerupSwitchTexAnimArray4
+  - type: branch
+    instr: bl
+    addr: "0x291a9a8"
+    func: UseCustomPowerupModelTable
+
+# Patch checks
+  # Check if we should give new powerup
+  - type: branch
+    instr: b
+    addr: "0x2931b34" # Player::shouldGiveNewPowerup()
+    func: ShouldGiveNewPowerup
+  # Correct change sound
+  - type: branch
+    instr: b
+    addr: "0x2975b90"
+    func: PowerupChangeSoundEffect
+  # Disable powerup check for incremental powerups
+  - type: nop
+    addr: "0x251df84"
+
+# Throwing
+  # Allow checking if we can throw projectile from custom type
+  - type: branch
+    instr: b
+    addr: "0x293ae28" # Player::throwProjectile()
+    func: ThrowProjectileASM
+  - type: branch
+    instr: bl
+    addr: "0x293b148" # Player::FUN_293b080()
+    func: AllowThrowingProjectile
+  - type: branch
+    instr: b
+    addr: "0x293ac3c" # Player::hasLessThan6OldProjectiles()
+    func: HasLessThan6OldProjectiles
+  - type: branch
+    instr: b
+    addr: "0x293acc4" # Player::hasLessThan2NewProjectiles()
+    func: HasLessThan2NewProjectiles
+  # Set projectile parent
+  - type: branch
+    instr: bl
+    addr: "0x293adb8" # Player::throwProjectile
+    func: ProjectileParentID
+
+# Model
+  - type: branch
+    instr: b
+    addr: "0x2923FE4" # Player::onDraw()
+    func: DrawCustomPowerupModel
+
+# User patches
+  # Hammer
+  - type: branch
+    instr: bl
+    addr: "0x217CF98" # Hammer::build()
+    func: HammerSetParentID
+  - type: nop
+    addr: "0x217D080" # Hammer::build()
+  - type: branch
+    instr: b
+    addr: "0x217D128" # Hammer::build()
+    func: HammerShootInit
+  - type: branch
+    instr: bl
+    addr: "0x217b684" # Hammer::executeState_Unk0N
+    func: HammerStateCheckASM
+  - type: branch
+    instr: bl
+    addr: "0x217b700" # Hammer::executeState_Unk0N
+    func: HammerShootStateASM

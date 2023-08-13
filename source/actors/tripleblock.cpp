@@ -22,15 +22,17 @@ public:
     void spawnSideCoins();
 
     ModelWrapper* model;
+    u8 modelType; // standard, underground, lava 1, lava 2
 
     void beginState_Used() override;
 };
 
-PROFILE_RESOURCES(ProfileID::TripleBlock, Profile::LoadResourcesAt::Course, "block_trip");
 REGISTER_PROFILE(TripleBlock, ProfileID::TripleBlock);
+PROFILE_RESOURCES(ProfileID::TripleBlock, Profile::LoadResourcesAt::Course, "blocktripa", "blocktripb", "blocktripc");
 
 TripleBlock::TripleBlock(const ActorBuildInfo* buildInfo)
     : BlockWrapper(buildInfo)
+    , modelType(this->eventID1 & 0xF) // Nybble 2
 { }
 
 u32 TripleBlock::onCreate() {
@@ -40,24 +42,29 @@ u32 TripleBlock::onCreate() {
 
     this->position.x += 8;
 
-    this->model = ModelWrapper::create("block_trip", "block_stch", 0, 4);
-
-    static const sead::SafeArray<const char*, 4> animNames = {
-        "standard",
-        "chika",
-        "yougan",
-        "yougan2",
-    };
-
-    this->model->playTexPatternAnim(animNames[this->eventID1 & 0xF]); // nybble 2
+    // switch/case didn't work
+    if (this->modelType == 1) {
+        this->model = ModelWrapper::create("blocktripb", "block_stch", 0, 1);
+        this->model->playTexPatternAnim("chika");
+    }  else if (this->modelType >= 2) {
+        this->model = ModelWrapper::create("blocktripc", "block_stch", 0, 2);
+        if (this->modelType == 2) {
+            this->model->playTexPatternAnim("yougan");
+        } else if (this->modelType == 3) {
+            this->model->playTexPatternAnim("yougan2");
+        }
+    } else {
+        this->model = ModelWrapper::create("blocktripa", "block_stch", 0, 1);
+        this->model->playTexPatternAnim("standard");
+    }
 
     this->rectCollider.points[0].x -= 16.0f;
     this->rectCollider.points[1].x += 16.0f;
     this->rectCollider.points[2].x += 16.0f;
     this->rectCollider.points[3].x -= 16.0f;
 
-    if (BlockWrapper::stateType == StateType::UsedBlock) {
-        doStateChange(&TripleBlock::StateID_Used);
+    if (this->stateType == BlockWrapper::StateType::UsedBlock) {
+        this->doStateChange(&TripleBlock::StateID_Used);
     }
 
     return this->onExecute();

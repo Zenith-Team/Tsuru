@@ -15,6 +15,8 @@ public:
             , collisionViewerEnabled(false)
             , instantRespawnEnabled(false)
             , switchBlockBlue()
+            , locationViewerEnabled(false)
+            , pathViewerEnabled(false)
         { }
 
         bool infiniteLivesEnabled;
@@ -24,6 +26,8 @@ public:
         bool collisionViewerEnabled;
         bool instantRespawnEnabled;
         bool switchBlockBlue[6];
+        bool locationViewerEnabled;
+        bool pathViewerEnabled;
     };
 
 public:

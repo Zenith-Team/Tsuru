@@ -36,6 +36,6 @@ void SaveMgrSystem::saveSystem() {
     if (SaveMgrSystem::managers.count() > 1) {
         PRINT("%u save managers were written to disk", SaveMgrSystem::managers.count());
     } else {
-        PRINT("1 save manager was inited");
+        PRINT("1 save manager was written to disk");
     }
 }

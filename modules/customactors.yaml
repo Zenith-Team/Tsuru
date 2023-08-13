@@ -48,6 +48,8 @@ Files:
   - actors/peepa.cpp
   - actors/solid.cpp
   - actors/universalmovementcontroller.cpp
+  - actors/timechanger.cpp
+  - actors/hammerflower.cpp
   - actors/onewayplatform.cpp
 #* Course Select Actors:
   - actors/csrootspawner.cpp
@@ -68,3 +70,8 @@ Hooks:
     instr: bl
     addr: "0x292510C" # Player::getGravityData()
     func: LoadCustomPlayerGravity
+# Create custom layer for parallax
+  - type: branch
+    instr: b
+    addr: "0x24b4cc8" # AreaLayerMgr::createMainLayers()
+    func: CreateParallaxLayer

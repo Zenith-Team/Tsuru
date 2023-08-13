@@ -1,12 +1,13 @@
 #pragma once
 
-#include "sead/list.h"
+#include "sead/offsetlist.h"
 #include "sead/bitflag.h"
 #include "sead/inamable.h"
 #include "sead/idisposer.h"
 #include "sead/safestring.h"
 #include "sead/criticalsection.h"
 #include "sead/runtimetypeinfo.h"
+#include "sead/freelist.h"
 
 namespace sead { namespace hostio {
 
@@ -63,6 +64,8 @@ public:
 };
 
 class ExpHeap : public Heap {
+    SEAD_RTTI_OVERRIDE(ExpHeap, Heap);
+
 public:
     ExpHeap(const SafeString& name, Heap* parent, void* start, u32 size, HeapDirection direction, bool enableLock);
 
@@ -71,12 +74,6 @@ public:
 
     static ExpHeap* tryCreate(void* address, u32 size, const SafeString& name, bool enableLock);
     static ExpHeap* tryCreate(u32 size, const SafeString& name, Heap* parent, HeapDirection direction, bool enableLock);
-};
-
-class FreeList {
-public:
-    void* free;
-    void* work;
 };
 
 class UnitHeap : public Heap {
@@ -118,6 +115,13 @@ public:
     u32 areaSize;
     u32 freeSize;
     FreeList freeList;
+};
+
+class FrameHeap : public Heap {
+    SEAD_RTTI_OVERRIDE(FrameHeap, Heap);
+
+public:
+    static FrameHeap* tryCreate(u32 size, const SafeString& name, Heap* parent, HeapDirection direction, bool enableLock);
 };
 
 }

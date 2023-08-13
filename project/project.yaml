@@ -11,7 +11,7 @@ Modules:
   - csscripts            # Custom world map scripts
   - customactors         # Custom sprites/actors
   - debug                # Debugging features
-# - experiments          # Experimental things
+#  - experiments          # Experimental things
   - framebuffer          # Framebuffer-related fixes
   - initializer          # Initializer
   - layout               # Custom layouts
@@ -26,6 +26,7 @@ Modules:
   - sound                # Patches that affect sound
   - titlescreen          # Title screen patches
   - yoshicolors          # Extra colors for Yoshi
+  - imgui
 Defines:
   - NO_INTELLISENSE_HACK
   - TSURU_DEBUG

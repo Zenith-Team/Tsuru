@@ -31,9 +31,9 @@ u32 ActorSpawner::onCreate() {
 
     this->child = nullptr;
 
-    u16 inputID = linkID | ((movementID & 0xF) << 8);
+    u16 inputID = linkID | ((movementID & 0xF) << 8); //Nybble 22-24
 
-    if (movementID & 0x10) {
+    if (this->movementID & 0x10 /* Nybble 21, Bit 4 */) {
         this->spawnProfileID = Profile::sprite(inputID);
     } else {
         this->spawnProfileID = inputID;
@@ -43,28 +43,38 @@ u32 ActorSpawner::onCreate() {
 }
 
 u32 ActorSpawner::onExecute() {
-    if (EventMgr::instance()->isActive(this->eventID1 - 1)) {
-        if (initialStateFlag == 2 && this->child) {
-            StageActor* actor = sead::DynamicCast<StageActor, Actor>(this->child);
+    u8 eventMode = this->movementID >> 6; // Nybble 21 > Bit 1-2
 
-            if (actor) {
-                actor->isActive = true;
-                actor->isVisible = true;
-                actor->addHitboxColliders();
+    if (EventMgr::instance()->isActive(this->eventID1 - 1)) {
+        if (!this->spawned) {
+            if (eventMode == 3 && this->child) {
+                StageActor* actor = sead::DynamicCast<StageActor, Actor>(this->child);
+
+                if (actor) {
+                    actor->isActive = true;
+                    actor->isVisible = true;
+                    actor->addHitboxColliders();
+                }
+
+                this->spawned = true;
+                return 1;
             }
 
-            return 1;
-        }
-
-        if (!this->spawned) {
             ActorBuildInfo buildInfo = { 0 };
 
-            buildInfo.settings1 = this->settings1;
-            buildInfo.settings2 = this->settings2;
+            if (this->movementID & 0x20 /* Nybble 21, Bit 3 */) {
+                buildInfo.settings2 = this->settings2 & 0xFF0000FF; // Nybbles 13-14 + 19-20
+                buildInfo.movementID = this->settings2 >> 16 & 0xFF; // Nybbles 15-16
+                buildInfo.linkID = this->settings2 >> 8 & 0xFF; // Nybbles 17-18
+            } else {
+                buildInfo.settings2 = this->settings2; // Nybble 13-20
+            }
+
+            buildInfo.settings1 = this->settings1; // Nybbles 5-12
             buildInfo.profile = Profile::get(this->spawnProfileID);
             buildInfo.position = this->position;
-            buildInfo.eventID1 = (this->eventID2 >> 4) & 0xF;
-            buildInfo.eventID2 = this->eventID2 & 0xF;
+            buildInfo.eventID1 = (this->eventID2 >> 4) & 0xF; // Nybble 3
+            buildInfo.eventID2 = this->eventID2 & 0xF; // Nybble 4
             buildInfo.parentID = this->id;
             this->child = ActorMgr::instance()->create(buildInfo, 0);
 
@@ -73,12 +83,12 @@ u32 ActorSpawner::onExecute() {
     }
 
     else {
-        if (this->initialStateFlag == 1 && this->child) {
+        if (eventMode == 2 && this->child) {
             this->child->isDeleted = true;
             this->child = nullptr;
         }
 
-        else if (this->initialStateFlag == 2 && this->child) {
+        else if (eventMode == 3 && this->child) {
             StageActor* actor = sead::DynamicCast<StageActor, Actor>(this->child);
 
             if (actor) {
@@ -88,7 +98,9 @@ u32 ActorSpawner::onExecute() {
             }
         }
 
-        this->spawned = false;
+        if (eventMode != 1) {
+            this->spawned = false;
+        }
     }
 
     return 1;

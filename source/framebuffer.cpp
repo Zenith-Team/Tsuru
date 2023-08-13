@@ -69,7 +69,7 @@ public:
     agl::TextureSampler textureSampler;
 
     void fixDistortion(const agl::lyr::RenderInfo& renderInfo) {
-        textureSampler.applyTextureData(*reinterpret_cast<agl::TextureData*>(static_cast<agl::RenderBuffer*>(renderInfo.frameBuffer)->targetColors[0]));
+        textureSampler.applyTextureData(static_cast<agl::RenderBuffer*>(renderInfo.frameBuffer)->targetColors[0]->textureData);
         PtclMgr::instance()->setFrameBufferTexture(textureSampler);
     }
 };

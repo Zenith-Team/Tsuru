@@ -30,7 +30,7 @@ REGISTER_PROFILE(AngryGrrrol, ProfileID::AngryGrrrol);
 PROFILE_RESOURCES(ProfileID::AngryGrrrol, Profile::LoadResourcesAt::Course, "guruguru");
 
 HitboxCollider::Info AngryGrrrol::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0xFFFFFFFF, 0xFFFBFFFF, 0, &AngryGrrrol::collisionCallback
+    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 0x3, 0x9, 0x24F, 0xE, 0x1000, &AngryGrrrol::collisionCallback
 };
 
 AngryGrrrol::AngryGrrrol(const ActorBuildInfo* buildInfo)

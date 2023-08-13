@@ -45,9 +45,156 @@ public:
     static const SafeStringBase sEmptyString;
     static const s32 sMaximumLength = 0x40000;
 
-    const T* stringTop; // 4
+    const T* stringTop; // 0
 };
 
 typedef SafeStringBase<char> SafeString;
+
+static_assert(sizeof(SafeString) == 0x8, "sead::SafeStringBase<T> size mismatch");
+
+template <typename T>
+class BufferedSafeStringBase : public SafeStringBase<T> {
+public:
+    BufferedSafeStringBase(T* buffer, s32 size)
+        : SafeStringBase<T>(buffer)
+        , bufferSize(size)
+    {
+        if (size <= 0) {
+            //SEAD_ASSERT_MSG(false, "Invalied buffer size(%d).\n", size);
+            this->stringTop = nullptr;
+            this->bufferSize = 0;
+            return;
+        }
+
+        this->assureTerminationImpl_();
+    }
+
+    BufferedSafeStringBase(BufferedSafeStringBase<T>* original, s32 pos)
+        : SafeStringBase<T>(original->cstr())
+        , bufferSize(0)
+    {
+        //SEAD_ASSERT_MSG(original, "original string must not be nullptr.");
+
+        if (pos >= original->getBufferSize() || pos < 0) {
+            //SEAD_ASSERT_MSG(false, "pos(%d) out of bounds[0,%d)", pos, original->getBufferSize());
+            this->stringTop = nullptr;
+            this->bufferSize = 0;
+            return;
+        }
+
+        this->stringTop = original->stringTop + pos;
+        this->bufferSize = original->getBufferSize() - pos;
+        this->assureTerminationImpl_();
+    }
+
+private:
+    BufferedSafeStringBase(const BufferedSafeStringBase<T>&);
+    BufferedSafeStringBase<T>& operator=(const BufferedSafeStringBase<T>&);
+
+public:
+    virtual ~BufferedSafeStringBase()
+    { }
+
+    inline const T& operator[](s32 idx) const;
+
+    s32 getBufferSize() const {
+        return this->bufferSize;
+    }
+
+    /* inline */ s32 copy(const SafeStringBase<T>& rhs, s32 size = -1);
+
+    inline void clear() {
+        getMutableStringTop_()[0] = 0;
+    }
+
+    T* getBuffer() {
+        assureTerminationImpl_();
+        return getMutableStringTop_();
+    }
+
+private:
+    T* getMutableStringTop_() {
+        return const_cast<T*>(this->stringTop);
+    }
+
+protected:
+    void assureTerminationImpl_() const override {
+        BufferedSafeStringBase<T>* mutablePtr = const_cast<BufferedSafeStringBase<T>*>(this);
+        mutablePtr->getMutableStringTop_()[getBufferSize() - 1] = 0;
+    }
+
+private:
+    s32 bufferSize;
+};
+
+typedef BufferedSafeStringBase<char> BufferedSafeString;
+
+static_assert(sizeof(BufferedSafeString) == 0xC, "sead::BufferedSafeStringBase<T> size mismatch");
+
+template <typename T, s32 N>
+class FixedSafeStringBase : public BufferedSafeStringBase<T> {
+public:
+    FixedSafeStringBase()
+        : BufferedSafeStringBase<T>(this->buffer, N)
+    {
+        this->clear();
+    }
+
+    explicit FixedSafeStringBase(const SafeStringBase<T>& rhs)
+        : BufferedSafeStringBase<T>(this->buffer, N)
+    {
+        this->copy(rhs);
+    }
+
+    FixedSafeStringBase(const FixedSafeStringBase<T, N>& rhs)
+        : BufferedSafeStringBase<T>(this->buffer, N)
+    {
+        this->copy(rhs);
+    }
+
+    virtual ~FixedSafeStringBase()
+    { }
+
+    FixedSafeStringBase<T, N>& operator=(const FixedSafeStringBase<T, N>& rhs) {
+        this->copy(rhs);
+        return *this;
+    }
+
+    FixedSafeStringBase<T, N>& operator=(const SafeStringBase<T>& rhs) {
+        this->copy(rhs);
+        return *this;
+    }
+
+private:
+    T buffer[N];
+};
+
+template <s32 N>
+class FixedSafeString : public FixedSafeStringBase<char, N> {
+public:
+    FixedSafeString()
+        : FixedSafeStringBase<char, N>()
+    { }
+
+    explicit FixedSafeString(const SafeString& rhs)
+        : FixedSafeStringBase<char, N>(rhs)
+    { }
+
+    // Nintendo did not implement this
+    //
+    //FixedSafeString(const FixedSafeString<N>& rhs)
+    //    : FixedSafeStringBase<char, N>(rhs)
+    //{ }
+
+    FixedSafeString<N>& operator=(const FixedSafeString<N>& rhs) {
+        this->copy(rhs);
+        return *this;
+    }
+
+    FixedSafeString<N>& operator=(const SafeString& rhs) {
+        this->copy(rhs);
+        return *this;
+    }
+};
 
 }

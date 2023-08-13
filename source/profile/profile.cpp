@@ -863,9 +863,9 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::Peepa,                       // 770
     ProfileID::Solid,                       // 771
     ProfileID::UniversalMovementController, // 772
-    ProfileID::OneWayPlatform,              // 773
-    ProfileID::NullActor,                   // 774
-    ProfileID::NullActor,                   // 775
+    ProfileID::TimeChanger,                 // 773
+    ProfileID::HammerBlock,                 // 774
+    ProfileID::OneWayPlatform,              // 775
     ProfileID::NullActor,                   // 776
     ProfileID::NullActor,                   // 777
     ProfileID::NullActor,                   // 778

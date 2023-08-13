@@ -151,11 +151,13 @@ extern void (*OSDetachThread)(OSThread* thread);
 extern OSThread* (*OSGetCurrentThread)(void);
 extern const char* (*OSGetThreadName)(OSThread* thread);
 
-extern void (*OSGetActiveThreadLink)(OSThread* thread, void* link);
-extern u32  (*OSGetThreadAffinity)(OSThread* thread);
-extern s32  (*OSGetThreadPriority)(OSThread* thread);
-extern void (*OSSetThreadName)(OSThread* thread, const char* name);
-extern s32  (*OSGetCoreId)(void);
+extern void  (*OSGetActiveThreadLink)(OSThread* thread, void* link);
+extern u32   (*OSGetThreadAffinity)(OSThread* thread);
+extern s32   (*OSGetThreadPriority)(OSThread* thread);
+extern void  (*OSSetThreadName)(OSThread* thread, const char* name);
+extern void* (*OSGetThreadSpecific)(s32 index);
+extern void  (*OSSetThreadSpecific)(s32 index, void* ptr);
+extern s32   (*OSGetCoreId)(void);
 
 extern void (*OSSleepTicks)(u64 ticks);
 extern u64  (*OSGetTick)(void);

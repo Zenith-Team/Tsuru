@@ -68,6 +68,8 @@ EXPORT_DECL(void, OSGetActiveThreadLink, OSThread* thread, void* link);
 EXPORT_DECL(u32, OSGetThreadAffinity, OSThread* thread);
 EXPORT_DECL(s32, OSGetThreadPriority, OSThread* thread);
 EXPORT_DECL(void, OSSetThreadName, OSThread* thread, const char* name);
+EXPORT_DECL(void*, OSGetThreadSpecific, s32 index);
+EXPORT_DECL(void, OSSetThreadSpecific, s32 index, void* ptr);
 EXPORT_DECL(s32, OSGetCoreId, void);
 EXPORT_DECL(void, OSSleepTicks, u64 ticks);
 EXPORT_DECL(u64, OSGetTick, void);
@@ -339,6 +341,8 @@ void InitOSFunctionPointers(void) {
     OS_FIND_EXPORT(coreinitHandle, OSGetThreadAffinity);
     OS_FIND_EXPORT(coreinitHandle, OSGetThreadPriority);
     OS_FIND_EXPORT(coreinitHandle, OSSetThreadName);
+    OS_FIND_EXPORT(coreinitHandle, OSGetThreadSpecific);
+    OS_FIND_EXPORT(coreinitHandle, OSSetThreadSpecific);
     OS_FIND_EXPORT(coreinitHandle, OSGetCoreId);
 
     OS_FIND_EXPORT(coreinitHandle, OSSleepTicks);

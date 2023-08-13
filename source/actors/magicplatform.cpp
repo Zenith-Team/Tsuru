@@ -188,7 +188,7 @@ u32 MagicPlatform::onDraw() {
             f32 rotatedY = -offsetX * angleSin + offsetY * angleCos;
             Vec3f drawPos(this->position.x + rotatedX, this->position.y - rotatedY, this->position.z);
 
-            DrawMgr::instance()->drawTile(tileData[y * this->tileSize.x + x], drawPos, this->rotation.z, this->scale);
+            DrawMgr::instance()->drawTile(this->tileData[y * this->tileSize.x + x], drawPos, this->rotation.z, this->scale);
         }
     }
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead/list.h"
-#include "sead/tree.h"
+#include "sead/tlist.h"
+#include "sead/treenode.h"
 #include "sead/heappolicies.h"
 #include "sead/idisposer.h"
 #include "sead/bitflag.h"
@@ -52,6 +52,12 @@ class TaskBase : public TTreeNode<TaskBase*>, public IDisposer, public INamable 
     SEAD_RTTI_BASE(TaskBase);
 
 public:
+    enum Flags {
+        Flag_Fading = 1 << 0,
+        Flag_Unk1   = 1 << 1,
+        Flag_Unk2   = 1 << 2,
+    };
+
     enum State {
         State_Created     = 0,
         State_Prepare     = 1,
@@ -84,6 +90,9 @@ public:
         SingletonFunc instanceCB;
     };
 
+    typedef TListNode<TaskBase*> ListNode;
+    typedef TList<TaskBase*> List;
+
 public:
     TaskBase(const TaskConstructArg& arg, const char* name);
 
@@ -109,9 +118,11 @@ public:
 
     void adjustHeapAll();
 
+    MethodTreeMgr* getMethodTreeMgr();
+
     TaskParameter* parameter;               // 2C
     BitFlag32 internalFlag;                 // 30
-    TListNode<TaskBase*> taskListNode;      // 34
+    ListNode taskListNode;                  // 34
     HeapArray heapArray;                    // 44
     TaskMgr* taskMgr;                       // 5C
     State state;                            // 60

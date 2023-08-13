@@ -34,6 +34,11 @@ public:
         this->y = other.y;
     }
 
+    void set(T x_, T y_) {
+        this->x = x_;
+        this->y = y_;
+    }
+
     T lengthSquared() const {
         return this->x * this->x + this->y * this->y;
     }
@@ -61,6 +66,11 @@ public:
         this->x = (1 - t) * this->x + t * other.x;
         this->y = (1 - t) * this->y + t * other.y;
         return *this;
+    }
+
+    void multScalar(T t) {
+        this->x *= t;
+        this->y *= t;
     }
 
     Vector2<T> operator+(const Vector2<T>& other) const { return Vector2<T>(this->x + other.x, this->y + other.y); }
@@ -144,6 +154,12 @@ public:
         this->z = 0;
     }
 
+    void set(T x_, T y_, T z_) {
+        this->x = x_;
+        this->y = y_;
+        this->z = z_;
+    }
+
     T lengthSquared() const {
         return this->x * this->x + this->y * this->y + this->z * this->z;
     }
@@ -154,6 +170,10 @@ public:
 
     T distanceTo(const Vector3<T>& other) const {
         return (*this - other).length();
+    }
+
+    T dot(const Vector3<T>& other) const {
+        return this->x * other.x + this->y * other.y + this->z * other.z;
     }
 
     void normalize() {
@@ -181,6 +201,12 @@ public:
 
     Vector3<T>& crossWith(const Vector3<T>& other) {
         *this = this->crossedWith(other);
+    }
+
+    void multScalar(T t) {
+        this->x *= t;
+        this->y *= t;
+        this->z *= t;
     }
 
     Vector3<T> operator+(const Vector3<T>& other) const { return Vector3<T>(this->x + other.x, this->y + other.y, this->z + other.z); }

@@ -23,4 +23,10 @@ public:
     };
 };
 
+namespace internal {
+
+typedef FxDelay::DelayParam FxDelayParam;
+
+}
+
 } }

@@ -3,29 +3,49 @@
 Files:
   - experiments/projection.S
   - experiments/projection.cpp
+  - experiments/shader.cpp
 Hooks:
 # Orthographic projection on World Map
   # Set the projection in the layer
-  - type: branch
-    instr: b
-    func: worldMapProjection__Fv
-    addr: "0x21B94B0" # CSCamera::onExecute()
+#  - type: branch
+#    instr: b
+#    func: worldMapProjection__Fv
+#    addr: "0x21B94B0" # CSCamera::onExecute()
 
 # Perspective projection in levels
   # Set the projection in the draw layer
-  - type: branch
-    instr: bl
-    func: MakePerspectiveLevel
-    addr: "0x24B83E0" # AreaTask::drawLayerGather()
+#  - type: branch
+#    instr: bl
+#    func: MakePerspectiveLevel
+#    addr: "0x24B83E0" # AreaTask::drawLayerGather()
   # Delete a sead::DynamicCast RTTI check fail to prevent null pointer crash
-  - type: nop
-    addr: "0x2693324"
+#  - type: nop
+#    addr: "0x2693324"
   # Replace ortho projection class with frustum projection
-  - type: branch
-    instr: b
-    func: __ct__Q2_4sead17FrustumProjectionFfN51
-    addr: "0x2A065AC" # sead::OrthoProjection::OrthoProjection()
-  - type: branch
-    instr: b
-    func: __dt__Q2_4sead17FrustumProjectionFv
-    addr: "0x2A067C4" # sead::OrthoProjection::~OrthoProjection()
+#  - type: branch
+#    instr: b
+#    func: __ct__Q2_4sead17FrustumProjectionFfN51
+#    addr: "0x2A065AC" # sead::OrthoProjection::OrthoProjection()
+#  - type: branch
+#    instr: b
+#    func: __dt__Q2_4sead17FrustumProjectionFv
+#    addr: "0x2A067C4" # sead::OrthoProjection::~OrthoProjection()
+
+#  - type: branch
+#    instr: bl
+#    func: projThing__FUiT1PQ2_4sead17Matrix44__tm__2_f
+#    addr: "0x02691114"
+
+# shader
+#  - type: branch
+#    instr: bl
+#    addr: "0x024ef264"
+#    func: uniformBlock__FPQ2_3agl12UniformBlockPvT2UiT4
+#  - type: branch
+#    instr: bl
+#    addr: "0x024f3244"
+#    func: shaderFunc__FPQ2_3agl13ShaderProgramQ2_3agl10ShaderMode
+#  - type: branch
+#    instr: bl
+#    addr: "0x024fcd00"
+#    func: LayerFunc

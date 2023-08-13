@@ -6,7 +6,7 @@
 
 static inline bool loadResource(const sead::SafeString& name, const sead::SafeString& path, bool isYaz0 = true, const char* requester = "*") {
     PRINT(LogColor::Yellow, "TsuruResLoader: ", requester, " is attempting to load resource: ", path.cstr());
-    bool validResource = ResMgr::instance()->loadRes(name, path, nullptr, isYaz0);
+    bool validResource = ResMgr::instance()->loadArchiveRes(name, path, nullptr, isYaz0);
     if (!validResource) {
         PRINT(LogColor::Red, "TsuruResLoader: ", requester, " failed to load resource: ", path.cstr());
         return false;

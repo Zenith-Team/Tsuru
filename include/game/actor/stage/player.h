@@ -1,6 +1,7 @@
 #pragma once
 
 #include "game/actor/stage/playerbase.h"
+#include "game/graphics/model/charactermodelmgr.h"
 
 // TODO: Player virtuals, members
 
@@ -226,4 +227,13 @@ public:
     void vfA44() override;
 
     u32 givePowerup(PlayerBase::PowerupState::__type__);
+
+    PlayerModelMgr model;
+    u8 _2760[0x2770 - 0x2760];
+    PlayerBase::PowerupState::__type__ powerupState2; // 0x2770
+    u8 _2774[0x2A00 - 0x2774];
+    u32 _2A00;
+    u8 _2A04[0x34D8 - 0x2A04];
 };
+
+static_assert(sizeof(Player) == 0x34D8, "Player size mismatch");

@@ -1,7 +1,7 @@
 #include "game/actor/stage/enemy.h"
 #include "game/actor/stage/playerbase.h"
 #include "game/graphics/model/modelnw.h"
-#include "game/sound/sound.h"
+#include "game/audio/gameaudio.h"
 #include "game/zonerumblemgr.h"
 #include "game/graphics/drawmgr.h"
 #include "sead/mathcalccommon.h"
@@ -126,7 +126,7 @@ void GiantSkewer::endState_Idle() { }
 /** STATE: PreMove */
 
 void GiantSkewer::beginState_PreMove() {
-    playSound("SE_OBJ_DAIKONBOU_L_SIGN", this->position);
+    GameAudio::startSoundMap("SE_OBJ_DAIKONBOU_L_SIGN", this->position);
 }
 
 void GiantSkewer::executeState_PreMove() {
@@ -168,7 +168,7 @@ void GiantSkewer::executeState_Moving() {
 
 void GiantSkewer::endState_Moving() {
     ZoneRumbleMgr::instance()->rumble(6);
-    playSound("SE_OBJ_DAIKONBOU_L_LAND", this->position);
+    GameAudio::startSoundMap("SE_OBJ_DAIKONBOU_L_LAND", this->position);
 }
 
 /** STATE: MovingEnd */
@@ -198,5 +198,5 @@ void GiantSkewer::executeState_Retracting() {
 }
 
 void GiantSkewer::endState_Retracting() {
-    playSound("SE_OBJ_DAIKONBOU_L_REVERT_F", this->position);
+    GameAudio::startSoundMap("SE_OBJ_DAIKONBOU_L_REVERT_F", this->position);
 }

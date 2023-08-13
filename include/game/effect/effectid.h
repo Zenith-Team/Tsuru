@@ -1,6 +1,6 @@
 #pragma once
 
-enum EffectIDType {
+enum EffectID {
 
     // RP_1upGet
     // User Data: 0x00200000
@@ -3500,6 +3500,6 @@ enum EffectIDType {
     // Emitter Count: 3
     Wm_ob_wpillarsign = 0x01D,
 
-    Effects_None = 0xFFFFFFFF,
-    Effects_Num = 0x4D2,
+    EffectID_None = 0xFFFFFFFF,
+    EffectID_Num = 0x4D2,
 };

@@ -1,5 +1,5 @@
 #include "game/actor/stage/stageactor.h"
-#include "game/sound/sound.h"
+#include "game/audio/gameaudio.h"
 #include "game/eventmgr.h"
 
 class SoundPlayer : public StageActor {
@@ -29,7 +29,7 @@ u32 SoundPlayer::onExecute() {
     if (!EventMgr::instance()->isActive((this->eventID2 & 0xF) - 1)) {
         this->played = false;
     } else if (!this->played) {
-        playSound(static_cast<SoundEffects::IDs>((this->eventID1 << 4 | this->eventID2 >> 4) + 0x1000000), this->position);
+        GameAudio::startSoundMap(static_cast<SoundEffects::IDs>((this->eventID1 << 4 | this->eventID2 >> 4) + 0x1000000), this->position);
         this->played = true;
     }
 

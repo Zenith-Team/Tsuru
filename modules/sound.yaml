@@ -1,8 +1,8 @@
 
 ---
 Files:
-  - sound/musicplayer.cpp
-  - sound/sfxreverb.cpp
+  - sound/fxreverb.cpp
+  - sound/sndbgmmgr.cpp
 Hooks:
 # Restore SFX reverb values
   - type: branch
@@ -14,14 +14,14 @@ Hooks:
   - type: branch
     instr: bl
     addr: "0x29B85FC"
-    func: isValidStrmID__11MusicPlayerFi
+    func: isValidStrmID__9SndBgmMgrFi
   # Replace call to getStrmName to call our custom one
   - type: branch
     instr: bl
     addr: "0x29B862C"
-    func: getStrmName__11MusicPlayerFi
+    func: getStrmName__9SndBgmMgrFi
   # Replace call to getSeqName to call our custom one
   - type: branch
     instr: bl
     addr: "0x29B863C"
-    func: getSeqName__11MusicPlayerFi
+    func: getSeqName__9SndBgmMgrFi

@@ -12,6 +12,8 @@ public:
     ShaderProgram();
     virtual ~ShaderProgram();
 
+    ShaderMode activate(ShaderMode shaderMode, bool useDL = true) const;
+
     u32 forceValidate_(bool) const;
 
     void setShaderGX2() const;
@@ -30,6 +32,11 @@ public:
     void updateUniformBlockLocation() const;
     void updateUniformLocation() const;
 
+    class SharedData : public sead::INamable
+    {
+        
+    };
+
     u8 flags;                           // 0
     u16 _2;                             // 2
     DisplayList displayList;            // 4
@@ -40,7 +47,7 @@ public:
     VertexShader vertexShader;          // 34
     FragmentShader fragmentShader;      // 40
     GeometryShader geometryShader;      // 4C
-    u32 info;                           // 58
+    SharedData* sharedData;                           // 58
 };
 
 static_assert(sizeof(ShaderProgram) == 0x60, "agl::ShaderProgram size mismatch");

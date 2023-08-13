@@ -22,7 +22,8 @@ public:
     void vf1FC() override;
 };
 
-REGISTER_PROFILE(PAcorn, ProfileID::PAcorn, "PAcorn", nullptr, 16406);
+const ActorInfo PAcornActorInfo = { 0, 0, 0x20, 0x200, 0x200, 0x400, 0x400, 0 };
+REGISTER_PROFILE(PAcorn, ProfileID::PAcorn, "PAcorn", &PAcornActorInfo, 16406);
 PROFILE_RESOURCES(ProfileID::PAcorn, Profile::LoadResourcesAt::Course, "I_musasabi");
 
 PAcorn::PAcorn(const ActorBuildInfo* buildInfo)
@@ -79,8 +80,8 @@ void PAcorn::vf1B4() {
 u32 PAcorn::vf1C4() {
     u32 local;
 
-    if (FUN_25196e8(&local, PlayerBase::PowerupState::PAcorn, 1) != 0)
-        return FUN_2519580(local, this->_1830);
+    if (this->FUN_25196e8(&local, PlayerBase::PowerupState::PAcorn, 1) != 0)
+        return this->FUN_2519580(local, this->_1830);
 
     return 0;
 }

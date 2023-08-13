@@ -2,6 +2,8 @@
 #include "types.h"
 #include "dynlibs/os/functions.h"
 #include "dynlibs/gx2/functions.h"
+#include "dynlibs/vpad/functions.h"
+#include "dynlibs/padscore/functions.h"
 #include "tsuru/save/system/savemgrsystem.h"
 
 /*
@@ -57,13 +59,15 @@ void initialize() {
     // Init RPL libraries
     InitOSFunctionPointers();
     InitGX2FunctionPointers();
-
-    PRINT("OSDynLoad_Acquire address: ", LogColor::Yellow, fmt::hex, OS_SPECIFICS->addr_OSDynLoad_Acquire);
-    PRINT("OSDynLoad_FindExport address: ", LogColor::Yellow, fmt::hex, OS_SPECIFICS->addr_OSDynLoad_FindExport);
-
-    PRINT(LogColor::Green, "Custom code initialization complete!");
+    InitVPADFunctionPointers();
+    InitPadscoreFunctionPointers();
 }
+
+extern void initImGui();
 
 void initialize2() {
     SaveMgrSystem::initSystem();
+
+    initImGui();
 }
+

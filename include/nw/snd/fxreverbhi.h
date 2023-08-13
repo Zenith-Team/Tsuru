@@ -35,4 +35,10 @@ public:
     };
 };
 
+namespace internal {
+
+typedef FxReverbHi::ReverbHiParam FxReverbHiParam;
+
+}
+
 } }

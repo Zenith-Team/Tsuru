@@ -25,7 +25,13 @@ public:
         Penguin,
         Ice,
         Acorn,
-        PAcorn
+        PAcorn,
+
+        NumOriginal = 9,
+
+        Hammer = NumOriginal,
+
+        Num
     );
 
     ENUM_CLASS(DamageType, // TODO: Figure out all these types
@@ -343,3 +349,5 @@ public:
     HitboxCollider playerHitboxCollider4; // 1F30
     u8 _2058[0x6F8];                      // 2058
 };
+
+static_assert(sizeof(PlayerBase) == 0x2750, "PlayerBase size mismatch");

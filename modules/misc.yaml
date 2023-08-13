@@ -8,11 +8,14 @@ Files:
   - dynlibs/os.cpp
   - dynlibs/gx2.cpp
   - dynlibs/h264.cpp
+  - dynlibs/padscore.cpp
+  - dynlibs/vpad.cpp
   - hitboxcollider.cpp
   - utils.cpp
   - profileres.cpp
   - cafe/gfd.cpp
   - inputcontrollers.cpp
+  - playeradditionalresource.cpp
 Hooks:
 # Embed crash fix into the RPX
   - type: patch
@@ -46,3 +49,56 @@ Hooks:
     instr: b
     addr: "0x202BDC4" # Boss::beforeExecute()
     func: SetBossActorType
+
+# Disable baphs
+  - type: patch
+    addr: "0x0202b11c"
+    data: "38600000" # li r3, 0
+  - type: patch
+    addr: "0x0202b128"
+    data: "38600000" # li r3, 0
+
+# Fix BG shake bug
+  - type: patch
+    addr: "0x22a7974"
+    data: "7C094800" # cmpw r9, r9
+
+# Save task instances
+  # GameSetupScene
+  - type: branch
+    instr: bl
+    addr: "0x29852ec"
+    func: GameSetupScene_SetInstance
+  - type: branch
+    instr: b
+    addr: "0x2984d00"
+    func: GameSetupScene_ClearInstance
+
+# Allow creating custom actors with PlayerHeap
+  - type: branch
+    instr: b
+    addr: "0x20090cc" # ActorMgr::instanciateActor()
+    func: instanciateActor__8ActorMgrFRC14ActorBuildInfob
+
+# Fix star coin hitbox (OCD)
+  - type: patch
+    addr: "0x1010d0b0" # HitboxCollider::Info::Shape
+    data: "00000001" # HitboxCollider::Shape::Circle  
+  - type: patch
+    addr: "0x1010d0a4" # HitboxCollider::Info::Offset.y
+    data: "00000000" # 0.0f
+  - type: patch
+    addr: "0x1010d0a8" # HitboxCollider::Info::Size.x
+    data: "41700000" # 15.0f
+
+# Fix castle swing not rendering on the first frame
+  - type: branch
+    instr: b
+    addr: "0x2875444"
+    func: CastleSwingUpdateModel
+
+# Init player additional resource class
+  - type: branch
+    instr: bl
+    addr: "0x2923EE0"
+    func: InitPlayerAdditionalResource

@@ -1,6 +1,7 @@
 #include "game/eventmgr.h"
 #include "game/playermgr.h"
 #include "game/actor/stage/stageactor.h"
+#include "game/actor/stage/player.h"
 
 class PowerupSwitcher : public StageActor {
     SEAD_RTTI_OVERRIDE_IMPL(PowerupSwitcher, StageActor);
@@ -22,7 +23,7 @@ u32 PowerupSwitcher::onExecute() {
     if (EventMgr::instance()->isActive((this->eventID1 >> 0x4 & 0xF) - 1)) {
         for (u32 i = 0; i < 4; i++) {
             if (PlayerMgr::instance()->players[i]) {
-                PlayerMgr::instance()->players[i]->powerupState = static_cast<PlayerBase::PowerupState::__type__>(this->eventID1 & 0xF);
+                PlayerMgr::instance()->players[i]->givePowerup(static_cast<PlayerBase::PowerupState::__type__>(this->eventID1 & 0xF));
                 this->isDeleted = true;
             }
         }

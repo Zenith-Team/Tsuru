@@ -2,9 +2,10 @@
 #include "game/graphics/model/modelnw.h"
 #include "game/actor/actormgr.h"
 #include "game/eventmgr.h"
-#include "game/sound/sound.h"
+#include "game/audio/gameaudio.h"
 #include "game/movementhandler.h"
-#include "log.h"
+#include "game/eventmgr.h"
+
 class MusicNoteMgr;
 
 class MusicNote : public StageActor {
@@ -60,13 +61,11 @@ const ActorInfo MusicNoteActorInfo = {
 REGISTER_PROFILE(MusicNote, ProfileID::MusicNote, "MusicNote", &MusicNoteActorInfo);
 REGISTER_PROFILE(MusicNoteMgr, ProfileID::MusicNoteMgr);
 
-PROFILE_RESOURCES(ProfileID::MusicNote, Profile::LoadResourcesAt::Course, "note");
-PROFILE_RESOURCES(ProfileID::MusicNoteMgr, Profile::LoadResourcesAt::Course, "clef");
-
+PROFILE_RESOURCES(ProfileID::MusicNote, Profile::LoadResourcesAt::Course, "note", "star_coin");
+PROFILE_RESOURCES(ProfileID::MusicNoteMgr, Profile::LoadResourcesAt::Course, "clef", "star_coin");
 
 
 // Music Note
-
 
 const HitboxCollider::Info MusicNote::collisionInfo = {
     Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &MusicNote::collisionCallback
@@ -144,7 +143,7 @@ MusicNoteMgr::MusicNoteMgr(const ActorBuildInfo* buildInfo)
     , powerup(buildInfo->settings1 >> 0x1C & 0xF) // nybble 5
     , movementHandler()
     , clefModel(nullptr)
-    , timeLimit((buildInfo->settings1 >> 0x14 & 0xFF) * 60) // nybbles 6-7
+    , timeLimit((buildInfo->settings1 >> 0x14 & 0xFF ? buildInfo->settings1 >> 0x14 & 0xFF : 5) * 60) // nybbles 6-7 
     , touched(false)
 { }
 
@@ -182,7 +181,7 @@ u32 MusicNoteMgr::onExecute() {
         this->timeLimit--;
     }
     if (this->touched && this->timeLimit <= 180 && this->timeLimit % 60 == 0 && this->timeLimit != 0) { // less than 3 seconds remaining, a sound effect plays once every second
-        playSound(SoundEffects::SE_SYS_SWITCH_CT_LAST, this->position);
+        GameAudio::startSoundMap(SoundEffects::SE_SYS_SWITCH_CT_LAST, this->position);
         for (Actor** it = ActorMgr::instance()->actors.start.buffer; it != ActorMgr::instance()->actors.end.buffer; ++it) { // search for MusicNote actors and make them flicker
             if (*it != nullptr) {
                 Actor& actor = **it;
@@ -193,7 +192,7 @@ u32 MusicNoteMgr::onExecute() {
             }
         }
     } else if (this->touched && this->timeLimit % 60 == 0 && this->timeLimit != 0) { // play sound effect every 2 seconds
-        playSound(SoundEffects::SE_SYS_SWITCH_CT, this->position);
+        GameAudio::startSoundMap(SoundEffects::SE_SYS_SWITCH_CT, this->position);
     } else if (this->timeLimit == 0) {
         for (Actor** it = ActorMgr::instance()->actors.start.buffer; it != ActorMgr::instance()->actors.end.buffer; ++it) { // search for MusicNote actors and delete them
             if (*it != nullptr) {
@@ -223,10 +222,13 @@ void MusicNote::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
 
         if ((self->mgr->collectedCount + 1) >= (self->mgr->targetCount)) {
             // spawn specified powerup and play the assigned sound
-            playSound((SoundEffects::IDs)(SoundEffects::SE_EMY_PATAMET_STEP + self->note), self->position);
-            playSound(SoundEffects::SE_EMY_PATAMET_COMPLETE, self->position);
+            GameAudio::startSoundMap((SoundEffects::IDs)(SoundEffects::SE_EMY_PATAMET_STEP + self->note), self->position);
+            GameAudio::startSoundMap(SoundEffects::SE_EMY_PATAMET_COMPLETE, self->position);
 
             ActorBuildInfo buildInfo = { 0 };
+
+            buildInfo.settings1 = 0x6000000; // nybble 6 = reward spawn
+
             switch (self->mgr->powerup) {
                 case 1: { // fire flower
                     buildInfo.profile = Profile::get(592);
@@ -260,19 +262,36 @@ void MusicNote::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
                     buildInfo.profile = Profile::get(599);
                     break;
                 }
+                case 9: { // star coin - 1
+                    buildInfo.profile = Profile::get(426);
+                    // we dont need to set the settings1 value because the nybble is already set to 0 for star coin 1
+                    buildInfo.position = self->mgr->position;
+                    break;
+                }
+                case 10: { // star coin - 2
+                    buildInfo.profile = Profile::get(426);
+                    buildInfo.settings1 = 4096;
+                    buildInfo.position = self->mgr->position;
+                    break;
+                }
+                case 11: { // star coin - 3
+                    buildInfo.profile = Profile::get(426);
+                    buildInfo.settings1 = 8192;
+                    buildInfo.position = self->mgr->position;
+                    break;
+                }
                 default: { // mushroom
                     buildInfo.profile = Profile::get(591);
                     break;
                 }
             }
-            buildInfo.settings1 = 100663296;
-
+            
+            
             ActorMgr::instance()->create(buildInfo, 0);
         }
         else {
-            playSound((SoundEffects::IDs)(SoundEffects::SE_EMY_PATAMET_STEP + self->note), self->position);
+            GameAudio::startSoundMap((SoundEffects::IDs)(SoundEffects::SE_EMY_PATAMET_STEP + self->note), self->position);
         }
-
         self->mgr->collectedCount++;
         self->isDeleted = true;
     }
@@ -281,7 +300,7 @@ void MusicNote::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOthe
 void MusicNoteMgr::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     MusicNoteMgr* self = (MusicNoteMgr*)hcSelf->owner;
     self->touched = true;
-    playSound(SoundEffects::SE_SYS_RED_RING, hcSelf->owner->position);
+    GameAudio::startSoundMap(SoundEffects::SE_SYS_RED_RING, hcSelf->owner->position);
     hcSelf->owner->isVisible = false;
     hcSelf->owner->removeHitboxColliders();
     if (hcOther->owner->type == StageActor::Type::Player) {
