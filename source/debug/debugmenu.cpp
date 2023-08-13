@@ -16,6 +16,7 @@
 #include "game/level/levelcamera.h"
 #include "game/graphics/tiletexmgr.h"
 #include "game/resource/resmgr.h"
+#include "game/sound/sndaudiomgr.h"
 #include "agl/texturesampler.h"
 #include "agl/lyr/renderer.h"
 #include "log.h"
@@ -57,6 +58,7 @@ void drawThreadMgrImGui();
 void drawMethodTreeMgrImGui(sead::DualScreenMethodTreeMgr* mgr);
 void drawTaskMgrImGui(sead::TaskMgr* mgr);
 void drawResMgrImGui();
+void drawSndAudioMgrImGui();
 void drawActorMgrImGui();
 
 /** MAIN: */
@@ -117,6 +119,10 @@ static void drawMgrs() {
 
         if (ResMgr::instance()) {
             drawResMgrImGui();
+        }
+
+        if (SndAudioMgr::instance()) {
+            drawSndAudioMgrImGui();
         }
 
         if (ActorMgr::instance()) {
@@ -545,6 +551,30 @@ static void drawResMgrImGui() {
 
                 ImGui::TreePop();
             }
+        }
+    }
+}
+
+static void drawSoundHandleImGui(nw::snd::SoundHandle* handle, u32 i) {
+    char buf[64] = { 0 };
+    __os_snprintf(buf, 64, "SoundHandle%i: %s", i + 1, handle->IsAttachedSound() ? "Attached" : "Detached");
+
+    if (ImGui::TreeNode(buf)) {
+        if (ImGui::Button("Stop"))
+            handle->Stop(0);
+
+        ImGui::TreePop();
+    }
+}
+
+static void drawSndAudioMgrImGui() {
+    if (ImGui::CollapsingHeader("SndAudioMgr")) {
+        SndAudioMgr* audioMgr = SndAudioMgr::instance();
+
+        nw::snd::SoundHandle* handles = &audioMgr->soundHandle1;
+
+        for (u32 i = 0; i < 10; i++) {
+            drawSoundHandleImGui(&handles[i], i);
         }
     }
 }
