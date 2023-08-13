@@ -20,6 +20,8 @@ static_assert(sizeof(SoundActorParam) == 0x18, "nw::snd::internal::SoundActorPar
 class BasicSound {
 public:
     struct AmbientInfo { };
+
+    void Stop(s32 fadeFrames);
 };
 
 } } }

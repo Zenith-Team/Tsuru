@@ -14,6 +14,16 @@ public:
         DetachSound();
     }
 
+    void Stop(s32 fadeFrames)
+    {
+        if (IsAttachedSound())
+            sound->Stop(fadeFrames);
+    }
+
+    bool IsAttachedSound() const {
+        return sound != nullptr;
+    }
+
     void DetachSound();
 
     internal::BasicSound* sound;

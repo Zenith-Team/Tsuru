@@ -10,9 +10,9 @@ public:
     enum SoundType {
         SoundType_Invalid = 0,
 
-        SoundType_Seq,
-        SoundType_Strm,
-        SoundType_Wave
+        SoundType_Seq = 1,
+        SoundType_Strm = 2,
+        SoundType_Wave = 3
     };
 
 public:

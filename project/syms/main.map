@@ -300,6 +300,9 @@
     __ct__Q2_4sead8ViewportFRCQ2_4sead18LogicalFrameBuffer = 0x2A074C8;
     apply__Q2_4sead8ViewportCFRCQ2_4sead18LogicalFrameBuffer = 0x2A0783C;
 
+# nw::snd::internal::BasicSound
+    Stop__Q4_2nw3snd8internal10BasicSoundFi = 0x02aca048;
+
 # Actor
     RTTI__5Actor = 0x101E9CC8;
     __ct__5ActorFPC14ActorBuildInfo = 0x2002CE0;
