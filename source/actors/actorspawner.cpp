@@ -56,7 +56,6 @@ u32 ActorSpawner::onExecute() {
                     actor->addHitboxColliders();
                 }
 
-                this->spawned = true;
                 return 1;
             }
 
