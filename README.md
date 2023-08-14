@@ -21,11 +21,14 @@ If you require any assistance with anything related to Tsuru, feel free to join 
 
 # Credits
 * [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code and headers
+* [Baron Stijn](https://github.com/BaronStijn) - Code
 * [Flizl](https://github.com/Flizl) - Graphics
 * [iHarv](https://github.com/iHarv) - Quality Assurance
 * [jhmaster](https://github.com/jhmaster2000) - Code and headers
+* [Joey](https://github.com/Joey0980) - Code
 * [Luminyx](https://github.com/Luminyx1) - Project lead, code, and headers
 * [Newer Team](https://github.com/Newer-Team) - [Newer U](https://github.com/Newer-Team/NewerSMBU) code and headers
+* [PoeDev](https://github.com/poec987) - Code
 * [RoadrunnerWMC](https://github.com/RoadrunnerWMC) - Customizable [world map scripts](https://github.com/RoadrunnerWMC/Cobra)
 * [rodmjorgeh](https://github.com/Rodmjorge) - Graphics
 * [shibboleet](https://github.com/shibbo) - [Headers](https://github.com/shibbo/NSMBU-Headers/)
