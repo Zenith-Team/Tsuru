@@ -18,6 +18,7 @@ public:
     u32 eventId;
     u32 time;
     u32 timeMode;
+    bool triggered;
 };
 
 REGISTER_PROFILE(TimeChanger, ProfileID::TimeChanger);
@@ -33,15 +34,17 @@ u32 TimeChanger::onCreate() {
     this->time = this->settings2 >> 0x14 & 0xFFF; 
 
     // 0 = add 1 = subtract 2 = set
-    this->timeMode = this-> settings1 >> 0x10 & 0xF;
+    this->timeMode = this->settings1 >> 0x10 & 0xF;
 
     return this->onExecute();
 }
 
 u32 TimeChanger::onExecute() {
-    if (EventMgr::instance()->isActive(this->eventId)) {
+    if (!EventMgr::instance()->isActive(this->eventId)) {
+        this->triggered = false;
+    } else if (!this->triggered) {
         switch (this->timeMode) {
-            case 0: {
+            default: {
                 LevelTimer::instance()->addTime(this->time);
                 break;
             }
@@ -49,17 +52,16 @@ u32 TimeChanger::onExecute() {
                 LevelTimer::instance()->addTime(-static_cast<s32>(this->time));
                 break;
             }
-            //case 2: { 
-            //    LevelTimer::instance()->setTime(this->time);
-            //    break;
-            //}
-            default: {
-                PRINT("[TimeChanger] ", "Invalid time mode.");
+            case 2: { 
+                LevelTimer::instance()->setTime(this->time);
                 break;
             }
         }
-
-        this->isDeleted = true;
+    
+        this->triggered = true;
+        if (!(this->settings1 & 0x10)) {
+            this->isDeleted = true;
+        }
     }
 
     return 1;
