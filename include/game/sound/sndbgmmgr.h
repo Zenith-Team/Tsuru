@@ -81,7 +81,7 @@ public:
     f32 volume;             // Inited to 1.0f
     f32 _44;                // Inited to 1.0f
     u8 _48;                 // Inited to 1
-    u32 _4C;                // Inited to 0
+    u32 currentTick;        // Inited to 0
     u32 _50;                // Inited to 0
     u32 _54;                // Inited to 0
     const char* strmName_2; // Inited to "STRM_BGM_DUMMY"

@@ -14,8 +14,7 @@ public:
         DetachSound();
     }
 
-    void Stop(s32 fadeFrames)
-    {
+    void Stop(s32 fadeFrames) {
         if (IsAttachedSound())
             sound->Stop(fadeFrames);
     }

@@ -24,6 +24,12 @@ public:
 
     virtual void initialize(const InitializeArg& arg);
     virtual void calc();
+    virtual bool startSound(nw::snd::SoundHandle* handle, u32 soundID); // deleted
+    virtual bool startSound(nw::snd::SoundHandle* handle, const char* soundName);
+    virtual bool holdSound(nw::snd::SoundHandle* handle, u32 soundID); // deleted
+    virtual bool holdSound(nw::snd::SoundHandle* handle, const char* soundName);
+    virtual bool prepareSound(nw::snd::SoundHandle* handle, u32 soundID);
+    virtual bool prepareSound(nw::snd::SoundHandle* handle, const char* soundName);
     // ...
 
     AudAudioPlayer* getAudioPlayer() const;
@@ -33,6 +39,8 @@ public:
     u32 getSoundID(const char* label) const;
 
     nw::snd::SoundArchive::SoundType getSoundType(const char* label) const;
+
+    u8 getBeatTrigger() const;
 
     u8 _28;
     u8 _29;
@@ -48,7 +56,9 @@ public:
     nw::snd::SoundHandle soundHandle8;
     nw::snd::SoundHandle soundHandle9;
     nw::snd::SoundHandle soundHandle10;
-    u8 _54[0x3D0 - 0x54];
+    u8 _54[0x7C - 0x54];
+    u8 currentBeat;
+    u8 _7D[0x3D0 - 0x7D];
 };
 
 static_assert(sizeof(SndAudioMgr) == 0x3D4, "SndAudioMgr size mismatch");
