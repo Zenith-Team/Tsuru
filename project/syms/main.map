@@ -303,6 +303,13 @@
 # nw::snd::internal::BasicSound
     Stop__Q4_2nw3snd8internal10BasicSoundFi = 0x02aca048;
 
+# nw::snd::internal::SequenceSound
+    WriteVariable__Q4_2nw3snd8internal13SequenceSoundFis = 0x02ad1198;
+
+# nw::snd::SequenceSoundHandle
+    __ct__Q3_2nw3snd19SequenceSoundHandleFPQ3_2nw3snd11SoundHandle = 0x02ad1880;
+    DetachSound__Q3_2nw3snd19SequenceSoundHandleFv = 0x02ad199c;
+
 # Actor
     RTTI__5Actor = 0x101E9CC8;
     __ct__5ActorFPC14ActorBuildInfo = 0x2002CE0;
@@ -1095,6 +1102,7 @@
 # LevelTimer
     sInstance__10LevelTimer = 0x101D15F4;
     addTime__10LevelTimerFi = 0x24C14C0;
+    setTime__10LevelTimerFi = 0x024c134c;
 
 # LightMapMgr
     sInstance__11LightMapMgr = 0x101d2c60;
@@ -1412,8 +1420,10 @@
 
 # SndAudioMgr
     sInstance__11SndAudioMgr = 0x101E7C84;
+    getBeatTrigger__11SndAudioMgrCFv = 0x029b5f0c;
 
 # SndBgmMgr
+    sInstance__9SndBgmMgr = 0x101e7ca8;
     shouldHurryUp__9SndBgmMgrFv = 0x29B83D8;
 
 # StageActor

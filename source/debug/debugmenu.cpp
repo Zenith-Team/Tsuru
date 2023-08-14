@@ -17,6 +17,7 @@
 #include "game/graphics/tiletexmgr.h"
 #include "game/resource/resmgr.h"
 #include "game/sound/sndaudiomgr.h"
+#include "game/sound/sndbgmmgr.h"
 #include "agl/texturesampler.h"
 #include "agl/lyr/renderer.h"
 #include "log.h"
@@ -563,6 +564,17 @@ static void drawSoundHandleImGui(nw::snd::SoundHandle* handle, u32 i) {
         if (ImGui::Button("Stop"))
             handle->Stop(0);
 
+        nw::snd::SequenceSoundHandle sequenceHandle(handle);
+        if (sequenceHandle.IsAttachedSound()) {
+            static int var = 0;
+
+            static const char* const vars[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+
+            ImGui::Combo("Var0", &var, vars, sizeof(vars) / sizeof(vars[0]));
+            if (ImGui::Button("Set Var0"))
+                sequenceHandle.WriteVariable(0, var);
+        }
+
         ImGui::TreePop();
     }
 }
@@ -576,6 +588,9 @@ static void drawSndAudioMgrImGui() {
         for (u32 i = 0; i < 10; i++) {
             drawSoundHandleImGui(&handles[i], i);
         }
+
+        ImGui::Text("Beat: %i", audioMgr->currentBeat);
+        ImGui::Text("Tick: %i", SndBgmMgr::instance()->currentTick);
     }
 }
 
