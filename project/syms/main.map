@@ -1095,6 +1095,7 @@
 # LevelTimer
     sInstance__10LevelTimer = 0x101D15F4;
     addTime__10LevelTimerFi = 0x24C14C0;
+    setTime__10LevelTimerFi = 0x024c134c;
 
 # LightMapMgr
     sInstance__11LightMapMgr = 0x101d2c60;
