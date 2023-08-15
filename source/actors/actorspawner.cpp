@@ -95,6 +95,7 @@ u32 ActorSpawner::onExecute() {
                 actor->isVisible = false;
                 actor->removeHitboxColliders();
             }
+            this->isDeleted = this->child->isDeleted;
         }
 
         if (eventMode != 1) {
