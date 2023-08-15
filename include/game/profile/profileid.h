@@ -299,6 +299,7 @@ ENUM_CLASS(ProfileID,
     TimeChanger,
     HammerFlower,
     HammerBlock,
+    OneWayPlatform,
 
     Num
 );
