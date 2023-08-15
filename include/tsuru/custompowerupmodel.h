@@ -15,8 +15,6 @@ public:
     static void init(Player* target);
     static void draw(Player* target);
 
-    s32 headBoneID, shellBoneID;
-
     // Hammer Suit
     ModelWrapper* hammerHelmet;
     ModelWrapper* hammerShell;

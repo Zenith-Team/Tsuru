@@ -117,9 +117,9 @@ template <typename T> inline void Matrix34<T>::makeSRTIdx(const Vector3<T>& s, c
 template <typename T> inline void Matrix34<T>::fromQuat(const Quat<T>& quat) { Matrix34CalcCommon<T>::makeQ(*this, quat); }
 template <typename T> inline void Matrix34<T>::setTranslation(const Vector3<T>& t) { Matrix34CalcCommon<T>::setTranslation(*this, t); }
 template <typename T> inline void Matrix34<T>::makeIdentity() {
-    m[0][0] = (T)1.0; m[0][1] = (T)0.0; m[0][2] = (T)0.0; m[0][3] = (T)0.0;
-    m[1][0] = (T)0.0; m[1][1] = (T)1.0; m[1][2] = (T)0.0; m[1][3] = (T)0.0;
-    m[2][0] = (T)0.0; m[2][1] = (T)0.0; m[2][2] = (T)1.0; m[2][3] = (T)0.0;
+    this->m[0][0] = (T)1.0; this->m[0][1] = (T)0.0; this->m[0][2] = (T)0.0; this->m[0][3] = (T)0.0;
+    this->m[1][0] = (T)0.0; this->m[1][1] = (T)1.0; this->m[1][2] = (T)0.0; this->m[1][3] = (T)0.0;
+    this->m[2][0] = (T)0.0; this->m[2][1] = (T)0.0; this->m[2][2] = (T)1.0; this->m[2][3] = (T)0.0;
 }
 
 }

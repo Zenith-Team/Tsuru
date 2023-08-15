@@ -3,9 +3,7 @@
 #include "game/actor/stage/player.h"
 
 CustomPowerupModel::CustomPowerupModel()
-    : headBoneID(-1)
-    , shellBoneID(-1)
-    , hammerHelmet(nullptr)
+    : hammerHelmet(nullptr)
     , hammerShell(nullptr)
 { }
 
@@ -14,12 +12,7 @@ CustomPowerupModel::~CustomPowerupModel() {
     delete this->hammerShell;
 }
 
-void CustomPowerupModel::init_(Player* target) {   
-    PlayerModel* const mdl = target->model.playerModel;
-
-    this->headBoneID = mdl->headModels[mdl->currentPowerupModel]->model->searchBoneIndex("player_head");
-    this->shellBoneID = mdl->bodyModels[mdl->currentPowerupModel]->model->searchBoneIndex("spin");
-
+void CustomPowerupModel::init_(Player* target) {
     this->hammerHelmet = ModelWrapper::create("hmrpy", "hmrpy_partsC");
     this->hammerShell = ModelWrapper::create("hmrpy", "hmrpy_partsB");
 }
@@ -27,28 +20,33 @@ void CustomPowerupModel::init_(Player* target) {
 void CustomPowerupModel::draw_(Player* target) {
     switch (target->powerupState) {
         case PlayerBase::PowerupState::Hammer: {
-            ModelWrapper* const mdl = target->model.playerModel->bodyModels[target->model.playerModel->currentPowerupModel];
-            ModelWrapper* const head = target->model.playerModel->headModels[target->model.playerModel->currentPowerupModel];
+            PlayerModel* playerModel = target->model.playerModel;
+
+            Model* headModel = playerModel->headModels[playerModel->currentPowerupModel]->model;
+            Model* bodyModel = playerModel->bodyModels[playerModel->currentPowerupModel]->model;
             
-            s32 hairIdx = head->model->searchMaterialIndex("mat_player_hair");
-            s32 hatIdx = head->model->searchMaterialIndex("mat_player_hat");
+            s32 hairIdx = headModel->searchMaterialIndex("mat_player_hair");
+            s32 hatIdx = headModel->searchMaterialIndex("mat_player_hat");
 
             if (hairIdx > -1)
-                head->model->setMaterialVisible(hairIdx, true);
+                headModel->setMaterialVisible(hairIdx, true);
 
             if (hatIdx > -1)
-                head->model->setMaterialVisible(hatIdx, false);
+                headModel->setMaterialVisible(hatIdx, false);
+
+            s32 headBoneID = headModel->searchBoneIndex("player_head");
+            s32 shellBoneID = bodyModel->searchBoneIndex("spin");
 
             Mtx34 mtx;
 
-            head->model->getBoneWorldMatrix(this->headBoneID, &mtx);
+            headModel->getBoneWorldMatrix(headBoneID, &mtx);
             this->hammerHelmet->setMtx(mtx);
             this->hammerHelmet->setScale(target->scale);
             this->hammerHelmet->updateModel();
             this->hammerHelmet->updateAnimations();
             this->hammerHelmet->draw();
 
-            mdl->model->getBoneWorldMatrix(this->shellBoneID, &mtx);
+            bodyModel->getBoneWorldMatrix(shellBoneID, &mtx);
 
             this->hammerShell->setMtx(mtx);
             this->hammerShell->setScale(target->scale);

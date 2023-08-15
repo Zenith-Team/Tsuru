@@ -11,7 +11,7 @@ public:
     virtual ~StateBase() { }
 
     virtual s32 getRootID() const {
-        return ID;
+        return this->ID;
     }
 
     inline bool isEqual(const StateBase& other) const {
@@ -56,7 +56,7 @@ public:
             return baseState->getRootID();
         }
 
-        return ID;
+        return this->ID;
     }
 
 private:
