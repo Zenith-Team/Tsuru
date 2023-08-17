@@ -18,12 +18,12 @@ void CustomPowerupModel::init_(Player* target) {
 }
 
 void CustomPowerupModel::draw_(Player* target) {
-    switch (target->powerupState) {
-        case PlayerBase::PowerupState::Hammer: {
-            PlayerModel* playerModel = target->model.playerModel;
+    PlayerModel* playerModel = target->modelMgr.playerModel;
 
-            Model* headModel = playerModel->headModels[playerModel->currentPowerupModel]->model;
-            Model* bodyModel = playerModel->bodyModels[playerModel->currentPowerupModel]->model;
+    switch (playerModel->powerupState) {
+        case PlayerBase::PowerupState::Hammer: {
+            Model* headModel = playerModel->headModel->model;
+            Model* bodyModel = playerModel->bodyModel->model;
             
             s32 hairIdx = headModel->searchMaterialIndex("mat_player_hair");
             s32 hatIdx = headModel->searchMaterialIndex("mat_player_hat");

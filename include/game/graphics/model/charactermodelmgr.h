@@ -6,6 +6,7 @@ class YoshiModel;
 
 class CharacterModelMgr {
 public:
+    // This should probably be in PlayerModelMgr
     ENUM_CLASS(Animation,
         Idle = 0,
         Jump = 5,
@@ -98,19 +99,24 @@ public:
     u32 _4;
 };
 
+class PlayerModelMgr : public CharacterModelMgr { // Size: 0x10
+public:
+    PlayerModelMgr(u32 character, u32, u32, bool useLightMaps);
+
+    void vfC() override;
+
+    virtual void vf14();
+    virtual void vf1C();
+
+    PlayerModel* playerModel;
+};
+
 class YoshiModelMgr : public CharacterModelMgr {
 public:
     // @param color The color of the Yoshi model
     YoshiModelMgr(YoshiModel::TexColor::__type__ color);
 
     YoshiModel* yoshiModel;
-};
-
-class PlayerModelMgr : public CharacterModelMgr { // Size: 0x10
-public:
-    PlayerModelMgr(u32 character, u32, u32, bool useLightMaps);
-
-    PlayerModel* playerModel;
 };
 
 static_assert(sizeof(PlayerModelMgr) == 0x10, "PlayerModelMgr size mismatch");

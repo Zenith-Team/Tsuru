@@ -228,7 +228,7 @@ public:
 
     u32 givePowerup(PlayerBase::PowerupState::__type__);
 
-    PlayerModelMgr model;
+    PlayerModelMgr modelMgr;
     u8 _2760[0x2770 - 0x2760];
     PlayerBase::PowerupState::__type__ powerupState2; // 0x2770
     u8 _2774[0x2A00 - 0x2774];
