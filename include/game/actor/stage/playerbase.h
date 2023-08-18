@@ -332,22 +332,24 @@ public:
     virtual void vfA3C() = 0;
     virtual void vfA44() = 0;
 
-    u8 _27C[0x2C];                        // 27C
+    u8 _27C[0x2A8 - 0x27C];               // 27C
     PlayerInput input;                    // 2A8
-    u8 _33C[0x1C4];                       // 33C
+    u8 _33C[0x4A4 - 0x33C];               // 33C
+    sead::BitFlag32 _4A4;                 // 4A4
+    u8 _4A8[0x500 - 0x4A8];               // 4A8
     PowerupState::__type__ powerupState;  // 500
-    u8 _504[0x4];                         // 504
+    u8 _504[0x508 - 0x504];               // 504
     ActorPhysicsMgr playerPhysicsMgr;     // 508
-    u8 _19E8[0xC0];                       // 19E8
+    u8 _19E8[0x1AA8 - 0x19E8];            // 19E8
     PhysicsMgr::Sensor sensorID2;         // 1AA8
     PhysicsMgr::Sensor sensorID3;         // 1AB4
     PhysicsMgr::Sensor sensorID0_1;       // 1AC0
-    u8 _1ACC[0xEC];                       // 1ACC
+    u8 _1ACC[0x1BB8 - 0x1ACC];            // 1ACC
     HitboxCollider playerHitboxCollider1; // 1BB8
     HitboxCollider playerHitboxCollider2; // 1CE0
     HitboxCollider playerHitboxCollider3; // 1E08
     HitboxCollider playerHitboxCollider4; // 1F30
-    u8 _2058[0x6F8];                      // 2058
+    u8 _2058[0x2750 - 0x2058];            // 2058
 };
 
 static_assert(sizeof(PlayerBase) == 0x2750, "PlayerBase size mismatch");
