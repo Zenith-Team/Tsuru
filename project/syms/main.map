@@ -310,6 +310,13 @@
     __ct__Q3_2nw3snd19SequenceSoundHandleFPQ3_2nw3snd11SoundHandle = 0x02ad1880;
     DetachSound__Q3_2nw3snd19SequenceSoundHandleFv = 0x02ad199c;
 
+# nw::snd::SoundHandle
+    DetachSound__Q3_2nw3snd11SoundHandleFv = 0x02addfac;
+
+# nw::snd::SoundStartable
+    __CPR102__StartSound__Q3_2nw3snd14SoundStartableFPQ3_2nw3snd11SoundHandleUiPQ4_2nw3sndJ22J9StartInfo = 0x02adee58;
+    __CPR103__StartSound__Q3_2nw3snd14SoundStartableFPQ3_2nw3snd11SoundHandlePCcPQ4_2nw3sndJ22J9StartInfo = 0x02adeecc;
+
 # Actor
     RTTI__5Actor = 0x101E9CC8;
     __ct__5ActorFPC14ActorBuildInfo = 0x2002CE0;
@@ -1420,6 +1427,9 @@
 
 # SndAudioMgr
     sInstance__11SndAudioMgr = 0x101E7C84;
+    getAudioPlayer__11SndAudioMgrCFv = 0x029b68dc;
+    getSoundID__11SndAudioMgrCFPCc = 0x029b3c28;
+    getSoundName__11SndAudioMgrCFUi = 0x029b7500;
     getBeatTrigger__11SndAudioMgrCFv = 0x029b5f0c;
 
 # SndBgmMgr
