@@ -69,9 +69,9 @@ PlayerGravityData* LoadCustomPlayerGravity_(u32 isMini) {
     };
 
     if (AreaTask::instance() && AreaTask::instance()->flags & AreaTask::Flag::LowGravity) {
-        return lowGravity + index;
+        return lowGravity + isMini;
     } else {
-        return normalGravity + index;
+        return normalGravity + isMini;
     }
 }
 
