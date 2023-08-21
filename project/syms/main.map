@@ -1242,6 +1242,10 @@
     Player_throwProjectile_continue = 0x0293ae98;
     Player_hasLessThan6OldProjectiles_continue = 0x0293ac40;
     Player_hasLessThan2NewProjectiles_continue = 0x0293acc8;
+    UseCustomPowerupYoshiOffset1_continue = 0x0295a50c;
+    UseCustomPowerupYoshiOffset2_continue = 0x0295a540;
+    UseCustomPowerupYoshiOffset3_continue = 0x0295a574;
+    UseCustomPowerupYoshiOffset4_continue = 0x0295a4ec;
 
 # PlayerInput
     isUpHeld__11PlayerInputCFv = 0x2916114;

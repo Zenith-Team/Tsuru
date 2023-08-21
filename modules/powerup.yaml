@@ -24,6 +24,22 @@ Hooks:
     instr: b
     addr: "0x2975C94"
     func: UseCustomArray_101750A4
+  - type: branch
+    instr: b
+    addr: "0x295a508"
+    func: UseCustomPowerupYoshiOffset1
+  - type: branch
+    instr: b
+    addr: "0x295a53c"
+    func: UseCustomPowerupYoshiOffset2
+  - type: branch
+    instr: b
+    addr: "0x295a570"
+    func: UseCustomPowerupYoshiOffset3
+  - type: branch
+    instr: b
+    addr: "0x295a4e8"
+    func: UseCustomPowerupYoshiOffset4
 
 # Model
   # Redirect tex anim arrays

@@ -91,6 +91,66 @@ PlayerModel::PowerupModel::__type__ PlayerModelPowerupTable[PlayerBase::PowerupS
     PlayerModel::PowerupModel::Normal       // Hammer Suit
 };
 
+// Array of Vec2 but using floats because GHS will literally choke and not properly init the tables...
+f32 PowerupYoshiOffsetTable1[PlayerBase::PowerupState::Num * 2] = {
+    -2.5f, -7.0f, // Small
+    -9.2f, -6.5f, // Big
+    -9.2f, -6.5f, // Fire
+     1.0f, -6.5f, // Mini
+    -9.2f, -6.5f, // Propeller
+    -5.5f, -6.0f, // Penguin
+    -9.2f, -6.5f, // Ice
+    -9.2f, -6.5f, // Acorn
+    -9.2f, -6.5f, // PAcorn
+    //* Begin custom entries
+    -9.2f, -6.5f  // Hammer Suit
+};
+
+// Array of Vec2 but using floats because GHS will literally choke and not properly init the tables...
+f32 PowerupYoshiOffsetTable2[PlayerBase::PowerupState::Num * 2] = {
+    -3.0f, -7.0f, // Small
+    -9.7f, -6.0f, // Big
+    -9.7f, -6.0f, // Fire
+     1.5f, -6.5f, // Mini
+    -9.7f, -6.0f, // Propeller
+    -9.7f, -6.0f, // Penguin
+    -9.7f, -6.0f, // Ice
+    -9.7f, -6.0f, // Acorn
+    -9.7f, -6.0f, // PAcorn
+    //* Begin custom entries
+    -9.7f, -6.0f  // Hammer Suit
+};
+
+// Array of Vec2 but using floats because GHS will literally choke and not properly init the tables...
+f32 PowerupYoshiOffsetTable3[PlayerBase::PowerupState::Num * 2] = {
+    -0.5f, -7.0f, // Small
+    -2.0f, -6.0f, // Big
+    -2.0f, -6.0f, // Fire
+     3.0f, -7.0f, // Mini
+    -2.0f, -6.0f, // Propeller
+    -2.0f, -6.0f, // Penguin
+    -2.0f, -6.0f, // Ice
+    -2.0f, -6.0f, // Acorn
+    -2.0f, -6.0f, // PAcorn
+    //* Begin custom entries
+    -2.0f, -6.0f, // Hammer Suit
+};
+
+// Array of Vec2 but using floats because GHS will literally choke and not properly init the tables...
+f32 PowerupYoshiOffsetTable4[PlayerBase::PowerupState::Num * 2] = {
+    -2.5f, -7.0f, // Small
+    -9.0f, -6.5f, // Big
+    -9.0f, -6.5f, // Fire
+     1.0f, -6.5f, // Mini
+    -9.0f, -6.5f, // Propeller
+    -5.5f, -6.0f, // Penguin
+    -9.0f, -6.5f, // Ice
+    -9.0f, -6.5f, // Acorn
+    -9.0f, -6.5f, // PAcorn
+    //* Begin custom entries
+    -9.0f, -6.5f, // Hammer Suit
+};
+
 sead::SafeString PowerupSwitchTexAnimArray1[PlayerModel::PowerupModel::NumOriginal] = {
     "PH_switch",
     "PH_switch",
@@ -439,6 +499,30 @@ UseCustomArray_1016CD68:
     lis r0, ARRAY_1016CD68@h
     ori r0, r0, ARRAY_1016CD68@l
     blr
+
+.global UseCustomPowerupYoshiOffset1
+UseCustomPowerupYoshiOffset1:
+    lis r11, PowerupYoshiOffsetTable1@ha
+    addi r11, r11, PowerupYoshiOffsetTable1@l
+    b UseCustomPowerupYoshiOffset1_continue
+
+.global UseCustomPowerupYoshiOffset2
+UseCustomPowerupYoshiOffset2:
+    lis r12, PowerupYoshiOffsetTable2@ha
+    addi r12, r12, PowerupYoshiOffsetTable2@l
+    b UseCustomPowerupYoshiOffset2_continue
+
+.global UseCustomPowerupYoshiOffset3
+UseCustomPowerupYoshiOffset3:
+    lis r12, PowerupYoshiOffsetTable3@ha
+    addi r12, r12, PowerupYoshiOffsetTable3@l
+    b UseCustomPowerupYoshiOffset3_continue
+
+.global UseCustomPowerupYoshiOffset4
+UseCustomPowerupYoshiOffset4:
+    lis r12, PowerupYoshiOffsetTable4@ha
+    addi r12, r12, PowerupYoshiOffsetTable4@l
+    b UseCustomPowerupYoshiOffset4_continue
 
 .global UseCustomPowerupSwitchTexAnimArray1
 UseCustomPowerupSwitchTexAnimArray1:
