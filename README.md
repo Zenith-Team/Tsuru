@@ -1,25 +1,54 @@
-# <img src="https://media.discordapp.net/attachments/804348227482419230/901215136302395535/tsuru3_small.png" width="64"> [Tsuru](https://github.com/Zenith-Team/Tsuru)
+<p align="center">
+  <img src="https://cdn.discordapp.com/attachments/835740850163679232/1144002045125337108/header.png">
+</p>
 
-**A platform for NSMBU custom code**
+<div align="center">
+  <img src="https://img.shields.io/badge/for-Wii%20U-blue?color=%2302a4c7&style=flat" alt="For Wii U"/>
+  <a href="https://github.com/Zenith-Team/Tsuru/releases/latest">
+    <img src="https://img.shields.io/github/v/tag/zenith-team/tsuru?label=version&style=flat&color=%2346ad14" alt="Version"/>
+    <img src="https://img.shields.io/github/downloads/zenith-team/tsuru/total?style=flat&color=%23f57242" alt="Download"/>
+  </a>
+  <a href="https://go.nsmbu.net/discord">
+    <img src="https://img.shields.io/discord/800510605785563186?logo=discord&color=%235662f6&style=flat&label=zenith" alt="Discord Link"/>
+  </a>
+  <a href="[https://go.nsmbu.net/discord](https://discord.gg/aZAaXVJ)">
+    <img src="https://img.shields.io/discord/411924904632516619?logo=discord&color=%235662f6&style=flat&label=evo" alt="Discord Link"/>
+  </a>
+</div>
 
-# Our goal
-The goal of this project is to provide a platform for New Super Mario Bros. U custom code for modders with the same toolset that Nintendo developers had when writing the game. We also have provided a ton of code examples and premade patches for new modders to learn from and for people who would just like to use them in their own personal mods. Additionally, it serves as a unification of multiple code hack projects in order to have a project with everything. All credits linked at the bottom of this README.
+<div align="center">
+  <h3>
+    <a href="https://tsuru.nsmbu.net"> Website </a>
+    <span> | </span>
+    <a href="https://github.com/Zenith-Team/Tsuru/releases/latest"> Download </a>
+    <span> | </span>
+    <a href="https://zenith.nsmbu.net/wiki/Custom_Code"> Docs </a>
+    <span> | </span>
+    <a href="https://github.com/Zenith-Team/Tsuru-Assets/releases/latest"> Assets </a>
+  </h3>
+</div>
 
-Project started on March 9, 2021.
+## Overview
+The purpose of this project is to provide a platform for New Super Mario Bros. U custom code for modders with an extensive toolset and game API. We also have provided many code examples and premade patches for new modders to learn from and for people who would like to use them in their own mods. Additionally, it serves as a unification of multiple code projects in order to have a collection with everything. All credits linked at the bottom of this page.
 
-# Contributing
-Just create a new [Pull Request](https://github.com/Zenith-Team/Tsuru/pulls) on the designated page. We will review the PR and accept it if we feel that it meets our quality standard and design philosophy. If you have discovered an issue or bug, [create an issue](https://github.com/Zenith-Team/Tsuru/issues) instead (Suggestions may also go on issues).
+Project started on March 9, 2021 :)
 
-# Building
-This project is intended to be compiled with the [Tachyon](https://github.com/Zenith-Team/Tachyon) build system. Keep in mind that currently this project targets version 1.3.0 of the standalone copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not our top priority.
+## Contributing
+- Create a new [Pull Request](https://github.com/Zenith-Team/Tsuru/pulls) on the designated page. We will review the PR and accept it if we feel that it meets our quality standard and design philosophy.
+- If you have discovered an issue or bug, [create an issue](https://github.com/Zenith-Team/Tsuru/issues) instead (suggestions may also go on issues).
 
-# Usage
-To install Tsuru onto your game, simply use the [Trailblazer](https://trailblazer.nsmbu.net) patch file installer, and the latest patch available on the [Tsuru releases page](https://github.com/Zenith-Team/Tsuru/releases).
+## Building
+- This project is intended to be compiled with the [Tachyon](https://github.com/Zenith-Team/Tachyon) build system.
+- A setup guide may be found [here](https://zenith.nsmbu.net/wiki/Custom_Code/Setting_up_Tachyon).
 
-# Help
-If you require any assistance with anything related to Tsuru, feel free to join our [Discord server](https://discord.nsmbu.net) and ask for help in there.
+## Usage
+- To install Tsuru onto your game, simply use the [Trailblazer](https://trailblazer.nsmbu.net) patch file installer, and the latest patch available on the [Tsuru releases page](https://github.com/Zenith-Team/Tsuru/releases).
+- Keep in mind that currently this project targets version 1.3.0 of the __standalone__ copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not our top priority.
 
-# Credits
+## Help
+- If you require any assistance with anything related to Tsuru, feel free to join our [Discord server](https://go.nsmbu.net/discord) and ask for help in there.
+
+## Credits
 * [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code and headers
 * [Baron Stijn](https://github.com/BaronStijn) - Code
 * [Flizl](https://github.com/Flizl) - Graphics
@@ -35,12 +64,12 @@ If you require any assistance with anything related to Tsuru, feel free to join 
 * [STUPID](https://github.com/stupidestmodder) - Code and headers
 * [Swiftshine](https://github.com/Swiftshine) - Code and headers
 * [techmuse](https://github.com/techmuse8) - Graphics and Quality Assurance
-* [t0bu](#) - Graphics
+* [t0bu](https://www.youtube.com/@tbu.) - Graphics
 * [WillyMaker](https://github.com/WillyMaker5) - Sprite data and images
 * Modified dynamic_libs headers based on original implementation by [Dimok](https://github.com/dimok789) and [Maschell fork](https://github.com/Maschell/dynamic_libs)
 * [shiftjis.h from Apollo PS3](https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h)
 
-# Special Thanks
+### Special Thanks
 * Abood
 * Joey
 * Kinnay
