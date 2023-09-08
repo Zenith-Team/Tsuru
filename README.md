@@ -13,9 +13,6 @@
   <a href="https://go.nsmbu.net/discord">
     <img src="https://img.shields.io/discord/800510605785563186?logo=discord&color=%235662f6&style=flat&label=zenith" alt="Discord Link"/>
   </a>
-  <a href="[https://go.nsmbu.net/discord](https://discord.gg/aZAaXVJ)">
-    <img src="https://img.shields.io/discord/411924904632516619?logo=discord&color=%235662f6&style=flat&label=evo" alt="Discord Link"/>
-  </a>
 </div>
 
 <div align="center">
