@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<views>
+
+  <view name="Custom">
+    <category name="Tsuru">
+      <attach sprite="724"/>
+      <attach sprite="725"/>
+      <attach sprite="726"/>
+      <attach sprite="727"/>
+      <attach sprite="728"/>
+      <attach sprite="729"/>
+      <attach sprite="730"/>
+      <attach sprite="731"/>
+      <attach sprite="732"/>
+      <attach sprite="733"/>
+      <attach sprite="734"/>
+      <attach sprite="735"/>
+      <attach sprite="736"/>
+      <attach sprite="737"/>
+      <attach sprite="738"/>
+      <attach sprite="739"/>
+      <attach sprite="740"/>
+      <attach sprite="741"/>
+      <attach sprite="742"/>
+      <attach sprite="743"/>
+      <attach sprite="744"/>
+      <attach sprite="745"/>
+      <attach sprite="746"/>
+      <attach sprite="747"/>
+      <attach sprite="748"/>
+      <attach sprite="749"/>
+      <attach sprite="750"/>
+      <attach sprite="751"/>
+      <attach sprite="752"/>
+      <attach sprite="753"/>
+      <attach sprite="754"/>
+      <attach sprite="755"/>
+      <attach sprite="756"/>
+      <attach sprite="757"/>
+      <attach sprite="758"/>
+      <attach sprite="759"/>
+      <attach sprite="760"/>
+      <attach sprite="761"/>
+      <attach sprite="762"/>
+      <attach sprite="763"/>
+      <attach sprite="764"/>
+    </category>
+    </view>
+    <views>
+</views>
+</views>
+
+
+
+
+

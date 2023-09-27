@@ -1,0 +1,76 @@
+---
+Files:
+#* Stage Actors:
+  - actors/customdoor.cpp
+  - actors/pacorn.cpp
+  - actors/parabones.cpp
+  - actors/fakeactor.cpp
+  - actors/actorspawner.cpp
+  - actors/windgenerator.cpp
+  - actors/starcoinshard.cpp
+  - actors/beepblock.cpp
+  - actors/beepblock.S
+  - actors/fallingchestnut.cpp
+  - actors/taskchanger.cpp
+  - actors/cataquack.cpp
+  - actors/timeclock.cpp
+  - actors/rainbowlight.cpp
+  - actors/debugactor.cpp
+  - actors/liquidoverlay.cpp
+  - actors/kamiya.cpp
+  - actors/modelloader.cpp
+  - actors/stringbank.cpp
+  - actors/universalbosscontroller.cpp
+  - actors/giantskewer.cpp
+  - actors/scuttlebug.cpp
+  - actors/angrygrrrol.cpp
+  - actors/poisonmushroom.cpp
+  - actors/magicplatform.cpp
+  - actors/coldfuzzy.cpp
+  - actors/layerchanger.cpp
+  - actors/biddybud.cpp
+  - actors/helicalbar.cpp
+  - actors/basaltbones.cpp
+  - actors/flaptor.cpp
+  - actors/switchblock.cpp
+  - actors/powerupswitcher.cpp
+  - actors/switchblockeventactivator.cpp
+  - actors/redblueblock.cpp
+  - actors/stingby.cpp
+  - actors/jumboray.cpp
+  - actors/effectspawner.cpp
+  - actors/soundplayer.cpp
+  - actors/minecart.cpp
+  - actors/tripleblock.cpp
+  - actors/physicsmodifier.cpp
+  - actors/musicnote.cpp
+  - actors/peepa.cpp
+  - actors/solid.cpp
+  - actors/universalmovementcontroller.cpp
+  - actors/timechanger.cpp
+  - actors/hammerflower.cpp
+  - actors/thundercloud.cpp
+#* Course Select Actors:
+  - actors/csrootspawner.cpp
+  - actors/csflames.cpp
+Hooks:
+# Update beep block states
+  - type: branch
+    instr: b
+    func: UpdateBeepBlockStates
+    addr: "0x24BFA4C" # CourseTask::calc()
+# Spawn CSRootSpawner
+  - type: branch
+    instr: b
+    func: createRootSpawner__Fv
+    addr: "0x21B9350" # CourseSelectCamera::onCreate()
+# Load Custom Gravity
+  - type: branch
+    instr: bl
+    addr: "0x292510C" # Player::getGravityData()
+    func: LoadCustomPlayerGravity
+# Create custom layer for parallax
+  - type: branch
+    instr: b
+    addr: "0x24b4cc8" # AreaLayerMgr::createMainLayers()
+    func: CreateParallaxLayer
