@@ -156,7 +156,7 @@ sead::SafeString PowerupSwitchTexAnimArray1[PlayerModel::PowerupModel::NumOrigin
     "PH_switch",
     "PH_switch",
     "PH_switch",
-    "MMH_model_switch",
+    "MMH_model_switch"
 };
 
 sead::SafeString PowerupSwitchTexAnimArray2[PlayerModel::PowerupModel::NumOriginal] = {
@@ -164,7 +164,7 @@ sead::SafeString PowerupSwitchTexAnimArray2[PlayerModel::PowerupModel::NumOrigin
     "PB_switch",
     "PB_switch",
     "PB_switch",
-    "MMB_model_switch",
+    "MMB_model_switch"
 };
 
 sead::SafeString PowerupSwitchTexAnimArray3[PlayerModel::PowerupModel::NumOriginal] = {
@@ -172,7 +172,7 @@ sead::SafeString PowerupSwitchTexAnimArray3[PlayerModel::PowerupModel::NumOrigin
     "PH_switch",
     "PH_switch",
     "PH_switch",
-    "MLH_model_switch",
+    "MLH_model_switch"
 };
 
 sead::SafeString PowerupSwitchTexAnimArray4[PlayerModel::PowerupModel::NumOriginal] = {
@@ -180,7 +180,7 @@ sead::SafeString PowerupSwitchTexAnimArray4[PlayerModel::PowerupModel::NumOrigin
     "PB_switch",
     "PB_switch",
     "PB_switch",
-    "MLB_model_switch",
+    "MLB_model_switch"
 };
 
 extern "C" PlayerBase::TallType::__type__ UseCustomPowerupTallTypeTable(Player*, PlayerBase::PowerupState::__type__ powerupState) {

@@ -98,7 +98,13 @@ Hooks:
     func: CastleSwingUpdateModel
 
 # Init player additional resource class
+  # Stage player
   - type: branch
     instr: bl
-    addr: "0x2923EE0"
+    addr: "0x2923EE0" # Player::onCreate()
     func: InitPlayerAdditionalResource
+  # CS player
+  - type: branch
+    instr: bl
+    addr: "0x220F148" # CSPlayer::onCreate()
+    func: InitPlayerAdditionalResourceCS

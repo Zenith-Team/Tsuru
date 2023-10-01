@@ -9,11 +9,10 @@ public:
     CustomPowerupModel();
     ~CustomPowerupModel();
 
-    void init_(Player* target);
-    void draw_(Player* target);
+    void init_();
+    void draw_(PlayerModel* playerModel);
 
-    static void init(Player* target);
-    static void draw(Player* target);
+    static void draw(s8 playerID, PlayerModel* playerModel);
 
     // Hammer Suit
     ModelWrapper* hammerHelmet;

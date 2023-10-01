@@ -95,8 +95,9 @@ public:
     void draw();
     void playAnim(CharacterModelMgr::Animation::__type__ anim);
 
-    CharacterModel* modelPtr;
-    u32 _4;
+    CharacterModel* modelPtr;   // 0
+    u32 _4;                     // 4
+  //void* vtable;               // 8
 };
 
 class PlayerModelMgr : public CharacterModelMgr { // Size: 0x10
@@ -108,7 +109,7 @@ public:
     virtual void vf14();
     virtual void vf1C();
 
-    PlayerModel* playerModel;
+    PlayerModel* playerModel;   // C
 };
 
 class YoshiModelMgr : public CharacterModelMgr {

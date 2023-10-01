@@ -108,10 +108,16 @@ Hooks:
     func: ProjectileParentID
 
 # Model
+  # Stage player
   - type: branch
     instr: bl
-    addr: "0x2923fe0" # Player::onDraw()
+    addr: "0x2923FE0" # Player::onDraw()
     func: DrawCustomPowerupModel
+  # CS player
+  - type: branch
+    instr: bl
+    addr: "0x220FE18" # CSPlayer::onDraw()
+    func: DrawCustomPowerupModelCS
 
 # User patches
   # Hammer
