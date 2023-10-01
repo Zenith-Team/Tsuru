@@ -50,6 +50,7 @@ Files:
   - actors/universalmovementcontroller.cpp
   - actors/timechanger.cpp
   - actors/hammerflower.cpp
+  - actors/custompowerupblock.cpp
 #* Course Select Actors:
   - actors/csrootspawner.cpp
   - actors/csflames.cpp
