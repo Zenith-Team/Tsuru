@@ -298,7 +298,7 @@ ENUM_CLASS(ProfileID,
     UniversalMovementController,
     TimeChanger,
     HammerFlower,
-    HammerBlock,
+    CustomPowerupBlock,
 
     Num
 );

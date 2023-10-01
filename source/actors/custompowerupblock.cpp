@@ -1,12 +1,12 @@
 #include "game/actor/actormgr.h"
 #include "tsuru/actor/blockwrapper.h"
 
-class HammerBlock : public BlockWrapper {
-    SEAD_RTTI_OVERRIDE_IMPL(HammerBlock, BlockWrapper);
+class CustomPowerupBlock : public BlockWrapper {
+    SEAD_RTTI_OVERRIDE_IMPL(CustomPowerupBlock, BlockWrapper);
 
 public:
-    HammerBlock(const ActorBuildInfo* buildInfo);
-    virtual ~HammerBlock() { }
+    CustomPowerupBlock(const ActorBuildInfo* buildInfo);
+    virtual ~CustomPowerupBlock() { }
 
     u32 onCreate() override;
 
@@ -18,15 +18,15 @@ public:
     void beginState_Used() override;
 };
 
-const ActorInfo HammerBlockActorInfo = { Vec2i(8, -16), Vec2i(8, -8), Vec2i(0x100, 0x100), 0x0, 0x0, 0x0, 0x0, 0x8 };
-REGISTER_PROFILE(HammerBlock, ProfileID::HammerBlock, "HammerBlock", &HammerBlockActorInfo, 0x1002);
-PROFILE_RESOURCES(ProfileID::HammerBlock, Profile::LoadResourcesAt::Course, "I_hmrflower");
+const ActorInfo CustomPowerupBlockActorInfo = { Vec2i(8, -16), Vec2i(8, -8), Vec2i(0x100, 0x100), 0x0, 0x0, 0x0, 0x0, 0x8 };
+REGISTER_PROFILE(CustomPowerupBlock, ProfileID::CustomPowerupBlock, "CustomPowerupBlock", &CustomPowerupBlockActorInfo, 0x1002);
+PROFILE_RESOURCES(ProfileID::CustomPowerupBlock, Profile::LoadResourcesAt::Course, "I_hmrflower");
 
-HammerBlock::HammerBlock(const ActorBuildInfo* buildInfo)
+CustomPowerupBlock::CustomPowerupBlock(const ActorBuildInfo* buildInfo)
     : BlockWrapper(buildInfo)
 { }
 
-u32 HammerBlock::onCreate() {
+u32 CustomPowerupBlock::onCreate() {
     if (!BlockWrapper::init()) {
         return 2;
     }
@@ -34,21 +34,21 @@ u32 HammerBlock::onCreate() {
     this->tileId = 49; // Question Block
 
     if (this->stateType == BlockWrapper::StateType::UsedBlock) {
-        this->doStateChange(&HammerBlock::StateID_Used);
+        this->doStateChange(&CustomPowerupBlock::StateID_Used);
     }
 
     return this->onExecute();
 }
 
-void HammerBlock::spawnItemUp() {
+void CustomPowerupBlock::spawnItemUp() {
     this->spawnPowerup(false);
 }
 
-void HammerBlock::spawnItemDown() {
+void CustomPowerupBlock::spawnItemDown() {
     this->spawnPowerup(true);
 }
 
-void HammerBlock::spawnPowerup(bool down) {
+void CustomPowerupBlock::spawnPowerup(bool down) {
     ActorBuildInfo buildInfo = { 0 };
 
     switch (this->eventID1 >> 0x4 & 0xF) {
@@ -66,10 +66,10 @@ void HammerBlock::spawnPowerup(bool down) {
     }
     ActorMgr::instance()->create(buildInfo);
 
-    this->doStateChange(&HammerBlock::StateID_Used);
+    this->doStateChange(&CustomPowerupBlock::StateID_Used);
 }
 
-void HammerBlock::beginState_Used() {
+void CustomPowerupBlock::beginState_Used() {
     this->_1AAE = 0;
     this->tileId = 50; // Used Block
     BlockWrapper::beginState_Used();
