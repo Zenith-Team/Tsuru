@@ -1,6 +1,7 @@
 #include "tsuru/custompowerupmodel.h"
 #include "tsuru/playeradditionalresource.h"
 #include "game/actor/stage/player.h"
+#include "log.h"
 
 CustomPowerupModel::CustomPowerupModel()
     : hammerHelmet(nullptr)
@@ -12,18 +13,16 @@ CustomPowerupModel::~CustomPowerupModel() {
     delete this->hammerShell;
 }
 
-void CustomPowerupModel::init_(Player* target) {
+void CustomPowerupModel::init_() {
     this->hammerHelmet = ModelWrapper::create("hmrpy", "hmrpy_partsC");
     this->hammerShell = ModelWrapper::create("hmrpy", "hmrpy_partsB");
 }
 
-void CustomPowerupModel::draw_(Player* target) {
-    switch (target->powerupState) {
+void CustomPowerupModel::draw_(PlayerModel* playerModel) {
+    switch (playerModel->powerupState) {
         case PlayerBase::PowerupState::Hammer: {
-            PlayerModel* playerModel = target->model.playerModel;
-
-            Model* headModel = playerModel->headModels[playerModel->currentPowerupModel]->model;
-            Model* bodyModel = playerModel->bodyModels[playerModel->currentPowerupModel]->model;
+            Model* headModel = playerModel->headModel->model;
+            Model* bodyModel = playerModel->bodyModel->model;
             
             s32 hairIdx = headModel->searchMaterialIndex("mat_player_hair");
             s32 hatIdx = headModel->searchMaterialIndex("mat_player_hat");
@@ -41,7 +40,7 @@ void CustomPowerupModel::draw_(Player* target) {
 
             headModel->getBoneWorldMatrix(headBoneID, &mtx);
             this->hammerHelmet->setMtx(mtx);
-            this->hammerHelmet->setScale(target->scale);
+            //this->hammerHelmet->setScale(target->scale); //!
             this->hammerHelmet->updateModel();
             this->hammerHelmet->updateAnimations();
             this->hammerHelmet->draw();
@@ -49,7 +48,7 @@ void CustomPowerupModel::draw_(Player* target) {
             bodyModel->getBoneWorldMatrix(shellBoneID, &mtx);
 
             this->hammerShell->setMtx(mtx);
-            this->hammerShell->setScale(target->scale);
+            //this->hammerShell->setScale(target->scale); //!
             this->hammerShell->updateModel();
             this->hammerShell->updateAnimations();
             this->hammerShell->draw();
@@ -57,12 +56,8 @@ void CustomPowerupModel::draw_(Player* target) {
     }
 }
 
-void CustomPowerupModel::init(Player* target) {
-    PlayerAdditionalResource::data[target->playerID].customPowerupModel.init_(target);
-}
-
-void CustomPowerupModel::draw(Player* target) {
-    PlayerAdditionalResource::data[target->playerID].customPowerupModel.draw_(target);
+void CustomPowerupModel::draw(s8 playerID, PlayerModel* playerModel) {
+    PlayerAdditionalResource::data[playerID].customPowerupModel.draw_(playerModel);
 }
 
 ASM_BEGIN
@@ -72,14 +67,24 @@ ASM_BEGIN
 .global DrawCustomPowerupModel
 DrawCustomPowerupModel:
     SaveVolatileRegisters
-    mr r3, r31
-    bl draw__18CustomPowerupModelSFP6Player
+    lbz r3, 0x54(r31)       // this->playerID
+    lwz r4, 0x275C(r31)     // this->modelMgr->playerModel
+    bl draw__18CustomPowerupModelSFScP11PlayerModel
     RestoreVolatileRegisters
 
-    lwz r0, 0x14(r1)
-    lwz r31, 0xC(r1)
-    mtlr r0
-    addi r1, r1, 0x10
+    li r3, 1 // Replaced instruction
+    blr
+
+.global DrawCustomPowerupModelCS
+DrawCustomPowerupModelCS: // r3 = &this->modelMgr
+    stwu r1, -0x8(r1) // Replaced instruction
+
+    SaveVolatileRegisters
+    lwz r4, 0xC(r3)       // modelMgr->playerModel
+    li r3, 0
+    bl draw__18CustomPowerupModelSFScP11PlayerModel
+    RestoreVolatileRegisters
+
     blr
 
 ASM_END

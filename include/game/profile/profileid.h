@@ -298,7 +298,8 @@ ENUM_CLASS(ProfileID,
     UniversalMovementController,
     TimeChanger,
     HammerFlower,
-    HammerBlock,
+
+    CustomPowerupBlock,
     OneWayPlatform,
 
     Num

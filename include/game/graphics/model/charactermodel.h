@@ -23,14 +23,18 @@ public:
     virtual void vf74() = 0;
     virtual f32 vf7C(u32);
     virtual f32 vf84(u32);
-    virtual void vf8C(u32, f32, u32, u32);
+    virtual void vf8C(u32, f32, f32, f32);
     virtual void vf94() = 0;
     virtual void vf9C() = 0;
-    virtual void vfA4();
-    virtual void vfAC();
-    virtual void vfB4();
-    virtual void vfBC();
+    virtual void vfA4(void*, u32, u32);
+    virtual void vfAC(f32);
+    virtual void vfB4(f32);
+    virtual void vfBC(u32, u32);
     virtual void update() = 0;
+    virtual void vfCC(); // draws bodyModel
+    virtual void vfD4();
+    virtual void vfDC();
+    virtual void vfE4() = 0;
 
     void setMtx(const Mtx34& mtxSRT);
 
@@ -66,31 +70,6 @@ public:
 
 static_assert(sizeof(CharacterModel) == 0xF0, "CharacterModel size mismatch");
 
-class YoshiModel : public CharacterModel {
-public:
-    // All green in vanilla
-    ENUM_CLASS(TexColor,
-        TexColor_Green,
-        TexColor_Pink,
-        TexColor_LightBlue,
-        TexColor_Yellow
-    );
-
-public:
-    YoshiModel(YoshiModel::TexColor::__type__ color);
-    virtual ~YoshiModel();
-
-    static sead::SafeString texArray[];
-
-    u32 _F0;
-    u8 _F4[0x40]; // Is class
-    u32 _134;
-    f32 _138;
-    u8 _13C;
-    YoshiModel::TexColor::__type__ color;
-    // ...
-};
-
 class PlayerModel : public CharacterModel {
 public:
     struct ResInfo {
@@ -119,7 +98,7 @@ public:
     );
 
 public:
-    PlayerModel(PlayerModel::ResInfo* resInfo, u32 character, u32, u32, bool useLightMaps);
+    PlayerModel(PlayerModel::ResInfo* resInfo, u32 character, u32 powerupState, u32, bool useLightMaps);
     virtual ~PlayerModel();
 
     SEAD_RTTI_OVERRIDE(PlayerModel, CharacterModel);
@@ -131,14 +110,14 @@ public:
     ModelWrapper* bodyModels[PowerupModel::NumOriginal];
     ModelWrapper* headModels[PowerupModel::NumOriginal];
     PlayerModel::ResInfo* resInfo;
-    u8 _11C[0x120 - 0x11C]; //? unknown values
+    ModelWrapper* headModel;
     PlayerModel::PowerupModel::__type__ prevPowerupModel;
     PlayerModel::PowerupModel::__type__ currentPowerupModel;
     sead::BitFlag16 _128;
     u8 _12C[96];
     u32 _18C;
     u8 _190[64];
-    u32 _1D0;
+    u32 powerupState;  // Uses PlayerBase enum
     u32 _1D4;
     u32 _1D8;
     u32 _1DC;
@@ -160,12 +139,45 @@ public:
 
 static_assert(sizeof(PlayerModel) == 0x218, "PlayerModel size mismatch");
 
+class YoshiModel : public CharacterModel {
+public:
+    // All green in vanilla
+    ENUM_CLASS(TexColor,
+        Green,
+        Pink,
+        LightBlue,
+        Yellow,
+
+        Num
+    );
+
+public:
+    YoshiModel(YoshiModel::TexColor::__type__ color);
+    virtual ~YoshiModel();
+
+    SEAD_RTTI_OVERRIDE(YoshiModel, CharacterModel);
+
+    // TODO: vf overrides
+
+    static sead::SafeString texArray[TexColor::Num];
+
+    u32 _F0;
+    u8 _F4[0x40]; // Is class
+    u32 _134;
+    f32 _138;
+    u8 _13C;
+    YoshiModel::TexColor::__type__ color;
+    // ...
+};
+
 class BrosModel : public PlayerModel { // Size: 0x240
 public:
-    BrosModel(u32 character, u32, u32, bool useLightMaps);
+    BrosModel(u32 character, u32 powerupState, u32, bool useLightMaps);
     virtual ~BrosModel();
 
     SEAD_RTTI_OVERRIDE(BrosModel, PlayerModel);
+
+    // TODO: vf overrides
 
     void update() override;
 

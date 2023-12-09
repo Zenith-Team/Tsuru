@@ -8,9 +8,9 @@ struct PlayerAdditionalResource {
 
     CustomPowerupModel customPowerupModel;
 
-    void init_(Player* target);
+    void init_();
 
-    static void init(Player* target);
+    static void init(s8 playerID);
 
     static PlayerAdditionalResource data[4];
 };

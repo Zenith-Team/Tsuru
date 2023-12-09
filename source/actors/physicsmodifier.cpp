@@ -4,7 +4,16 @@
 #include "game/eventmgr.h"
 #include "log.h"
 
-extern "C" PlayerGravityData* LoadCustomPlayerGravity() {
+ASM_BEGIN
+
+.global LoadCustomPlayerGravity
+LoadCustomPlayerGravity:
+    mr r3, r30
+    b LoadCustomPlayerGravity___FUi
+
+ASM_END
+
+PlayerGravityData* LoadCustomPlayerGravity_(u32 isMini) {
     static PlayerGravityData normalGravity[2] = {
         {
             -0.34f,
@@ -45,24 +54,24 @@ extern "C" PlayerGravityData* LoadCustomPlayerGravity() {
                 -0.03f, -0.175f, -0.17f, -0.04f, -0.155f, -0.17f
             }
         },
-        {
-            -0.09f,
+        { // this is a little OP
+            -0.03f,
             {
-                2.5f, 1.5f, 0.0f, -2.0f, -2.0f
+                0.5f, -0.5f, -2.0f, -4.0f, -4.0f
             },
             {
-                -0.09f, -0.09f, -0.09f, -0.06f, -0.09f, -0.09f
+                -0.03f, -0.03f, -0.03f, -0.00f, -0.03f, -0.03f
             },
             {
-                -0.04f, -0.06f, -0.09f, -0.06f, -0.09f, -0.09f
+                -0.01f, -0.03f, -0.06f, -0.03f, -0.06f, -0.06f
             }
         }
     };
 
     if (AreaTask::instance() && AreaTask::instance()->flags & AreaTask::Flag::LowGravity) {
-        return lowGravity;
+        return lowGravity + isMini;
     } else {
-        return normalGravity;
+        return normalGravity + isMini;
     }
 }
 

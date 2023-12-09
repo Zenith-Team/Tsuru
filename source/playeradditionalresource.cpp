@@ -7,12 +7,12 @@ PlayerAdditionalResource::PlayerAdditionalResource()
     : customPowerupModel()
 { }
 
-void PlayerAdditionalResource::init_(Player* target) {
-    this->customPowerupModel.init_(target);
+void PlayerAdditionalResource::init_() {
+    this->customPowerupModel.init_();
 }
 
-void PlayerAdditionalResource::init(Player* target) {
-    PlayerAdditionalResource::data[target->playerID].init_(target);
+void PlayerAdditionalResource::init(s8 playerID) {
+    PlayerAdditionalResource::data[playerID].init_();
 }
 
 ASM_BEGIN
@@ -21,8 +21,23 @@ ASM_BEGIN
 
 .global InitPlayerAdditionalResource
 InitPlayerAdditionalResource:
-    mr r3, r31
-    SafeBranch init__24PlayerAdditionalResourceSFP6Player
+    mr r3, r31 // Replaced instruction
+
+    SaveVolatileRegisters // This block is: PlayerAdditionalResource::init(r3->playerID)
+    lbz r3, 0x54(r3)
+    bl init__24PlayerAdditionalResourceSFSc
+    RestoreVolatileRegisters
+    blr
+
+.global InitPlayerAdditionalResourceCS
+InitPlayerAdditionalResourceCS:
+    stfs f0, 0xD4(r31) // Replaced instruction
+
+    SaveVolatileRegisters // This block is: PlayerAdditionalResource::init(0)
+    li r3, 0
+    bl init__24PlayerAdditionalResourceSFSc
+    RestoreVolatileRegisters
+
     blr
 
 ASM_END
