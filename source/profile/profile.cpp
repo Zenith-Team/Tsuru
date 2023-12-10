@@ -864,10 +864,8 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::Solid,                       // 771
     ProfileID::UniversalMovementController, // 772
     ProfileID::TimeChanger,                 // 773
-
     ProfileID::CustomPowerupBlock,          // 774
-    ProfileID::OneWayPlatform,                   // 775
-
+    ProfileID::OneWayPlatform,              // 775
     ProfileID::NullActor,                   // 776
     ProfileID::NullActor,                   // 777
     ProfileID::NullActor,                   // 778

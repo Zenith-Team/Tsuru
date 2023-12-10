@@ -50,7 +50,6 @@ Files:
   - actors/universalmovementcontroller.cpp
   - actors/timechanger.cpp
   - actors/hammerflower.cpp
-
   - actors/custompowerupblock.cpp
   - actors/onewayplatform.cpp
 #* Course Select Actors:

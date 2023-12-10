@@ -42,8 +42,6 @@ OneWayPlatform::OneWayPlatform(const ActorBuildInfo* buildInfo)
 
 u32 OneWayPlatform::onCreate() {
 
-    //PRINT("ACTOR SPAWNED");
-
     platform.create((settings1 >> 0x18 & 0xF), (settings1 >> 0x1c & 0xF));
 
     if (platform.width < 2) platform.width = 2;
@@ -80,67 +78,30 @@ u32 OneWayPlatform::onCreate() {
         this->startrotation = 90.0f;
         this->endrotation = 270.0f;
         platform.rotation.z = fixDeg(this->startrotation);
-        //platform.position.y = this->position.y - (platform.width*16)/2;
     }
     else if (direction == 3) { // LEFT
         this->startrotation = 270.0f;
         this->endrotation = 90.0f;
         platform.rotation.z = fixDeg(this->startrotation);
-        //platform.position.y = this->position.y + (platform.width*16)/2;
     }
-    
-    //platform.rotation.x = fixDeg(this->startrotation);
-
-    //platform.position.x = this->position.x - (platform.width*16)/2;
 
     platform.update(platform.position, platform.width * 16.0);
 
     u32 movementMask = this->movementHandler.getMaskForMovementType(this->settings2 & 0xFF);
     this->movementHandler.link(this->position, movementMask, this->movementID);
-    //this->movementHandler.link(platform.position, movementMask, this->movementID);
     
     return this->onExecute();
 }
 
 u32 OneWayPlatform::onExecute() {
 
-    /*Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, platform.position);
-
-    platform.models[2]->setMtx(mtx);
-    platform.models[2]->updateModel();*/
-
     u32 direction = settings1 >> 0x14 & 0xF;
 
     this->movementHandler.execute();
 
     this->position = this->movementHandler.position;
-    //platform.position = this->movementHandler.position;
-    //platform.rotation.z = this->movementHandler.rotation;
 
     if(EventMgr::instance()->isActive(this->eventID1 - 1)) {
-        //platform.position.x = this->position.x + (platform.width*16)/2;
-        //u32 rotation = 3;
-        
-        /*switch (direction)
-        {
-            case 0: {
-                if (platform.rotation.x != fixDeg(180.0f)) platform.rotation.x += fixDeg(3.0f);
-                break;
-            }
-            case 1: {
-                if (platform.rotation.x != fixDeg(0.0f)) platform.rotation.x -= fixDeg(3.0f);
-                break;
-            }
-            case 2: {
-                if (platform.rotation.x != fixDeg(270.0f)) platform.rotation.x += fixDeg(3.0f);
-                break;
-            }
-            case 3: {
-                if (platform.rotation.x != fixDeg(90.0f)) platform.rotation.x -= fixDeg(3.0f);
-                break;
-            }
-        }*/
         if (direction == 0 || direction == 1) {
             platform.rotation.x = fixDeg(this->endrotation);
         }
@@ -149,29 +110,6 @@ u32 OneWayPlatform::onExecute() {
         }
     }
     else {
-        //platform.position.x = this->position.x - (platform.width*16)/2;
-        //u32 animTimer = 0;
-        
-        /*switch (direction)
-        {
-            case 0: {
-                if (platform.rotation.x != fixDeg(0.0f)) platform.rotation.x -= fixDeg(3.0f);
-                break;
-            }
-            case 1: {
-                if (platform.rotation.x != fixDeg(180.0f)) platform.rotation.x += fixDeg(3.0f);
-                break;
-            }
-            case 2: {
-                if (platform.rotation.x != fixDeg(90.0f)) platform.rotation.x -= fixDeg(3.0f);
-                break;
-            }
-            case 3: {
-                if (platform.rotation.x != fixDeg(270.0f)) platform.rotation.x += fixDeg(3.0f);
-                break;
-            }
-        }*/
-        
         if (direction == 0 || direction == 1) {
             platform.rotation.x = fixDeg(this->startrotation);
         }
@@ -197,7 +135,6 @@ u32 OneWayPlatform::onExecute() {
 }
 
 u32 OneWayPlatform::onDraw() {
-    //this->model->draw();
     platform.draw();
     return 1;
 }
