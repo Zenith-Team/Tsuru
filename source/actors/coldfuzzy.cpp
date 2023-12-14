@@ -7,7 +7,6 @@
 #include "game/effect/effect.h"
 #include "sead/random.h"
 #include "game/movementhandler.h"
-const u32 timerThreshold = 315;
 
 class ColdFuzzy : public Enemy {
     SEAD_RTTI_OVERRIDE_IMPL(ColdFuzzy, Enemy);
@@ -35,10 +34,6 @@ public:
 
     ModelWrapper* model;
     MovementHandler movementHandler;
-    struct {
-        PlayerBase* player;
-        u32 timer;
-    } playerTimers[4];
 };
 
 REGISTER_PROFILE(ColdFuzzy, ProfileID::ColdFuzzy);
@@ -62,11 +57,6 @@ u32 ColdFuzzy::onCreate() {
     this->hitboxCollider.init(this, &ColdFuzzy::collisionInfo);
     this->addHitboxColliders();
 
-    for (u32 i = 0; i < 4; i++) {
-        this->playerTimers[i].player = PlayerMgr::instance()->players[i];
-        this->playerTimers[i].timer = timerThreshold;
-    }
-
     u32 movementMask = this->movementHandler.getMaskForMovementType(3);
     // path support because tsuru doesn't support line-controlled things just yet
     this->movementHandler.link(this->position, movementMask, this->movementID);
@@ -81,12 +71,6 @@ u32 ColdFuzzy::onExecute() {
     this->model->updateAnimations();
     this->model->updateModel();
 
-    for (u32 i = 0; i < 4; i++) {
-        if (this->playerTimers[i].timer <= timerThreshold) {
-            this->playerTimers[i].timer++;
-        }
-    }
-
     this->movementHandler.execute();
     this->position = this->movementHandler.position;
     return 1;
@@ -99,12 +83,7 @@ u32 ColdFuzzy::onDraw() {
 }
 
 void ColdFuzzy::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    for (u32 i = 0; i < 4; i++) {
-        if (hcOther->owner == this->playerTimers[i].player && this->playerTimers[i].timer >= timerThreshold) {
-            this->playerTimers[i].timer = 0;
-            static_cast<PlayerBase*>(hcOther->owner)->doDamage(this, PlayerBase::DamageType::Ice);
-        }
-    }
+    static_cast<PlayerBase*>(hcOther->owner)->trySpecialDamage(hcSelf->owner, PlayerBase::DamageType::Ice);
 }
 
 void ColdFuzzy::collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
