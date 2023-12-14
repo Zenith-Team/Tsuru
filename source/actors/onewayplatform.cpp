@@ -44,11 +44,11 @@ u32 OneWayPlatform::onCreate() {
 
     platform.create((settings1 >> 0x18 & 0xF), (settings1 >> 0x1c & 0xF));
 
-    if (platform.width < 2) platform.width = 2;
+    if (platform.width < 2) {
+        platform.width = 2;   
+    }
 
-    platform.position.x = this->position.x;
-    platform.position.y = this->position.y;
-    platform.position.z = this->position.z;
+    platform.position = this->position;
 
     Vec2f points[2] = { Vec2f(4.0 - platform.width * 8.0, 8.0), Vec2f(-4.0 + platform.width * 8.0, 8.0) };
 
@@ -101,7 +101,7 @@ u32 OneWayPlatform::onExecute() {
 
     this->position = this->movementHandler.position;
 
-    if(EventMgr::instance()->isActive(this->eventID1 - 1)) {
+    if (EventMgr::instance()->isActive(this->eventID1 - 1)) {
         if (direction == 0 || direction == 1) {
             platform.rotation.x = fixDeg(this->endrotation);
         }
