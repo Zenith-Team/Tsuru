@@ -42,7 +42,7 @@ PoisonMushroom::PoisonMushroom(const ActorBuildInfo* buildInfo)
 u32 PoisonMushroom::onCreate() {
     this->_1827 = true;
     this->_1808 = 0;
-    this->model = ModelWrapper::create("I_kinxkx", "I_kinxkx", 5); // Funny
+    this->model = ModelWrapper::create("I_kinxkx", "I_kinxkx", 5);
 
     this->setupActor();
     this->spawnMethod();

@@ -31,7 +31,7 @@ u32 CustomPowerupBlock::onCreate() {
         return 2;
     }
 
-    switch (eventID1 & 0xF) {
+    switch (eventID1 & 0xF) { // nybble 2
         default:
         case 0: this->tileId = 49; break; // Question Block
         case 1: this->tileId = 48; break; // Brick Block
