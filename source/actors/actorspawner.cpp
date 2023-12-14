@@ -55,7 +55,6 @@ u32 ActorSpawner::onExecute() {
                     actor->isVisible = true;
                     actor->addHitboxColliders();
                 }
-
                 return 1;
             }
 
@@ -78,6 +77,10 @@ u32 ActorSpawner::onExecute() {
             this->child = ActorMgr::instance()->create(buildInfo, 0);
 
             this->spawned = true;
+        }
+
+        if (eventMode == 3 && this->child) {
+            this->isDeleted = this->child->isDeleted;
         }
     }
 
