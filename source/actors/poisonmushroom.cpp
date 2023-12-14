@@ -1,5 +1,7 @@
 #include "game/actor/stage/powerup.h"
 #include "game/actor/stage/player.h"
+#include "game/playermgr.h"
+#include "game/effect/effect.h"
 
 class PoisonMushroom : public Powerup {
     SEAD_RTTI_OVERRIDE_IMPL(PoisonMushroom, Powerup);
@@ -40,7 +42,7 @@ PoisonMushroom::PoisonMushroom(const ActorBuildInfo* buildInfo)
 u32 PoisonMushroom::onCreate() {
     this->_1827 = true;
     this->_1808 = 0;
-    this->model = ModelWrapper::create("I_kinxkx", "I_kinxkx");
+    this->model = ModelWrapper::create("I_kinxkx", "I_kinxkx", 5); // Funny
 
     this->setupActor();
     this->spawnMethod();
@@ -64,23 +66,35 @@ void PoisonMushroom::vf18C() {
 }
 
 void PoisonMushroom::playBlockReleaseUpAnim() {
-    this->model->playSklAnim("out", 1);
+    this->model->playSklAnim("out", 0);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(false);
+    this->_1810 = 1;
 }
 
 void PoisonMushroom::playBlockReleaseDownAnim() {
-    this->model->playSklAnim("out3", 3);
+    this->model->playSklAnim("out3", 0);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(false);
+    this->_1810 = 3;
 }
 
 void PoisonMushroom::playIdleAnim() {
-    this->model->playSklAnim("wait", 4);
+    if (this->_1810 == 4)
+        return;
+    this->model->playSklAnim("wait", 0);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(true);
+    this->_1810 = 4;
 }
 
 void PoisonMushroom::playFloatAnim() {
-    this->model->playSklAnim("wait2", 5);
+    this->model->playSklAnim("wait2", 0);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(true);
+    this->_1810 = 5;
 }
 
 void PoisonMushroom::vf1B4() {
-    this->model->playSklAnim("out2", 2);
+    this->model->playSklAnim("out2", 0);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(true);
+    this->_1810 = 2;
 }
 
 void PoisonMushroom::initHitboxes() {
