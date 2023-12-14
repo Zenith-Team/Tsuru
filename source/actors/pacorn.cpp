@@ -33,7 +33,7 @@ PAcorn::PAcorn(const ActorBuildInfo* buildInfo)
 u32 PAcorn::onCreate() {
     this->_1827 = true;
     this->_1808 = 0;
-    this->model = ModelWrapper::create("I_musasabi", "I_musasabiP", 1, 1, 0, 0, 0);
+    this->model = ModelWrapper::create("I_musasabi", "I_musasabiP", 5);
 
     this->setupActor();
     this->spawnMethod();
@@ -58,23 +58,36 @@ void PAcorn::vf18C() {
 }
 
 void PAcorn::playBlockReleaseUpAnim() {
-    this->model->playSklAnim("out", 1);
+    this->model->playSklAnim("out", 0);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(false);
+    this->_1810 = 1;
 }
 
 void PAcorn::playBlockReleaseDownAnim() {
-    this->model->playSklAnim("out3", 3);
+    this->model->playSklAnim("out3", 0);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(false);
+    this->_1810 = 3;
 }
 
 void PAcorn::playIdleAnim() {
-    this->model->playSklAnim("wait", 4);
+    if (this->_1810 == 4)
+        return;
+
+    this->model->playSklAnim("wait", 0);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(true);
+    this->_1810 = 4;
 }
 
 void PAcorn::playFloatAnim() {
-    this->model->playSklAnim("wait2", 5);
+    this->model->playSklAnim("wait2", 0);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(true);
+    this->_1810 = 5;
 }
 
 void PAcorn::vf1B4() {
-    this->model->playSklAnim("out2", 2);
+    this->model->playSklAnim("out2", 0);
+    this->model->sklAnims[0]->frameCtrl.shouldLoop(true);
+    this->_1810 = 2;
 }
 
 u32 PAcorn::vf1C4() {

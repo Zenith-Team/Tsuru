@@ -20,7 +20,7 @@ public:
 
 const ActorInfo CustomPowerupBlockActorInfo = { Vec2i(8, -16), Vec2i(8, -8), Vec2i(0x100, 0x100), 0x0, 0x0, 0x0, 0x0, 0x8 };
 REGISTER_PROFILE(CustomPowerupBlock, ProfileID::CustomPowerupBlock, "CustomPowerupBlock", &CustomPowerupBlockActorInfo, 0x1002);
-PROFILE_RESOURCES(ProfileID::CustomPowerupBlock, Profile::LoadResourcesAt::Course, "I_hmrflower");
+PROFILE_RESOURCES(ProfileID::CustomPowerupBlock, Profile::LoadResourcesAt::Course, "I_hmrflower", "I_kinxkx", "I_musasabi");
 
 CustomPowerupBlock::CustomPowerupBlock(const ActorBuildInfo* buildInfo)
     : BlockWrapper(buildInfo)
@@ -31,7 +31,12 @@ u32 CustomPowerupBlock::onCreate() {
         return 2;
     }
 
-    this->tileId = 49; // Question Block
+    switch (eventID1 & 0xF) { // nybble 2
+        default:
+        case 0: this->tileId = 49; break; // Question Block
+        case 1: this->tileId = 48; break; // Brick Block
+        case 2: this->tileId = 5; this->stateType = BlockWrapper::StateType::InvisibleBlock; break; // Hidden Block (WHAT ARE THE TILE IDS?! :sob:)
+    }
 
     if (this->stateType == BlockWrapper::StateType::UsedBlock) {
         this->doStateChange(&CustomPowerupBlock::StateID_Used);
@@ -54,6 +59,8 @@ void CustomPowerupBlock::spawnPowerup(bool down) {
     switch (this->eventID1 >> 0x4 & 0xF) {
         default:
         case 0: buildInfo.profile = Profile::get(ProfileID::HammerFlower); break;
+        case 1: buildInfo.profile = Profile::get(ProfileID::PoisonMushroom); break;
+        case 2: buildInfo.profile = Profile::get(ProfileID::PAcorn); break;
     }
 
     buildInfo.position = this->position;
