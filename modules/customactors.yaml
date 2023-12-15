@@ -52,6 +52,7 @@ Files:
   - actors/hammerflower.cpp
   - actors/custompowerupblock.cpp
   - actors/onewayplatform.cpp
+  - actors/waveplatform.cpp
 #* Course Select Actors:
   - actors/csrootspawner.cpp
   - actors/csflames.cpp

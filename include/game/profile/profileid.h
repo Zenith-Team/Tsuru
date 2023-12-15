@@ -300,6 +300,7 @@ ENUM_CLASS(ProfileID,
     HammerFlower,
     CustomPowerupBlock,
     OneWayPlatform,
+    WavePlatform,
 
     Num
 );
