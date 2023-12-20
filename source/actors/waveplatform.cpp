@@ -80,23 +80,23 @@ u32 WavePlatform::onCreate() {
 }
 
 u32 WavePlatform::onExecute() {
-    /*if (!updateWaveTargets()) {
+    if (!updateWaveTargets()) {
         offscreen = true;
         return 1;
-    }*/
+    }
 
-    /*if (offscreen) {
-        //this->position.y = targetpos;
-        //this->rotation.z = targetrot;
+    if (offscreen) {
+        this->position.y = targetpos;
+        this->rotation.z = targetrot;
         offscreen = false;
     } else {
         sead::Mathf::chase(&this->position.y, targetpos, 2.0);
         sead::Mathu::chase(&this->rotation.z, targetrot, 0x01800000);
-    }*/
+    }
     
-    updateWaveTargets();
+    /*updateWaveTargets();
     sead::Mathf::chase(&this->position.y, targetpos, 2.0);
-    sead::Mathu::chase(&this->rotation.z, targetrot, 0x01800000);
+    sead::Mathu::chase(&this->rotation.z, targetrot, 0x01800000);*/
 
     this->collider.rotation = rotation.z;
     this->collider.execute();
