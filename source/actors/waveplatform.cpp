@@ -47,7 +47,7 @@ WavePlatform::WavePlatform(const ActorBuildInfo* buildInfo)
 {}
 
 u32 WavePlatform::onCreate() {
-    width = settings1 & 0xF;
+    width = settings1 & 0xF; // nybble 12
     if (width < 2) {
         width = 2;
     }
@@ -56,7 +56,7 @@ u32 WavePlatform::onCreate() {
 
     platform.position = this->position;
 
-    platform.create((settings1 >> 0x18 & 0xF), width);
+    platform.create((settings1 >> 0x18 & 0xF), width); // nybble 6
     platform.rotation = nullvec3i;
     platform._A0 = nullvec3f;
     platform.init();
@@ -86,17 +86,13 @@ u32 WavePlatform::onExecute() {
     }
 
     if (offscreen) {
-        this->position.y = targetpos;
-        this->rotation.z = targetrot;
+        this->position.y = this->targetpos;
+        this->rotation.z = this->targetrot;
         offscreen = false;
     } else {
-        sead::Mathf::chase(&this->position.y, targetpos, 2.0);
-        sead::Mathu::chase(&this->rotation.z, targetrot, 0x01800000);
+        sead::Mathf::chase(&this->position.y, this->targetpos, 2.0);
+        sead::Mathu::chase(&this->rotation.z, this->targetrot, 0x01800000);
     }
-    
-    /*updateWaveTargets();
-    sead::Mathf::chase(&this->position.y, targetpos, 2.0);
-    sead::Mathu::chase(&this->rotation.z, targetrot, 0x01800000);*/
 
     this->collider.rotation = rotation.z;
     this->collider.execute();
@@ -121,27 +117,23 @@ bool WavePlatform::updateWaveTargets() {
 	if (index < 10) index += 144;
 	if (index >= 1190) index -= 144;
 
-    if (TileMgr::instance()->waveFloats[index + 10][1] == f32(-8192)) {
+    if (TileMgr::instance()->waveFloats2[index + 10] == f32(-8192)) {
         index -= 144;
     }
 
-    // God this is painful
-
     f32 ypos_1, ypos_m, ypos_r;
-    ypos_m = TileMgr::instance()->waveFloats[index][1];
-    ypos_1 = TileMgr::instance()->waveFloats[index - 10][1];
-    ypos_r = TileMgr::instance()->waveFloats[index + 10][1];
+    ypos_m = TileMgr::instance()->waveFloats2[index];
+    ypos_1 = TileMgr::instance()->waveFloats2[index - 10];
+    ypos_r = TileMgr::instance()->waveFloats2[index + 10];
 
-    targetpos = (ypos_1 + ypos_m + ypos_r) / 3 + 4.0;
+    this->targetpos = (ypos_1 + ypos_m + ypos_r) / 3 + 4.0;
 
     if (ypos_m == -8192 || ypos_1 == -8192 || ypos_r == -8192 || ypos_m == 0 || ypos_1 == 0 || ypos_r == 0) return 0;
-
-    // Newer U code is shit ngl. NEVER AGAIN.
 
     f32 ydiff1 = ypos_m - ypos_1;
 	f32 ydiff2 = ypos_r - ypos_m;
 	f32 ydiffavg = (ydiff1 + ydiff2) / 2;
-	targetrot = (u32)(atan2f(ydiffavg, 20.0) / (2 * M_PI) * 0x100000000);
+	this->targetrot = (u32)(atan2f(ydiffavg, 20.0) / (2 * M_PI) * 0x100000000);
 
 	return true;
 }

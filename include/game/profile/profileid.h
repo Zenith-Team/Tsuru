@@ -301,6 +301,7 @@ ENUM_CLASS(ProfileID,
     CustomPowerupBlock,
     OneWayPlatform,
     WavePlatform,
+    ActorManipulator,
 
     Num
 );

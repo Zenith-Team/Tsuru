@@ -867,7 +867,7 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::CustomPowerupBlock,          // 774
     ProfileID::OneWayPlatform,              // 775
     ProfileID::WavePlatform,                // 776
-    ProfileID::NullActor,                   // 777
+    ProfileID::ActorManipulator,            // 777
     ProfileID::NullActor,                   // 778
     ProfileID::NullActor,                   // 779
     ProfileID::NullActor,                   // 780
