@@ -24,7 +24,8 @@ public:
     void* d_bgchk_data;
     f32 liquidTop;
     f32 liquidTop2;
-    f32 waveFloats[0x500][2];
+    f32 waveFloats[1280];
+    f32 waveFloats2[1280];
     u8 waveType;
     bool hasWaves;
     u8 _281E;
