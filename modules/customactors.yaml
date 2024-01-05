@@ -54,6 +54,7 @@ Files:
   - actors/onewayplatform.cpp
   - actors/waveplatform.cpp
   - actors/actormanipulator.cpp
+  - actors/floatygoomba.cpp
 #* Course Select Actors:
   - actors/csrootspawner.cpp
   - actors/csflames.cpp

@@ -302,6 +302,7 @@ ENUM_CLASS(ProfileID,
     OneWayPlatform,
     WavePlatform,
     ActorManipulator,
+    FloatyGoomba,
 
     Num
 );
