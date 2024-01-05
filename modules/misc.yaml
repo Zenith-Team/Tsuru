@@ -50,7 +50,7 @@ Hooks:
     addr: "0x202BDC4" # Boss::beforeExecute()
     func: SetBossActorType
 
-# Disable baphs
+# Disable bahps
   - type: patch
     addr: "0x0202b11c"
     data: "38600000" # li r3, 0
@@ -108,3 +108,17 @@ Hooks:
     instr: bl
     addr: "0x220F148" # CSPlayer::onCreate()
     func: InitPlayerAdditionalResourceCS
+
+# Player projectile upwards throw
+  - type: branch
+    instr: bl
+    addr: "0x0293ae98" # Player::throwProjectile()
+    func: IsPlayerUp
+  - type: branch
+    instr: bl
+    addr: "0x021701c4" # Fireball::onCreate()
+    func: PlayerProjectileSpeed
+  - type: branch
+    instr: bl
+    addr: "0x0217fcb4" # Iceball::onCreate()
+    func: PlayerProjectileSpeed

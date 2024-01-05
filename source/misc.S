@@ -139,3 +139,24 @@ SetBossActorType:
     addi r1, r1, 0x10
     li r3, 1
     blr
+
+.global IsPlayerUp
+IsPlayerUp:
+    # Check if player is holding up and set projectile buildInfo->settings2 to 1 is so
+    lwz r3, 0x2B0(r30)
+    rlwinm r3, r3, 0x1C, 0x1F, 0x1F
+    cmpi r3, 0
+    beq IsPlayerUp_exit
+    stw r3, 0x40(sp)
+
+IsPlayerUp_exit:
+    lwz r9, 0x280(r30)
+    blr
+
+.global PlayerProjectileSpeed
+PlayerProjectileSpeed:
+    # Set projectile speed if settings2 != 0
+    mr r3, r30
+    SafeBranch setProjectileSpeed__FP10StageActor
+    lwz r0, 0x14(r1)
+    blr

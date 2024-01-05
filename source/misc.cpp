@@ -139,3 +139,8 @@ Actor* ActorMgr::instanciateActor(const ActorBuildInfo& buildInfo, bool dontDefe
 
     return actor;
 }
+
+void setProjectileSpeed(StageActor* projectile) {
+    if (projectile->settings2 != 0)
+        projectile->speed.y = 5.0f;
+}
