@@ -277,8 +277,7 @@ ENUM_CLASS(ProfileID,
     LayerChanger,
     Biddybud,
     HelicalBar,
-    BasaltBones,
-    BasaltBoneProjectile,
+    BasaltBones, BasaltBoneProjectile,
     Flaptor,
     SwitchBlock,
     PowerupSwitcher,
@@ -303,6 +302,7 @@ ENUM_CLASS(ProfileID,
     WavePlatform,
     ActorManipulator,
     FloatyGoomba,
+    PiranhaSprout, PiranhaSproutProjectile,
 
     Num
 );

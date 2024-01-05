@@ -55,6 +55,7 @@ Files:
   - actors/waveplatform.cpp
   - actors/actormanipulator.cpp
   - actors/floatygoomba.cpp
+  - actors/piranhasprout.cpp
 #* Course Select Actors:
   - actors/csrootspawner.cpp
   - actors/csflames.cpp
