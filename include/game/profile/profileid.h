@@ -303,6 +303,7 @@ ENUM_CLASS(ProfileID,
     ActorManipulator,
     FloatyGoomba,
     PiranhaSprout, PiranhaSproutProjectile,
+    PoisonPiranha, PoisonPiranhaProjectile,
 
     Num
 );

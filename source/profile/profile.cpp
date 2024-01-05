@@ -870,4 +870,5 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::ActorManipulator,            // 777
     ProfileID::FloatyGoomba,                // 778
     ProfileID::PiranhaSprout,               // 779
+    ProfileID::PoisonPiranha,               // 780
 };
