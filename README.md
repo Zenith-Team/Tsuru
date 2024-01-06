@@ -66,7 +66,8 @@ Project started on March 9, 2021 :)
 * [t0bu](https://www.youtube.com/@tbu.) - Graphics
 * [WillyMaker](https://github.com/WillyMaker5) - Sprite data and images
 * Modified dynamic_libs headers based on original implementation by [Dimok](https://github.com/dimok789) and [Maschell fork](https://github.com/Maschell/dynamic_libs)
-* [shiftjis.h from Apollo PS3](https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h)
+* [shiftjis.h](https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h) from Apollo PS3
+* [ImGui C++98 port](https://github.com/fruityloops1/imgui-98) by Fruityloops
 
 ### Special Thanks
 * Abood
