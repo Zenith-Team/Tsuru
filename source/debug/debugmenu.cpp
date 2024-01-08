@@ -18,6 +18,7 @@
 #include "game/resource/resmgr.h"
 #include "game/sound/sndaudiomgr.h"
 #include "game/sound/sndbgmmgr.h"
+#include "game/sound/audaudioplayer.h"
 #include "agl/texturesampler.h"
 #include "agl/lyr/renderer.h"
 #include "log.h"
@@ -89,7 +90,7 @@ void tsuruDebugMenu() {
 
         counter++;
 
-        if (counter == 60 * 2) {
+        if (counter >= 30) {
             show = true;
         }
     } else {
@@ -591,6 +592,22 @@ static void drawSndAudioMgrImGui() {
 
         ImGui::Text("Beat: %i", audioMgr->currentBeat);
         ImGui::Text("Tick: %i", SndBgmMgr::instance()->currentTick);
+
+        static nw::snd::SoundHandle handle;
+
+        static s32 soundID = 0;
+        ImGui::DragInt("Sound ID", &soundID);
+        ImGui::Text("Sound Name: %s", audioMgr->getSoundName(soundID + 0x1000000));
+
+        if (ImGui::Button("Play")) {
+            handle.Stop(0);
+            AudAudioPlayer* player = audioMgr->getAudioPlayer();
+            player->StartSound(&handle, soundID + 0x1000000, nullptr);
+        }
+
+        if (ImGui::Button("Stop")) {
+            handle.Stop(0);
+        }
     }
 }
 
