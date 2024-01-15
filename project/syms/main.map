@@ -300,6 +300,9 @@
     __ct__Q2_4sead8ViewportFRCQ2_4sead18LogicalFrameBuffer = 0x2A074C8;
     apply__Q2_4sead8ViewportCFRCQ2_4sead18LogicalFrameBuffer = 0x2A0783C;
 
+# nw::g3d::res::RecDicPatricia
+    FindIndex__Q4_2nw3g3d3res14ResDicPatriciaCFPCc = 0x02ab1364;
+
 # nw::snd::internal::BasicSound
     Stop__Q4_2nw3snd8internal10BasicSoundFi = 0x02aca048;
 
