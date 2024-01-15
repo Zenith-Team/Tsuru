@@ -2,9 +2,28 @@
 
 #include "types.h"
 
+inline void* AddOffset(void* ptr, size_t offset)
+{
+    return static_cast<char*>(ptr) + offset;
+}
+
+template <typename ResultT>
+inline ResultT* AddOffset(void* ptr, size_t offset)
+{
+    return static_cast<ResultT*>(AddOffset(ptr, offset));
+}
+
 namespace nw { namespace g3d { namespace res {
 
-typedef s32 Offset;
+class Offset
+{
+public:
+    s32 offset;
+
+    template<typename T>
+    T* to_ptr() { return (offset == 0) ? NULL : AddOffset<T>(this, offset); }
+};
+
 typedef Offset BinString;
 
 struct BinaryFileHeader {
