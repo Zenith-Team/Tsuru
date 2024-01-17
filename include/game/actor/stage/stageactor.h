@@ -84,7 +84,7 @@ public:
     }
 
     void cullCheck(u32 unkMask = 0);
-    bool offscreenDelete(u32 noRespawn); // Argument might be a bool
+    bool offscreenDelete(u32 unkMask = 0);
 
     bool actorHCCallback0(HitboxCollider*, Vec2f*);
     bool actorHCCallback1(HitboxCollider*, Vec2f*);

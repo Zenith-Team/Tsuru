@@ -4,7 +4,6 @@ Files:
   - experiments/projection.S
   - experiments/projection.cpp
   - experiments/shader.cpp
-  - experiments/shaderbg.cpp
 Hooks:
 # Orthographic projection on World Map
   # Set the projection in the layer
@@ -50,8 +49,3 @@ Hooks:
 #    instr: bl
 #    addr: "0x024fcd00"
 #    func: LayerFunc
-
-  - type: branch
-    instr: bl
-    addr: "0x22A9094"
-    func: ShaderBG_ASM

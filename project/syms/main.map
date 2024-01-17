@@ -1019,6 +1019,7 @@
     isInActiveList__17HitboxColliderMgrFP14HitboxCollider = 0x219DC5C;
     isInCreateList__17HitboxColliderMgrFP14HitboxCollider = 0x219DD88;
     addToCreateList__17HitboxColliderMgrFP14HitboxCollider = 0x219E028;
+    removeFromActiveList__17HitboxColliderMgrFP14HitboxCollider = 0x219DF70;
 
 # HoldableEnemy
     __ct__13HoldableEnemyFPC14ActorBuildInfo = 0x22EB09C;
