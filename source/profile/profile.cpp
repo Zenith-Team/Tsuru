@@ -871,4 +871,7 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::FloatyGoomba,                // 778
     ProfileID::PiranhaSprout,               // 779
     ProfileID::PoisonPiranha,               // 780
+    ProfileID::NullActor,                   // 781//!
+    ProfileID::NullActor,                   // 782//!
+    ProfileID::ShaderController,            // 783
 };

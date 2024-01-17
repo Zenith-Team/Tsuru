@@ -775,6 +775,9 @@
 # Direction
     directionToRotationList__9Direction = 0x10200DD8;
 
+# DistantViewMgr
+    sInstance__14DistantViewMgr = 0x101CD394;
+
 # DoorBase
     RTTI__8DoorBase = 0x101EB330;
     __ct__8DoorBaseFPC14ActorBuildInfo = 0x27583F0;

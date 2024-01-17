@@ -304,6 +304,7 @@ ENUM_CLASS(ProfileID,
     FloatyGoomba,
     PiranhaSprout, PiranhaSproutProjectile,
     PoisonPiranha, PoisonPiranhaProjectile,
+    ShaderController,
 
     Num
 );

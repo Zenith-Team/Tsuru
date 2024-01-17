@@ -57,6 +57,7 @@ Files:
   - actors/floatygoomba.cpp
   - actors/piranhasprout.cpp
   - actors/poisonpiranha.cpp
+  - actors/shadercontroller.cpp
 #* Course Select Actors:
   - actors/csrootspawner.cpp
   - actors/csflames.cpp
