@@ -975,9 +975,11 @@
     endState_Ice__5EnemyFv = 0x2330944;
     move__5EnemyFRQ2_4sead16Vector2__tm__2_f = 0x232A67C;
     getRect__5EnemyFR4Rect = 0x232A6A8;
+    StateID_Ice__5Enemy = 0x10201218;
 
 # EnemyFreezeMgr
     setFlags__14EnemyFreezeMgrFRCQ2_14EnemyFreezeMgr5Flags = 0x237CB94;
+    freeze__14EnemyFreezeMgrFRCQ2_14EnemyFreezeMgr4InfoUi = 0x23304F8;
 
 # EnvTerrain
     onExecute__10EnvTerrainFv = 0x26F0E9C;

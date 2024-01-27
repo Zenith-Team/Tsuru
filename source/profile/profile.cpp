@@ -874,4 +874,5 @@ u32 Profile::spriteToProfileList[] = {
     ProfileID::NullActor,                   // 781//!
     ProfileID::NullActor,                   // 782//!
     ProfileID::ShaderController,            // 783
+    ProfileID::Gushen,                      // 784
 };

@@ -44,7 +44,7 @@ public:
 
     void vf18C() override;
 
-    void freeze() override;
+    bool freeze() override;
 
     void vf1BC() override;
     void vf1C4() override;

@@ -58,6 +58,7 @@ Files:
   - actors/piranhasprout.cpp
   - actors/poisonpiranha.cpp
   - actors/shadercontroller.cpp
+  - actors/gushen.cpp
 #* Course Select Actors:
   - actors/csrootspawner.cpp
   - actors/csflames.cpp

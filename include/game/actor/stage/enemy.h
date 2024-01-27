@@ -61,7 +61,7 @@ public:
     virtual void damagePlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther);
     virtual bool vf19C();
     // Creates ice actors
-    virtual void freeze();
+    virtual bool freeze();
     // Called on freeze
     virtual void vf1AC();
     // Called on freeze break
