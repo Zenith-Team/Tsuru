@@ -307,5 +307,7 @@ ENUM_CLASS(ProfileID,
     ShaderController,
     Gushen,
 
+    CarterraMap, CarterraPlayer, CarterraCamera,
+
     Num
 );

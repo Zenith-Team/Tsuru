@@ -1,0 +1,28 @@
+
+---
+Files:
+  - carterra/scene.cpp
+  - carterra/camera.cpp
+  - carterra/player.cpp
+  - carterra/map.cpp
+  - carterra/renderer.cpp
+Hooks:
+# Entry point
+  - type: branch
+    instr: b
+    addr: "0x202B86C" # CourseSelectTask::construct()
+    func: construct__Q2_3crt5SceneSFRCQ2_4sead16TaskConstructArg
+# Set instance
+  - type: branch
+    instr: b
+    addr: "0x22656C0"
+    func: setInstance__Q2_3crt5SceneSFPQ2_4sead8TaskBase
+# Redirect level completion to custom save
+  - type: branch
+    instr: b
+    addr: "0x24B7804"
+    func: setNormalExitFlag__Fv
+  - type: branch
+    instr: b
+    addr: "0x24B8180"
+    func: setSecretExitFlag__Fv

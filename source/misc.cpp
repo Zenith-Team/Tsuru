@@ -121,7 +121,12 @@ Actor* ActorMgr::instanciateActor(const ActorBuildInfo& buildInfo, bool dontDefe
     sead::Heap* actorHeap = nullptr;
 
     u32 id = buildInfo.profile->id;
-    if (id == 0x1BC || id == 0x1BB || id == 0x356 || id == 0x357) // Add extra profile ids here
+    if (
+        // Vanilla profile ids
+        id == 0x1BC || id == 0x1BB || id == 0x356 || id == 0x357
+        // Custom profile ids
+        || id == ProfileID::CarterraPlayer
+    ) // Add extra profile ids here
         actorHeap = sead::FrameHeap::tryCreate(0, "PlayerHeap", this->playerUnitHeap, sead::Heap::HeapDirection_Forward, false);
     else
         actorHeap = sead::FrameHeap::tryCreate(0, "ActorHeap", this->actorUnitHeap, sead::Heap::HeapDirection_Forward, false);

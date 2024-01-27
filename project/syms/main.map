@@ -223,7 +223,7 @@
 # sead::LookAtCamera
     __dt__Q2_4sead12LookAtCameraFv = 0x2A04B94;
     __vtbl__Q2_4sead12LookAtCamera = 0x1019084C;
-    doUpdateMatrix__Q2_4sead12LookAtCameraCFP5Mtx34 = 0x2A04BE8;
+    doUpdateMatrix__Q2_4sead12LookAtCameraCFPQ2_4sead17Matrix34__tm__2_f = 0x2A04BE8;
 
 # sead::MathCalcCommon
     chase__Q2_4sead23MathCalcCommon__tm__2_fSFPZ1ZZ1ZT2_b = 0x2027984;

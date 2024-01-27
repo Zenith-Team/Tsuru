@@ -6,6 +6,7 @@ IncludeDir: include
 SourceDir: source
 RpxDir: +/rpxs
 Modules:
+  - carterra             # Custom world map system
   - cheats               # Cheat menu
   - collisionconditions  # Fixes collision conditions for some actors
   - csscripts            # Custom world map scripts
