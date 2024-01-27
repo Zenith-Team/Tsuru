@@ -25,6 +25,10 @@
 
 #include "imgui/imgui.h"
 
+#ifdef TARGET_CARTERRA
+#include "tsuru/carterra/scene.h"
+#endif
+
 extern "C" u32 expHeapVtable[];
 extern "C" u32 frameHeapVtable[];
 extern "C" u32 unitHeapVtable[];
@@ -221,6 +225,12 @@ static void drawLvlEntry() {
         } else if (CourseTask::instance()) {
             currentTask = CourseTask::instance();
         }
+
+#ifdef TARGET_CARTERRA
+        else if (crt::Scene::instance()) {
+            currentTask = crt::Scene::instance();
+        }
+#endif // TARGET_CARTERRA
 
         if (ImGui::Button("Play")) {
             int actualLevel = lvl;

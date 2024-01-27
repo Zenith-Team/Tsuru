@@ -23,7 +23,7 @@ void SaveMgrSystem::initSystem() {
         SaveMgrSystem::managers[i]->init();
 
     if (SaveMgrSystem::managers.count() > 1) {
-        PRINT("%u save managers were inited", SaveMgrSystem::managers.count());
+        PRINT(SaveMgrSystem::managers.count(), " save managers were inited");
     } else {
         PRINT("1 save manager was inited");
     }
@@ -34,7 +34,7 @@ void SaveMgrSystem::saveSystem() {
         SaveMgrSystem::managers[i]->save();
 
     if (SaveMgrSystem::managers.count() > 1) {
-        PRINT("%u save managers were written to disk", SaveMgrSystem::managers.count());
+        PRINT(SaveMgrSystem::managers.count(), " save managers were written to disk");
     } else {
         PRINT("1 save manager was written to disk");
     }
