@@ -6,6 +6,7 @@ Files:
   - carterra/player.cpp
   - carterra/map.cpp
   - carterra/renderer.cpp
+  - save/managers/carterrasavemgr.cpp
 Hooks:
 # Entry point
   - type: branch

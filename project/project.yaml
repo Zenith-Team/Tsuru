@@ -6,7 +6,6 @@ IncludeDir: include
 SourceDir: source
 RpxDir: +/rpxs
 Modules:
-  - carterra             # Custom world map system
   - cheats               # Cheat menu
   - collisionconditions  # Fixes collision conditions for some actors
   - csscripts            # Custom world map scripts
@@ -36,6 +35,7 @@ Targets:
   US: ~
   EU: ~
   JP: ~
+
   Template/Tricky:
     Modules:
       - buffs # What if we made the game a bit more tricky...
@@ -53,5 +53,23 @@ Targets:
     BaseRpx: EU
   Tricky_JP:
     Extends: Tricky
+    AddrMap: JP
+    BaseRpx: JP
+
+  Template/Carterra:
+    Modules:
+      - carterra
+    Defines:
+      - TARGET_CARTERRA
+  Carterra_US:
+    Extends: Carterra
+    AddrMap: US
+    BaseRpx: US
+  Carterra_EU:
+    Extends: Carterra
+    AddrMap: EU
+    BaseRpx: EU
+  Carterra_JP:
+    Extends: Carterra
     AddrMap: JP
     BaseRpx: JP

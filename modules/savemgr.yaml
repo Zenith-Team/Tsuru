@@ -6,7 +6,6 @@ Files:
   - save/system/savemgrsystem.cpp
 # Managers
   - save/managers/tsurusavemgr.cpp
-  - save/managers/carterrasavemgr.cpp
 Hooks:
 # Save all managers' data
   - type: branch
