@@ -1,10 +1,10 @@
 ---
 Files:
-  - source/deathfoo.S
-  - source/waves.S
-  - source/waves.cpp
-  - source/coinring.cpp
-  - source/snowparticles.S
+  - src/deathfoo.S
+  - src/waves.S
+  - src/waves.cpp
+  - src/coinring.cpp
+  - src/snowparticles.S
 Hooks:
 #* Death Foo
 # Add the ability to spawn deathfoo clouds from Foo (replaces No Cloud setting)

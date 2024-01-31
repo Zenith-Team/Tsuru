@@ -1,9 +1,9 @@
 
 ---
 Files:
-  - source/experiments/projection.S
-  - source/experiments/projection.cpp
-  - source/experiments/shader.cpp
+  - src/experiments/projection.S
+  - src/experiments/projection.cpp
+  - src/experiments/shader.cpp
 Hooks:
 # Orthographic projection on World Map
   # Set the projection in the layer

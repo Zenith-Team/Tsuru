@@ -1,7 +1,7 @@
 
 ---
 Files:
-  - source/initializer.cpp
+  - src/initializer.cpp
 Hooks:
   - type: branch
     instr: b

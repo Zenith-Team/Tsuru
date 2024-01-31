@@ -2,14 +2,14 @@
 ---
 Files:
 #* Translation unit queue:
-  - source/misc.S
-  - source/misc.cpp
-  - source/bgoffset.S
-  - source/hitboxcollider.cpp
-  - source/utils.cpp
-  - source/profileres.cpp
-  - source/inputcontrollers.cpp
-  - source/playeradditionalresource.cpp
+  - src/misc.S
+  - src/misc.cpp
+  - src/bgoffset.S
+  - src/hitboxcollider.cpp
+  - src/utils.cpp
+  - src/profileres.cpp
+  - src/inputcontrollers.cpp
+  - src/playeradditionalresource.cpp
 Hooks:
 # Embed crash fix into the RPX
   - type: patch

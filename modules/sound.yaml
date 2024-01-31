@@ -1,8 +1,8 @@
 
 ---
 Files:
-  - source/sound/fxreverb.cpp
-  - source/sound/sndbgmmgr.cpp
+  - src/sound/fxreverb.cpp
+  - src/sound/sndbgmmgr.cpp
 Hooks:
 # Restore SFX reverb values
   - type: branch

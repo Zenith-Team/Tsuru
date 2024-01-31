@@ -1,10 +1,10 @@
 
 ---
 Files:
-  - source/debug/collisionviewer.S
-  - source/debug/collisionviewer.cpp
-  - source/debug/exceptions.cpp
-  - source/debug/debugmenu.cpp
+  - src/debug/collisionviewer.S
+  - src/debug/collisionviewer.cpp
+  - src/debug/exceptions.cpp
+  - src/debug/debugmenu.cpp
 Hooks:
 # Draw debug layer for levels
   # Hijack funcptr of AreaTask::drawLayer3D to point to a custom function

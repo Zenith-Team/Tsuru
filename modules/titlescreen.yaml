@@ -1,7 +1,7 @@
 
 ---
 Files:
-  - source/titlescreen.cpp
+  - src/titlescreen.cpp
 Hooks:
 # Disable spawning of falling acorns
   - type: nop

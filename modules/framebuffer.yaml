@@ -1,7 +1,7 @@
 
 ---
 Files:
-  - source/framebuffer.cpp
+  - src/framebuffer.cpp
 Hooks:
   # TV
   - type: branch

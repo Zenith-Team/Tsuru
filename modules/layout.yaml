@@ -1,6 +1,6 @@
 ---
 Files:
-  - source/layout.cpp
+  - src/layout.cpp
 Hooks:
   - type: branch
     instr: bl
