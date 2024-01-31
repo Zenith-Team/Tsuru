@@ -1,0 +1,6 @@
+[submodule "lib/sead"]
+	path = lib/sead
+	url = https://github.com/Zenith-Team/sead.git
+[submodule "lib/nw/g3d"]
+	path = lib/nw/g3d
+	url = https://github.com/nw4f/G3d.git
