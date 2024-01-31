@@ -4,3 +4,6 @@
 [submodule "lib/nw/g3d"]
 	path = lib/nw/g3d
 	url = https://github.com/nw4f/G3d.git
+[submodule "lib/ffl"]
+	path = lib/ffl
+	url = https://github.com/aboood40091/ffl.git
