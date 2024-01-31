@@ -2,10 +2,10 @@
 #include "game/graphics/model/modelnw.h"
 #include "game/playermgr.h"
 #include "game/coinmgr.h"
-#include "sead/array.h"
+#include "container/seadSafeArray.h"
 
 class TripleBlock : public BlockWrapper {
-    SEAD_RTTI_OVERRIDE_IMPL(TripleBlock, BlockWrapper);
+    SEAD_RTTI_OVERRIDE(TripleBlock, BlockWrapper);
 
 public:
     TripleBlock(const ActorBuildInfo* buildInfo);
@@ -71,8 +71,8 @@ u32 TripleBlock::onCreate() {
 }
 
 u32 TripleBlock::onExecute() {
-    Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position + Vec3f(0.0f, 8.0f, 0.0f));
+    sead::Matrix34f mtx;
+    mtx.makeRTIdx(this->rotation, this->position + sead::Vector3f(0.0f, 8.0f, 0.0f));
 
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
@@ -157,8 +157,8 @@ void TripleBlock::spawnItem(u8 item) {
 }
 
 void TripleBlock::spawnSideCoins() {
-    CoinMgr::instance()->spawnItemCoin(this->position + Vec3f(-16.0f, 0.0f, 0.0f), this->spawnDirection, this->hitPlayerID);
-    CoinMgr::instance()->spawnItemCoin(this->position + Vec3f( 16.0f, 0.0f, 0.0f), this->spawnDirection, this->hitPlayerID);
+    CoinMgr::instance()->spawnItemCoin(this->position + sead::Vector3f(-16.0f, 0.0f, 0.0f), this->spawnDirection, this->hitPlayerID);
+    CoinMgr::instance()->spawnItemCoin(this->position + sead::Vector3f( 16.0f, 0.0f, 0.0f), this->spawnDirection, this->hitPlayerID);
 }
 
 void TripleBlock::beginState_Used() {

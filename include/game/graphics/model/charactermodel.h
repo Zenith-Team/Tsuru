@@ -8,7 +8,7 @@ public:
     CharacterModel(const sead::SafeString& tex, const sead::SafeString& anim);
     virtual ~CharacterModel();
 
-    SEAD_RTTI_BASE(CharacterModel);
+    SEAD_RTTI_BASE_DECL(CharacterModel);
 
     virtual void vf24() = 0;
     virtual void vf2C() = 0;
@@ -36,7 +36,7 @@ public:
     virtual void vfDC();
     virtual void vfE4() = 0;
 
-    void setMtx(const Mtx34& mtxSRT);
+    void setMtx(const sead::Matrix34f& mtxSRT);
 
     ResArchive* modelResArchive;
     ResArchive* animResArchive;
@@ -45,10 +45,10 @@ public:
     s32 _20;
     s32 _24;
     u32 _28;
-    Mtx34 srtMtx;  // Set externally
-    Mtx34 srtMtx2; // Copies from srtMtx
-    Vec3f _8C;
-    Vec3f _98;
+    sead::Matrix34f srtMtx;  // Set externally
+    sead::Matrix34f srtMtx2; // Copies from srtMtx
+    sead::Vector3f _8C;
+    sead::Vector3f _98;
     u32 currentCharacter;
     u32 _A8;
     u32 _AC;
@@ -101,7 +101,7 @@ public:
     PlayerModel(PlayerModel::ResInfo* resInfo, u32 character, u32 powerupState, u32, bool useLightMaps);
     virtual ~PlayerModel();
 
-    SEAD_RTTI_OVERRIDE(PlayerModel, CharacterModel);
+    SEAD_RTTI_OVERRIDE_DECL(PlayerModel, CharacterModel);
 
     // TODO: vf overrides
     
@@ -155,7 +155,7 @@ public:
     YoshiModel(YoshiModel::TexColor::__type__ color);
     virtual ~YoshiModel();
 
-    SEAD_RTTI_OVERRIDE(YoshiModel, CharacterModel);
+    SEAD_RTTI_OVERRIDE_DECL(YoshiModel, CharacterModel);
 
     // TODO: vf overrides
 
@@ -175,7 +175,7 @@ public:
     BrosModel(u32 character, u32 powerupState, u32, bool useLightMaps);
     virtual ~BrosModel();
 
-    SEAD_RTTI_OVERRIDE(BrosModel, PlayerModel);
+    SEAD_RTTI_OVERRIDE_DECL(BrosModel, PlayerModel);
 
     // TODO: vf overrides
 

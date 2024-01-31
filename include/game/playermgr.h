@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/random.h"
+#include "random/seadGlobalRandom.h"
 #include "game/actor/stage/player.h"
 
 class PlayerMgr {
@@ -11,7 +11,7 @@ public:
         Player* out = nullptr;
 
         do {
-            out = this->players[sead::randU32(4)];
+            out = this->players[sead::GlobalRandom::instance()->getU32(4)];
         } while (!out);
 
         return out;

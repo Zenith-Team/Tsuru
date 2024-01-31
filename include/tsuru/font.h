@@ -34,12 +34,12 @@ public:
         this->loaded = true;
     };
 
-    Vec2f getUVForCharAt(u8 row, u8 column) {
+    sead::Vector2f getUVForCharAt(u8 row, u8 column) {
         // Yes it is meant to be inverted from the args
-        return Vec2f(column - this->uvOffset, row - this->uvOffset);
+        return sead::Vector2f(column - this->uvOffset, row - this->uvOffset);
     }
 
-    Vec2f getUVForChar(char character) {
+    sead::Vector2f getUVForChar(char character) {
         if (this->charmap != nullptr) {
             for (u32 i = 0; i < this->charcount; i++) {
                 if (this->charmap[i].character == character) {
@@ -47,31 +47,31 @@ public:
                 }
             }
         }
-        return Vec2f(NAN());
+        return sead::Vector2f(NAN());
     }
 
-    void renderText(Mtx44& viewProjection, const char* text) {
+    void renderText(sead::Matrix44f& viewProjection, const char* text) {
         u32 len = strlen(text);
         u32 cursor = 0;
-        Mtx34 qmtx;
+        sead::Matrix34f qmtx;
 
         for (u32 i = 0; i < len; i++) {
-            Vec2f charUV = this->getUVForChar(text[i]);
-            qmtx.makeSRT(Vec2f(this->charWidth, this->charHeight), 0, Vec3f(this->cursor.x + this->charWidth * cursor, this->cursor.y, 0.0f));
+            sead::Vector2f charUV = this->getUVForChar(text[i]);
+            qmtx.makeSRT(sead::Vector2f(this->charWidth, this->charHeight), 0, sead::Vector3f(this->cursor.x + this->charWidth * cursor, this->cursor.y, 0.0f));
             agl::utl::DevTools::drawTextureTexCoord(this->gtx.texture, qmtx, viewProjection, this->uvScale, 0, charUV);
             cursor++;
         }
         this->cursor.x += this->charWidth * cursor;
     }
 
-    void renderText(Mtx44& viewProjection, const char* text, Vec2f pos) {
+    void renderText(sead::Matrix44f& viewProjection, const char* text, sead::Vector2f pos) {
         u32 len = strlen(text);
         u32 cursor = 0;
-        Mtx34 qmtx;
+        sead::Matrix34f qmtx;
 
         for (u32 i = 0; i < len; i++) {
-            Vec2f charUV = this->getUVForChar(text[i]);
-            qmtx.makeSRT(Vec2f(this->charWidth, this->charHeight), 0, Vec3f(pos.x + this->charWidth * cursor, pos.y, 0.0f));
+            sead::Vector2f charUV = this->getUVForChar(text[i]);
+            qmtx.makeSRT(sead::Vector2f(this->charWidth, this->charHeight), 0, sead::Vector3f(pos.x + this->charWidth * cursor, pos.y, 0.0f));
             agl::utl::DevTools::drawTextureTexCoord(this->gtx.texture, qmtx, viewProjection, this->uvScale, 0, charUV);
             cursor++;
         }
@@ -88,15 +88,15 @@ public:
         this->cursor.y -= this->charHeight;
     }
 
-    void renderBitmap(Mtx44& viewProjection, Vec2f pos = Vec2f(0.0f)) {
+    void renderBitmap(sead::Matrix44f& viewProjection, sead::Vector2f pos = sead::Vector2f(0.0f)) {
         u32 cursor = 0;
         u32 line = 0;
-        Mtx34 qmtx;
+        sead::Matrix34f qmtx;
 
         for (u32 r = 1; r <= this->identity; r++) {
             for (u32 c = 1; c <= this->identity; c++) {
-                Vec2f charUV = this->getUVForCharAt(r, c);
-                qmtx.makeSRT(Vec2f(this->charWidth, this->charHeight), 0, Vec3f(pos.x + this->charWidth * cursor, pos.y - (this->charHeight * line), 0.0f));
+                sead::Vector2f charUV = this->getUVForCharAt(r, c);
+                qmtx.makeSRT(sead::Vector2f(this->charWidth, this->charHeight), 0, sead::Vector3f(pos.x + this->charWidth * cursor, pos.y - (this->charHeight * line), 0.0f));
                 agl::utl::DevTools::drawTextureTexCoord(this->gtx.texture, qmtx, viewProjection, this->uvScale, 0, charUV);
                 cursor++;
             }
@@ -120,7 +120,7 @@ public:
     u32 charW() { return this->charWidth; }
     u32 charH() { return this->charHeight; }
 
-    Vec2f cursor;
+    sead::Vector2f cursor;
 
 protected:
     GTX gtx;

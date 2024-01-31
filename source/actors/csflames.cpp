@@ -8,7 +8,7 @@
 #include "log.h"
 
 class CSFlames : public CourseSelectActor {
-    SEAD_RTTI_OVERRIDE_IMPL(CSFlames, CourseSelectActor);
+    SEAD_RTTI_OVERRIDE(CSFlames, CourseSelectActor);
 
 public:
     CSFlames(const ActorBuildInfo* buildInfo);
@@ -33,7 +33,7 @@ u32 CSFlames::onCreate() {
 }
 
 u32 CSFlames::onExecute() {
-    Vec3f scale = 8.0f;
+    sead::Vector3f scale = sead::Vector3f(8.0f, 8.0f, 8.0f);
     this->fx.update(RP_Cmn_FireballHit, &this->position, nullptr, &scale);
 
     return 1;

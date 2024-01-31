@@ -80,5 +80,25 @@ typedef signed int     intptr_t;
 
 typedef void       (*funcPtr)();
 
-// Utility types
-#include "utils/rect.h"
+typedef wchar_t          char16;
+typedef int                BOOL;
+
+// Decl hack
+
+#define SEAD_RTTI_BASE_DECL(CLASS)                                                                          \
+    public:                                                                                                 \
+        static const sead::RuntimeTypeInfo::Root RTTI;                                                      \
+        static const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfoStatic() {                         \
+            return &RTTI;                                                                                   \
+        }                                                                                                   \
+        virtual bool checkDerivedRuntimeTypeInfo(const sead::RuntimeTypeInfo::Interface* typeInfo) const;   \
+        virtual const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfo() const
+
+#define SEAD_RTTI_OVERRIDE_DECL(CLASS, BASE)                                                                \
+    public:                                                                                                 \
+        static const sead::RuntimeTypeInfo::Derive<BASE> RTTI;                                              \
+        static const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfoStatic() {                         \
+            return &RTTI;                                                                                   \
+        }                                                                                                   \
+        bool checkDerivedRuntimeTypeInfo(const sead::RuntimeTypeInfo::Interface* typeInfo) const override;  \
+        const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfo() const override

@@ -1,9 +1,9 @@
 #pragma once
 
 #include "savedata.h"
-#include "sead/heap.h"
-#include "sead/idisposer.h"
-#include "sead/thread.h"
+#include "heap/seadHeap.h"
+#include "heap/seadDisposer.h"
+#include "thread/seadDelegateThread.h"
 
 class SaveMgr { // Size: 0x50
     SEAD_SINGLETON_DISPOSER(SaveMgr);

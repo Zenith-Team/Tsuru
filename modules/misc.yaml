@@ -2,20 +2,14 @@
 ---
 Files:
 #* Translation unit queue:
-  - misc.S
-  - misc.cpp
-  - bgoffset.S
-  - dynlibs/os.cpp
-  - dynlibs/gx2.cpp
-  - dynlibs/h264.cpp
-  - dynlibs/padscore.cpp
-  - dynlibs/vpad.cpp
-  - hitboxcollider.cpp
-  - utils.cpp
-  - profileres.cpp
-  - cafe/gfd.cpp
-  - inputcontrollers.cpp
-  - playeradditionalresource.cpp
+  - source/misc.S
+  - source/misc.cpp
+  - source/bgoffset.S
+  - source/hitboxcollider.cpp
+  - source/utils.cpp
+  - source/profileres.cpp
+  - source/inputcontrollers.cpp
+  - source/playeradditionalresource.cpp
 Hooks:
 # Embed crash fix into the RPX
   - type: patch

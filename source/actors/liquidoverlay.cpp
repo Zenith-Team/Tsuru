@@ -4,10 +4,11 @@
 #include "game/level/levelinfo.h"
 #include "game/playermgr.h"
 #include "game/actor/actormgr.h"
+#include "tsuru/utils.h"
 #include "log.h"
 
 class LiquidOverlay : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(LiquidOverlay, StageActor);
+    SEAD_RTTI_OVERRIDE(LiquidOverlay, StageActor);
 
 public:
     LiquidOverlay(const ActorBuildInfo* buildInfo);
@@ -19,7 +20,7 @@ public:
     void doOverlayCollision(u32 index, Player* player);
 
     u32 timers[4];
-    Rect targetLiquidLocation;
+    sead::BoundBox2f targetLiquidLocation;
 };
 
 REGISTER_PROFILE(LiquidOverlay, ProfileID::LiquidOverlay);
@@ -43,15 +44,15 @@ u32 LiquidOverlay::onExecute() {
         if (player) {
             // Nybble 7
             if ((this->settings1 >> 0x14 & 0xF) != 1) { // Location mode
-                Rect playerRect;
-                player->getRect(playerRect);
-                if (Rect::intersects(playerRect, this->targetLiquidLocation))
+                sead::BoundBox2f playerRect;
+                player->hitboxCollider.getRect(playerRect);
+                if (intersects(playerRect, this->targetLiquidLocation))
                     this->doOverlayCollision(i, player);
                 else
                     timers[i] = 0;
             } else { // Zone-wide mode //! Broken
-                Actor** currentActor = ActorMgr::instance()->actors.start.buffer;
-                while (currentActor < ActorMgr::instance()->actors.end.buffer) {
+                Actor** currentActor = &ActorMgr::instance()->actors.start.front();
+                while (currentActor < ActorMgr::instance()->actors.end) {
                     if (*currentActor && (*currentActor)->profile->id == 84) { // Water
                         StageActor* water = static_cast<StageActor*>(*currentActor);
                         if (player->position.y <= water->position.y)

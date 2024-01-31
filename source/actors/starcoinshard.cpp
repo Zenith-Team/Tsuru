@@ -8,7 +8,7 @@
 class StarCoinShardMgr;
 
 class StarCoinShard : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(StarCoinShard, StageActor);
+    SEAD_RTTI_OVERRIDE(StarCoinShard, StageActor);
 
 public:
     StarCoinShard(const ActorBuildInfo* buildInfo);
@@ -28,7 +28,7 @@ public:
 };
 
 class StarCoinShardMgr : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(StarCoinShardMgr, StageActor);
+    SEAD_RTTI_OVERRIDE(StarCoinShardMgr, StageActor);
 
 public:
     StarCoinShardMgr(const ActorBuildInfo* buildInfo);
@@ -41,7 +41,7 @@ public:
 };
 
 const ActorInfo StarCoinShardMgrActorInfo = {
-    0, 0, 9000, 0, 0, 0, 0, 0
+    sead::Vector2i(0, 0), sead::Vector2i(0, 0), sead::Vector2i(9000, 9000), 0, 0, 0, 0, 0
 };
 
 REGISTER_PROFILE(StarCoinShard, ProfileID::StarCoinShard);
@@ -51,7 +51,7 @@ PROFILE_RESOURCES(ProfileID::StarCoinShard, Profile::LoadResourcesAt::Course, "s
 PROFILE_RESOURCES(ProfileID::StarCoinShardMgr, Profile::LoadResourcesAt::Course, "star_coin");
 
 const HitboxCollider::Info StarCoinShard::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(10.0f, 10.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &StarCoinShard::collisionCallback
+    sead::Vector2f(0.0f, 0.0f), sead::Vector2f(10.0f, 10.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &StarCoinShard::collisionCallback
 };
 
 StarCoinShard::StarCoinShard(const ActorBuildInfo* buildInfo)
@@ -72,10 +72,10 @@ u32 StarCoinShard::onCreate() {
 }
 
 u32 StarCoinShard::onExecute() {
-    Mtx34 mtx;
+    sead::Matrix34f mtx;
     mtx.makeRTIdx(this->rotation, this->position);
 
-    this->rotation.y += fixDeg(3.0f);
+    this->rotation.y += sead::Mathf::deg2idx(3.0f);
 
     this->model->setMtx(mtx);
     this->model->updateModel();
@@ -84,7 +84,7 @@ u32 StarCoinShard::onExecute() {
         return 1;
     }
 
-    for (Actor** it = ActorMgr::instance()->actors.start.buffer; it != ActorMgr::instance()->actors.end.buffer; ++it) {
+    for (Actor** it = &ActorMgr::instance()->actors.start.front(); it != ActorMgr::instance()->actors.end; ++it) {
         if (*it != nullptr) {
             Actor& actor = **it;
             if (actor.getProfileID() == ProfileID::StarCoinShardMgr) {

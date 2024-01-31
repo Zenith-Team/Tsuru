@@ -1,12 +1,13 @@
 #include "game/actor/actormgr.h"
 #include "game/actor/stage/player.h"
 #include "game/actor/courseselect/courseselectactorbase.h"
-#include "sead/heapmgr.h"
-#include "sead/taskmgr.h"
-#include "sead/controllermgr.h"
-#include "sead/scopedlock.h"
-#include "sead/threadmgr.h"
-#include "sead/sharcarchiveres.h"
+#include "heap/seadHeapMgr.h"
+#include "framework/seadTaskMgr.h"
+#include "controller/seadControllerMgr.h"
+#include "prim/seadScopedLock.h"
+#include "thread/seadThread.h"
+#include "resource/seadSharcArchiveRes.h"
+#include "framework/seadDualScreenMethodTreeMgr.h"
 #include "tsuru/save/managers/tsurusavemgr.h"
 #include "game/wrappedcontroller.h"
 #include "game/task/taskmgr.h"
@@ -19,8 +20,8 @@
 #include "game/sound/sndaudiomgr.h"
 #include "game/sound/sndbgmmgr.h"
 #include "game/sound/audaudioplayer.h"
-#include "agl/texturesampler.h"
-#include "agl/lyr/renderer.h"
+#include "common/aglTextureSampler.h"
+#include "layer/aglRenderer.h"
 #include "log.h"
 
 #include "imgui/imgui.h"
@@ -80,7 +81,7 @@ void tsuruDebugMenu() {
     static bool prevHeld = false;
     static u32 counter = 0;
 
-    held = nthBit32Right(gamepad.padHold.bits, 0xB); // Minus button
+    held = gamepad.isHold(1 << 10); // Minus button
 
     if (held) {
         if (!prevHeld) {
@@ -117,7 +118,7 @@ static void drawMgrs() {
         // NSMBU sead::ThreadMgr doesn't have a mutex lock to the list... maybe this is bad
         drawThreadMgrImGui();
         drawMethodTreeMgrImGui((sead::DualScreenMethodTreeMgr*)sead::ControllerMgr::instance()->getMethodTreeMgr());
-        drawTaskMgrImGui(sead::ControllerMgr::instance()->taskMgr);
+        drawTaskMgrImGui(sead::ControllerMgr::instance()->getTaskMgr());
 
         if (ResMgr::instance()) {
             drawResMgrImGui();
@@ -319,32 +320,21 @@ static void drawHeapImGui(const sead::Heap* heap) {
     else if (vtable == separateHeapVtable)
         type = "SeparateHeap";
 
-    //FormatFixedSafeString<128> buf("%s: %s###%d", heap->getName().cstr(), type, heap);
-
-    char buf[128] = { 0 };
-    __os_snprintf(buf, 128, "%s: %s###%d", heap->getName().cstr(), type, heap);
-
-    if (ImGui::TreeNode(buf)) {
-        const char* dir = heap->direction == sead::Heap::HeapDirection_Forward ? "Forward" : "Reverse";
-
-        ImGui::Text("Address: 0x%X", heap->start); // getStartAddress() is deleted in ExpHeap vtable
-        ImGui::Text("Size: 0x%X", heap->size); // getSize() is deleted in some heaps vtable
+    if (ImGui::TreeNode(sead::FormatFixedSafeString<128>("%s: %s###%d", heap->getName().cstr(), type, heap).cstr())) {
+        ImGui::Text("Address: 0x%X", heap->getStartAddress());
+        ImGui::Text("Size: 0x%X", heap->getSize());
         ImGui::Text("FreeSize: 0x%X", heap->getFreeSize());
-        ImGui::Text("MaxAllocSize: 0x%X", heap->getMaxAllocatableSize(sizeof(void*)));
-        ImGui::Text("Direction: %s", dir);
-        //ImGui::Text("Freeable: %s", heap->isFreeable() ? "True" : "False");
+        ImGui::Text("MaxAllocSize: 0x%X", heap->getMaxAllocatableSize());
+        ImGui::Text("Direction: %s", heap->getDirection() == sead::Heap::cHeapDirection_Forward ? "Forward" : "Reverse");
+        ImGui::Text("Freeable: %s", heap->isFreeable() ? "True" : "False");
+        // TODO:
         //ImGui::Text("Resizable: %s", heap->isResizable() ? "True" : "False");
         //ImGui::Text("Adjustable: %s", heap->isAdjustable() ? "True" : "False");
-        //ImGui::Text("Empty: %s", heap->isEmpty() ? "True" : "False");
 
-        if (heap->children.count > 0) {
-            ImGui::Text("Children: %d", heap->children.count);
+        ImGui::Text("Children: %u", heap->childSize());
 
-            for (sead::OffsetList<sead::Heap>::iterator it = heap->children.begin(); it != heap->children.end(); ++it) {
-                drawHeapImGui(&*it);
-            }
-        } else {
-            ImGui::Text("Children: 0");
+        for (sead::OffsetList<sead::Heap>::constIterator it = heap->childBegin(); it != heap->childEnd(); ++it) {
+            drawHeapImGui(&*it);
         }
 
         ImGui::TreePop();
@@ -352,41 +342,39 @@ static void drawHeapImGui(const sead::Heap* heap) {
 }
 
 static void drawHeapMgrImGui() {
-    sead::ScopedLock<sead::CriticalSection> lock(sead::HeapMgr::sHeapTreeLockCS);
+    sead::ScopedLock<sead::CriticalSection> lock(sead::HeapMgr::getHeapTreeLockCS_());
 
     if (ImGui::CollapsingHeader("sead::HeapMgr")) {
-        for (u32 i = 0; i < sead::HeapMgr::sRootHeaps.ptrNum; i++) {
-            drawHeapImGui((sead::Heap*)sead::HeapMgr::sRootHeaps.ptrs[i]);
+        for (u32 i = 0; i < sead::HeapMgr::getRootHeapNum(); i++) {
+            drawHeapImGui((sead::Heap*)sead::HeapMgr::getRootHeap(i));
         }
 
-        for (u32 i = 0; i < sead::HeapMgr::sIndependentHeaps.ptrNum; i++) {
-            drawHeapImGui((sead::Heap*)sead::HeapMgr::sIndependentHeaps.ptrs[i]);
+        for (u32 i = 0; i < sead::HeapMgr::getIndependentHeaps()->size(); i++) {
+            drawHeapImGui((sead::Heap*)sead::HeapMgr::getIndependentHeaps()->at(i));
         }
     }
 }
 
 // NSMBU sead::ThreadMgr doesn't have a mutex lock to the list... maybe this is bad
 static void drawThreadImGui(const sead::Thread* thread) {
-    //FormatFixedSafeString<64> buf("%s###%d", thread->getName().cstr(), thread);
-
-    char buf[128] = { 0 };
-    __os_snprintf(buf, 128, "%s###%d", thread->getName().cstr(), thread);
-
-    if (ImGui::TreeNode(buf)) {
-        const char* blockType = thread->blockType == sead::MessageQueue::BlockType_Block ? "Block" : "NoBlock";
-        const char* currentHeap = thread->currentHeap != nullptr ? thread->currentHeap->getName().cstr() : "nullptr";
+    if (ImGui::TreeNode(
+        sead::FormatFixedSafeString<128>("%s###%d", thread->getName().cstr(), thread).cstr()
+    )) {
+        const char* blockType = thread->sead::Thread::getBlockType() == sead::MessageQueue::cBlock ? "Block" : "NoBlock";
+        const char* currentHeap = thread->getCurrentHeap() != nullptr ? thread->getCurrentHeap()->getName().cstr() : "nullptr";
         static const char* const states[] = {
             "Initialized", "Running", "Quitting", "Terminated", "Released"
         };
 
-        ImGui::Text("Priority: %d", thread->priority);
+        // TODO
+      //ImGui::Text("Priority: %d", thread->getPriority());
         ImGui::Text("BlockType: %s", blockType);
-        ImGui::Text("QuitMsg: 0x%X", thread->quitMsg);
-        ImGui::Text("StackSize: 0x%X", thread->stackSize);
+        ImGui::Text("QuitMsg: 0x%X", thread->getQuitMsg());
+        ImGui::Text("StackSize: 0x%X", thread->sead::Thread::getStackSize());
         ImGui::Text("CurrentHeap: %s", currentHeap);
-        ImGui::Text("Id: 0x%X", thread->id);
-        ImGui::Text("State: %s", states[thread->state]);
-        ImGui::Text("StackTop: 0x%X", thread->stackTop);
+        ImGui::Text("Id: 0x%X", thread->getID());
+        ImGui::Text("State: %s", states[thread->getState()]);
+        ImGui::Text("StackTop: 0x%X", thread->getStackTop());
 
         ImGui::TreePop();
     }
@@ -399,7 +387,7 @@ static void drawThreadMgrImGui() {
     if (ImGui::CollapsingHeader("sead::ThreadMgr")) {
         drawThreadImGui(sead::ThreadMgr::instance()->getMainThread());
 
-        for (sead::Thread::List::iterator it = sead::ThreadMgr::instance()->list.begin(); it != sead::ThreadMgr::instance()->list.end(); ++it) {
+        for (sead::ThreadList::constIterator it = sead::ThreadMgr::instance()->constBegin(); it != sead::ThreadMgr::instance()->constEnd(); ++it) {
             drawThreadImGui(*it);
         }
     }
@@ -408,59 +396,59 @@ static void drawThreadMgrImGui() {
 static bool sShowPauseFlagMethodTree = false;
 
 static void drawMethodTreeImGui(sead::MethodTreeNode* m) {
-    //FormatFixedSafeString<64> buf("%s###%d", m->getName().cstr(), m);
-
-    char buf[128] = { 0 };
-    __os_snprintf(buf, 128, "%s###%d", m->getName().cstr(), m);
-
-    if (ImGui::TreeNode(buf)) {
+/*
+    if (ImGui::TreeNode(sead::FormatFixedSafeString<128>("%s###%d", m->getName().cstr(), m).cstr())) {
         if (sShowPauseFlagMethodTree) {
             sead::BitFlag32 flag = m->pauseFlag;
-            bool pauseSelf = flag.isOn(sead::MethodTreeNode::Pause_Self);
-            bool pauseChild = flag.isOn(sead::MethodTreeNode::Pause_Child);
-            bool pauseBoth = flag.isOn(sead::MethodTreeNode::Pause_Both);
+            bool pauseSelf = flag.isOn(sead::MethodTreeNode::cPause_Self);
+            bool pauseChild = flag.isOn(sead::MethodTreeNode::cPause_Child);
+            bool pauseBoth = flag.isOn(sead::MethodTreeNode::cPause_Both);
 
             ImGui::SameLine();
             if (ImGui::SmallButton(pauseSelf ? "PauseSelf On" : "PauseSelf Off")) {
-                flag.toggle(sead::MethodTreeNode::Pause_Self);
+                flag.toggle(sead::MethodTreeNode::cPause_Self);
                 m->setPauseFlag((sead::MethodTreeNode::PauseFlag)flag.getDirect());
             }
 
             ImGui::SameLine();
             if (ImGui::SmallButton(pauseChild ? "PauseChild On" : "PauseChild Off")) {
-                flag.toggle(sead::MethodTreeNode::Pause_Child);
+                flag.toggle(sead::MethodTreeNode::cPause_Child);
                 m->setPauseFlag((sead::MethodTreeNode::PauseFlag)flag.getDirect());
             }
         }
 
-        sead::TTreeNode<sead::MethodTreeNode*>* node = (sead::TTreeNode<sead::MethodTreeNode*>*)m->child;
+        sead::TTreeNode<sead::MethodTreeNode*>* node = (sead::TTreeNode<sead::MethodTreeNode*>*)m->child();
 
         while (node) {
-            drawMethodTreeImGui(node->data);
-            node = (sead::TTreeNode<sead::MethodTreeNode*>*)node->data->next;
+            drawMethodTreeImGui(node->val());
+            node = (sead::TTreeNode<sead::MethodTreeNode*>*)node->val()->next();
         }
 
         ImGui::TreePop();
     }
+*/
 }
 
 static void drawMethodTreeMgrImGui(sead::DualScreenMethodTreeMgr* mgr) {
-    sead::ScopedLock<sead::CriticalSection> lock(mgr->criticalSection);
+    sead::ScopedLock<sead::CriticalSection> lock(mgr->getTreeCriticalSection());
 
     if (ImGui::CollapsingHeader("sead::MethodTreeMgr")) {
         ImGui::Checkbox("Show PauseFlags", &sShowPauseFlagMethodTree);
 
         ImGui::Separator();
 
-        drawMethodTreeImGui(&mgr->rootCalcNode);
-        drawMethodTreeImGui(&mgr->topRootDrawNode);
-        drawMethodTreeImGui(&mgr->btmRootDrawNode);
+        // TODO
+        //drawMethodTreeImGui(&mgr->rootCalcNode);
+        //drawMethodTreeImGui(&mgr->topRootDrawNode);
+        //drawMethodTreeImGui(&mgr->btmRootDrawNode);
     }
 }
 
 static void drawTaskImGui(const sead::TaskBase* task) {
     //FormatFixedSafeString<64> buf("%s###%d", task->getName().cstr(), task);
 
+    // TODO
+/*
     char buf[128] = { 0 };
     __os_snprintf(buf, 128, "%s###%d", task->getName().cstr(), task);
 
@@ -482,7 +470,7 @@ static void drawTaskImGui(const sead::TaskBase* task) {
         bool unk1 = flag.isOn(sead::TaskBase::Flag_Unk1);
         bool unk2 = flag.isOn(sead::TaskBase::Flag_Unk2);
 
-        const char* tag = task->tag == sead::TaskBase::Tag_System ? "System" : "App";
+        const char* tag = task->getTag() == sead::TaskBase::cSystem ? "System" : "App";
 
         ImGui::Text("Flags: 0x%08X", flag.getDirect());
         ImGui::BulletText(" Fading: %s", fading ? "true" : "false");
@@ -493,6 +481,7 @@ static void drawTaskImGui(const sead::TaskBase* task) {
 
         ImGui::TreePop();
     }
+*/
 }
 
 static void drawTaskListImGui(const sead::TaskBase::List& list, const char* name) {
@@ -510,25 +499,31 @@ static void drawTaskMgrImGui(sead::TaskMgr* mgr) {
     //sead::ScopedLock<sead::CriticalSection> lock(mgr->criticalSection); // causes game to freeze when entering level
 
     if (ImGui::CollapsingHeader("sead::TaskMgr")) {
-        drawTaskListImGui(mgr->prepareList, "PrepareList");
-        drawTaskListImGui(mgr->prepareDoneList, "PrepareDoneList");
-        drawTaskListImGui(mgr->activeList, "ActiveList");
-        drawTaskListImGui(mgr->staticList, "StaticList");
-        drawTaskListImGui(mgr->dyingList, "DyingList");
-        drawTaskListImGui(mgr->destroyableList, "DestroyableList");
+        // TODO
+        ImGui::Text("TODOOOOOOO");
+        //drawTaskListImGui(mgr->prepareList, "PrepareList");
+        //drawTaskListImGui(mgr->prepareDoneList, "PrepareDoneList");
+        //drawTaskListImGui(mgr->activeList, "ActiveList");
+        //drawTaskListImGui(mgr->staticList, "StaticList");
+        //drawTaskListImGui(mgr->dyingList, "DyingList");
+        //drawTaskListImGui(mgr->destroyableList, "DestroyableList");
     }
 }
 
 static void drawSharcArchiveResImGui(sead::SharcArchiveRes* archiveRes) {
+    // TODO
+    ImGui::Text("TODOOOOOOO");
+/*
     sead::Buffer<const sead::SharcArchiveRes::FATEntry>& entrys = archiveRes->fatEntrys;
 
     sead::FixedSafeString<128> fileName;
 
-    for (u32 i = 0; i < entrys.size; i++) {
+    for (u32 i = 0; i < entrys.size(); i++) {
         archiveRes->getFATEntryName(&fileName, entrys[i]);
 
         ImGui::Text(fileName.cstr());
     }
+*/
 }
 
 static void resCallback(const sead::SafeString& key, ResMgr::ResHolder*& value) {
@@ -541,7 +536,8 @@ static void resCallback(const sead::SafeString& key, ResMgr::ResHolder*& value) 
 
 static void drawResMgrImGui() {
     if (ImGui::CollapsingHeader("ResMgr")) {
-        ImGui::Text("Resource Num: %u", ResMgr::instance()->resHolderTreeMap.getSize());
+        // TODO
+        //ImGui::Text("Resource Num: %u", ResMgr::instance()->resHolderTreeMap.getSize());
 
         ResMgr::instance()->resHolderTreeMap.forEach(&resCallback);
 
@@ -558,6 +554,8 @@ static void drawResMgrImGui() {
 }
 
 static void drawSoundHandleImGui(nw::snd::SoundHandle* handle, u32 i) {
+    // TODO
+/*
     char buf[64] = { 0 };
     __os_snprintf(buf, 64, "SoundHandle%i: %s", i + 1, handle->IsAttachedSound() ? "Attached" : "Detached");
 
@@ -578,6 +576,7 @@ static void drawSoundHandleImGui(nw::snd::SoundHandle* handle, u32 i) {
 
         ImGui::TreePop();
     }
+*/
 }
 
 static void drawSndAudioMgrImGui() {
@@ -647,7 +646,7 @@ static void drawActorImGui(Actor* actor) {
         ImGui::Text("Settings1: 0x%08X", actor->settings1);
         ImGui::Text("Settings2: 0x%08X", actor->settings2);
 
-        ImGui::Text("Children Count: %d", actor->childList.count);
+        ImGui::Text("Children Count: %d", actor->childList.size());
 
         if (actor->parent) {
             ImGui::Text("Parent: 0x%08X", actor->parent->id);
@@ -691,10 +690,10 @@ static void drawActorMgrImGui() {
     if (ImGui::CollapsingHeader("ActorMgr")) {
         ActorMgr* actorMgr = ActorMgr::instance();
 
-        ImGui::Text("Actor Count: %u", actorMgr->activeActors.count + actorMgr->actorsToDelete.count);
+        ImGui::Text("Actor Count: %u", actorMgr->activeActors.size() + actorMgr->actorsToDelete.size());
 
         ActorBuffer* actors = &actorMgr->actors;
-        for (u32 i = 0; i < actors->start.size; i++) {
+        for (u32 i = 0; i < actors->start.size(); i++) {
             Actor* actor = actors->start[i];
             if (actor) {
                 drawActorImGui(actor);

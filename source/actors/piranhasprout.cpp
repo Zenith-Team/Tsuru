@@ -11,7 +11,7 @@
 */
 
 class PiranhaSproutProjectile : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(PiranhaSproutProjectile, Enemy);
+    SEAD_RTTI_OVERRIDE(PiranhaSproutProjectile, Enemy);
 
 public:
     PiranhaSproutProjectile(const ActorBuildInfo* buildInfo);
@@ -28,15 +28,15 @@ public:
     static const HitboxCollider::Info collisionInfo;
 
     ModelWrapper* model;
-    Vec2f baseline;
+    sead::Vector2f baseline;
 };
 
 const HitboxCollider::Info PiranhaSproutProjectile::collisionInfo = {
-    0, 5.0f, HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
+    sead::Vector2f(0.0f, 0.0f), sead::Vector2f(5.0f, 5.0f), HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 class PiranhaSprout : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(PiranhaSprout, Enemy);
+    SEAD_RTTI_OVERRIDE(PiranhaSprout, Enemy);
 
 public:
     PiranhaSprout(const ActorBuildInfo* buildInfo);
@@ -67,7 +67,7 @@ REGISTER_PROFILE(PiranhaSprout, ProfileID::PiranhaSprout);
 PROFILE_RESOURCES(ProfileID::PiranhaSprout, Profile::LoadResourcesAt::Course, "nukunuku", "nukubomb");
 
 const HitboxCollider::Info PiranhaSprout::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(12.0f, 4.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
+    sead::Vector2f(0.0f, 0.0f), sead::Vector2f(12.0f, 4.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 PiranhaSprout::PiranhaSprout(const ActorBuildInfo* buildInfo)
@@ -77,13 +77,13 @@ PiranhaSprout::PiranhaSprout(const ActorBuildInfo* buildInfo)
 { }
 
 u32 PiranhaSprout::onCreate() {
-    this->scale = 0.17f;
+    this->scale = sead::Vector3f(0.17f, 0.17f, 0.17f);
     this->position.x += 8.0f;
     this->position.z -= 4000.0f;
     this->direction = this->directionToPlayerH(this->position);
 
     if (this->eventID1 >> 0x4 & 0x1) {
-        this->rotation.z = fixDeg(180.0f);
+        this->rotation.z = sead::Mathf::deg2idx(180.0f);
         this->rotation.y = Direction::directionToRotationList[!this->direction];
     } else {
         this->rotation.y = Direction::directionToRotationList[this->direction];
@@ -102,7 +102,7 @@ u32 PiranhaSprout::onCreate() {
 u32 PiranhaSprout::onExecute() {
     this->states.execute();
 
-    Mtx34 mtx;
+    sead::Matrix34f mtx;
     mtx.makeRTIdx(this->rotation, this->position);
 
     this->model->setMtx(mtx);
@@ -111,10 +111,10 @@ u32 PiranhaSprout::onExecute() {
     this->model->updateAnimations();
 
     this->model->model->getBoneWorldMatrix(this->model->model->searchBoneIndex("Crest"), &mtx);
-    Vec3f bonePos(mtx.m[0][3], mtx.m[1][3], mtx.m[2][3]);
+    sead::Vector3f bonePos(mtx.m[0][3], mtx.m[1][3], mtx.m[2][3]);
 
     const f32 sign = this->eventID1 >> 0x4 & 0x1 ? -1.0f : 1.0f;
-    this->hitboxCollider.colliderInfo.offset = Vec2f(bonePos.x - this->position.x, bonePos.y - this->position.y - (6.5f * sign));
+    this->hitboxCollider.colliderInfo.offset = sead::Vector2f(bonePos.x - this->position.x, bonePos.y - this->position.y - (6.5f * sign));
     
     return 1;
 }
@@ -131,7 +131,7 @@ void PiranhaSprout::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOt
     if (hitType == HitType::Collide) {
         this->damagePlayer(hcSelf, hcOther);
     } else if (hitType == HitType::NormalJump || hitType == HitType::SpinJump) {
-        this->killPlayerJump(hcOther->owner, 0.0f, &PiranhaSprout::StateID_Die);
+        this->killPlayerJump(hcOther->owner, sead::Vector3f(0.0f, 0.0f, 0.0f), &PiranhaSprout::StateID_Die);
     }
 }
 
@@ -169,7 +169,7 @@ void PiranhaSprout::beginState_Attack() {
 void PiranhaSprout::executeState_Attack() {
     if (this->model->sklAnims[1]->frameCtrl.currentFrame == 39.0f && this->timer == 20) {
         ActorBuildInfo buildInfo = { 0 };
-        buildInfo.position = this->position + Vec3f(this->direction == Direction::Right ? 14.0f : -14.0f, (this->eventID1 >> 0x4 & 0x1) ? 16.0f : -16.0f, 4000.0f);
+        buildInfo.position = this->position + sead::Vector3f(this->direction == Direction::Right ? 14.0f : -14.0f, (this->eventID1 >> 0x4 & 0x1) ? 16.0f : -16.0f, 4000.0f);
         buildInfo.eventID1 = this->eventID1;
         buildInfo.profile = Profile::get(ProfileID::PiranhaSproutProjectile);
         
@@ -198,8 +198,8 @@ void PiranhaSprout::beginState_Die() {
 
 void PiranhaSprout::executeState_Die() {
     if ((this->model->sklAnims[0]->frameCtrl.currentFrame / this->model->sklAnims[0]->frameCtrl.endFrame) >= 0.5f) {
-        Vec3f effectPos(this->position.x, this->position.y, 4500.0f);
-        Vec3f effectScale = 0.5f;
+        sead::Vector3f effectPos(this->position.x, this->position.y, 4500.0f);
+        sead::Vector3f effectScale = sead::Vector3f(0.5f, 0.5f, 0.5f);
         Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &effectScale);
         this->isDeleted = true;
     }
@@ -218,7 +218,7 @@ PiranhaSproutProjectile::PiranhaSproutProjectile(const ActorBuildInfo* buildInfo
 { }
 
 u32 PiranhaSproutProjectile::onCreate() {
-    this->scale = 0.17f;
+    this->scale = sead::Vector3f(0.17f, 0.17f, 0.17f);
     this->position.x += 8.0f;
     this->position.z -= 4000.0f;
 
@@ -236,7 +236,7 @@ u32 PiranhaSproutProjectile::onCreate() {
 }
 
 u32 PiranhaSproutProjectile::onExecute() {
-    this->rotation.z += fixDeg((1.0f / (sead::Mathf::abs(this->position.y - this->baseline.y) / 10.0f)) * 16.0f);
+    this->rotation.z += sead::Mathf::deg2idx((1.0f / (sead::Mathf::abs(this->position.y - this->baseline.y) / 10.0f)) * 16.0f);
 
     static const f32 widthFraction = 3.0f/20.0f;
     static const f32 arcHeight = 16.0f * 3;
@@ -245,9 +245,9 @@ u32 PiranhaSproutProjectile::onExecute() {
     // Parabola arc
     this->position.x += sign;
     if (this->eventID1 >> 0x4 & 0x1) {
-        this->position.y = pow2f(widthFraction * ((this->position.x - this->baseline.x) + (arcHeight * -sign))) + this->baseline.y - 2.0f * arcHeight;
+        this->position.y = sead::Mathf::pow(widthFraction * ((this->position.x - this->baseline.x) + (arcHeight * -sign)), 2.0f) + this->baseline.y - 2.0f * arcHeight;
     } else {
-        this->position.y = -pow2f(widthFraction * ((this->position.x - this->baseline.x) + (arcHeight * -sign))) + this->baseline.y + 2.0f * arcHeight;
+        this->position.y = -sead::Mathf::pow(widthFraction * ((this->position.x - this->baseline.x) + (arcHeight * -sign)), 2.0f) + this->baseline.y + 2.0f * arcHeight;
     }
 
     this->physicsMgr.processCollisions();
@@ -255,7 +255,7 @@ u32 PiranhaSproutProjectile::onExecute() {
         this->die();
     }
 
-    Mtx34 mtx;
+    sead::Matrix34f mtx;
     mtx.makeRTIdx(this->rotation, this->position);
 
     this->model->setMtx(mtx);

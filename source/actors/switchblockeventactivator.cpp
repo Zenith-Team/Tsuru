@@ -5,7 +5,7 @@
 #include "log.h"
 
 class SwitchBlockEventActivator : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(SwitchBlockEventActivator, StageActor);
+    SEAD_RTTI_OVERRIDE(SwitchBlockEventActivator, StageActor);
 
 public:
     SwitchBlockEventActivator(const ActorBuildInfo* buildInfo);

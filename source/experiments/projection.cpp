@@ -9,7 +9,7 @@
 #include "game/level/levelinfo.h"
 #include "imgui/imgui.h"
 
-#include "dynlibs/gx2/functions.h"
+#include "sdk/gx2/functions.h"
 
 #define ORTHO
 
@@ -100,7 +100,7 @@ sead::Matrix44<f32>* getIdentMtx44() {
     return &mtx;
 }
 
-void lerpMtx44(Mtx44* out, const Mtx44& mtx1, const Mtx44& mtx2, f32 c) {
+void lerpMtx44(sead::Matrix44f* out, const sead::Matrix44f& mtx1, const sead::Matrix44f& mtx2, f32 c) {
     if (!out)
         return;
 
@@ -122,14 +122,14 @@ void lerpMtx44(Mtx44* out, const Mtx44& mtx1, const Mtx44& mtx2, f32 c) {
     }
 }
 
-void mtx34ImGui(Mtx34& mtx, const char* str) {
+void mtx34ImGui(sead::Matrix34f& mtx, const char* str) {
     ImGui::Text(str);
     ImGui::DragFloat4("[0]", &mtx.m[0][0], 0.05f, -500.0f, 500.0f);
     ImGui::DragFloat4("[1]", &mtx.m[1][0], 0.05f, -500.0f, 500.0f);
     ImGui::DragFloat4("[2]", &mtx.m[2][0], 0.05f, -500.0f, 500.0f);
 }
 
-void mtx44ImGui(Mtx44& mtx, const char* str) {
+void mtx44ImGui(sead::Matrix44f& mtx, const char* str) {
     ImGui::Text(str);
     ImGui::DragFloat4("[0]", &mtx.m[0][0], 1.1f, -500.0f, 500.0f);
     ImGui::DragFloat4("[1]", &mtx.m[1][0], 1.1f, -500.0f, 500.0f);
@@ -137,11 +137,11 @@ void mtx44ImGui(Mtx44& mtx, const char* str) {
     ImGui::DragFloat4("[3]", &mtx.m[3][0], 1.1f, -500.0f, 500.0f);
 }
 
-void projThing(u32 offset, u32 count, Mtx44* projMtx) {
-    const Mtx44& perspProj = agl::lyr::Renderer::instance()->layers[5]->projection->getDeviceProjectionMatrix();
+void projThing(u32 offset, u32 count, sead::Matrix44f* projMtx) {
+    const sead::Matrix44f& perspProj = agl::lyr::Renderer::instance()->layers[5]->projection->getDeviceProjectionMatrix();
 
     static f32 slider = 0.0f;
-    static Mtx44 mtx;
+    static sead::Matrix44f mtx;
 
     ImGui::Begin("proj"); {
         static f32 f = -1.0f;
@@ -149,7 +149,7 @@ void projThing(u32 offset, u32 count, Mtx44* projMtx) {
         ImGui::SliderFloat("slider", &slider, 0.0f, 1.0f);
         lerpMtx44(&mtx, *projMtx, perspProj, slider);
         mtx44ImGui(*projMtx, "projMtx");
-        mtx44ImGui(const_cast<Mtx44&>(perspProj), "perspProj");
+        mtx44ImGui(const_cast<sead::Matrix44f&>(perspProj), "perspProj");
         mtx44ImGui(mtx, "mtx");
         ImGui::ShowDemoWindow();
     }

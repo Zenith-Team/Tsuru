@@ -6,7 +6,7 @@
 #include "math.h"
 
 class FallingChestnut : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(FallingChestnut, Enemy);
+    SEAD_RTTI_OVERRIDE(FallingChestnut, Enemy);
 
 public:
     FallingChestnut(const ActorBuildInfo* buildInfo);
@@ -35,7 +35,7 @@ REGISTER_PROFILE(FallingChestnut, ProfileID::FallingChestnut);
 PROFILE_RESOURCES(ProfileID::FallingChestnut, Profile::LoadResourcesAt::Course, "iga_kuribo");
 
 const HitboxCollider::Info FallingChestnut::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(12.0f, 12.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &FallingChestnut::collisionCallback
+    sead::Vector2f(0.0f, 0.0f), sead::Vector2f(12.0f, 12.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &FallingChestnut::collisionCallback
 };
 
 const ActorPhysicsMgr::Sensor FallingChestnut::belowSensor = {
@@ -60,8 +60,8 @@ u32 FallingChestnut::onCreate() {
 }
 
 u32 FallingChestnut::onExecute() {
-    Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position + Vec3f(0.0f, -14.0f, 0.0f));
+    sead::Matrix34f mtx;
+    mtx.makeRTIdx(this->rotation, this->position + sead::Vector3f(0.0f, -14.0f, 0.0f));
 
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
@@ -83,7 +83,7 @@ u32 FallingChestnut::onDraw() {
 void FallingChestnut::beginState_Idle() { }
 
 void FallingChestnut::executeState_Idle() {
-    Vec2f dist;
+    sead::Vector2f dist;
 
     if (this->distanceToPlayer(dist) > -1 && sead::Mathf::abs(dist.x) < 48.0f)
         this->doStateChange(&StateID_Falling);
@@ -123,7 +123,7 @@ void FallingChestnut::executeState_OnGround() {
     this->despawnDelay++;
 
     if (this->despawnDelay >= 60) {
-        Vec3f effectPos(this->position.x, this->position.y - 18.0f, 4500.0f);
+        sead::Vector3f effectPos(this->position.x, this->position.y - 18.0f, 4500.0f);
         Effect::spawn(RP_ObakeDoor_Disapp, &effectPos);
 
         this->isDeleted = true;

@@ -5,7 +5,7 @@
 #include "game/movementhandler.h"
 
 class BlockAndCoinBase : public MultiStateActor {
-    SEAD_RTTI_OVERRIDE(BlockAndCoinBase, MultiStateActor);
+    SEAD_RTTI_OVERRIDE_DECL(BlockAndCoinBase, MultiStateActor);
 
 public:
     ENUM_CLASS(Content,
@@ -37,8 +37,8 @@ public:
     void spawnPortableSpring();
     void spawnYoshiEgg(bool multi);
     void spawnVine();
-    void spawnPowerup(const Vec3f& pos, u32, u32, bool spawnAsChild);
-    void spawnMultiPowerup(const Vec3f& pos, u32, u32, bool spawnAsChild);
+    void spawnPowerup(const sead::Vector3f& pos, u32, u32, bool spawnAsChild);
+    void spawnMultiPowerup(const sead::Vector3f& pos, u32, u32, bool spawnAsChild);
 
     virtual void vf18C();
     virtual void vf194();
@@ -65,8 +65,8 @@ public:
     PhysicsMgr::Sensor _17C8;
     u8 _17D4[4];
     RectCollider rectCollider;
-    Vec2f _1A68;
-    Vec2f _1A70;
+    sead::Vector2f _1A68;
+    sead::Vector2f _1A70;
     f32 _1A78;
     f32 _1A7C;
     f32 _1A80;
@@ -118,7 +118,7 @@ public:
 };
 
 class MovementBlockAndCoinBase : public BlockAndCoinBase {
-    SEAD_RTTI_OVERRIDE(MovementBlockAndCoinBase, BlockAndCoinBase);
+    SEAD_RTTI_OVERRIDE_DECL(MovementBlockAndCoinBase, BlockAndCoinBase);
 
 public:
     MovementBlockAndCoinBase(const ActorBuildInfo* buildInfo);
@@ -139,10 +139,10 @@ public:
     bool registerColliderActiveInfo();
 
     PhysicsMgr::Sensor belowSensor;
-    Vec3f posForState;
+    sead::Vector3f posForState;
     MovementHandler movementHandler;
     u8 colliderActiveInfo[0x28];
-    Vec2f colliderActiveAreaSize;
+    sead::Vector2f colliderActiveAreaSize;
     u32 _1C68;
     u8 _1C6C[4];
     u32 tileId;
@@ -154,7 +154,7 @@ public:
 };
 
 class BlockBase : public MovementBlockAndCoinBase {
-    SEAD_RTTI_OVERRIDE(BlockBase, MovementBlockAndCoinBase);
+    SEAD_RTTI_OVERRIDE_DECL(BlockBase, MovementBlockAndCoinBase);
 
 public:
     ENUM_CLASS(StateType,

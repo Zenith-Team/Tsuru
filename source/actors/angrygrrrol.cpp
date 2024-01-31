@@ -3,7 +3,7 @@
 #include "math/functions.h"
 
 class AngryGrrrol : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(AngryGrrrol, Enemy);
+    SEAD_RTTI_OVERRIDE(AngryGrrrol, Enemy);
 
 public:
     AngryGrrrol(const ActorBuildInfo* buildInfo);
@@ -30,7 +30,7 @@ REGISTER_PROFILE(AngryGrrrol, ProfileID::AngryGrrrol);
 PROFILE_RESOURCES(ProfileID::AngryGrrrol, Profile::LoadResourcesAt::Course, "guruguru");
 
 HitboxCollider::Info AngryGrrrol::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 0x3, 0x9, 0x24F, 0xE, 0x1000, &AngryGrrrol::collisionCallback
+    sead::Vector2f(0.0f, 0.0f), sead::Vector2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 0x3, 0x9, 0x24F, 0xE, 0x1000, &AngryGrrrol::collisionCallback
 };
 
 AngryGrrrol::AngryGrrrol(const ActorBuildInfo* buildInfo)
@@ -53,14 +53,14 @@ u32 AngryGrrrol::onCreate() {
 }
 
 u32 AngryGrrrol::onExecute() {
-    Mtx34 mtx;
+    sead::Matrix34f mtx;
     mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
     this->model->updateAnimations();
     this->model->setScale(this->scale);
     this->model->updateModel();
 
-    Vec2f d2p = this->distanceToPlayer();
+    sead::Vector2f d2p = this->distanceToPlayer();
 
     this->speed.x += d2p.x * 0.00025f;
 
@@ -72,7 +72,7 @@ u32 AngryGrrrol::onExecute() {
         this->speed.x = -maximum;
     }
 
-    this->rotation.z -= fixDeg(2.0f * this->speed.x);
+    this->rotation.z -= sead::Mathf::deg2idx(2.0f * this->speed.x);
 
     this->physicsMgr.processCollisions();
     this->handlePhysics();

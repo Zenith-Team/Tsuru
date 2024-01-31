@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/heap.h"
+#include "heap/seadHeap.h"
 #include "tsuru/custompowerupmodel.h"
 
 struct PlayerAdditionalResource {

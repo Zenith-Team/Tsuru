@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead/safestring.h"
-#include "sead/idisposer.h"
+#include "prim/seadSafeString.h"
+#include "heap/seadDisposer.h"
 #include "nw/g3d.h"
 
 class Model;

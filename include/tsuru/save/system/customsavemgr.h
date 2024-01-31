@@ -1,8 +1,8 @@
 #pragma once
 
-#include "sead/filedevice.h"
-#include "sead/filedevicemgr.h"
-#include "sead/safestring.h"
+#include "filedevice/seadFileDevice.h"
+#include "filedevice/seadFileDeviceMgr.h"
+#include "prim/seadSafeString.h"
 #include "log.h"
 
 class CustomSaveMgr { // This is an abstract base class, inherit it if you would like to add a new save file

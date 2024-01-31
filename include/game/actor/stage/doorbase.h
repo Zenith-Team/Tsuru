@@ -4,7 +4,7 @@
 #include "game/graphics/model/modelnw.h"
 
 class DoorBase : public Enemy { // Size: 0x18A8
-    SEAD_RTTI_OVERRIDE(DoorBase, Enemy);
+    SEAD_RTTI_OVERRIDE_DECL(DoorBase, Enemy);
 
 public:
     DoorBase(const ActorBuildInfo* buildInfo);

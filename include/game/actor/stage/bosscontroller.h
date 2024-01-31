@@ -5,7 +5,7 @@
 class Boss;
 
 class BossController : public StateActor { // Size: 0x17E0
-    SEAD_RTTI_OVERRIDE(BossController, StateActor);
+    SEAD_RTTI_OVERRIDE_DECL(BossController, StateActor);
 
 public:
     ENUM_CLASS(EndSequenceState,
@@ -35,11 +35,11 @@ public:
     void vf124(f32) override;
     u32 vf12C() override;
     bool vf154() override;
-    void move(Vec2f& dest) override;
+    void move(sead::Vector2f& dest) override;
     void setYSpeed(f32 ySpeed) override;
     u32 vf16C() override;
     u32 vf174() override;
-    void getRect(Rect& rect) override;
+    void getRect(sead::BoundBox2f& rect) override;
 */
     DECLARE_STATE_VIRTUAL(BossController, Initialize);
     DECLARE_STATE_VIRTUAL(BossController, StartSequence);

@@ -1,15 +1,14 @@
 #include "game/actor/stage/stageactor.h"
-//#include "game/graphics/model/modelnw.h"
 #include "game/graphics/model/platformmodel.h"
-#include "log.h"
 #include "game/collision/solid/polylinecollider.h"
 #include "game/collision/collidermgr.h"
 #include "game/eventmgr.h"
 #include "game/movementhandler.h"
 #include "tsuru/utils.h"
+#include "log.h"
 
 class OneWayPlatform : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(OneWayPlatform, StageActor);
+    SEAD_RTTI_OVERRIDE(OneWayPlatform, StageActor);
 
 public:
     OneWayPlatform(const ActorBuildInfo* buildinfo);
@@ -41,7 +40,6 @@ OneWayPlatform::OneWayPlatform(const ActorBuildInfo* buildInfo)
 { }
 
 u32 OneWayPlatform::onCreate() {
-
     platform.create((settings1 >> 0x18 & 0xF), (settings1 >> 0x1c & 0xF));
 
     if (platform.width < 2) {
@@ -50,11 +48,11 @@ u32 OneWayPlatform::onCreate() {
 
     platform.position = this->position;
 
-    Vec2f points[2] = { Vec2f(4.0 - platform.width * 8.0, 8.0), Vec2f(-4.0 + platform.width * 8.0, 8.0) };
+    sead::Vector2f points[2] = { sead::Vector2f(4.0 - platform.width * 8.0, 8.0), sead::Vector2f(-4.0 + platform.width * 8.0, 8.0) };
 
-	PolylineCollider::Info collisionInfo = {0, 0, 0, points, 0 };
+	PolylineCollider::Info collisionInfo = { sead::Vector2f(0.0f, 0.0f), 0, 0, points, 0 };
 
-    platform._A0 = Vec3f(0);
+    platform._A0 = sead::Vector3f(0.0f, 0.0f, 0.0f);
 
     this->collider.init(this, collisionInfo, 2);
     this->collider.setType(ColliderBase::Type::Solid);
@@ -65,24 +63,24 @@ u32 OneWayPlatform::onCreate() {
     if (direction == 0) { // UP
         this->startrotation = 0.0f;
         this->endrotation = 180.0f;
-        platform.rotation.x = fixDeg(this->startrotation);
+        platform.rotation.x = sead::Mathf::deg2idx(this->startrotation);
         platform.position.x = this->position.x - (platform.width*16)/2;
     }
     else if (direction == 1) { // DOWN
         this->startrotation = 180.0f;
         this->endrotation = 0.0f;
-        platform.rotation.x = fixDeg(this->startrotation);
+        platform.rotation.x = sead::Mathf::deg2idx(this->startrotation);
         platform.position.x = this->position.x - (platform.width*16)/2;
     }
     else if (direction == 2) { // RIGHT
         this->startrotation = 90.0f;
         this->endrotation = 270.0f;
-        platform.rotation.z = fixDeg(this->startrotation);
+        platform.rotation.z = sead::Mathf::deg2idx(this->startrotation);
     }
     else if (direction == 3) { // LEFT
         this->startrotation = 270.0f;
         this->endrotation = 90.0f;
-        platform.rotation.z = fixDeg(this->startrotation);
+        platform.rotation.z = sead::Mathf::deg2idx(this->startrotation);
     }
 
     platform.update(platform.position, platform.width * 16.0);
@@ -103,18 +101,18 @@ u32 OneWayPlatform::onExecute() {
 
     if (EventMgr::instance()->isActive(this->eventID1 - 1)) {
         if (direction == 0 || direction == 1) {
-            platform.rotation.x = fixDeg(this->endrotation);
+            platform.rotation.x = sead::Mathf::deg2idx(this->endrotation);
         }
         else {
-            platform.rotation.z = fixDeg(this->endrotation);
+            platform.rotation.z = sead::Mathf::deg2idx(this->endrotation);
         }
     }
     else {
         if (direction == 0 || direction == 1) {
-            platform.rotation.x = fixDeg(this->startrotation);
+            platform.rotation.x = sead::Mathf::deg2idx(this->startrotation);
         }
         else {
-            platform.rotation.z = fixDeg(this->startrotation);
+            platform.rotation.z = sead::Mathf::deg2idx(this->startrotation);
         }
     }
     

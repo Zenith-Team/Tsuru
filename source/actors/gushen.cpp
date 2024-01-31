@@ -3,7 +3,7 @@
 #include "game/collision/hitboxcollider.h"
 
 class Gushen : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(Gushen, Enemy);
+    SEAD_RTTI_OVERRIDE(Gushen, Enemy);
 
 public:
     Gushen(const ActorBuildInfo* buildInfo);
@@ -41,7 +41,7 @@ REGISTER_PROFILE(Gushen, ProfileID::Gushen);
 PROFILE_RESOURCES(ProfileID::Gushen, Profile::LoadResourcesAt::Course, "star_coin");
 
 HitboxCollider::Info Gushen::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 0x3, 0x9, 0x24F, 0xE, 0x1000, &Gushen::collisionCallback
+    sead::Vector2f(0.0f, 0.0f), sead::Vector2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 0x3, 0x9, 0x24F, 0xE, 0x1000, &Gushen::collisionCallback
 };
 
 Gushen::Gushen(const ActorBuildInfo* buildInfo)
@@ -84,7 +84,7 @@ u32 Gushen::onExecute() {
         this->speed.y = 0;
     }
 
-    Mtx34 mtx;
+    sead::Matrix34f mtx;
     mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
     this->model->updateAnimations();
@@ -106,7 +106,7 @@ void Gushen::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     if (hitType == HitType::Collide) {
         this->damagePlayer(hcSelf, hcOther);
     } else if (hitType == HitType::NormalJump || hitType == HitType::SpinJump) {
-        this->killPlayerJump(hcOther->owner, 0.0f, &Gushen::StateID_Die);
+        this->killPlayerJump(hcOther->owner, sead::Vector3f(0.0f, 0.0f, 0.0f), &Gushen::StateID_Die);
     }
 }
 
@@ -122,14 +122,14 @@ void Gushen::updateSprayCollider() {
     const f32 distanceToBaseline = this->position.y - this->baseline;
 
     this->sprayCollisionInfo.set(
-        Vec2f(0.0f, -(distanceToBaseline / 2.0f + Gushen::collisionInfo.radius.y)), Vec2f(8.0f, (distanceToBaseline / 2.0f)), HitboxCollider::Shape::Rectangle, 0x3, 0x9, 0x24F, 0xE, 0x1000, &Gushen::sprayCollisionCallback
+        sead::Vector2f(0.0f, -(distanceToBaseline / 2.0f + Gushen::collisionInfo.radius.y)), sead::Vector2f(8.0f, (distanceToBaseline / 2.0f)), HitboxCollider::Shape::Rectangle, 0x3, 0x9, 0x24F, 0xE, 0x1000, &Gushen::sprayCollisionCallback
     );
     this->sprayCollider.init(this, &this->sprayCollisionInfo);
 }
 
 bool Gushen::freeze() {
     EnemyFreezeMgr::Info freezeArg = {
-        0, this->position, Vec3f(2.0f), 0
+        0, this->position, sead::Vector3f(2.0f, 2.0f, 2.0f), 0
     };
 
     //this->freezeMgr.freeze(freezeArg, 1);

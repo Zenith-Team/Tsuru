@@ -3,7 +3,7 @@
 #include "game/actor/stage/powerupbase.h"
 
 class Powerup : public PowerupBase { // Size: 0x1A98
-    SEAD_RTTI_OVERRIDE(Powerup, PowerupBase);
+    SEAD_RTTI_OVERRIDE_DECL(Powerup, PowerupBase);
 
 public:
     Powerup(const ActorBuildInfo* buildInfo);
@@ -28,11 +28,10 @@ public:
     u32  vf13C() override;
 
     bool vf154() override;
-    void move(Vec2f& dest) override;
+    void move(sead::Vector2f& dest) override;
     void setYSpeed(f32 ySpeed) override;
     u32  vf16C() override;
     u32  vf174() override;
-    void getRect(Rect& rect) override;
     void doStateChange(StateBase* state) override;
     void vf18C() override;                      // nullsub
     void playBlockReleaseUpAnim() override;     // nullsub

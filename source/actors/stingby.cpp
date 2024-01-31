@@ -3,7 +3,7 @@
 #include "game/effect/effect.h"
 
 class Stingby : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(Stingby, Enemy);
+    SEAD_RTTI_OVERRIDE(Stingby, Enemy);
 
 public:
     Stingby(const ActorBuildInfo* buildInfo);
@@ -19,7 +19,7 @@ public:
     static const HitboxCollider::Info collisionInfo;
 
     BlendingModel* model;
-    Vec3f idleCenter;
+    sead::Vector3f idleCenter;
 
     DECLARE_STATE(Stingby, Idle);
     DECLARE_STATE(Stingby, Notice);
@@ -36,7 +36,7 @@ REGISTER_PROFILE(Stingby, ProfileID::Stingby);
 PROFILE_RESOURCES(ProfileID::Stingby, Profile::LoadResourcesAt::Course, "hacchin000");
 
 const HitboxCollider::Info Stingby::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(8.5f, 8.5f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
+    sead::Vector2f(0.0f, 0.0f), sead::Vector2f(8.5f, 8.5f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 Stingby::Stingby(const ActorBuildInfo* buildInfo)
@@ -49,7 +49,7 @@ u32 Stingby::onCreate() {
     this->model = BlendingModel::create("hacchin000", "hacchin000", 2);
 
     this->direction = Direction::Right;
-    this->scale = 0.17f;
+    this->scale = sead::Vector3f(0.17f, 0.17f, 0.17f);
 
     this->hitboxCollider.init(this, &collisionInfo);
     this->addHitboxColliders();
@@ -66,7 +66,7 @@ u32 Stingby::onExecute() {
         sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->direction], 0x11FFFFF);
     }
 
-    Mtx34 mtx;
+    sead::Matrix34f mtx;
     mtx.makeRTIdx(this->rotation, this->position);
 
     this->model->setMtx(mtx);
@@ -89,7 +89,7 @@ void Stingby::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     if (hitType == HitType::Collide) {
         this->damagePlayer(hcSelf, hcOther);
     } else if (hitType == HitType::NormalJump || hitType == HitType::SpinJump) {
-        this->killPlayerJump(hcOther->owner, 0.0f, &Stingby::StateID_Die);
+        this->killPlayerJump(hcOther->owner, sead::Vector3f(0.0f, 0.0f, 0.0f), &Stingby::StateID_Die);
     }
 }
 

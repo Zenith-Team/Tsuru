@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead/idisposer.h"
-#include "sead/safestring.h"
+#include "heap/seadDisposer.h"
+#include "prim/seadSafeString.h"
 
 class SndBgmMgr { // Size: 0x74
     SEAD_SINGLETON_DISPOSER(SndBgmMgr);

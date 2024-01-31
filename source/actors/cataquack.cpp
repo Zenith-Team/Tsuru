@@ -9,7 +9,7 @@
 #include "game/audio/gameaudio.h"
 
 class Cataquack : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(Cataquack, Enemy);
+    SEAD_RTTI_OVERRIDE(Cataquack, Enemy);
 
 public:
     Cataquack(const ActorBuildInfo* buildInfo);
@@ -43,7 +43,7 @@ CREATE_STATE(Cataquack, Turn);
 CREATE_STATE(Cataquack, Launch);
 
 const ActorInfo CataquackActorInfo = {
-    Vec2i(8, -8), Vec2i(8, -8), Vec2i(32, 32), 0, 0, 0, 0, 0
+    sead::Vector2i(8, -8), sead::Vector2i(8, -8), sead::Vector2i(32, 32), 0, 0, 0, 0, 0
 };
 
 REGISTER_PROFILE(Cataquack, ProfileID::Cataquack, "Cataquack", &CataquackActorInfo, Profile::Flags::DontRenderOffScreen);
@@ -59,7 +59,7 @@ Cataquack::Cataquack(const ActorBuildInfo* buildInfo)
 { }
 
 const HitboxCollider::Info Cataquack::collisionInfo = {
-    Vec2f(0.0f, 14.0f), Vec2f(11.0f, 14.0f), HitboxCollider::Shape::Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFBFFFF, 0, &Cataquack::collisionCallback
+    sead::Vector2f(0.0f, 14.0f), sead::Vector2f(11.0f, 14.0f), HitboxCollider::Shape::Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFBFFFF, 0, &Cataquack::collisionCallback
 };
 
 u32 Cataquack::onCreate() {
@@ -82,7 +82,7 @@ u32 Cataquack::onCreate() {
     this->addHitboxColliders();
 
     PolygonCollider::Info colliderInfo = {
-        Vec2f(0.0f, 14.0f), 0.0f, 0.0f, Vec2f(-5.5f, 10.0f), Vec2f(5.5f, -12.0f), 0
+        sead::Vector2f(0.0f, 14.0f), 0.0f, 0.0f, sead::Vector2f(-5.5f, 10.0f), sead::Vector2f(5.5f, -12.0f), 0
     };
 
     this->rectCollider.init(this, colliderInfo);
@@ -104,8 +104,8 @@ u32 Cataquack::onExecute() {
 
     this->states.execute();
 
-    Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position + Vec3f(0.0f, 20.0f, 0.0f));
+    sead::Matrix34f mtx;
+    mtx.makeRTIdx(this->rotation, this->position + sead::Vector3f(0.0f, 20.0f, 0.0f));
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
     this->model->updateAnimations();
@@ -153,7 +153,7 @@ void Cataquack::executeState_Walk() {
         this->speed.y = 0.0f;
     }
 
-    Vec2f distToPlayer;
+    sead::Vector2f distToPlayer;
     if (this->distanceToPlayer(distToPlayer) > -1 && sead::Mathf::abs(distToPlayer.x) < 8.0f * 16.0f && sead::Mathf::abs(distToPlayer.y) < 6.0f * 16.0f) {
         if ((this->direction == Direction::Left && distToPlayer.x < 0) || (this->direction == Direction::Right && distToPlayer.x > 0)) {
             this->beginChase();
@@ -193,7 +193,7 @@ void Cataquack::executeState_Turn() {
     this->physicsMgr.processCollisions();
     if (this->physicsMgr.isOnGround()) this->speed.y = 0.0f;
 
-    u32 step = this->chasing ? fixDeg(6.0f) : fixDeg(3.0f);
+    u32 step = this->chasing ? sead::Mathf::deg2idx(6.0f) : sead::Mathf::deg2idx(3.0f);
     if (moveValueWithOverflowTo(this->rotation.y, Direction::directionToRotationList[this->direction], step, this->direction)) {
         this->doStateChange(&Cataquack::StateID_Walk);
     }

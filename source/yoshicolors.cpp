@@ -1,4 +1,4 @@
-#include "sead/safestring.h"
+#include "prim/seadSafeString.h"
 
 sead::SafeString YoshiTexArray[] = {
     "Yoshi_TexGreen",

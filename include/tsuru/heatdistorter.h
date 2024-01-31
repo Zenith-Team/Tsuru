@@ -11,8 +11,8 @@ public:
 
     ~HeatDistorter() { }
 
-    void execute(const Vec3f& position, const Vec3f& size) {
-        const Vec3u rot;
+    void execute(const sead::Vector3f& position, const sead::Vector3f& size) {
+        const sead::Vector3u rot;
         this->effect.update(RP_Firebar, &position, &rot, &size);
     }
 

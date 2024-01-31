@@ -1,9 +1,9 @@
 #pragma once
 
-#include "agl/lyr/layer.h"
+#include "layer/aglLayer.h"
 
 class LayerAgl : public agl::lyr::Layer {
-    SEAD_RTTI_OVERRIDE(LayerAgl, agl::lyr::Layer);
+    SEAD_RTTI_OVERRIDE_DECL(LayerAgl, agl::lyr::Layer);
 
 public:
     LayerAgl();

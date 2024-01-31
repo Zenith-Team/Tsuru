@@ -5,11 +5,10 @@
 #include "game/actor/actormgr.h"
 #include "game/direction.h"
 #include "game/effect/effect.h"
-#include "sead/random.h"
 #include "game/movementhandler.h"
 
 class ColdFuzzy : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(ColdFuzzy, Enemy);
+    SEAD_RTTI_OVERRIDE(ColdFuzzy, Enemy);
 
 public:
     ColdFuzzy(const ActorBuildInfo* buildInfo);
@@ -40,7 +39,7 @@ REGISTER_PROFILE(ColdFuzzy, ProfileID::ColdFuzzy);
 PROFILE_RESOURCES(ProfileID::ColdFuzzy, Profile::LoadResourcesAt::Course, "coldobon");
 
 HitboxCollider::Info ColdFuzzy::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(12.0f, 12.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
+    sead::Vector2f(0.0f, 0.0f), sead::Vector2f(12.0f, 12.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 ColdFuzzy::ColdFuzzy(const ActorBuildInfo* buildInfo)
@@ -64,7 +63,7 @@ u32 ColdFuzzy::onCreate() {
 }
 
 u32 ColdFuzzy::onExecute() {
-    Mtx34 mtx;
+    sead::Matrix34f mtx;
     mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
@@ -92,8 +91,8 @@ void ColdFuzzy::collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) 
 
 
 bool ColdFuzzy::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
-    Vec3f effectPos(effectOrigin);
+    sead::Vector3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+    sead::Vector3f effectPos(effectOrigin);
     Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->scale);
 
     this->isDeleted = true;

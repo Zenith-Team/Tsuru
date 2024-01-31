@@ -4,7 +4,7 @@
 #include "game/effect/effect.h"
 
 class PoisonMushroom : public Powerup {
-    SEAD_RTTI_OVERRIDE_IMPL(PoisonMushroom, Powerup);
+    SEAD_RTTI_OVERRIDE(PoisonMushroom, Powerup);
 
 public:
     PoisonMushroom(const ActorBuildInfo* buildInfo);
@@ -32,7 +32,7 @@ REGISTER_PROFILE(PoisonMushroom, ProfileID::PoisonMushroom, "PoisonMushroom", nu
 PROFILE_RESOURCES(ProfileID::PoisonMushroom, Profile::LoadResourcesAt::Course, "I_kinxkx");
 
 const HitboxCollider::Info PoisonMushroom::collisionInfo = {
-    Vec2f(0.0f, 7.0f), Vec2f(7.0f, 7.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x42F, 0x420000, 0, &PoisonMushroom::collisionCallback
+    sead::Vector2f(0.0f, 7.0f), sead::Vector2f(7.0f, 7.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x42F, 0x420000, 0, &PoisonMushroom::collisionCallback
 };
 
 PoisonMushroom::PoisonMushroom(const ActorBuildInfo* buildInfo)

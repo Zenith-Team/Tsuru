@@ -3,7 +3,7 @@
 Name: Tsuru
 ModulesDir: modules
 IncludeDir: include
-SourceDir: source
+SourceDir: .
 RpxDir: +/rpxs
 Modules:
   - cheats               # Cheat menu
@@ -22,6 +22,7 @@ Modules:
   - resloader            # Resource loader
   - sarcloader           # Allow loading uncompressed .sarc levels
   - savemgr              # Manages the custom savedata files
+  - sdk                  # SDK library loaders
   - sead                 # Patches for the sead library
   - sound                # Patches that affect sound
   - titlescreen          # Title screen patches
@@ -30,6 +31,8 @@ Modules:
 Defines:
   - NO_INTELLISENSE_HACK
   - TSURU_DEBUG
+  - cafe
+  - NW_RELEASE
 
 Targets:
   US: ~

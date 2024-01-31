@@ -5,13 +5,13 @@
 #include "game/graphics/rendermgr.h"
 #include "game/movementhandler.h"
 #include "tsuru/actors/stringbank.h"
-#include "agl/lyr/renderer.h"
+#include "layer/aglRenderer.h"
 #include "ghs.h"
 #include "log.h"
 #include <cstring>
 
 class ModelLoader : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(ModelLoader, StageActor);
+    SEAD_RTTI_OVERRIDE(ModelLoader, StageActor);
 
 public:
     ModelLoader(const ActorBuildInfo* buildInfo);
@@ -47,7 +47,7 @@ u32 ModelLoader::onCreate() {
         1.0f, 0.25f, 0.5f, 0.75f, 1.25f, 1.5f, 1.75f, 2.0f, 2.5f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 10.0f
     };
 
-    this->scale = scales[this->eventID2 & 0xF]; // Nybble 4
+    this->scale *= scales[this->eventID2 & 0xF]; // Nybble 4
 
     if (this->parallax) {
         this->position.z = -250.0f + static_cast<f32>(this->eventID1 & 0xF) * 70.0f;
@@ -65,7 +65,7 @@ u32 ModelLoader::onCreate() {
     __memzero(this->sklAnimName, 49);
 
     ActorBuffer* actors = &ActorMgr::instance()->actors;
-    for (u32 i = 0; i < actors->start.size; i++) {
+    for (u32 i = 0; i < actors->start.size(); i++) {
         StringBank* strBank = sead::DynamicCast<StringBank, Actor>(actors->start[i]);
 
         if (!strBank || strBank->layer != StringBank::Type::Primary) {
@@ -115,7 +115,7 @@ u32 ModelLoader::onCreate() {
 
 u32 ModelLoader::onExecute() {
     if (this->model) {
-        Mtx34 mtx;
+        sead::Matrix34f mtx;
         mtx.makeRTIdx(this->rotation, this->position);
         this->model->setMtx(mtx);
         this->model->setScale(this->scale);
@@ -134,23 +134,23 @@ u32 ModelLoader::onDraw() {
         if (this->parallax) {
             agl::lyr::Renderer* renderer = agl::lyr::Renderer::instance();
 
-            renderer->layers[7]->flags.bits = 0; // don't clear depth buffer
+            renderer->getLayer(7)->setClearDepthEnable(false);
 
-            agl::lyr::Layer* layer = renderer->layers[11];
-            layer->camera = renderer->layers[5]->camera;
-            layer->projection = renderer->layers[5]->projection;
+            agl::lyr::Layer* layer = renderer->getLayer(11);
+            layer->setCamera(renderer->getLayer(5)->getCamera());
+            layer->setProjection(renderer->getLayer(5)->getProjection());
 
             if (this->inFront) {
-                DrawMgr::instance()->setTargetLayer(agl::lyr::Renderer::instance()->layers[11], 0);
+                DrawMgr::instance()->setTargetLayer(agl::lyr::Renderer::instance()->getLayer(11), 0);
             } else {
-                DrawMgr::instance()->setTargetLayer(agl::lyr::Renderer::instance()->layers[5], 1);
+                DrawMgr::instance()->setTargetLayer(agl::lyr::Renderer::instance()->getLayer(5), 1);
             }
         }
 
         this->model->draw();
 
         if (this->parallax) {
-            DrawMgr::instance()->setTargetLayer(agl::lyr::Renderer::instance()->layers[9], 0);
+            DrawMgr::instance()->setTargetLayer(agl::lyr::Renderer::instance()->getLayer(9), 0);
         }
     }
 
@@ -162,8 +162,7 @@ extern "C" void CreateParallaxLayer() {
     renderMgr->init(1, 0x200, 1, 1, nullptr);
 
     agl::lyr::Renderer* renderer = agl::lyr::Renderer::instance();
-    renderer->createLayer<RenderObjLayer>(11, "ParallaxFrontLayer", agl::lyr::DisplayType_TopTV, nullptr)->setParentRenderer(renderMgr);
+    renderer->createLayer<RenderObjLayer>(11, "ParallaxFrontLayer", agl::lyr::cDisplayType_Top_TV, nullptr)->setParentRenderer(renderMgr);
     
-    agl::lyr::Layer* layer = renderer->layers[11];
-    layer->flags.bits = 1 << 2; // clear depth buffer
+    renderer->getLayer(11)->setClearDepthEnable(true);
 }

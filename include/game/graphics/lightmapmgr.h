@@ -1,10 +1,11 @@
 #pragma once
 
-#include "sead/task.h"
-#include "agl/lght/lightmapmgr.h"
+#include "framework/seadCalculateTask.h"
+#include "framework/seadTaskMgr.h"
+#include "lighting/aglLightMapMgr.h"
 
 class LightMapMgr : public sead::CalculateTask { // Size: 0x52CC
-    SEAD_SINGLETON_TASK(LightMapMgr);
+    SEAD_TASK_SINGLETON_DISPOSER(LightMapMgr);
 
 public:
     static const u32 cLightMapNum = 2;

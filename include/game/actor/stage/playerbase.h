@@ -13,7 +13,7 @@ struct PlayerGravityData {
 
 //! Pain
 class PlayerBase : public StageActor { // Size: 0x2750
-    SEAD_RTTI_OVERRIDE(PlayerBase, StageActor);
+    SEAD_RTTI_OVERRIDE_DECL(PlayerBase, StageActor);
 
 public:
     ENUM_CLASS(PowerupState,
@@ -92,7 +92,7 @@ public:
     // @return The TallType value for the corresponding PowerupState
     virtual TallType getTallType(PowerupState::__type__ powerupState) = 0;
     virtual void vf144() = 0;
-    virtual void vf14C(Vec3f*, f32*) = 0;
+    virtual void vf14C(sead::Vector3f*, f32*) = 0;
     virtual u32 vf154();
     virtual f32* vf15C() = 0; //? TallType related
     virtual f32 vf164() = 0;
@@ -107,12 +107,12 @@ public:
     virtual void vf1AC(u32, u32);
     virtual void vf1B4();
     // @return Always true
-    virtual bool vf1BC(Vec3f* out);
+    virtual bool vf1BC(sead::Vector3f* out);
     virtual void vf1C4();
     virtual void vf1CC() = 0;
     virtual void vf1D4(u32) = 0;
     virtual bool vf1DC() = 0;
-    virtual void vf1E4(const Vec3f&, u32);
+    virtual void vf1E4(const sead::Vector3f&, u32);
     virtual void vf1EC();
     virtual void vf1F4(f32, u32);
     virtual void vf1FC();
@@ -179,7 +179,7 @@ public:
     virtual bool vf574() = 0;
     virtual void vf57C(u32);
     virtual f32 vf584() = 0; // TODO: Mess with this
-    virtual void vf58C(Vec3f*) = 0;
+    virtual void vf58C(sead::Vector3f*) = 0;
     virtual void vf594(u32);
     virtual void vf59C() = 0;
     virtual void vf5A4() = 0;

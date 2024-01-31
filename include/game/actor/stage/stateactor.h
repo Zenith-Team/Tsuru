@@ -4,7 +4,7 @@
 #include "game/actor/stage/physicsactor.h"
 
 class StateActor : public PhysicsActor { // Size: 0x17C8
-    SEAD_RTTI_OVERRIDE(StateActor, PhysicsActor);
+    SEAD_RTTI_OVERRIDE_DECL(StateActor, PhysicsActor);
 
 public:
     StateActor(const ActorBuildInfo* buildInfo);
@@ -26,11 +26,10 @@ public:
     u32  vf12C() override;
 
     bool vf154() override;
-    void move(Vec2f& dest) override;
+    void move(sead::Vector2f& dest) override;
     void setYSpeed(f32) override;
     u32  vf16C() override;
     u32  vf174() override;
-    void getRect(Rect& rect) override;
 
     StateWrapper<StateActor> states;    // 17A0
     u8 _17C4[4];                        // Unknown values

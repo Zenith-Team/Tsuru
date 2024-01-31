@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dynlibs/gx2/types.h"
+#include <cafe.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,7 +33,7 @@ typedef struct _GFDHeader {
     u32 reserved[2];
 } GFDHeader;
 
-typedef struct _GFDBlockHeader{
+typedef struct _GFDBlockHeader {
     u32 magic;
     u32 size;
     u32 majorVersion;

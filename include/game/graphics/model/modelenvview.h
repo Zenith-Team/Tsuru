@@ -1,6 +1,6 @@
 #pragma once
 
-#include "agl/uniformblock.h"
+#include "common/aglUniformBlock.h"
 
 class ModelEnvView {
 public:

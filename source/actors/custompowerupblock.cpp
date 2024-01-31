@@ -2,7 +2,7 @@
 #include "tsuru/actor/blockwrapper.h"
 
 class CustomPowerupBlock : public BlockWrapper {
-    SEAD_RTTI_OVERRIDE_IMPL(CustomPowerupBlock, BlockWrapper);
+    SEAD_RTTI_OVERRIDE(CustomPowerupBlock, BlockWrapper);
 
 public:
     CustomPowerupBlock(const ActorBuildInfo* buildInfo);
@@ -18,7 +18,7 @@ public:
     void beginState_Used() override;
 };
 
-const ActorInfo CustomPowerupBlockActorInfo = { Vec2i(8, -16), Vec2i(8, -8), Vec2i(0x100, 0x100), 0x0, 0x0, 0x0, 0x0, 0x8 };
+const ActorInfo CustomPowerupBlockActorInfo = { sead::Vector2i(8, -16), sead::Vector2i(8, -8), sead::Vector2i(0x100, 0x100), 0x0, 0x0, 0x0, 0x0, 0x8 };
 REGISTER_PROFILE(CustomPowerupBlock, ProfileID::CustomPowerupBlock, "CustomPowerupBlock", &CustomPowerupBlockActorInfo, 0x1002);
 PROFILE_RESOURCES(ProfileID::CustomPowerupBlock, Profile::LoadResourcesAt::Course, "I_hmrflower", "I_kinxkx", "I_musasabi");
 

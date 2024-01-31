@@ -2,7 +2,7 @@
 #include "log.h"
 
 class CustomDoor : public DoorBase {
-    SEAD_RTTI_OVERRIDE_IMPL(CustomDoor, DoorBase);
+    SEAD_RTTI_OVERRIDE(CustomDoor, DoorBase);
 
 public:
     CustomDoor(const ActorBuildInfo* buildInfo);
@@ -17,7 +17,7 @@ public:
 };
 
 const ActorInfo CustomDoorActorInfo = {
-    Vec2i(16, -48), Vec2i(0, 24), Vec2i(16, 24), 64, 64, 0, 0, 0
+    sead::Vector2i(16, -48), sead::Vector2i(0, 24), sead::Vector2i(16, 24), 64, 64, 0, 0, 0
 };
 
 REGISTER_PROFILE(CustomDoor, ProfileID::CustomDoor, "CustomDoor", &CustomDoorActorInfo, Profile::Flags::DontRenderOffScreen);
@@ -31,7 +31,7 @@ CustomDoor::CustomDoor(const ActorBuildInfo* buildInfo)
 }
 
 const HitboxCollider::Info CustomDoor::sCollisionInfo = {
-    Vec2f(0.0f, 20.0f), Vec2f(12.0f, 20.0f), HitboxCollider::Shape::Rectangle, 3, 0, 1, 0, 0, &DoorBase::collisionCallback
+    sead::Vector2f(0.0f, 20.0f), sead::Vector2f(12.0f, 20.0f), HitboxCollider::Shape::Rectangle, 3, 0, 1, 0, 0, &DoorBase::collisionCallback
 };
 
 void CustomDoor::initHitboxCollider() {

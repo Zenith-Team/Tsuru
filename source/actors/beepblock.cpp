@@ -9,7 +9,7 @@
 #include "game/graphics/lightsource.h"
 
 class BeepBlock : public MultiStateActor {
-    SEAD_RTTI_OVERRIDE_IMPL(BeepBlock, MultiStateActor);
+    SEAD_RTTI_OVERRIDE(BeepBlock, MultiStateActor);
 
 public:
     ENUM_CLASS(Color,
@@ -49,7 +49,7 @@ REGISTER_PROFILE(BeepBlock, ProfileID::BeepBlock);
 PROFILE_RESOURCES(ProfileID::BeepBlock, Profile::LoadResourcesAt::Course, "block_beep");
 
 const PolygonCollider::Info BeepBlock::colliderInfo = {
-    Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-8.0f, 8.0f), Vec2f(8.0f, -8.0f), 0
+    sead::Vector2f(0.0f, 0.0f), 0.0f, 0.0f, sead::Vector2f(-8.0f, 8.0f), sead::Vector2f(8.0f, -8.0f), 0
 };
 
 BeepBlock::Color::__type__ BeepBlock::CurrentBeepBlockState = BeepBlock::Color::Blue;
@@ -84,8 +84,8 @@ u32 BeepBlock::onCreate() {
 }
 
 u32 BeepBlock::onExecute() {
-    Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position + Vec3f(0.0f, 0.0f, 240.0f));
+    sead::Matrix34f mtx;
+    mtx.makeRTIdx(this->rotation, this->position + sead::Vector3f(0.0f, 0.0f, 240.0f));
 
     this->model->setScale(this->scale);
     this->model->updateAnimations();
@@ -99,9 +99,9 @@ u32 BeepBlock::onExecute() {
 
 u32 BeepBlock::onDraw() {
     static f32 radius = 3.0f;
-    static sead::Color4f red(0xCC000088);
-    static sead::Color4f blue(0x00999955);
-    static Vec3f zero = 0;
+    static sead::Color4f red(0.8f, 0.0f, 0.0f, 8.0f / 15.0f);
+    static sead::Color4f blue(0.0f, 0.6f, 0.6f, 1.0f / 3.0f);
+    static sead::Vector3f zero = sead::Vector3f(0.0f, 0.0f, 0.0f);
 
     if (this->states.currentState()->ID == StateID_RedDisabled.ID || this->states.currentState()->ID == StateID_BlueDisabled.ID) {
         this->light.update(0, &zero, nullptr, &radius, nullptr, &red);

@@ -3,7 +3,7 @@
 #include "game/actor/stage/blockbase.h"
 
 class BlockWrapper : public BlockBase {
-    SEAD_RTTI_OVERRIDE_IMPL(BlockWrapper, BlockBase);
+    SEAD_RTTI_OVERRIDE(BlockWrapper, BlockBase);
 
 private:
     BlockBase::init;
@@ -30,7 +30,7 @@ public:
 
         this->_1CAC = 0.0f;
         this->content = Content::Nothing;
-        this->visibleAreaSize = Vec2f(2048.0f, 1024.0f);
+        this->visibleAreaSize.set(2048.0f, 1024.0f);
 
         this->registerColliderActiveInfo();
 

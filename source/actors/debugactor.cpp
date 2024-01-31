@@ -4,7 +4,7 @@
 #include "log.h"
 
 class DebugActor : public Actor {
-    SEAD_RTTI_OVERRIDE_IMPL(DebugActor, Actor);
+    SEAD_RTTI_OVERRIDE(DebugActor, Actor);
 
 public:
     DebugActor(const ActorBuildInfo* buildInfo);
@@ -30,7 +30,7 @@ u32 DebugActor::onExecute() {
                 char data[33];
 
                 for (u32 j = 0; j < 32; j++) {
-                    if (input.buttons.bits & 1 << (31 - j))
+                    if (input.buttons.isOnBit(31 - j))
                         data[j] = '1';
                     else
                         data[j] = '0';

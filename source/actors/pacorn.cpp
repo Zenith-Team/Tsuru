@@ -3,7 +3,7 @@
 #include "game/effect/effect.h"
 
 class PAcorn : public Powerup {
-    SEAD_RTTI_OVERRIDE_IMPL(PAcorn, Powerup);
+    SEAD_RTTI_OVERRIDE(PAcorn, Powerup);
 
 public:
     PAcorn(const ActorBuildInfo* buildInfo);
@@ -22,7 +22,7 @@ public:
     void vf1FC() override;
 };
 
-const ActorInfo PAcornActorInfo = { 0, 0, 0x20, 0x200, 0x200, 0x400, 0x400, 0 };
+const ActorInfo PAcornActorInfo = { sead::Vector2i(0, 0), sead::Vector2i(0, 0), sead::Vector2i(0x20, 0x20), 0x200, 0x200, 0x400, 0x400, 0 };
 REGISTER_PROFILE(PAcorn, ProfileID::PAcorn, "PAcorn", &PAcornActorInfo, 16406);
 PROFILE_RESOURCES(ProfileID::PAcorn, Profile::LoadResourcesAt::Course, "I_musasabi");
 

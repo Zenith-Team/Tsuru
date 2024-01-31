@@ -3,7 +3,7 @@
 #include "game/actor/stage/stageactor.h"
 
 class WindGenerator : public StageActor { // Size: 0x2A0
-    SEAD_RTTI_OVERRIDE(WindGenerator, StageActor);
+    SEAD_RTTI_OVERRIDE_DECL(WindGenerator, StageActor);
 
 public:
     inline WindGenerator(const ActorBuildInfo* buildInfo) : StageActor(buildInfo) { }

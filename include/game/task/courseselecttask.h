@@ -1,13 +1,14 @@
 #pragma once
 
-#include "sead/task.h"
+#include "framework/seadTaskMgr.h"
+#include "framework/seadCalculateTask.h"
 #include "game/states.h"
-#include "agl/lyr/renderinfo.h"
-#include "agl/lyr/drawmethod.h"
+#include "layer/aglRenderInfo.h"
+#include "layer/aglDrawMethod.h"
 
 class CourseSelectTask : public sead::CalculateTask { // Size: 0xDD0
-    SEAD_RTTI_OVERRIDE(CourseSelectTask, sead::CalculateTask);
-    SEAD_SINGLETON_TASK(CourseSelectTask);
+    SEAD_RTTI_OVERRIDE_DECL(CourseSelectTask, sead::CalculateTask);
+    SEAD_TASK_SINGLETON_DISPOSER(CourseSelectTask);
 
 public:
     virtual ~CourseSelectTask();

@@ -5,7 +5,7 @@
 #include "game/effect/effect.h"
 
 class FakeActor : public MultiStateActor {
-    SEAD_RTTI_OVERRIDE_IMPL(FakeActor, MultiStateActor);
+    SEAD_RTTI_OVERRIDE(FakeActor, MultiStateActor);
 
 public:
     FakeActor(const ActorBuildInfo* buildInfo);
@@ -29,10 +29,10 @@ public:
 
     RectCollider rectCollider;
 
-    Vec3f effectScale;
-    Vec3f effectOffset;
-    Vec3f modelOffset;
-    Vec3f model2Offset;
+    sead::Vector3f effectScale;
+    sead::Vector3f effectOffset;
+    sead::Vector3f modelOffset;
+    sead::Vector3f model2Offset;
 
     DECLARE_STATE(FakeActor, Checkpoint);
     DECLARE_STATE(FakeActor, GoalPole);
@@ -89,7 +89,7 @@ u32 FakeActor::onDraw() {
 void FakeActor::updateModel() {
     if (this->model) {
         this->model->updateAnimations();
-        Mtx34 mtx;
+        sead::Matrix34f mtx;
         mtx.makeRTIdx(this->rotation, this->position + this->modelOffset);
         this->model->setMtx(mtx);
         this->model->updateModel();
@@ -97,7 +97,7 @@ void FakeActor::updateModel() {
 
     if (this->model2) {
         this->model2->updateAnimations();
-        Mtx34 mtx;
+        sead::Matrix34f mtx;
         mtx.makeRTIdx(this->rotation, this->position + this->model2Offset);
         this->model2->setMtx(mtx);
         this->model2->updateModel();
@@ -105,8 +105,8 @@ void FakeActor::updateModel() {
 }
 
 void FakeActor::touch() {
-    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
-    Vec3f effectPos(effectOrigin + this->effectOffset);
+    sead::Vector3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+    sead::Vector3f effectPos(effectOrigin + this->effectOffset);
     Effect::spawn(RP_ObakeDoor_Disapp, &effectPos, nullptr, &this->effectScale);
 
     if (!(this->settings1 >> 0x1C & 0xF)) {
@@ -138,7 +138,7 @@ void FakeActor::goalpoleCollisionCallback(HitboxCollider* hcSelf, HitboxCollider
 /* STATE: Checkpoint */
 
 const HitboxCollider::Info FakeActor::sCheckpointCollisionInfo = {
-    Vec2f(0.0f, 24.0f), Vec2f(4.0f, 24.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &FakeActor::collisionCallback
+    sead::Vector2f(0.0f, 24.0f), sead::Vector2f(4.0f, 24.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &FakeActor::collisionCallback
 };
 
 void FakeActor::beginState_Checkpoint() {
@@ -157,7 +157,7 @@ void FakeActor::endState_Checkpoint() { }
 /* STATE: GoalPole */
 
 const HitboxCollider::Info FakeActor::sGoalpoleCollisionInfo = {
-    Vec2f(0.0f, 76.0f), Vec2f(4.0f, 76.0f), HitboxCollider::Shape::Rectangle, 8, 0, 7, 0, 0, &FakeActor::collisionCallback
+    sead::Vector2f(0.0f, 76.0f), sead::Vector2f(4.0f, 76.0f), HitboxCollider::Shape::Rectangle, 8, 0, 7, 0, 0, &FakeActor::collisionCallback
 };
 
 void FakeActor::beginState_GoalPole() {
@@ -166,10 +166,10 @@ void FakeActor::beginState_GoalPole() {
 
     this->model2->playSklAnim("wait", 0);
     this->model2->playTexSrtAnim("wait", 0);
-    this->model2Offset = Vec3f(0.0f, 80.0f, 0.0f);
+    this->model2Offset = sead::Vector3f(0.0f, 80.0f, 0.0f);
 
     static const PolygonCollider::Info colliderInfo = {
-        Vec2f(0.0f, 8.0f), 0.0f, 0.0f, Vec2f(-16.0f, 8.0f), Vec2f(16.0f, -8.0f), 0
+        sead::Vector2f(0.0f, 8.0f), 0.0f, 0.0f, sead::Vector2f(-16.0f, 8.0f), sead::Vector2f(16.0f, -8.0f), 0
     };
 
     this->rectCollider.init(this, colliderInfo);
@@ -178,8 +178,8 @@ void FakeActor::beginState_GoalPole() {
     this->hitboxCollider.init(this, &FakeActor::sGoalpoleCollisionInfo, nullptr);
     this->addHitboxColliders();
 
-    this->effectOffset = Vec3f(0.0f, 20.0f, 0.0f);
-    this->effectScale = Vec3f(2.25f, 2.25f, 2.25f);
+    this->effectOffset = sead::Vector3f(0.0f, 20.0f, 0.0f);
+    this->effectScale = sead::Vector3f(2.25f, 2.25f, 2.25f);
     this->rotation.y -= 0x40000000;
     this->updateModel();
 }
@@ -193,7 +193,7 @@ void FakeActor::endState_GoalPole() { }
 /* STATE: StarCoin */
 
 const HitboxCollider::Info FakeActor::sStarCoinCollisionInfo = {
-    Vec2f(0.0f, -3.0f), Vec2f(12.0f, 15.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &FakeActor::collisionCallback
+    sead::Vector2f(0.0f, -3.0f), sead::Vector2f(12.0f, 15.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &FakeActor::collisionCallback
 };
 
 void FakeActor::beginState_StarCoin() {
@@ -201,7 +201,7 @@ void FakeActor::beginState_StarCoin() {
     this->hitboxCollider.init(this, &FakeActor::sStarCoinCollisionInfo, nullptr);
     this->addHitboxColliders();
 
-    this->effectOffset = Vec3f(0.0f, -24.0f, 0.0f);
+    this->effectOffset = sead::Vector3f(0.0f, -24.0f, 0.0f);
     this->updateModel();
 }
 

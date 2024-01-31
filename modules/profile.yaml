@@ -1,8 +1,8 @@
 
 ---
 Files:
-  - profile/profile.S
-  - profile/profile.cpp
+  - source/profile/profile.S
+  - source/profile/profile.cpp
 Hooks:
 # Replace Profile methods with custom ones
   # Redirect Profile constructor to call our custom one

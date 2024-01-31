@@ -14,15 +14,15 @@ public:
         virtual ~SndObjectCommonEmy(); // deleted
 
         // Does the stagePos -> screenPos conversion
-        nw::snd::SoundHandle* startSoundStage(const char* label, const Vec2f& stagePos, u32 remotePlayer) override;
+        nw::snd::SoundHandle* startSoundStage(const char* label, const sead::Vector2f& stagePos, u32 remotePlayer) override;
         // Does the stagePos -> screenPos conversion
-        nw::snd::SoundHandle* startSoundStage(const char* label, const Vec2f& stagePos, u16, u32 remotePlayer) override; // deleted
+        nw::snd::SoundHandle* startSoundStage(const char* label, const sead::Vector2f& stagePos, u16, u32 remotePlayer) override; // deleted
 
-        nw::snd::SoundHandle* startSound(const char* label, const Vec2f& screenPos, u32 remotePlayer);
-        nw::snd::SoundHandle* startSound(const char* label, const Vec2f& screenPos, u16, u32 remotePlayer);
+        nw::snd::SoundHandle* startSound(const char* label, const sead::Vector2f& screenPos, u32 remotePlayer);
+        nw::snd::SoundHandle* startSound(const char* label, const sead::Vector2f& screenPos, u16, u32 remotePlayer);
     
-        nw::snd::SoundHandle* holdSound(const char* label, s32 id, const Vec2f& screenPos, u32 remotePlayer);
-        nw::snd::SoundHandle* holdSound(const char* label, s32 id, const Vec2f& screenPos, u16, u32 remotePlayer);
+        nw::snd::SoundHandle* holdSound(const char* label, s32 id, const sead::Vector2f& screenPos, u32 remotePlayer);
+        nw::snd::SoundHandle* holdSound(const char* label, s32 id, const sead::Vector2f& screenPos, u16, u32 remotePlayer);
 
         static SndObjectCommonEmy* instance() {
             return sInstance;
@@ -41,15 +41,15 @@ public:
         virtual ~SndObjectCommonMap(); // deleted: nullptr for some reason
 
         // Does the stagePos -> screenPos conversion
-        nw::snd::SoundHandle* startSoundStage(const char* label, const Vec2f& stagePos, u32 remotePlayer) override;
+        nw::snd::SoundHandle* startSoundStage(const char* label, const sead::Vector2f& stagePos, u32 remotePlayer) override;
         // Does the stagePos -> screenPos conversion
-        nw::snd::SoundHandle* startSoundStage(const char* label, const Vec2f& stagePos, u16, u32 remotePlayer) override;
+        nw::snd::SoundHandle* startSoundStage(const char* label, const sead::Vector2f& stagePos, u16, u32 remotePlayer) override;
 
-        nw::snd::SoundHandle* startSound(const char* label, const Vec2f& screenPos, u32 remotePlayer);
-        nw::snd::SoundHandle* startSound(const char* label, const Vec2f& screenPos, u16, u32 remotePlayer);
+        nw::snd::SoundHandle* startSound(const char* label, const sead::Vector2f& screenPos, u32 remotePlayer);
+        nw::snd::SoundHandle* startSound(const char* label, const sead::Vector2f& screenPos, u16, u32 remotePlayer);
     
-        nw::snd::SoundHandle* holdSound(const char* label, s32 id, const Vec2f& screenPos, u32 remotePlayer);
-        nw::snd::SoundHandle* holdSound(const char* label, s32 id, const Vec2f& screenPos, u16, u32 remotePlayer);
+        nw::snd::SoundHandle* holdSound(const char* label, s32 id, const sead::Vector2f& screenPos, u32 remotePlayer);
+        nw::snd::SoundHandle* holdSound(const char* label, s32 id, const sead::Vector2f& screenPos, u16, u32 remotePlayer);
 
         static SndObjectCommonMap* instance() {
             return sInstance;
@@ -60,115 +60,115 @@ public:
     };
 
     // Converts stage position to screen position
-    // @param out Output Vec2f variable
+    // @param out Output sead::Vector2f variable
     // @param stagePos Position to be converted
-    static void convertSndObjectPos(Vec2f* out, const Vec2f& stagePos);
+    static void convertSndObjectPos(sead::Vector2f* out, const sead::Vector2f& stagePos);
 
     // Converts stage position to screen position
-    // @param out Output Vec2f variable
+    // @param out Output sead::Vector2f variable
     // @param stagePos Position to be converted
-    static inline void convertSndObjectPos(Vec2f* out, const Vec3f& stagePos) {
-        convertSndObjectPos(out, Vec2f(stagePos.x, stagePos.y));
+    static inline void convertSndObjectPos(sead::Vector2f* out, const sead::Vector3f& stagePos) {
+        convertSndObjectPos(out, sead::Vector2f(stagePos.x, stagePos.y));
     }
 
     // Gets the wii remote controller id corresponding to the player id
     static u32 getRemotePlayer(u32 playerID);
 
-    static inline nw::snd::SoundHandle* startSoundEmy(const char* label, const Vec2f& stagePos, u32 remotePlayer = 1) {
-        Vec2f screenPos;
+    static inline nw::snd::SoundHandle* startSoundEmy(const char* label, const sead::Vector2f& stagePos, u32 remotePlayer = 1) {
+        sead::Vector2f screenPos;
         convertSndObjectPos(&screenPos, stagePos);
         return SndObjectCommonEmy::instance()->startSound(label, screenPos, remotePlayer);
     }
 
-    static inline nw::snd::SoundHandle* startSoundEmy(const char* label, const Vec3f& stagePos, u32 remotePlayer = 1) {
-        Vec2f screenPos;
-        convertSndObjectPos(&screenPos, Vec2f(stagePos.x, stagePos.y));
+    static inline nw::snd::SoundHandle* startSoundEmy(const char* label, const sead::Vector3f& stagePos, u32 remotePlayer = 1) {
+        sead::Vector2f screenPos;
+        convertSndObjectPos(&screenPos, sead::Vector2f(stagePos.x, stagePos.y));
         return SndObjectCommonEmy::instance()->startSound(label, screenPos, remotePlayer);
     }
 
-    static inline nw::snd::SoundHandle* startSoundMap(const char* label, const Vec2f& stagePos, u32 remotePlayer = 1) {
-        Vec2f screenPos;
+    static inline nw::snd::SoundHandle* startSoundMap(const char* label, const sead::Vector2f& stagePos, u32 remotePlayer = 1) {
+        sead::Vector2f screenPos;
         convertSndObjectPos(&screenPos, stagePos);
         return SndObjectCommonMap::instance()->startSound(label, screenPos, remotePlayer);
     }
 
-    static inline nw::snd::SoundHandle* startSoundMap(const char* label, const Vec3f& stagePos, u32 remotePlayer = 1) {
-        Vec2f screenPos;
-        convertSndObjectPos(&screenPos, Vec2f(stagePos.x, stagePos.y));
+    static inline nw::snd::SoundHandle* startSoundMap(const char* label, const sead::Vector3f& stagePos, u32 remotePlayer = 1) {
+        sead::Vector2f screenPos;
+        convertSndObjectPos(&screenPos, sead::Vector2f(stagePos.x, stagePos.y));
         return SndObjectCommonMap::instance()->startSound(label, screenPos, remotePlayer);
     }
 
-    static inline nw::snd::SoundHandle* holdSoundEmy(const char* label, s32 id, const Vec2f& stagePos, u32 remotePlayer = 1) {
-        Vec2f screenPos;
+    static inline nw::snd::SoundHandle* holdSoundEmy(const char* label, s32 id, const sead::Vector2f& stagePos, u32 remotePlayer = 1) {
+        sead::Vector2f screenPos;
         convertSndObjectPos(&screenPos, stagePos);
         return SndObjectCommonEmy::instance()->holdSound(label, id, screenPos, remotePlayer);
     }
 
-    static inline nw::snd::SoundHandle* holdSoundEmy(const char* label, s32 id, const Vec3f& stagePos, u32 remotePlayer = 1) {
-        Vec2f screenPos;
-        convertSndObjectPos(&screenPos, Vec2f(stagePos.x, stagePos.y));
+    static inline nw::snd::SoundHandle* holdSoundEmy(const char* label, s32 id, const sead::Vector3f& stagePos, u32 remotePlayer = 1) {
+        sead::Vector2f screenPos;
+        convertSndObjectPos(&screenPos, sead::Vector2f(stagePos.x, stagePos.y));
         return SndObjectCommonEmy::instance()->holdSound(label, id, screenPos, remotePlayer);
     }
 
-    static inline nw::snd::SoundHandle* holdSoundMap(const char* label, s32 id, const Vec2f& stagePos, u32 remotePlayer = 1) {
-        Vec2f screenPos;
+    static inline nw::snd::SoundHandle* holdSoundMap(const char* label, s32 id, const sead::Vector2f& stagePos, u32 remotePlayer = 1) {
+        sead::Vector2f screenPos;
         convertSndObjectPos(&screenPos, stagePos);
         return SndObjectCommonMap::instance()->holdSound(label, id, screenPos, remotePlayer);
     }
 
-    static inline nw::snd::SoundHandle* holdSoundMap(const char* label, s32 id, const Vec3f& stagePos, u32 remotePlayer = 1) {
-        Vec2f screenPos;
-        convertSndObjectPos(&screenPos, Vec2f(stagePos.x, stagePos.y));
+    static inline nw::snd::SoundHandle* holdSoundMap(const char* label, s32 id, const sead::Vector3f& stagePos, u32 remotePlayer = 1) {
+        sead::Vector2f screenPos;
+        convertSndObjectPos(&screenPos, sead::Vector2f(stagePos.x, stagePos.y));
         return SndObjectCommonMap::instance()->holdSound(label, id, screenPos, remotePlayer);
     }
 
     // Those probably don't exit
 
-    static inline nw::snd::SoundHandle* startSoundEmy(SoundEffects::IDs id, const Vec2f& stagePos, u32 remotePlayer = 1) {
-        Vec2f screenPos;
+    static inline nw::snd::SoundHandle* startSoundEmy(SoundEffects::IDs id, const sead::Vector2f& stagePos, u32 remotePlayer = 1) {
+        sead::Vector2f screenPos;
         convertSndObjectPos(&screenPos, stagePos);
         return SndObjectCommonEmy::instance()->startSound(SoundEffects::getName(id), screenPos, remotePlayer);
     }
 
-    static inline nw::snd::SoundHandle* startSoundEmy(SoundEffects::IDs id, const Vec3f& stagePos, u32 remotePlayer = 1) {
-        Vec2f screenPos;
-        convertSndObjectPos(&screenPos, Vec2f(stagePos.x, stagePos.y));
+    static inline nw::snd::SoundHandle* startSoundEmy(SoundEffects::IDs id, const sead::Vector3f& stagePos, u32 remotePlayer = 1) {
+        sead::Vector2f screenPos;
+        convertSndObjectPos(&screenPos, sead::Vector2f(stagePos.x, stagePos.y));
         return SndObjectCommonEmy::instance()->startSound(SoundEffects::getName(id), screenPos, remotePlayer);
     }
 
-    static inline nw::snd::SoundHandle* startSoundMap(SoundEffects::IDs id, const Vec2f& stagePos, u32 remotePlayer = 1) {
-        Vec2f screenPos;
+    static inline nw::snd::SoundHandle* startSoundMap(SoundEffects::IDs id, const sead::Vector2f& stagePos, u32 remotePlayer = 1) {
+        sead::Vector2f screenPos;
         convertSndObjectPos(&screenPos, stagePos);
         return SndObjectCommonMap::instance()->startSound(SoundEffects::getName(id), screenPos, remotePlayer);
     }
 
-    static inline nw::snd::SoundHandle* startSoundMap(SoundEffects::IDs id, const Vec3f& stagePos, u32 remotePlayer = 1) {
-        Vec2f screenPos;
-        convertSndObjectPos(&screenPos, Vec2f(stagePos.x, stagePos.y));
+    static inline nw::snd::SoundHandle* startSoundMap(SoundEffects::IDs id, const sead::Vector3f& stagePos, u32 remotePlayer = 1) {
+        sead::Vector2f screenPos;
+        convertSndObjectPos(&screenPos, sead::Vector2f(stagePos.x, stagePos.y));
         return SndObjectCommonMap::instance()->startSound(SoundEffects::getName(id), screenPos, remotePlayer);
     }
 
-    static inline nw::snd::SoundHandle* holdSoundEmy(SoundEffects::IDs soundID, s32 id, const Vec2f& stagePos, u32 remotePlayer = 1) {
-        Vec2f screenPos;
+    static inline nw::snd::SoundHandle* holdSoundEmy(SoundEffects::IDs soundID, s32 id, const sead::Vector2f& stagePos, u32 remotePlayer = 1) {
+        sead::Vector2f screenPos;
         convertSndObjectPos(&screenPos, stagePos);
         return SndObjectCommonEmy::instance()->holdSound(SoundEffects::getName(soundID), id, screenPos, remotePlayer);
     }
 
-    static inline nw::snd::SoundHandle* holdSoundEmy(SoundEffects::IDs soundID, s32 id, const Vec3f& stagePos, u32 remotePlayer = 1) {
-        Vec2f screenPos;
-        convertSndObjectPos(&screenPos, Vec2f(stagePos.x, stagePos.y));
+    static inline nw::snd::SoundHandle* holdSoundEmy(SoundEffects::IDs soundID, s32 id, const sead::Vector3f& stagePos, u32 remotePlayer = 1) {
+        sead::Vector2f screenPos;
+        convertSndObjectPos(&screenPos, sead::Vector2f(stagePos.x, stagePos.y));
         return SndObjectCommonEmy::instance()->holdSound(SoundEffects::getName(soundID), id, screenPos, remotePlayer);
     }
 
-    static inline nw::snd::SoundHandle* holdSoundMap(SoundEffects::IDs soundID, s32 id, const Vec2f& stagePos, u32 remotePlayer = 1) {
-        Vec2f screenPos;
+    static inline nw::snd::SoundHandle* holdSoundMap(SoundEffects::IDs soundID, s32 id, const sead::Vector2f& stagePos, u32 remotePlayer = 1) {
+        sead::Vector2f screenPos;
         convertSndObjectPos(&screenPos, stagePos);
         return SndObjectCommonMap::instance()->holdSound(SoundEffects::getName(soundID), id, screenPos, remotePlayer);
     }
 
-    static inline nw::snd::SoundHandle* holdSoundMap(SoundEffects::IDs soundID, s32 id, const Vec3f& stagePos, u32 remotePlayer = 1) {
-        Vec2f screenPos;
-        convertSndObjectPos(&screenPos, Vec2f(stagePos.x, stagePos.y));
+    static inline nw::snd::SoundHandle* holdSoundMap(SoundEffects::IDs soundID, s32 id, const sead::Vector3f& stagePos, u32 remotePlayer = 1) {
+        sead::Vector2f screenPos;
+        convertSndObjectPos(&screenPos, sead::Vector2f(stagePos.x, stagePos.y));
         return SndObjectCommonMap::instance()->holdSound(SoundEffects::getName(soundID), id, screenPos, remotePlayer);
     }
 };

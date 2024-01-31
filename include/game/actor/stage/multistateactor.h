@@ -4,7 +4,7 @@
 #include "game/actor/stage/physicsactor.h"
 
 class MultiStateActor : public PhysicsActor { // Size: 0x17C8
-    SEAD_RTTI_OVERRIDE(MultiStateActor, PhysicsActor);
+    SEAD_RTTI_OVERRIDE_DECL(MultiStateActor, PhysicsActor);
 
 public:
     MultiStateActor(const ActorBuildInfo* buildInfo);
@@ -26,11 +26,10 @@ public:
     u32  vf12C() override;
 
     bool vf154() override;
-    void move(Vec2f& dest) override;
+    void move(sead::Vector2f& dest) override;
     void setYSpeed(f32) override;
     u32  vf16C() override;
     u32  vf174() override;
-    void getRect(Rect& rect) override;
 
     // Changes the current state to a new target state
     // @param state Pointer to target state

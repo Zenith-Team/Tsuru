@@ -7,24 +7,23 @@
 #include "game/graphics/model/model.h"
 #include "game/graphics/model/materialnw.h"
 #include "game/graphics/lightmapmgr.h"
-#include "agl/shaderprogram.h"
-#include "agl/shaderprogramarchive.h"
-#include "agl/shaderlocation.h"
-#include "agl/uniformblock.h"
-#include "agl/g3d/modelshaderassign.h"
-#include "agl/g3d/modelex.h"
-#include "nw/g3d/shapeobj.h"
-#include "nw/g3d/materialobj.h"
-#include "nw/g3d/skeletalanimobj.h"
-#include "nw/g3d/res/resmodel.h"
-#include "nw/g3d/fnd/buffer.h"
-#include "sead/ptrarray.h"
-#include "dynlibs/os/functions.h"
+#include "common/aglShaderProgram.h"
+#include "common/aglShaderProgramArchive.h"
+#include "common/aglShaderLocation.h"
+#include "common/aglUniformBlock.h"
+#include "g3d/aglModelShaderAssign.h"
+#include "g3d/aglModelEx.h"
+#include "nw/g3d/g3d_ShapeObj.h"
+#include "nw/g3d/g3d_MaterialObj.h"
+#include "nw/g3d/g3d_SkeletalAnimObj.h"
+#include "nw/g3d/res/g3d_ResModel.h"
+#include "container/seadBuffer.h"
+#include "sdk/os/functions.h"
 
 class CullViewFrustum;
 
 class ModelNW : public Model {
-    SEAD_RTTI_OVERRIDE(ModelNW, Model);
+    SEAD_RTTI_OVERRIDE_DECL(ModelNW, Model);
 
 public:
     struct ShaderAssign {
@@ -89,8 +88,8 @@ public:
 
     struct DrawInfo {
         s32 viewIndex;
-        const Mtx34* viewMtx;
-        const Mtx44* projMtx;
+        const sead::Matrix34f* viewMtx;
+        const sead::Matrix44f* projMtx;
         const agl::ShaderProgram* shaderProgram;
         ShaderAssign* shaderAssign;
         s32 materialIndex;
@@ -108,13 +107,13 @@ public:
     virtual ~ModelNW();
 
     void calc() override;
-    void calcGPU(s32 viewIndex, const Mtx34& viewMtx, const Mtx44& projMtx, RenderMgr* renderMgr) override;
-    virtual void updateView(s32 viewIndex, const Mtx34& viewMtx, const Mtx44& projMtx, RenderMgr* renderMgr) override;
-    virtual void drawOpa(s32 viewIndex, const Mtx34& viewMtx, const Mtx44& projMtx, RenderMgr* renderMgr) override;
-    virtual void drawXlu(s32 viewIndex, const Mtx34& viewMtx, const Mtx44& projMtx, RenderMgr* renderMgr) override;
-    virtual void drawShadowOpa(s32 viewIndex, const Mtx34& viewMtx, const Mtx44& projMtx, RenderMgr* renderMgr) override;
-    virtual void drawReflectionOpa(s32 viewIndex, const Mtx34& viewMtx, const Mtx44& projMtx, RenderMgr* renderMgr) override;
-    virtual void drawReflectionXlu(s32 viewIndex, const Mtx34& viewMtx, const Mtx44& projMtx, RenderMgr* renderMgr) override;
+    void calcGPU(s32 viewIndex, const sead::Matrix34f& viewMtx, const sead::Matrix44f& projMtx, RenderMgr* renderMgr) override;
+    virtual void updateView(s32 viewIndex, const sead::Matrix34f& viewMtx, const sead::Matrix44f& projMtx, RenderMgr* renderMgr) override;
+    virtual void drawOpa(s32 viewIndex, const sead::Matrix34f& viewMtx, const sead::Matrix44f& projMtx, RenderMgr* renderMgr) override;
+    virtual void drawXlu(s32 viewIndex, const sead::Matrix34f& viewMtx, const sead::Matrix44f& projMtx, RenderMgr* renderMgr) override;
+    virtual void drawShadowOpa(s32 viewIndex, const sead::Matrix34f& viewMtx, const sead::Matrix44f& projMtx, RenderMgr* renderMgr) override;
+    virtual void drawReflectionOpa(s32 viewIndex, const sead::Matrix34f& viewMtx, const sead::Matrix44f& projMtx, RenderMgr* renderMgr) override;
+    virtual void drawReflectionXlu(s32 viewIndex, const sead::Matrix34f& viewMtx, const sead::Matrix44f& projMtx, RenderMgr* renderMgr) override;
 
     void updateAnimations() override;
     void updateModel() override;
@@ -126,11 +125,11 @@ public:
     const char* getBoneName(s32 idx) const override;
     u32 getBoneNum() const override;
 
-    void setBoneLocalMatrix(s32 idx, const Mtx34& mtx, const Vec3f& scale) override;
-    void getBoneLocalMatrix(s32 idx, Mtx34* mtx = nullptr, Vec3f* scale = nullptr) const override;
+    void setBoneLocalMatrix(s32 idx, const sead::Matrix34f& mtx, const sead::Vector3f& scale) override;
+    void getBoneLocalMatrix(s32 idx, sead::Matrix34f* mtx = nullptr, sead::Vector3f* scale = nullptr) const override;
 
-    void setBoneWorldMatrix(s32 idx, const Mtx34& mtx) override;
-    void getBoneWorldMatrix(s32 idx, Mtx34* mtx) const override;
+    void setBoneWorldMatrix(s32 idx, const sead::Matrix34f& mtx) override;
+    void getBoneWorldMatrix(s32 idx, sead::Matrix34f* mtx) const override;
 
     void setBoneVisible(s32 idx, bool visible) override;
     bool isBoneVisible(s32 idx) const override; // deleted
@@ -172,11 +171,11 @@ public:
     void setVisAnim(s32 index, Animation* anim) override;
     void setShaAnim(s32 index, Animation* anim) override;
 
-    Animation* const* getSklAnims() const override { return reinterpret_cast<Animation* const*>(this->sklAnims.buffer); }
-    Animation* const* getTexAnims() const override { return reinterpret_cast<Animation* const*>(this->texAnims.buffer); }
-    Animation* const* getShuAnims() const override { return reinterpret_cast<Animation* const*>(this->shuAnims.buffer); }
-    Animation* const* getVisAnims() const override { return reinterpret_cast<Animation* const*>(this->visAnims.buffer); }
-    Animation* const* getShaAnims() const override { return reinterpret_cast<Animation* const*>(this->shaAnims.buffer); }
+    Animation* const* getSklAnims() const override { return reinterpret_cast<Animation* const*>(this->sklAnims.getBufferPtr()); }
+    Animation* const* getTexAnims() const override { return reinterpret_cast<Animation* const*>(this->texAnims.getBufferPtr()); }
+    Animation* const* getShuAnims() const override { return reinterpret_cast<Animation* const*>(this->shuAnims.getBufferPtr()); }
+    Animation* const* getVisAnims() const override { return reinterpret_cast<Animation* const*>(this->visAnims.getBufferPtr()); }
+    Animation* const* getShaAnims() const override { return reinterpret_cast<Animation* const*>(this->shaAnims.getBufferPtr()); }
 
     void initialize(nw::g3d::res::ResModel* resModel, const agl::ShaderProgramArchive* shaderArchive, s32 numView, s32 numSklAnim, s32 numTexAnim, s32 numShuAnim, s32 numVisAnim, s32 numShaAnim, u32 boundingMode, sead::Heap* heap);
     void activateMaterial(const agl::g3d::ModelShaderAssign& shaderAssign, const nw::g3d::MaterialObj* material, const LightMap& lightMap) const;
@@ -210,8 +209,8 @@ public:
     sead::Buffer<ShaderAssign> shaderAssigns;
     sead::Buffer<MaterialNW*> materials;
     sead::Buffer<Shape> shapes;
-    Mtx34 mtxRT;
-    Vec3f scale;
+    sead::Matrix34f mtxRT;
+    sead::Vector3f scale;
     u8 _128;
     sead::BitFlag32 renderFlag;
     sead::BitFlag32 boundingEnableFlag;
@@ -234,44 +233,44 @@ public:
     void updateModel();
     void updateAnimations();
 
-    void setMtx(const Mtx34& mtxRT) { this->model->setMtxRT(mtxRT); }
-    const Mtx34& getMtx() const { return this->model->getMtxRT(); }
+    void setMtx(const sead::Matrix34f& mtxRT) { this->model->setMtxRT(mtxRT); }
+    const sead::Matrix34f& getMtx() const { return this->model->getMtxRT(); }
 
-    void setScale(const Vec3f& scale) { this->model->setScale(scale); }
-    const Vec3f& getScale() const { return this->model->getScale(); }
+    void setScale(const sead::Vector3f& scale) { this->model->setScale(scale); }
+    const sead::Vector3f& getScale() const { return this->model->getScale(); }
 
     void playSklAnim(const sead::SafeString& identifier, u32 idx = 0) {
-        if (idx < this->sklAnims.size)
+        if (idx < this->sklAnims.size())
             this->sklAnims[idx]->play(this->archive, identifier);
     }
 
     void playTexPatternAnim(const sead::SafeString& identifier, u32 idx = 0) {
-        if (idx < this->texPatternAnims.size)
+        if (idx < this->texPatternAnims.size())
             this->texPatternAnims[idx]->play(this->archive, identifier);
     }
 
     void playColorAnim(const sead::SafeString& identifier, u32 idx = 0) {
-        if (idx < this->texSrtAnims.size)
+        if (idx < this->texSrtAnims.size())
             this->texSrtAnims[idx]->playColorAnim(this->archive, identifier);
     }
 
     void playTexSrtAnim(const sead::SafeString& identifier, u32 idx = 0) {
-        if (idx < this->texSrtAnims.size)
+        if (idx < this->texSrtAnims.size())
             this->texSrtAnims[idx]->playTexSrtAnim(this->archive, identifier);
     }
 
     void playBoneVisAnim(const sead::SafeString& identifier, u32 idx = 0) {
-        if (idx < this->visAnims.size)
+        if (idx < this->visAnims.size())
             this->visAnims[idx]->play(this->archive, identifier);
     }
 
     void playShapeAnim(const sead::SafeString& identifier, u32 idx = 0) {
-        if (idx < this->shaAnims.size)
+        if (idx < this->shaAnims.size())
             this->shaAnims[idx]->play(this->archive, identifier);
     }
 
     void loopSklAnims(bool loop) {
-        for (u32 i = 0; i < sklAnims.size; i++) {
+        for (u32 i = 0; i < sklAnims.size(); i++) {
             SkeletalAnimation* anim = sklAnims[i];
             if (!anim)
                 return;

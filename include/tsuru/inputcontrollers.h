@@ -25,37 +25,29 @@ public:
         }
     }
 
-    // Calls calc() on each controller
-    //! Do not call this, it is not required, but is just here for it may be needed in the future
-    void calc(u32 a, bool b) {
-        for (u32 i = 0; i < 5; i++) {
-            controllers[i].calc(a, b);
-        }
-    }
-
-    // TODO: Use sead::BitFlag functions instead of our own
+    inline const WrappedController& ctrl(ControllerID::__type__ i) const { return this->controllers[i]; }
 
     // D-Pad
-    inline bool buttonUp(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x5); }
-    inline bool buttonDown(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x6); }
-    inline bool buttonLeft(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x7); }
-    inline bool buttonRight(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x8); }
+    inline bool buttonUp(ControllerID::__type__ controller) const { return this->ctrl(controller).isHold(1 << 4); }
+    inline bool buttonDown(ControllerID::__type__ controller) const { return this->ctrl(controller).isHold(1 << 5); }
+    inline bool buttonLeft(ControllerID::__type__ controller) const { return this->ctrl(controller).isHold(1 << 6); }
+    inline bool buttonRight(ControllerID::__type__ controller) const { return this->ctrl(controller).isHold(1 << 7); }
 
     // Buttons
-    inline bool buttonA(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x1) && nthBit32Right(this->controllers[controller].padHold.bits, 0xE); }
-    inline bool buttonB(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x1) && nthBit32Right(this->controllers[controller].padHold.bits, 0xF); }
-    inline bool buttonXY(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x3) && nthBit32Right(this->controllers[controller].padHold.bits, 0x2); }
-    inline bool buttonPlus(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0xC); }
-    inline bool buttonMinus(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0xB); }
+    inline bool buttonA(ControllerID::__type__ controller) const { return this->ctrl(controller).isHold(1 << 0) && this->ctrl(controller).isHold(1 << 13); }
+    inline bool buttonB(ControllerID::__type__ controller) const { return this->ctrl(controller).isHold(1 << 0) && this->ctrl(controller).isHold(1 << 14); }
+    inline bool buttonXY(ControllerID::__type__ controller) const { return this->ctrl(controller).isHold(1 << 2) && this->ctrl(controller).isHold(1 << 1); }
+    inline bool buttonPlus(ControllerID::__type__ controller) const { return this->ctrl(controller).isHold(1 << 11); }
+    inline bool buttonMinus(ControllerID::__type__ controller) const { return this->ctrl(controller).isHold(1 << 10); }
 
     // Triggers
-    inline bool triggerL(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x4) && nthBit32Right(this->controllers[controller].padHold.bits, 0x9) && nthBit32Right(this->controllers[controller].padHold.bits, 0x11); }
-    inline bool triggerR(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x4) && nthBit32Right(this->controllers[controller].padHold.bits, 0xA) && nthBit32Right(this->controllers[controller].padHold.bits, 0x11); }
-    inline bool triggerZL(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x4) && nthBit32Right(this->controllers[controller].padHold.bits, 0x11) && nthBit32Right(this->controllers[controller].padHold.bits, 0x12); }
-    inline bool triggerZR(ControllerID::__type__ controller) const { return nthBit32Right(this->controllers[controller].padHold.bits, 0x4) && nthBit32Right(this->controllers[controller].padHold.bits, 0x11) && !nthBit32Right(this->controllers[controller].padHold.bits, 0x9) && !nthBit32Right(this->controllers[controller].padHold.bits, 0x12) && !nthBit32Right(this->controllers[controller].padHold.bits, 0xA); }
+    inline bool triggerL(ControllerID::__type__ controller) const { return this->ctrl(controller).isHold(1 << 3) && this->ctrl(controller).isHold(1 << 8) && this->ctrl(controller).isHold(1 << 16); }
+    inline bool triggerR(ControllerID::__type__ controller) const { return this->ctrl(controller).isHold(1 << 3) && this->ctrl(controller).isHold(1 << 9) && this->ctrl(controller).isHold(1 << 16); }
+    inline bool triggerZL(ControllerID::__type__ controller) const { return this->ctrl(controller).isHold(1 << 3) && this->ctrl(controller).isHold(1 << 16) && this->ctrl(controller).isHold(1 << 17); }
+    inline bool triggerZR(ControllerID::__type__ controller) const { return this->ctrl(controller).isHold(1 << 3) && this->ctrl(controller).isHold(1 << 16) && !this->ctrl(controller).isHold(1 << 8) && !this->ctrl(controller).isHold(1 << 16) && !this->ctrl(controller).isHold(1 << 9); }
 
     // Gamepad specific
-    inline bool tap() const { return nthBit32Right(this->controllers[ControllerID::Gamepad].padHold.bits, 0xD); }
+    inline bool tap() const { return this->controllers[ControllerID::Gamepad].isHold(1 << 12); }
 
     // Checks if a direction on the D-Pad is pressed
     // @param index The index of the direction to check, corresponds to Direction::DirectionType

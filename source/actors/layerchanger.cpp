@@ -5,7 +5,7 @@
 #include "log.h"
 
 class LayerChanger : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(LayerChanger, StageActor);
+    SEAD_RTTI_OVERRIDE(LayerChanger, StageActor);
 public:
     LayerChanger(const ActorBuildInfo* buildInfo);
     virtual ~LayerChanger() { }

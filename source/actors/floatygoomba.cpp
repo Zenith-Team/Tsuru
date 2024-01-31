@@ -5,7 +5,7 @@
 #include "game/audio/gameaudio.h"
 
 class FloatyGoomba : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(FloatyGoomba, Enemy);
+    SEAD_RTTI_OVERRIDE(FloatyGoomba, Enemy);
 
 public:
     FloatyGoomba(const ActorBuildInfo* buildInfo);
@@ -40,7 +40,7 @@ FloatyGoomba::FloatyGoomba(const ActorBuildInfo* buildInfo)
 
 u32 FloatyGoomba::onCreate() {
     static const HitboxCollider::Info collisionInfo = {
-        0.0f, 10.0f, HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &FloatyGoomba::collisionCallback
+        sead::Vector2f(0.0f, 0.0f), sead::Vector2f(10.0f, 10.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &FloatyGoomba::collisionCallback
     };
 
     this->hitboxCollider.init(this, &collisionInfo);
@@ -57,15 +57,15 @@ u32 FloatyGoomba::onCreate() {
 }
 
 u32 FloatyGoomba::onExecute() {
-    Mtx34 mtx;
+    sead::Matrix34f mtx;
     
     mtx.makeRTIdx(this->rotation, this->position);
     this->floaty->setMtx(mtx);
-    this->floaty->setScale(0.17f);
+    this->floaty->setScale(sead::Vector3f(0.17f, 0.17f, 0.17f));
     this->floaty->updateModel();
 
     if (this->model) {
-        mtx.makeRTIdx(this->rotation, this->position + Vec3f(0.0f, -2.25f, 0.0f));
+        mtx.makeRTIdx(this->rotation, this->position + sead::Vector3f(0.0f, -2.25f, 0.0f));
         this->model->setMtx(mtx);
         this->model->setScale(this->scale);
         this->model->updateModel();
@@ -79,9 +79,9 @@ u32 FloatyGoomba::onExecute() {
         this->direction = this->directionToPlayerH(this->position);
 
         if (this->distanceToPlayer().length() > 6.f*16.f || !this->model) {
-            sead::Mathu::chase(&this->rotation.y, 0, fixDeg(1.25f));
+            sead::Mathu::chase(&this->rotation.y, 0, sead::Mathf::deg2idx(1.25f));
         } else {
-            sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->direction], fixDeg(2.5f));
+            sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->direction], sead::Mathf::deg2idx(2.5f));
             sead::Mathf::chase(&this->position.x, this->distanceToPlayer().x + this->position.x, 0.25f);
         }
     }
@@ -112,7 +112,7 @@ void FloatyGoomba::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOth
     if (hit == Enemy::HitType::Collide) {
         return this->damagePlayer(hcSelf, hcOther);
     } else {
-        this->killPlayerJump(hcOther->owner, 0.0f, &FloatyGoomba::StateID_Die);
+        this->killPlayerJump(hcOther->owner, sead::Vector3f(0.0f, 0.0f, 0.0f), &FloatyGoomba::StateID_Die);
     }
 }
 
@@ -125,7 +125,7 @@ bool FloatyGoomba::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* 
     }
 
     if (this->model) {
-        this->killPlayerJump(hcOther->owner, 0.0f, &FloatyGoomba::StateID_Die);
+        this->killPlayerJump(hcOther->owner, sead::Vector3f(0.0f, 0.0f, 0.0f), &FloatyGoomba::StateID_Die);
 
         return false;
     }

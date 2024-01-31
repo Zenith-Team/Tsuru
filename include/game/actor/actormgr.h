@@ -1,9 +1,9 @@
 #pragma once
 
-#include "sead/offsetlist.h"
-#include "sead/heap.h"
-#include "sead/buffer.h"
-#include "sead/ptrarray.h"
+#include "container/seadOffsetList.h"
+#include "heap/seadUnitHeap.h"
+#include "container/seadBuffer.h"
+#include "container/seadPtrArray.h"
 #include "game/actor/stage/stageactor.h"
 
 class ActorBuffer { // Size: 0x18
@@ -18,10 +18,13 @@ public:
     void addActor(Actor* actor);
 
     sead::Buffer<Actor*> start;
-    sead::Buffer<Actor*> end;
-    u32 _10;
-    u8  _14;
+    u32 emptyHeadIndex;
+    Actor*const* end;
+    u32 nextCreateIndex;
+    bool createIndexOverflow;
 };
+
+static_assert(sizeof(ActorBuffer) == 0x18, "ActorBuffer size mismatch");
 
 class ActorMgr { // Size: 0x6A44
     SEAD_SINGLETON_DISPOSER(ActorMgr);

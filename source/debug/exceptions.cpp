@@ -1,6 +1,6 @@
 #include "log.h"
-#include "dynlibs/os/functions.h"
-#include "dynlibs/gx2/functions.h"
+#include "sdk/os/functions.h"
+#include "sdk/gx2/functions.h"
 
 // Replaces __pure_virtual_called
 void handlePVC() {

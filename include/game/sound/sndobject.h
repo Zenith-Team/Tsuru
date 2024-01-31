@@ -1,7 +1,8 @@
 #pragma once
 
-#include "nw/snd.h"
-#include "sead/idisposer.h"
+#include "nw/snd/soundhandle.h"
+#include "nw/snd/soundactor.h"
+#include "heap/seadDisposer.h"
 
 class AudAudioPlayer;
 
@@ -62,7 +63,7 @@ public:
     f32 _7C;
     f32 _80;
     SoundHandlePrm handles[6];
-    Vec2f position; // Screen position
+    sead::Vector2f position; // Screen position
 };
 
 static_assert(sizeof(SndObject<1>) == 0x11C, "SndObject size mismatch");
@@ -89,15 +90,15 @@ public:
     virtual ~SndObjectCommon(); // deleted
 
     // Does the stagePos -> screenPos conversion
-    virtual nw::snd::SoundHandle* startSoundStage(const char* label, const Vec2f& stagePos, u32 remotePlayer); // deleted
+    virtual nw::snd::SoundHandle* startSoundStage(const char* label, const sead::Vector2f& stagePos, u32 remotePlayer); // deleted
     // Does the stagePos -> screenPos conversion
-    virtual nw::snd::SoundHandle* startSoundStage(const char* label, const Vec2f& stagePos, u16, u32 remotePlayer); // deleted
+    virtual nw::snd::SoundHandle* startSoundStage(const char* label, const sead::Vector2f& stagePos, u16, u32 remotePlayer); // deleted
 
-    nw::snd::SoundHandle* startSound(const char* label, const Vec2f& screenPos, u32 remotePlayer);
-    nw::snd::SoundHandle* startSound(const char* label, const Vec2f& screenPos, u16, u32 remotePlayer);
+    nw::snd::SoundHandle* startSound(const char* label, const sead::Vector2f& screenPos, u32 remotePlayer);
+    nw::snd::SoundHandle* startSound(const char* label, const sead::Vector2f& screenPos, u16, u32 remotePlayer);
     
-    nw::snd::SoundHandle* holdSound(const char* label, s32 id, const Vec2f& screenPos, u32 remotePlayer);
-    nw::snd::SoundHandle* holdSound(const char* label, s32 id, const Vec2f& screenPos, u16, u32 remotePlayer);
+    nw::snd::SoundHandle* holdSound(const char* label, s32 id, const sead::Vector2f& screenPos, u32 remotePlayer);
+    nw::snd::SoundHandle* holdSound(const char* label, s32 id, const sead::Vector2f& screenPos, u16, u32 remotePlayer);
 
     SoundHandlePrm handles[14];
 };

@@ -1,7 +1,8 @@
 #pragma once
 
-#include "sead/idisposer.h"
-#include "sead/task.h"
+#include "math/seadVector.h"
+#include "heap/seadDisposer.h"
+#include "framework/seadTaskMgr.h"
 
 class TaskMgr {
     SEAD_SINGLETON_DISPOSER(TaskMgr);
@@ -19,6 +20,6 @@ public:
     bool changeTask(sead::TaskBase* currentTask, sead::TaskClassID& taskClassID, u32 = 0, u32 = 0);
 
     u8 _10[0x74 - 0x10]; // TODO
-    Vec3f faderPos;
+    sead::Vector3f faderPos;
     u8 _80[0x84 - 0x80]; // TODO
 };

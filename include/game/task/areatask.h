@@ -1,10 +1,12 @@
 #pragma once
 
-#include "sead/task.h"
-#include "agl/lyr/renderinfo.h"
+#include "types.h"
+#include "framework/seadTaskMgr.h"
+#include "framework/seadCalculateTask.h"
+#include "layer/aglRenderInfo.h"
 
 class AreaTask : public sead::CalculateTask {
-    SEAD_SINGLETON_TASK(AreaTask);
+    SEAD_TASK_SINGLETON_DISPOSER(AreaTask);
 
 public:
     ENUM_CLASS(Flag,

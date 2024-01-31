@@ -3,7 +3,7 @@
 #include "game/eventmgr.h"
 
 class ActorSpawner : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(ActorSpawner, StageActor);
+    SEAD_RTTI_OVERRIDE(ActorSpawner, StageActor);
 
 public:
     ActorSpawner(const ActorBuildInfo* buildInfo);

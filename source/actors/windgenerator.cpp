@@ -4,7 +4,7 @@
 #include "log.h"
 
 class FixedWindGenerator : public WindGenerator {
-    SEAD_RTTI_OVERRIDE_IMPL(FixedWindGenerator, WindGenerator);
+    SEAD_RTTI_OVERRIDE(FixedWindGenerator, WindGenerator);
 
 public:
     FixedWindGenerator(const ActorBuildInfo* buildInfo);
@@ -47,7 +47,7 @@ u32 FixedWindGenerator::onExecute() {
     }
 
     // Blow actors
-    for (Actor** current = ActorMgr::instance()->actors.start.buffer; current < ActorMgr::instance()->actors.end.buffer; current++) {
+    for (Actor** current = &ActorMgr::instance()->actors.start.front(); current < ActorMgr::instance()->actors.end; current++) {
         Actor* actor = *current;
         if (actor != nullptr) {
             u32 profileID = actor->getProfileID();

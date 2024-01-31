@@ -6,10 +6,10 @@
 
 #include "types.h"
 #include "game/csscript.h"
-#include "sead/filedevice.h"
-#include "sead/filedevicemgr.h"
-#include "sead/heap.h"
-#include "dynlibs/os/functions.h"
+#include "filedevice/seadFileDevice.h"
+#include "filedevice/seadFileDeviceMgr.h"
+#include "heap/seadHeap.h"
+#include "sdk/os/functions.h"
 #include "game/actor/courseselect/courseselectactor.h"
 #include "log.h"
 
@@ -26,11 +26,11 @@ public:
 
     WMSFile(sead::Heap* heap) {
         sead::FileHandle handle;
-        sead::FileDevice* device = sead::FileDeviceMgr::instance()->tryOpen(&handle, "course_select/scripts.wmsc", sead::FileDevice::FileOpenFlag_ReadOnly, 0);
+        sead::FileDevice* device = sead::FileDeviceMgr::instance()->tryOpen(&handle, "course_select/scripts.wmsc", sead::FileDevice::cFileOpenFlag_ReadOnly, 0);
 
-        const s32 align = sead::FileDevice::sBufferMinAlignment;
+        const s32 align = sead::FileDevice::cBufferMinAlignment;
 
-        if (!handle.device) {
+        if (!handle.getDevice()) {
             PRINT(LogColor::Red, "scripts.wmsc not found.");
             return;
         }

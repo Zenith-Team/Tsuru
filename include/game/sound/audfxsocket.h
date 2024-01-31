@@ -1,6 +1,7 @@
 #pragma once
 
-#include "nw/snd.h"
+#include "nw/snd/fxreverbhi.h"
+#include "nw/snd/fxdelay.h"
 
 class AudFxSocket {
 public:

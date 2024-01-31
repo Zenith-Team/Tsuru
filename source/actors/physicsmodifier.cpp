@@ -76,7 +76,7 @@ PlayerGravityData* LoadCustomPlayerGravity_(u32 isMini) {
 }
 
 class PhysicsModifier : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(PhysicsModifier, StageActor);
+    SEAD_RTTI_OVERRIDE(PhysicsModifier, StageActor);
 
 public:
     PhysicsModifier(const ActorBuildInfo* buildInfo);

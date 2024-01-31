@@ -1,7 +1,7 @@
 ---
 Files:
-  - powerup.cpp
-  - custompowerupmodel.cpp
+  - source/powerup.cpp
+  - source/custompowerupmodel.cpp
 Hooks:
 # Table extensions
   - type: branch

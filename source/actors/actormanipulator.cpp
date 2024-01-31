@@ -4,7 +4,7 @@
 #include "game/eventmgr.h"
 
 class ActorManipulator : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(ActorManipulator, StageActor);
+    SEAD_RTTI_OVERRIDE(ActorManipulator, StageActor);
 
 public:
     ActorManipulator(const ActorBuildInfo* buildinfo);
@@ -32,7 +32,7 @@ u32 ActorManipulator::onCreate() {
     this->trigEvent = (this->eventID1 & 0xFF) - 1; // nybbles 1-2
     this->isDone = false;
     
-    for (Actor** actor = ActorMgr::instance()->actors.start.buffer; actor != ActorMgr::instance()->actors.end.buffer; actor++) {
+    for (Actor** actor = &ActorMgr::instance()->actors.start.front(); actor != ActorMgr::instance()->actors.end; actor++) {
         if (*actor && (*actor)->initialStateFlag == ((settings1 >> 0x10) & 0xFF)) { // nybbles 7-8
             u32 targetID = 0;
             u32 inputID = this->settings1 & 0xFFF; // nybbles 10-12

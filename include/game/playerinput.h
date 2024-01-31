@@ -1,18 +1,18 @@
 #pragma once
 
-#include "sead/bitflag.h"
+#include "prim/seadBitFlag.h"
 #include "tsuru/utils.h"
 
 class PlayerInput {
 public:
     PlayerInput();
 
-    inline bool getButtonRight() { return nthBit32Right(this->buttons.bits, 8); }
-    inline bool getButtonLeft() { return nthBit32Right(this->buttons.bits, 7); }
-    inline bool getButtonDown() { return nthBit32Right(this->buttons.bits, 6); }
-    inline bool getButtonUp() { return nthBit32Right(this->buttons.bits, 5); }
-    inline bool getButtonJump() { return (nthBit32Right(this->buttons.bits, 1) && nthBit32Right(this->buttons.bits, 12)); }
-    inline bool getButtonDash() { return (nthBit32Right(this->buttons.bits, 3) && nthBit32Right(this->buttons.bits, 2)); }
+    inline bool getButtonRight() { return this->buttons.isOnBit(7); }
+    inline bool getButtonLeft() { return this->buttons.isOnBit(6); }
+    inline bool getButtonDown() { return this->buttons.isOnBit(5); }
+    inline bool getButtonUp() { return this->buttons.isOnBit(4); }
+    inline bool getButtonJump() { return (this->buttons.isOnBit(0) && this->buttons.isOnBit(11)); }
+    inline bool getButtonDash() { return (this->buttons.isOnBit(2) && this->buttons.isOnBit(1)); }
 
     u32 _0;
     u32 _4; // Shake?

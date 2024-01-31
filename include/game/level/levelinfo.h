@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead/runtimetypeinfo.h"
-#include "sead/idisposer.h"
+#include "prim/seadRuntimeTypeInfo.h"
+#include "heap/seadDisposer.h"
 
 class LevelInfo { // Size: 0x24
     SEAD_SINGLETON_DISPOSER(LevelInfo);

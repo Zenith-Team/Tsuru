@@ -5,7 +5,7 @@
 #include "game/graphics/model/animation.h"
 
 class Biddybud : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(Biddybud, Enemy);
+    SEAD_RTTI_OVERRIDE(Biddybud, Enemy);
 
 public:
     Biddybud(const ActorBuildInfo* buildInfo);
@@ -35,8 +35,8 @@ public:
     MovementHandler movementHandler;
     bool isDead;
     u32 color;
-    Vec3f effectScale;
-    Vec3f effectOffset;
+    sead::Vector3f effectScale;
+    sead::Vector3f effectOffset;
 
     DECLARE_STATE(Biddybud, Move);
     DECLARE_STATE(Biddybud, Die);
@@ -51,7 +51,7 @@ REGISTER_PROFILE(Biddybud, ProfileID::Biddybud);
 PROFILE_RESOURCES(ProfileID::Biddybud, Profile::LoadResourcesAt::Course, "tenten_w");
 
 HitboxCollider::Info Biddybud::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
+    sead::Vector2f(0.0f, 0.0f), sead::Vector2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 Biddybud::Biddybud(const ActorBuildInfo* buildInfo)
@@ -76,7 +76,7 @@ u32 Biddybud::onCreate() {
     this->model->texPatternAnims[0]->frameCtrl.speed = 0.0f;
     this->model->texSrtAnims[0]->frameCtrl.shouldLoop(true);
     this->model->loopSklAnims(true);
-    this->scale = .17f;
+    this->scale = sead::Vector3f(0.17f, 0.17f, 0.17f);
     this->position.y -= 8;
     this->position.x += 8;
 
@@ -102,8 +102,8 @@ u32 Biddybud::onExecute() {
 
     this->states.execute();
 
-    Mtx34 mtx;
-    Vec3f modelPos = this->position;
+    sead::Matrix34f mtx;
+    sead::Vector3f modelPos = this->position;
     modelPos.y -= 8;
     mtx.makeRTIdx(this->rotation, modelPos);
     this->model->setMtx(mtx);
@@ -126,7 +126,7 @@ void Biddybud::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) 
     if (hitType == HitType::Collide) {
         this->damagePlayer(hcSelf, hcOther);
     } else if (hitType == HitType::NormalJump || hitType == HitType::SpinJump) {
-        this->killPlayerJump(hcOther->owner, 0.0f, &Biddybud::StateID_DieSquish);
+        this->killPlayerJump(hcOther->owner, sead::Vector3f(0.0f, 0.0f, 0.0f), &Biddybud::StateID_DieSquish);
     }
 }
 
@@ -147,8 +147,8 @@ bool Biddybud::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOt
 }
 
 bool Biddybud::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
-    Vec3f effectPos(effectOrigin + this->effectOffset);
+    sead::Vector3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+    sead::Vector3f effectPos(effectOrigin + this->effectOffset);
     Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
     this->isDeleted = true;
 
@@ -180,8 +180,8 @@ bool Biddybud::collisionPropellerDrill(HitboxCollider* hcSelf, HitboxCollider* h
 }
 
 bool Biddybud::collisionThrowableObject(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
-    Vec3f effectPos(effectOrigin + this->effectOffset);
+    sead::Vector3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+    sead::Vector3f effectPos(effectOrigin + this->effectOffset);
     Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
     this->isDeleted = true;
 
@@ -232,8 +232,8 @@ void Biddybud::beginState_Die() {
 void Biddybud::executeState_Die() {
     this->counter++;
     if (this->counter == 32) { // until there's an "is animation done" function that i'm aware of, i'll just use this
-        Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
-        Vec3f effectPos(effectOrigin + this->effectOffset);
+        sead::Vector3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+        sead::Vector3f effectPos(effectOrigin + this->effectOffset);
         Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
         this->isDeleted = true;
     }
@@ -255,8 +255,8 @@ void Biddybud::beginState_DieSquish() {
 void Biddybud::executeState_DieSquish() {
     this->counter++;
     if (this->counter == 32) {
-        Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
-        Vec3f effectPos(effectOrigin + this->effectOffset);
+        sead::Vector3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+        sead::Vector3f effectPos(effectOrigin + this->effectOffset);
         Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
         this->isDeleted = true;
     }

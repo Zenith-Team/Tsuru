@@ -1,12 +1,12 @@
 #pragma once
 
-#include "sead/matrix.h"
+#include "math/seadMatrix.h"
 #include "game/graphics/layer/layeragl.h"
 
 class RenderMgr;
 
 class ObjLayer : public LayerAgl {
-    SEAD_RTTI_OVERRIDE(ObjLayer, LayerAgl);
+    SEAD_RTTI_OVERRIDE_DECL(ObjLayer, LayerAgl);
 
 public:
     ObjLayer();
@@ -25,5 +25,5 @@ public:
 
     RenderMgr* renderMgr;
     s32 viewIndex;
-    Mtx44* _428;
+    sead::Matrix44f* _428;
 };

@@ -9,7 +9,7 @@
 class MusicNoteMgr;
 
 class MusicNote : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(MusicNote, StageActor);
+    SEAD_RTTI_OVERRIDE(MusicNote, StageActor);
 public:
     MusicNote(const ActorBuildInfo* buildInfo);
     virtual ~MusicNote() { }
@@ -30,7 +30,7 @@ public:
 };
 
 class MusicNoteMgr : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(MusicNoteMgr, StageActor);
+    SEAD_RTTI_OVERRIDE(MusicNoteMgr, StageActor);
 
 public:
     MusicNoteMgr(const ActorBuildInfo* buildInfo);
@@ -55,7 +55,7 @@ public:
 };
 
 const ActorInfo MusicNoteActorInfo = {
-    Vec2i(0, 0), Vec2i(0, 0), Vec2i(4800, 4800), 0, 0, 0, 0, 0
+    sead::Vector2i(0, 0), sead::Vector2i(0, 0), sead::Vector2i(4800, 4800), 0, 0, 0, 0, 0
 };
 
 REGISTER_PROFILE(MusicNote, ProfileID::MusicNote, "MusicNote", &MusicNoteActorInfo);
@@ -68,7 +68,7 @@ PROFILE_RESOURCES(ProfileID::MusicNoteMgr, Profile::LoadResourcesAt::Course, "cl
 // Music Note
 
 const HitboxCollider::Info MusicNote::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &MusicNote::collisionCallback
+    sead::Vector2f(0.0f, 0.0f), sead::Vector2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &MusicNote::collisionCallback
 };
 
 MusicNote::MusicNote(const ActorBuildInfo* buildInfo)
@@ -92,7 +92,7 @@ u32 MusicNote::onCreate() {
     this->movementHandler.link(this->position, movementMask, this->movementID); // nybble 21-22
 
 
-    this->scale = .17f;
+    this->scale = sead::Vector3f(0.17f, 0.17f, 0.17f);
     this->isActive = false;
     this->isVisible = false;
 
@@ -100,16 +100,16 @@ u32 MusicNote::onCreate() {
 }
 
 u32 MusicNote::onExecute() {
-    Mtx34 mtx;
+    sead::Matrix34f mtx;
     mtx.makeRTIdx(this->rotation, this->position);
-    this->rotation.y += fixDeg(3.0f);
+    this->rotation.y += sead::Mathf::deg2idx(3.0f);
     this->noteModel->setMtx(mtx);
     this->noteModel->setScale(this->scale);
     this->noteModel->updateAnimations();
     this->noteModel->updateModel();
     this->movementHandler.execute();
     this->position = this->movementHandler.position;
-    for (Actor** it = ActorMgr::instance()->actors.start.buffer; it != ActorMgr::instance()->actors.end.buffer; ++it) { // search for MusicNoteMgr actors with a matching ID
+    for (Actor** it = &ActorMgr::instance()->actors.start.front(); it != ActorMgr::instance()->actors.end; ++it) { // search for MusicNoteMgr actors with a matching ID
         if (*it != nullptr) {
             Actor& actor = **it;
             if (actor.getProfileID() == ProfileID::MusicNoteMgr) {
@@ -132,7 +132,7 @@ u32 MusicNote::onDraw() {
 
 // Music Note Manager
 const HitboxCollider::Info MusicNoteMgr::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 16.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &MusicNoteMgr::collisionCallback
+    sead::Vector2f(0.0f, 0.0f), sead::Vector2f(8.0f, 16.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &MusicNoteMgr::collisionCallback
 };
 
 MusicNoteMgr::MusicNoteMgr(const ActorBuildInfo* buildInfo)
@@ -151,7 +151,7 @@ u32 MusicNoteMgr::onCreate() {
     this->clefModel = ModelWrapper::create("clef", "clef", 0, 1);
     this->clefModel->playTexPatternAnim("rainbow", 0);
     this->clefModel->texPatternAnims[0]->frameCtrl.shouldLoop(true);
-    this->scale = .17f;
+    this->scale = sead::Vector3f(0.17f, 0.17f, 0.17f);
 
     this->hitboxCollider.init(this, &MusicNoteMgr::collisionInfo);
     this->addHitboxColliders();
@@ -167,9 +167,9 @@ u32 MusicNoteMgr::onExecute() {
         this->isDeleted = true;
     }
 
-    Mtx34 mtx;
+    sead::Matrix34f mtx;
     mtx.makeRTIdx(this->rotation, this->position);
-    this->rotation.y += fixDeg(3.0f);
+    this->rotation.y += sead::Mathf::deg2idx(3.0f);
     this->clefModel->setMtx(mtx);
     this->clefModel->setScale(this->scale);
     this->clefModel->updateAnimations();
@@ -182,7 +182,7 @@ u32 MusicNoteMgr::onExecute() {
     }
     if (this->touched && this->timeLimit <= 180 && this->timeLimit % 60 == 0 && this->timeLimit != 0) { // less than 3 seconds remaining, a sound effect plays once every second
         GameAudio::startSoundMap(SoundEffects::SE_SYS_SWITCH_CT_LAST, this->position);
-        for (Actor** it = ActorMgr::instance()->actors.start.buffer; it != ActorMgr::instance()->actors.end.buffer; ++it) { // search for MusicNote actors and make them flicker
+        for (Actor** it = &ActorMgr::instance()->actors.start.front(); it != ActorMgr::instance()->actors.end; ++it) { // search for MusicNote actors and make them flicker
             if (*it != nullptr) {
                 Actor& actor = **it;
                 if (actor.getProfileID() == ProfileID::MusicNote) {
@@ -194,7 +194,7 @@ u32 MusicNoteMgr::onExecute() {
     } else if (this->touched && this->timeLimit % 60 == 0 && this->timeLimit != 0) { // play sound effect every 2 seconds
         GameAudio::startSoundMap(SoundEffects::SE_SYS_SWITCH_CT, this->position);
     } else if (this->timeLimit == 0) {
-        for (Actor** it = ActorMgr::instance()->actors.start.buffer; it != ActorMgr::instance()->actors.end.buffer; ++it) { // search for MusicNote actors and delete them
+        for (Actor** it = &ActorMgr::instance()->actors.start.front(); it != ActorMgr::instance()->actors.end; ++it) { // search for MusicNote actors and delete them
             if (*it != nullptr) {
                 Actor& actor = **it;
                 if (actor.getProfileID() == ProfileID::MusicNote) {
@@ -304,7 +304,7 @@ void MusicNoteMgr::collisionCallback(HitboxCollider* hcSelf, HitboxCollider* hcO
     hcSelf->owner->isVisible = false;
     hcSelf->owner->removeHitboxColliders();
     if (hcOther->owner->type == StageActor::Type::Player) {
-        for (Actor** it = ActorMgr::instance()->actors.start.buffer; it != ActorMgr::instance()->actors.end.buffer; ++it) { // search for MusicNote actors and activates them if not already activated
+        for (Actor** it = &ActorMgr::instance()->actors.start.front(); it != ActorMgr::instance()->actors.end; ++it) { // search for MusicNote actors and activates them if not already activated
             if (*it != nullptr) {
                 Actor& actor = **it;
                 if (actor.getProfileID() == ProfileID::MusicNote) {

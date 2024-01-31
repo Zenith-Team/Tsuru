@@ -1,9 +1,9 @@
 #include "log.h"
 #include "types.h"
-#include "dynlibs/os/functions.h"
-#include "dynlibs/gx2/functions.h"
-#include "dynlibs/vpad/functions.h"
-#include "dynlibs/padscore/functions.h"
+#include "sdk/os/functions.h"
+#include "sdk/gx2/functions.h"
+#include "sdk/vpad/functions.h"
+#include "sdk/padscore/functions.h"
 #include "tsuru/save/system/savemgrsystem.h"
 
 /*

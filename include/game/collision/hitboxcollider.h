@@ -1,7 +1,8 @@
 #pragma once
 
-#include "dynlibs/os/functions.h"
-#include "sead/idisposer.h"
+#include "sdk/os/functions.h"
+#include "heap/seadDisposer.h"
+#include "math/seadBoundBox.h"
 
 class StageActor;
 
@@ -37,8 +38,8 @@ public:
     struct Info {
         static Info sDefault;
 
-        Vec2f offset;           // 0
-        Vec2f radius;           // 8
+        sead::Vector2f offset;  // 0
+        sead::Vector2f radius;  // 8
         Shape::__type__ shape;  // 10
         u32 _14;                // 14
         u32 _18;                // 18
@@ -47,7 +48,7 @@ public:
         u32 interactionMask;    // 24  Sets allowed interactions such as being pickup-able
         Callback callback;      // 28
 
-        void set(const Vec2f& offset, const Vec2f& radius, Shape::__type__ shape, u32 _14, u32 _18, u32 _1C, u32 collisionMask, u32 interactionMask, Callback callback) {
+        void set(const sead::Vector2f& offset, const sead::Vector2f& radius, Shape::__type__ shape, u32 _14, u32 _18, u32 _1C, u32 collisionMask, u32 interactionMask, Callback callback) {
             this->offset = offset;
             this->radius = radius;
             this->shape = shape;
@@ -102,7 +103,7 @@ public:
     f32 getCenterX() const;
 
     // Custom functions
-    void getRect(Rect& outRect);
+    void getRect(sead::BoundBox2f& outRect);
     static bool sCollidersOverlap(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 
     List::Node activeNode;      // 10
@@ -112,8 +113,8 @@ public:
     StageActor* owner;          // 40
     u32 _44;                    // 44
     u32 _48;                    // 48
-    Vec2f _4C;                  // 4C
-    Vec2f _54;                  // 54
+    sead::Vector2f _4C;         // 4C
+    sead::Vector2f _54;         // 54
     u32 _5C;                    // 5C
     u32 _60;                    // 60
     u32 _64;                    // 64

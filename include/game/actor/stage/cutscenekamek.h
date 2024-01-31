@@ -3,7 +3,7 @@
 #include "game/actor/stage/enemy.h"
 
 class CutsceneKamek : public Enemy {
-    SEAD_RTTI_OVERRIDE(CutsceneKamek, Enemy);
+    SEAD_RTTI_OVERRIDE_DECL(CutsceneKamek, Enemy);
 
 public:
     DECLARE_STATE(CutsceneKamek, CutsceneKamekState1);

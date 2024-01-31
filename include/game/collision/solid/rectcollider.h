@@ -3,7 +3,7 @@
 #include "game/collision/solid/polygoncollider.h"
 
 class RectCollider : public PolygonCollider {
-    SEAD_RTTI_OVERRIDE(RectCollider, PolygonCollider);
+    SEAD_RTTI_OVERRIDE_DECL(RectCollider, PolygonCollider);
 
 public:
     forceinline RectCollider() : PolygonCollider(4, points, nodes[0], nodes[1]) {
@@ -22,8 +22,8 @@ public:
 
     virtual ~RectCollider() { }
 
-    bool vf54(u8*, Vec2f*) override;
+    bool vf54(u8*, sead::Vector2f*) override;
 
-    Vec2f points[4];
+    sead::Vector2f points[4];
     Node  nodes[2][4];
 };

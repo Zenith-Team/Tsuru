@@ -4,7 +4,7 @@
 #include "game/effect/effect.h"
 
 class Scuttlebug : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(Scuttlebug, Enemy);
+    SEAD_RTTI_OVERRIDE(Scuttlebug, Enemy);
 
 public:
     Scuttlebug(const ActorBuildInfo* buildInfo);
@@ -55,7 +55,7 @@ REGISTER_PROFILE(Scuttlebug, ProfileID::Scuttlebug);
 PROFILE_RESOURCES(ProfileID::Scuttlebug, Profile::LoadResourcesAt::Course, "gasagoso");
 
 const HitboxCollider::Info Scuttlebug::collisionInfo = {
-    Vec2f(0.0f, -4.0f), Vec2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0xFFFFFFFF, 0xFFFBFFFF, 0, &Enemy::collisionCallback
+    sead::Vector2f(0.0f, -4.0f), sead::Vector2f(16.0f, 16.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0xFFFFFFFF, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 Scuttlebug::Scuttlebug(const ActorBuildInfo* buildInfo)
@@ -63,7 +63,7 @@ Scuttlebug::Scuttlebug(const ActorBuildInfo* buildInfo)
 { }
 
 u32 Scuttlebug::onCreate() {
-    this->rotation = Vec3u(fixDeg(90.0f), 0, 0);
+    this->rotation = sead::Vector3u(sead::Mathf::deg2idx(90.0f), 0, 0);
 
     this->hitboxCollider.init(this, &collisionInfo);
     this->addHitboxColliders();
@@ -86,7 +86,7 @@ u32 Scuttlebug::onCreate() {
 }
 
 u32 Scuttlebug::onExecute() {
-    Mtx34 mtx;
+    sead::Matrix34f mtx;
 
     mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
@@ -117,21 +117,12 @@ void Scuttlebug::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther
     if (hitType == Enemy::HitType::Collide) {
         this->damagePlayer(hcSelf, hcOther);
     } else if (hitType == Enemy::HitType::NormalJump || hitType == Enemy::HitType::SpinJump) {
-        this->killPlayerJump(hcOther->owner, 0.0f, &Scuttlebug::StateID_Die);
+        this->killPlayerJump(hcOther->owner, sead::Vector3f(0.0f, 0.0f, 0.0f), &Scuttlebug::StateID_Die);
     }
 }
 
 void Scuttlebug::collisionYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    u32 hitType = this->processCollision(hcSelf, hcOther, 0);
-
-    if (hitType == Enemy::HitType::Collide) {
-        this->damagePlayer(hcSelf, hcOther);
-    } else if (hitType == Enemy::HitType::NormalJump || hitType == Enemy::HitType::SpinJump) {
-        this->killPlayerJump(hcOther->owner, 0.0f, &Scuttlebug::StateID_Die);
-        Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
-        Vec3f effectPos(effectOrigin);
-        Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->scale);
-    }
+    this->collisionPlayer(hcSelf, hcOther);
 }
 
 bool Scuttlebug::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
@@ -139,8 +130,8 @@ bool Scuttlebug::collisionGroundPound(HitboxCollider* hcSelf, HitboxCollider* hc
 }
 
 bool Scuttlebug::collisionStar(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
-    Vec3f effectPos(effectOrigin);
+    sead::Vector3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+    sead::Vector3f effectPos(effectOrigin);
     Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->scale);
 
     this->isDeleted = true;

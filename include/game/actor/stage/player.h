@@ -6,7 +6,7 @@
 // TODO: Player virtuals, members
 
 class Player : public PlayerBase { // Size: 0x34D8
-    SEAD_RTTI_OVERRIDE(Player, PlayerBase);
+    SEAD_RTTI_OVERRIDE_DECL(Player, PlayerBase);
 
 public:
     Player(const ActorBuildInfo* buildInfo);
@@ -40,7 +40,7 @@ public:
     bool vf134() override;
     TallType getTallType(PowerupState::__type__ powerupState) override;
     void vf144() override;
-    void vf14C(Vec3f*, f32*) override;
+    void vf14C(sead::Vector3f*, f32*) override;
     u32 vf154() override;
     f32* vf15C() override;
     f32 vf164() override;
@@ -53,7 +53,7 @@ public:
     void vf1CC();
     void vf1D4(u32);
     bool vf1DC();
-    void vf1E4(const Vec3f&, u32);
+    void vf1E4(const sead::Vector3f&, u32);
     void vf1EC();
     void vf1F4(f32, u32);
     void vf1FC();
@@ -101,7 +101,7 @@ public:
     bool vf574() override;
     void vf57C(u32) override;
     f32 vf584() override;
-    void vf58C(Vec3f*) override;
+    void vf58C(sead::Vector3f*) override;
 
     void vf59C() override;
     void vf5A4() override;

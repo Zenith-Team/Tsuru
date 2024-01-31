@@ -1,7 +1,12 @@
 #pragma once
 
-#include "sead/heap.h"
-#include "sead/audiormtspeakermgr.h"
+#include "heap/seadHeap.h"
+
+namespace sead {
+
+class AudioRmtSpeakerMgrCafe;
+
+} // namespace sead
 
 class AudAudioSystem;
 class AudAudioPlayer;

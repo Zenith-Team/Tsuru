@@ -1,6 +1,7 @@
 #pragma once
 
-#include "sead/idisposer.h"
+#include "heap/seadDisposer.h"
+#include "math/seadBoundBox.h"
 
 class Level {
     SEAD_SINGLETON_DISPOSER(Level);
@@ -70,7 +71,7 @@ public:
 
     public:
         Sprite* getSprite(u32 id, Sprite*);
-        Location* getLocation(Rect* outRect, u8 id);
+        Location* getLocation(sead::BoundBox2f* outRect, u8 id);
         Path* getPath(u8 id);
         PathNode* getPathNodes(u32 id);
 

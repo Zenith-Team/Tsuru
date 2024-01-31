@@ -5,7 +5,7 @@
 #include "log.h"
 
 class Flaptor : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(Flaptor, Enemy);
+    SEAD_RTTI_OVERRIDE(Flaptor, Enemy);
 
 public:
     ENUM_CLASS(MoveType,
@@ -27,7 +27,7 @@ public:
     static const HitboxCollider::Info collisionInfo;
 
     ModelWrapper* model;
-    Vec3f startPosition;
+    sead::Vector3f startPosition;
     f32 threshold;
     f32 timer;
     u8 moveType;
@@ -49,7 +49,7 @@ REGISTER_PROFILE(Flaptor, ProfileID::Flaptor);
 PROFILE_RESOURCES(ProfileID::Flaptor, Profile::LoadResourcesAt::Course, "mokinger");
 
 const HitboxCollider::Info Flaptor::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(10.0f, 10.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
+    sead::Vector2f(0.0f, 0.0f), sead::Vector2f(10.0f, 10.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 Flaptor::Flaptor(const ActorBuildInfo* buildInfo)
@@ -75,7 +75,7 @@ u32 Flaptor::onCreate() {
     this->moveType = this->eventID1 & 0xF; // nybble 2
 
     this->direction = Direction::Right;
-    this->scale = 0.175f;
+    this->scale = sead::Vector3f(0.175f, 0.175f, 0.175f);
 
     if (this->moveType > MoveType::Vertical) {
         PRINT(LogColor::Red, "Flaptor invalid move type");
@@ -88,8 +88,8 @@ u32 Flaptor::onCreate() {
 }
 
 u32 Flaptor::onExecute() {
-    Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position + Vec3f(0.0f, -8.0f, 0.0f));
+    sead::Matrix34f mtx;
+    mtx.makeRTIdx(this->rotation, this->position + sead::Vector3f(0.0f, -8.0f, 0.0f));
 
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
@@ -114,7 +114,7 @@ void Flaptor::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
     if (hitType == HitType::Collide) {
         this->damagePlayer(hcSelf, hcOther);
     } else {
-        this->killPlayerJump(hcOther->owner, 0.0f, &Flaptor::StateID_DieSquish);
+        this->killPlayerJump(hcOther->owner, sead::Vector3f(0.0f, 0.0f, 0.0f), &Flaptor::StateID_DieSquish);
     }
 }
 
@@ -127,7 +127,7 @@ void Flaptor::beginState_Idle() {
 void Flaptor::executeState_Idle() {
     switch (this->moveType) {
         case MoveType::Stationary: {
-            sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->directionToPlayerH(this->position)], fixDeg(4.0f));
+            sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->directionToPlayerH(this->position)], sead::Mathf::deg2idx(4.0f));
 
             sead::Mathf::chase(&this->position.x, this->startPosition.x, 1.0f);
             sead::Mathf::chase(&this->position.y, this->startPosition.y, 1.0f);
@@ -136,7 +136,7 @@ void Flaptor::executeState_Idle() {
         }
 
         case MoveType::Horizontal: {
-            sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->direction], fixDeg(4.0f));
+            sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->direction], sead::Mathf::deg2idx(4.0f));
 
             if (this->position.x - this->startPosition.x < -(this->threshold)) {
                 this->direction = Direction::Right;
@@ -158,7 +158,7 @@ void Flaptor::executeState_Idle() {
         }
 
         case MoveType::Vertical: {
-            sead::Mathu::chase(&this->rotation.x, Direction::directionToRotationList[this->direction], fixDeg(4.0f));
+            sead::Mathu::chase(&this->rotation.x, Direction::directionToRotationList[this->direction], sead::Mathf::deg2idx(4.0f));
 
             if (this->position.y - this->startPosition.y < -(this->threshold)) {
                 this->direction = Direction::Up;

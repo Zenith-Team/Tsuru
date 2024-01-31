@@ -1,6 +1,6 @@
 #pragma once
 
-#include "agl/lyr/layer.h"
+#include "layer/aglLayer.h"
 
 class Model;
 class ModelWrapper;
@@ -20,7 +20,7 @@ public:
     // @param position Position to draw the tile at
     // @param rotation Rotation to be applied to the tile
     // @param scale Scale to be applied to the tile
-    void drawTile(u16 tile, const Vec3f& position, const u32& rotation, const Vec3f& scale);
+    void drawTile(u16 tile, const sead::Vector3f& position, const u32& rotation, const sead::Vector3f& scale);
 
     void setTargetLayer(agl::lyr::Layer* layer, u32);
     void resetTargetLayer();

@@ -1,8 +1,9 @@
 #pragma once
 
 #include "game/collision/physicsmgr.h"
-#include "sead/runtimetypeinfo.h"
-#include "sead/idisposer.h"
+#include "prim/seadRuntimeTypeInfo.h"
+#include "heap/seadDisposer.h"
+#include "math/seadBoundBox.h"
 
 struct StageActorCallbackTable;
 
@@ -34,8 +35,8 @@ public:
         struct Sensor {
             Sensor();
 
-            Vec2f point1;  // 0   Position relative to parent's center, Inited to (0, 0)
-            Vec2f point2;  // 8   Position relative to parent's center, Inited to (1, 0)
+            sead::Vector2f point1;  // 0   Position relative to parent's center, Inited to (0, 0)
+            sead::Vector2f point2;  // 8   Position relative to parent's center, Inited to (1, 0)
         };
 
     public:
@@ -62,11 +63,11 @@ public:
     };
 
     struct OwnerInfo {
-        Vec3f* position;   // 0
-        Vec3f* _4;         // 4
-        u8* layer;         // 8
-        u8* _C;            // C
-        s8* playerID;      // 10
+        sead::Vector3f* position;   // 0
+        sead::Vector3f* _4;         // 4
+        u8* layer;                  // 8
+        u8* _C;                     // C
+        s8* playerID;               // 10
     };
 
     ENUM_CLASS(Type,
@@ -145,41 +146,41 @@ public:
 public:
     ColliderBase();
     virtual ~ColliderBase() { }
-    SEAD_RTTI_BASE(ColliderBase);
+    SEAD_RTTI_BASE_DECL(ColliderBase);
     virtual bool vf24(u32*, u32);
     virtual u32 vf2C(u32*); // deleted
     virtual void vf34() = 0;
     virtual void execute() = 0;
-    virtual bool vf44(Node2*, u8*, Vec2f*, Vec2f*, u8) = 0;
-    virtual bool vf4C(Node2*, Vec2f*, Vec2f*, s32 sensorID, PhysicsMgr* physicsMgr) = 0;
-    virtual bool vf54(u8*, Vec2f*) = 0;
+    virtual bool vf44(Node2*, u8*, sead::Vector2f*, sead::Vector2f*, u8) = 0;
+    virtual bool vf4C(Node2*, sead::Vector2f*, sead::Vector2f*, s32 sensorID, PhysicsMgr* physicsMgr) = 0;
+    virtual bool vf54(u8*, sead::Vector2f*) = 0;
     virtual bool vf5C(u32*) = 0;
     virtual void vf64();
     virtual void vf6C() = 0;
     virtual void vf74(u32*) = 0;
-    virtual bool vf7C(Vec2f*, f32) = 0;
+    virtual bool vf7C(sead::Vector2f*, f32) = 0;
 
     void setType(Type::__type__ type);
     void setSolidityType(SolidityType::__type__ solidityType);
     void setSurfaceType(SurfaceType::__type__ surfaceType);
 
     List::Node _10[8];                          // 10
-    Rect rect;                                  // 70
-    Vec2f _80;                                  // 80
+    sead::BoundBox2f rect;                      // 70
+    sead::Vector2f _80;                         // 80
     u32 _88;                                    // 88
     u32 _8C;                                    // 8C
     StageActor* owner;                          // 90
     u32 _94;                                    // 94
     OwnerInfo ownerInfo;                        // 98
-    Vec2f offset;                               // AC
-    Vec2f _B4;                                  // B4
-    Vec2f _BC;                                  // BC
-    Vec2f _C4;                                  // C4
-    Vec2f _CC;                                  // CC
-    Vec2f _D4;                                  // D4
+    sead::Vector2f offset;                      // AC
+    sead::Vector2f _B4;                         // B4
+    sead::Vector2f _BC;                         // BC
+    sead::Vector2f _C4;                         // C4
+    sead::Vector2f _CC;                         // CC
+    sead::Vector2f _D4;                         // D4
     u32 _DC;                                    // DC
     u32 _E0;                                    // E0
-    Rect _E4;                                   // E4   //? Possible Vec4
+    sead::BoundBox2f _E4;                       // E4   //? Possible Vec4
     u32 rotation;                               // F4
     u32 _F8;                                    // F8
     List _FC[4];                                // FC
@@ -192,6 +193,6 @@ public:
     void* _144;                                 // 144
     void* _148;                                 // 148
     void* _14C;                                 // 14C
-    StageActorCallbackTable** callbackTable;   // 150
+    StageActorCallbackTable** callbackTable;    // 150
     u32 _154;                                   // 154
 };

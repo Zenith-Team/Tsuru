@@ -1,11 +1,11 @@
 #pragma once
 
-#include "sead/idisposer.h"
-#include "sead/tlist.h"
-#include "sead/ptrarray.h"
-#include "agl/texturesampler.h"
-#include "agl/lyr/renderinfo.h"
-#include "nw/eft.h"
+#include "heap/seadDisposer.h"
+#include "container/seadTList.h"
+#include "container/seadPtrArray.h"
+#include "common/aglTextureSampler.h"
+#include "layer/aglRenderInfo.h"
+#include "nw/eft/eft_Emitter.h"
 
 class LevelEffect;
 class PtclLightMgr;

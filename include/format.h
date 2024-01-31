@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/safestring.h"
+#include "prim/seadSafeString.h"
 #include "math/functions.h"
 
 // Converts an unsigned 64 bit integer to a string

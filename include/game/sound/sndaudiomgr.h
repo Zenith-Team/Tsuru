@@ -1,8 +1,9 @@
 #pragma once
 
 #include "game/sound/audaudiomgr.h"
-#include "sead/idisposer.h"
-#include "nw/snd.h"
+#include "heap/seadDisposer.h"
+#include "nw/snd/soundhandle.h"
+#include "nw/snd/soundarchive.h"
 
 class SndAudioMgr : public AudAudioMgr {
     SEAD_SINGLETON_DISPOSER(SndAudioMgr);

@@ -9,7 +9,7 @@
 #include "ghs.h"
 
 class StringBank : public Actor {
-    SEAD_RTTI_OVERRIDE_IMPL(StringBank, Actor);
+    SEAD_RTTI_OVERRIDE(StringBank, Actor);
 
 public:
     ENUM_CLASS(Type,
@@ -60,7 +60,7 @@ public:
         __memzero(strSecondary, 17);
         __memzero(strLast, 17);
         ActorBuffer* actors = &ActorMgr::instance()->actors;
-        for (u32 i = 0; i < actors->start.size; i++) {
+        for (u32 i = 0; i < actors->start.size(); i++) {
             StringBank* strBank = sead::DynamicCast<StringBank, Actor>(actors->start[i]);
             if (strBank == self || !strBank) continue;
             u8 nybbles[12]; StringBank::getNybbles(strBank, nybbles);

@@ -2,10 +2,10 @@
 ---
 Files:
 # System
-  - save/system/customsavemgr.cpp
-  - save/system/savemgrsystem.cpp
+  - source/save/system/customsavemgr.cpp
+  - source/save/system/savemgrsystem.cpp
 # Managers
-  - save/managers/tsurusavemgr.cpp
+  - source/save/managers/tsurusavemgr.cpp
 Hooks:
 # Save all managers' data
   - type: branch

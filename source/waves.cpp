@@ -4,15 +4,15 @@
 #include "game/actor/stage/quicksand.h"
 #include "game/tilemgr.h"
 
-const ActorInfo WavyWaterActorInfo = { Vec2i(8, 0), Vec2i(0, 0), Vec2i(128, 128), 0, 0, 0, 0, 4 };
+const ActorInfo WavyWaterActorInfo = { sead::Vector2i(8, 0), sead::Vector2i(0, 0), sead::Vector2i(128, 128), 0, 0, 0, 0, 4 };
 REGISTER_PROFILE(Water, ProfileID::WavyWater, "WavyWater", &WavyWaterActorInfo);
 PROFILE_RESOURCES(ProfileID::WavyWater, Profile::LoadResourcesAt::Course, "obj_waterfull", "obj_waterhalf");
 
-const ActorInfo WavyPoisonActorInfo = { Vec2i(8, 0), Vec2i(0, 0), Vec2i(24, 24), 0, 0, 0, 0, 4 };
+const ActorInfo WavyPoisonActorInfo = { sead::Vector2i(8, 0), sead::Vector2i(0, 0), sead::Vector2i(24, 24), 0, 0, 0, 0, 4 };
 REGISTER_PROFILE(Poison, ProfileID::WavyPoison, "WavyPoison", &WavyPoisonActorInfo);
 PROFILE_RESOURCES(ProfileID::WavyPoison, Profile::LoadResourcesAt::Course, "obj_poisonwater", "obj_magmadeco");
 
-const ActorInfo WavyQuicksandActorInfo = { Vec2i(8, 0), Vec2i(0, 0), Vec2i(128, 128), 0, 0, 0, 0, 4 };
+const ActorInfo WavyQuicksandActorInfo = { sead::Vector2i(8, 0), sead::Vector2i(0, 0), sead::Vector2i(128, 128), 0, 0, 0, 0, 4 };
 REGISTER_PROFILE(Quicksand, ProfileID::WavyQuicksand, "WavyQuicksand", &WavyQuicksandActorInfo);
 PROFILE_RESOURCES(ProfileID::WavyQuicksand, Profile::LoadResourcesAt::Course, "obj_quicksand");
 

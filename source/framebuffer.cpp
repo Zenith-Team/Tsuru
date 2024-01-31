@@ -1,83 +1,95 @@
-#include "agl/lyr/renderer.h"
-#include "sead/viewport.h"
-#include "agl/renderbuffer.h"
-#include "sead/color.h"
+#include "layer/aglRenderer.h"
+#include "gfx/seadViewport.h"
+#include "common/aglRenderBuffer.h"
+#include "common/aglRenderTarget.h"
+#include "gfx/seadColor.h"
 #include "game/effect/ptclmgr.h"
-#include "agl/lyr/renderinfo.h"
-#include "agl/renderbuffer.h"
+#include "layer/aglRenderInfo.h"
+#include "layer/aglDrawMethod.h"
+#include "layer/aglLayer.h"
 
-namespace agl { namespace lyr {
+class TsuruAglLyrRenderer : public agl::lyr::Renderer {
+    bool drawTV_(agl::lyr::DisplayType displayType) const;
+    bool drawDRC_(agl::lyr::DisplayType displayType) const;
+};
 
-bool Renderer::drawCustomTV(DisplayType displayType) const {
-    if (this->gpuCounter % this->gpuCounterPeriod)
+bool TsuruAglLyrRenderer::drawTV_(agl::lyr::DisplayType displayType) const  {
+    if (mGpuCounter % mGpuCounterPeriod)
         return false;
 
-    if (this->flags.isOffBit(4) && this->flags.isOffBit(0)) {
-        agl::RenderBuffer* tvBuffer = this->renderBuffers[DisplayType_TopTV];
+    if (mFlag.isOffBit(4) && mFlag.isOffBit(0)) {
+        agl::RenderBuffer* renderBuffer = mRenderBuffer[agl::lyr::cDisplayType_Top_TV];
+        if (renderBuffer != nullptr) {
+            u32 clearFlag = 1;
+            if (renderBuffer->getRenderTargetDepth() != nullptr)
+                clearFlag = 3;
 
-        if (tvBuffer) {
-            u32 clearFlags = 1;
-            if (tvBuffer->targetDepth)
-                clearFlags = 3;
+            renderBuffer->bind();
 
-            tvBuffer->bind();
+            sead::Viewport viewport = sead::Viewport(*renderBuffer);
+            viewport.apply(*renderBuffer);
 
-            sead::Viewport viewport(*tvBuffer);
-            viewport.apply(*tvBuffer);
-
-            tvBuffer->clear(clearFlags, sead::colorBlack, 1.0f, 0);
+            renderBuffer->clear(
+                clearFlag,
+                sead::Color4f::cBlack,
+                1.0f,
+                0
+            );
         }
 
-        this->flags.resetBit(8);
+        // Render buffer clear bit
+        mFlag.resetBit(8);
     }
 
+    // This must return true
     return this->draw(displayType);
 }
 
-bool Renderer::drawCustomDRC(DisplayType displayType) const {
-    if (this->gpuCounter % this->gpuCounterPeriod)
+bool TsuruAglLyrRenderer::drawDRC_(agl::lyr::DisplayType displayType) const {
+    if (mGpuCounter % mGpuCounterPeriod)
         return false;
 
-    if (this->flags.isOffBit(4) && this->flags.isOffBit(0)) {
-        agl::RenderBuffer* drcBuffer = this->renderBuffers[DisplayType_BottomDRC];
+    if (mFlag.isOffBit(4) && mFlag.isOffBit(0)) {
+        agl::RenderBuffer* renderBuffer = mRenderBuffer[agl::lyr::cDisplayType_Bottom_DRC];
+        if (renderBuffer != nullptr) {
+            u32 clearFlag = 1;
+            if (renderBuffer->getRenderTargetDepth() != nullptr)
+                clearFlag = 3;
 
-        if (drcBuffer) {
-            u32 clearFlags = 1;
-            if (drcBuffer->targetDepth)
-                clearFlags = 3;
+            renderBuffer->bind();
 
-            drcBuffer->bind();
+            sead::Viewport viewport = sead::Viewport(*renderBuffer);
+            viewport.apply(*renderBuffer);
 
-            sead::Viewport viewport(*drcBuffer);
-            viewport.apply(*drcBuffer);
-
-            drcBuffer->clear(clearFlags, sead::colorBlack, 1.0f, 0);
+            renderBuffer->clear(clearFlag, sead::Color4f::cBlack, 1.0f, 0);
         }
 
-        this->flags.resetBit(8);
+        // Render buffer clear bit
+        mFlag.resetBit(8);
     }
 
+    // This must return true
     return this->draw(displayType);
 }
-
-} }
 
 class DistorterFixer {
 public:
     static DistorterFixer instance;
-    static agl::lyr::DrawMethodImpl<DistorterFixer> drawMethod;
+    static agl::lyr::DrawMethod drawMethod;
+    
     agl::TextureSampler textureSampler;
 
     void fixDistortion(const agl::lyr::RenderInfo& renderInfo) {
-        textureSampler.applyTextureData(static_cast<agl::RenderBuffer*>(renderInfo.frameBuffer)->targetColors[0]->textureData);
+        textureSampler.applyTextureData(renderInfo.getRenderBuffer()->getRenderTargetColor()->getTextureData());
         PtclMgr::instance()->setFrameBufferTexture(textureSampler);
     }
 };
 
 DistorterFixer DistorterFixer::instance;
-agl::lyr::DrawMethodImpl<DistorterFixer> DistorterFixer::drawMethod;
+agl::lyr::DrawMethod DistorterFixer::drawMethod;
 
 void addDistorterFixer() {
-    DistorterFixer::drawMethod.priority = 999999;
-    BIND_DRAW_METHOD_TO_RENDERSTEP(DistorterFixer::drawMethod, "DistorterFixer", &DistorterFixer::fixDistortion, 0x7, &DistorterFixer::instance, 3);
+    DistorterFixer::drawMethod.setPriority(999999);
+    DistorterFixer::drawMethod.bind(&DistorterFixer::instance, &DistorterFixer::fixDistortion, "DistorterFixer");
+    agl::lyr::Renderer::instance()->getLayer(7)->pushBackDrawMethod(3, &DistorterFixer::drawMethod);
 }

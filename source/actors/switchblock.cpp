@@ -9,7 +9,7 @@
 #define SwitchBlockState TsuruSaveMgr::sSaveData.switchBlockBlue[SaveMgr::instance()->saveData->header.lastSessionSaveSlot]
 
 class SwitchBlock : public BlockWrapper {
-    SEAD_RTTI_OVERRIDE_IMPL(SwitchBlock, BlockWrapper);
+    SEAD_RTTI_OVERRIDE(SwitchBlock, BlockWrapper);
 
 public:
     SwitchBlock(const ActorBuildInfo* buildInfo);
@@ -26,7 +26,7 @@ public:
 };
 
 const ActorInfo SwitchBlockActorInfo = {
-    Vec2i(8, -16), Vec2i(8, -8), Vec2i(0x100, 0x100), 0, 0, 0, 0, ActorInfo::Flags::Unknown1
+    sead::Vector2i(8, -16), sead::Vector2i(8, -8), sead::Vector2i(0x100, 0x100), 0, 0, 0, 0, ActorInfo::Flags::Unknown1
 };
 
 REGISTER_PROFILE(SwitchBlock, ProfileID::SwitchBlock, "SwitchBlock", &SwitchBlockActorInfo, 0x1002);
@@ -50,8 +50,8 @@ u32 SwitchBlock::onCreate() {
 }
 
 u32 SwitchBlock::onExecute() {
-    Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position + Vec3f(0, 8, 0));
+    sead::Matrix34f mtx;
+    mtx.makeRTIdx(this->rotation, this->position + sead::Vector3f(0, 8, 0));
     this->model->setMtx(mtx);
     this->model->updateModel();
 
@@ -71,7 +71,7 @@ void SwitchBlock::spawnItemUp() {
 
     isBlue = !isBlue;
 
-    for (Actor** actor = ActorMgr::instance()->actors.start.buffer; actor != ActorMgr::instance()->actors.end.buffer; actor++) {
+    for (Actor** actor = &ActorMgr::instance()->actors.start.front(); actor != ActorMgr::instance()->actors.end; actor++) {
         if (*actor == nullptr) {
             continue;
         }

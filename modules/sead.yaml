@@ -1,8 +1,9 @@
 
 ---
 Files:
-  - sead/primitiverenderer.cpp
-  - sead/sharcarchiveres.cpp
+  - source/sead/primitiverenderer.cpp
+  - source/sead/sharcarchiveres.cpp
+  - source/sead/heap.cpp
 Hooks:
 # Restore sead::PrimitiveRendererCafe's deleted functions
   - type: funcptr
@@ -23,3 +24,23 @@ Hooks:
   - type: funcptr
     addr: "0x10190F8C"
     func: drawCircle32Impl__Q2_4sead21PrimitiveRendererCafeFRCQ2_4sead17Matrix34__tm__2_fRCQ2_4sead7Color4f
+# Restore sead::Heap derivative deleted functions
+  # UnitHeap
+  - type: funcptr
+    addr: "0x101914A4"
+    func: getStartAddress__Q2_4sead8UnitHeapCFv
+  - type: funcptr
+    addr: "0x101914B4"
+    func: getSize__Q2_4sead8UnitHeapCFv
+  # ExpHeap
+  - type: funcptr
+    addr: "0x10191094"
+    func: getSize__Q2_4sead7ExpHeapCFv
+  # FrameHeap
+  - type: funcptr
+    addr: "0x101911C4"
+    func: getSize__Q2_4sead9FrameHeapCFv
+  # SeparateHeap
+  - type: funcptr
+    addr: "0x101A4658"
+    func: getStartAddress__Q2_4sead12SeparateHeapCFv

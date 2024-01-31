@@ -1,0 +1,10 @@
+
+---
+Files:
+  - lib/sdk/src/os.cpp
+  - lib/sdk/src/gx2.cpp
+  - lib/sdk/src/h264.cpp
+  - lib/sdk/src/padscore.cpp
+  - lib/sdk/src/vpad.cpp
+  - lib/sdk/src/fs.cpp
+Hooks: []

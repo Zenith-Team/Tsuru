@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/idisposer.h"
+#include "heap/seadDisposer.h"
 
 class PlayerLookTarget : public sead::IDisposer { // Size: 0x2C
 public:
@@ -8,7 +8,7 @@ public:
     virtual ~PlayerLookTarget();
 
     u32 ownerID; // Actor ID of owner
-    Vec2f targetPosition;
+    sead::Vector2f targetPosition;
     u32 _1C;
     u32 _20;
     u32 _24;

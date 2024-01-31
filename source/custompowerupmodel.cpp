@@ -36,7 +36,7 @@ void CustomPowerupModel::draw_(PlayerModel* playerModel) {
             s32 headBoneID = headModel->searchBoneIndex("player_head");
             s32 shellBoneID = bodyModel->searchBoneIndex("spin");
 
-            Mtx34 mtx;
+            sead::Matrix34f mtx;
 
             headModel->getBoneWorldMatrix(headBoneID, &mtx);
             this->hammerHelmet->setMtx(mtx);

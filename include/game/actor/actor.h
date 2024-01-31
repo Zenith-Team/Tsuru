@@ -1,12 +1,12 @@
 #pragma once
 
-#include "sead/runtimetypeinfo.h"
+#include "prim/seadRuntimeTypeInfo.h"
 #include "game/actor/actorinfo.h"
 #include "game/actor/actorbuildinfo.h"
-#include "sead/offsetlist.h"
+#include "container/seadOffsetList.h"
 
 class Actor { // Size: 0x50
-    SEAD_RTTI_BASE(Actor);
+    SEAD_RTTI_BASE_DECL(Actor);
 
 public:
     Actor(const ActorBuildInfo* buildInfo);

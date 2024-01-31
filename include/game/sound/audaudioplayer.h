@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/audioplayer.h"
+#include "audio/cafe/seadAudioPlayerCafe.h"
 
 class AudAudioPlayer : public sead::AudioPlayerCafe {
     // Doesn't override RTTI bruh

@@ -8,13 +8,13 @@
 #include "game/playermgr.h"
 #include "game/direction.h"
 #include "math/easing.h"
-#include "sead/random.h"
-#include "sead/mathcalccommon.h"
+#include "random/seadGlobalRandom.h"
+#include "math/seadMathCalcCommon.h"
 #include "game/actor/actormgr.h"
 #include "log.h"
 
 class Kamiya : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(Kamiya, Enemy);
+    SEAD_RTTI_OVERRIDE(Kamiya, Enemy);
 
 public:
     Kamiya(const ActorBuildInfo* buildInfo);
@@ -67,7 +67,7 @@ public:
     bool lefted;
 
     //* Teleporting
-    Vec2f targetPosition;
+    sead::Vector2f targetPosition;
 
     //* Snipe
     u16 snipeTimer;
@@ -106,7 +106,7 @@ const u32 Kamiya::possibleProjectiles[] = {
 };
 
 const HitboxCollider::Info Kamiya::hitboxInfo = {
-    Vec2f(0.0f, 8.0f), Vec2f(16.0f, 10.0f), HitboxCollider::Shape::Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFBFFFF, 0, &Enemy::collisionCallback
+    sead::Vector2f(0.0f, 8.0f), sead::Vector2f(16.0f, 10.0f), HitboxCollider::Shape::Rectangle, 3, 0, 0xFFFFFFFF, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 Kamiya::Kamiya(const ActorBuildInfo* buildInfo)
@@ -129,7 +129,7 @@ Kamiya::Kamiya(const ActorBuildInfo* buildInfo)
     , fleeResets(0)
     , lefted(false)
     , attackCount(0)
-    , targetPosition(0.0f)
+    , targetPosition(0.0f, 0.0f)
     , isFirstSpawn(true)
     , snipeTimer(0)
 { }
@@ -148,7 +148,7 @@ u32 Kamiya::onCreate() {
 }
 
 u32 Kamiya::onExecute() {
-    Mtx34 mtx;
+    sead::Matrix34f mtx;
     mtx.makeRTIdx(this->rotation, this->position);
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
@@ -227,8 +227,7 @@ bool Kamiya::collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOt
 /** STATE: Spawning */
 
 void Kamiya::beginState_Spawning() {
-    this->scale = (0.0f);
-    this->scale.z = 1.0f;
+    this->scale = sead::Vector3f(0.0f, 0.0f, 1.0f);
 
     this->easerX.set(&Easing::circOut, 0.0f, 0.75f, 0.025f);
 }
@@ -237,7 +236,7 @@ void Kamiya::executeState_Spawning() {
     if (this->easerX.ease(this->targetScale) && this->model->sklAnims[0]->frameCtrl.isDone())
         this->doStateChange(&Kamiya::StateID_Flying);
 
-    this->scale = (this->targetScale);
+    this->scale.set(this->targetScale, this->targetScale, this->targetScale);
 }
 
 void Kamiya::endState_Spawning() {
@@ -274,14 +273,14 @@ void Kamiya::executeState_Flying() {
     this->position.x += this->speed.x;
 
     // Face player
-    sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->direction], fixDeg(2.5f));
+    sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->direction], sead::Mathf::deg2idx(2.5f));
 
     this->flyTimer++;
 
-    this->rotation.z = fixDeg(this->speed.x * 5.0f);
+    this->rotation.z = sead::Mathf::deg2idx(this->speed.x * 5.0f);
 
     if (this->flyTimer > 240 && sead::Mathf::abs(this->speed.x) < 0.25f) {
-        switch (sead::randU32(3)) {
+        switch (sead::GlobalRandom::instance()->getU32(3)) {
             case 0:  this->flyTimer = 120;                            break;
             case 1:  this->doStateChange(&Kamiya::StateID_Attacking); break;
             case 2:  this->doStateChange(&Kamiya::StateID_Snipe);     break;
@@ -291,7 +290,7 @@ void Kamiya::executeState_Flying() {
         return;
     }
 
-    this->rotation.z = fixDeg(this->speed.x * 5.0f);
+    this->rotation.z = sead::Mathf::deg2idx(this->speed.x * 5.0f);
 }
 
 void Kamiya::endState_Flying() { }
@@ -311,7 +310,7 @@ void Kamiya::executeState_Attacking() {
         ActorBuildInfo buildInfo = { 0 };
         buildInfo.position = this->position;
         buildInfo.parentID = this->id;
-        buildInfo.profile = Profile::get(Kamiya::possibleProjectiles[sead::randU32(4)]);
+        buildInfo.profile = Profile::get(Kamiya::possibleProjectiles[sead::GlobalRandom::instance()->getU32(4)]);
         ActorMgr::instance()->create(buildInfo, 0);
 
         this->projectileSpawned = true;
@@ -356,13 +355,13 @@ void Kamiya::executeState_Fleeing() {
     sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->direction], 25000000);
 
     // Don't unfairly flee forever (2 or 3 max)
-    if (this->fleeResets > 2 + sead::randBool()) {
+    if (this->fleeResets > 2 + sead::GlobalRandom::instance()->getBool()) {
         this->doStateChange(&Kamiya::StateID_Flying);
         this->fleeResets = 0;
     }
 
     if (this->fleeTimer > 240) {
-        if (sead::randBool())
+        if (sead::GlobalRandom::instance()->getBool())
             this->doStateChange(&Kamiya::StateID_Flying);
         else {
             this->fleeTimer = 120;
@@ -392,7 +391,7 @@ void Kamiya::endState_Dying() { }
 void Kamiya::beginState_Damage() {
     this->model->loopSklAnims(true);
     this->model->playSklAnim("fly_damage_s");
-    this->easerY.set(&Easing::circInOut, unfixDeg(this->rotation.y), 360.0f, 3.33f);
+    this->easerY.set(&Easing::circInOut,sead::Mathf::idx2deg(this->rotation.y), 360.0f, 3.33f);
     this->easerExtra.set(&Easing::circInOut, this->scale.x, 0.0f, 3.33f);
     this->removeHitboxColliders();
 }
@@ -404,8 +403,8 @@ void Kamiya::executeState_Damage() {
     if (spin && scale)
         this->doStateChange(&Kamiya::StateID_Teleport);
 
-    this->rotation.y = fixDeg(this->spawnRotationY);
-    this->scale = (this->targetScale);
+    this->rotation.y = sead::Mathf::deg2idx(this->spawnRotationY);
+    this->scale.set(this->targetScale, this->targetScale, this->targetScale);
 }
 
 void Kamiya::endState_Damage() {}
@@ -414,18 +413,18 @@ void Kamiya::endState_Damage() {}
 
 void Kamiya::beginState_Teleport() {
     this->removeHitboxColliders();
-    if (sead::randBool())
+    if (sead::GlobalRandom::instance()->getBool())
         this->targetPosition = this->targetPlayer->get2DPosition();
     else
         this->targetPosition = this->get2DPosition();
 
-    targetPosition.x += sead::randF32(-100.0f, 100.0f) * (sead::randBool() + 1);
+    targetPosition.x += sead::GlobalRandom::instance()->getF32Range(-100.0f, 100.0f) * (sead::GlobalRandom::instance()->getBool() + 1);
 
     this->easerX.set(&Easing::circInOut, this->position.x, targetPosition.x, 3.33f);
     this->easerY.set(&Easing::circInOut, this->position.y, targetPosition.y, 3.33f);
 
-    Vec3u rotation(0.0f);
-    Vec3f scale(0.5f);
+    sead::Vector3u rotation(0.0f, 0.0f, 0.0f);
+    sead::Vector3f scale(0.5f, 0.5f, 0.5f);
     Effect::spawn(RP_Bunbun_ScaleUp_0, &this->position, &rotation, &scale);
 }
 

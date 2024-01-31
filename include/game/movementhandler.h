@@ -16,17 +16,17 @@ public:
 public:
     MovementHandler();
 
-    void link(const Vec3f& position, u32 typeMask, u8 movementID);
+    void link(const sead::Vector3f& position, u32 typeMask, u8 movementID);
     void execute();
     u32 getMaskForMovementType(u32 movementType);
 
     DECLARE_STATE(MovementHandler, FindController);
     DECLARE_STATE(MovementHandler, Linked);
 
-    Vec3f position;                       // 0
-    Vec3f _C;                             // C
-    Vec3f _18;                            // 18
-    Vec3f _24;                            // 24
+    sead::Vector3f position;              // 0
+    sead::Vector3f _C;                    // C
+    sead::Vector3f _18;                   // 18
+    sead::Vector3f _24;                   // 24
     u32 _30;                              // 30
     u32 _34;                              // 34
     u32 _38;                              // 38

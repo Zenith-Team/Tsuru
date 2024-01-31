@@ -4,7 +4,7 @@
 #include "game/collision/actorphysicsmgr.h"
 
 class PhysicsActor : public StageActor { // Size: 0x17A0
-    SEAD_RTTI_OVERRIDE(PhysicsActor, StageActor);
+    SEAD_RTTI_OVERRIDE_DECL(PhysicsActor, StageActor);
 
 public:
     PhysicsActor(const ActorBuildInfo* buildInfo);
@@ -39,12 +39,17 @@ public:
     virtual void vf14C(StageActor*);
     virtual bool vf154();
     // @param dest Destination position
-    virtual void move(Vec2f& dest);
+    virtual void move(sead::Vector2f& dest);
     // @param ySpeed Target Y speed to be set to
     virtual void setYSpeed(f32 ySpeed);
     virtual u32 vf16C();
     virtual u32 vf174();
-    virtual void getRect(Rect& rect);
+    virtual void getRect(sead::BoundBox2f& box) {
+        box.set(
+            this->position.x - 16.0f, this->position.y,
+            this->position.x + 16.0f, this->position.y + 32.0f
+        );
+    }
 
     void handleGravity();
     void handleSpeed();
@@ -65,8 +70,8 @@ public:
 
         TileChecker tileChecker(checkParam);
 
-        Vec2f a(this->position.x, this->position.y);
-        Vec2f b(this->position.x + xOffset, this->position.y + yOffset);
+        sead::Vector2f a(this->position.x, this->position.y);
+        sead::Vector2f b(this->position.x + xOffset, this->position.y + yOffset);
 
         return tileChecker.check(nullptr, a, b, 8);
     }
@@ -75,15 +80,15 @@ public:
     ActorPhysicsMgr physicsMgr;         // 280
     f32 _1760;                          // 1760 Inited to 0
     f32 _1764;                          // 1764 Inited to
-    Vec3f* _1768;                       // 1768 Inited to &position
+    sead::Vector3f* _1768;              // 1768 Inited to &position
     u8 _176C;                           // 176C Inited to 0
     u8 _176D;                           // 176D Padding
     u8 _176E;                           // 176E Padding
     u8 _176F;                           // 176F Padding
     u32 _1770;                          // 1770 Inited to 0
     f32 _1774;                          // 1774 Inited to 1.0
-    Vec2f _1778;                        // 1778 Inited to 0
-    Vec2f _1780;                        // 1780 Inited to 0
+    sead::Vector2f _1778;               // 1778 Inited to 0
+    sead::Vector2f _1780;               // 1780 Inited to 0
     f32 maxYSpeed;                      // 1788 Inited to 1.5
     f32 minYSpeed;                      // 178C Inited to -1.5
     f32 _1790;                          // 1790 Inited to -0.0625

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "game/sound/audaudiocomponents.h"
-#include "sead/audiosettingparameter.h"
+#include "audio/seadAudioSettingParameter.h"
 
 class AudAudioMgr {
 public:

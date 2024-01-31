@@ -3,7 +3,7 @@
 #include "game/eventmgr.h"
 
 class SoundPlayer : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(SoundPlayer, StageActor);
+    SEAD_RTTI_OVERRIDE(SoundPlayer, StageActor);
 
 public:
     SoundPlayer(const ActorBuildInfo* buildInfo);

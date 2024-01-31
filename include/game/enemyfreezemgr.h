@@ -1,16 +1,17 @@
 #pragma once
 
 #include "types.h"
+#include "math/seadVector.h"
 
 class Enemy;
 
 class EnemyFreezeMgr {
 public:
     struct Info {
-        u32 settings;       // 0
-        Vec3f position;     // 4
-        Vec3f scale;        // 10
-        u32 _1C;            // 1C
+        u32 settings;                // 0
+        sead::Vector3f position;     // 4
+        sead::Vector3f scale;        // 10
+        u32 _1C;                     // 1C
     };
 
     struct Flags {

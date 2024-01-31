@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/idisposer.h"
+#include "heap/seadDisposer.h"
 
 class BossController;
 

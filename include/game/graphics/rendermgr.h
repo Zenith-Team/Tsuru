@@ -1,11 +1,11 @@
 #pragma once
 
-#include "sead/idisposer.h"
-#include "sead/safestring.h"
-#include "sead/listimpl.h"
-#include "sead/ptrarray.h"
-#include "sead/buffer.h"
-#include "agl/texturesampler.h"
+#include "heap/seadDisposer.h"
+#include "prim/seadSafeString.h"
+#include "container/seadListImpl.h"
+#include "container/seadPtrArray.h"
+#include "container/seadBuffer.h"
+#include "common/aglTextureSampler.h"
 #include "game/graphics/model/modelenvview.h"
 
 class RenderObjBaseLayer;
@@ -16,9 +16,9 @@ class RenderMgr : public sead::IDisposer, sead::INamable { // Size: 0x4D4
 public:
     struct ViewInfo {
         RenderObjBaseLayer* layer;
-        Mtx34 viewMtx;
-        Mtx44 projMtx;
-        Mtx44* _74;
+        sead::Matrix34f viewMtx;
+        sead::Matrix44f projMtx;
+        sead::Matrix44f* _74;
         CullViewFrustum* cull;
         void* _7C;
     };

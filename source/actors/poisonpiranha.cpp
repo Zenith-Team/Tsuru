@@ -3,11 +3,11 @@
 #include "game/actor/actormgr.h"
 #include "game/graphics/model/blendingmodel.h"
 #include "game/effect/effect.h"
-#include "sead/random.h"
+#include "random/seadGlobalRandom.h"
 #include "log.h"
 
 class PoisonPiranhaProjectile : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(PoisonPiranhaProjectile, Enemy);
+    SEAD_RTTI_OVERRIDE(PoisonPiranhaProjectile, Enemy);
 
 public:
     PoisonPiranhaProjectile(const ActorBuildInfo* buildInfo);
@@ -28,7 +28,7 @@ public:
         ModelWrapper* ball;
         ModelWrapper* puddle;
     } model;
-    Vec2f baseline;
+    sead::Vector2f baseline;
     u32 timer;
 
     DECLARE_STATE(PoisonPiranhaProjectile, Ball);
@@ -39,11 +39,11 @@ CREATE_STATE(PoisonPiranhaProjectile, Ball);
 CREATE_STATE(PoisonPiranhaProjectile, Puddle);
 
 const HitboxCollider::Info PoisonPiranhaProjectile::collisionInfo = {
-    0, 5.0f, HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
+    sead::Vector2f(0.0f, 0.0f), sead::Vector2f(5.0f, 5.0f), HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 class PoisonPiranha : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(PoisonPiranha, Enemy);
+    SEAD_RTTI_OVERRIDE(PoisonPiranha, Enemy);
 
 public:
     PoisonPiranha(const ActorBuildInfo* buildInfo);
@@ -69,7 +69,7 @@ REGISTER_PROFILE(PoisonPiranha, ProfileID::PoisonPiranha);
 PROFILE_RESOURCES(ProfileID::PoisonPiranha, Profile::LoadResourcesAt::Course, "pakkun", "poisball", "e_poison");
 
 const HitboxCollider::Info PoisonPiranha::collisionInfo = {
-    Vec2f(0.0f, 16.0f), Vec2f(5.0f, 16.0f), HitboxCollider::Shape::Rectangle, 0x3, 0x0, 0xA4F, 0xFFFAFFFF, 0x2, &Enemy::collisionCallback
+    sead::Vector2f(0.0f, 16.0f), sead::Vector2f(5.0f, 16.0f), HitboxCollider::Shape::Rectangle, 0x3, 0x0, 0xA4F, 0xFFFAFFFF, 0x2, &Enemy::collisionCallback
 };
 
 PoisonPiranha::PoisonPiranha(const ActorBuildInfo* buildInfo)
@@ -79,7 +79,7 @@ PoisonPiranha::PoisonPiranha(const ActorBuildInfo* buildInfo)
 { }
 
 u32 PoisonPiranha::onCreate() {
-    this->position += Vec2f(8.0f, -16.0f);
+    this->position += sead::Vector3f(8.0f, -16.0f, 0.0f);
 
     this->model = BlendingModel::create("pakkun", "pakkun", 2);
 
@@ -94,7 +94,7 @@ u32 PoisonPiranha::onCreate() {
 u32 PoisonPiranha::onExecute() {
     this->states.execute();
 
-    Mtx34 mtx;
+    sead::Matrix34f mtx;
     mtx.makeRTIdx(this->rotation, this->position);
 
     this->model->setMtx(mtx);
@@ -126,7 +126,7 @@ void PoisonPiranha::executeState_Idle() {
     }
 
     this->direction = this->directionToPlayerH(this->position);
-    sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->direction], fixDeg(2.0f));
+    sead::Mathu::chase(&this->rotation.y, Direction::directionToRotationList[this->direction], sead::Mathf::deg2idx(2.0f));
 }
 
 void PoisonPiranha::endState_Idle() { }
@@ -146,7 +146,7 @@ void PoisonPiranha::executeState_Attack() {
             const f32 sign = this->direction == Direction::Left ? -1.0f : 1.0f;
 
             ActorBuildInfo buildInfo = { 0 };
-            buildInfo.position = this->position + Vec3f(14.0f * sign, -22.0f, 0.0f);
+            buildInfo.position = this->position + sead::Vector3f(14.0f * sign, -22.0f, 0.0f);
             buildInfo.profile = Profile::get(ProfileID::PoisonPiranhaProjectile);
 
             static_cast<StageActor*>(ActorMgr::instance()->create(buildInfo))->direction = this->direction;
@@ -169,7 +169,7 @@ PoisonPiranhaProjectile::PoisonPiranhaProjectile(const ActorBuildInfo* buildInfo
 { }
 
 u32 PoisonPiranhaProjectile::onCreate() {
-    this->scale = 0.5f;
+    this->scale = sead::Vector3f(0.5f, 0.5f, 0.5f);
 
     this->model.ball = ModelWrapper::create("poisball", "poisball", 1);
     this->model.puddle = ModelWrapper::create("e_poison", "e_poison", 1);
@@ -190,7 +190,7 @@ u32 PoisonPiranhaProjectile::onCreate() {
 u32 PoisonPiranhaProjectile::onExecute() {
     this->states.execute();
 
-    Mtx34 mtx;
+    sead::Matrix34f mtx;
     mtx.makeRTIdx(this->rotation, this->position);
 
     this->model.ball->setMtx(mtx);
@@ -206,7 +206,7 @@ u32 PoisonPiranhaProjectile::onExecute() {
     if (this->timer == 0) {
         this->isDeleted = true;
         
-        Vec3f effectScale = 0.5f;
+        sead::Vector3f effectScale = sead::Vector3f(0.5f, 0.5f, 0.5f);
         Effect::spawn(RP_Cmn_PoisonSplash_00, &this->position, nullptr, &effectScale);
     } else {
         this->timer--;
@@ -232,7 +232,7 @@ void PoisonPiranhaProjectile::collisionEnemy(HitboxCollider* hcSelf, HitboxColli
 }
 
 void PoisonPiranhaProjectile::collisionPlayer(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Vec3f effectScale = 0.5f;
+    sead::Vector3f effectScale = sead::Vector3f(0.5f, 0.5f, 0.5f);
     Effect::spawn(RP_Cmn_PoisonSplash_00, &this->position, nullptr, &effectScale);
 
     Enemy::collisionPlayer(hcSelf, hcOther);
@@ -263,7 +263,7 @@ void PoisonPiranhaProjectile::executeState_Ball() {
     const f32 sign = this->direction == Direction::Right ? 1.0f : -1.0f;
 
     this->position.x += sign;
-    this->position.y = -pow2f(widthFraction * ((this->position.x - this->baseline.x) + (arcHeight * -sign))) + this->baseline.y + 2.0f * arcHeight;
+    this->position.y = -sead::Mathf::pow(widthFraction * ((this->position.x - this->baseline.x) + (arcHeight * -sign)), 2.0f) + this->baseline.y + 2.0f * arcHeight;
 
     this->physicsMgr.processCollisions();
     if (this->physicsMgr.isOnGround()) {
@@ -278,9 +278,9 @@ void PoisonPiranhaProjectile::endState_Ball() { }
 void PoisonPiranhaProjectile::beginState_Puddle() {
     this->model.puddle->playSklAnim("idle");
     this->hitboxCollider.colliderInfo.shape = HitboxCollider::Shape::Rectangle;
-    this->hitboxCollider.colliderInfo.radius = Vec2f(10.0f, 4.0f);
+    this->hitboxCollider.colliderInfo.radius = sead::Vector2f(10.0f, 4.0f);
 
-    Vec3f effectScale = 0.5f;
+    sead::Vector3f effectScale = sead::Vector3f(0.5f, 0.5f, 0.5f);
     Effect::spawn(RP_Cmn_PoisonSplash_00, &this->position, nullptr, &effectScale);
 }
 

@@ -290,7 +290,7 @@ extern "C" bool CheckProjectileSpawnLimits(Player* _this, PlayerBase::PowerupSta
         case PlayerBase::PowerupState::Hammer: {
             u32 myHammerCount = 0;
 
-            for (Actor** i = ActorMgr::instance()->actors.start.buffer; i < ActorMgr::instance()->actors.end.buffer; i++) {
+            for (Actor** i = &ActorMgr::instance()->actors.start.front(); i < ActorMgr::instance()->actors.end; i++) {
                 if ((*i) != nullptr && (*i)->getProfileID() == ProfileID::Hammer) {
                     u32 parentActorID = *(u32*)(((u32)(*i))+0x2E60); // Hammer::parentActorID
                     Actor* parent = ActorMgr::instance()->actors.findActorByID(parentActorID);

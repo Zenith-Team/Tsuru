@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/controller.h"
+#include "controller/seadControllerWrapper.h"
 
 class WrappedController : public sead::ControllerWrapper { // Size: 0x194
 public:

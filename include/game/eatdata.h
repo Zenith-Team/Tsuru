@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "math/seadVector.h"
 
 class StageActor;
 
@@ -20,12 +21,12 @@ public:
     virtual bool vf54(StageActor*);
     virtual void vf5C(StageActor*);
 
-    u32 ownerID;    // 0
-    u32 yoshiID;    // 4
-    u32 state;      // 8
-    u32 spitType;   // C
-    Vec3f scale;    // 10
-    u32 score;      // 1C
+    u32 ownerID;             // 0
+    u32 yoshiID;             // 4
+    u32 state;               // 8
+    u32 spitType;            // C
+    sead::Vector3f scale;    // 10
+    u32 score;               // 1C
 };
 
 static_assert(sizeof(YoshiEatData) == 0x24, "YoshiEatData size mismatch");
@@ -42,12 +43,12 @@ public:
     virtual bool handleEaten(void*);
     virtual void vf3C();
 
-    u32 ownerID;        // 0
-    u32 babyYoshiID;    // 4
-    Vec3f scale;        // 8
-    u32 _14;            // 14
-    u32 isActive;       // 18
-    u32 scoreReward;    // 1C
+    u32 ownerID;          // 0
+    u32 babyYoshiID;      // 4
+    sead::Vector3f scale; // 8
+    u32 _14;              // 14
+    u32 isActive;         // 18
+    u32 scoreReward;      // 1C
 };
 
 static_assert(sizeof(BabyYoshiEatData) == 0x24, "BabyYoshiEatData size mismatch");

@@ -3,7 +3,7 @@
 #include "game/actor/stage/enemy.h"
 
 class HoldableEnemy : public Enemy { // Size: 0x18B8
-    SEAD_RTTI_OVERRIDE(HoldableEnemy, Enemy);
+    SEAD_RTTI_OVERRIDE_DECL(HoldableEnemy, Enemy);
 
 public:
     HoldableEnemy(const ActorBuildInfo* buildInfo);
@@ -28,11 +28,10 @@ public:
     void vf124(f32) override;
     u32 vf12C() override;
 
-    void move(Vec2f& dest) override;
+    void move(sead::Vector2f& dest) override;
     void setYSpeed(f32) override;
     u32 vf16C() override;
     u32 vf174() override;
-    void getRect(Rect& rect) override;
 
     void vf18C() override;
 
@@ -60,7 +59,7 @@ public:
     void FUN_022EB724(StageActor* collidingActor, bool playDownSound);
     bool FUN_22EB888(StageActor* collidingActor);
 
-    Vec3f _1880;
+    sead::Vector3f _1880;
     f32 _188C;
     f32 _1890;
     f32 _1894;

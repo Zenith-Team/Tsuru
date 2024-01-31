@@ -28,29 +28,26 @@ public:
     */
 
     void init();
-    void update(Vec3f& pos, f32 width);
+    void update(sead::Vector3f& pos, f32 width);
     void draw();
 
     inline void create(u32 type, u32 width) {
-        Vec3i nv3i(0);
-        Vec3f nv3f(0);
-
         this->type = type;
         this->width = width;
-        this->rotation = nv3i;
-        this->_A0 = nv3f;
+        this->rotation = sead::Vector3u::zero;
+        this->_A0 = sead::Vector3f::zero;
         this->init();
     }
 
     ResArchive* archive;
     ModelWrapper* models[3];
     ModelWrapper* models2[30];
-    Vec3f position;
-    Vec3f _94;
-    Vec3f _A0;
-    Vec3f _AC;
-    Vec3f _B8;
-    Vec3i rotation;
+    sead::Vector3f position;
+    sead::Vector3f _94;
+    sead::Vector3f _A0;
+    sead::Vector3f _AC;
+    sead::Vector3f _B8;
+    sead::Vector3u rotation;
     f32 fwidth;
     f32 fwidth2;
     f32 _D8;

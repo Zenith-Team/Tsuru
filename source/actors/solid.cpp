@@ -4,7 +4,7 @@
 #include "log.h"
 
 class Solid : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(Solid, StageActor);
+    SEAD_RTTI_OVERRIDE(Solid, StageActor);
 
 public:
     Solid(const ActorBuildInfo* buildInfo);
@@ -25,17 +25,17 @@ Solid::Solid(const ActorBuildInfo* buildInfo)
 u32 Solid::onCreate() {
 
     PolygonCollider::Info info = {
-        Vec2f(0.0f, 0.0f),
+        sead::Vector2f(0.0f, 0.0f),
         0.0f, 0.0f,
-        Vec2f(
+        sead::Vector2f(
             static_cast<f32>((this->eventID1 >> 0x4 & 0xF)+1) * ((this->eventID1 & 0xF) == 0 ? 1.0f : -1.0f),
             static_cast<f32>((this->eventID2 >> 0x4 & 0xF)+1) * ((this->eventID2 & 0xF) == 0 ? 1.0f : -1.0f)
         ),
-        Vec2f(
+        sead::Vector2f(
             static_cast<f32>((this->settings1 >> 0x1C & 0xF)+1) * ((this->settings1 >> 0x18 & 0xF) == 0 ? 1.0f : -1.0f),
             static_cast<f32>((this->settings1 >> 0x14 & 0xF)+1) * ((this->settings1 >> 0x10 & 0xF) == 0 ? 1.0f : -1.0f)
         ),
-        fixDeg(static_cast<f32>(this->settings1 >> 0xC & 0xF) * 11.25f)
+        sead::Mathf::deg2idx(static_cast<f32>(this->settings1 >> 0xC & 0xF) * 11.25f)
     };
 
     this->collider.init(this, info);

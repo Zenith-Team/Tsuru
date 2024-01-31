@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead/idisposer.h"
-#include "sead/safestring.h"
+#include "heap/seadDisposer.h"
+#include "prim/seadSafeString.h"
 
 #include "agl/texturedata.h"
 #include "agl/lyr/renderinfo.h"
@@ -39,9 +39,9 @@ public:
     class TileMaskList { // Size: 0x5110
     public:
         struct MaskInfo {
-            Vec2f position;
+            sead::Vector2f position;
             f32 transparency;
-            Vec2f texCoords;
+            sead::Vector2f texCoords;
         };
 
     public:
@@ -56,7 +56,7 @@ public:
         // Draws tile masks
         // @param camera Camera to draw to
         // @param cameraMatrix Matrix for the target camera
-        void draw(const sead::Camera& camera, const Mtx44& cameraMatrix);
+        void draw(const sead::Camera& camera, const sead::Matrix44f& cameraMatrix);
 
         u8 _0[0x510C];  // TODO: I'll do this later, I've had enough for tonight
     };

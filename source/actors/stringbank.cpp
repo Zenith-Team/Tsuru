@@ -5,7 +5,7 @@
 #include "ghs.h"
 
 const ActorInfo StringBankActorInfo = {
-    Vec2i(0, 0), Vec2i(0, 0), Vec2i(0, 0), 0, 0, 0, 0, ActorInfo::Flags::IgnoreSpawnRange
+    sead::Vector2i(0, 0), sead::Vector2i(0, 0), sead::Vector2i(0, 0), 0, 0, 0, 0, ActorInfo::Flags::IgnoreSpawnRange
 };
 
 REGISTER_PROFILE(StringBank, ProfileID::StringBank, "StringBank", &StringBankActorInfo);

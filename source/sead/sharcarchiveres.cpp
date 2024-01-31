@@ -1,9 +1,10 @@
-#include "sead/sharcarchiveres.h"
+/*
+#include "resource/seadSharcArchiveRes.h"
 #include "log.h"
 
 namespace sead {
 
-//* Custom function
+// * Custom function
 void SharcArchiveRes::getFATEntryName(BufferedSafeString* outName, const FATEntry& entry) const {
     if (!outName)
         return;
@@ -26,3 +27,4 @@ void SharcArchiveRes::getFATEntryName(BufferedSafeString* outName, const FATEntr
 }
 
 }
+*/

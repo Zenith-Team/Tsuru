@@ -4,11 +4,11 @@
 #include "game/actor/stage/multistateactor.h"
 
 class Enemy : public MultiStateActor { // Size: 0x1880
-    SEAD_RTTI_OVERRIDE(Enemy, MultiStateActor);
+    SEAD_RTTI_OVERRIDE_DECL(Enemy, MultiStateActor);
 
 public:
     struct DeathInfo {
-        Vec2f speed;
+        sead::Vector2f speed;
         f32 maxYSpeed;
         f32 gravity;
         StateBase* state;
@@ -49,11 +49,10 @@ public:
     u32 vf12C() override;
 
     bool vf154() override;
-    void move(Vec2f& dest) override;
+    void move(sead::Vector2f& dest) override;
     void setYSpeed(f32) override;
     u32 vf16C() override;
     u32 vf174() override;
-    void getRect(Rect& rect) override;
     void doStateChange(StateBase* state) override;
 
     virtual void vf18C();
@@ -153,7 +152,7 @@ public:
     HitType::__type__ processCollision(HitboxCollider* hcSelf, HitboxCollider* hcOther, u32 = 0);
 
     // Bounces the colliding player when hit
-    void killPlayerJump(StageActor* player, const Vec2f& speed, StateBase* state);
+    void killPlayerJump(StageActor* player, const sead::Vector2f& speed, StateBase* state);
     void killPlayerSpin(StageActor* player);
     void killYoshiStomp(StageActor* player);
 

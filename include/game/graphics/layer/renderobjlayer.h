@@ -22,7 +22,7 @@ public:
 
     void vf64(s32) override;
 
-    Mtx44 _42C;
+    sead::Matrix44f _42C;
     u8 _46C;
     f32 _470;
     f32 _474;

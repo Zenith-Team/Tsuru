@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sead/heap.h"
-#include "sead/safestring.h"
+#include "heap/seadHeap.h"
+#include "prim/seadSafeString.h"
 #include "game/resource/resarchive.h"
 
 class FrameCtrl {
@@ -21,11 +21,11 @@ public:
     );
 
     bool isDone() const {
-        return this->flags.bits & Flags::IsDone;
+        return this->flags.isOn(Flags::IsDone);
     }
 
     bool isLooping() const {
-        return this->flags.bits & Flags::Repeat;
+        return this->flags.isOn(Flags::Repeat);
     }
 
     f32 startFrame;

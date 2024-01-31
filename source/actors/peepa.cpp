@@ -7,7 +7,7 @@
 #include "game/effect/effect.h"
 
 class Peepa : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(Peepa, Enemy);
+    SEAD_RTTI_OVERRIDE(Peepa, Enemy);
 public:
     Peepa(const ActorBuildInfo* buildInfo);
     virtual ~Peepa() { }
@@ -38,8 +38,8 @@ public:
     PolylineCollider polylineCollider;
     bool hasPlatform;
     int platformType;
-    Vec3f effectScale;
-    Vec3f effectOffset;
+    sead::Vector3f effectScale;
+    sead::Vector3f effectOffset;
 
     DECLARE_STATE(Peepa, Die);
 };
@@ -54,7 +54,7 @@ PROFILE_RESOURCES(ProfileID::Peepa, Profile::LoadResourcesAt::Course, "teren",
 "lift_han_wood"); // wood and wood snow
 
 HitboxCollider::Info Peepa::collisionInfo = {
-    Vec2f(0.0f, 0.0f), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
+    sead::Vector2f(0.0f, 0.0f), sead::Vector2f(8.0f, 8.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0xFFFBFFFF, 0, &Enemy::collisionCallback
 };
 
 Peepa::Peepa(const ActorBuildInfo* buildInfo)
@@ -86,7 +86,7 @@ u32 Peepa::onCreate() {
 
     this->position.y -= 8.0f;
     this->position.x += 8.0f;
-    this->scale = .15f;
+    this->scale = sead::Vector3f(0.15f, 0.15f, 0.15f);
 
     this->hitboxCollider.init(this, &Peepa::collisionInfo);
     this->addHitboxColliders();
@@ -96,8 +96,8 @@ u32 Peepa::onCreate() {
         if (this->platformType == PlatformModel::Type::Sky)
             t = 2;
 
-        Vec2f points[2] = { Vec2f(-32.0f / t, 12.0f), Vec2f(32.0f / t, 12.0f) }; // the cloud platform will always be two tiles in length
-        PolylineCollider::Info info = { Vec2f(0.0f, 0.0f), 0, 0, points, 0 };
+        sead::Vector2f points[2] = { sead::Vector2f(-32.0f / t, 12.0f), sead::Vector2f(32.0f / t, 12.0f) }; // the cloud platform will always be two tiles in length
+        PolylineCollider::Info info = { sead::Vector2f(0.0f, 0.0f), 0, 0, points, 0 };
         this->polylineCollider.init(this, info, 2);
         this->polylineCollider.setType(ColliderBase::Type::Solid);
 
@@ -119,8 +119,8 @@ u32 Peepa::onCreate() {
 u32 Peepa::onExecute() {
     this->movementHandler.execute();
     this->position = this->movementHandler.position;
-    Mtx34 peepaMtx;
-    Vec3f peepaModelPos = this->position;
+    sead::Matrix34f peepaMtx;
+    sead::Vector3f peepaModelPos = this->position;
     peepaModelPos.y -= this->hasPlatform ? 10.0f : 8.0f;
     peepaMtx.makeRTIdx(this->rotation, peepaModelPos);
     this->peepaModel->setMtx(peepaMtx);
@@ -128,18 +128,18 @@ u32 Peepa::onExecute() {
     this->peepaModel->updateAnimations();
     this->peepaModel->updateModel();
 
-    Mtx34 cloudPlatformMtx;
-    Vec3f cloudPlatformPos = this->position;
+    sead::Matrix34f cloudPlatformMtx;
+    sead::Vector3f cloudPlatformPos = this->position;
     cloudPlatformPos.y += 2;
     cloudPlatformPos.z -= 1000; // cloud platform model goes behind the peepa
     cloudPlatformMtx.makeRTIdx(this->rotation, cloudPlatformPos);
     this->cloudPlatformModel->setMtx(cloudPlatformMtx);
-    this->cloudPlatformModel->setScale(1);
+    this->cloudPlatformModel->setScale(sead::Vector3f(1.0f, 1.0f, 1.0f));
     this->cloudPlatformModel->updateAnimations();
     this->cloudPlatformModel->updateModel();
 
     if (this->hasPlatform) {
-        Vec3f platformPos = this->position;
+        sead::Vector3f platformPos = this->position;
         platformPos.y += 4;
         platformPos.x -= 32;
         platformPos.z -= 1000; // platform goes behind the peepa
@@ -237,8 +237,8 @@ bool Peepa::collisionFireballYoshi(HitboxCollider* hcSelf, HitboxCollider* hcOth
 /** STATE: Die */
 
 void Peepa::beginState_Die() {
-    Vec3f effectOrigin(this->position.x, this->position.y, 4500.0f);
-    Vec3f effectPos(effectOrigin + this->effectOffset);
+    sead::Vector3f effectOrigin(this->position.x, this->position.y, 4500.0f);
+    sead::Vector3f effectPos(effectOrigin + this->effectOffset);
     Effect::spawn(RP_Jugemu_CloudDisapp, &effectPos, nullptr, &this->effectScale);
     this->isDeleted = true;
 }

@@ -3,7 +3,7 @@
 #include "log.h"
 #include "types.h"
 #include "math/constants.h"
-#include "sead/mathcalccommon.h"
+#include "math/seadMathCalcCommon.h"
 
 // Main class for all easing operations
 // @param func A reference to the easing function to be used

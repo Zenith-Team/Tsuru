@@ -7,7 +7,7 @@
 #define SwitchBlockState TsuruSaveMgr::sSaveData.switchBlockBlue[SaveMgr::instance()->saveData->header.lastSessionSaveSlot]
 
 class RedBlueBlock : public MultiStateActor {
-    SEAD_RTTI_OVERRIDE_IMPL(RedBlueBlock, MultiStateActor);
+    SEAD_RTTI_OVERRIDE(RedBlueBlock, MultiStateActor);
 
 public:
     RedBlueBlock(const ActorBuildInfo* buildInfo);
@@ -34,7 +34,7 @@ REGISTER_PROFILE(RedBlueBlock, ProfileID::RedBlueBlock);
 PROFILE_RESOURCES(ProfileID::RedBlueBlock, Profile::LoadResourcesAt::Course, "block_rdbl");
 
 const PolygonCollider::Info RedBlueBlock::colliderInfo = {
-    Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-8.0f, 8.0f), Vec2f(8.0f, -8.0f), 0
+    sead::Vector2f(0.0f, 0.0f), 0.0f, 0.0f, sead::Vector2f(-8.0f, 8.0f), sead::Vector2f(8.0f, -8.0f), 0
 };
 
 RedBlueBlock::RedBlueBlock(const ActorBuildInfo* buildInfo)
@@ -66,7 +66,7 @@ u32 RedBlueBlock::onCreate() {
 }
 
 u32 RedBlueBlock::onExecute() {
-    Mtx34 mtx;
+    sead::Matrix34f mtx;
     mtx.makeRTIdx(this->rotation, this->position);
 
     this->model->setMtx(mtx);

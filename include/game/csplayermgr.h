@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/idisposer.h"
+#include "heap/seadDisposer.h"
 #include "game/actor/courseselect/csplayerbase.h"
 
 class CSPlayerMgr { // Size: 0x34
@@ -14,8 +14,8 @@ public:
     // @return Pointer to CS player actor
     CSPlayerBase* getPlayer();
 
-    u8 _10; // class
-    u8 _11; // class
+    u8 _10;            // class
+    u8 _11;            // class
     u32 playerActorID; // 12
     u8 _16[28];
 };

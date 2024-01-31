@@ -1,7 +1,7 @@
 #pragma once
 
 #include "log.h"
-#include "ffl.h"
+#include "nn/ffl.h"
 
 struct SaveData { // Size: 0xB134
 public:
@@ -149,7 +149,7 @@ public:
         u16 worldCompletionFlag;            //* enum = SaveData::WorldCompletionFlag
         u8 gameCompletionFlag;              //* enum = SaveData::GameCompletionFlag
         u8 _1F;
-        Vec3f _20;
+        sead::Vector3f _20;
         u8 _2C;
         u8 _2D;
         u8 _2E;
@@ -196,7 +196,7 @@ public:
         u8 completionState;                 // TODO: check if this is a bool
         u8 completionPlayerUsed;            // TODO: Check which player each value is
         u16 _2;
-        FFL::StoreData completionMiiUsed;
+        FFLStoreData completionMiiUsed;
         u32 highscore;
         u32 replayCRC32;
     };
@@ -317,7 +317,7 @@ public:
 
     struct MiiData {
         u8 entriesCount;                // 0
-        FFL::CreateID miiIDList[62];    // 1    (Total size: 0x26C)
+        FFLCreateID miiIDList[62];    // 1    (Total size: 0x26C)
         u8 padding[3];                  // 26D
         u32 CRC32;                      // 270
     } packed aligned(1);

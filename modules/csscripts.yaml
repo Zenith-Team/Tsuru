@@ -1,6 +1,6 @@
 ---
 Files:
-  - csscript.cpp
+  - source/csscript.cpp
 Hooks:
 # Load the custom scripts
   - type: branch

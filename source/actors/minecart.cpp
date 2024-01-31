@@ -7,7 +7,7 @@
 #include "log.h"
 
 class Minecart : public MultiStateActor {
-    SEAD_RTTI_OVERRIDE_IMPL(Minecart, MultiStateActor);
+    SEAD_RTTI_OVERRIDE(Minecart, MultiStateActor);
 
 public:
     Minecart(const ActorBuildInfo* buildInfo);
@@ -42,10 +42,10 @@ Minecart::Minecart(const ActorBuildInfo* buildInfo)
 u32 Minecart::onCreate() {
     this->model = ModelWrapper::create("truck", "truck", 4);
 
-    this->scale = 0.2f;
+    this->scale = sead::Vector3f(0.2f, 0.2f, 0.2f);
     this->position.y -= 16.0f;
     this->position.z = 4500.0f;
-    this->rotation.y = fixDeg(90.0f);
+    this->rotation.y = sead::Mathf::deg2idx(90.0f);
     this->model->playSklAnim("Wait");
 
     Level::Area* const area = Level::instance()->getArea(LevelInfo::instance()->area);
@@ -64,8 +64,8 @@ u32 Minecart::onCreate() {
 u32 Minecart::onExecute() {
     this->states.execute();
 
-    Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, this->position + Vec3f(0.0f, 21.0f, 0.0f));
+    sead::Matrix34f mtx;
+    mtx.makeRTIdx(this->rotation, this->position + sead::Vector3f(0.0f, 21.0f, 0.0f));
 
     this->model->setMtx(mtx);
     this->model->setScale(this->scale);
@@ -96,18 +96,19 @@ void Minecart::executeState_Ride() {
         return;
     }
 
-    Vec3f target(this->path[this->currentNode].x, -(this->path[this->currentNode].y + 16.0f), this->position.z);
+    sead::Vector3f target(this->path[this->currentNode].x, -(this->path[this->currentNode].y + 16.0f), this->position.z);
 
-    Vec3f diff = (target - this->position).normalized();
+    sead::Vector3f diff = target - this->position;
+    diff.normalize();
     this->position += diff * this->path[this->currentNode].speed;
 
-    sead::Mathu::chase(&this->rotation.z, fixRad(atan2f(target.y - this->position.y, target.x - this->position.x)), fixDeg(3.0f));
+    sead::Mathu::chase(&this->rotation.z, sead::Mathf::rad2idx(atan2f(target.y - this->position.y, target.x - this->position.x)), sead::Mathf::deg2idx(3.0f));
 
-    if (this->position.distanceTo(target) < 2.0f) {
+    if (position.squaredDistance(target) < sead::Mathf::square(2.0f)) {
         this->currentNode++;
     }
 
-    this->player->position = this->position + Vec3f(0.0f, 24.0f, 0.0f);
+    this->player->position = this->position + sead::Vector3f(0.0f, 24.0f, 0.0f);
 }
 
 void Minecart::endState_Ride() { }

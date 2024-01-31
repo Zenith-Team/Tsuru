@@ -1,8 +1,8 @@
 #pragma once
 
 #include "log.h"
-#include "sead/filedevice.h"
-#include "sead/filedevicemgr.h"
+#include "filedevice/seadFileDevice.h"
+#include "filedevice/seadFileDeviceMgr.h"
 #include "agl/texturesampler.h"
 #include "agl/texturedatainitializer.h"
 

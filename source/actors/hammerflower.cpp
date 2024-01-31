@@ -3,7 +3,7 @@
 #include "game/effect/effect.h"
 
 class HammerFlower : public Powerup {
-    SEAD_RTTI_OVERRIDE_IMPL(HammerFlower, Powerup);
+    SEAD_RTTI_OVERRIDE(HammerFlower, Powerup);
 
 public:
     HammerFlower(const ActorBuildInfo* buildInfo);
@@ -22,7 +22,7 @@ public:
     void vf1FC() override;
 };
 
-const ActorInfo HammerFlowerActorInfo = { Vec2i(8, -16), Vec2i(0x0, 0x10), Vec2i(0x20, 0x20), 0x200, 0x200, 0x400, 0x400, 0 };
+const ActorInfo HammerFlowerActorInfo = { sead::Vector2i(8, -16), sead::Vector2i(0x0, 0x10), sead::Vector2i(0x20, 0x20), 0x200, 0x200, 0x400, 0x400, 0 };
 REGISTER_PROFILE(HammerFlower, ProfileID::HammerFlower, "HammerFlower", &HammerFlowerActorInfo, 0x4016);
 PROFILE_RESOURCES(ProfileID::HammerFlower, Profile::LoadResourcesAt::Course, "I_hmrflower");
 

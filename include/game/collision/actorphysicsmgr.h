@@ -3,7 +3,7 @@
 #include "game/collision/physicsmgr.h"
 
 class ActorPhysicsMgr : public PhysicsMgr {
-    SEAD_RTTI_OVERRIDE(ActorPhysicsMgr, PhysicsMgr);
+    SEAD_RTTI_OVERRIDE_DECL(ActorPhysicsMgr, PhysicsMgr);
 
 public:
     ActorPhysicsMgr();

@@ -6,12 +6,12 @@
 #include "game/level/level.h"
 #include "game/level/levelinfo.h"
 #include "game/tilemgr.h"
-#include "sead/mathcalccommon.h"
+#include "math/seadMathCalcCommon.h"
 #include "game/graphics/drawmgr.h"
 #include "log.h"
 
 class MagicPlatform : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(MagicPlatform, StageActor);
+    SEAD_RTTI_OVERRIDE(MagicPlatform, StageActor);
 
 public:
     MagicPlatform(const ActorBuildInfo* buildInfo);
@@ -22,15 +22,15 @@ public:
     u32 onDraw() override;
 
     // Callback table
-    bool mpHCCallback1(HitboxCollider*, Vec2f*) { return false; }
-    void mpHCCallback3(HitboxCollider*, Vec2f*) { }
-    void mpHCCallback4(HitboxCollider*, Vec2f*) { }
-    bool mpCBCallback1(ColliderBase*, Vec2f*)   { return true; }
-    void mpCBCallback3(ColliderBase*, Vec2f*)   { }
-    void mpCBCallback4(ColliderBase*, Vec2f*)   { }
+    bool mpHCCallback1(HitboxCollider*, sead::Vector2f*) { return false; }
+    void mpHCCallback3(HitboxCollider*, sead::Vector2f*) { }
+    void mpHCCallback4(HitboxCollider*, sead::Vector2f*) { }
+    bool mpCBCallback1(ColliderBase*, sead::Vector2f*)   { return true; }
+    void mpCBCallback3(ColliderBase*, sead::Vector2f*)   { }
+    void mpCBCallback4(ColliderBase*, sead::Vector2f*)   { }
 
     u16* tileData;
-    Vec2u tileSize;
+    sead::Vector2u tileSize;
     MovementHandler movementHandler;
     u8 collisionType;
     RectCollider rectCollider;
@@ -39,7 +39,7 @@ public:
 };
 
 const ActorInfo MagicPlatformActorInfo = {
-    Vec2i(0, 0), Vec2i(0, 0), Vec2i(0, 0), 0, 0, 0, 0, ActorInfo::Flags::IgnoreSpawnRange | ActorInfo::Flags::Unknown1
+    sead::Vector2i(0, 0), sead::Vector2i(0, 0), sead::Vector2i(0, 0), 0, 0, 0, 0, ActorInfo::Flags::IgnoreSpawnRange | ActorInfo::Flags::Unknown1
 };
 
 REGISTER_PROFILE(MagicPlatform, ProfileID::MagicPlatform, "MagicPlatform", &MagicPlatformActorInfo);
@@ -111,7 +111,7 @@ u32 MagicPlatform::onCreate() {
     switch (collisionType) {
         case 0: {
             PolygonCollider::Info info = {
-                Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(this->tileSize.x * -8.0f, this->tileSize.y * 8.0f), Vec2f(this->tileSize.x * 8.0f, this->tileSize.y * -8.0f), 0
+                sead::Vector2f(0.0f, 0.0f), 0.0f, 0.0f, sead::Vector2f(this->tileSize.x * -8.0f, this->tileSize.y * 8.0f), sead::Vector2f(this->tileSize.x * 8.0f, this->tileSize.y * -8.0f), 0
             };
 
             this->rectCollider.init(this, info);
@@ -127,13 +127,13 @@ u32 MagicPlatform::onCreate() {
         }
 
         case 1: {
-            Vec2f points[2] = {
-                Vec2f(this->tileSize.x * -8.0f, this->tileSize.y * 8.0f),
-                Vec2f(this->tileSize.x * 8.0f, this->tileSize.y * 8.0f)
+            sead::Vector2f points[2] = {
+                sead::Vector2f(this->tileSize.x * -8.0f, this->tileSize.y * 8.0f),
+                sead::Vector2f(this->tileSize.x * 8.0f, this->tileSize.y * 8.0f)
             };
 
             PolylineCollider::Info info = {
-                Vec2f(0.0f, 0.0f), 0.0f, 0.0f, points, 0
+                sead::Vector2f(0.0f, 0.0f), 0.0f, 0.0f, points, 0
             };
 
             this->solidOnTopCollider.init(this, info, 2);
@@ -186,7 +186,7 @@ u32 MagicPlatform::onDraw() {
 
             f32 rotatedX =  offsetX * angleCos + offsetY * angleSin;
             f32 rotatedY = -offsetX * angleSin + offsetY * angleCos;
-            Vec3f drawPos(this->position.x + rotatedX, this->position.y - rotatedY, this->position.z);
+            sead::Vector3f drawPos(this->position.x + rotatedX, this->position.y - rotatedY, this->position.z);
 
             DrawMgr::instance()->drawTile(this->tileData[y * this->tileSize.x + x], drawPos, this->rotation.z, this->scale);
         }

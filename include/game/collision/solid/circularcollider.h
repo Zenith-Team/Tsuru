@@ -3,13 +3,13 @@
 #include "game/collision/solid/colliderbase.h"
 
 class CircularCollider : public ColliderBase { // Size: 0x190
-    SEAD_RTTI_OVERRIDE(CircularCollider, ColliderBase);
+    SEAD_RTTI_OVERRIDE_DECL(CircularCollider, ColliderBase);
 
 public:
     struct Info {
-        Vec2f offset;
-        Vec2f _8;
-        Vec2f _10;
+        sead::Vector2f offset;
+        sead::Vector2f _8;
+        sead::Vector2f _10;
         f32 radius;
         u32 rotation;
     };
@@ -22,20 +22,20 @@ public:
     u32  vf2C(u32*) override;
     void vf34() override;
     void execute() override;
-    bool vf44(Node2*, u8*, Vec2f*, Vec2f*, u8) override;
-    bool vf4C(Node2*, Vec2f*, Vec2f*, s32 sensorID, PhysicsMgr* physicsMgr) override;
-    bool vf54(u8*, Vec2f*) override;
+    bool vf44(Node2*, u8*, sead::Vector2f*, sead::Vector2f*, u8) override;
+    bool vf4C(Node2*, sead::Vector2f*, sead::Vector2f*, s32 sensorID, PhysicsMgr* physicsMgr) override;
+    bool vf54(u8*, sead::Vector2f*) override;
     bool vf5C(u32*) override;
     void vf64() override;
     void vf6C() override;
     void vf74(u32*) override;
-    bool vf7C(Vec2f*, f32) override;
+    bool vf7C(sead::Vector2f*, f32) override;
 
     void init(StageActor* owner, const Info& info);
 
-    Vec2f _158;
-    Vec2f _160;
-    Vec2f _168;
+    sead::Vector2f _158;
+    sead::Vector2f _160;
+    sead::Vector2f _168;
     f32 radius;
     u8 _174[0x1C];
 };

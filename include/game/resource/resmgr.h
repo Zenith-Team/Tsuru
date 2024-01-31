@@ -1,10 +1,10 @@
 #pragma once
 
-#include "sead/idisposer.h"
-#include "sead/safestring.h"
-#include "sead/sharcarchiveres.h"
-#include "sead/decompressor.h"
-#include "sead/strtreemap.h"
+#include "heap/seadDisposer.h"
+#include "prim/seadSafeString.h"
+#include "resource/seadSharcArchiveRes.h"
+#include "resource/seadSZSDecompressor.h"
+#include "container/seadStrTreeMap.h"
 
 class ResMgr {
     SEAD_SINGLETON_DISPOSER(ResMgr);

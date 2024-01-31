@@ -1,7 +1,7 @@
 
 ---
 Files:
-  - sarcloader.S
+  - source/sarcloader.S
 Hooks:
 # Load levels as uncompressed SARChive
   - type: branch

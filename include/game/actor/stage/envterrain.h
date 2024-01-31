@@ -16,11 +16,11 @@ public:
 
     ModelWrapper* model;
     u8 _17CC[4]; // Unknown values
-    Vec3f _17D0;
-    Vec3f _17DC;
+    sead::Vector3f _17D0;
+    sead::Vector3f _17DC;
     RectCollider rectCollider;
     PolygonCollider::Info colliderInfo;
-    Vec2f _1A9C;
+    sead::Vector2f _1A9C;
     u32 _1AA4;
     u32 _1AA8;
     f32 _1AAC;

@@ -2,9 +2,10 @@
 #include "game/task/coursetask.h"
 #include "game/level/levelinfo.h"
 #include "tsuru/save/managers/tsurusavemgr.h"
-#include "sead/graphicscontext.h"
-#include "sead/controllermgr.h"
-#include "sead/heapmgr.h"
+#include "gfx/seadGraphicsContext.h"
+#include "controller/seadControllerMgr.h"
+#include "heap/seadHeapMgr.h"
+#include "heap/seadFrameHeap.h"
 #include "game/wrappedcontroller.h"
 #include "game/actor/actor.h"
 #include "game/actor/actormgr.h"
@@ -122,12 +123,12 @@ Actor* ActorMgr::instanciateActor(const ActorBuildInfo& buildInfo, bool dontDefe
 
     u32 id = buildInfo.profile->id;
     if (id == 0x1BC || id == 0x1BB || id == 0x356 || id == 0x357) // Add extra profile ids here
-        actorHeap = sead::FrameHeap::tryCreate(0, "PlayerHeap", this->playerUnitHeap, sead::Heap::HeapDirection_Forward, false);
+        actorHeap = sead::FrameHeap::tryCreate(0, "PlayerHeap", this->playerUnitHeap, sead::Heap::cHeapDirection_Forward, false);
     else
-        actorHeap = sead::FrameHeap::tryCreate(0, "ActorHeap", this->actorUnitHeap, sead::Heap::HeapDirection_Forward, false);
+        actorHeap = sead::FrameHeap::tryCreate(0, "ActorHeap", this->actorUnitHeap, sead::Heap::cHeapDirection_Forward, false);
 
     if (actorHeap) {
-        this->currentID = this->actors.end.size << 0x16 | this->actors._10;
+        this->currentID = this->actors.emptyHeadIndex << 0x16 | this->actors.nextCreateIndex;
         this->currentWasNotDeferred = dontDefer;
 
         sead::CurrentHeapSetter currentHeap(actorHeap);

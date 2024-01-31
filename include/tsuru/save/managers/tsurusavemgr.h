@@ -1,7 +1,7 @@
 #pragma once
 
 #include "tsuru/save/system/customsavemgr.h"
-#include "sead/idisposer.h"
+#include "heap/seadDisposer.h"
 
 class TsuruSaveMgr : public CustomSaveMgr {
 public:

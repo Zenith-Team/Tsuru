@@ -4,10 +4,10 @@
 #include "game/audio/gameaudio.h"
 #include "game/zonerumblemgr.h"
 #include "game/graphics/drawmgr.h"
-#include "sead/mathcalccommon.h"
+#include "math/seadMathCalcCommon.h"
 
 class GiantSkewer : public Enemy {
-    SEAD_RTTI_OVERRIDE_IMPL(GiantSkewer, Enemy);
+    SEAD_RTTI_OVERRIDE(GiantSkewer, Enemy);
 
 public:
     GiantSkewer(const ActorBuildInfo* buildInfo);
@@ -43,11 +43,11 @@ CREATE_STATE(GiantSkewer, Retracting);
 CREATE_STATE(GiantSkewer, PreMoveDelay);
 
 const ActorInfo GiantSkewerActorInfo = {
-    Vec2i(0, 0), Vec2i(0, 0), Vec2i(240, 240), 0, 0, 0, 0, 0
+    sead::Vector2i(0, 0), sead::Vector2i(0, 0), sead::Vector2i(240, 240), 0, 0, 0, 0, 0
 };
 
 const HitboxCollider::Info GiantSkewer::collisionInfo = {
-    Vec2f(0.0f, 800.0f), Vec2f(96.0f, 1000.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &Enemy::collisionCallback
+    sead::Vector2f(0.0f, 800.0f), sead::Vector2f(96.0f, 1000.0f), HitboxCollider::Shape::Rectangle, 5, 0, 0x824F, 0x20208, 0, &Enemy::collisionCallback
 };
 
 REGISTER_PROFILE(GiantSkewer, ProfileID::GiantSkewer, "GiantSkewer", &GiantSkewerActorInfo);
@@ -83,7 +83,7 @@ u32 GiantSkewer::onCreate() {
 }
 
 u32 GiantSkewer::onExecute() {
-    Mtx34 mtx;
+    sead::Matrix34f mtx;
     mtx.makeRTIdx(this->rotation, this->position);
 
     this->model->setMtx(mtx);

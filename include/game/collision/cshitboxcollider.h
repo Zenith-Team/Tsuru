@@ -2,8 +2,9 @@
 
 #pragma once
 
-#include "sead/idisposer.h"
-#include "sead/ptrarray.h"
+#include "math/seadVector.h"
+#include "heap/seadDisposer.h"
+#include "container/seadPtrArray.h"
 
 class CSCollisionActor;
 
@@ -11,7 +12,7 @@ class CSHitboxCollider {
 public:
     struct Info {
         f32 size;
-        Vec3f offset;
+        sead::Vector3f offset;
     };
 
 public:
@@ -32,7 +33,7 @@ class CSHitboxColliderMgr {
     SEAD_SINGLETON_DISPOSER(CSHitboxColliderMgr);
 
 public:
-    struct UnknownStruct : public sead::PtrArrayImpl {
+    struct UnknownStruct : public sead::PtrArray<CSHitboxCollider> {
         u8 _C[1032];
     };
 

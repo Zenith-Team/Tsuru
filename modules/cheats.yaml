@@ -1,7 +1,7 @@
 
 ---
 Files:
-  - cheats.S.cpp
+  - source/cheats.S.cpp
 Hooks:
 # Infinite lives
   - type: branch

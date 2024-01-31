@@ -9,13 +9,13 @@
 #include "game/effect/effect.h"
 #include "game/effect/effectid.h"
 #include "math/functions.h"
-#include "sead/heapmgr.h"
+#include "heap/seadHeapMgr.h"
 
-// SO MUCH MATH :C
+// TODO: Use ActorAdditionalHeaps
 
 #define calcFireOrbit(angleoffs) \
-    fp.x = this->position.x + calcFireRadius(j) * cosf(degToRad(this->fireRotate + this->helixDelta(j) + angleoffs)); \
-    fp.y = this->position.y + calcFireRadius(j) * sinf(degToRad(this->fireRotate + this->helixDelta(j) + angleoffs))
+    fp.x = this->position.x + calcFireRadius(j) * cosf(sead::Mathf::deg2rad(this->fireRotate + this->helixDelta(j) + angleoffs)); \
+    fp.y = this->position.y + calcFireRadius(j) * sinf(sead::Mathf::deg2rad(this->fireRotate + this->helixDelta(j) + angleoffs))
 
 static f32 calcFireRadius(const u32 j) {
     f32 result = 0;
@@ -31,7 +31,7 @@ static f32 calcFireRadius(const u32 j) {
 }
 
 class HelicalBar : public MultiStateActor {
-    SEAD_RTTI_OVERRIDE_IMPL(HelicalBar, MultiStateActor);
+    SEAD_RTTI_OVERRIDE(HelicalBar, MultiStateActor);
 
 public:
     enum BarCount {
@@ -55,14 +55,14 @@ public:
         f32 delta = ((orbitRadius * 10.0f) * orbitRadius) / 10.0f;
         delta *= helixMultiplier;
 
-        return this->animate ? delta * sinf(degToRad(this->time)) : delta;
+        return this->animate ? delta * sinf(sead::Mathf::deg2rad(this->time)) : delta;
     }
 
     static void fireCollision(HitboxCollider* hcSelf, HitboxCollider* hcOther);
 
     ModelWrapper* centerModel;
     ModelWrapper* fireModel[4][6];
-    Vec2f firePositions[4][6];
+    sead::Vector2f firePositions[4][6];
     LightSource fireLights[4][6];
     HitboxCollider fireHitboxes[4][6];
     HitboxCollider::Info hcInfos[4][6];
@@ -88,7 +88,7 @@ REGISTER_PROFILE(HelicalBar, ProfileID::HelicalBar);
 PROFILE_RESOURCES(ProfileID::HelicalBar, Profile::LoadResourcesAt::Course, "firebar_L", "center_firebar");
 
 const PolygonCollider::Info HelicalBar::colliderInfo = {
-    Vec2f(0.0f, 0.0f), 0.0f, 0.0f, Vec2f(-8.0f, 8.0f), Vec2f(8.0f, -8.0f), 0
+    sead::Vector2f(0.0f, 0.0f), 0.0f, 0.0f, sead::Vector2f(-8.0f, 8.0f), sead::Vector2f(8.0f, -8.0f), 0
 };
 
 HelicalBar::HelicalBar(const ActorBuildInfo* buildInfo)
@@ -162,16 +162,16 @@ u32 HelicalBar::onDraw() {
 
     for (u32 i = 0; i < 4; i++) {
         for (u32 j = 0; j < 6; j++) {
-            Vec2f& fp = this->firePositions[i][j];
+            sead::Vector2f& fp = this->firePositions[i][j];
 
-            Vec3f lfp = Vec3f(fp.x, fp.y, 0.0f);
+            sead::Vector3f lfp = sead::Vector3f(fp.x, fp.y, 0.0f);
 
             this->fireLights[i][j].update(nullptr, &lfp, nullptr, &lightRadius, nullptr, &lightcolor);
 
-            Mtx34 mtx;
-            mtx.makeRTIdx(Vec3u(0, 0, fixDeg(-this->fireRotate * 4)), this->firePositions[i][j]);
+            sead::Matrix34f mtx;
+            mtx.makeRTIdx(sead::Vector3u(0, 0, sead::Mathf::deg2idx(-this->fireRotate * 4)), sead::Vector3f(fp.x, fp.y, 0.0f));
             this->fireModel[i][j]->setMtx(mtx);
-            this->fireModel[i][j]->setScale(Vec3f(0.78f, 0.78f, 0.78f));
+            this->fireModel[i][j]->setScale(sead::Vector3f(0.78f, 0.78f, 0.78f));
             this->fireModel[i][j]->updateModel();
             this->fireModel[i][j]->updateAnimations();
             this->fireModel[i][j]->draw();
@@ -182,8 +182,8 @@ u32 HelicalBar::onDraw() {
 }
 
 void HelicalBar::updateModel() {
-    Mtx34 mtx;
-    mtx.makeRTIdx(this->rotation, Vec3f(this->position.x, this->position.y, -1000.0f));
+    sead::Matrix34f mtx;
+    mtx.makeRTIdx(this->rotation, sead::Vector3f(this->position.x, this->position.y, -1000.0f));
     this->centerModel->setMtx(mtx);
     this->centerModel->updateModel();
 }
@@ -202,10 +202,10 @@ void HelicalBar::beginState_OneBar() {
 
     for (u32 i = 0; i < 1; i++) {
         for (u32 j = 0; j < 6; j++) {
-            const Vec2f& fp = this->firePositions[i][j];
+            const sead::Vector2f& fp = this->firePositions[i][j];
 
             this->hcInfos[i][j].set(
-                Vec2f(this->position.x - fp.x, this->position.y - fp.y), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
+                sead::Vector2f(this->position.x - fp.x, this->position.y - fp.y), sead::Vector2f(8.0f, 8.0f), HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
             );
 
             this->fireHitboxes[i][j].init(this, &this->hcInfos[i][j]);
@@ -218,9 +218,9 @@ void HelicalBar::beginState_OneBar() {
 void HelicalBar::executeState_OneBar() {
     for (u32 i = 0; i < 1; i++) {
         for (u32 j = 0; j < 6; j++) {
-            Vec2f& fp = this->firePositions[i][j];
+            sead::Vector2f& fp = this->firePositions[i][j];
 
-            this->fireHitboxes[i][j].colliderInfo.offset = Vec2f(fp.x - this->position.x, fp.y - this->position.y);
+            this->fireHitboxes[i][j].colliderInfo.offset = sead::Vector2f(fp.x - this->position.x, fp.y - this->position.y);
 
             switch (i) {
                 case Direction::Right: {
@@ -229,7 +229,7 @@ void HelicalBar::executeState_OneBar() {
                 }
             }
 
-            Vec3f efp(fp.x, fp.y, 4000.0f);
+            sead::Vector3f efp(fp.x, fp.y, 4000.0f);
             this->heatDistorters[i][j].update(RP_Firebar, &efp, &this->rotation, &this->scale);
         }
     }
@@ -244,10 +244,10 @@ void HelicalBar::beginState_TwoBars() {
 
     for (u32 i = 0; i < 2; i++) {
         for (u32 j = 0; j < 6; j++) {
-            const Vec2f& fp = this->firePositions[i][j];
+            const sead::Vector2f& fp = this->firePositions[i][j];
 
             this->hcInfos[i][j].set(
-                Vec2f(fp.x - this->position.x, fp.y - this->position.y), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
+                sead::Vector2f(fp.x - this->position.x, fp.y - this->position.y), sead::Vector2f(8.0f, 8.0f), HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
             );
 
             this->fireHitboxes[i][j].init(this, &this->hcInfos[i][j]);
@@ -259,9 +259,9 @@ void HelicalBar::beginState_TwoBars() {
 void HelicalBar::executeState_TwoBars() {
     for (u32 i = 0; i < 4; i++) {
         for (u32 j = 0; j < 6; j++) {
-            Vec2f& fp = this->firePositions[i][j];
+            sead::Vector2f& fp = this->firePositions[i][j];
 
-            this->fireHitboxes[i][j].colliderInfo.offset = Vec2f(fp.x - this->position.x, fp.y - this->position.y);
+            this->fireHitboxes[i][j].colliderInfo.offset = sead::Vector2f(fp.x - this->position.x, fp.y - this->position.y);
 
             switch (i) {
                 case Direction::Right: {
@@ -275,7 +275,7 @@ void HelicalBar::executeState_TwoBars() {
                 }
             }
 
-            Vec3f efp(fp.x, fp.y, 4000.0f);
+            sead::Vector3f efp(fp.x, fp.y, 4000.0f);
             this->heatDistorters[i][j].update(RP_Firebar, &efp, &this->rotation, &this->scale);
         }
     }
@@ -290,10 +290,10 @@ void HelicalBar::beginState_ThreeBars() {
 
     for (u32 i = 0; i < 3; i++) {
         for (u32 j = 0; j < 6; j++) {
-            const Vec2f& fp = this->firePositions[i][j];
+            const sead::Vector2f& fp = this->firePositions[i][j];
 
             this->hcInfos[i][j].set(
-                Vec2f(fp.x - this->position.x, fp.y - this->position.y), Vec2f(8.0f, 8.0f), HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
+                sead::Vector2f(fp.x - this->position.x, fp.y - this->position.y), sead::Vector2f(8.0f, 8.0f), HitboxCollider::Shape::Circle, 5, 0, 0x824F, 0x20208, 0, &HelicalBar::fireCollision
             );
 
             this->fireHitboxes[i][j].init(this, &this->hcInfos[i][j]);
@@ -305,7 +305,7 @@ void HelicalBar::beginState_ThreeBars() {
 void HelicalBar::executeState_ThreeBars() {
     for (u32 i = 0; i < 4; i++) {
         for (u32 j = 0; j < 6; j++) {
-            Vec2f& fp = this->firePositions[i][j];
+            sead::Vector2f& fp = this->firePositions[i][j];
 
             switch (i) {
                 case Direction::Right: {
@@ -324,9 +324,9 @@ void HelicalBar::executeState_ThreeBars() {
                 }
             }
 
-            this->fireHitboxes[i][j].colliderInfo.offset = Vec2f(fp.x - this->position.x, fp.y - this->position.y);
+            this->fireHitboxes[i][j].colliderInfo.offset = sead::Vector2f(fp.x - this->position.x, fp.y - this->position.y);
 
-            Vec3f efp(fp.x, fp.y, 4000.0f);
+            sead::Vector3f efp(fp.x, fp.y, 4000.0f);
             this->heatDistorters[i][j].update(RP_Firebar, &efp, &this->rotation, &this->scale);
         }
     }

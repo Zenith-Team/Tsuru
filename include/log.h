@@ -1,7 +1,6 @@
 #pragma once
 
-#include "sead/graphicscontext.h"
-#include "dynlibs/os/functions.h"
+#include "sdk/os/functions.h"
 #include "tsuru/utils.h"
 #include "game/collision/solid/polygoncollider.h"
 #include <cstring>
@@ -352,7 +351,7 @@ inline void tprint<void*>(void* value) {
 }
 
 template <>
-inline void tprint<Vec2u>(Vec2u value) {
+inline void tprint<sead::Vector2u>(sead::Vector2u value) {
     LOG("X: %u, Y: %u", value.x, value.y);
 
     if (fmt::_hexActive) {
@@ -361,7 +360,7 @@ inline void tprint<Vec2u>(Vec2u value) {
 }
 
 template <>
-inline void tprint<Vec3u>(Vec3u value) {
+inline void tprint<sead::Vector3u>(sead::Vector3u value) {
     LOG("X: %u, Y: %u, Z: %u", value.x, value.y, value.z);
 
     if (fmt::_hexActive) {
@@ -370,7 +369,7 @@ inline void tprint<Vec3u>(Vec3u value) {
 }
 
 template <>
-inline void tprint<Vec2f>(Vec2f value) {
+inline void tprint<sead::Vector2f>(sead::Vector2f value) {
     LOG("X: %f, Y: %f", value.x, value.y);
 
     if (fmt::_hexActive) {
@@ -379,7 +378,7 @@ inline void tprint<Vec2f>(Vec2f value) {
 }
 
 template <>
-inline void tprint<Vec3f>(Vec3f value) {
+inline void tprint<sead::Vector3f>(sead::Vector3f value) {
     LOG("X: %f, Y: %f, Z: %f", value.x, value.y, value.z);
 
     if (fmt::_hexActive) {
@@ -397,29 +396,4 @@ inline void tprint<PolygonCollider::Info>(PolygonCollider::Info info) {
     LOG("  bottomRight: ", ""); tprint(info.bottomRight); LOG("\n", "");
     LOG("  rotation: %u\n", info.rotation);
     LOG("--------------------------------------------------------", "");
-}
-
-template <>
-inline void tprint<volatile sead::GraphicsContext&>(volatile sead::GraphicsContext& gc) {
-    LOG("------------------GraphicsContext------------------", "");
-    LOG("  alphaTest: Enable(%s), Func(%d), Ref(%f)", formatBool(gc.alphaTestEnable), gc.alphaTestFunc, gc.alphaTestRef);
-    LOG("  blendConstantColor: RGBA(%f, %f, %f, %f)", gc.blendConstantColor.r, gc.blendConstantColor.g, gc.blendConstantColor.b, gc.blendConstantColor.a);
-    LOG("  blendEnable:    %s", formatBool(gc.blendEnable));
-    LOG("  blendEquation:  RGB(%d), A(%d)", gc.blendEquationRGB, gc.blendEquationA);
-    LOG("  blendFactorDst: RGB(%d), A(%d)", gc.blendFactorDstRGB, gc.blendFactorDstA);
-    LOG("  blendFactorSrc: RGB(%d), A(%d)", gc.blendFactorSrcRGB, gc.blendFactorSrcA);
-    LOG("  colorMask: RGBA(%s, %s, %s, %s)", formatBool(gc.colorMaskR), formatBool(gc.colorMaskG), formatBool(gc.colorMaskB), formatBool(gc.colorMaskA));
-    LOG("  cullingMode: %d", gc.cullingMode);
-    LOG("  depthFunc:   %d", gc.depthFunc);
-    LOG("  depth(Test/Write)Enable: %s / %s", formatBool(gc.depthTestEnable), formatBool(gc.depthWriteEnable));
-    LOG("  renderStatePolygonMode: Back(%d), Front(%d)", gc.renderState.polygonModeBack, gc.renderState.polygonModeFront);
-    LOG("  renderStatePolyOffset(Back/Front)Enable: %d / %d", gc.renderState.polyOffsetBackEnable, gc.renderState.polyOffsetFrontEnable);
-    LOG("  renderStatePolyLineOffsetEnable: %d", gc.renderState.polyLineOffsetEnable);
-    LOG("  stencilOp: Fail(%d), ZFail(%d), ZPass(%d)", gc.stencilOpFail, gc.stencilOpZFail, gc.stencilOpZPass);
-    LOG("  stencilTest: Enable(%s), Func(%d), Mask(%d), Ref(%d)", formatBool(gc.stencilTestEnable), gc.stencilTestFunc, gc.stencilTestMask, gc.stencilTestRef);
-    LOG("---------------------------------------------------", "");
-
-    if (fmt::_hexActive) {
-        fmt::_hexActive = false;
-    }
 }

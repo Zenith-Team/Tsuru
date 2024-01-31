@@ -5,7 +5,7 @@
 #include "game/actor/stage/stageactor.h"
 
 class Boss : public Enemy { // Size: 0x1B78
-    SEAD_RTTI_OVERRIDE(Boss, Enemy);
+    SEAD_RTTI_OVERRIDE_DECL(Boss, Enemy);
 
 public:
     Boss(const ActorBuildInfo* buildInfo);
@@ -36,11 +36,11 @@ public:
     u32 vf12C() override;
 
     bool vf154() override;
-    void move(Vec2f& dest) override;
+    void move(sead::Vector2f& dest) override;
     void setYSpeed(f32 ySpeed) override;
     u32 vf16C() override;
     u32 vf174() override;
-    void getRect(Rect& rect) override;
+    void getRect(sead::BoundBox2f& rect) override;
 
     void vf18C() override;
 
@@ -166,9 +166,9 @@ public:
     void updateModelTrampoline();
 
     // All these are score related
-    void FUN_202D0F8(StageActor*, Vec3f*, u32);
-    void FUN_202D030(StageActor*, Vec3f*, u32);
-    void FUN_202D094(StageActor*, Vec3f*, u32);
+    void FUN_202D0F8(StageActor*, sead::Vector3f*, u32);
+    void FUN_202D030(StageActor*, sead::Vector3f*, u32);
+    void FUN_202D094(StageActor*, sead::Vector3f*, u32);
 
     s32 hitsToDeath;        // Hits until boss dies
     s32 hitsToDamage;       // Fireball hits until boss takes damage
@@ -180,7 +180,7 @@ public:
     u16 _19BC;
     u8 _19BE[2];            // Unknown values
     PlayerLookTarget lookTarget;
-    Vec3f _19EC;
+    sead::Vector3f _19EC;
     f32 _19F8;
     u8 _19FC[4];            // Unknown values
     u32 _1A00;
@@ -188,10 +188,10 @@ public:
     void* _1A08;
     HitboxCollider hitboxCollider;
     void* _1B34;
-    Vec3f _1B38;
-    Vec3f _1B44;
-    Vec3f _1B50;
-    Vec3f _1B5C;
+    sead::Vector3f _1B38;
+    sead::Vector3f _1B44;
+    sead::Vector3f _1B50;
+    sead::Vector3f _1B5C;
     f32 _1B68;
     f32 _1B6C;
     u32 _1B70;

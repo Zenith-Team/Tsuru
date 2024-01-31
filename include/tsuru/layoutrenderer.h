@@ -1,6 +1,6 @@
 #pragma once
 
-#include "agl/lyr/drawmethod.h"
+#include "layer/aglDrawMethod.h"
 #include "game/layout/layouthandler.h"
 #include "tsuru/minipointerlist.h"
 
@@ -17,7 +17,7 @@ private:
 
     void render(const agl::lyr::RenderInfo& renderInfo);
 
-    agl::lyr::DrawMethodImpl<LayoutRenderer> drawMethod;
+    agl::lyr::DrawMethod drawMethod;
 
     MiniPointerList<LayoutHandler*, 0xFF> layouts;
 };

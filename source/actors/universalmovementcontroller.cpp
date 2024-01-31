@@ -4,7 +4,7 @@
 #include "log.h"
 
 class UniversalMovementController : public StageActor {
-    SEAD_RTTI_OVERRIDE_IMPL(UniversalMovementController, StageActor);
+    SEAD_RTTI_OVERRIDE(UniversalMovementController, StageActor);
 
 public:
     UniversalMovementController(const ActorBuildInfo* buildInfo);
@@ -29,7 +29,7 @@ UniversalMovementController::UniversalMovementController(const ActorBuildInfo* b
 u32 UniversalMovementController::onCreate() {
     bool safeMode = this->eventID2 >> 0x4 & 0x1; // nybble 3
 
-    for (Actor** actor = ActorMgr::instance()->actors.start.buffer; actor < ActorMgr::instance()->actors.end.buffer; actor++) {
+    for (Actor** actor = &ActorMgr::instance()->actors.start.front(); actor < ActorMgr::instance()->actors.end; actor++) {
         if (*actor && (*actor)->initialStateFlag == (this->eventID1 & 0xFF)) { // nybbles 1-2
             if (safeMode) {
                 u32 targetID = 0;

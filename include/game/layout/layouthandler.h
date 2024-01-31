@@ -1,9 +1,9 @@
 #pragma once
 
-#include "sead/idisposer.h"
-#include "sead/buffer.h"
-#include "sead/safestring.h"
-#include "sead/matrix.h"
+#include "heap/seadDisposer.h"
+#include "container/seadBuffer.h"
+#include "prim/seadSafeString.h"
+#include "math/seadMatrix.h"
 #include "game/layout/gamelayout.h"
 #include "game/layout/textboxwrapper.h"
 
@@ -23,8 +23,8 @@ public:
     virtual ~LayoutHandler();
 
     void init(sead::Heap* heap = nullptr);
-    void draw(const Mtx44& projectionMtx);
-    void update(u32 layerID, Mtx34* mtx = nullptr);
+    void draw(const sead::Matrix44f& projectionMtx);
+    void update(u32 layerID, sead::Matrix34f* mtx = nullptr);
     void initAnims(const sead::SafeString* names, u32& count);
     void playAnim(u32, const sead::SafeString& name, bool loop = false);
 

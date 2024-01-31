@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/idisposer.h"
+#include "heap/seadDisposer.h"
 #include "sead/graphicscontext.h"
 #include "agl/utl/debugtexturepage.h"
 #include "agl/texturedata.h"

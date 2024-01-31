@@ -6,7 +6,7 @@
 #include "game/actor/stage/playerbase.h"
 
 class PowerupBase : public MultiStateActor { // Size: 0x1A90
-    SEAD_RTTI_OVERRIDE(PowerupBase, MultiStateActor);
+    SEAD_RTTI_OVERRIDE_DECL(PowerupBase, MultiStateActor);
 
 public:
     PowerupBase(const ActorBuildInfo* buildInfo);
@@ -23,10 +23,10 @@ public:
     void vfC4() override;
     void vfCC() override;
     void killAtGoal() override;
-    void splashWater(Vec3f*) override;
-    void splashLava(Vec3f*) override;
-    void splashLavaWave(Vec3f*) override;
-    void splashPoison(Vec3f*) override;
+    void splashWater(sead::Vector3f*) override;
+    void splashLava(sead::Vector3f*) override;
+    void splashLavaWave(sead::Vector3f*) override;
+    void splashPoison(sead::Vector3f*) override;
 
     void damageFromUnder() override;
     void vf10C(u8 unk) override;
@@ -39,11 +39,10 @@ public:
     void vf144(bool unk) override;
 
     bool vf154() override;
-    void move(Vec2f& dest) override;
+    void move(sead::Vector2f& dest) override;
     void setYSpeed(f32 ySpeed) override;
     u32  vf16C() override;
     u32  vf174() override;
-    void getRect(Rect& rect) override;
     void doStateChange(StateBase* state) override;
 
     virtual void vf18C();                       // nullsub

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sead/idisposer.h"
+#include "heap/seadDisposer.h"
 #include "tiledatainfo.h"
 
 class TileMgr { // Size: 0x9B88

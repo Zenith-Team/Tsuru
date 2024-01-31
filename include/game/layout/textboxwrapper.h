@@ -1,7 +1,7 @@
 #pragma once
 
 #include "nw/lyt/textbox.h"
-#include "sead/safestring.h"
+#include "prim/seadSafeString.h"
 
 class TextBoxWrapper : public nw::lyt::TextBox {
 public:

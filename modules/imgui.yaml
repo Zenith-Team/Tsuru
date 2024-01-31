@@ -1,15 +1,15 @@
 
 ---
 Files:
-  - imgui/imgui.cpp
-  - imgui/imgui_demo.cpp
-  - imgui/imgui_draw.cpp
-  - imgui/imgui_tables.cpp
-  - imgui/imgui_widgets.cpp
-  - imgui/imgui_impl_wiiu.cpp
-  - imgui/imgui_impl_gx2.cpp
-  - imgui/wut/whb/gfx_shader.cpp
-  - imgui/imgui_hooks.cpp
+  - lib/imgui/src/imgui.cpp
+  - lib/imgui/src/imgui_demo.cpp
+  - lib/imgui/src/imgui_draw.cpp
+  - lib/imgui/src/imgui_tables.cpp
+  - lib/imgui/src/imgui_widgets.cpp
+  - lib/imgui/src/imgui_impl_wiiu.cpp
+  - lib/imgui/src/imgui_impl_gx2.cpp
+  - lib/imgui/src/wut/whb/gfx_shader.cpp
+  - lib/imgui/src/imgui_hooks.cpp
 Hooks:
   - type: branch
     instr: bl

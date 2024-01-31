@@ -3,14 +3,14 @@
 #include "game/graphics/model/renderobj.h"
 #include "game/graphics/model/animation.h"
 #include "game/graphics/model/material.h"
-#include "agl/shadow/depthshadow.h"
-#include "sead/heap.h"
-#include "sead/sphere.h"
+#include "shadow/aglDepthShadow.h"
+#include "heap/seadHeap.h"
+#include "geom/seadSphere.h"
 
 class ObjLayer;
 
 class Model : public RenderObj, public sead::IDisposer {
-    SEAD_RTTI_OVERRIDE(Model, RenderObj);
+    SEAD_RTTI_OVERRIDE_DECL(Model, RenderObj);
 
 public:
     Model();
@@ -18,19 +18,19 @@ public:
 
     virtual void updateAnimations() = 0;
     virtual void updateModel() = 0;
-    virtual void setMtxRT(const Mtx34& rt) = 0;
-    virtual const Mtx34& getMtxRT() const = 0;
-    virtual void setScale(const Vec3f& scale) = 0;
-    virtual const Vec3f& getScale() const = 0;
+    virtual void setMtxRT(const sead::Matrix34f& rt) = 0;
+    virtual const sead::Matrix34f& getMtxRT() const = 0;
+    virtual void setScale(const sead::Vector3f& scale) = 0;
+    virtual const sead::Vector3f& getScale() const = 0;
     virtual bool hasOpa() const = 0;
     virtual bool hasXlu() const = 0;
     virtual s32 searchBoneIndex(const sead::SafeString& name) const = 0;
     virtual const char* getBoneName(s32 index) const = 0;
     virtual u32 getBoneNum() const = 0;
-    virtual void setBoneLocalMatrix(s32 index, const Mtx34& rt, const Vec3f& scale) = 0;
-    virtual void getBoneLocalMatrix(s32 index, Mtx34* rt, Vec3f* scale) const = 0;
-    virtual void setBoneWorldMatrix(s32 index, const Mtx34& mtx) = 0;
-    virtual void getBoneWorldMatrix(s32 index, Mtx34* mtx) const = 0;
+    virtual void setBoneLocalMatrix(s32 index, const sead::Matrix34f& rt, const sead::Vector3f& scale) = 0;
+    virtual void getBoneLocalMatrix(s32 index, sead::Matrix34f* rt, sead::Vector3f* scale) const = 0;
+    virtual void setBoneWorldMatrix(s32 index, const sead::Matrix34f& mtx) = 0;
+    virtual void getBoneWorldMatrix(s32 index, sead::Matrix34f* mtx) const = 0;
     virtual void setBoneVisible(s32 index, bool visible) = 0;
     virtual bool isBoneVisible(s32 index) const = 0;
     virtual u32 getMaterialNum() const = 0;

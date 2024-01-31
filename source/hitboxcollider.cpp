@@ -8,22 +8,27 @@
 
 #include "game/actor/stage/stageactor.h"
 #include "game/collision/hitboxcollider.h"
+#include "tsuru/utils.h"
 
-void HitboxCollider::getRect(Rect& outRect) {
-    Vec3f* ownerPos = &this->owner->position;
+void HitboxCollider::getRect(sead::BoundBox2f& out) {
+    sead::Vector3f* ownerPos = &this->owner->position;
 
-    outRect.left   = ownerPos->x + this->colliderInfo.offset.x - this->colliderInfo.radius.x;
-    outRect.right  = ownerPos->x + this->colliderInfo.offset.x + this->colliderInfo.radius.x;
-    outRect.top    = ownerPos->y + this->colliderInfo.offset.y + this->colliderInfo.radius.y;
-    outRect.bottom = ownerPos->y + this->colliderInfo.offset.y - this->colliderInfo.radius.y;
+    out.setMin(sead::Vector2f(
+        ownerPos->x + this->colliderInfo.offset.x - this->colliderInfo.radius.x,
+        ownerPos->y + this->colliderInfo.offset.y - this->colliderInfo.radius.y
+    ));
+    out.setMax(sead::Vector2f(
+        ownerPos->x + this->colliderInfo.offset.x + this->colliderInfo.radius.x,
+        ownerPos->y + this->colliderInfo.offset.y + this->colliderInfo.radius.y
+    ));
 }
 
 bool HitboxCollider::sCollidersOverlap(HitboxCollider* hcSelf, HitboxCollider* hcOther) {
-    Rect thisRect;
+    sead::BoundBox2f thisRect;
     hcSelf->getRect(thisRect);
 
-    Rect otherRect;
+    sead::BoundBox2f otherRect;
     hcOther->getRect(otherRect);
 
-    return Rect::intersects(thisRect, otherRect);
+    return intersects(thisRect, otherRect);
 }

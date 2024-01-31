@@ -19,7 +19,7 @@ public:
             return nullptr;
         }
 
-        for (Actor** current = ActorMgr::instance()->actors.start.buffer; current < ActorMgr::instance()->actors.end.buffer; current++) {
+        for (Actor** current = &ActorMgr::instance()->actors.start.front(); current < ActorMgr::instance()->actors.end; current++) {
             Actor* actor = *current;
             if (actor) {
                 if (((StageActor*)actor)->type == StageActor::Type::Boss) {
