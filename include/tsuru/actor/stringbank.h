@@ -5,8 +5,7 @@
 #include "game/level/level.h"
 #include "game/level/levelinfo.h"
 #include "tsuru/strybble.h"
-#include "log.h"
-#include "ghs.h"
+#include "tsuru/log.h"
 
 class StringBank : public Actor {
     SEAD_RTTI_OVERRIDE(StringBank, Actor);
@@ -39,26 +38,26 @@ public:
             self->movementID,
             self->linkID
         };
-        __memzero(out, 12);
+        OSBlockSet(out, 0, 12);
         for (u8 i = 0; i < 12; i++) out[i] = nybbles[i];
     }
 
     static void getPrimaryString(StringBank* self, char strPrimary[17]) {
-        __memzero(strPrimary, 17);
+        OSBlockSet(strPrimary, 0, 17);
         u8 nybbles[12]; StringBank::getNybbles(self, nybbles);
         strybble::loadFromNybbles(nybbles, 16, strPrimary);
         strybble::decode(strPrimary, 16);
     };
 
     static void getPrimaryString(Level::Area::Sprite* self, char strPrimary[17]) {
-        __memzero(strPrimary, 17);
+        OSBlockSet(strPrimary, 0, 17);
         strybble::loadFromNybbles(self, 16, strPrimary);
         strybble::decode(strPrimary, 16);
     };
 
     static void getAdjacentStrings(StringBank* self, char strSecondary[17], char strLast[17]) {
-        __memzero(strSecondary, 17);
-        __memzero(strLast, 17);
+        OSBlockSet(strSecondary, 0, 17);
+        OSBlockSet(strLast, 0, 17);
         ActorBuffer* actors = &ActorMgr::instance()->actors;
         for (u32 i = 0; i < actors->start.size(); i++) {
             StringBank* strBank = sead::DynamicCast<StringBank, Actor>(actors->start[i]);
@@ -79,8 +78,8 @@ public:
     };
 
     static void getAdjacentStrings(Level::Area::Sprite* self, char strSecondary[17], char strLast[17]) {
-        __memzero(strSecondary, 17);
-        __memzero(strLast, 17);
+        OSBlockSet(strSecondary, 0, 17);
+        OSBlockSet(strLast, 0, 17);
         Level::Area::Sprite* strBankSpr = nullptr;
         Level::Area* area = Level::instance()->getArea(LevelInfo::instance()->area);
         while (strBankSpr = area->getSprite(745, strBankSpr)) {
@@ -99,11 +98,15 @@ public:
     };
 
     static void constructFullString(char out[49], char strPrimary[17], char strSecondary[17], char strLast[17]) {
-        __memzero(out, 49);
-        if (strSecondary[0] != '\0' && strLast[0] != '\0') __os_snprintf(out, 49, "%s%s%s", strPrimary, strSecondary, strLast);
-        else if (strSecondary[0] != '\0') __os_snprintf(out, 49, "%s%s", strPrimary, strSecondary);
-        else if (strLast[0] != '\0') __os_snprintf(out, 49, "%s%s", strPrimary, strLast);
-        else __os_snprintf(out, 49, "%s", strPrimary);
+        OSBlockSet(out, 0, 49);
+        if (strSecondary[0] != '\0' && strLast[0] != '\0')
+            __os_snprintf(out, 49, "%s%s%s", strPrimary, strSecondary, strLast);
+        else if (strSecondary[0] != '\0')
+            __os_snprintf(out, 49, "%s%s", strPrimary, strSecondary);
+        else if (strLast[0] != '\0')
+            __os_snprintf(out, 49, "%s%s", strPrimary, strLast);
+        else
+            __os_snprintf(out, 49, "%s", strPrimary);
     };
 
 public:

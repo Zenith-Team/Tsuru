@@ -3,7 +3,7 @@
 #include "game/actor/stage/stageactor.h"
 #include "game/level/leveltimer.h"
 #include "game/audio/gameaudio.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class TimeClock : public StageActor {
     SEAD_RTTI_OVERRIDE(TimeClock, StageActor);

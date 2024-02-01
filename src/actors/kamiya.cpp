@@ -7,11 +7,11 @@
 #include "game/effect/effectid.h"
 #include "game/playermgr.h"
 #include "game/direction.h"
-#include "math/easing.h"
+#include "tsuru/easing.h"
 #include "random/seadGlobalRandom.h"
 #include "math/seadMathCalcCommon.h"
 #include "game/actor/actormgr.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class Kamiya : public Enemy {
     SEAD_RTTI_OVERRIDE(Kamiya, Enemy);

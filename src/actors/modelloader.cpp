@@ -4,11 +4,9 @@
 #include "game/resource/util.h"
 #include "game/graphics/rendermgr.h"
 #include "game/movementhandler.h"
-#include "tsuru/actors/stringbank.h"
+#include "tsuru/actor/stringbank.h"
 #include "layer/aglRenderer.h"
-#include "ghs.h"
-#include "log.h"
-#include <cstring>
+#include "tsuru/log.h"
 
 class ModelLoader : public StageActor {
     SEAD_RTTI_OVERRIDE(ModelLoader, StageActor);
@@ -60,9 +58,9 @@ u32 ModelLoader::onCreate() {
         return 2;
     }
 
-    __memzero(this->modelFile, 49);
-    __memzero(this->modelName, 49);
-    __memzero(this->sklAnimName, 49);
+    OSBlockSet(this->modelFile, 0, 49);
+    OSBlockSet(this->modelName, 0, 49);
+    OSBlockSet(this->sklAnimName, 0, 49);
 
     ActorBuffer* actors = &ActorMgr::instance()->actors;
     for (u32 i = 0; i < actors->start.size(); i++) {

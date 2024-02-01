@@ -5,7 +5,7 @@
 #include "game/playermgr.h"
 #include "game/actor/actormgr.h"
 #include "tsuru/utils.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class LiquidOverlay : public StageActor {
     SEAD_RTTI_OVERRIDE(LiquidOverlay, StageActor);

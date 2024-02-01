@@ -12,7 +12,7 @@ CSScriptLoader::CSScriptLoader(const ActorBuildInfo* buildInfo)
 
 u32 CSScriptLoader::onCreate() {
     instance = this;
-    this->wmscFile = new WMSFile(this->heap);
+    this->wmscFile = new WMSCFile(this->heap);
 
     return 1;
 }

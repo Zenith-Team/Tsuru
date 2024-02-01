@@ -2,7 +2,7 @@
 #include "game/actor/stage/cutscenekamek.h"
 #include "game/actor/actormgr.h"
 #include "game/profile/profileid.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class UniversalBossController : public BossControllerWrapper {
 public:

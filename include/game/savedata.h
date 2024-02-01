@@ -1,6 +1,6 @@
 #pragma once
 
-#include "log.h"
+#include "tsuru/log.h"
 #include "nn/ffl.h"
 
 struct SaveData { // Size: 0xB134
@@ -317,10 +317,10 @@ public:
 
     struct MiiData {
         u8 entriesCount;                // 0
-        FFLCreateID miiIDList[62];    // 1    (Total size: 0x26C)
+        FFLCreateID miiIDList[62];      // 1    (Total size: 0x26C)
         u8 padding[3];                  // 26D
         u32 CRC32;                      // 270
-    } packed aligned(1);
+    } __attribute__((packed)) __attribute__((aligned(1)));
 
     static_assert(sizeof(SaveData::MiiData) == 0x274, "SaveData::MiiData size mismatch");
 

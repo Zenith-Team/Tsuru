@@ -1,6 +1,6 @@
 #include "game/distantview/distantviewmgr.h"
 #include "game/actor/actor.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class ShaderController : public Actor {
     SEAD_RTTI_OVERRIDE(ShaderController, Actor);

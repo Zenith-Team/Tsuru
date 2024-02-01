@@ -2,7 +2,7 @@
 #include "game/task/areatask.h"
 #include "game/actor/stage/player.h"
 #include "game/eventmgr.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 ASM_BEGIN
 

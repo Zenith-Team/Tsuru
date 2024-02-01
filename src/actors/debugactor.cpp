@@ -1,7 +1,7 @@
 #include "game/actor/actor.h"
 #include "game/playermgr.h"
 #include "game/actor/stage/player.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class DebugActor : public Actor {
     SEAD_RTTI_OVERRIDE(DebugActor, Actor);

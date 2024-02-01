@@ -2,24 +2,42 @@
 
 #include "types.h"
 #include "prim/seadSafeString.h"
-#include "math/functions.h"
 #include "math/seadBoundBox.h"
 
-// Compare if two wide strings are equal
-// @param str1 The first string to compare
-// @param str2 The second string to compare
-// @return < 0 if str1 is less than str2;
-//           0 if str1 is identical to str2;
-//         > 0 if str1 is greater than str2
-extern "C" s32 wcscmp(const wchar_t* str1, const wchar_t* str2);
+// Modified version of moveValueTo which supports overflowing/underflowing the value, used for smooth rotations.
+inline bool moveValueWithOverflowTo(u32& value, u32 target, u32 step, bool subtract) {
+    u32 counter = 0;
+    u32 startValue = value;
+    s64 offset = target - startValue;
+    if (offset < 0) offset *= -1;
 
-// Modified version of moveValueTo which supports overflowing/underflowing the value, used for smooth rotations
-// @param value The variable to be modified
-// @param target The value to move the variable towards
-// @param step The amount that the variable will be moved by
-// @param subtract Whether or not to subtract from the variable
-// @return Whether or not the variable has reached the target
-bool moveValueWithOverflowTo(u32& value, u32 target, u32 step, bool subtract);
+    if (counter + step < offset) {
+        if (!subtract)
+            value += step;
+        else
+            value -= step;
+
+        counter += step;
+        return false;
+    }
+
+    value = target;
+    return true;
+}
+
+// Gets the percentage represented by a number within a given range
+// @param value The number
+// @param min The start value of the range
+// @param max The end value of the range
+// @return The percentage
+inline f32 percentFromValue(f32 value, f32 min, f32 max) { return (((value - min) * 100) / (max - min)) / 100; }
+
+// Gets the number represented by a percentage of a given range
+// @param percent The percentage
+// @param min The start value of the range
+// @param max The end value of the range
+// @return The number
+inline f32 valueFromPercent(f32 percent, f32 min, f32 max) { return (percent * 100 * (max - min) / 100) + min; }
 
 template <typename T>
 static inline void swap(T& a, T& b) {
@@ -40,5 +58,5 @@ static inline bool intersects(const sead::BoundBox2f& a, const sead::BoundBox2f&
     const sead::Vector2f& max_b = b.getMax();
 
     return min_a.x < max_b.x && max_a.x > min_b.x &&
-               min_a.y < max_b.y && max_a.y > min_b.y;
+           min_a.y < max_b.y && max_a.y > min_b.y;
 }

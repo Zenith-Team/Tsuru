@@ -3,7 +3,6 @@
 #include "game/direction.h"
 #include "game/graphics/model/modelnw.h"
 #include "tsuru/utils.h"
-#include "math/functions.h"
 #include "game/collision/collidermgr.h"
 #include "game/collision/solid/rectcollider.h"
 #include "game/audio/gameaudio.h"

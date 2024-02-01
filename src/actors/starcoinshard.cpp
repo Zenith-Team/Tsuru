@@ -3,7 +3,7 @@
 #include "game/actor/actormgr.h"
 #include "game/audio/gameaudio.h"
 #include "game/effect/effect.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class StarCoinShardMgr;
 

@@ -1,6 +1,6 @@
 /*
 #include "resource/seadSharcArchiveRes.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 namespace sead {
 

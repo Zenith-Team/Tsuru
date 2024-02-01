@@ -1,7 +1,7 @@
 #include "tsuru/custompowerupmodel.h"
 #include "tsuru/playeradditionalresource.h"
 #include "game/actor/stage/player.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 CustomPowerupModel::CustomPowerupModel()
     : hammerHelmet(nullptr)

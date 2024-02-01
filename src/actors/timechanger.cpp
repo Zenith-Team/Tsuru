@@ -3,7 +3,7 @@
 #include "game/task/taskmgr.h"
 #include "game/level/leveltimer.h"
 #include "game/eventmgr.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class TimeChanger : public StageActor {
     SEAD_RTTI_OVERRIDE(TimeChanger, StageActor);

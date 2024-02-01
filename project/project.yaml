@@ -29,8 +29,6 @@ Modules:
   - yoshicolors          # Extra colors for Yoshi
   - imgui
 Defines:
-  - NO_INTELLISENSE_HACK
-  - TSURU_DEBUG
   - cafe
   - NW_RELEASE
 

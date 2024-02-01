@@ -1,7 +1,7 @@
 #include "game/actor/stage/stageactor.h"
 #include "game/movementhandler.h"
 #include "game/actor/actormgr.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class UniversalMovementController : public StageActor {
     SEAD_RTTI_OVERRIDE(UniversalMovementController, StageActor);

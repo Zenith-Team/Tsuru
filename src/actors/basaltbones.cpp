@@ -8,12 +8,11 @@
 #include "game/graphics/lightsource.h"
 #include "game/actor/stage/envterrain.h"
 #include "game/audio/gameaudio.h"
-#include "tsuru/heatdistorter.h"
 #include "game/tilemgr.h"
-#include "math/bezier.h"
-#include "math/easing.h"
+#include "tsuru/bezier.h"
+#include "tsuru/easing.h"
 #include "random/seadGlobalRandom.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class BasaltBoneProjectile : public Enemy {
     SEAD_RTTI_OVERRIDE(BasaltBoneProjectile, Enemy);
@@ -135,7 +134,7 @@ public:
     f32 down;
     bool dead, draw, first, threw;
     EnvTerrain* lava;
-    HeatDistorter heat;
+    EffectWrapper heat;
     EffectWrapper flames;
     sead::Vector3f flamesScale;
 
@@ -248,13 +247,15 @@ u32 BasaltBones::onExecute() {
     }
 
     if (this->draw) {
-        this->heat.execute(this->position + sead::Vector3f(0.0f, 8.0f, 0.0f), sead::Vector3f(1.75f, 1.75f, 1.75f));
+        sead::Vector3f effectPos = this->position + sead::Vector3f(0.0f, 8.0f, 0.0f);
+        sead::Vector3f effectScale = sead::Vector3f(1.75f, 1.75f, 1.75f);
+        this->heat.update(RP_Firebar, &effectPos, nullptr, &effectScale);
 
         for (u32 i = 0; i < 6; i++) {
             this->bones[i].hitbox.colliderInfo.offset = sead::Vector2f(9999, 9999);
         }
     } else {
-        this->heat.execute(sead::Vector3f(0.0f, 0.0f, 0.0f), sead::Vector3f(0.0f, 0.0f, 0.0f));
+        this->heat.update(RP_Firebar, &sead::Vector3f::zero, nullptr, &sead::Vector3f::zero);
     }
 
     return 1;

@@ -6,7 +6,7 @@ class RectCollider : public PolygonCollider {
     SEAD_RTTI_OVERRIDE_DECL(RectCollider, PolygonCollider);
 
 public:
-    forceinline RectCollider() : PolygonCollider(4, points, nodes[0], nodes[1]) {
+    RectCollider() : PolygonCollider(4, points, nodes[0], nodes[1]) {
         for (u32 i = 0; i < 4; i++) {
             points[i].x = 0.0f;
             points[i].y = 0.0f;

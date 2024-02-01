@@ -9,7 +9,7 @@ Files:
   - lib/imgui/src/imgui_impl_wiiu.cpp
   - lib/imgui/src/imgui_impl_gx2.cpp
   - lib/imgui/src/wut/whb/gfx_shader.cpp
-  - lib/imgui/src/imgui_hooks.cpp
+  - src/imguihooks.cpp
 Hooks:
   - type: branch
     instr: bl

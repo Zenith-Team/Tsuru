@@ -1,6 +1,6 @@
 #include "game/actor/courseselect/courseselectactor.h"
 #include "game/actor/actormgr.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 u32 createRootSpawner() {
     ActorBuildInfo buildInfo = { 0 };

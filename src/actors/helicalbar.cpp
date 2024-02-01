@@ -8,7 +8,6 @@
 #include "game/actor/stage/playerbase.h"
 #include "game/effect/effect.h"
 #include "game/effect/effectid.h"
-#include "math/functions.h"
 #include "heap/seadHeapMgr.h"
 
 // TODO: Use ActorAdditionalHeaps

@@ -1,8 +1,7 @@
-#include "tsuru/actors/stringbank.h"
+#include "tsuru/actor/stringbank.h"
 #include "game/actor/stage/stageactor.h"
 #include "tsuru/strybble.h"
-#include "log.h"
-#include "ghs.h"
+#include "tsuru/log.h"
 
 const ActorInfo StringBankActorInfo = {
     sead::Vector2i(0, 0), sead::Vector2i(0, 0), sead::Vector2i(0, 0), 0, 0, 0, 0, ActorInfo::Flags::IgnoreSpawnRange
@@ -21,7 +20,7 @@ StringBank::StringBank(const ActorBuildInfo* buildInfo)
 u32 StringBank::onCreate() {
     if (this->bankID == 0) return 2;
 
-    __memzero(this->string, 49);
+    OSBlockSet(this->string, 0, 49);
     if (this->layer != StringBank::Type::Primary) {
         PRINT(LogColor::LightCyan, "(StringBank #", this->bankID, ") Initialized as ", this->layer == StringBank::Type::Ending ? "ending" : "secondary", " bank for primary bank #", this->layer == StringBank::Type::Ending ? this->bankID - 2 : this->bankID - 1);
         return 1;

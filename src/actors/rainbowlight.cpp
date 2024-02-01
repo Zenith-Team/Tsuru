@@ -1,7 +1,7 @@
 #include "game/actor/stage/stageactor.h"
 #include "game/graphics/lightsource.h"
 #include "game/graphics/mask/lightmask.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class RainbowLight : public StageActor {
     SEAD_RTTI_OVERRIDE(RainbowLight, StageActor);

@@ -4,7 +4,7 @@
 #include "game/graphics/model/blendingmodel.h"
 #include "game/effect/effect.h"
 #include "random/seadGlobalRandom.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class PoisonPiranhaProjectile : public Enemy {
     SEAD_RTTI_OVERRIDE(PoisonPiranhaProjectile, Enemy);

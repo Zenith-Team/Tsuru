@@ -20,9 +20,8 @@
 #include "gfx/seadGraphicsContext.h"
 #include "gfx/seadPrimitiveRenderer.h"
 #include "math/seadMathCalcCommon.h"
-#include "math/functions.h"
 #include "imgui/imgui.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 #include <cmath>
 

@@ -1,7 +1,7 @@
 #include "game/actor/stage/windgenerator.h"
 #include "game/playermgr.h"
 #include "game/actor/actormgr.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class FixedWindGenerator : public WindGenerator {
     SEAD_RTTI_OVERRIDE(FixedWindGenerator, WindGenerator);

@@ -3,7 +3,7 @@
 
 SEAD_SINGLETON_DISPOSER_IMPL(TsuruSaveMgr);
 
-TsuruSaveMgr::TsuruSaveData TsuruSaveMgr::sSaveData aligned(sead::FileDevice::cBufferMinAlignment);
+TsuruSaveMgr::TsuruSaveData TsuruSaveMgr::sSaveData __attribute__((aligned(sead::FileDevice::cBufferMinAlignment)));
 
 TsuruSaveMgr::TsuruSaveMgr()
     : CustomSaveMgr("save://ts_savedata.dat", &TsuruSaveMgr::sSaveData)

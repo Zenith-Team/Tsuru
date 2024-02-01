@@ -2,7 +2,7 @@
 #include "game/playermgr.h"
 #include "game/actor/stage/playerbase.h"
 #include "game/eventmgr.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class LayerChanger : public StageActor {
     SEAD_RTTI_OVERRIDE(LayerChanger, StageActor);

@@ -7,7 +7,7 @@
 #include "layer/aglRenderer.h"
 #include "sdk/gx2/functions.h"
 #include "sdk/os/functions.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_gx2.h"

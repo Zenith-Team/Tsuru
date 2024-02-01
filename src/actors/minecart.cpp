@@ -4,7 +4,7 @@
 #include "game/playermgr.h"
 #include "game/level/level.h"
 #include "game/level/levelinfo.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class Minecart : public MultiStateActor {
     SEAD_RTTI_OVERRIDE(Minecart, MultiStateActor);

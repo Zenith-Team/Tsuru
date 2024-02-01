@@ -2,7 +2,7 @@
 #include "game/collision/solid/polylinecollider.h"
 #include "game/collision/collidermgr.h"
 #include "game/graphics/model/modelnw.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class JumboRay : public StageActor {
     SEAD_RTTI_OVERRIDE(JumboRay, StageActor);

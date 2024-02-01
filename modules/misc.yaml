@@ -6,7 +6,6 @@ Files:
   - src/misc.cpp
   - src/bgoffset.S
   - src/hitboxcollider.cpp
-  - src/utils.cpp
   - src/profileres.cpp
   - src/inputcontrollers.cpp
   - src/playeradditionalresource.cpp

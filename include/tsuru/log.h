@@ -119,7 +119,7 @@ void tprint(T t);
 
 #define PRINT_SINGLE(x) tprint(x);
 
-#if defined(TSURU_DEBUG) && defined(NO_INTELLISENSE_HACK) && !defined(CONSOLE)
+#if !defined(_) && !defined(CONSOLE)
     void printToDebugMenu(const char* msg);
 
     #define PRINT(...)                                                      \

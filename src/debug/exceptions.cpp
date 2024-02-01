@@ -1,4 +1,4 @@
-#include "log.h"
+#include "tsuru/log.h"
 #include "sdk/os/functions.h"
 #include "sdk/gx2/functions.h"
 

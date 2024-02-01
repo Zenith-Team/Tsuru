@@ -1,5 +1,5 @@
 #include "game/actor/stage/stageactor.h"
-#include "log.h"
+#include "tsuru/log.h"
 #include "game/actor/actormgr.h"
 #include "game/eventmgr.h"
 

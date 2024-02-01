@@ -1,10 +1,10 @@
 
 ---
 Files:
-  - lib/sdk/src/os.cpp
-  - lib/sdk/src/gx2.cpp
-  - lib/sdk/src/h264.cpp
-  - lib/sdk/src/padscore.cpp
-  - lib/sdk/src/vpad.cpp
-  - lib/sdk/src/fs.cpp
+  - lib/cafe/src/os.cpp
+  - lib/cafe/src/gx2.cpp
+  - lib/cafe/src/h264.cpp
+  - lib/cafe/src/padscore.cpp
+  - lib/cafe/src/vpad.cpp
+  - lib/cafe/src/fs.cpp
 Hooks: []

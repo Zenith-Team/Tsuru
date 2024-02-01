@@ -4,7 +4,7 @@
 #include "game/savemgr.h"
 #include "game/actor/actormgr.h"
 #include "game/audio/gameaudio.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 #define SwitchBlockState TsuruSaveMgr::sSaveData.switchBlockBlue[SaveMgr::instance()->saveData->header.lastSessionSaveSlot]
 

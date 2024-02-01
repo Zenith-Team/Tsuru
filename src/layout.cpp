@@ -4,7 +4,7 @@
 #include "layer/aglLayer.h"
 #include "layer/aglRenderer.h"
 #include "layer/aglRenderInfo.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 SEAD_SINGLETON_DISPOSER_IMPL(LayoutRenderer);
 

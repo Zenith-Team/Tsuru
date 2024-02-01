@@ -2,7 +2,7 @@
 #include "game/graphics/model/modelnw.h"
 #include "game/effect/effect.h"
 #include "game/graphics/model/animation.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class Flaptor : public Enemy {
     SEAD_RTTI_OVERRIDE(Flaptor, Enemy);

@@ -4,7 +4,7 @@
 
 #include "sead/threadmgr.h"
 #include "agl/lyr/renderinfo.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 ASM_BEGIN
 

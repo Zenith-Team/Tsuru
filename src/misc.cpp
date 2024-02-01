@@ -10,7 +10,7 @@
 #include "game/actor/actor.h"
 #include "game/actor/actormgr.h"
 #include "game/playermgr.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 fmt::_Hex fmt::hex;
 bool fmt::_hexActive = false;

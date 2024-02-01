@@ -11,9 +11,9 @@
 #include "heap/seadHeap.h"
 #include "sdk/os/functions.h"
 #include "game/actor/courseselect/courseselectactor.h"
-#include "log.h"
+#include "tsuru/log.h"
 
-class WMSFile {
+class WMSCFile {
 public:
     struct Header {
         char magic[3];
@@ -24,7 +24,7 @@ public:
         u32 numScripts;
     };
 
-    WMSFile(sead::Heap* heap) {
+    WMSCFile(sead::Heap* heap) {
         sead::FileHandle handle;
         sead::FileDevice* device = sead::FileDeviceMgr::instance()->tryOpen(&handle, "course_select/scripts.wmsc", sead::FileDevice::cFileOpenFlag_ReadOnly, 0);
 
@@ -112,5 +112,5 @@ public:
 
     static CSScriptLoader* instance;
 
-    WMSFile* wmscFile;
+    WMSCFile* wmscFile;
 };

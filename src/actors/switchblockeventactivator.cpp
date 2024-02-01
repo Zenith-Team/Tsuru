@@ -2,7 +2,7 @@
 #include "game/eventmgr.h"
 #include "game/savemgr.h"
 #include "tsuru/save/managers/tsurusavemgr.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class SwitchBlockEventActivator : public StageActor {
     SEAD_RTTI_OVERRIDE(SwitchBlockEventActivator, StageActor);

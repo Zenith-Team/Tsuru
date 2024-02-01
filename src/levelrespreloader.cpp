@@ -1,10 +1,9 @@
 #include "game/level/level.h"
 #include "game/level/levelinfo.h"
 #include "game/resource/util.h"
-#include "tsuru/actors/stringbank.h"
+#include "tsuru/actor/stringbank.h"
 #include "tsuru/strybble.h"
-#include "ghs.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 #define ModelLoaderSpriteID 744
 #define StringBankSpriteID 745

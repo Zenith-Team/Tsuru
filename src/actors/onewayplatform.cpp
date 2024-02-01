@@ -5,7 +5,7 @@
 #include "game/eventmgr.h"
 #include "game/movementhandler.h"
 #include "tsuru/utils.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class OneWayPlatform : public StageActor {
     SEAD_RTTI_OVERRIDE(OneWayPlatform, StageActor);

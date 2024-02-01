@@ -1,8 +1,7 @@
 #pragma once
 
-#include "log.h"
+#include "tsuru/log.h"
 #include "types.h"
-#include "math/constants.h"
 #include "math/seadMathCalcCommon.h"
 
 // Main class for all easing operations
@@ -104,41 +103,41 @@ public:
 
     static f32 linear(f32 x)       { return x + 1; }
 
-    static f32 sineIn(f32 x)       { return 1.0f - cosf((x * M_PI) / 2.0f); }
-    static f32 sineOut(f32 x)      { return sinf((x * M_PI) / 2.0f); }
-    static f32 sineInOut(f32 x)    { return -(cosf(M_PI * x) - 1.0f) / 2.0f; }
+    static f32 sineIn(f32 x)       { return 1.0f - sead::Mathf::cos((x * sead::Mathf::pi()) / 2.0f); }
+    static f32 sineOut(f32 x)      { return sead::Mathf::sin((x * sead::Mathf::pi()) / 2.0f); }
+    static f32 sineInOut(f32 x)    { return -(sead::Mathf::cos(sead::Mathf::pi() * x) - 1.0f) / 2.0f; }
 
     static f32 quadIn(f32 x)       { return x * x; }
     static f32 quadOut(f32 x)      { return 1.0f - (1.0f - x) * (1.0f - x); }
-    static f32 quadInOut(f32 x)    { return x < 0.5f ? 2 * x * x : 1 - powf(-2 * x + 2, 2) / 2; }
+    static f32 quadInOut(f32 x)    { return x < 0.5f ? 2 * x * x : 1 - sead::Mathf::pow(-2 * x + 2, 2) / 2; }
 
     static f32 cubicIn(f32 x)      { return x * x * x; }
-    static f32 cubicOut(f32 x)     { return 1.0f - powf(1.0f - x, 3.0f); }
-    static f32 cubicInOut(f32 x)   { return x < 0.5f ? 4.0f * x * x * x : 1.0f - powf(-2.0f * x + 2.0f, 3.0f) / 2.0f; }
+    static f32 cubicOut(f32 x)     { return 1.0f - sead::Mathf::pow(1.0f - x, 3.0f); }
+    static f32 cubicInOut(f32 x)   { return x < 0.5f ? 4.0f * x * x * x : 1.0f - sead::Mathf::pow(-2.0f * x + 2.0f, 3.0f) / 2.0f; }
 
     static f32 quartIn(f32 x)      { return x * x * x * x; }
-    static f32 quartOut(f32 x)     { return 1.0f - powf(1.0f - x, 4.0f); }
-    static f32 quartInOut(f32 x)   { return x < 0.5f ? 8.0f * x * x * x * x : 1.0f - powf(-2.0f * x + 2.0f, 4.0f) / 2.0f; }
+    static f32 quartOut(f32 x)     { return 1.0f - sead::Mathf::pow(1.0f - x, 4.0f); }
+    static f32 quartInOut(f32 x)   { return x < 0.5f ? 8.0f * x * x * x * x : 1.0f - sead::Mathf::pow(-2.0f * x + 2.0f, 4.0f) / 2.0f; }
 
     static f32 quintIn(f32 x)      { return x * x * x * x * x; }
-    static f32 quintOut(f32 x)     { return 1.0f - powf(1.0f - x, 5.0f); }
-    static f32 quintInOut(f32 x)   { return x < 0.5f ? 16.0f * x * x * x * x * x : 1.0f - powf(-2.0f * x + 2.0f, 5.0f) / 2.0f; }
+    static f32 quintOut(f32 x)     { return 1.0f - sead::Mathf::pow(1.0f - x, 5.0f); }
+    static f32 quintInOut(f32 x)   { return x < 0.5f ? 16.0f * x * x * x * x * x : 1.0f - sead::Mathf::pow(-2.0f * x + 2.0f, 5.0f) / 2.0f; }
 
-    static f32 expoIn(f32 x)       { return x == 0.0f ? 0.0f : powf(2.0f, 10.0f * x - 10.0f); }
-    static f32 expoOut(f32 x)      { return x == 1.0f ? 1.0f : 1.0f - powf(2.0f, -10.0f * x); }
-    static f32 expoInOut(f32 x)    { return x == 0.0f ? 0.0f : x == 1.0f ? 1.0f : x < 0.5f ? powf(2.0f, 20.0f * x - 10.0f) / 2.0f : (2.0f - powf(2.0f, -20.0f * x + 10.0f)) / 2.0f; }
+    static f32 expoIn(f32 x)       { return x == 0.0f ? 0.0f : sead::Mathf::pow(2.0f, 10.0f * x - 10.0f); }
+    static f32 expoOut(f32 x)      { return x == 1.0f ? 1.0f : 1.0f - sead::Mathf::pow(2.0f, -10.0f * x); }
+    static f32 expoInOut(f32 x)    { return x == 0.0f ? 0.0f : x == 1.0f ? 1.0f : x < 0.5f ? sead::Mathf::pow(2.0f, 20.0f * x - 10.0f) / 2.0f : (2.0f - sead::Mathf::pow(2.0f, -20.0f * x + 10.0f)) / 2.0f; }
 
-    static f32 circIn(f32 x)       { return 1.0f - sqrtf(1.0f - powf(x, 2.0f)); }
-    static f32 circOut(f32 x)      { return sqrtf(1.0f - powf(x - 1.0f, 2.0f)); }
-    static f32 circInOut(f32 x)    { return x < 0.5f ? (1.0f - sqrtf(1.0f - powf(2.0f * x, 2.0f))) / 2.0f : (sqrtf(1.0f - powf(-2.0f * x + 2.0f, 2.0f)) + 1.0f) / 2.0f; }
+    static f32 circIn(f32 x)       { return 1.0f - sead::Mathf::sqrt(1.0f - sead::Mathf::pow(x, 2.0f)); }
+    static f32 circOut(f32 x)      { return sead::Mathf::sqrt(1.0f - sead::Mathf::pow(x - 1.0f, 2.0f)); }
+    static f32 circInOut(f32 x)    { return x < 0.5f ? (1.0f - sead::Mathf::sqrt(1.0f - sead::Mathf::pow(2.0f * x, 2.0f))) / 2.0f : (sead::Mathf::sqrt(1.0f - sead::Mathf::pow(-2.0f * x + 2.0f, 2.0f)) + 1.0f) / 2.0f; }
 
     static f32 backIn(f32 x)       { return 2.70158f * x * x * x - 1.70158f * x * x; }
-    static f32 backOut(f32 x)      { return 1.0f + 2.70158f * powf(x - 1.0f, 3.0f) + 1.70158f * powf(x - 1.0f, 2.0f); }
-    static f32 backInOut(f32 x)    { return x < 0.5f ? (powf(2.0f * x, 2.0f) * (3.5949095f * 2.0f * x - 2.5949095f)) / 2.0f : (powf(2.0f * x - 2.0f, 2.0f) * (3.5949095f * (x * 2.0f - 2.0f) + 2.5949095f) + 2.0f) / 2.0f; }
+    static f32 backOut(f32 x)      { return 1.0f + 2.70158f * sead::Mathf::pow(x - 1.0f, 3.0f) + 1.70158f * sead::Mathf::pow(x - 1.0f, 2.0f); }
+    static f32 backInOut(f32 x)    { return x < 0.5f ? (sead::Mathf::pow(2.0f * x, 2.0f) * (3.5949095f * 2.0f * x - 2.5949095f)) / 2.0f : (sead::Mathf::pow(2.0f * x - 2.0f, 2.0f) * (3.5949095f * (x * 2.0f - 2.0f) + 2.5949095f) + 2.0f) / 2.0f; }
 
-    static f32 elasticIn(f32 x)    { return x == 0.0f ? 0.0f : x == 1.0f ? 1.0f : -powf(2.0f, 10.0f * x - 10.0f) * sinf((x * 10.0f - 10.75f) * (2.0f * M_PI / 3.0f)); }
-    static f32 elasticOut(f32 x)   { return x == 0.0f ? 0.0f : x == 1.0f ? 1.0f : powf(2.0f, -10.0f * x) * sinf((x * 10.0f - 0.75f) * (2.0f * M_PI / 3.0f)) + 1.0f; }
-    static f32 elasticInOut(f32 x) { return x == 0.0f ? 0.0f : x == 1.0f ? 1.0f : x < 0.5f ? -(powf(2.0f, 20.0f * x - 10.0f) * sinf((20.0f * x - 11.125f) * (2.0f * M_PI / 4.5f))) / 2.0f : (powf(2.0f, -20.0f * x + 10.0f) * sinf((20.f * x - 11.125f) * (2.0f * M_PI / 4.5f))) / 2.0f + 1.0f; }
+    static f32 elasticIn(f32 x)    { return x == 0.0f ? 0.0f : x == 1.0f ? 1.0f : -sead::Mathf::pow(2.0f, 10.0f * x - 10.0f) * sead::Mathf::sin((x * 10.0f - 10.75f) * (2.0f * sead::Mathf::pi() / 3.0f)); }
+    static f32 elasticOut(f32 x)   { return x == 0.0f ? 0.0f : x == 1.0f ? 1.0f : sead::Mathf::pow(2.0f, -10.0f * x) * sead::Mathf::sin((x * 10.0f - 0.75f) * (2.0f * sead::Mathf::pi() / 3.0f)) + 1.0f; }
+    static f32 elasticInOut(f32 x) { return x == 0.0f ? 0.0f : x == 1.0f ? 1.0f : x < 0.5f ? -(sead::Mathf::pow(2.0f, 20.0f * x - 10.0f) * sead::Mathf::sin((20.0f * x - 11.125f) * (2.0f * sead::Mathf::pi() / 4.5f))) / 2.0f : (sead::Mathf::pow(2.0f, -20.0f * x + 10.0f) * sead::Mathf::sin((20.f * x - 11.125f) * (2.0f * sead::Mathf::pi() / 4.5f))) / 2.0f + 1.0f; }
 
     static f32 bounceIn(f32 x)     { return 1.0f - bounceOut(1.0f - x); }
     static f32 bounceOut(f32 x)    { return x < 1.0f / 2.75f ? 7.5625f * x * x : x < 2.0f / 2.75f ? 7.5625f * (x - 1.5f / 2.75f) * (x - 1.5f / 2.75f) + 0.75f : x < 2.5f / 2.75f ? 7.5625f * (x - 2.25f / 2.75f) * (x - 2.25f / 2.75f) + 0.9375f : 7.5625f * (x - 2.625f / 2.75f) * (x - 2.625f / 2.75f) + 0.984375f; }

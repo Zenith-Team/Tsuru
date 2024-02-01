@@ -5,7 +5,7 @@
 #include "game/csscriptmgr.h"
 #include "game/savemgr.h"
 #include "game/effect/effect.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class CSFlames : public CourseSelectActor {
     SEAD_RTTI_OVERRIDE(CSFlames, CourseSelectActor);

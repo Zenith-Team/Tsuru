@@ -8,7 +8,7 @@
 #include "game/tilemgr.h"
 #include "math/seadMathCalcCommon.h"
 #include "game/graphics/drawmgr.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class MagicPlatform : public StageActor {
     SEAD_RTTI_OVERRIDE(MagicPlatform, StageActor);

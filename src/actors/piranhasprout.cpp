@@ -2,8 +2,8 @@
 #include "game/actor/actormgr.h"
 #include "game/graphics/model/blendingmodel.h"
 #include "game/effect/effect.h"
-#include "math/easing.h"
-#include "log.h"
+#include "tsuru/easing.h"
+#include "tsuru/log.h"
 
 /**
  * * Known bugs:

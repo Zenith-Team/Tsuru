@@ -3,7 +3,7 @@
 #include "sead/projection.h"
 #include "tsuru/save/managers/tsurusavemgr.h"
 #include "sead/camera.h"
-#include "log.h"
+#include "tsuru/log.h"
 #include "game/playermgr.h"
 #include "math/functions.h"
 #include "game/level/levelinfo.h"

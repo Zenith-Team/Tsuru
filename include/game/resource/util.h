@@ -2,7 +2,7 @@
 
 #include "game/resource/resarchive.h"
 #include "game/resource/resmgr.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 static inline bool loadResource(const sead::SafeString& name, const sead::SafeString& path, bool isYaz0 = true, const char* requester = "*") {
     PRINT(LogColor::Yellow, "TsuruResLoader: ", requester, " is attempting to load resource: ", path.cstr());

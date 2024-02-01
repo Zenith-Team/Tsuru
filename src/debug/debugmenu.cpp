@@ -22,7 +22,7 @@
 #include "game/sound/audaudioplayer.h"
 #include "common/aglTextureSampler.h"
 #include "layer/aglRenderer.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 #include "imgui/imgui.h"
 

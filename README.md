@@ -48,7 +48,7 @@ Project started on March 9, 2021 :)
 - If you require any assistance with anything related to Tsuru, feel free to join our [Discord server](https://go.nsmbu.net/discord) and ask for help in there.
 
 ## Credits
-* [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-haxx) code and headers
+* [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-Haxx-Rewrite) code, headers, and libs
 * [Baron Stijn](https://github.com/BaronStijn) - Code
 * [Flizl](https://github.com/Flizl) - Graphics
 * [iHarv](https://github.com/iHarv) - Quality Assurance
@@ -60,13 +60,12 @@ Project started on March 9, 2021 :)
 * [RoadrunnerWMC](https://github.com/RoadrunnerWMC) - Customizable [world map scripts](https://github.com/RoadrunnerWMC/Cobra)
 * [rodmjorgeh](https://github.com/Rodmjorge) - Graphics
 * [shibboleet](https://github.com/shibbo) - [Headers](https://github.com/shibbo/NSMBU-Headers/)
-* [STUPID](https://github.com/stupidestmodder) - Code and headers
+* [STUPID](https://github.com/stupidestmodder) - Code, headers, and libs
 * [Swiftshine](https://github.com/Swiftshine) - Code and headers
 * [techmuse](https://github.com/techmuse8) - Graphics and Quality Assurance
 * [t0bu](https://www.youtube.com/@tbu.) - Graphics
 * [WillyMaker](https://github.com/WillyMaker5) - Sprite data and images
 * Modified dynamic_libs headers based on original implementation by [Dimok](https://github.com/dimok789) and [Maschell fork](https://github.com/Maschell/dynamic_libs)
-* [shiftjis.h](https://github.com/bucanero/apollo-ps3/blob/master/include/shiftjis.h) from Apollo PS3
 * [ImGui C++98 port](https://github.com/fruityloops1/imgui-98) by Fruityloops
 
 ### Special Thanks

@@ -55,7 +55,7 @@ typedef struct {
     u64 ctime;
     u64 mtime;
     u8 attributes[48];
-} packed FSStat;
+} __attribute__((packed)) FSStat;
 
 typedef struct {
     FSStat      stat;
@@ -74,7 +74,7 @@ typedef struct {
     u32                 unkwn1;
     u32                 unkwn2;
     u32                 unkwn3; // always 0x08
-} packed FSMessage;
+} __attribute__((packed)) FSMessage;
 
 typedef struct FSAsyncResult_ {
     FSAsyncParams       userParams;

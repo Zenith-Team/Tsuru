@@ -2,7 +2,7 @@
 #include "game/actor/stage/multistateactor.h"
 #include "game/actor/actormgr.h"
 #include "game/graphics/model/charactermodel.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 f32 PowerupCenterOffsetTable[PlayerBase::PowerupState::Num] = {
     16.0f,                          // Small

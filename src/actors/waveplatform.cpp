@@ -6,7 +6,7 @@
 #include "game/tilemgr.h"
 #include "math/seadMathCalcCommon.h"
 #include "tsuru/utils.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class WavePlatform : public StageActor {
     SEAD_RTTI_OVERRIDE(WavePlatform, StageActor);

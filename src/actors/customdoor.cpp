@@ -1,5 +1,5 @@
 #include "game/actor/stage/doorbase.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class CustomDoor : public DoorBase {
     SEAD_RTTI_OVERRIDE(CustomDoor, DoorBase);

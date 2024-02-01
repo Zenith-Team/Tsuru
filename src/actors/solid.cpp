@@ -1,7 +1,7 @@
 #include "game/actor/stage/stageactor.h"
 #include "game/collision/collidermgr.h"
 #include "game/collision/solid/rectcollider.h"
-#include "log.h"
+#include "tsuru/log.h"
 
 class Solid : public StageActor {
     SEAD_RTTI_OVERRIDE(Solid, StageActor);
