@@ -391,6 +391,13 @@
 # nw::snd::internal::BasicSound
     Stop__Q4_2nw3snd8internal10BasicSoundFi = 0x2ACA048;
 
+# nw::snd::internal::SequenceSound
+    WriteVariable__Q4_2nw3snd8internal13SequenceSoundFis = 0x2AD1198;
+
+# nw::snd::SequenceSoundHandle
+    __ct__Q3_2nw3snd19SequenceSoundHandleFPQ3_2nw3snd11SoundHandle = 0x2AD1880;
+    DetachSound__Q3_2nw3snd19SequenceSoundHandleFv = 0x2AD199c;
+
 # nw::snd::SoundHandle
     DetachSound__Q3_2nw3snd11SoundHandleFv = 0x2ADDFAC;
 

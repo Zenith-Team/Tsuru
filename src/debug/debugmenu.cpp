@@ -23,6 +23,7 @@
 #include "common/aglTextureSampler.h"
 #include "layer/aglRenderer.h"
 #include "tsuru/log.h"
+#include "nw/snd/sequencesoundhandle.h"
 
 #include "imgui/imgui.h"
 
@@ -554,12 +555,9 @@ static void drawResMgrImGui() {
 }
 
 static void drawSoundHandleImGui(nw::snd::SoundHandle* handle, u32 i) {
-    // TODO
-/*
-    char buf[64] = { 0 };
-    __os_snprintf(buf, 64, "SoundHandle%i: %s", i + 1, handle->IsAttachedSound() ? "Attached" : "Detached");
-
-    if (ImGui::TreeNode(buf)) {
+    if (ImGui::TreeNode(
+        sead::FormatFixedSafeString<128>("SoundHandle%i: %s", i + 1, handle->IsAttachedSound() ? "Attached" : "Detached").cstr()
+    )) {
         if (ImGui::Button("Stop"))
             handle->Stop(0);
 
@@ -576,7 +574,6 @@ static void drawSoundHandleImGui(nw::snd::SoundHandle* handle, u32 i) {
 
         ImGui::TreePop();
     }
-*/
 }
 
 static void drawSndAudioMgrImGui() {
