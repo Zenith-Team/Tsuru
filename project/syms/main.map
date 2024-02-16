@@ -926,6 +926,9 @@
     move__5EnemyFRQ2_4sead16Vector2__tm__2_f = 0x232A67C;
     StateID_Ice__5Enemy = 0x10201218;
 
+# EnemyFreezeMgr
+    freeze__14EnemyFreezeMgrFRCQ2_14EnemyFreezeMgr4InfoUi = 0x237D63C;
+
 # EnvTerrain
     onExecute__10EnvTerrainFv = 0x26F0E9C;
 
@@ -936,9 +939,6 @@
 # FrameCtrl
     shouldLoop__9FrameCtrlFb = 0x24DEED4;
     reset__9FrameCtrlFv = 0x24DEEAC;
-
-# EnemyFreezeMgr
-    freeze__14EnemyFreezeMgrFRCQ2_14EnemyFreezeMgr4InfoUi = 0x237D63C;
 
 # GameAudio
     __CPR88__convertSndObjectPos__9GameAudioSFPQ2_4sead16Vector2__tm__2_fRCQ2_J37JJ42J = 0x2029368;
