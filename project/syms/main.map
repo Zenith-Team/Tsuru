@@ -39,6 +39,7 @@
 
 # Cafe SDK Static
     ASM_MTXConcat = 0x2AF98A0;
+    ASM_MTXTrans = 0x2AF9AD4;
     ASM_MTXScale = 0x2AF9B64;
     ASM_VECDistance = 0x2AF9718;
     ASM_VECMag = 0x2AF96C4;
@@ -792,6 +793,8 @@
     __ct__5EnemyFPC14ActorBuildInfo = 0x2328494;
     processCollision__5EnemyFP14HitboxColliderT1Ui = 0x2329B88;
     killPlayerJump__5EnemyFP10StageActorRCQ2_4sead16Vector2__tm__2_fP9StateBase = 0x232DA34;
+    killPlayerSpin__5EnemyFP10StageActor = 0x232CC98;
+    killYoshiStomp__5EnemyFP10StageActor = 0x232D31C;
     checkDerivedRuntimeTypeInfo__5EnemyCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x232A70C;
     __dt__5EnemyFv = 0x232A868;
     collisionCallback__5EnemySFP14HitboxColliderT1 = 0x2328C50;
@@ -933,6 +936,9 @@
 # FrameCtrl
     shouldLoop__9FrameCtrlFb = 0x24DEED4;
     reset__9FrameCtrlFv = 0x24DEEAC;
+
+# EnemyFreezeMgr
+    freeze__14EnemyFreezeMgrFRCQ2_14EnemyFreezeMgr4InfoUi = 0x237D63C;
 
 # GameAudio
     __CPR88__convertSndObjectPos__9GameAudioSFPQ2_4sead16Vector2__tm__2_fRCQ2_J37JJ42J = 0x2029368;
@@ -1240,6 +1246,7 @@
     RTTI__10StageActor = 0x101E9CC0;
     __ct__10StageActorFPC14ActorBuildInfo = 0x2000AC8;
     directionToPlayerH__10StageActorFRCQ2_4sead16Vector3__tm__2_f = 0x20005EC;
+    directionToActorH__10StageActorFRC10StageActor = 0x200C800;
     offscreenDelete__10StageActorFUi = 0x20007A0;
     checkDerivedRuntimeTypeInfo__10StageActorCFPCQ3_4sead15RuntimeTypeInfo9Interface = 0x2002A38;
     __dt__10StageActorFv = 0x2000F18;
