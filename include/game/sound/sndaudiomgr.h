@@ -41,22 +41,24 @@ public:
 
     nw::snd::SoundArchive::SoundType getSoundType(const char* label) const;
 
+    bool isSndPlaying(const char* label);
+
     u8 getBeatTrigger() const;
 
-    u8 _28;
-    u8 _29;
-    u8 _2A;
-    u8 _2B;
-    nw::snd::SoundHandle soundHandle1;
-    nw::snd::SoundHandle soundHandle2;
-    nw::snd::SoundHandle soundHandle3;
-    nw::snd::SoundHandle soundHandle4;
-    nw::snd::SoundHandle soundHandle5;
-    nw::snd::SoundHandle soundHandle6;
-    nw::snd::SoundHandle soundHandle7;
-    nw::snd::SoundHandle soundHandle8;
-    nw::snd::SoundHandle soundHandle9;
-    nw::snd::SoundHandle soundHandle10;
+    bool bgmStartFlag;
+    bool streamStartFlag;
+    bool starBgmStartFlag;
+    bool streamWithControlStartPreparedFlag;
+    nw::snd::SoundHandle startSystemSeSoundHandle;
+    nw::snd::SoundHandle holdSystemSeSoundHandle;
+    nw::snd::SoundHandle holdSystemSeVSoundHandle;
+    nw::snd::SoundHandle fanfareSoundHandle;
+    nw::snd::SoundHandle bgmSoundHandle;
+    nw::snd::SoundHandle starBgmSoundHandle;
+    nw::snd::SoundHandle controlBgmSoundHandle;
+    nw::snd::SoundHandle streamSoundHandle;
+    nw::snd::SoundHandle startSystemSeDrcSoundHandle;
+    nw::snd::SoundHandle starDrcSoundHandle;
     u8 _54[0x7C - 0x54];
     u8 currentBeat;
     u8 _7D[0x3D0 - 0x7D];

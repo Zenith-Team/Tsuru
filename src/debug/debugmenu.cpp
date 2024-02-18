@@ -396,8 +396,8 @@ static void drawThreadMgrImGui() {
 
 static bool sShowPauseFlagMethodTree = false;
 
-static void drawMethodTreeImGui(sead::MethodTreeNode* m) {
 /*
+static void drawMethodTreeImGui(sead::MethodTreeNode* m) {
     if (ImGui::TreeNode(sead::FormatFixedSafeString<128>("%s###%d", m->getName().cstr(), m).cstr())) {
         if (sShowPauseFlagMethodTree) {
             sead::BitFlag32 flag = m->pauseFlag;
@@ -427,8 +427,8 @@ static void drawMethodTreeImGui(sead::MethodTreeNode* m) {
 
         ImGui::TreePop();
     }
-*/
 }
+*/
 
 static void drawMethodTreeMgrImGui(sead::DualScreenMethodTreeMgr* mgr) {
     sead::ScopedLock<sead::CriticalSection> lock(mgr->getTreeCriticalSection());
@@ -445,11 +445,11 @@ static void drawMethodTreeMgrImGui(sead::DualScreenMethodTreeMgr* mgr) {
     }
 }
 
+/*
 static void drawTaskImGui(const sead::TaskBase* task) {
     //FormatFixedSafeString<64> buf("%s###%d", task->getName().cstr(), task);
 
     // TODO
-/*
     char buf[128] = { 0 };
     __os_snprintf(buf, 128, "%s###%d", task->getName().cstr(), task);
 
@@ -482,9 +482,10 @@ static void drawTaskImGui(const sead::TaskBase* task) {
 
         ImGui::TreePop();
     }
-*/
 }
+*/
 
+/*
 static void drawTaskListImGui(const sead::TaskBase::List& list, const char* name) {
     if (ImGui::TreeNodeEx(name, ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
         ImGui::TreePush(name);
@@ -495,6 +496,7 @@ static void drawTaskListImGui(const sead::TaskBase::List& list, const char* name
         ImGui::TreePop();
     }
 }
+*/
 
 static void drawTaskMgrImGui(sead::TaskMgr* mgr) {
     //sead::ScopedLock<sead::CriticalSection> lock(mgr->criticalSection); // causes game to freeze when entering level
@@ -554,13 +556,14 @@ static void drawResMgrImGui() {
     }
 }
 
-static void drawSoundHandleImGui(nw::snd::SoundHandle* handle, u32 i) {
+static void drawSoundHandleImGui(const char* name, nw::snd::SoundHandle* handle, u32 i) {
     if (ImGui::TreeNode(
-        sead::FormatFixedSafeString<128>("SoundHandle%i: %s", i + 1, handle->IsAttachedSound() ? "Attached" : "Detached").cstr()
+        sead::FormatFixedSafeString<128>("%s: %s###%u", name, handle->IsAttachedSound() ? "Attached" : "Detached", i).cstr()
     )) {
         if (ImGui::Button("Stop"))
             handle->Stop(0);
 
+/*
         nw::snd::SequenceSoundHandle sequenceHandle(handle);
         if (sequenceHandle.IsAttachedSound()) {
             static int var = 0;
@@ -571,6 +574,7 @@ static void drawSoundHandleImGui(nw::snd::SoundHandle* handle, u32 i) {
             if (ImGui::Button("Set Var0"))
                 sequenceHandle.WriteVariable(0, var);
         }
+*/
 
         ImGui::TreePop();
     }
@@ -580,10 +584,23 @@ static void drawSndAudioMgrImGui() {
     if (ImGui::CollapsingHeader("SndAudioMgr")) {
         SndAudioMgr* audioMgr = SndAudioMgr::instance();
 
-        nw::snd::SoundHandle* handles = &audioMgr->soundHandle1;
+        const char* handleNames[] = {
+            "startSystemSeSoundHandle",
+            "holdSystemSeSoundHandle",
+            "holdSystemSeVSoundHandle",
+            "fanfareSoundHandle",
+            "bgmSoundHandle",
+            "starBgmSoundHandle",
+            "controlBgmSoundHandle",
+            "streamSoundHandle",
+            "startSystemSeDrcSoundHandle",
+            "starDrcSoundHandle",
+        };
+
+        nw::snd::SoundHandle* handles = &audioMgr->startSystemSeSoundHandle;
 
         for (u32 i = 0; i < 10; i++) {
-            drawSoundHandleImGui(&handles[i], i);
+            drawSoundHandleImGui(handleNames[i], &handles[i], i);
         }
 
         ImGui::Text("Beat: %i", audioMgr->currentBeat);
