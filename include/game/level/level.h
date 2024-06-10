@@ -85,6 +85,8 @@ public:
     };
 
 public:
+    void loadAreas();
+
     Area* getArea(u32 id);
 
     Area areas[4];

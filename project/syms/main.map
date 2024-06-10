@@ -972,6 +972,7 @@
 
 # Level
     sInstance__5Level = 0x101DB048;
+    loadAreas__5LevelFv = 0x0269a244;
 
 # Level::Area
     getArea__5LevelFUi = 0x269A2DC;
