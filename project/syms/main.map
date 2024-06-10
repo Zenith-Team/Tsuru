@@ -942,6 +942,10 @@
 
 # GameAudio
     __CPR88__convertSndObjectPos__9GameAudioSFPQ2_4sead16Vector2__tm__2_fRCQ2_J37JJ42J = 0x2029368;
+    loadSceneSnd__9GameAudioFv = 0x02028780;
+    initSound__9GameAudioSFv = 0x0202adc4;
+    execute__9GameAudioSFv = 0x020297E0;
+    setPause__9GameAudioSFUi = 0x0202ae8c;
 
 # GameAudio::SndObjectCommonEmy
     sInstance__Q2_9GameAudio18SndObjectCommonEmy = 0x101C63CC;
@@ -1233,10 +1237,17 @@
     sInstance__11SndAudioMgr = 0x101E7C84;
     getAudioPlayer__11SndAudioMgrCFv = 0x29B68DC;
     getSoundName__11SndAudioMgrCFUi = 0x29B7500;
+    isSndPlaying__11SndAudioMgrFPCc = 0x029b3d8c;
 
 # SndBgmMgr
     sInstance__9SndBgmMgr = 0x101E7CA8;
     shouldHurryUp__9SndBgmMgrFv = 0x29B83D8;
+
+# SndSceneMgr
+    sInstance__11SndSceneMgr = 0x101e7d04;
+    loadSceneSound__11SndSceneMgrFUi = 0x029c0e7c;
+    loadData__11SndSceneMgrFUi = 0x029bfe1c;
+    loadGameBgm__11SndSceneMgrFUi = 0x029c11c0;
 
 # StageActor
     actorHCCallback0__10StageActorFP14HitboxColliderPQ2_4sead16Vector2__tm__2_f = 0x219E7E8;

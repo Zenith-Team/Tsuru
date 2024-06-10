@@ -59,6 +59,13 @@ public:
         static SndObjectCommonMap* sInstance;
     };
 
+public:
+    void loadSceneSnd();
+
+    static void initSound();
+    static void execute();
+    static void setPause(u32 fadeFrames);
+
     // Converts stage position to screen position
     // @param out Output sead::Vector2f variable
     // @param stagePos Position to be converted

@@ -3,7 +3,7 @@
 #include "game/sound/audaudiomgr.h"
 #include "heap/seadDisposer.h"
 #include "nw/snd/soundhandle.h"
-#include "nw/snd/soundarchive.h"
+#include "nw/snd/snd_SoundArchive.h"
 
 class SndAudioMgr : public AudAudioMgr {
     SEAD_SINGLETON_DISPOSER(SndAudioMgr);
