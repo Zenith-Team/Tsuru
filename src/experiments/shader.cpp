@@ -1,9 +1,9 @@
-#include "agl/uniformblock.h"
-#include "agl/shaderprogramarchive.h"
+#include "common/aglUniformBlock.h"
+#include "common/aglShaderProgramArchive.h"
 #include "game/graphics/shaderholder.h"
 
-#include "sead/threadmgr.h"
-#include "agl/lyr/renderinfo.h"
+#include "thread/seadThread.h"
+#include "layer/aglRenderInfo.h"
 #include "tsuru/log.h"
 
 ASM_BEGIN
@@ -25,7 +25,7 @@ ASM_END
 void layerFunc(void* ptr)
 {
     agl::lyr::RenderInfo* renderInfo = (agl::lyr::RenderInfo*)ptr;
-    s32 renderStep = renderInfo->renderStepIndex;
+    s32 renderStep = renderInfo->getRenderStep();
 
     sead::Thread* thread = sead::ThreadMgr::instance()->getCurrentThread();
     //PRINT(thread->getName().cstr(), " ", renderStep);
@@ -105,7 +105,7 @@ agl::ShaderMode shaderFunc(agl::ShaderProgram* program, agl::ShaderMode shaderMo
     const agl::ShaderProgramArchive* shaderProgramArchive = ShaderHolder::instance()->getNw4fShaderArchive();
     s32 shaderProgramIdx = shaderProgramArchive->searchShaderProgramIndex("nw4f_basic_shader");
 
-    const agl::ShaderProgram* shaderProgram = &shaderProgramArchive->programs[shaderProgramIdx];
+    const agl::ShaderProgram* shaderProgram = &shaderProgramArchive->getShaderProgram(shaderProgramIdx);
 
     return program->activate(shaderMode);
 }

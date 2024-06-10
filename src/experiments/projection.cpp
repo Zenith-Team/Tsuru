@@ -1,11 +1,11 @@
-#include "agl/lyr/renderer.h"
-#include "agl/lyr/layer.h"
-#include "sead/projection.h"
+#include "layer/aglRenderer.h"
+#include "layer/aglLayer.h"
+#include "gfx/seadProjection.h"
+#include "gfx/seadCamera.h"
+#include "math/seadMathCalcCommon.h"
 #include "tsuru/save/managers/tsurusavemgr.h"
-#include "sead/camera.h"
 #include "tsuru/log.h"
 #include "game/playermgr.h"
-#include "math/functions.h"
 #include "game/level/levelinfo.h"
 #include "imgui/imgui.h"
 
@@ -19,9 +19,10 @@ u32 worldMapProjection() {
         static sead::OrthoProjection projection;
 
         projection.setTBLR(360.0f, -360.0f, -640.0f, 640.0f);
-        projection.setNearFarClip(-1000.0f, 5000000.0f);
+        projection.setNear(-1000.0f);
+        projection.setFar(5000000.0f);
 
-        agl::lyr::Renderer::instance()->layers.buffer[7]->projection = &projection;
+        agl::lyr::Renderer::instance()->getLayer(7)->setProjection(&projection);
 
         return 1;
     }
@@ -29,7 +30,7 @@ u32 worldMapProjection() {
     {   // Frustum projection
         static sead::FrustumProjection projection(0.1f, 5000000.0f, 360.0f / 2400.0f, -360.0f / 2400.0f, -640.0f / 2400.0f, 640.0f / 2400.0f);
 
-        agl::lyr::Renderer::instance()->layers.buffer[7]->projection = &projection;
+        agl::lyr::Renderer::instance()->getLayer(7)->setProjection(&projection);
 
         return 1;
     }
@@ -63,16 +64,16 @@ void makePerspectiveLevel() {
     }
 */
 
-    sead::LookAtCamera* cam = static_cast<sead::LookAtCamera*>(agl::lyr::Renderer::instance()->layers.buffer[9]->camera);
+    sead::LookAtCamera* cam = static_cast<sead::LookAtCamera*>(agl::lyr::Renderer::instance()->getLayer(9)->getCamera());
 
     static f32 timer = 0.0f;
     timer += 0.003f;
 
     const f32 radius = 10000.0f;
-    cam->pos.x = sinf(timer) * radius;
-    cam->pos.z = cosf(timer) * radius;
+    cam->getPos().x = sead::Mathf::sin(timer) * radius;
+    cam->getPos().z = sead::Mathf::cos(timer) * radius;
 
-    cam->doUpdateMatrix(&cam->matrix);
+    cam->updateViewMatrix();
 }
 
 sead::Matrix44<f32>* getIdentMtx44() {
@@ -138,7 +139,7 @@ void mtx44ImGui(sead::Matrix44f& mtx, const char* str) {
 }
 
 void projThing(u32 offset, u32 count, sead::Matrix44f* projMtx) {
-    const sead::Matrix44f& perspProj = agl::lyr::Renderer::instance()->layers[5]->projection->getDeviceProjectionMatrix();
+    const sead::Matrix44f& perspProj = agl::lyr::Renderer::instance()->getLayer(5)->getProjection()->getDeviceProjectionMatrix();
 
     static f32 slider = 0.0f;
     static sead::Matrix44f mtx;
