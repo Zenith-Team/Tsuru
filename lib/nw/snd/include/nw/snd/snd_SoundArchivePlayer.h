@@ -4,6 +4,8 @@
 
 namespace nw { namespace snd {
 
+class SoundArchive;
+
 class SoundArchivePlayer : public SoundStartable {
 public:
     SoundArchivePlayer();
