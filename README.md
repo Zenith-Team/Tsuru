@@ -1,5 +1,5 @@
 <a href="https://github.com/Zenith-Team/Tsuru" align="center">
-  <img src="https://cdn.discordapp.com/attachments/835740850163679232/1144025045451165746/header.png">
+  <img src="https://github.com/Zenith-Team/Tsuru/assets/79218624/63a68e49-1ea3-42cd-b30e-6e72c1f39e9b">
 </a>
 
 <div align="center">
