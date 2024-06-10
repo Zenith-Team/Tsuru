@@ -402,6 +402,13 @@
 # nw::snd::SoundHandle
     DetachSound__Q3_2nw3snd11SoundHandleFv = 0x2ADDFAC;
 
+# nw::snd::SoundHeap
+    __ct__Q3_2nw3snd9SoundHeapFv = 0x02ade090;
+    Create__Q3_2nw3snd9SoundHeapFPvUi= 0x02ade248;
+    Clear__Q3_2nw3snd9SoundHeapFv = 0x02ade0f4;
+    SaveState__Q3_2nw3snd9SoundHeapFv = 0x02ade408;
+    LoadState__Q3_2nw3snd9SoundHeapFi = 0x02ade45c;
+
 # nw::snd::SoundStartable
     __CPR102__StartSound__Q3_2nw3snd14SoundStartableFPQ3_2nw3snd11SoundHandleUiPQ4_2nw3sndJ22J9StartInfo = 0x2ADEE58;
 
