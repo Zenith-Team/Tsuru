@@ -1,8 +1,8 @@
 #pragma once
 
 #include "heap/seadDisposer.h"
-#include "agl/shaderprogram.h"
-#include "agl/shaderprogramarchive.h"
+#include "common/aglShaderProgram.h"
+#include "common/aglShaderProgramArchive.h"
 
 class ShaderHolder
 {

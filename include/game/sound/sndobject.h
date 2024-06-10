@@ -3,6 +3,7 @@
 #include "nw/snd/soundhandle.h"
 #include "nw/snd/soundactor.h"
 #include "heap/seadDisposer.h"
+#include "math/seadVector.h"
 
 class AudAudioPlayer;
 
