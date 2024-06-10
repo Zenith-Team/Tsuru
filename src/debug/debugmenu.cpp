@@ -608,6 +608,9 @@ static void drawSndAudioMgrImGui() {
 
         static nw::snd::SoundHandle handle;
 
+        ImGui::Separator();
+        ImGui::Text("Player");
+
         static s32 soundID = 0;
         ImGui::DragInt("Sound ID", &soundID);
         ImGui::Text("Sound Name: %s", audioMgr->getSoundName(soundID + 0x1000000));
