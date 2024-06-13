@@ -1,14 +1,12 @@
 <a href="https://github.com/Zenith-Team/Tsuru" align="center">
-  <img src="https://cdn.discordapp.com/attachments/835740850163679232/1144025045451165746/header.png">
+  <img src="https://github.com/Zenith-Team/Tsuru/assets/79218624/63a68e49-1ea3-42cd-b30e-6e72c1f39e9b">
 </a>
 
 <div align="center">
-  <a href="#">
-    <img src="https://img.shields.io/badge/for-Wii%20U-blue?color=%2302a4c7&style=flat" alt="For Wii U"/>
-  </a>
+  <img src="https://img.shields.io/badge/for-Wii%20U-blue?color=%2302a4c7&style=flat" alt="For Wii U"/>
+  <img src="https://sloc.xyz/github/zenith-team/tsuru" alt="Download"/>
   <a href="https://github.com/Zenith-Team/Tsuru/releases/latest">
     <img src="https://img.shields.io/github/v/tag/zenith-team/tsuru?label=version&style=flat&color=%2346ad14" alt="Version"/>
-    <img src="https://img.shields.io/github/downloads/zenith-team/tsuru/total?style=flat&color=%23f57242" alt="Download"/>
   </a>
   <a href="https://go.nsmbu.net/discord">
     <img src="https://img.shields.io/discord/800510605785563186?logo=discord&color=%235662f6&style=flat&label=zenith" alt="Discord Link"/>
