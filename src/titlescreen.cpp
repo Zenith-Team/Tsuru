@@ -2,7 +2,10 @@
 #include "game/savemgr.h"
 #include "tsuru/log.h"
 
+#define TITLESCREEN_THEMES 0
+
 void LevelInfo::setTitlescreenThemeEntrance() {
+#if TITLESCREEN_THEMES
     switch (SaveMgr::getLastUsedSaveSlot().csPlayerLocation.worldNumber) {
         case 0: this->setDestEntrance(0); return; // Acorn Plains
         case 1: this->setDestEntrance(1); return; // Layer-Cake Desert
@@ -17,4 +20,7 @@ void LevelInfo::setTitlescreenThemeEntrance() {
 
         default: PRINT("Game saved in unknown world"); this->setDestEntrance(0); return;
     }
+#else
+    this->setDestEntrance(0)
+#endif
 }
