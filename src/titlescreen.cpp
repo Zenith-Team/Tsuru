@@ -21,6 +21,6 @@ void LevelInfo::setTitlescreenThemeEntrance() {
         default: PRINT("Game saved in unknown world"); this->setDestEntrance(0); return;
     }
 #else
-    this->setDestEntrance(0)
+    this->setDestEntrance(0);
 #endif
 }
