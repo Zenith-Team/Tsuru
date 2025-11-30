@@ -1373,3 +1373,7 @@
     InfiniteTimeContinue = 0x24C1388;
     InvincibilityContinue = 0x2931180;
     WorldMapScriptsTable = 0x100458B8;
+
+# PlayerDemoMgr
+    startControlDemoAll_1__13PlayerDemoMgrFv = 0x290F584;
+    endControlDemoAll__13PlayerDemoMgrFv = 0x029103A4;
