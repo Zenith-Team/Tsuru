@@ -25,3 +25,7 @@ Hooks:
     instr: bl
     addr: "0x29B863C"
     func: getSeqName__9SndBgmMgrFi
+  # Skip the "invalid sound ID" check for courses
+  - type: patch
+    addr: "0x029C10F4"
+    data: "48000028" # b + 0x28
