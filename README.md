@@ -1,3 +1,6 @@
+> [!WARNING]
+> Tsuru is deprecated. See [DEPRECATED.md](DEPRECATED.md).
+
 <a href="https://github.com/Zenith-Team/Tsuru" align="center">
   <img src="https://github.com/Zenith-Team/Tsuru/assets/79218624/63a68e49-1ea3-42cd-b30e-6e72c1f39e9b">
 </a>
@@ -30,20 +33,13 @@ The purpose of this project is to provide a platform for New Super Mario Bros. U
 
 Project started on March 9, 2021 :)
 
-## Contributing
-- Create a new [Pull Request](https://github.com/Zenith-Team/Tsuru/pulls) on the designated page. We will review the PR and accept it if we feel that it meets our quality standard and design philosophy.
-- If you have discovered an issue or bug, [create an issue](https://github.com/Zenith-Team/Tsuru/issues) instead (suggestions may also go on issues).
-
 ## Building
 - This project is intended to be compiled with the [Tachyon](https://github.com/Zenith-Team/Tachyon) build system.
 - A setup guide may be found [here](https://zenith.nsmbu.net/wiki/Custom_Code/Setting_up_Tachyon).
 
 ## Usage
 - To install Tsuru onto your game, simply use the [Trailblazer](https://trailblazer.nsmbu.net) patch file installer, and the latest patch available on the [Tsuru releases page](https://github.com/Zenith-Team/Tsuru/releases).
-- Keep in mind that currently this project targets version 1.3.0 of the __standalone__ copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well. Support for the bundle will be coming soon but as of right now it is not our top priority.
-
-## Help
-- If you require any assistance with anything related to Tsuru, feel free to join our [Discord server](https://go.nsmbu.net/discord) and ask for help in there.
+- Keep in mind that currently this project targets version 1.3.0 of the __standalone__ copy of New Super Mario Bros. U, but does maintain compatibility with the DLC as well.
 
 ## Credits
 * [AboodXD](https://github.com/aboood40091) - [NSMBU-Haxx](https://github.com/aboood40091/NSMBU-Haxx-Rewrite) code, headers, and libs
